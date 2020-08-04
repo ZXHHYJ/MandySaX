@@ -14,16 +14,16 @@
 # view AndroidManifest.xml #generated:19
 -keep class com.FMJJ.MandySa.MainApplication { <init>(...); }
 
-# view AndroidManifest.xml #generated:43
+# view AndroidManifest.xml #generated:42
 -keep class com.FMJJ.MandySa.MusicActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:45
+# view AndroidManifest.xml #generated:44
 -keep class com.FMJJ.MandySa.PactActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:28
 -keep class com.FMJJ.MandySa.Service.MusicService { <init>(...); }
 
-# view AndroidManifest.xml #generated:44
+# view AndroidManifest.xml #generated:43
 -keep class com.FMJJ.MandySa.StartActivity { <init>(...); }
 
 # view res/layout/main.xml #generated:7

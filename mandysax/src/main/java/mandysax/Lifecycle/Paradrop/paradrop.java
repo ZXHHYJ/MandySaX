@@ -25,6 +25,10 @@ public class paradrop
 		return obj;
 	}
 	
+	public void wait(String key){
+		
+	}
+	
 	public static <T> T getDrop(String key){
 		for(int i = 0;i<paradropManagement.paradropManagement.size();i++){
 			if(paradropManagement.paradropManagement.get(i).getKey().equals(key)){

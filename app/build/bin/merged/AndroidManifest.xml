@@ -32,8 +32,7 @@
 
         <activity
             android:name="com.FMJJ.MandySa.MainActivity"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan" >
+            android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -14,11 +14,11 @@ import mandysax.Lifecycle.Paradrop.paradrop;
 public class MainViewModel extends ViewModel
 {
 	public int index=0;
-	
+
 	private MutableLiveData<MusicService.MusicBinder> _music_binder=new MutableLiveData<MusicService.MusicBinder>();
-	
+
 	public LiveData<MusicService.MusicBinder> music_binder = _music_binder;
-	
+
 	private final MusicConnector music_connector = new MusicConnector();
 
     private class MusicConnector implements ServiceConnection
@@ -26,21 +26,16 @@ public class MainViewModel extends ViewModel
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder)
         {
-			if (_music_binder.getValue() == null)
-			{
-				paradrop.newTask("music_binder",iBinder);
-				_music_binder.setValue((MusicService.MusicBinder)iBinder);
-			}
+			_music_binder.setValue((MusicService.MusicBinder)paradrop.newTask("music_binder", iBinder));
         }
         @Override
         public void onServiceDisconnected(ComponentName componentName)
         {          
         }
     }
-	
+
 	public void bindService(Activity activity)
     {
-		if(music_binder.getValue()==null)
 		activity.bindService(new Intent(activity, MusicService.class), music_connector, Context.BIND_AUTO_CREATE);
 	}
 

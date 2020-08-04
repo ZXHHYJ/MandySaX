@@ -3,12 +3,8 @@ package com.FMJJ.MandySa;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.KeyEvent;
 import android.view.View;
 import com.FMJJ.MandySa.Fragment.HomeFragment;
@@ -18,18 +14,18 @@ import com.FMJJ.MandySa.Fragment.SearchFragment;
 import com.FMJJ.MandySa.MainActivity;
 import com.FMJJ.MandySa.R;
 import com.FMJJ.MandySa.Service.MusicService;
+import com.FMJJ.MandySa.ViewModel.MainViewModel;
 import com.dikaros.navigation.widget.BottomNavigationBar;
 import java.util.ArrayList;
 import java.util.List;
 import mandysax.Edge.MusicView;
 import mandysax.Lifecycle.LifecycleActivity;
+import mandysax.Lifecycle.LiveData.Observer;
+import mandysax.Lifecycle.ViewModel.ViewModelProviders;
 import mandysax.Service.MediaService;
 import mandysax.Service.StateEvent.onChange;
 import mandysax.Tools.FragmentUtils;
 import simon.tuke.Tuke;
-import com.FMJJ.MandySa.ViewModel.MainViewModel;
-import mandysax.Lifecycle.ViewModel.ViewModelProviders;
-import mandysax.Lifecycle.LiveData.Observer;
 
 public class MainActivity extends LifecycleActivity
 {
@@ -91,6 +87,7 @@ public class MainActivity extends LifecycleActivity
 				}	
 			});
 		viewModel.bindService(this);
+		
 		initFragment();
 		music_view = findViewById(R.id.mainMusicView1);
 		bottomNavigationBar = findViewById(R.id.mainBottomNavigationBar1);
@@ -151,11 +148,5 @@ public class MainActivity extends LifecycleActivity
         }
         return super.onKeyDown(keyCode, event);
     }
-
-	@Override
-	protected void onDestroy()
-	{
-		super.onDestroy();
-	}
 
 }
