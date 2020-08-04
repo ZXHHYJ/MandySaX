@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center">
+
+	<RelativeLayout
+		android:fitsSystemWindows="true"
+		android:layout_centerInParent="true"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content">
+
+		<ImageView
+			android:scaleType="centerCrop"
+			android:layout_centerHorizontal="true"
+			android:layout_width="300dp"
+			android:layout_height="300dp"
+			android:id="@+id/musicplayalbumpicture"/>
+
+		<TextView
+			android:textColor="@color/text_color"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:id="@+id/musicplaytitle"
+			android:layout_below="@id/musicplayalbumpicture"/>
+
+		<TextView
+			android:textColor="@color/text_color"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_below="@id/musicplaytitle"
+			android:id="@+id/musicplaysmalltitle"/>
+
+	</RelativeLayout>
+
+</LinearLayout>
+

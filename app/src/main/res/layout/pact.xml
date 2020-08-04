@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<include
+		layout="@layout/title"
+		android:id="@+id/pactinclude1"/>
+
+	<LinearLayout
+		android:layout_alignParentBottom="true"
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="45dp"
+		android:gravity="center"
+		android:id="@+id/pactLinearLayout1">
+
+		<View
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/ok"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:id="@+id/pactOK"
+			android:layout_margin="10dp"
+			android:textColor="@color/theme_color"/>
+
+	</LinearLayout>
+
+	<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+		android:layout_below="@id/pactinclude1"
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:id="@+id/pactSwipeRefreshLayout1"
+		android:layout_above="@id/pactLinearLayout1">
+
+		<WebView
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:id="@+id/pactWebView1"/>
+
+	</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</RelativeLayout>
+

@@ -1,0 +1,29 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29"
+
+    defaultConfig {
+        applicationId "com.FMJJ.MandySa"
+        minSdkVersion 20
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+	api project(':simon')
+	api project(':mandysax')
+	api project(':BottomNavigationBar')
+	api 'androidx.swiperefreshlayout:swiperefreshlayout:+'
+	api 'androidx.recyclerview:recyclerview:+'
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+}

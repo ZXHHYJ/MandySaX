@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MandySa</string>
+	<string name="start_slogan">Choose a layout to continue</string>
+	<string name="phone_mode">Phone Mode</string>
+	<string name="pad_mode">Pad Mode</string>
+	<string name="ok">Yes</string>
+
+</resources>

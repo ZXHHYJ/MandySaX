@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<com.dikaros.navigation.widget.BottomNavigationBar
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:id="@+id/mainBottomNavigationBar1">
+
+	</com.dikaros.navigation.widget.BottomNavigationBar>
+
+	<mandysax.Edge.MusicView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/mainMusicView1"
+		android:layout_above="@id/mainBottomNavigationBar1"/>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/mainFrameLayout1"
+		android:layout_above="@id/mainMusicView1"/>
+
+</RelativeLayout>
+

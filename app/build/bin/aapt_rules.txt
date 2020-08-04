@@ -1,0 +1,37 @@
+# view res/layout/search_fragment.xml #generated:43
+-keep class androidx.recyclerview.widget.RecyclerView { <init>(...); }
+
+# view res/layout/pact.xml #generated:36
+# view res/layout/search_fragment.xml #generated:38
+-keep class androidx.swiperefreshlayout.widget.SwipeRefreshLayout { <init>(...); }
+
+# view res/layout/music.xml #generated:2
+-keep class com.FMJJ.MandySa.Fragment.MusicFragment { <init>(...); }
+
+# view AndroidManifest.xml #generated:33
+-keep class com.FMJJ.MandySa.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:19
+-keep class com.FMJJ.MandySa.MainApplication { <init>(...); }
+
+# view AndroidManifest.xml #generated:43
+-keep class com.FMJJ.MandySa.MusicActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:45
+-keep class com.FMJJ.MandySa.PactActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:28
+-keep class com.FMJJ.MandySa.Service.MusicService { <init>(...); }
+
+# view AndroidManifest.xml #generated:44
+-keep class com.FMJJ.MandySa.StartActivity { <init>(...); }
+
+# view res/layout/main.xml #generated:7
+-keep class com.dikaros.navigation.widget.BottomNavigationBar { <init>(...); }
+
+# view res/layout/main.xml #generated:15
+-keep class mandysax.Edge.MusicView { <init>(...); }
+
+# onClick res/layout/start.xml #generated:24
+-keepclassmembers class * { *** chooseMode(...); }
+
