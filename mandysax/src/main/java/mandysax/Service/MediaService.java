@@ -19,7 +19,7 @@ import mandysax.R;
 import mandysax.Service.StateEvent.onChange;
 import android.os.PowerManager;
 
-public abstract class MediaService<T extends MusicItem> extends Service
+public abstract class MediaService<E extends MusicItem> extends Service
 {
 	public abstract java.lang.Class<?> getOpenClass();
 
@@ -28,7 +28,7 @@ public abstract class MediaService<T extends MusicItem> extends Service
 
     public final static int SEEK=0,NEXT=1,LAST=2,ERROR=3,LOADMUSIC=4,PLAY=5,PAUSE=6;
 
-    private MusicBinder mBinder=null;
+    private MusicBinder<E> mBinder=null;
 
 	private final Notification.MediaStyle mediaStyle = new Notification.MediaStyle();
 
@@ -39,7 +39,7 @@ public abstract class MediaService<T extends MusicItem> extends Service
     @Override
     public IBinder onBind(Intent p1)
     {
-        return mBinder == null ?mBinder = new MusicBinder(): mBinder;
+        return mBinder == null ?mBinder = new MusicBinder<E>(): mBinder;
     }
 
     @Override
@@ -84,7 +84,7 @@ public abstract class MediaService<T extends MusicItem> extends Service
 		manager.notify(1, builder.getNotification());
 	}
 
-    public class MusicBinder extends Binder
+    public class MusicBinder<T extends E> extends Binder
     {  
 
         private T music_TAG;
