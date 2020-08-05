@@ -18,12 +18,13 @@ android {
         }
     }
 }
-
+	
 dependencies {
-	api project(':simon')
-	api project(':mandysax')
-	api project(':BottomNavigationBar')
-	api 'androidx.swiperefreshlayout:swiperefreshlayout:+'
-	api 'androidx.recyclerview:recyclerview:+'
+	compile project(':mandysax')
+	compile project(':simon')
+	//api 'com.github.ZXHHYJ:mandysax:1.0.1'
+	compile project(':BottomNavigationBar')
+	compile 'androidx.swiperefreshlayout:swiperefreshlayout:+'
+	compile 'androidx.recyclerview:recyclerview:+'
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 }
