@@ -6,3 +6,9 @@ apply plugin: 'com.github.dcendents.android-maven'
 //我的github账号是helen-x, 对应我的group就是com.github.helen-x
 group='com.github.ZXHHYJ'
 
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29"
+}
+
+
