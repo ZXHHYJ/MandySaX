@@ -28,7 +28,7 @@ public abstract class MediaService<T extends MusicItem> extends Service
 
     public final static int SEEK=0,NEXT=1,LAST=2,ERROR=3,LOADMUSIC=4,PLAY=5,PAUSE=6;
 
-    private MusicBinder<T> mBinder=null;
+    private MusicBinder mBinder=null;
 
 	private final Notification.MediaStyle mediaStyle = new Notification.MediaStyle();
 
@@ -39,7 +39,7 @@ public abstract class MediaService<T extends MusicItem> extends Service
     @Override
     public IBinder onBind(Intent p1)
     {
-        return mBinder == null ?mBinder = new MusicBinder<T>(): mBinder;
+        return mBinder == null ?mBinder = new MusicBinder(): mBinder;
     }
 
     @Override
@@ -84,7 +84,7 @@ public abstract class MediaService<T extends MusicItem> extends Service
 		manager.notify(1, builder.getNotification());
 	}
 
-    public class MusicBinder<T extends MusicItem> extends Binder
+    public class MusicBinder extends Binder
     {  
 
         private T music_TAG;
