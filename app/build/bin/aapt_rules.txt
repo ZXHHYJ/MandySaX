@@ -27,7 +27,7 @@
 -keep class com.FMJJ.MandySa.StartActivity { <init>(...); }
 
 # view res/layout/main.xml #generated:7
--keep class com.dikaros.navigation.widget.BottomNavigationBar { <init>(...); }
+-keep class mandysax.Edge.BottomNavigationBar { <init>(...); }
 
 # view res/layout/main.xml #generated:15
 -keep class mandysax.Edge.MusicView { <init>(...); }
