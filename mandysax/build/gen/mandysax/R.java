@@ -64,6 +64,10 @@ containing a value of this type.
         public static int ic_android_black_24dp=0x7f030000;
         public static int ic_android_green_24dp=0x7f030001;
         public static int ic_music_black=0x7f030002;
+        public static int ic_pause=0x7f030003;
+        public static int ic_play=0x7f030004;
+        public static int ic_skip_next_outline=0x7f030005;
+        public static int ic_skip_previous_outline=0x7f030006;
     }
     public static final class styleable {
         /** Attributes that can be used with a BottomNavigationBar.

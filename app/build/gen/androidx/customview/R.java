@@ -478,8 +478,12 @@ containing a value of this type.
         public static final int ic_music_black=0x7f03000d;
         public static final int ic_music_note_eighth=0x7f03000e;
         public static final int ic_music_note_eighth_black=0x7f03000f;
-        public static final int ic_star=0x7f030010;
-        public static final int ic_star_black=0x7f030011;
+        public static final int ic_pause=0x7f030010;
+        public static final int ic_play=0x7f030011;
+        public static final int ic_skip_next_outline=0x7f030012;
+        public static final int ic_skip_previous_outline=0x7f030013;
+        public static final int ic_star=0x7f030014;
+        public static final int ic_star_black=0x7f030015;
     }
     public static final class string {
         public static final int app_name=0x7f080001;

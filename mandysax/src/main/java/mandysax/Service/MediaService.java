@@ -21,7 +21,7 @@ import android.os.PowerManager;
 
 public abstract class MediaService<E extends MusicItem> extends Service
 {
-	public abstract java.lang.Class<?> getOpenClass();
+	public abstract Class<?> getOpenClass();
 
 	private static final String[] GROUP={"a"};
 	private static final String[] DITCH={"aa"};
@@ -54,22 +54,27 @@ public abstract class MediaService<E extends MusicItem> extends Service
 	{
 		super.onCreate();
 		manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+		builder = new Notification.Builder(this);
+        mediaStyle.setShowActionsInCompactView(0, 1, 2);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
 		{
             NotificationChannelGroup channelGroup = new NotificationChannelGroup(GROUP[0], "媒体");
 			manager.createNotificationChannelGroup(channelGroup);
-			NotificationChannel notificationChannel = new NotificationChannel(DITCH[0], "音乐控制", NotificationManager.IMPORTANCE_LOW);
+			NotificationChannel notificationChannel = new NotificationChannel(DITCH[0], "音乐控制", NotificationManager.IMPORTANCE_NONE);
 			notificationChannel.enableLights(false);
 			notificationChannel.enableVibration(false);
 			notificationChannel.setGroup(GROUP[0]);
 			manager.createNotificationChannel(notificationChannel);
-        }
-		builder = new Notification.Builder(this)
-		    .setChannelId(DITCH[0])
+            builder .setChannelId(DITCH[0]);
+        } 
+        builder
 			.setSmallIcon(R.mipmap.ic_music_black)
 			.setContentTitle("MandySa")
 			//.setLargeIcon(largeIcon)
-			.setAutoCancel(false)
+			.addAction(R.mipmap.ic_skip_previous_outline, "", null)
+            .addAction(R.mipmap.ic_play, "", null)
+            .addAction(R.mipmap.ic_skip_next_outline, "", null)
+            .setAutoCancel(false)
 		    .setCategory(Notification.CATEGORY_SERVICE)
 			.setStyle(mediaStyle)
 			.setOnlyAlertOnce(true)
