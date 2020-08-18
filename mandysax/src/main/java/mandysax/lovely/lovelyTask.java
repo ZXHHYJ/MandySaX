@@ -58,7 +58,6 @@ public class lovelyTask
 						 }
 						 else
 						 view.setImageBitmap(p1);
-
 						 }*/
 					}
 					else

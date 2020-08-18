@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:gravity="center"
 	android:orientation="vertical">
 
-	<LinearLayout
-		android:orientation="vertical"
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/start_slogan"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:textSize="25sp"
+		android:layout_marginBottom="10dp"
+		android:id="@+id/start_choose_mode"
+		android:layout_centerInParent="true"/>
+
+	<Button
+		android:layout_alignParentBottom="true"
+		android:onClick="chooseMode"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:gravity="center">
+		android:layout_height="wrap_content"
+		android:text="Start"
+		android:layout_margin="10dp"
+		style="@style/AppButton"/>
 
-		<TextView
-					android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/start_slogan"
-			android:textAppearance="?android:attr/textAppearanceLarge"
-			android:textSize="25sp"
-			android:layout_marginBottom="10dp"
-			android:id="@+id/start_choose_mode"/>
+	<include
+		layout="@layout/title"/>
 
-		<Button
-			android:onClick="chooseMode"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Start"
-			android:background="@drawable/button"/>
+</RelativeLayout>
 
-	</LinearLayout>
-
-	<include layout="@layout/title"/>
-		
-</FrameLayout>

@@ -18,9 +18,24 @@ import java.util.List;
 import mandysax.R;
 import mandysax.Service.StateEvent.onChange;
 import android.os.PowerManager;
+import android.graphics.BitmapFactory;
+import android.icu.util.BuddhistCalendar;
+import mandysax.lovely.lovelyTask;
+import mandysax.lovely.lovely;
+import mandysax.Lifecycle.LifecycleAbstract;
+import mandysax.Lifecycle.Lifecycle;
 
-public abstract class MediaService<E extends MusicItem> extends Service
+public abstract class MediaService<E extends MusicItem> extends Service implements LifecycleAbstract
 {
+
+	private Lifecycle lifecycle = new Lifecycle();
+
+	@Override
+	public Lifecycle getLifecycle()
+	{
+		return lifecycle;
+	}
+
 	public abstract Class<?> getOpenClass();
 
 	private static final String[] GROUP={"a"};
@@ -28,26 +43,22 @@ public abstract class MediaService<E extends MusicItem> extends Service
 
     public final static int SEEK=0,NEXT=1,LAST=2,ERROR=3,LOADMUSIC=4,PLAY=5,PAUSE=6;
 
-    private MusicBinder<E> mBinder=null;
-
-	private final Notification.MediaStyle mediaStyle = new Notification.MediaStyle();
+	NotificationManager manager;
 
 	private Notification.Builder builder;
-
-	private NotificationManager manager;
 
     @Override
     public IBinder onBind(Intent p1)
     {
-        return mBinder == null ?mBinder = new MusicBinder<E>(): mBinder;
+        return new MusicBinder<E>();
     }
 
-    @Override
-    public void onDestroy()
-    {
-        super.onDestroy();
-        if (mBinder != null)mBinder.onDestroy();
-    }
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+		lifecycle.onDestory();
+	}
 
 	@Override
 	public void onCreate()
@@ -55,7 +66,8 @@ public abstract class MediaService<E extends MusicItem> extends Service
 		super.onCreate();
 		manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 		builder = new Notification.Builder(this);
-        mediaStyle.setShowActionsInCompactView(0, 1, 2);
+		Notification.MediaStyle mediaStyle = new Notification.MediaStyle();
+		mediaStyle.setShowActionsInCompactView(0, 1, 2);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
 		{
             NotificationChannelGroup channelGroup = new NotificationChannelGroup(GROUP[0], "媒体");
@@ -67,25 +79,36 @@ public abstract class MediaService<E extends MusicItem> extends Service
 			manager.createNotificationChannel(notificationChannel);
             builder .setChannelId(DITCH[0]);
         } 
-        builder
-			.setSmallIcon(R.mipmap.ic_music_black)
-			.setContentTitle("MandySa")
-			//.setLargeIcon(largeIcon)
+        builder.setSmallIcon(R.mipmap.ic_music_black)
+			.setContentTitle("没有音乐")
+			.setContentText("没有音乐")
+			.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.singer))
 			.addAction(R.mipmap.ic_skip_previous_outline, "", null)
             .addAction(R.mipmap.ic_play, "", null)
             .addAction(R.mipmap.ic_skip_next_outline, "", null)
             .setAutoCancel(false)
 		    .setCategory(Notification.CATEGORY_SERVICE)
 			.setStyle(mediaStyle)
-			.setOnlyAlertOnce(true)
+			.setOngoing(true)
+			.setWhen(0)
 	    	.setContentIntent(PendingIntent.getActivity(this, 1, new Intent(this, getOpenClass()), PendingIntent.FLAG_UPDATE_CURRENT));	
-		startForeground(1, builder.build());
+		Notification notification = builder.build();
+		notification.flags |= Notification.FLAG_ONGOING_EVENT;
+		notification.flags |= Notification.FLAG_NO_CLEAR;
+		notification.sound = null;
+		startForeground(1, notification);
 	}
 
-	private void Update_notification(String song, String singer, Bitmap album)
+	private void setContent(String song, String singer)
 	{
 		builder.setContentTitle(song);
 		builder.setContentText(singer);
+		manager.notify(1, builder.getNotification());
+	}
+
+	public void setAlbum(Bitmap album)
+	{
+		builder.setLargeIcon(album);
 		manager.notify(1, builder.getNotification());
 	}
 
@@ -194,8 +217,10 @@ public abstract class MediaService<E extends MusicItem> extends Service
         {  
 		    if (p1 >= list.size())return;
             music_TAG = list.get(p1);
-			Update_notification(getTitle(), getSinger().get(0).getName(), null);
-            try
+			setContent(getTitle(), getSinger().get(0).getName());
+            if (list.get(p1).getAlbum() != null)
+				setAlbum(lovely.with(MediaService.this).load(list.get(p1).getAlbum().getUrl()).getBitmap());
+			try
             {
                 if (reset)mMediaPlayer.reset();
                 mMediaPlayer.setDataSource(list.get(p1).getUrl());

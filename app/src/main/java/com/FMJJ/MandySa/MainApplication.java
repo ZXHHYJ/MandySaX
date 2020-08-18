@@ -1,7 +1,7 @@
 package com.FMJJ.MandySa;
 import android.app.Application;
-import mandysax.Basic.BasicToast;
 import simon.tuke.Tuke;
+import mandysax.Tools.ToastUtils;
 public class MainApplication extends Application
 {
 	
@@ -10,7 +10,7 @@ public class MainApplication extends Application
 	{
 		super.onCreate();
 		Tuke.init(this);
-        BasicToast.init(this);
+        ToastUtils.init(this);
 	}
 	
 }

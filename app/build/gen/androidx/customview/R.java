@@ -324,16 +324,17 @@ containing a value of this type.
         public static final int notification_bg_normal=0x7f020007;
         public static final int notification_bg_normal_pressed=0x7f020008;
         public static final int notification_icon_background=0x7f020009;
-        public static final int notification_template_icon_bg=0x7f020012;
-        public static final int notification_template_icon_low_bg=0x7f020013;
+        public static final int notification_template_icon_bg=0x7f020013;
+        public static final int notification_template_icon_low_bg=0x7f020014;
         public static final int notification_tile_bg=0x7f02000a;
         public static final int notify_panel_notification_icon_bg=0x7f02000b;
         public static final int round_edit=0x7f02000c;
-        public static final int twotone_arrow_back_black_24dp=0x7f02000d;
-        public static final int twotone_pause_black_48dp=0x7f02000e;
-        public static final int twotone_play_arrow_black_48dp=0x7f02000f;
-        public static final int twotone_search_black_24dp=0x7f020010;
-        public static final int twotone_star_black_24dp=0x7f020011;
+        public static final int singer=0x7f02000d;
+        public static final int twotone_arrow_back_black_24dp=0x7f02000e;
+        public static final int twotone_pause_black_48dp=0x7f02000f;
+        public static final int twotone_play_arrow_black_48dp=0x7f020010;
+        public static final int twotone_search_black_24dp=0x7f020011;
+        public static final int twotone_star_black_24dp=0x7f020012;
     }
     public static final class id {
         public static final int accessibility_action_clickable_span=0x7f070001;
@@ -388,7 +389,7 @@ containing a value of this type.
         public static final int line1=0x7f070022;
         public static final int line3=0x7f070023;
         public static final int mainBottomNavigationBar1=0x7f070038;
-        public static final int mainFrameLayout1=0x7f07003a;
+        public static final int mainFragmentPage1=0x7f07003a;
         public static final int mainMusicView1=0x7f070039;
         public static final int mandysamusicviewImageView1=0x7f070042;
         public static final int mandysamusicviewImageView2=0x7f070045;
@@ -407,20 +408,19 @@ containing a value of this type.
         public static final int notification_background=0x7f07004f;
         public static final int notification_main_column=0x7f07004b;
         public static final int notification_main_column_container=0x7f070049;
-        public static final int pactLinearLayout1=0x7f070056;
-        public static final int pactOK=0x7f070057;
-        public static final int pactSwipeRefreshLayout1=0x7f070058;
-        public static final int pactWebView1=0x7f070059;
+        public static final int pactOK=0x7f070056;
+        public static final int pactSwipeRefreshLayout1=0x7f070057;
+        public static final int pactWebView1=0x7f070058;
         public static final int pactinclude1=0x7f070055;
-        public static final int pad_mode=0x7f070060;
-        public static final int phone_mode=0x7f07005f;
+        public static final int pad_mode=0x7f07005f;
+        public static final int phone_mode=0x7f07005e;
         public static final int right_icon=0x7f07004e;
         public static final int right_side=0x7f07004c;
-        public static final int searchEditText1=0x7f07005a;
-        public static final int searchImageView1=0x7f07005b;
-        public static final int searchfragmentRecyclerView1=0x7f07005d;
-        public static final int searchfragmentSwipeRefreshLayout1=0x7f07005c;
-        public static final int start_choose_mode=0x7f07005e;
+        public static final int searchEditText1=0x7f070059;
+        public static final int searchImageView1=0x7f07005a;
+        public static final int searchfragmentRecyclerView1=0x7f07005c;
+        public static final int searchfragmentSwipeRefreshLayout1=0x7f07005b;
+        public static final int start_choose_mode=0x7f07005d;
         public static final int tag_accessibility_actions=0x7f070024;
         public static final int tag_accessibility_clickable_spans=0x7f070025;
         public static final int tag_accessibility_heading=0x7f070026;
@@ -494,8 +494,8 @@ containing a value of this type.
         public static final int status_bar_notification_info_overflow=0x7f080000;
     }
     public static final class style {
+        public static final int AppButton=0x7f0a0008;
         public static final int AppTheme=0x7f0a0007;
-        public static final int EditUi=0x7f0a0008;
         public static final int TextAppearance_Compat_Notification=0x7f0a0000;
         public static final int TextAppearance_Compat_Notification_Info=0x7f0a0001;
         public static final int TextAppearance_Compat_Notification_Line2=0x7f0a0006;

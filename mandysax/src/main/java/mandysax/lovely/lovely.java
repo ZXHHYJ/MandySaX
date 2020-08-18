@@ -27,7 +27,7 @@ public class lovely
             conn.connect();
             InputStream is = conn.getInputStream();//获得图片的数据流
 			Bitmap bmp = BitmapFactory.decodeStream(is);//读取图像数据
-            is.close();
+			is.close();
             return bmp;
         }
 		catch (Exception e)
@@ -35,7 +35,6 @@ public class lovely
             return null;
         }
 	}
-
 
 }
  

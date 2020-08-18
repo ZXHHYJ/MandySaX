@@ -1,7 +1,7 @@
 # view res/layout/search_fragment.xml #generated:43
 -keep class androidx.recyclerview.widget.RecyclerView { <init>(...); }
 
-# view res/layout/pact.xml #generated:36
+# view res/layout/pact.xml #generated:22
 # view res/layout/search_fragment.xml #generated:38
 -keep class androidx.swiperefreshlayout.widget.SwipeRefreshLayout { <init>(...); }
 
@@ -27,11 +27,14 @@
 -keep class com.FMJJ.MandySa.StartActivity { <init>(...); }
 
 # view res/layout/main.xml #generated:7
--keep class mandysax.Edge.BottomNavigationBar { <init>(...); }
+-keep class mandysax.Design.BottomNavigationBar { <init>(...); }
 
-# view res/layout/main.xml #generated:15
--keep class mandysax.Edge.MusicView { <init>(...); }
+# view res/layout/main.xml #generated:19
+-keep class mandysax.Design.FragmentPage { <init>(...); }
 
-# onClick res/layout/start.xml #generated:24
+# view res/layout/main.xml #generated:13
+-keep class mandysax.Design.MusicView { <init>(...); }
+
+# onClick res/layout/start.xml #generated:18
 -keepclassmembers class * { *** chooseMode(...); }
 

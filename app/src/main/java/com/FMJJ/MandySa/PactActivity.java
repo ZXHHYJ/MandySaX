@@ -9,8 +9,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import mandysax.Basic.BasicToast;
 import mandysax.Lifecycle.LifecycleActivity;
+import mandysax.Tools.ToastUtils;
 
 public class PactActivity extends LifecycleActivity
 {
@@ -38,7 +38,7 @@ public class PactActivity extends LifecycleActivity
 				@Override
 				public void onReceivedError(WebView view, WebResourceRequest request,WebResourceError error)
 				{
-					BasicToast.showToast("网络错误:"+error.getErrorCode());
+					ToastUtils.showToast("网络错误:"+error.getErrorCode());
 				}
 				@Override
 				public void onPageFinished(WebView view, String url)

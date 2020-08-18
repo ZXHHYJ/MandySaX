@@ -4,25 +4,23 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<mandysax.Edge.BottomNavigationBar
+	<mandysax.Design.BottomNavigationBar
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
-		android:id="@+id/mainBottomNavigationBar1">
+		android:id="@+id/mainBottomNavigationBar1"/>
 
-	</mandysax.Edge.BottomNavigationBar>
-
-	<mandysax.Edge.MusicView
+	<mandysax.Design.MusicView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/mainMusicView1"
 		android:layout_above="@id/mainBottomNavigationBar1"/>
 
-	<FrameLayout
+	<mandysax.Design.FragmentPage
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:id="@+id/mainFrameLayout1"
-		android:layout_above="@id/mainMusicView1"/>
+		android:layout_above="@id/mainMusicView1"
+		android:id="@+id/mainFragmentPage1"/>
 
 </RelativeLayout>
 

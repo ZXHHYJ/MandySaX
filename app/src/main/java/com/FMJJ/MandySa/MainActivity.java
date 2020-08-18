@@ -2,7 +2,6 @@ package com.FMJJ.MandySa;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -11,27 +10,24 @@ import com.FMJJ.MandySa.Fragment.HomeFragment;
 import com.FMJJ.MandySa.Fragment.MyFragment;
 import com.FMJJ.MandySa.Fragment.RecommendFragment;
 import com.FMJJ.MandySa.Fragment.SearchFragment;
-import com.FMJJ.MandySa.MainActivity;
 import com.FMJJ.MandySa.R;
 import com.FMJJ.MandySa.Service.MusicService;
 import com.FMJJ.MandySa.ViewModel.MainViewModel;
 import java.util.ArrayList;
 import java.util.List;
-import mandysax.Edge.BottomNavigationBar;
-import mandysax.Edge.MusicView;
+import mandysax.Design.BottomNavigationBar;
+import mandysax.Design.FragmentPage;
+import mandysax.Design.MusicView;
 import mandysax.Lifecycle.LifecycleActivity;
 import mandysax.Lifecycle.LiveData.Observer;
 import mandysax.Lifecycle.ViewModel.ViewModelProviders;
 import mandysax.Service.MediaService;
 import mandysax.Service.StateEvent.onChange;
-import mandysax.Tools.FragmentUtils;
 import simon.tuke.Tuke;
 
 public class MainActivity extends LifecycleActivity
 {
 	private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
-    private final List<Fragment> list_fragment = new ArrayList<Fragment>();
 
 	private HomeFragment home_fragment;
 
@@ -41,9 +37,9 @@ public class MainActivity extends LifecycleActivity
 
 	private MyFragment my_fragment;
 
-	private final FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
 	private MusicView music_view;
+
+	private FragmentPage fragment_pgae;
 
 	private BottomNavigationBar bottomNavigationBar;
 
@@ -51,7 +47,7 @@ public class MainActivity extends LifecycleActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		viewModel.bindService(this);
 		switch (Tuke.get("mode", 0))
 		{
 			case 0:
@@ -60,6 +56,7 @@ public class MainActivity extends LifecycleActivity
 				return;
 			default:break;
 		}
+		setContentView(R.layout.main);
 		viewModel.music_binder.observe(this, new Observer<MusicService.MusicBinder>(){
 
 				@Override
@@ -86,10 +83,9 @@ public class MainActivity extends LifecycleActivity
 						});
 				}	
 			});
-		viewModel.bindService(this);
-		
-		initFragment();
 		music_view = findViewById(R.id.mainMusicView1);
+		fragment_pgae = findViewById(R.id.mainFragmentPage1);
+		initFragment();
 		bottomNavigationBar = findViewById(R.id.mainBottomNavigationBar1);
 		bottomNavigationBar.setTextColorRes(R.color.theme_color);
         bottomNavigationBar.addItemView("Home", R.mipmap.ic_music, R.mipmap.ic_music_black);
@@ -101,7 +97,7 @@ public class MainActivity extends LifecycleActivity
 				public void onItemClcik(View v, int index)
 				{
 					viewModel.index = index;
-					FragmentUtils.showFragment(MainActivity.this, list_fragment, index).commit();
+					fragment_pgae.showFragment(index);
 				}
 			});
 		bottomNavigationBar.setSelected(viewModel.index);
@@ -125,17 +121,12 @@ public class MainActivity extends LifecycleActivity
 		if (recommend_fragment == null)recommend_fragment = new RecommendFragment();
 		if (search_fragment == null)search_fragment = new SearchFragment();
 		if (my_fragment == null)my_fragment = new MyFragment();
+		List<Fragment> list_fragment = new ArrayList<Fragment>();
 		list_fragment.add(home_fragment);
 		list_fragment.add(recommend_fragment);
 		list_fragment.add(search_fragment);
 		list_fragment.add(my_fragment);
-		for (int i = 0;i < list_fragment.size();i++)	
-		{	
-            if (!list_fragment.get(i).isAdded())
-                transaction.add(R.id.mainFrameLayout1, list_fragment.get(i), i + "").hide(list_fragment.get(i));
-		}
-		transaction.show(list_fragment.get(0));
-		transaction.commit();
+		fragment_pgae.add(list_fragment);
 	}
 
 	@Override
