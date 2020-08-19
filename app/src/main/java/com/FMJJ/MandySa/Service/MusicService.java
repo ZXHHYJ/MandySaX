@@ -1,13 +1,51 @@
 package com.FMJJ.MandySa.Service;
-import com.FMJJ.MandySa.Data.music_bean;
 import com.FMJJ.MandySa.MainActivity;
+import com.FMJJ.MandySa.R;
+import mandysax.Service.MediaService;
 
 
-public class MusicService extends mandysax.Service.MediaService<music_bean>
+public class MusicService extends MediaService
 {
 
 	@Override
-	public Class<?> getOpenClass()
+	public int getSinger()
+	{
+		return R.drawable.singer;
+	}
+
+	@Override
+	public int getSmallIcon()
+	{
+		return R.mipmap.ic_music;
+	}
+
+	@Override
+	public int getLastSong()
+	{
+		return R.mipmap.ic_skip_previous_outline;
+	}
+
+	@Override
+	public int getPlayOfPause()
+	{
+		return R.mipmap.ic_play;
+	}
+
+	@Override
+	public int getNextSong()
+	{
+		return R.mipmap.ic_skip_next_outline;
+	}
+	
+
+	@Override
+	public String getUrl()
+	{
+		return "https://music.163.com/song/media/outer/url?id=";
+	}
+
+	@Override
+	public Class getActvity()
 	{
 		return MainActivity.class;
 	}

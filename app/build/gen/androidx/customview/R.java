@@ -271,8 +271,6 @@ containing a value of this type.
         public static final int ttcIndex=0x7f010015;
     }
     public static final class color {
-        public static final int button=0x7f090007;
-        public static final int checked=0x7f090009;
         public static final int main_color=0x7f090005;
         public static final int notification_action_color_filter=0x7f090000;
         public static final int notification_icon_bg_color=0x7f090001;
@@ -280,8 +278,7 @@ containing a value of this type.
         public static final int secondary_text_default_material_light=0x7f090003;
         public static final int text_color=0x7f090006;
         public static final int theme_color=0x7f090004;
-        public static final int theme_color_=0x7f090008;
-        public static final int unchecked=0x7f09000a;
+        public static final int theme_color_=0x7f090007;
     }
     public static final class dimen {
         public static final int compat_button_inset_horizontal_material=0x7f06000a;
@@ -315,20 +312,20 @@ containing a value of this type.
     }
     public static final class drawable {
         public static final int button=0x7f020000;
-        public static final int ic_skip_next=0x7f020001;
-        public static final int notification_action_background=0x7f020002;
-        public static final int notification_bg=0x7f020003;
-        public static final int notification_bg_low=0x7f020004;
-        public static final int notification_bg_low_normal=0x7f020005;
-        public static final int notification_bg_low_pressed=0x7f020006;
-        public static final int notification_bg_normal=0x7f020007;
-        public static final int notification_bg_normal_pressed=0x7f020008;
-        public static final int notification_icon_background=0x7f020009;
+        public static final int notification_action_background=0x7f020001;
+        public static final int notification_bg=0x7f020002;
+        public static final int notification_bg_low=0x7f020003;
+        public static final int notification_bg_low_normal=0x7f020004;
+        public static final int notification_bg_low_pressed=0x7f020005;
+        public static final int notification_bg_normal=0x7f020006;
+        public static final int notification_bg_normal_pressed=0x7f020007;
+        public static final int notification_icon_background=0x7f020008;
         public static final int notification_template_icon_bg=0x7f020013;
         public static final int notification_template_icon_low_bg=0x7f020014;
-        public static final int notification_tile_bg=0x7f02000a;
-        public static final int notify_panel_notification_icon_bg=0x7f02000b;
-        public static final int round_edit=0x7f02000c;
+        public static final int notification_tile_bg=0x7f020009;
+        public static final int notify_panel_notification_icon_bg=0x7f02000a;
+        public static final int round_edit=0x7f02000b;
+        public static final int round_layout=0x7f02000c;
         public static final int singer=0x7f02000d;
         public static final int twotone_arrow_back_black_24dp=0x7f02000e;
         public static final int twotone_pause_black_48dp=0x7f02000f;
@@ -389,8 +386,8 @@ containing a value of this type.
         public static final int line1=0x7f070022;
         public static final int line3=0x7f070023;
         public static final int mainBottomNavigationBar1=0x7f070038;
-        public static final int mainFragmentPage1=0x7f07003a;
-        public static final int mainMusicView1=0x7f070039;
+        public static final int mainFragmentPage1=0x7f070039;
+        public static final int mainMusicView1=0x7f07003a;
         public static final int mandysamusicviewImageView1=0x7f070042;
         public static final int mandysamusicviewImageView2=0x7f070045;
         public static final int mandysamusicviewTextView1=0x7f070043;

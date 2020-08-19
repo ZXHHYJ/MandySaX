@@ -47,15 +47,8 @@ public class MainActivity extends LifecycleActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		if (Tuke.get("mode", null) == null)startActivity(new Intent(this, StartActivity.class));
 		viewModel.bindService(this);
-		switch (Tuke.get("mode", 0))
-		{
-			case 0:
-				startActivity(new Intent(this, StartActivity.class));
-				finish();
-				return;
-			default:break;
-		}
 		setContentView(R.layout.main);
 		viewModel.music_binder.observe(this, new Observer<MusicService.MusicBinder>(){
 
@@ -101,11 +94,19 @@ public class MainActivity extends LifecycleActivity
 				}
 			});
 		bottomNavigationBar.setSelected(viewModel.index);
+		music_view.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+				}
+			});
 		music_view.getPlaybutton().setOnClickListener(new View.OnClickListener(){
 
 				@Override
 				public void onClick(View p1)
 				{
+					viewModel.music_binder.getValue().playOrPause();
 				}
 			});
 	}

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+	
+    <style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@android:color/white</item>
+		<item name="android:colorAccent">@color/theme_color</item>
 	</style>
 
 	<style name="AppButton" parent="@android:style/Widget.Material">

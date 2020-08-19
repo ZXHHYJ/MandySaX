@@ -30,6 +30,7 @@ public class lovelyTask
 				@Override
 				public void onChanged(Bitmap p1)
 				{
+					if(view!=null)
 					if (p1 != null)
 					{	
 						if (zoom)
@@ -40,25 +41,6 @@ public class lovelyTask
 						{
 							view.setImageBitmap(p1);
 						}
-						/*if (zoom)
-						 {			
-						 if (blur != 0)
-						 {
-						 view.setImageBitmap(QuickBlur.with(((Context)p0)).bitmap(BitmapUtils.zoomImg(p1, view.getWidth(), view.getHeight())).radius(blur).scale(1).blur());
-
-						 }
-						 else
-						 view.setImageBitmap(BitmapUtils.zoomImg(p1, view.getWidth(), view.getHeight()));
-						 }
-						 else
-						 {
-						 if (blur != 0)
-						 {
-						 view.setImageBitmap(QuickBlur.with(((Context)p0)).bitmap(p1).radius(blur).scale(1).blur());
-						 }
-						 else
-						 view.setImageBitmap(p1);
-						 }*/
 					}
 					else
 					{
@@ -66,7 +48,6 @@ public class lovelyTask
 							view.setImageDrawable(error_img);
 					}
 				}
-
 			});
 	}
 

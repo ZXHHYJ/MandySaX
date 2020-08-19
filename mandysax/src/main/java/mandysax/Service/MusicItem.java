@@ -7,7 +7,7 @@ public class MusicItem implements Serializable
     private String title;
     private List<SingerItem> singer;
     private AlbumItem album;
-    private String url;
+    private int id;
 	
 	public void setTitle(String title){
 		this.title=title;
@@ -21,8 +21,8 @@ public class MusicItem implements Serializable
 		this.album=album;
 	}
 	
-	public void setUrl(String url){
-		this.url=url;
+	public void setId(int id){
+		this.id=id;
 	}
 	
 	public String getTitle(){
@@ -37,8 +37,8 @@ public class MusicItem implements Serializable
 		return album;
 	}
 	
-	public String getUrl(){
-		return url;
+	public int getId(){
+		return id;
 	}
 	
 }

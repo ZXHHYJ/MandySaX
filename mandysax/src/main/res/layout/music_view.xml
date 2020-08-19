@@ -10,13 +10,15 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:gravity="center_vertical"
-		android:id="@+id/musicviewLinearLayout1">
+		android:id="@+id/musicviewLinearLayout1"
+		android:background="@drawable/round_layout">
 
 		<ImageView
 			android:scaleType="centerCrop"
-			android:layout_width="55dp"
-			android:layout_height="55dp"
-			android:id="@+id/mandysamusicviewImageView1"/>
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:id="@+id/mandysamusicviewImageView1"
+			android:padding="5dp"/>
 
 		<TextView
 			android:transitionName="your_text"
@@ -27,16 +29,16 @@
 			android:id="@+id/mandysamusicviewTextView1"/>
 
 		<ProgressBar
-			android:layout_width="55dp"
-			android:layout_height="55dp"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
 			android:id="@+id/musicviewProgressBar1"
 			android:padding="15dp"
 			android:visibility="gone"/>
 
 		<ImageView
 			android:src="@drawable/twotone_play_arrow_black_48dp"
-			android:layout_width="55dp"
-			android:layout_height="55dp"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
 			android:id="@+id/mandysamusicviewImageView2"
 			android:padding="12dp"/>
 

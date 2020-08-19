@@ -10,13 +10,14 @@
 		android:id="@+id/pactinclude1"/>
 
 	<Button
+		android:textStyle="bold"
 		android:layout_alignParentBottom="true"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/ok"
 		android:id="@+id/pactOK"
 		android:layout_margin="10dp"
-		android:textColor="@color/theme_color"
+		android:textColor="@color/theme_color_"
 		style="@style/AppButton"/>
 
 	<androidx.swiperefreshlayout.widget.SwipeRefreshLayout

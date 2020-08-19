@@ -16,6 +16,8 @@
 		android:layout_centerInParent="true"/>
 
 	<Button
+		android:textColor="@color/theme_color_"
+		android:textStyle="bold"
 		android:layout_alignParentBottom="true"
 		android:onClick="chooseMode"
 		android:layout_width="match_parent"

@@ -3,8 +3,5 @@
 	<color name="theme_color">#FFF13357</color>
     <color name="main_color">@android:color/white</color>
     <color name="text_color">@android:color/black</color>
-    <color name="button">#FFEFEFEF</color>
-	<color name="theme_color_">#FF4EC7A0</color>
-	<color name="checked">#ff138768</color>
-    <color name="unchecked">#ff747575</color>
+	<color name="theme_color_">#FF29AAE0</color>
 	</resources>

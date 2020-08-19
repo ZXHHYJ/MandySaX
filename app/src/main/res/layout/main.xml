@@ -10,17 +10,19 @@
 		android:layout_alignParentBottom="true"
 		android:id="@+id/mainBottomNavigationBar1"/>
 
+	<mandysax.Design.FragmentPage
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_above="@id/mainBottomNavigationBar1"
+		android:id="@+id/mainFragmentPage1"/>
+
 	<mandysax.Design.MusicView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/mainMusicView1"
-		android:layout_above="@id/mainBottomNavigationBar1"/>
-
-	<mandysax.Design.FragmentPage
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_above="@id/mainMusicView1"
-		android:id="@+id/mainFragmentPage1"/>
+		android:layout_above="@id/mainBottomNavigationBar1"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"/>
 
 </RelativeLayout>
 
