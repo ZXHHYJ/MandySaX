@@ -1,3 +1,6 @@
+//
+// Decompiled by Jadx - 1212ms
+//
 package mandysax.Lifecycle.Anna;
 
 import java.io.*;
@@ -8,59 +11,57 @@ import org.json.*;
 
 public class AnnaJsonArray
 {
-	private final List<String> list_string = new ArrayList<String>();
-	private final String url;
-	private onEvent<JSONArray> onEvent;
+    private final List<String> list_string = new ArrayList<String>();
+    private onEvent<JSONArray> onEvent;
+    private URL url;
 
-	public AnnaJsonArray addString(String keyword)
+    public AnnaJsonArray addString(String str)
 	{
-		list_string.add(keyword);
-		return this;
-	}
+        this.list_string.add(str);
+        return this;
+    }
 
-	public AnnaJsonArray(String url)
+    public AnnaJsonArray(String str)
 	{
-		this.url = url;
-	}
+        try
+		{
+            this.url = new URL(str);
+        }
+		catch (MalformedURLException e)
+		{
+        }
+    }
 
-	public <T> AnnaJsonArray setOnEvent(onEvent<JSONArray> onEvent)
+    public <T> AnnaJsonArray setOnEvent(onEvent<JSONArray> onevent)
 	{
-		this.onEvent = onEvent;
-		return this;
-	}
+        this.onEvent = onevent;
+        return this;
+    }
 
-	public void start()
+    public void start()
 	{
 		new Thread(new Runnable(){
 				@Override
 				public void run()
 				{
 					_start();
-				}});
-	}
+				}
+			}).start();
+    }
 
-	private void _start()
-	{	
-		try
+    private void _start()
+	{
+        try
 		{
-			try
-			{
-				onEvent.onEnd(new JSONArray(AnnaTask.Parsing(list_string, AnnaTask.getString(new URL(url)))));
-			}
-			catch (IOException e)
-			{
-				onEvent.onError();
-			}
-			catch (JSONException e)
-			{
-				onEvent.onError();
-			}
-		}
-		catch (Exception e)
+            this.onEvent.onEnd(new JSONArray(AnnaTask.Parsing(this.list_string, AnnaTask.getString(this.url))));
+        }
+		catch (IOException e)
 		{
-			onEvent.onError();
-			e.printStackTrace();
-		}
-	}
-
+            this.onEvent.onError();
+        }
+		catch (JSONException e2)
+		{
+        }
+    }
 }
+

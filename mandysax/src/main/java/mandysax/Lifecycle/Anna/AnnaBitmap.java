@@ -44,28 +44,23 @@ public class AnnaBitmap
 	}
 	
 	public void start()
-	{
+	{	
 		new Thread(new Runnable(){
 				@Override
 				public void run()
 				{
-					_start();
+					try
+					{
+						if (list_string.size() != 0)
+							url = new URL(AnnaTask.Parsing(list_string, AnnaTask.getString(url)));
+						if (view != null)
+							onEvent.onEnd(AnnaTask.getBitmap(url));
+						else onEvent.onEnd(BitmapUtils.zoomImg(AnnaTask.getBitmap(url), view.getWidth(), view.getHeight()));
+					}
+					catch (IOException e)
+					{
+						onEvent.onError();
+					}
 				}});
-	}
-	
-	private void _start()
-	{	
-		try
-		{
-			if (list_string.size() != 0)
-				url = new URL(AnnaTask.Parsing(list_string, AnnaTask.getString(url)));
-			if (view != null)
-				onEvent.onEnd(AnnaTask.getBitmap(url));
-			else onEvent.onEnd(BitmapUtils.zoomImg(AnnaTask.getBitmap(url), view.getWidth(), view.getHeight()));
-		}
-		catch (IOException e)
-		{
-			onEvent.onError();
-		}
 	}
 }
