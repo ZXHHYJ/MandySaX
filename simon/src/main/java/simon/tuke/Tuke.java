@@ -1,13 +1,8 @@
 package simon.tuke;
-import android.os.AsyncTask;
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import javax.security.auth.callback.Callback;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.content.Context;
-import android.view.ViewStub;
+import android.content.*;
+import android.graphics.*;
+import android.os.*;
+import java.io.*;
 
 public class Tuke
 {

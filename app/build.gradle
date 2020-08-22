@@ -22,7 +22,6 @@ android {
 dependencies {
 	compile project(':mandysax')
 	compile project(':simon')
-	//api 'com.github.ZXHHYJ:mandysax:1.0.1'
 	compile 'androidx.swiperefreshlayout:swiperefreshlayout:+'
 	compile 'androidx.recyclerview:recyclerview:+'
 	compile fileTree(dir: 'libs', include: ['*.jar'])

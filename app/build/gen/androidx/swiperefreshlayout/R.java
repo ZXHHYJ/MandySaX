@@ -275,6 +275,7 @@ containing a value of this type.
         public static final int notification_action_color_filter=0x7f090000;
         public static final int notification_icon_bg_color=0x7f090001;
         public static final int ripple_material_light=0x7f090002;
+        public static final int search_color=0x7f090008;
         public static final int secondary_text_default_material_light=0x7f090003;
         public static final int text_color=0x7f090006;
         public static final int theme_color=0x7f090004;

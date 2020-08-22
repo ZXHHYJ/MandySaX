@@ -1,47 +1,35 @@
 package mandysax.Service;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationChannelGroup;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.PowerManager;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import mandysax.Lifecycle.Lifecycle;
-import mandysax.Lifecycle.LifecycleAbstract;
-import mandysax.R;
-import mandysax.Service.StateEvent.onChange;
-import mandysax.lovely.lovely;
+import android.app.*;
+import android.content.*;
+import android.graphics.*;
+import android.media.*;
+import android.os.*;
+import java.io.*;
+import java.util.*;
+import mandysax.Lifecycle.LiveData.*;
+import mandysax.Service.StateEvent.*;
 
-public abstract class MediaService<E extends MusicItem> extends Service
+import mandysax.Lifecycle.LiveData.Observer;
+
+public abstract class MediaService extends Service
 {
 
 	public abstract Class<?> getActvity()
-	
+
 	public abstract int getSinger()
-	
+
 	public abstract int getSmallIcon()
-	
+
 	public abstract int getLastSong()
-	
+
 	public abstract int getPlayOfPause()
-	
+
 	public abstract int getNextSong()
-	
+
 	public abstract String getUrl()
 
-	private static final String[] GROUP={"a"};
-	private static final String[] DITCH={"aa"};
+	private final String[] GROUP={"a"};
+	private final String[] DITCH={"aa"};
 
     public final static int SEEK=0,NEXT=1,LAST=2,ERROR=3,LOADMUSIC=4,PLAY=5,PAUSE=6;
 
@@ -49,16 +37,19 @@ public abstract class MediaService<E extends MusicItem> extends Service
 
 	private Notification.Builder builder;
 
+	private MusicBinder music_bind;
+
     @Override
     public IBinder onBind(Intent p1)
     {
-        return new MusicBinder<E>();
+        return music_bind = new MusicBinder();
     }
 
 	@Override
 	public void onDestroy()
 	{
 		super.onDestroy();
+		music_bind.onDestroy();
 	}
 
 	@Override
@@ -67,8 +58,6 @@ public abstract class MediaService<E extends MusicItem> extends Service
 		super.onCreate();
 		manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 		builder = new Notification.Builder(this);
-		Notification.MediaStyle mediaStyle = new Notification.MediaStyle();
-		mediaStyle.setShowActionsInCompactView(0, 1, 2);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
 		{
             NotificationChannelGroup channelGroup = new NotificationChannelGroup(GROUP[0], "媒体");
@@ -83,13 +72,14 @@ public abstract class MediaService<E extends MusicItem> extends Service
         builder.setSmallIcon(getSmallIcon())
 			.setContentTitle("没有音乐")
 			.setContentText("没有音乐")
+			.setBadgeIconType(getSinger())
 			.setLargeIcon(BitmapFactory.decodeResource(getResources(), getSinger()))
 			.addAction(getLastSong(), "", null)
             .addAction(getPlayOfPause(), "", null)
             .addAction(getNextSong(), "", null)
             .setAutoCancel(false)
 		    .setCategory(Notification.CATEGORY_SERVICE)
-			.setStyle(mediaStyle)
+			.setStyle(new Notification.MediaStyle().setShowActionsInCompactView(0, 1, 2))
 			.setOngoing(true)
 			.setWhen(0)
 	    	.setContentIntent(PendingIntent.getActivity(this, 1, new Intent(this, getActvity()), PendingIntent.FLAG_UPDATE_CURRENT));	
@@ -109,20 +99,22 @@ public abstract class MediaService<E extends MusicItem> extends Service
 
 	private void setAlbum(Bitmap album)
 	{
+		if(album!=null){
 		builder.setLargeIcon(album);
 		manager.notify(1, builder.getNotification());
+		}
 	}
 
-    public class MusicBinder<T extends E> extends Binder
+    public class MusicBinder extends Binder
     {  
 
-        private T music_TAG;
+        private MusicItem music_TAG;
 
         private boolean reset=false;
 
         private onChange change;
 
-        private List<T> list=new ArrayList<T>();
+        private final List<MusicItem> list=new ArrayList<MusicItem>();
 
 		private final AudioManager audio_manager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -190,24 +182,17 @@ public abstract class MediaService<E extends MusicItem> extends Service
             mMediaPlayer.setOnCompletionListener(completion);
         }
 
-        public void addList(List<T> list)
+        private void addList(List<MusicItem> list)
         {
             this.list.addAll(list);
         }
 
-        public void emptyLisr()
+        private void emptyLisr()
         {
             list.clear();
         }
 
-        public void setList(List<T> p1)
-        {
-            list.clear();
-            list = null;
-            list = p1;
-        }
-
-        public void playMusic(List<T> list, int p1)
+        public void playMusic(List<MusicItem> list, int p1)
         {  
             emptyLisr();
             addList(list);
@@ -218,15 +203,23 @@ public abstract class MediaService<E extends MusicItem> extends Service
         {  
 		    if (p1 >= list.size())return;
             music_TAG = list.get(p1);
-			setContent(getTitle(), getSinger().get(0).getName());
-   			try
+			setContent(getTitle(), getSinger().get(0).getName());	
+			music_TAG.album.observeForever(new Observer<Bitmap>(){
+
+					@Override
+					public void onChanged(Bitmap p1)
+					{
+						MediaService.this.setAlbum(p1);
+					}
+				});
+			try
             {
                 if (reset)mMediaPlayer.reset();
-                mMediaPlayer.setDataSource(getUrl()+list.get(p1).getId());
+                mMediaPlayer.setDataSource(getUrl() + list.get(p1).getId());
                 mMediaPlayer.prepareAsync();
                 reset = true;
-				if(change!=null)
-				change.onEvent(MusicBinder.this, LOADMUSIC);
+				if (change != null)
+					change.onEvent(MusicBinder.this, LOADMUSIC);
             }
             catch (IllegalArgumentException e)
             {}
@@ -314,12 +307,20 @@ public abstract class MediaService<E extends MusicItem> extends Service
             return music_TAG.getSinger();
         }
 
-        public AlbumItem getAlbum()
+		public void setAlbum(Bitmap album){
+			music_TAG.setAlbum(album);
+		}
+			
+		public MusicItem getMusicItem(){
+			return music_TAG;
+		}
+		
+        public Bitmap getAlbum()
         {
-            return music_TAG.getAlbum();
+            return music_TAG.album.getValue();
         }
 
-        void onDestroy()
+		private   void onDestroy()
         {
 			stopForeground(true);
             if (reset)

@@ -4,4 +4,5 @@
     <color name="main_color">@android:color/white</color>
     <color name="text_color">@android:color/black</color>
 	<color name="theme_color_">#FF29AAE0</color>
+	<color name="search_color">#FF4EC7A0</color>
 	</resources>

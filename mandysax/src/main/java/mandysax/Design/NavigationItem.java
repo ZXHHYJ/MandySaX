@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import mandysax.Tools.DensityUtil;
+import mandysax.Tools.DensityUtils;
 
 /**
  * Created by Dikaros on 2016/5/20.
@@ -95,19 +95,19 @@ public class NavigationItem extends LinearLayout
         //设置默认文字大小
         mTextView.setTextSize(textSize);
         //设置内边距
-        setPadding(0, DensityUtil.dip2px(context, imagePaddingTop), 0, DensityUtil.dip2px(context, textPaddingBottom));
+        setPadding(0, DensityUtils.dip2px(context, imagePaddingTop), 0, DensityUtils.dip2px(context, textPaddingBottom));
         //设置自身布局
         setGravity(Gravity.CENTER);
         //设置text和image的布局参数
         LayoutParams textParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        LayoutParams imageParams = new LayoutParams(DensityUtil.dip2px(context, imageWidth), DensityUtil.dip2px(context, imageHeight));
+        LayoutParams imageParams = new LayoutParams(DensityUtils.dip2px(context, imageWidth), DensityUtils.dip2px(context, imageHeight));
         mTextView.setLayoutParams(textParams);
         mImageView.setLayoutParams(imageParams);
 
         //设置最小宽度
-        setMinimumWidth(DensityUtil.dip2px(context, 80));
+        setMinimumWidth(DensityUtils.dip2px(context, 80));
         //设置本身的布局
-        LinearLayout.LayoutParams selfParam = new LayoutParams(DensityUtil.dip2px(context, 0), DensityUtil.dip2px(context, 56), 1f);
+        LinearLayout.LayoutParams selfParam = new LayoutParams(DensityUtils.dip2px(context, 0), DensityUtils.dip2px(context, 56), 1f);
         setLayoutParams(selfParam);
 
         //设置文字颜色

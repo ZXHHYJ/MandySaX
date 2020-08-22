@@ -1,12 +1,16 @@
 package mandysax.Service;
 import java.io.Serializable;
 import java.util.List;
+import android.graphics.*;
+import mandysax.Lifecycle.LiveData.*;
 
 public class MusicItem implements Serializable
 {
     private String title;
-    private List<SingerItem> singer;
-    private AlbumItem album;
+	private String album_title;
+	private MutableLiveData<Bitmap> _album = new MutableLiveData<Bitmap>();
+    public LiveData<Bitmap> album =_album; 
+	private List<SingerItem> singer;
     private int id;
 	
 	public void setTitle(String title){
@@ -15,10 +19,6 @@ public class MusicItem implements Serializable
 	
 	public void setSinger(List<SingerItem> singer){
 		this.singer=singer;
-	}
-	
-	public void setAlbum(AlbumItem album){
-		this.album=album;
 	}
 	
 	public void setId(int id){
@@ -33,8 +33,16 @@ public class MusicItem implements Serializable
 		return singer;
 	}
 	
-	public AlbumItem getAlbum(){
-		return album;
+	public void setAlbumTitle(String title){
+		this.album_title=title;
+	}
+
+	public String getAlbumTitle(){
+		return album_title;
+	}
+	
+	public void setAlbum(Bitmap album){
+		this._album.setValue(album);
 	}
 	
 	public int getId(){

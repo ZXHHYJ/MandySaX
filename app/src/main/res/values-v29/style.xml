@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+	    <item name="android:colorPrimaryDark">@android:color/white</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
+		<item name="android:windowLightStatusBar">true</item>
+	    <item name="android:windowLightNavigationBar">true</item>
+		<item name="android:colorAccent">@color/theme_color</item>
+		<item name="android:forceDarkAllowed">true</item>
+	</style>
+</resources>

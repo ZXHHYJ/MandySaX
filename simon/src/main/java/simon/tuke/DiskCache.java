@@ -1,15 +1,6 @@
 package simon.tuke;
-import java.io.IOException;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import android.graphics.Bitmap;
-import java.io.FileNotFoundException;
-import android.graphics.BitmapFactory;
-import android.content.Context;
+import android.graphics.*;
+import java.io.*;
 
 public class DiskCache {
 	File mfile;

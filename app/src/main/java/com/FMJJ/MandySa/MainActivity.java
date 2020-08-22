@@ -1,30 +1,31 @@
 package com.FMJJ.MandySa;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import com.FMJJ.MandySa.Fragment.HomeFragment;
-import com.FMJJ.MandySa.Fragment.MyFragment;
-import com.FMJJ.MandySa.Fragment.RecommendFragment;
-import com.FMJJ.MandySa.Fragment.SearchFragment;
-import com.FMJJ.MandySa.R;
-import com.FMJJ.MandySa.Service.MusicService;
-import com.FMJJ.MandySa.ViewModel.MainViewModel;
-import java.util.ArrayList;
-import java.util.List;
-import mandysax.Design.BottomNavigationBar;
-import mandysax.Design.FragmentPage;
-import mandysax.Design.MusicView;
-import mandysax.Lifecycle.LifecycleActivity;
-import mandysax.Lifecycle.LiveData.Observer;
-import mandysax.Lifecycle.ViewModel.ViewModelProviders;
-import mandysax.Service.MediaService;
-import mandysax.Service.StateEvent.onChange;
-import simon.tuke.Tuke;
+import android.app.*;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import com.FMJJ.MandySa.Data.*;
+import com.FMJJ.MandySa.Fragment.*;
+import com.FMJJ.MandySa.Service.*;
+import com.FMJJ.MandySa.ViewModel.*;
+import java.util.*;
+import mandysax.Annotation.*;
+import mandysax.Data.*;
+import mandysax.Design.*;
+import mandysax.Lifecycle.*;
+import mandysax.Lifecycle.Anna.*;
+import mandysax.Lifecycle.Anna.AnnaEvent.*;
+import mandysax.Lifecycle.LiveData.*;
+import mandysax.Lifecycle.ViewModel.*;
+import mandysax.Service.*;
+import mandysax.Service.StateEvent.*;
+import mandysax.Tools.*;
+import org.json.*;
+import simon.tuke.*;
 
+import mandysax.Lifecycle.LiveData.Observer;
+
+@BindLayoutId(R.layout.main)
 public class MainActivity extends LifecycleActivity
 {
 	private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
@@ -37,10 +38,13 @@ public class MainActivity extends LifecycleActivity
 
 	private MyFragment my_fragment;
 
+	@BindView(R.id.mainMusicView1)
 	private MusicView music_view;
 
+	@BindView(R.id.mainFragmentPage1)
 	private FragmentPage fragment_pgae;
 
+	@BindView(R.id.mainBottomNavigationBar1)
 	private BottomNavigationBar bottomNavigationBar;
 
 	@Override
@@ -48,8 +52,8 @@ public class MainActivity extends LifecycleActivity
 	{
 		super.onCreate(savedInstanceState);
 		if (Tuke.get("mode", null) == null)startActivity(new Intent(this, StartActivity.class));
+		AnnotationTool.init(this);
 		viewModel.bindService(this);
-		setContentView(R.layout.main);
 		viewModel.music_binder.observe(this, new Observer<MusicService.MusicBinder>(){
 
 				@Override
@@ -57,13 +61,34 @@ public class MainActivity extends LifecycleActivity
 				{
 					p1.setOnChange(new onChange(){
 							@Override
-							public void onEvent(MediaService.MusicBinder root, int mode)
+							public void onEvent(final MediaService.MusicBinder root, int mode)
 							{
 								switch (mode)
 								{
 									case MediaService.LOADMUSIC:
 										music_view.loadmode();
 										music_view.setTitle(root.getTitle());
+										Anna.getJsonArray(url.url3 + root.getMusicItem().getId())
+											.addString("songs")
+											.setOnEvent(new onEvent<JSONArray>(){
+
+												@Override
+												public void onError()
+												{
+													// TODO: Implement this method
+												}
+												
+												@Override
+												public void onEnd(JSONArray object)
+												{
+													try
+													{
+														root.setAlbum(ImageUtils.getBitMBitmap(get.jsonstring(object.getJSONObject(0).getString("al"), "picUrl")));
+													}
+													catch (JSONException e)
+													{}
+												}												
+											}).start();
 										break;
 									case MediaService.PLAY:
 										music_view.playmode();
@@ -76,10 +101,7 @@ public class MainActivity extends LifecycleActivity
 						});
 				}	
 			});
-		music_view = findViewById(R.id.mainMusicView1);
-		fragment_pgae = findViewById(R.id.mainFragmentPage1);
 		initFragment();
-		bottomNavigationBar = findViewById(R.id.mainBottomNavigationBar1);
 		bottomNavigationBar.setTextColorRes(R.color.theme_color);
         bottomNavigationBar.addItemView("Home", R.mipmap.ic_music, R.mipmap.ic_music_black);
         bottomNavigationBar.addItemView("Recommend", R.mipmap.ic_cards_heart, R.mipmap.ic_cards_heart_black);
@@ -94,13 +116,6 @@ public class MainActivity extends LifecycleActivity
 				}
 			});
 		bottomNavigationBar.setSelected(viewModel.index);
-		music_view.setOnClickListener(new View.OnClickListener(){
-
-				@Override
-				public void onClick(View p1)
-				{
-				}
-			});
 		music_view.getPlaybutton().setOnClickListener(new View.OnClickListener(){
 
 				@Override

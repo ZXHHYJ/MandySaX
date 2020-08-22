@@ -1,7 +1,7 @@
 package com.FMJJ.MandySa.Service;
-import com.FMJJ.MandySa.MainActivity;
-import com.FMJJ.MandySa.R;
-import mandysax.Service.MediaService;
+import com.FMJJ.MandySa.*;
+import com.FMJJ.MandySa.Data.*;
+import mandysax.Service.*;
 
 
 public class MusicService extends MediaService

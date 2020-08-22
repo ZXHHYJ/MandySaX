@@ -1,21 +1,20 @@
 package com.FMJJ.MandySa;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.PopupMenu;
-import android.widget.TextView;
-import com.FMJJ.MandySa.R;
-import com.FMJJ.MandySa.ViewModel.StartViewModel;
-import mandysax.Lifecycle.LifecycleActivity;
-import mandysax.Lifecycle.LiveData.Observer;
-import mandysax.Lifecycle.ViewModel.ViewModelProviders;
-import simon.tuke.Tuke;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
+import com.FMJJ.MandySa.*;
+import com.FMJJ.MandySa.ViewModel.*;
+import mandysax.Annotation.*;
+import mandysax.Lifecycle.*;
+import mandysax.Lifecycle.LiveData.*;
+import mandysax.Lifecycle.ViewModel.*;
+import simon.tuke.*;
 
+@BindLayoutId(R.layout.start)
 public class StartActivity extends LifecycleActivity implements PopupMenu.OnMenuItemClickListener
 {
+	@BindView(R.id.start_choose_mode)
 	private TextView choose_mode;
 
 	private final StartViewModel viewModel= ViewModelProviders.of(this).get(StartViewModel.class);
@@ -23,8 +22,7 @@ public class StartActivity extends LifecycleActivity implements PopupMenu.OnMenu
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start);
-		choose_mode=findViewById(R.id.start_choose_mode);
+		AnnotationTool.init(this);
 		viewModel.mode.observe(this, new Observer<Integer>(){
 
 				@Override
@@ -42,11 +40,12 @@ public class StartActivity extends LifecycleActivity implements PopupMenu.OnMenu
 				}
 			});
     }
-
+	
 	public void chooseMode(View v)
 	{
 		//new ListPopupWindow();
 		PopupMenu popup = new PopupMenu(this, v);
+		popup.setGravity(Gravity.CENTER);
 		MenuInflater inflater = popup.getMenuInflater();
 		inflater.inflate(R.menu.choose_mode, popup.getMenu());
 		popup.setOnMenuItemClickListener(this);

@@ -1,17 +1,13 @@
 package com.FMJJ.MandySa.ViewModel;
 
-import com.FMJJ.MandySa.Data.url;
-import java.util.ArrayList;
-import java.util.List;
-import mandysax.Data.get;
-import mandysax.Lifecycle.LiveData.LiveData;
-import mandysax.Lifecycle.LiveData.MutableLiveData;
-import mandysax.Lifecycle.ViewModel.ViewModel;
-import mandysax.Service.SingerItem;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import mandysax.Service.MusicItem;
+import com.FMJJ.MandySa.Data.*;
+import java.util.*;
+import mandysax.Lifecycle.Anna.*;
+import mandysax.Lifecycle.Anna.AnnaEvent.*;
+import mandysax.Lifecycle.LiveData.*;
+import mandysax.Lifecycle.ViewModel.*;
+import mandysax.Service.*;
+import org.json.*;
 
 public class SearchViewModel extends ViewModel
 {
@@ -30,56 +26,66 @@ public class SearchViewModel extends ViewModel
 
 	private String song_name;
 
-	private List<MusicItem> search_song(String name, int page)
+	private void search_song(final String name, final int page)
 	{
 		song_name = name;
-		if (song_name == null)return null;
-		final ArrayList<MusicItem> out = new ArrayList<MusicItem>();
-		try
-		{
-			final String content = get.jsonstring(get.jsonstring(get.getString(url.url2 + name + "&offset=" + (page - 1) * 30), "result"), "songs");
-			if (content != null)
-			{
-				JSONArray json = new JSONArray(content);
-				if (json != null)
-					for (int i = 0;i < json.length();i++)
-					{
-						MusicItem bean=new MusicItem();	
-						JSONObject jsonObject = json.getJSONObject(i);	
-						bean.setTitle(name);
-						bean.setId(jsonObject.getInt("id"));
-						bean.setTitle(jsonObject.getString("name"));
-						JSONArray jsonArray=jsonObject.getJSONArray("artists");
-						List<SingerItem> singerList = new ArrayList<SingerItem>();
-						if (jsonArray != null)
-							for (int a = 0;a < jsonArray.length();a++)
-							{
-								final SingerItem singer_congtent = new SingerItem();
-								singer_congtent.setId("" + jsonArray.getJSONObject(a).getInt("id"));
-								singer_congtent.setName(jsonArray.getJSONObject(a).getString("name"));
-								singerList.add(singer_congtent);
-							}
-						bean.setSinger(singerList);
-						out.add(bean);
-					}
-			}
-		}
-		catch (JSONException e)
-		{}
-		return out;
+		if (song_name == null)return;
+		Anna.getString(url.url2 + name + "&offset=" + (page - 1) * 30)
+			.addString("result")
+			.addString("songs")
+			.setOnEvent(new onEvent<String>(){
+
+				@Override
+				public void onError()
+				{
+				}
+				
+				@Override
+				public void onEnd(String content)
+				{
+					ArrayList<MusicItem> out = new ArrayList<MusicItem>();
+					List<SingerItem> singerList = new ArrayList<SingerItem>();
+						try
+						{
+							JSONArray json = new JSONArray(content);		
+								for (int i = 0;i < json.length();i++)
+								{
+									MusicItem bean=new MusicItem();	
+									JSONObject jsonObject = json.getJSONObject(i);	
+									bean.setTitle(name);
+									bean.setId(jsonObject.getInt("id"));
+									bean.setTitle(jsonObject.getString("name"));
+									JSONArray jsonArray=jsonObject.getJSONArray("artists");		
+										for (int a = 0;a < jsonArray.length();a++)
+										{	
+											SingerItem singer_congtent = new SingerItem();
+											singer_congtent.setId( jsonArray.getJSONObject(a).getInt("id"));
+											singer_congtent.setName(jsonArray.getJSONObject(a).getString("name"));
+											singerList.add(singer_congtent);
+										}
+									bean.setSinger(singerList);
+									out.add(bean);							
+								}
+							if (page == 1)_song_search.postValue(out);
+							else _song_bottom.postValue(out);
+						}
+						catch (JSONException e)
+						{}
+				}
+			}).start();
 	}
 
 	public void song_search(String name)
 	{
 		if (name == null)name = song_name;
 		song_page = 1;
-		_song_search.postValue(search_song(name, song_page));
+		search_song(name, song_page);
 	}
 
 	public void song_bottom()
 	{
 		song_page++;
-		_song_bottom.postValue(search_song(song_name, song_page));
+		search_song(song_name, song_page);
 	}
 
 }

@@ -1,32 +1,26 @@
 package com.FMJJ.MandySa.Fragment;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import com.FMJJ.MandySa.R;
-import com.FMJJ.MandySa.Service.MusicService;
-import com.FMJJ.MandySa.ViewHolder.musicList_ViewHolder;
-import com.FMJJ.MandySa.ViewModel.SearchViewModel;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import mandysax.Lifecycle.LifecycleFragment;
+import android.content.*;
+import android.os.*;
+import android.text.*;
+import android.text.style.*;
+import android.view.*;
+import android.widget.*;
+import androidx.recyclerview.widget.*;
+import androidx.swiperefreshlayout.widget.*;
+import com.FMJJ.MandySa.*;
+import com.FMJJ.MandySa.Service.*;
+import com.FMJJ.MandySa.ViewHolder.*;
+import com.FMJJ.MandySa.ViewModel.*;
+import java.util.*;
+import java.util.regex.*;
+import mandysax.Lifecycle.*;
+import mandysax.Lifecycle.LiveData.*;
+import mandysax.Lifecycle.Paradrop.*;
+import mandysax.Lifecycle.ViewModel.*;
+import mandysax.Service.*;
+
 import mandysax.Lifecycle.LiveData.Observer;
-import mandysax.Lifecycle.Paradrop.paradrop;
-import mandysax.Lifecycle.ViewModel.ViewModelProviders;
-import mandysax.Service.MusicItem;
 
 public class SearchFragment extends LifecycleFragment
 {
@@ -90,14 +84,8 @@ public class SearchFragment extends LifecycleFragment
 					int lastCompletelyVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
 					if (lastCompletelyVisibleItemPosition == layoutManager.getItemCount() - 1)
 					{
-						music_sl.setRefreshing(true);
-						new Thread(new Runnable(){
-								@Override
-								public void run()
-								{
-									viewModel.song_bottom();
-								}
-							}).start();
+						music_sl.setRefreshing(true);			
+						viewModel.song_bottom();
 					}
 				}
 			});
@@ -108,14 +96,8 @@ public class SearchFragment extends LifecycleFragment
                 @Override
                 public void onRefresh()
 				{
-					music_sl.setRefreshing(true);
-                    new Thread(new Runnable(){
-							@Override
-							public void run()
-							{
-								viewModel.song_search(null);
-							}
-						}).start();
+					music_sl.setRefreshing(true);       
+					viewModel.song_search(null);
                 }
             }
         );
@@ -157,13 +139,7 @@ public class SearchFragment extends LifecycleFragment
 	private void search()
 	{
 		music_sl.setRefreshing(true);
-		new Thread(new Runnable(){
-				@Override
-				public void run()
-				{
-					viewModel.song_search(search_edit.getText().toString());
-				}
-			}).start();
+		viewModel.song_search(search_edit.getText().toString());	
 	}
 
 	private class music_listAdaper extends RecyclerView.Adapter<musicList_ViewHolder>
@@ -220,7 +196,7 @@ public class SearchFragment extends LifecycleFragment
 			{
 				int start = m.start();
 				int end = m.end();
-				s.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.theme_color)), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+				s.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.search_color)), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			tv.setText(s);
 		}

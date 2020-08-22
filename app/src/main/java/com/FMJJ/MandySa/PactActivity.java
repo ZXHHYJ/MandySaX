@@ -1,32 +1,34 @@
 package com.FMJJ.MandySa;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.view.View;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.TextView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import mandysax.Lifecycle.LifecycleActivity;
-import mandysax.Tools.ToastUtils;
+import android.content.*;
+import android.graphics.*;
+import android.os.*;
+import android.view.*;
+import android.webkit.*;
+import android.widget.*;
+import androidx.swiperefreshlayout.widget.*;
+import com.FMJJ.MandySa.*;
+import mandysax.Annotation.*;
+import mandysax.Lifecycle.*;
+import mandysax.Tools.*;
 
+@BindLayoutId(R.layout.pact)
 public class PactActivity extends LifecycleActivity
 {
 
+	@BindView(R.id.pactWebView1)
 	private WebView webview;
 
+	@BindView(R.id.pactSwipeRefreshLayout1)
 	private SwipeRefreshLayout sr_webview;
 
-	private TextView no,yes;
-	
+	@BindView(R.id.pactOK)
+	private TextView yes;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pact);
-		webview = findViewById(R.id.pactWebView1);
+		AnnotationTool.init(this);
 		webview.loadUrl("http://39.106.7.220/mandysa/about.html");
 		webview.setWebViewClient(new WebViewClient(){
 				@Override
@@ -36,17 +38,18 @@ public class PactActivity extends LifecycleActivity
 				}
 
 				@Override
-				public void onReceivedError(WebView view, WebResourceRequest request,WebResourceError error)
+				public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error)
 				{
-					ToastUtils.showToast("网络错误:"+error.getErrorCode());
+					ToastUtils.showToast("网络错误:" + error.getErrorCode());
 				}
+				
 				@Override
 				public void onPageFinished(WebView view, String url)
 				{
 					sr_webview.setRefreshing(false);
 				}
 			});
-		sr_webview = findViewById(R.id.pactSwipeRefreshLayout1);
+			
         sr_webview.setColorScheme(R.color.theme_color);
         sr_webview.setOnRefreshListener(
             new SwipeRefreshLayout.OnRefreshListener() {
@@ -57,18 +60,18 @@ public class PactActivity extends LifecycleActivity
                 }
             }
         );
-		yes = findViewById(R.id.pactOK);
+		
 		yes.setOnClickListener(new View.OnClickListener(){
 
 				@Override
 				public void onClick(View p1)
 				{
-					PactActivity.this.startActivity(new Intent(PactActivity.this,MainActivity.class));
+					PactActivity.this.startActivity(new Intent(PactActivity.this, MainActivity.class));
 					PactActivity.this.finish();
 				}
-				
-			
-		});
+
+
+			});
 	}
 
 }
