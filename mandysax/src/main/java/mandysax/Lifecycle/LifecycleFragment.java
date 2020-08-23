@@ -1,23 +1,23 @@
 package mandysax.Lifecycle;
 
-import android.app.Fragment;
-import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import mandysax.Lifecycle.LifecycleEvent.LifecycleDestory;
-import mandysax.Lifecycle.LifecycleEvent.LifecycleViewModel;
+import android.app.*;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import mandysax.Lifecycle.LifecycleEvent.*;
 
 public abstract class LifecycleFragment extends Fragment implements LifecycleAbstract
 {
 
 	private final Lifecycle lifecycle = new Lifecycle();
 
+	@Override
+	public void onCreate(Bundle savedInstanceState)
 	{
+		super.onCreate(savedInstanceState);
 		LifecycleManagement.LifecycleData.add(lifecycle);
 	}
-
+	
 	public abstract int getLayoutId();
 
     public abstract void initView(View view);
@@ -40,13 +40,14 @@ public abstract class LifecycleFragment extends Fragment implements LifecycleAbs
 	public void onAttach(Context context)
 	{
 		super.onAttach(context);
-		if(context instanceof LifecycleActivity){((LifecycleActivity) context).getLifecycle().KillEvent(new LifecycleViewModel(){
+		if (context instanceof LifecycleActivity)
+		{((LifecycleActivity) context).getLifecycle().KillEvent(new LifecycleViewModel(){
 					@Override
 					public void onKill()
 					{
 						LifecycleFragment.this.lifecycle.onKill();
 					}		
-			});
+				});
 		}
 	}
 

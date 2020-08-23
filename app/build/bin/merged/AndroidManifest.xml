@@ -32,6 +32,7 @@
 
         <activity
             android:name="com.FMJJ.MandySa.MainActivity"
+            android:configChanges="uiMode"
             android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
