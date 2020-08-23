@@ -1,6 +1,5 @@
 package mandysax.Lifecycle;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class LifecycleData
 {	
@@ -14,13 +13,6 @@ public class LifecycleData
 	protected void remove(Object p1)
 	{
 		lifecycle.remove(p1);
-	}
-	
-	protected <T> Lifecycle contains(T obj){
-		if(lifecycle.contains(obj)){
-			return lifecycle.get(lifecycle.indexOf(obj));
-		}	
-		return null;
 	}
 
 }

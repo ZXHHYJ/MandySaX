@@ -39,38 +39,38 @@ public class SearchViewModel extends ViewModel
 				public void onError()
 				{
 				}
-				
+
 				@Override
 				public void onEnd(String content)
 				{
 					ArrayList<MusicItem> out = new ArrayList<MusicItem>();
-					List<SingerItem> singerList = new ArrayList<SingerItem>();
-						try
+					try
+					{
+						JSONArray json = new JSONArray(content);		
+						for (int i = 0;i < json.length();i++)
 						{
-							JSONArray json = new JSONArray(content);		
-								for (int i = 0;i < json.length();i++)
-								{
-									MusicItem bean=new MusicItem();	
-									JSONObject jsonObject = json.getJSONObject(i);	
-									bean.setTitle(name);
-									bean.setId(jsonObject.getInt("id"));
-									bean.setTitle(jsonObject.getString("name"));
-									JSONArray jsonArray=jsonObject.getJSONArray("artists");		
-										for (int a = 0;a < jsonArray.length();a++)
-										{	
-											SingerItem singer_congtent = new SingerItem();
-											singer_congtent.setId( jsonArray.getJSONObject(a).getInt("id"));
-											singer_congtent.setName(jsonArray.getJSONObject(a).getString("name"));
-											singerList.add(singer_congtent);
-										}
-									bean.setSinger(singerList);
-									out.add(bean);							
-								}
-							if (page == 1)_song_search.postValue(out);
-							else _song_bottom.postValue(out);
+							MusicItem bean=new MusicItem();	
+							JSONObject jsonObject = json.getJSONObject(i);	
+							bean.setTitle(name);
+							bean.setId(jsonObject.getInt("id"));
+							bean.setTitle(jsonObject.getString("name"));
+							JSONArray jsonArray=new JSONArray(jsonObject.getString("artists"));		
+							List<SingerItem> singerList = new ArrayList<SingerItem>();
+							for (int a = 0;a < jsonArray.length();a++)
+							{	
+								SingerItem singer_congtent = new SingerItem();
+								singer_congtent.setId(jsonArray.getJSONObject(a).getInt("id"));
+								singer_congtent.setName(jsonArray.getJSONObject(a).getString("name"));
+								singerList.add(singer_congtent);
+							}
+							bean.setSinger(singerList);
+							out.add(bean);							
 						}
-						catch (JSONException e)
-						{}
+						if (page == 1)_song_search.postValue(out);
+						else _song_bottom.postValue(out);
+					}
+					catch (JSONException e)
+					{}
 				}
 			}).start();
 	}

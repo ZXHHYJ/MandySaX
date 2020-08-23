@@ -1,12 +1,6 @@
 package mandysax.Lifecycle;
-import java.util.ArrayList;
-import java.util.List;
-import mandysax.Lifecycle.LifecycleEvent.LifecycleDestory;
-import mandysax.Lifecycle.LifecycleEvent.LifecyclePause;
-import mandysax.Lifecycle.LifecycleEvent.LifecycleResume;
-import mandysax.Lifecycle.LifecycleEvent.LifecycleStart;
-import mandysax.Lifecycle.LifecycleEvent.LifecycleStop;
-import mandysax.Lifecycle.LifecycleEvent.LifecycleViewModel;
+import java.util.*;
+import mandysax.Lifecycle.LifecycleEvent.*;
 
 public class Lifecycle
 {
@@ -19,9 +13,9 @@ public class Lifecycle
 	private List<LifecycleDestory> Destory;
 
 	private List<LifecycleResume> Resume;
-	
+
 	private List<LifecycleViewModel> ViewModel;
-	
+
 	public void StartEvent(LifecycleStart p1)
 	{
 		if (Start == null)Start = new ArrayList<LifecycleStart>();
@@ -51,8 +45,9 @@ public class Lifecycle
 		if (Destory == null)Destory = new ArrayList<LifecycleDestory>();
 		Destory.add(p1);
 	}
-	
-	public void KillEvent(LifecycleViewModel p1){
+
+	public void KillEvent(LifecycleViewModel p1)
+	{
 		if (ViewModel == null)ViewModel = new ArrayList<LifecycleViewModel>();
 		ViewModel.add(p1);
 	}
@@ -60,42 +55,43 @@ public class Lifecycle
 	public void onStart()
 	{
 		if (Start != null)
-			for (int i = 0;i < Start.size();i++)
-				Start.get(i).onStart();
+			for (LifecycleStart start: Start)
+				start.onStart();
 	}
 
 	public void onResume()
 	{
 		if (Resume != null)
-			for (int i = 0;i < Resume.size();i++)
-				Resume.get(i).onResume();
+			for (LifecycleResume resume: Resume)
+				resume.onResume();
 	}
 
 	public void onPause()
 	{
 		if (Pause != null)
-			for (int i = 0;i < Pause.size();i++)
-				Pause.get(i).onPause();
+			for (LifecyclePause pause: Pause)
+				pause.onPause();
 	}
 
 	public void onStop()
 	{
 		if (Stop != null)
-			for (int i = 0;i < Stop.size();i++)
-				Stop.get(i).onStop();
+			for (LifecycleStop stop: Stop)
+				stop.onStop();
 	}
 
 	public void onDestory()
 	{
 		if (Destory != null)
-			for (int i = 0;i < Destory.size();i++)
-				Destory.get(i).onDestory();
+			for (LifecycleDestory destory: Destory)
+				destory.onDestory();
 	}
-	
-	public void onKill(){
+
+	public void onKill()
+	{
 		if (ViewModel != null)
-			for (int i = 0;i < ViewModel.size();i++)
-				ViewModel.get(i).onKill();
+			for (LifecycleViewModel viewModel: ViewModel)
+				viewModel.onKill();
 	}
 
 }

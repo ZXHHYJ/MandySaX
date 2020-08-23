@@ -149,7 +149,15 @@ public class SearchFragment extends LifecycleFragment
 		public void onBindViewHolder(musicList_ViewHolder p1, final int p2)
 		{
 			setSearchContentColor(list.get(p2).getTitle(), search_edit.getText().toString(), p1.Song_name);
-			setSearchContentColor(list.get(p2).getSinger().get(0).getName(), search_edit.getText().toString(), p1.Singer_name);
+			String singer_name="";
+			for(SingerItem i : list.get(p2).getSinger())
+			{
+				if(!singer_name.equals(""))
+				if(list.get(p2).getSinger().indexOf(i)!=0)
+					singer_name+="/";
+				singer_name += i.getName();
+			}
+			setSearchContentColor(singer_name, search_edit.getText().toString(), p1.Singer_name);
 			p1.onclick.setOnClickListener(new View.OnClickListener(){
 
 					@Override

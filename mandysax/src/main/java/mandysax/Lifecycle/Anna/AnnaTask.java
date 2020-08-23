@@ -44,9 +44,9 @@ class AnnaTask
 	public static String Parsing(List<String> list_string, String content)
 	{
 	    String _content=content;
-		for (int i=0;i < list_string.size();i++)
+		for (String content2:list_string)
 		{
-			_content = get.jsonstring(_content, list_string.get(i));
+			_content = get.jsonstring(_content, content2);
 		}
 		return _content;
 	}

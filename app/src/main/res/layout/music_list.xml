@@ -20,6 +20,8 @@
 		android:id="@+id/musiclistTextView1"/>
 
 	<TextView
+		android:lines="1"
+		android:singleLine="true"
 		android:textSize="13sp"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
