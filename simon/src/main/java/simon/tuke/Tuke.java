@@ -11,7 +11,7 @@ public class Tuke
 	
 	private static OnException error;
 	
-	public static void init(Context in)
+	protected static void init(Context in)
 	{
 		init("TUKE", in.getNoBackupFilesDir().toString());
 	}

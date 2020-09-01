@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mandysax" >
-
+	<application>
+		<provider
+			android:authorities="${applicationId}.MandySa"
+			android:name="mandysax.lifecycle.LifecycleContentProvider"/>
+	</application>
 </manifest>

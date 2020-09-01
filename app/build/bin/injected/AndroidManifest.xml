@@ -7,7 +7,7 @@
 
 	<uses-sdk
 		android:minSdkVersion="21"
-		android:targetSdkVersion="29"/>
+		android:targetSdkVersion="30"/>
 
 	<uses-permission
 		android:name="android.permission.INTERNET"/>
@@ -19,7 +19,6 @@
 		android:name="android.permission.WAKE_LOCK"/>
 
 	<application
-		android:name=".MainApplication"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:resizeableActivity="true"
@@ -27,13 +26,8 @@
 		android:usesCleartextTraffic="true"
 		android:roundIcon="@mipmap/ic_launcher_round">
 
-		<service
-			android:name=".Service.MusicService"
-			android:enabled="true"
-			android:exported="false"/>
-
 		<activity
-			android:name=".MainActivity"
+			android:name=".ui.MainActivity"
 			android:configChanges="uiMode"
 			android:launchMode="singleTask">
 
@@ -50,13 +44,34 @@
 		</activity>
 
 		<activity
-			android:name=".MusicActivity"/>
+			android:name=".ui.MusicActivity"/>
 
 		<activity
-			android:name=".StartActivity"/>
+			android:name=".ui.SplashActivity"/>
 
-		<activity
-			android:name=".PactActivity"/>
+		<service
+			android:name=".service.MusicService">
+
+			<intent-filter>
+
+				<action
+					android:name="android.media.browse.MediaBrowserService"/>
+
+			</intent-filter>
+
+		</service>
+
+		<receiver
+			android:name="androidx.media.session.MediaButtonReceiver">
+
+			<intent-filter>
+
+				<action
+					android:name="android.intent.action.MEDIA_BUTTON"/>
+
+			</intent-filter>
+
+		</receiver>
 
 	</application>
 

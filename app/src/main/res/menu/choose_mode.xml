@@ -2,10 +2,10 @@
     
     <item
         android:id="@+id/phone_mode"
-        android:title="@string/phone_mode"/>
+        android:title="手机"/>
 	
 	<item
         android:id="@+id/pad_mode"
-        android:title="@string/pad_mode"/>
+        android:title="平板"/>
     
 </menu>

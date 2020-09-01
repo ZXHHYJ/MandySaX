@@ -9,7 +9,6 @@
 	android:id="@+id/musiclistLinearLayout1">
 
 	<TextView
-		android:textStyle="bold"
 		android:lines="1"
 		android:singleLine="true"
 		android:textSize="16sp"
@@ -20,6 +19,7 @@
 		android:id="@+id/musiclistTextView1"/>
 
 	<TextView
+		android:textStyle="normal"
 		android:lines="1"
 		android:singleLine="true"
 		android:textSize="13sp"

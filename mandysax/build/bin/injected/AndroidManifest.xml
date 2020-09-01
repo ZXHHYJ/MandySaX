@@ -7,5 +7,13 @@
 		android:minSdkVersion="1"
 		android:targetSdkVersion="1"/>
 
+	<application>
+
+		<provider
+			android:authorities="com.FMJJ.MandySa.MandySa"
+			android:name="mandysax.lifecycle.LifecycleContentProvider"/>
+
+	</application>
+
 </manifest>
 

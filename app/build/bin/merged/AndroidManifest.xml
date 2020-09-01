@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="29" />
+        android:targetSdkVersion="30" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -17,7 +17,6 @@
     <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.FMJJ.MandySa.MainApplication"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,13 +24,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
-        <service
-            android:name="com.FMJJ.MandySa.Service.MusicService"
-            android:enabled="true"
-            android:exported="false" />
-
         <activity
-            android:name="com.FMJJ.MandySa.MainActivity"
+            android:name="com.FMJJ.MandySa.ui.MainActivity"
             android:configChanges="uiMode"
             android:launchMode="singleTask" >
             <intent-filter>
@@ -40,9 +34,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.FMJJ.MandySa.MusicActivity" />
-        <activity android:name="com.FMJJ.MandySa.StartActivity" />
-        <activity android:name="com.FMJJ.MandySa.PactActivity" />
+        <activity android:name="com.FMJJ.MandySa.ui.MusicActivity" />
+        <activity android:name="com.FMJJ.MandySa.ui.SplashActivity" />
+
+        <service android:name="com.FMJJ.MandySa.service.MusicService" >
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="androidx.media.session.MediaButtonReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="mandysax.lifecycle.LifecycleContentProvider"
+            android:authorities="com.FMJJ.MandySa.MandySa" />
+        <provider
+            android:name="simon.tuke.TukeInit"
+            android:authorities="com.FMJJ.MandySa.Tuke" />
     </application>
 
 </manifest>

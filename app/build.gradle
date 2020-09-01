@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29"
+    compileSdkVersion 30
+    buildToolsVersion "30"
 
     defaultConfig {
         applicationId "com.FMJJ.MandySa"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
     }
@@ -22,7 +22,7 @@ android {
 dependencies {
 	compile project(':mandysax')
 	compile project(':simon')
-	compile 'androidx.swiperefreshlayout:swiperefreshlayout:+'
-	compile 'androidx.recyclerview:recyclerview:+'
-	compile fileTree(dir: 'libs', include: ['*.jar'])
-}
+	api "androidx.media:media:1.1.0"
+	api 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+	api 'androidx.recyclerview:recyclerview:1.1.0'
+	}

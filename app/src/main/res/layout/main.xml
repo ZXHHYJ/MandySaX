@@ -4,23 +4,23 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<mandysax.Design.BottomNavigationBar
+	<mandysax.design.BottomNavigationBar
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
-		android:id="@+id/mainBottomNavigationBar1"/>
+		android:id="@+id/mainBottomNavigationBar"/>
 
-	<mandysax.Design.FragmentPage
+	<mandysax.design.FragmentPage
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_above="@id/mainBottomNavigationBar1"
-		android:id="@+id/mainFragmentPage1"/>
+		android:layout_above="@id/mainBottomNavigationBar"
+		android:id="@+id/mainFragmentPage"/>
 
-	<mandysax.Design.MusicView
+	<mandysax.design.MusicView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/mainMusicView1"
-		android:layout_above="@id/mainBottomNavigationBar1"
+		android:id="@+id/mainMusicView"
+		android:layout_above="@id/mainBottomNavigationBar"
 		android:layout_marginLeft="5dp"
 		android:layout_marginRight="5dp"/>
 

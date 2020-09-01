@@ -21,7 +21,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int alpha=0x7f01000a;
+        public static final int alpha=0x7f01000b;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -51,7 +51,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int font=0x7f010012;
+        public static final int font=0x7f010013;
         /**  The authority of the Font Provider to be used for the request. 
          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
@@ -60,7 +60,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int fontProviderAuthority=0x7f01000b;
+        public static final int fontProviderAuthority=0x7f01000c;
         /**  The sets of hashes for the certificates the provider should be signed with. This is
         used to verify the identity of the provider, and is only required if the provider is not
         part of the system image. This value may point to one list or a list of lists, where each
@@ -69,7 +69,7 @@ containing a value of this type.
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int fontProviderCerts=0x7f01000e;
+        public static final int fontProviderCerts=0x7f01000f;
         /**  The strategy to be used when fetching font data from a font provider in XML layouts.
         This attribute is ignored when the resource is loaded from code, as it is equivalent to the
         choice of API between {@link
@@ -95,7 +95,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
               fontProviderFetchTimeout will be ignored if async loading is specified. </td></tr>
 </table>
          */
-        public static final int fontProviderFetchStrategy=0x7f01000f;
+        public static final int fontProviderFetchStrategy=0x7f010010;
         /**  The length of the timeout during fetching. 
          <p>May be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
@@ -113,7 +113,7 @@ containing a value of this type.
               timeout and wait until a reply is received from the font provider. </td></tr>
 </table>
          */
-        public static final int fontProviderFetchTimeout=0x7f010010;
+        public static final int fontProviderFetchTimeout=0x7f010011;
         /**  The package for the Font Provider to be used for the request. This is used to verify
         the identity of the provider. 
          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
@@ -123,7 +123,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int fontProviderPackage=0x7f01000c;
+        public static final int fontProviderPackage=0x7f01000d;
         /**  The query to be sent over to the provider. Refer to your font provider's documentation
         on the format of this string. 
          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
@@ -133,7 +133,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int fontProviderQuery=0x7f01000d;
+        public static final int fontProviderQuery=0x7f01000e;
         /**  The style of the given font file. This will be used when the font is being loaded into
          the font stack and will override any style information in the font's header tables. If
          unspecified, the value in the font's header tables will be used. 
@@ -147,7 +147,7 @@ containing a value of this type.
 <tr><td><code>italic</code></td><td>1</td><td></td></tr>
 </table>
          */
-        public static final int fontStyle=0x7f010011;
+        public static final int fontStyle=0x7f010012;
         /**  The variation settings to be applied to the font. The string should be in the following
          format: "'tag1' value1, 'tag2' value2, ...". If the default variation settings should be
          used, or the font used does not support variation settings, this attribute needs not be
@@ -159,7 +159,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int fontVariationSettings=0x7f010014;
+        public static final int fontVariationSettings=0x7f010015;
         /**  The weight of the given font file. This will be used when the font is being loaded into
          the font stack and will override any weight information in the font's header tables. Must
          be a positive number, a multiple of 100, and between 100 and 900, inclusive. The most
@@ -172,7 +172,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int fontWeight=0x7f010013;
+        public static final int fontWeight=0x7f010014;
         /**  Class name of the Layout Manager to be used.
         <p/>
         The class must ext androidx.recyclerview.widget.RecyclerViewView$LayoutManager
@@ -240,7 +240,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int swipeRefreshLayoutProgressSpinnerBackgroundColor=0x7f010016;
+        public static final int swipeRefreshLayoutProgressSpinnerBackgroundColor=0x7f01000a;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -268,18 +268,22 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int ttcIndex=0x7f010015;
+        public static final int ttcIndex=0x7f010016;
     }
     public static final class color {
-        public static final int main_color=0x7f090005;
+        public static final int main_color=0x7f090009;
         public static final int notification_action_color_filter=0x7f090000;
+        public static final int notification_bg=0x7f090007;
         public static final int notification_icon_bg_color=0x7f090001;
+        public static final int notification_material_background_media_default_color=0x7f090004;
+        public static final int primary_text_default_material_dark=0x7f090005;
         public static final int ripple_material_light=0x7f090002;
-        public static final int search_color=0x7f090008;
+        public static final int search_color=0x7f09000c;
+        public static final int secondary_text_default_material_dark=0x7f090006;
         public static final int secondary_text_default_material_light=0x7f090003;
-        public static final int text_color=0x7f090006;
-        public static final int theme_color=0x7f090004;
-        public static final int theme_color_=0x7f090007;
+        public static final int text_color=0x7f09000a;
+        public static final int theme_color=0x7f090008;
+        public static final int theme_color_=0x7f09000b;
     }
     public static final class dimen {
         public static final int compat_button_inset_horizontal_material=0x7f06000a;
@@ -310,6 +314,10 @@ containing a value of this type.
         public static final int notification_subtext_size=0x7f060019;
         public static final int notification_top_pad=0x7f06001a;
         public static final int notification_top_pad_large_text=0x7f06001b;
+        public static final int subtitle_corner_radius=0x7f06001c;
+        public static final int subtitle_outline_width=0x7f06001d;
+        public static final int subtitle_shadow_offset=0x7f06001e;
+        public static final int subtitle_shadow_radius=0x7f06001f;
     }
     public static final class drawable {
         public static final int button=0x7f020000;
@@ -368,30 +376,34 @@ containing a value of this type.
         public static final int accessibility_custom_action_7=0x7f07001f;
         public static final int accessibility_custom_action_8=0x7f070020;
         public static final int accessibility_custom_action_9=0x7f070021;
+        public static final int action0=0x7f070049;
         public static final int action_container=0x7f070046;
-        public static final int action_divider=0x7f070052;
+        public static final int action_divider=0x7f07004d;
         public static final int action_image=0x7f070047;
         public static final int action_text=0x7f070048;
-        public static final int actions=0x7f070053;
+        public static final int actions=0x7f070057;
         public static final int async=0x7f07002f;
         public static final int blocking=0x7f070030;
+        public static final int cancel_action=0x7f07004a;
         public static final int check_show_text=0x7f070034;
-        public static final int chronometer=0x7f070051;
+        public static final int chronometer=0x7f070052;
         public static final int dialog_button=0x7f070037;
+        public static final int end_padder=0x7f070059;
         public static final int forever=0x7f070031;
-        public static final int icon=0x7f07004a;
-        public static final int icon_group=0x7f070054;
-        public static final int info=0x7f07004d;
+        public static final int icon=0x7f070054;
+        public static final int icon_group=0x7f070058;
+        public static final int info=0x7f070053;
         public static final int italic=0x7f070032;
         public static final int item_touch_helper_previous_elevation=0x7f070000;
         public static final int line1=0x7f070022;
         public static final int line3=0x7f070023;
-        public static final int mainBottomNavigationBar1=0x7f070038;
-        public static final int mainFragmentPage1=0x7f070039;
-        public static final int mainMusicView1=0x7f07003a;
+        public static final int mainBottomNavigationBar=0x7f070038;
+        public static final int mainFragmentPage=0x7f070039;
+        public static final int mainMusicView=0x7f07003a;
         public static final int mandysamusicviewImageView1=0x7f070042;
         public static final int mandysamusicviewImageView2=0x7f070045;
         public static final int mandysamusicviewTextView1=0x7f070043;
+        public static final int media_actions=0x7f07004c;
         public static final int musiclistLinearLayout1=0x7f07003e;
         public static final int musiclistTextView1=0x7f07003f;
         public static final int musiclistTextView2=0x7f070040;
@@ -403,22 +415,18 @@ containing a value of this type.
         public static final int no_image=0x7f070035;
         public static final int no_text=0x7f070036;
         public static final int normal=0x7f070033;
-        public static final int notification_background=0x7f07004f;
-        public static final int notification_main_column=0x7f07004b;
-        public static final int notification_main_column_container=0x7f070049;
-        public static final int pactOK=0x7f070056;
-        public static final int pactSwipeRefreshLayout1=0x7f070057;
-        public static final int pactWebView1=0x7f070058;
-        public static final int pactinclude1=0x7f070055;
+        public static final int notification_background=0x7f070056;
+        public static final int notification_main_column=0x7f07004f;
+        public static final int notification_main_column_container=0x7f07004e;
         public static final int pad_mode=0x7f07005f;
         public static final int phone_mode=0x7f07005e;
-        public static final int right_icon=0x7f07004e;
-        public static final int right_side=0x7f07004c;
-        public static final int searchEditText1=0x7f070059;
-        public static final int searchImageView1=0x7f07005a;
-        public static final int searchfragmentRecyclerView1=0x7f07005c;
-        public static final int searchfragmentSwipeRefreshLayout1=0x7f07005b;
-        public static final int start_choose_mode=0x7f07005d;
+        public static final int right_icon=0x7f070055;
+        public static final int right_side=0x7f070050;
+        public static final int searchEditText1=0x7f07005a;
+        public static final int searchImageView1=0x7f07005b;
+        public static final int searchfragmentRecyclerView1=0x7f07005d;
+        public static final int searchfragmentSwipeRefreshLayout1=0x7f07005c;
+        public static final int status_bar_latest_event_content=0x7f07004b;
         public static final int tag_accessibility_actions=0x7f070024;
         public static final int tag_accessibility_clickable_spans=0x7f070025;
         public static final int tag_accessibility_heading=0x7f070026;
@@ -429,10 +437,11 @@ containing a value of this type.
         public static final int tag_unhandled_key_listeners=0x7f07002b;
         public static final int text=0x7f07002c;
         public static final int text2=0x7f07002d;
-        public static final int time=0x7f070050;
+        public static final int time=0x7f070051;
         public static final int title=0x7f07002e;
     }
     public static final class integer {
+        public static final int cancel_button_image_alpha=0x7f0b0001;
         public static final int status_bar_notification_info_maxnum=0x7f0b0000;
     }
     public static final class layout {
@@ -446,15 +455,21 @@ containing a value of this type.
         public static final int my_fragment=0x7f040007;
         public static final int notification_action=0x7f040008;
         public static final int notification_action_tombstone=0x7f040009;
-        public static final int notification_template_custom_big=0x7f04000a;
-        public static final int notification_template_icon_group=0x7f04000b;
-        public static final int notification_template_part_chronometer=0x7f04000c;
-        public static final int notification_template_part_time=0x7f04000d;
-        public static final int pact=0x7f04000e;
-        public static final int recommend_fragment=0x7f04000f;
-        public static final int search_fragment=0x7f040010;
-        public static final int start=0x7f040011;
-        public static final int title=0x7f040012;
+        public static final int notification_media_action=0x7f04000a;
+        public static final int notification_media_cancel_action=0x7f04000b;
+        public static final int notification_template_big_media=0x7f04000c;
+        public static final int notification_template_big_media_custom=0x7f04000d;
+        public static final int notification_template_big_media_narrow=0x7f04000e;
+        public static final int notification_template_big_media_narrow_custom=0x7f04000f;
+        public static final int notification_template_custom_big=0x7f040010;
+        public static final int notification_template_icon_group=0x7f040011;
+        public static final int notification_template_lines_media=0x7f040012;
+        public static final int notification_template_media=0x7f040013;
+        public static final int notification_template_media_custom=0x7f040014;
+        public static final int notification_template_part_chronometer=0x7f040015;
+        public static final int notification_template_part_time=0x7f040016;
+        public static final int recommend_fragment=0x7f040017;
+        public static final int search_fragment=0x7f040018;
     }
     public static final class menu {
         public static final int choose_mode=0x7f0c0000;
@@ -464,41 +479,41 @@ containing a value of this type.
         public static final int ic_account_black=0x7f030001;
         public static final int ic_android_black_24dp=0x7f030002;
         public static final int ic_android_green_24dp=0x7f030003;
-        public static final int ic_arrow_left=0x7f030004;
-        public static final int ic_arrow_left_black=0x7f030005;
-        public static final int ic_cards_heart=0x7f030006;
-        public static final int ic_cards_heart_black=0x7f030007;
-        public static final int ic_launcher=0x7f030008;
-        public static final int ic_launcher_round=0x7f030009;
-        public static final int ic_magnify_outline=0x7f03000a;
-        public static final int ic_magnify_outline_black=0x7f03000b;
-        public static final int ic_music=0x7f03000c;
-        public static final int ic_music_black=0x7f03000d;
-        public static final int ic_music_note_eighth=0x7f03000e;
-        public static final int ic_music_note_eighth_black=0x7f03000f;
-        public static final int ic_pause=0x7f030010;
-        public static final int ic_play=0x7f030011;
-        public static final int ic_skip_next_outline=0x7f030012;
-        public static final int ic_skip_previous_outline=0x7f030013;
-        public static final int ic_star=0x7f030014;
-        public static final int ic_star_black=0x7f030015;
+        public static final int ic_cards_heart=0x7f030004;
+        public static final int ic_cards_heart_black=0x7f030005;
+        public static final int ic_launcher=0x7f030006;
+        public static final int ic_launcher_round=0x7f030007;
+        public static final int ic_magnify_outline=0x7f030008;
+        public static final int ic_magnify_outline_black=0x7f030009;
+        public static final int ic_music=0x7f03000a;
+        public static final int ic_music_black=0x7f03000b;
+        public static final int ic_pause=0x7f03000c;
+        public static final int ic_play=0x7f03000d;
+        public static final int ic_skip_next_outline=0x7f03000e;
+        public static final int ic_skip_previous_outline=0x7f03000f;
     }
     public static final class string {
         public static final int app_name=0x7f080001;
-        public static final int ok=0x7f080005;
-        public static final int pad_mode=0x7f080004;
-        public static final int phone_mode=0x7f080003;
-        public static final int start_slogan=0x7f080002;
+        public static final int label_next=0x7f080005;
+        public static final int label_pause=0x7f080002;
+        public static final int label_play=0x7f080003;
+        public static final int label_previous=0x7f080004;
         public static final int status_bar_notification_info_overflow=0x7f080000;
     }
     public static final class style {
-        public static final int AppButton=0x7f0a0008;
-        public static final int AppTheme=0x7f0a0007;
+        public static final int AppButton=0x7f0a000d;
+        public static final int AppTheme=0x7f0a000c;
+        public static final int AppTitle=0x7f0a000e;
         public static final int TextAppearance_Compat_Notification=0x7f0a0000;
         public static final int TextAppearance_Compat_Notification_Info=0x7f0a0001;
+        public static final int TextAppearance_Compat_Notification_Info_Media=0x7f0a0007;
         public static final int TextAppearance_Compat_Notification_Line2=0x7f0a0006;
+        public static final int TextAppearance_Compat_Notification_Line2_Media=0x7f0a000b;
+        public static final int TextAppearance_Compat_Notification_Media=0x7f0a0008;
         public static final int TextAppearance_Compat_Notification_Time=0x7f0a0002;
+        public static final int TextAppearance_Compat_Notification_Time_Media=0x7f0a0009;
         public static final int TextAppearance_Compat_Notification_Title=0x7f0a0003;
+        public static final int TextAppearance_Compat_Notification_Title_Media=0x7f0a000a;
         public static final int Widget_Compat_NotificationActionContainer=0x7f0a0004;
         public static final int Widget_Compat_NotificationActionText=0x7f0a0005;
     }
@@ -584,7 +599,7 @@ containing a value of this type.
            @see #ColorStateListItem_android_color
          */
         public static final int[] ColorStateListItem = {
-            0x010101a5, 0x0101031f, 0x7f01000a
+            0x010101a5, 0x0101031f, 0x7f01000b
         };
         /**
           <p>
@@ -638,8 +653,8 @@ containing a value of this type.
            @see #FontFamily_fontProviderQuery
          */
         public static final int[] FontFamily = {
-            0x7f01000b, 0x7f01000c, 0x7f01000d, 0x7f01000e,
-            0x7f01000f, 0x7f010010
+            0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f,
+            0x7f010010, 0x7f010011
         };
         /**
           <p>
@@ -795,8 +810,8 @@ containing a value of this type.
          */
         public static final int[] FontFamilyFont = {
             0x01010532, 0x01010533, 0x0101053f, 0x0101056f,
-            0x01010570, 0x7f010011, 0x7f010012, 0x7f010013,
-            0x7f010014, 0x7f010015
+            0x01010570, 0x7f010012, 0x7f010013, 0x7f010014,
+            0x7f010015, 0x7f010016
         };
         /**
           <p>This symbol is the offset where the {@link android.R.attr#font}
@@ -1296,7 +1311,7 @@ containing a value of this type.
            @see #SwipeRefreshLayout_swipeRefreshLayoutProgressSpinnerBackgroundColor
          */
         public static final int[] SwipeRefreshLayout = {
-            0x7f010016
+            0x7f01000a
         };
         /**
           <p>
