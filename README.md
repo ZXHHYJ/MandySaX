@@ -22,6 +22,7 @@ mandysax is an open source library that facilitates Android program development.
    
    > BottomNavigationBar的方法
    setType(NavShowType type)
+   
    *NORMAL, //普通模式，包含文字和图片
    *NO_TEXT, //无文字模式
    *NO_IMAGE, //无图模式
