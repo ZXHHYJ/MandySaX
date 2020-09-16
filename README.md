@@ -99,7 +99,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
  * @BindLayoutId(R.layout.x)
  >设置布局为R.layout.x
  * @BindFragment(R.id.x)
- >加载fragment，并添加到R.id.x
+ >加载fragment，并添加到R.id.x，在屏幕旋转后依旧可以保证两个fragment对象一致
  * @BindView(R.id.x)
  >绑定控件R.id.x
  * @BindView
