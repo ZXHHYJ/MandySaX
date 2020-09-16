@@ -34,6 +34,7 @@ mandysax is an open source library that facilitates Android program development.
    >CHECKED_SHOW_TEXT //普通无文字 选中出现文字
 	
    setSelected(int index)//index下标
+   >相当于点击了第index个按钮
    
    > 在java代码中为bar添加子项
    
@@ -64,3 +65,31 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
             }
         });
 ```
+
+# Usage FragmentPage
+>注：此控件建议搭配注解使用
+
+在布局xml文件中放置
+```xml
+<mandysax.design.FragmentPage
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"/>
+ ```
+ 
+ > 你可以使用FragmentPage的add方法添加至多4个fragment
+ ```java
+ public List<Fragment> add(Fragment...)
+	{
+		...
+	}
+
+	public List<Fragment> add(Fragment..., int index)
+	{
+		...
+	}
+
+ ```
+ showFragment(int index)//index下标
+ >显示第index个fragment
+ 
+ 
