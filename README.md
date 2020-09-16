@@ -21,8 +21,8 @@ mandysax is an open source library that facilitates Android program development.
    ```
    
    *textCheckedColor 字体选中颜色
-   *textUnCheckedColor 字体未选中颜色
-   *show_type 显示模式（下方4种模式的小写形式）
+   textUnCheckedColor 字体未选中颜色
+   show_type 显示模式（下方4种模式的小写形式）
    
    BottomNavigationBar的方法
    
@@ -96,13 +96,13 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
  
  >注：需要继承AppCompatActivity或FragmentCompat
  
- *@BindLayoutId(R.layout.x)
+ * @BindLayoutId(R.layout.x)
  >设置布局为R.layout.x
- *@BindFragment(R.id.x)
+ * @BindFragment(R.id.x)
  >加载fragment，并添加到R.id.x
- *@BindView(R.id.x)
+ * @BindView(R.id.x)
  >绑定控件R.id.x
- *@BindView
+ * @BindView
  >根据变量名称去绑定控件,findViewById(R.id.变量名称),R为当前context的getPackageName()路径
  @ViewClick(R.id.x)
  ```java
