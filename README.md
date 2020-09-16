@@ -92,4 +92,67 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
  showFragment(int index)//index下标
  >显示第index个fragment
  
+ # Usage 注解
+ 
+ >注：需要继承AppCompatActivity或FragmentCompat
+ 
+ *@BindLayoutId(R.layout.x)
+ >设置布局为R.layout.x
+ *@BindFragment(R.id.x)
+ >加载fragment，并添加到R.id.x
+ *@BindView(R.id.x)
+ >绑定控件R.id.x
+ *@BindView
+ >根据变量名称去绑定控件,findViewById(R.id.变量名称),R为当前context的getPackageName()路径
+ @ViewClick(R.id.x)
+ ```java
+ @ViewClick(R.id.x)
+	public void VOID()
+	{
+	}
+```
+>为R.id.x设置点击事件
+	
+ ```java
+ import ...;
+
+@BindLayoutId(R.layout.main)//设置布局
+public class MainActivity extends AppCompatActivity
+{
+
+	@BindFragment(R.id.mainFragmentPage)
+	private HomeFragment home_fragment;
+
+	@BindFragment(R.id.mainFragmentPage)
+	private RecommendFragment recommend_fragment;
+
+	@BindFragment(R.id.mainFragmentPage)
+	private SearchFragment search_fragment;
+
+	@BindFragment(R.id.mainFragmentPage)
+	private MyFragment my_fragment;
+
+	@BindView
+	private FragmentPage mainFragmentPage;
+
+    ...
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		initFragment();
+		...
+	}
+
+	private void initFragment()
+	{
+		mainFragmentPage.add(home_fragment, recommend_fragment, search_fragment, my_fragment, viewModel.index);
+		//关键
+	}
+	
+	...
+}
+```
+
+
  
