@@ -1,3 +1,7 @@
+# Gift-for-Mandy-Sa
+送给封茗囧菌的小礼物
+*这个项目最初的简介是：此项目为封茗囧菌而做
+
 # MandySaX
 mandysax is an open source library that facilitates Android program development. It supports responsive programming, activity and fragment life cycle management, MVVM architecture development... Welcome to start
 
@@ -20,13 +24,14 @@ mandysax is an open source library that facilitates Android program development.
    *textUnCheckedColor 字体未选中颜色
    *show_type 显示模式（下方4种模式的小写形式）
    
-   > BottomNavigationBar的方法
+   BottomNavigationBar的方法
+   
    setType(NavShowType type)
    
-   *NORMAL, //普通模式，包含文字和图片
-   *NO_TEXT, //无文字模式
-   *NO_IMAGE, //无图模式
-   *CHECKED_SHOW_TEXT //普通无文字 选中出现文字
+   >NORMAL, //普通模式，包含文字和图片
+   >NO_TEXT, //无文字模式
+   >NO_IMAGE, //无图模式
+   >CHECKED_SHOW_TEXT //普通无文字 选中出现文字
 	
    setSelected(int index)//index下标
    
