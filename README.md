@@ -6,7 +6,7 @@
 mandysax is an open source library that facilitates Android program development. It supports responsive programming, activity and fragment life cycle management, MVVM architecture development... Welcome to start
 
 # Preview
-<img src="preview/BottomNavigationBar.png"/>
+<img src="preview/BottomNavigationBar.gif"/>
 # MandySaX MVVM-ViewModel
 
 >新建ViewModel类
