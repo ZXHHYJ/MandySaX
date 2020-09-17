@@ -44,9 +44,9 @@ ViewModel的生命周期：
    
    BottomNavigationBar的方法和参数
 | 方法 | 说明 |
+| :--: | :--: |
 | setType(NavShowType type) | 设置控件样式 |
 | setSelected(int index) | 设置选中的item |
-| :--: | :--: |
 | 参数 | 说明 |
 | NavShowType.NORMAL | 普通模式，包含文字和图片 |
 | NavShowType.NO_TEXT | 无文字模式 |
@@ -110,9 +110,11 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 	}
 
  ```
- showFragment(int index)
- >index:下标，显示第index个fragment
- 
+ showFragment的方法：
+ | 方法 | 说明 |
+| :--: | :--: |
+| showFragment(int index) | 显示第index个fragment |
+
  # Usage 注解
  
  >注：需要继承AppCompatActivity或FragmentCompat
