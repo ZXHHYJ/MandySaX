@@ -20,7 +20,7 @@ public class SearchViewModel extends ViewModel
 	public final LiveData<List<MediaMetadataCompat>> song_bottom = _song_bottom;
 
 	public final List<MediaMetadataCompat> song_list = new ArrayList<MediaMetadataCompat>();
-
+	
 	private int song_page = 1;
 
 	private String song_name;

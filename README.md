@@ -36,7 +36,7 @@ private final MainViewModel viewModel=ViewModelProviders.of(this, new Factory(){
 		}).get(MainViewModel.class);
 ```
 
->注意：千万不要让ViewModel持有Activity或Fragment的实例，ViewModel的生命周期是长于它们的，会导致Activity或Fragment无法释放而造成内存泄露
+>注意：千万不要让ViewModel持有Activity或Fragment的实例，ViewModel的生命周期是长于它们的，这会导致Activity或Fragment无法释放而造成内存泄露
 
 **ViewModel**的生命周期：
 ![image](http://39.106.7.220/mandysa/ViewModel.jpg)
@@ -46,6 +46,48 @@ private final MainViewModel viewModel=ViewModelProviders.of(this, new Factory(){
 | :--: | :--: |
 | onCleared() | ViewModel回收时调用 |
 
+# MandySaX MVVM-LiveData
+>LiveData是一个用于持有数据并支持数据可被监听（观察）
+
+定义一个可变的LiveData对象，并假设它的泛型类型为String
+```java
+private final MutableLiveData<String> livedata = new MutableLiveData<String>();
+```
+
+向可变的LiveData提交数据
+```java
+livedata.setValue("数据");
+```
+>若在子线程中需要更新数据，且数据变化后需要[更新UI]，则建议使用postValue来更新数据
+```java
+livedata.postValue("在子线程中更新数据")
+```
+
+观察LiveData的数据变化
+```java
+livedata.observeForever(new Observer<String>() {
+
+				@Override
+				public void onChanged(String p1)
+				{
+					System.out.println(p1);
+				}
+			});
+```
+>上述的监听方法无法跟随Activity或Fragment的生命周期，若需要在Activity销毁时取消监听，可以这样设置
+```java
+//this为LifecycleOwner的实例
+//注：AppCompatActivity和FragmentCompat本身就是一个LifecycleOwner实例
+livedata.observe(this, new Observer<String>(){
+
+				@Override
+				public void onChanged(String p1)
+				{
+				    System.out.println(p1);
+				}
+					
+		});
+```
 # Usage BottomNavigationBar
 
 控件演示：
