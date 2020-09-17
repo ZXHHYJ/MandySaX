@@ -42,16 +42,18 @@ ViewModel的生命周期：
    * textUnCheckedColor 字体未选中颜色
    * show_type 显示模式（下方4种模式的小写形式）
    
-   BottomNavigationBar的方法
+   BottomNavigationBar的方法和参数
 | 方法 | 说明 |
 | :--: | :--: |
 | setType(NavShowType type) | 设置控件样式 |
 | setSelected(int index) | 设置选中的item |
-   >NavShowType.NORMAL, //普通模式，包含文字和图片
-   >NavShowType.NO_TEXT, //无文字模式
-   >NavShowType.NO_IMAGE, //无图模式
-   >NavShowType.CHECKED_SHOW_TEXT //普通无文字 选中出现文字
-	
+| NavShowType | 说明 |
+| :--: | :--: |
+| NavShowType.NORMAL | 普通模式，包含文字和图片 |
+| NavShowType.NO_TEXT | 无文字模式 |
+| NavShowType.NO_IMAGE | | 无图模式 |
+| NavShowType.CHECKED_SHOW_TEXT | 普通无文字 选中出现文字 |
+
    > 在java代码中为bar添加子项
    
    ```java
