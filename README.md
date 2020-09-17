@@ -126,7 +126,7 @@ private final LiveData<String> _livedata = livedata;
    * textUnCheckedColor 字体未选中颜色
    * show_type 显示模式（下方4种模式的小写形式）
    
-   **BottomNavigationBar**的方法和参数
+   **BottomNavigationBar**的方法和参数：
 | 方法 | 说明 |
 | :--: | :--: |
 | setType(NavShowType type) | 设置控件样式 |
@@ -194,7 +194,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 	}
 
  ```
- **showFragment**的方法：
+ **FragmentPage**的方法：
  | 方法 | 说明 |
 | :--: | :--: |
 | add(Fragment... fragment) | 添加fragment |
