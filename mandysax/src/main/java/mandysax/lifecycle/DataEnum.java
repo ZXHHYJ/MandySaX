@@ -1,7 +1,7 @@
 package mandysax.lifecycle;
 import java.util.*;
 
- enum DataEnum
+final enum DataEnum
 {
 	VIEWMODEL(new TreeMap<String ,ViewModel>()),
 	LIFECYCLE(new TreeMap<String ,Lifecycle>());

@@ -1,7 +1,7 @@
 package mandysax.lifecycle;
 import mandysax.lifecycle.*;
 
-public class ViewModelProviders
+public final class ViewModelProviders
 {
 	public static ViewModelLifecycle of(LifecycleAbstract context)
 	{	

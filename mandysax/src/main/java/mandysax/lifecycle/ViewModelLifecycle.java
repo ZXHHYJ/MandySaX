@@ -1,6 +1,6 @@
 package mandysax.lifecycle;
 
-public class ViewModelLifecycle
+public final class ViewModelLifecycle
 {
 	private final Lifecycle lifecycle;
 

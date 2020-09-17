@@ -13,6 +13,7 @@ import java.util.*;
 import mandysax.core.annotation.*;
 import mandysax.design.*;
 import mandysax.lifecycle.*;
+import android.app.Fragment;
 
 @BindLayoutId(R.layout.main)
 public class MainActivity extends BaseActivity
@@ -91,7 +92,7 @@ public class MainActivity extends BaseActivity
 
 	private void initFragment()
 	{
-		mainFragmentPage.add(home_fragment, recommend_fragment, search_fragment, my_fragment, viewModel.index);
+		mainFragmentPage.add(new Fragment[]{home_fragment, recommend_fragment, search_fragment, my_fragment}, viewModel.index);
 		mainBottomNavigationBar.setTextColorRes(R.color.theme_color);
         mainBottomNavigationBar.addItemView("主页", R.mipmap.ic_music, R.mipmap.ic_music_black);
         mainBottomNavigationBar.addItemView("推荐", R.mipmap.ic_cards_heart, R.mipmap.ic_cards_heart_black);

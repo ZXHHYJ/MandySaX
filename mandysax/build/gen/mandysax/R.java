@@ -47,8 +47,6 @@ containing a value of this type.
     public static final class drawable {
         public static int round_layout=0x7f020000;
         public static int singer=0x7f020001;
-        public static int twotone_pause_black_48dp=0x7f020002;
-        public static int twotone_play_arrow_black_48dp=0x7f020003;
     }
     public static final class id {
         public static int check_show_text=0x7f060000;

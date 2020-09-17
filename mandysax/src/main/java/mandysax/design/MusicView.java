@@ -53,7 +53,7 @@ public class MusicView extends LinearLayout
 
 	public void playmode()
 	{
-		iv2.setImageResource(R.drawable.twotone_pause_black_48dp);
+		iv2.setImageResource(R.mipmap.ic_pause);
 		if (iv2.getVisibility() == View.GONE)
 		{
 			iv2.setVisibility(View.VISIBLE);
@@ -64,7 +64,7 @@ public class MusicView extends LinearLayout
 
 	public void stopmode()
 	{
-		iv2.setImageResource(R.drawable.twotone_play_arrow_black_48dp);
+		iv2.setImageResource(R.mipmap.ic_play);
 		if (iv2.getVisibility() == View.GONE)
 		{
 			iv2.setVisibility(View.VISIBLE);

@@ -2,7 +2,7 @@ package mandysax.utils;
 
 import java.lang.reflect.*;
 
-public class FieldUtils
+public final class FieldUtils
 {
 	public static void setField(Field field, Object main, Object content)
 	{

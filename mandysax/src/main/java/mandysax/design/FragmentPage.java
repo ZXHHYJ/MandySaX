@@ -24,55 +24,21 @@ public class FragmentPage extends FrameLayout
 		transaction = ((Activity)p0).getFragmentManager().beginTransaction();
 	}
 
-	public List<Fragment> add(Fragment p0, Fragment p1, Fragment p2, Fragment p3)
+	public List<Fragment> add(Fragment... list)
 	{
-		list.add(p0);
-		list.add(p1);
-		list.add(p2);
-		list.add(p3);
-		return list;
+		for(Fragment fragment:list){
+			this.list.add(fragment);
+		}
+		return this.list;
 	}
-
-	public List<Fragment> add(Fragment p0, Fragment p1, Fragment p2)
+	
+	public List<Fragment> add(Fragment... list,int index)
 	{
-		list.add(p0);
-		list.add(p1);
-		list.add(p2);
-		return list;
-	}
-
-	public List<Fragment> add(Fragment p0, Fragment p1)
-	{
-		list.add(p0);
-		list.add(p1);
-		return list;
-	}
-
-	public List<Fragment> add(Fragment p0, Fragment p1, Fragment p2, Fragment p3, int index)
-	{
-		list.add(p0);
-		list.add(p1);
-		list.add(p2);
-		list.add(p3);
+		for(Fragment fragment:list){
+			this.list.add(fragment);
+		}
 		showFragment(index);
-		return list;
-	}
-
-	public List<Fragment> add(Fragment p0, Fragment p1, Fragment p2, int index)
-	{
-		list.add(p0);
-		list.add(p1);
-		list.add(p2);
-		showFragment(index);
-		return list;
-	}
-
-	public List<Fragment> add(Fragment p0, Fragment p1, int index)
-	{
-		list.add(p0);
-		list.add(p1);
-		showFragment(index);
-		return list;
+		return this.list;
 	}
 
 	public void showFragment(int index)

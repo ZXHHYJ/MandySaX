@@ -1,7 +1,7 @@
 package mandysax.lifecycle;
 import android.content.*;
 
-class AndroidViewModel extends Object
+class AndroidViewModel
 {
 	private static Context application;
 	

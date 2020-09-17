@@ -329,18 +329,16 @@ containing a value of this type.
         public static final int notification_bg_normal=0x7f020006;
         public static final int notification_bg_normal_pressed=0x7f020007;
         public static final int notification_icon_background=0x7f020008;
-        public static final int notification_template_icon_bg=0x7f020013;
-        public static final int notification_template_icon_low_bg=0x7f020014;
+        public static final int notification_template_icon_bg=0x7f020011;
+        public static final int notification_template_icon_low_bg=0x7f020012;
         public static final int notification_tile_bg=0x7f020009;
         public static final int notify_panel_notification_icon_bg=0x7f02000a;
         public static final int round_edit=0x7f02000b;
         public static final int round_layout=0x7f02000c;
         public static final int singer=0x7f02000d;
         public static final int twotone_arrow_back_black_24dp=0x7f02000e;
-        public static final int twotone_pause_black_48dp=0x7f02000f;
-        public static final int twotone_play_arrow_black_48dp=0x7f020010;
-        public static final int twotone_search_black_24dp=0x7f020011;
-        public static final int twotone_star_black_24dp=0x7f020012;
+        public static final int twotone_search_black_24dp=0x7f02000f;
+        public static final int twotone_star_black_24dp=0x7f020010;
     }
     public static final class id {
         public static final int accessibility_action_clickable_span=0x7f070001;

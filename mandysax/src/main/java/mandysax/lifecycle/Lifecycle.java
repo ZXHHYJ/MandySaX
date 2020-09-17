@@ -1,7 +1,7 @@
 package mandysax.lifecycle;
 import java.util.*;
 
-public class Lifecycle extends Object
+public class Lifecycle
 {
 	private final List<LifecycleObserver> event = new ArrayList<LifecycleObserver>();
 	
@@ -45,7 +45,7 @@ public class Lifecycle extends Object
 		PostSate(0);
 	}
 
-	public static class Event{
+	public final static class Event{
 		public static int ON_START=1;
 		public static int ON_RESUME=2;
 		public static int ON_PAUSE=3;

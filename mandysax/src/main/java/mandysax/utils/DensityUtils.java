@@ -5,7 +5,7 @@ import android.content.*;
 /**
  * Created by Dikaros on 2016/5/20.
  */
-public class DensityUtils {
+public final class DensityUtils {
     /*
     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
     */

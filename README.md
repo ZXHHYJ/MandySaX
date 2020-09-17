@@ -22,7 +22,7 @@ public class MainViewModel extends ViewModel
 private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 ```
 
-ViewModel生命周期：<br/>
+ViewModel的生命周期：<br/>
 ![image](https://upload-images.jianshu.io/upload_images/2226848-731acbf01fa30c06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/522)
 
 # Usage BottomNavigationBar
@@ -83,7 +83,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 ```
 
 # Usage FragmentPage
->注：此控件建议搭配注解使用
+>注：此控件十分建议搭配注解使用
 
 在布局xml文件中放置
 ```xml
@@ -92,14 +92,14 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
  android:layout_height="match_parent"/>
  ```
  
- > 你可以使用FragmentPage的add方法添加至多4个fragment
+ > 你可以使用FragmentPage的add方法添加多个fragment
  ```java
- public List<Fragment> add(Fragment...)
+ public List<Fragment> add(Fragment... fragment)
 	{
 		...
 	}
 
-	public List<Fragment> add(Fragment..., int index)
+	public List<Fragment> add(Fragment... fragment, int index)
 	{
 		...
 	}
@@ -129,7 +129,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 ```
 >为R.id.x设置点击事件
 
-例子：
+示例：
  ```java
  import ...;
 
@@ -157,16 +157,12 @@ public class MainActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		initFragment();
-		...
-	}
-
-	private void initFragment()
-	{
-		mainFragmentPage.add(home_fragment, recommend_fragment, search_fragment, my_fragment, viewModel.index);
+		mainFragmentPage.add(home_fragment, recommend_fragment, search_fragment, my_fragment);
 		//关键
+		...
 	}
 	
 	...
 }
 ```
+

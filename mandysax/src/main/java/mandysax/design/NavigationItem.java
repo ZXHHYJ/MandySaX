@@ -12,7 +12,7 @@ import mandysax.utils.*;
 
 //mandysa修改于7.12日晚5点
 
-public class NavigationItem extends LinearLayout
+public final class NavigationItem extends LinearLayout
 {
     public NavigationItem(Context context, int textCheckedColor, int textUnCheckedColor, int imageCheckedResource, int imageUnCheckedResource)
 	{

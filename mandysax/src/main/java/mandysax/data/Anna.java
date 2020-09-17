@@ -7,7 +7,7 @@ import mandysax.core.annotation.*;
 import mandysax.utils.*;
 import org.json.*;
 
-public class Anna
+public final class Anna
 {
 	private Callback<Object> callback;
 
