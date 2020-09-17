@@ -47,11 +47,15 @@ private final MainViewModel viewModel=ViewModelProviders.of(this, new Factory(){
 | onCleared() | ViewModel回收时调用 |
 
 # MandySaX MVVM-LiveData
->LiveData是一个用于持有数据并支持数据可被监听（观察）
+>LiveData是一个用于持有数据并支持数据可被监听（观察），十分建议搭配ViewModel使用
 
 定义一个可变的LiveData对象，并假设它的泛型类型为String
 ```java
 private final MutableLiveData<String> livedata = new MutableLiveData<String>();
+```
+也可以在初始化时直接设置数据
+```java
+private final MutableLiveData<String> livedata = new MutableLiveData<String>("默认数据");
 ```
 
 向可变的LiveData提交数据
@@ -88,6 +92,13 @@ livedata.observe(this, new Observer<String>(){
 					
 		});
 ```
+考虑到数据的封装性，MandySaX也提供不可变的LiveData
+```java
+private final LiveData<String> _livedata = livedata;
+//livedata为上面的MutableLiveData实例
+```
+>建议只暴露不可变的LiveData，将可变的LiveData私有，从而保证了数据的封装性
+
 # Usage BottomNavigationBar
 
 控件演示：
