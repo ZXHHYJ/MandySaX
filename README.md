@@ -22,7 +22,7 @@ public class MainViewModel extends ViewModel
 private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 ```
 
-ViewModel生命周期<br/>
+ViewModel生命周期：<br/>
 ![image](https://upload-images.jianshu.io/upload_images/2226848-731acbf01fa30c06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/522)
 
 # Usage BottomNavigationBar
@@ -128,6 +128,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 	}
 ```
 >为R.id.x设置点击事件
+	
 	
  ```java
  import ...;
