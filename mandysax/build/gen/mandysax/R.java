@@ -21,7 +21,7 @@ public final class R {
 <tr><td><code>check_show_text</code></td><td>3</td><td></td></tr>
 </table>
          */
-        public static int show_type=0x7f010000;
+        public static final int show_type=0x7f010000;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -30,7 +30,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int textCheckedColor=0x7f010001;
+        public static final int textCheckedColor=0x7f010001;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -39,34 +39,34 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int textUnCheckedColor=0x7f010002;
+        public static final int textUnCheckedColor=0x7f010002;
     }
     public static final class color {
-        public static int notification_bg=0x7f050000;
+        public static final int notification_bg=0x7f050000;
     }
     public static final class drawable {
-        public static int round_layout=0x7f020000;
-        public static int singer=0x7f020001;
+        public static final int round_layout=0x7f020000;
+        public static final int singer=0x7f020001;
     }
     public static final class id {
-        public static int check_show_text=0x7f060000;
-        public static int mandysamusicviewImageView1=0x7f060005;
-        public static int mandysamusicviewImageView2=0x7f060008;
-        public static int mandysamusicviewTextView1=0x7f060006;
-        public static int musicviewLinearLayout1=0x7f060004;
-        public static int musicviewProgressBar1=0x7f060007;
-        public static int no_image=0x7f060001;
-        public static int no_text=0x7f060002;
-        public static int normal=0x7f060003;
+        public static final int check_show_text=0x7f060000;
+        public static final int mandysamusicviewImageView1=0x7f060005;
+        public static final int mandysamusicviewImageView2=0x7f060008;
+        public static final int mandysamusicviewTextView1=0x7f060006;
+        public static final int musicviewLinearLayout1=0x7f060004;
+        public static final int musicviewProgressBar1=0x7f060007;
+        public static final int no_image=0x7f060001;
+        public static final int no_text=0x7f060002;
+        public static final int normal=0x7f060003;
     }
     public static final class layout {
-        public static int music_view=0x7f040000;
+        public static final int music_view=0x7f040000;
     }
     public static final class mipmap {
-        public static int ic_android_black_24dp=0x7f030000;
-        public static int ic_android_green_24dp=0x7f030001;
-        public static int ic_pause=0x7f030002;
-        public static int ic_play=0x7f030003;
+        public static final int ic_android_black_24dp=0x7f030000;
+        public static final int ic_android_green_24dp=0x7f030001;
+        public static final int ic_pause=0x7f030002;
+        public static final int ic_play=0x7f030003;
     }
     public static final class styleable {
         /** Attributes that can be used with a BottomNavigationBar.
@@ -104,7 +104,7 @@ containing a value of this type.
 </table>
           @attr name mandysax:show_type
         */
-        public static int BottomNavigationBar_show_type = 0;
+        public static final int BottomNavigationBar_show_type = 0;
         /**
           <p>This symbol is the offset where the {@link mandysax.R.attr#textCheckedColor}
           attribute's value can be found in the {@link #BottomNavigationBar} array.
@@ -119,7 +119,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name mandysax:textCheckedColor
         */
-        public static int BottomNavigationBar_textCheckedColor = 1;
+        public static final int BottomNavigationBar_textCheckedColor = 1;
         /**
           <p>This symbol is the offset where the {@link mandysax.R.attr#textUnCheckedColor}
           attribute's value can be found in the {@link #BottomNavigationBar} array.
@@ -134,6 +134,6 @@ theme attribute (in the form
 containing a value of this type.
           @attr name mandysax:textUnCheckedColor
         */
-        public static int BottomNavigationBar_textUnCheckedColor = 2;
+        public static final int BottomNavigationBar_textUnCheckedColor = 2;
     };
 }

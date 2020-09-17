@@ -23,9 +23,9 @@ public final class ViewModelLifecycle
 		lifecycle.addObsever(new LifecycleObserver(){
 
 				@Override
-				public void Observer(int State)
+				public void Observer(Lifecycle.Event State)
 				{
-					if(State==0)
+					if(State==Lifecycle.Event.ON_KILL)
 					((ViewModel)DataEnum.VIEWMODEL.get(name.getCanonicalName())).onCleared();
 				}
 			

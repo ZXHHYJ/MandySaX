@@ -22,7 +22,7 @@ public abstract class LiveData <T extends Object>
 		p0.getLifecycle().addObsever(new LifecycleObserver(){
 
 				@Override
-				public void Observer(int State)
+				public void Observer(Lifecycle.Event State)
 				{
 					callBack.remove(p1);
 				}

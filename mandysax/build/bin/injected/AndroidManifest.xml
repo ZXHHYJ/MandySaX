@@ -10,7 +10,7 @@
 	<application>
 
 		<provider
-			android:authorities="com.FMJJ.MandySa.MandySa"
+			android:authorities="mandysax.MandySa"
 			android:name="mandysax.lifecycle.LifecycleContentProvider"/>
 
 	</application>

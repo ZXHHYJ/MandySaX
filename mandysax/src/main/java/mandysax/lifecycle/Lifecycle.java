@@ -11,7 +11,7 @@ public class Lifecycle
 		}
 	}
 	
-	private void PostSate(int State){
+	private void PostSate(Event State){
 		for(LifecycleObserver observer:event)
 		observer.Observer(State);
 	}
@@ -42,15 +42,16 @@ public class Lifecycle
 	}
 	
 	void onKill(){
-		PostSate(0);
+		PostSate(Event.ON_KILL);
 	}
 
-	public final static class Event{
-		public static int ON_START=1;
-		public static int ON_RESUME=2;
-		public static int ON_PAUSE=3;
-		public static int ON_STOP=4;
-		public static int ON_DESTORY=5;
+	public final enum Event{
+	     ON_START,
+		 ON_RESUME,
+		 ON_PAUSE,
+		 ON_STOP,
+		ON_DESTORY,
+		ON_KILL;
 	}
 	
 }

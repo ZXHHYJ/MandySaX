@@ -206,7 +206,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 	}
 
  ```
- **FragmentPage**的方法：
+ **FragmentPage**的方法和说明：
  | 方法 | 说明 |
 | :--: | :--: |
 | add(Fragment... fragment) | 添加fragment |
