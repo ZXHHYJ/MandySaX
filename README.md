@@ -17,7 +17,7 @@ public class MainViewModel extends ViewModel
 }
 ```
 
-在AppCompatActivity或FragmentCompat中写入如下代码（推荐）
+在继承AppCompatActivity的activity或FragmentCompat的fragment中写入如下代码（推荐）
 ```java
 private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 ```
