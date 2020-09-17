@@ -40,7 +40,7 @@ private final MainViewModel viewModel=ViewModelProviders.of(this, new Factory(){
 
 **ViewModel**的生命周期：
 ![image](http://39.106.7.220/mandysa/ViewModel.jpg)
-LifecycleOwner
+
 **ViewModel**的方法：
 | 方法 | 说明 |
 | :--: | :--: |
