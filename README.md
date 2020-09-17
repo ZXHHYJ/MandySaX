@@ -15,13 +15,18 @@ public class MainViewModel extends ViewModel
 }
 ```
 
-在继承AppCompatActivity的activity或FragmentCompat的fragment中写入如下代码（推荐）
+在继承**AppCompatActivity**的activity或**FragmentCompat**的fragment中写入如下代码（推荐）
 ```java
 private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 ```
 
-ViewModel的生命周期：
+**ViewModel**的生命周期：
 ![image](http://39.106.7.220/mandysa/ViewModel.jpg)
+
+**ViewModel**的方法：
+| 方法 | 说明 |
+| :--: | :--: |
+| onCleared() | ViewModel回收时调用 |
 
 # Usage BottomNavigationBar
 
@@ -42,7 +47,7 @@ ViewModel的生命周期：
    * textUnCheckedColor 字体未选中颜色
    * show_type 显示模式（下方4种模式的小写形式）
    
-   BottomNavigationBar的方法和参数
+   **BottomNavigationBar**的方法和参数
 | 方法 | 说明 |
 | :--: | :--: |
 | setType(NavShowType type) | 设置控件样式 |
@@ -66,7 +71,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
         bottomNavigationBar.addItemView("test",选中图片资源,未选中图片资源);
 ```
 
-> 设置点击回调,以处理之后与ViewPager或Fragment的交互
+> 设置点击回调,以处理之后与ViewPager或FragmentPage的交互
 
 ```java
 //set Callback
@@ -86,7 +91,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 # Usage FragmentPage
 >注：此控件十分建议搭配注解使用
 
-与BottomNavigationBar搭配使用：
+与**BottomNavigationBar**搭配使用：
 ![image](http://39.106.7.220/mandysa/FragmentPage.jpg)
 
 
@@ -110,7 +115,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 	}
 
  ```
- showFragment的方法：
+ **showFragment**的方法：
  | 方法 | 说明 |
 | :--: | :--: |
 | add(Fragment... fragment) | 添加fragment |
@@ -119,7 +124,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 
  # Usage 注解
  
- >注：需要继承**AppCompatActivity**或**FragmentCompat**的类才可以使用
+ >注：需要继承AppCompatActivity或FragmentCompat的类才可以使用
  
  * @BindLayoutId(R.layout.x)
  >设置布局为R.layout.x
