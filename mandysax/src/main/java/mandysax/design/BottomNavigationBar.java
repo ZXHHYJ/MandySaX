@@ -22,7 +22,7 @@ public class BottomNavigationBar extends LinearLayout
     /**
      * 底部的显示模式
      */
-    public enum NavShowType
+    public final enum NavShowType
 	{
         NORMAL, //普通模式，包含文字和图片
         NO_TEXT, //无文字模式
