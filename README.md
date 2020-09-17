@@ -104,7 +104,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
  >绑定控件R.id.x
  * @BindView
  >根据变量名称去绑定控件,findViewById(R.id.变量名称),R为当前context的getPackageName()路径
- @ViewClick(R.id.x)
+ * @ViewClick(R.id.x)
  ```java
  @ViewClick(R.id.x)
 	public void VOID()
@@ -153,6 +153,3 @@ public class MainActivity extends AppCompatActivity
 	...
 }
 ```
-
-
- 
