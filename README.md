@@ -20,12 +20,12 @@ public class MainViewModel extends ViewModel
 private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 ```
 
-ViewModel的生命周期：<br/>
-![image](https://upload-images.jianshu.io/upload_images/2226848-731acbf01fa30c06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/522)
+ViewModel的生命周期：
+![image](http://39.106.7.220/mandysa/ViewModel.jpg)
 
 # Usage BottomNavigationBar
 
-# Preview
+控件演示：
 ![image](http://39.106.7.220/mandysa/BottomNavigationBar.jpg)
 
    > 在布局xml文件中放置
