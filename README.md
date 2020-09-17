@@ -98,6 +98,13 @@ private final LiveData<String> _livedata = livedata;
 //livedata为上面的MutableLiveData实例
 ```
 >建议只暴露不可变的LiveData，将可变的LiveData私有，从而保证了数据的封装性
+  **LiveData**的方法和参数
+| 方法 | 说明 |
+| :--: | :--: |
+| setValue(T value) | 更新数据 |
+| postValue(T value) | 切换到主线程并更新数据 |
+| observe(this, Observer observer) | 以注重生命周期的方法观察数据 |
+| observeForever(Observer observer) | 观察数据 |
 
 # Usage BottomNavigationBar
 
