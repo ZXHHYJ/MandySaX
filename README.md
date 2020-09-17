@@ -40,11 +40,23 @@ private final MainViewModel viewModel=ViewModelProviders.of(this, new Factory(){
 
 **ViewModel**的生命周期：
 ![image](http://39.106.7.220/mandysa/ViewModel.jpg)
-
+LifecycleOwner
 **ViewModel**的方法：
 | 方法 | 说明 |
 | :--: | :--: |
 | onCleared() | ViewModel回收时调用 |
+
+**ViewModelProviders**的方法：
+| 方法 | 说明 |
+| :--: | :--: |
+| of(LifecycleOwner lifecycle) | 返回一个ViewModelLifecycle |
+| of(LifecycleOwner lifecycle,Factory factory) | 自定义ViewModel的构造方法并返回一个ViewModelLifecycle |
+
+**ViewModelProviders**的方法：
+| 方法 | 说明 |
+| :--: | :--: |
+| get(final Class<T> name) | 返回要获取的ViewModel实例 |
+| ... | ... |
 
 # MandySaX MVVM-LiveData
 >LiveData是一个用于持有数据并支持数据可被监听（观察），十分建议搭配ViewModel使用
@@ -104,7 +116,7 @@ private final LiveData<String> _livedata = livedata;
 | :--: | :--: |
 | setValue(T value) | 更新数据 |
 | postValue(T value) | 切换到主线程并更新数据 |
-| observe(this, Observer observer) | 以注重生命周期的方法观察数据 |
+| observe(LifecycleOwner lifecycle, Observer observer) | 以注重生命周期的方法观察数据 |
 | observeForever(Observer observer) | 观察数据 |
 
 # Usage BottomNavigationBar

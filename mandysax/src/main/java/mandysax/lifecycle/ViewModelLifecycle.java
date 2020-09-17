@@ -34,8 +34,7 @@ public final class ViewModelLifecycle
 		return (viewmodel = (T)DataEnum.VIEWMODEL.get(name.getCanonicalName())) == null ?factory == null ? new ViewModelFactory().create(name): factory.create(name): viewmodel;
 	}
 
-
-	public class ViewModelFactory implements Factory
+	final class ViewModelFactory implements Factory
 	{
 
 		@Override
