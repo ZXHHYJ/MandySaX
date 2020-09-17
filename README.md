@@ -113,7 +113,9 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
  showFragment的方法：
  | 方法 | 说明 |
 | :--: | :--: |
-| showFragment(int index) | 显示第index个fragment |
+| add(Fragment... fragment) | 添加fragment |
+| add(Fragment... fragment, int index) | 添加fragment，index为默认显示的fragment下标 |
+| showFragment(int index) | 显示下标为index的fragment |
 
  # Usage 注解
  
