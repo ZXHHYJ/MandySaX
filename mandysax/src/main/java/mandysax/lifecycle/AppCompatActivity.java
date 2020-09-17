@@ -7,7 +7,7 @@ import java.lang.reflect.*;
 import mandysax.core.annotation.*;
 import mandysax.utils.*;
 
-public class AppCompatActivity extends Activity implements LifecycleAbstract
+public class AppCompatActivity extends Activity implements LifecycleOwner
 {
 
 	private final Lifecycle lifecycle = new Lifecycle();

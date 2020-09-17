@@ -16,7 +16,7 @@ public abstract class LiveData <T extends Object>
 		callBack.add(p1);
 	}
 
-	public void observe(final LifecycleAbstract p0,final Observer<? super T> p1)
+	public void observe(final LifecycleOwner p0,final Observer<? super T> p1)
 	{
 		
 		p0.getLifecycle().addObsever(new LifecycleObserver(){

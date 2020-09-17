@@ -6,7 +6,7 @@ import java.lang.reflect.*;
 import mandysax.core.annotation.*;
 import mandysax.utils.*;
 
-public abstract class FragmentCompat extends Fragment implements LifecycleAbstract
+public abstract class FragmentCompat extends Fragment implements LifecycleOwner
 {
 
 	private final Lifecycle lifecycle = new Lifecycle();

@@ -1,6 +1,6 @@
 package mandysax.lifecycle;
 
-public abstract interface LifecycleAbstract
+public abstract interface LifecycleOwner
 {
 	public abstract Lifecycle getLifecycle()
 }

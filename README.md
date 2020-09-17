@@ -11,6 +11,10 @@ mandysax is an open source library that facilitates Android program development.
 ```java
 public class MainViewModel extends ViewModel
 {
+    public MainViewModel(String p0)
+    {
+    ....
+    }
 ... 
 }
 ```
@@ -19,6 +23,20 @@ public class MainViewModel extends ViewModel
 ```java
 private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 ```
+
+>默认情况下ViewModel不支持向构造函数中传递参数，若需要向构造函数中传递参数
+```java
+private final MainViewModel viewModel=ViewModelProviders.of(this, new Factory(){
+
+			@Override
+			public <T extends ViewModel> T create(Class<T> modelClass)
+			{
+				return (T)new MainViewModel("参数");
+			}
+		}).get(MainViewModel.class);
+```
+
+>注意：千万不要让ViewModel持有Activity或Fragment的实例，ViewModel的生命周期是长于它们的，会导致Activity或Fragment无法释放而造成内存泄露
 
 **ViewModel**的生命周期：
 ![image](http://39.106.7.220/mandysa/ViewModel.jpg)

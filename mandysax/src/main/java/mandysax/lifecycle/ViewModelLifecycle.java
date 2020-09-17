@@ -6,13 +6,13 @@ public final class ViewModelLifecycle
 
 	private final Factory factory;
 
-	public ViewModelLifecycle(final LifecycleAbstract lifecycle)
+	public ViewModelLifecycle(final LifecycleOwner lifecycle)
 	{
 		this.lifecycle = lifecycle.getLifecycle();
 		this.factory = null;
 	}
 
-	public ViewModelLifecycle(final LifecycleAbstract lifecycle, Factory factory)
+	public ViewModelLifecycle(final LifecycleOwner lifecycle, Factory factory)
 	{
 		this.lifecycle = lifecycle.getLifecycle();
 		this.factory = factory;
