@@ -5,8 +5,6 @@
 # MandySaX
 mandysax is an open source library that facilitates Android program development. It supports responsive programming, activity and fragment life cycle management, MVVM architecture development... Welcome to start
 
-# Preview
-<img src="preview/BottomNavigationBar.gif"/>
 # MandySaX MVVM-ViewModel
 
 >新建ViewModel类
@@ -26,6 +24,10 @@ ViewModel的生命周期：<br/>
 ![image](https://upload-images.jianshu.io/upload_images/2226848-731acbf01fa30c06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/522)
 
 # Usage BottomNavigationBar
+
+# Preview
+![image](http://39.106.7.220/mandysa/BottomNavigationBar.jpg)
+
    > 在布局xml文件中放置
    ```xml
    <mandysax.design.BottomNavigationBar
