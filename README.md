@@ -99,7 +99,7 @@ private final LiveData<String> _livedata = livedata;
 ```
 >建议只暴露不可变的LiveData，将可变的LiveData私有，从而保证了数据的封装性
   
-  **LiveData**的方法和参数  
+  **LiveData**的方法和参数：  
 | 方法 | 说明 |
 | :--: | :--: |
 | setValue(T value) | 更新数据 |
