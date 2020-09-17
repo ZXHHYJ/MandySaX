@@ -86,6 +86,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 
 # Usage FragmentPage
 >注：此控件十分建议搭配注解使用
+
 与BottomNavigationBar搭配使用：
 ![image](http://39.106.7.220/mandysa/FragmentPage.jpg)
 
