@@ -128,8 +128,8 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 	}
 ```
 >为R.id.x设置点击事件
-	
-	
+
+例子：
  ```java
  import ...;
 
