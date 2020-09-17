@@ -9,6 +9,21 @@ mandysax is an open source library that facilitates Android program development.
 
 <img src="preview/sunbaby.gif"/>
 
+# MandySaX MVVM-ViewModel
+
+>新建ViewModel类
+```java
+public class MainViewModel extends ViewModel
+{
+... 
+}
+```
+
+在AppCompatActivity或FragmentCompat中写入如下代码（推荐）
+```java
+private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+```
+
 # Usage BottomNavigationBar
    > 在布局xml文件中放置
    ```xml
