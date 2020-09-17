@@ -41,18 +41,18 @@ private final MainViewModel viewModel=ViewModelProviders.of(this, new Factory(){
 **ViewModel**的生命周期：
 ![image](http://39.106.7.220/mandysa/ViewModel.jpg)
 
-**ViewModel**的方法：
+**ViewModel**的方法和说明：
 | 方法 | 说明 |
 | :--: | :--: |
 | onCleared() | ViewModel回收时调用 |
 
-**ViewModelProviders**的方法：
+**ViewModelProviders**的方法和说明：
 | 方法 | 说明 |
 | :--: | :--: |
 | of(LifecycleOwner lifecycle) | 返回一个ViewModelLifecycle |
 | of(LifecycleOwner lifecycle,Factory factory) | 自定义ViewModel的构造方法并返回一个ViewModelLifecycle |
 
-**ViewModelProviders**的方法：
+**ViewModelLifecycle**的方法和说明：
 | 方法 | 说明 |
 | :--: | :--: |
 | get(final Class<T> name) | 返回要获取的ViewModel实例 |
@@ -111,7 +111,7 @@ private final LiveData<String> _livedata = livedata;
 ```
 >建议只暴露不可变的LiveData，将可变的LiveData私有，从而保证了数据的封装性
   
-  **LiveData**的方法和参数：  
+  **LiveData**的方法和说明：  
 | 方法 | 说明 |
 | :--: | :--: |
 | setValue(T value) | 更新数据 |
@@ -138,7 +138,7 @@ private final LiveData<String> _livedata = livedata;
    * textUnCheckedColor 字体未选中颜色
    * show_type 显示模式（下方4种模式的小写形式）
    
-   **BottomNavigationBar**的方法和参数：
+   **BottomNavigationBar**的方法、说明和参数：
 | 方法 | 说明 |
 | :--: | :--: |
 | setType(NavShowType type) | 设置控件样式 |
