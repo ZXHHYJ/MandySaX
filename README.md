@@ -119,7 +119,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 
  # Usage 注解
  
- >注：需要继承AppCompatActivity或FragmentCompat
+ >注：需要继承**AppCompatActivity**或**FragmentCompat**的类才可以使用
  
  * @BindLayoutId(R.layout.x)
  >设置布局为R.layout.x
