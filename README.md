@@ -20,21 +20,21 @@ mandysax is an open source library that facilitates Android program development.
    app:show_type="no_image"/>
    ```
    
-   *textCheckedColor 字体选中颜色
-   textUnCheckedColor 字体未选中颜色
-   show_type 显示模式（下方4种模式的小写形式）
+   * textCheckedColor 字体选中颜色
+   * textUnCheckedColor 字体未选中颜色
+   * show_type 显示模式（下方4种模式的小写形式）
    
    BottomNavigationBar的方法
    
    setType(NavShowType type)
-   
+   >type:显示类型
    >NORMAL, //普通模式，包含文字和图片
    >NO_TEXT, //无文字模式
    >NO_IMAGE, //无图模式
    >CHECKED_SHOW_TEXT //普通无文字 选中出现文字
 	
-   setSelected(int index)//index下标
-   >相当于点击了第index个按钮
+   setSelected(int index)
+   >index:下标，相当于点击了第index个按钮
    
    > 在java代码中为bar添加子项
    
@@ -89,8 +89,8 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 	}
 
  ```
- showFragment(int index)//index下标
- >显示第index个fragment
+ showFragment(int index)
+ >index:下标，显示第index个fragment
  
  # Usage 注解
  
