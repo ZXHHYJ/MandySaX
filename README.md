@@ -90,7 +90,7 @@ livedata.observeForever(new Observer<String>() {
 				}
 			});
 ```
->上述的监听方法无法跟随Activity或Fragment的生命周期，若需要在Activity销毁时取消监听，可以这样设置
+>上述的监听方法无法跟随Activity或Fragment的生命周期，若需要在Activity不活跃时暂停响应、销毁时取消监听，可以这样设置
 ```java
 //this为LifecycleOwner的实例
 //注：AppCompatActivity和FragmentCompat本身就是一个LifecycleOwner实例
@@ -193,6 +193,47 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
  android:layout_height="match_parent"/>
  ```
  
+ 为这个FragmentPage设置一个底部栏
+ ```xml
+ <?xml version="1.0" encoding="utf-8"?>
+<mandysax.design.FragmentPage xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:id="@+id/mainFragmentPage">
+
+	<mandysax.design.BottomNavigationBar
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/mainBottomNavigationBar"/>
+		
+		...
+
+</mandysax.design.FragmentPage>
+ ```
+ 
+ 往底部栏上添加一个控件
+ ```xml
+ <?xml version="1.0" encoding="utf-8"?>
+<mandysax.design.FragmentPage xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:id="@+id/mainFragmentPage">
+
+	...
+
+	<mandysax.design.MusicView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/mainMusicView"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+		app:navigationbar_top="true"/>
+
+</mandysax.design.FragmentPage>
+ ```
+ 
  > 你可以使用FragmentPage的add方法添加多个fragment
  ```java
  public List<Fragment> add(Fragment... fragment)
@@ -225,14 +266,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
  >绑定控件R.id.x
  * @BindView
  >根据变量名称去绑定控件,findViewById(R.id.变量名称),R为当前context的getPackageName()路径
- * @ViewClick(R.id.x)
- ```java
- @ViewClick(R.id.x)
-	public void VOID()
-	{
-	}
-```
->为R.id.x设置点击事件
+
 
 示例：
  ```java
