@@ -1,8 +1,8 @@
 package com.FMJJ.MandySa.ui;
-import android.content.res.*;
-import android.os.*;
-import android.view.*;
-import mandysax.lifecycle.*;
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.view.View;
+import mandysax.lifecycle.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity
 {

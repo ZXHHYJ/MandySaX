@@ -1,19 +1,26 @@
 package com.FMJJ.MandySa.ui;
-import android.content.*;
-import android.os.*;
-import android.support.v4.media.*;
-import android.support.v4.media.session.*;
-import android.view.*;
-import androidx.annotation.*;
-import com.FMJJ.MandySa.*;
-import com.FMJJ.MandySa.client.*;
-import com.FMJJ.MandySa.model.*;
-import com.FMJJ.MandySa.service.*;
-import java.util.*;
-import mandysax.core.annotation.*;
-import mandysax.design.*;
-import mandysax.lifecycle.*;
-import android.app.Fragment;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.MediaMetadataCompat;
+import android.support.v4.media.session.MediaControllerCompat;
+import android.support.v4.media.session.MediaSessionCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
+import android.view.KeyEvent;
+import android.view.View;
+import androidx.annotation.NonNull;
+import com.FMJJ.MandySa.R;
+import com.FMJJ.MandySa.client.MediaBrowserHelper;
+import com.FMJJ.MandySa.model.MainViewModel;
+import com.FMJJ.MandySa.service.MusicService;
+import java.util.List;
+import mandysax.core.annotation.BindFragment;
+import mandysax.core.annotation.BindLayoutId;
+import mandysax.core.annotation.BindView;
+import mandysax.design.BottomNavigationBar;
+import mandysax.design.FragmentPage;
+import mandysax.design.MusicView;
+import mandysax.lifecycle.ViewModelProviders;
 
 @BindLayoutId(R.layout.main)
 public class MainActivity extends BaseActivity
@@ -68,6 +75,14 @@ public class MainActivity extends BaseActivity
 		mMediaBrowserHelper = new MediaBrowserConnection(this);
         mMediaBrowserHelper.registerCallback(new MediaBrowserListener());
 		initFragment();
+		mainMusicView.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+				}
+			
+		});
 		mainMusicView.getPlaybutton().setOnClickListener(new View.OnClickListener(){
 
 				@Override
@@ -84,15 +99,11 @@ public class MainActivity extends BaseActivity
 				}
 			});
 	}
-
-	@ViewClick(R.id.mainMusicView)
-	public void musicview()
-	{
-	}
-
+	
 	private void initFragment()
 	{
-		mainFragmentPage.add(new Fragment[]{home_fragment, recommend_fragment, search_fragment, my_fragment}, viewModel.index);
+		mainFragmentPage.add(home_fragment, recommend_fragment, search_fragment, my_fragment);
+		mainFragmentPage.showFragment(viewModel.index);
 		mainBottomNavigationBar.setTextColorRes(R.color.theme_color);
         mainBottomNavigationBar.addItemView("主页", R.mipmap.ic_music, R.mipmap.ic_music_black);
         mainBottomNavigationBar.addItemView("推荐", R.mipmap.ic_cards_heart, R.mipmap.ic_cards_heart_black);

@@ -1,9 +1,13 @@
 package mandysax.design;
-import android.content.*;
-import android.util.*;
-import android.view.*;
-import android.widget.*;
-import mandysax.*;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import mandysax.R;
 
 public class MusicView extends LinearLayout
 {
@@ -80,6 +84,7 @@ public class MusicView extends LinearLayout
 
 	public void setTitle(String title)
 	{
+		if(title==null) throw new NullPointerException("String not null!");
 		t1.setText(title);
 	}
 

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	
+	<declare-styleable name="FragmentPage">  
+        <attr name="navigationbar_top" format="boolean"/>  
+        <attr name="always_show" format="boolean"/>  
+		<attr name="always_bottom" format="boolean"/>
+	</declare-styleable>
+	
     <declare-styleable name="BottomNavigationBar">
         <attr name="show_type" format="enum">
             <enum name="normal" value="0"></enum>

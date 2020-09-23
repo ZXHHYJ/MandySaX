@@ -1,10 +1,13 @@
 package mandysax.design;
 
-import android.content.*;
-import android.util.*;
-import android.view.*;
-import android.widget.*;
-import mandysax.utils.*;
+import android.content.Context;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import mandysax.utils.DensityUtils;
 
 /**
  * Created by Dikaros on 2016/5/20.
@@ -115,7 +118,7 @@ public final class NavigationItem extends LinearLayout
 
     }
 
-    boolean checked = false;
+   private  boolean checked = false;
 
     public boolean isChecked()
 	{
@@ -134,11 +137,11 @@ public final class NavigationItem extends LinearLayout
 	private final int imagePaddingTop=8;
 	private final int textPaddingBottom=10;
 
-    int textCheckedColor;
-    int textUnCheckedColor;
+    private int textCheckedColor;
+    private int textUnCheckedColor;
 
-    int imageCheckedResource;
-    int imageUnCheckedResource;
+    private int imageCheckedResource;
+    private int imageUnCheckedResource;
 
     public void setImageCheckedResource(int imageCheckedResource)
 	{

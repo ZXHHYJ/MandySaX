@@ -1,37 +1,58 @@
 package mandysax.data;
 
-import java.io.*;
-import java.lang.reflect.*;
-import java.net.*;
-import mandysax.core.annotation.*;
-import mandysax.utils.*;
-import org.json.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import mandysax.core.annotation.ARRAY;
+import mandysax.core.annotation.GET;
+import mandysax.core.annotation.INT;
+import mandysax.core.annotation.STRING;
+import mandysax.utils.FieldUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public final class Anna
+public class Anna
 {
+	
 	private Callback<Object> callback;
-
 	private Class cls;
+	private String url=getUrl();
+	private String[] key=getKeyword();
 
-	private String url;
-
-	private String[] key;
-
-	public Anna baseUrl(String url)
+	public Anna setUrl(String url)
 	{
 		this.url = url;
 		return this;
 	}
+	
+	public Anna addUrl(String url){
+		this.url=this.url+url;
+		return this;
+	}
 
-	public Anna addKeyWord(String... key)
+	public Anna addKeyword(String... key)
 	{
 		this.key = key;
 		return this;
 	}
-
+	
+	protected String getUrl(){
+		return "";
+	}
+	
+	protected String[] getKeyword(){
+		return null;
+	}
+	
 	public <E extends Class,T> Anna enqueue(E cls, Callback<T> callback)
 	{
-
 		this.callback = (Callback<Object>) callback;
 		this.cls = cls;
 		return this;
@@ -39,51 +60,46 @@ public final class Anna
 
 	public void start()
 	{
-		new Thread(new Runnable(){
+		getExecutor().execute(new Runnable(){
 				@Override
 				public void run()
 				{
 					try
 					{
-						try
-						{
-							String get =Parsing(getString(url));
-							if (get != null)
-								switch (getType(cls.newInstance().getClass()))
-								{
-									case "ARRAY":
-										JSONArray json = new JSONArray(get);
-										if (json != null)
+						String get =Parsing(getString(url));
+						if (get != null)
+							switch (getType(cls.newInstance().getClass()))
+							{
+								case "ARRAY":
+									JSONArray json = new JSONArray(get);
+									if (json != null)
+									{
+										for (int i = 0;i < json.length();i++)
 										{
-											for (int i = 0;i < json.length();i++)
-											{
-												callback.onSuccess(new CallFactory().create(cls, json.getString(i)));
-											}
-											callback.onEnd();
+											callback.onSuccess(new CallFactory().create(cls, json.getString(i)));
 										}
-										else callback.onFailure();
-										break;
-									case "STRING":		
-										callback.onSuccess(new CallFactory().create(cls, get));
 										callback.onEnd();
-										break;
-									default:
-										callback.onFailure();
-										break;
-								}
-							else callback.onFailure();
-						}
-						catch (Exception e)
-						{
-							callback.onFailure();
-						}
+									}
+									else callback.onFailure();
+									break;
+								case "STRING":		
+									callback.onSuccess(new CallFactory().create(cls, get));
+									callback.onEnd();
+									break;
+								default:
+									callback.onFailure();
+									break;
+							}
+						else callback.onFailure();
 					}
 					catch (Exception e)
 					{
-						callback.onFailure();
+
 					}
 				}
-			}).start();
+
+
+			});
 	}
 
 	private String Parsing(String con)
@@ -172,5 +188,22 @@ public final class Anna
 			}
 		}
 	}
+
+	private static ThreadPoolExecutor executor;
+    private static ThreadPoolExecutor getExecutor()
+	{
+        if (executor == null)
+		{
+            synchronized (Anna.class)
+			{
+                if (executor == null)
+				{
+                    executor = new ThreadPoolExecutor(1, 5, 60, TimeUnit.SECONDS,
+													  new LinkedBlockingQueue<>());
+                }
+            }
+        }
+        return executor;
+    }
 
 }

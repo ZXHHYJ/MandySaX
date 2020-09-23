@@ -1,21 +1,25 @@
 package mandysax.lifecycle;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Lifecycle
 {
 	private final List<LifecycleObserver> event = new ArrayList<LifecycleObserver>();
-	
-	public void addObsever(LifecycleObserver... observer){
-		for(LifecycleObserver event:observer){
+
+	public void addObsever(LifecycleObserver... observer)
+	{
+		for (LifecycleObserver event:observer)
+		{
 			this.event.add(event);
 		}
 	}
-	
-	private void PostSate(Event State){
-		for(LifecycleObserver observer:event)
-		observer.Observer(State);
+
+	private void PostSate(Event State)
+	{
+		for (LifecycleObserver observer:event)
+			observer.Observer(State);
 	}
-	
+
 	public void onStart()
 	{
 		PostSate(Event.ON_START);
@@ -40,18 +44,20 @@ public class Lifecycle
 	{
 		PostSate(Event.ON_DESTORY);
 	}
-	
-	void onKill(){
+
+	void onKill()
+	{
 		PostSate(Event.ON_KILL);
 	}
 
-	public final enum Event{
-	     ON_START,
-		 ON_RESUME,
-		 ON_PAUSE,
-		 ON_STOP,
+	public final enum Event
+	{
+		ON_START,
+		ON_RESUME,
+		ON_PAUSE,
+		ON_STOP,
 		ON_DESTORY,
 		ON_KILL;
 	}
-	
+
 }

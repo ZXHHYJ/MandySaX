@@ -1,13 +1,13 @@
 package mandysax.design;
 
-import android.content.*;
-import android.content.res.*;
-import android.graphics.*;
-import android.util.*;
-import android.view.*;
-import android.widget.*;
-import java.util.*;
-import mandysax.*;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import mandysax.R;
 
 /**
  * Created by Dikaros on 2016/5/20.
@@ -104,7 +104,6 @@ public class BottomNavigationBar extends LinearLayout
 			else if (t.equals("0"))
 			{
                 setType(NavShowType.NORMAL);
-
             }
         }
 
@@ -240,12 +239,6 @@ public class BottomNavigationBar extends LinearLayout
 	{
         setTextColor(getResources().getColor(checkedColorId));
     }
-
-//    public void addItemView(String text) {
-//        NavigationItem item = new NavigationItem(getContext(), textCheckdColor, textUnCheckColor, DEFAULT_CHECKED_IMAGE, DEFAULT_UNCHECKED_IMAGE);
-//        item.getmTextView().setText(text);
-//        addItemView(item);
-//    }
 
     public void addItemView(String text, int imageCheckedResource, int imageUnCheckedResource)
 	{

@@ -1,6 +1,6 @@
 package mandysax.utils;
 
-import android.content.*;
+import android.content.Context;
 
 /**
  * Created by Dikaros on 2016/5/20.

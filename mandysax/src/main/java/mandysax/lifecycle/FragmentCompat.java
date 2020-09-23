@@ -1,16 +1,25 @@
 package mandysax.lifecycle;
-import android.app.*;
-import android.os.*;
-import android.view.*;
-import java.lang.reflect.*;
-import mandysax.core.annotation.*;
-import mandysax.utils.*;
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import java.lang.reflect.Field;
+import mandysax.core.annotation.Annotation;
+import mandysax.core.annotation.BindLayoutId;
+import mandysax.core.annotation.BindView;
+import mandysax.design.FragmentPage;
+import mandysax.utils.FieldUtils;
 
-public abstract class FragmentCompat extends Fragment implements LifecycleOwner
+public class FragmentCompat extends Fragment implements LifecycleOwner,FragmentCompatImpl
 {
-
 	private final Lifecycle lifecycle = new Lifecycle();
 
+	private FragmentPage page;
+	
 	{
 		DataEnum.LIFECYCLE.put(getClass().getCanonicalName(), lifecycle);
 	}
@@ -22,6 +31,21 @@ public abstract class FragmentCompat extends Fragment implements LifecycleOwner
 	}
 
 	@Override
+	public void setFragmentPage(FragmentPage page)
+	{
+		if(page==null)
+		this.page=page;
+	}
+
+	@Override
+	public void startFragment(FragmentCompat fragment)
+	{
+		if(page!=null){
+			
+		}
+	}
+	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		return init(this);
@@ -31,8 +55,16 @@ public abstract class FragmentCompat extends Fragment implements LifecycleOwner
 	public void onAttach(Activity activity)
 	{
 		super.onAttach(activity);
-		if (activity instanceof AppCompatActivity)
-			((AppCompatActivity) activity).getLifecycle().addObsever(new LifecycleObserver(){
+		if(VERSION.SDK_INT<23)//兼容低版本
+					onAttach(activity);		
+	}
+
+	@Override
+	public void onAttach(Context context)
+	{
+		super.onAttach(context);
+		if (context instanceof AppCompatActivity)
+			((AppCompatActivity) context).getLifecycle().addObsever(new LifecycleObserver(){
 
 					@Override
 					public void Observer(Lifecycle.Event State)
@@ -78,10 +110,10 @@ public abstract class FragmentCompat extends Fragment implements LifecycleOwner
 		lifecycle.onDestory();
 		DataEnum.LIFECYCLE.remove(getClass().getCanonicalName());
 	}
-
-	private static View init(final Fragment mFragment)
+	
+	private final static View init(final Fragment mFragment)
 	{
-		Class cls = mFragment.getClass();
+		final Class cls = mFragment.getClass();
 	    View view = null;
 		if (cls.isAnnotationPresent(BindLayoutId.class))	
 			view = mFragment.getLayoutInflater().inflate(((BindLayoutId)cls.getAnnotation(BindLayoutId.class)).value(), null);
@@ -91,7 +123,7 @@ public abstract class FragmentCompat extends Fragment implements LifecycleOwner
 					try
 					{			
 						BindView fvbi = field.getAnnotation(BindView.class);					
-						if (fvbi.toString().equals("@mandysax.core.annotation.BindView(value=NO_VALUE)"))
+						if (fvbi.toString().equals(Annotation.BINDVIEW))
 						{	
 							FieldUtils.setField(field, mFragment, view.findViewById(Class.forName(mFragment.getContext().getPackageName() + ".R$id").newInstance().getClass().getDeclaredField(field.getName()).getInt(field.getName())));	
 						}

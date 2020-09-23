@@ -1,6 +1,6 @@
 package mandysax.utils;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
 
 public final class FieldUtils
 {

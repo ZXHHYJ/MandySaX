@@ -1,5 +1,4 @@
 package mandysax.lifecycle;
-import mandysax.lifecycle.*;
 
 public final class ViewModelProviders
 {

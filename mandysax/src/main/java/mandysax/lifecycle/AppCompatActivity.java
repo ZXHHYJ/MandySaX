@@ -1,17 +1,22 @@
 package mandysax.lifecycle;
-import android.app.*;
-import android.os.*;
-import android.view.*;
-import android.view.View.*;
-import java.lang.reflect.*;
-import mandysax.core.annotation.*;
-import mandysax.utils.*;
+import android.app.Activity;
+import android.app.Fragment;
+import android.os.Bundle;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import mandysax.R;
+import mandysax.core.annotation.Annotation;
+import mandysax.core.annotation.BindFragment;
+import mandysax.core.annotation.BindLayoutId;
+import mandysax.core.annotation.BindView;
+import mandysax.design.FragmentPage;
+import mandysax.utils.FieldUtils;
 
 public class AppCompatActivity extends Activity implements LifecycleOwner
 {
 
 	private final Lifecycle lifecycle = new Lifecycle();
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -64,7 +69,7 @@ public class AppCompatActivity extends Activity implements LifecycleOwner
 		DataEnum.LIFECYCLE.remove(getClass().getCanonicalName());		
 	}
 
-	private static void init(final Activity mActivity)
+	private final static void init(final Activity mActivity)
 	{
 		Class cls = mActivity.getClass();
 		if (cls.isAnnotationPresent(BindLayoutId.class))
@@ -82,9 +87,9 @@ public class AppCompatActivity extends Activity implements LifecycleOwner
 				BindView fvbi = field.getAnnotation(BindView.class);
 				try
 				{	
-					if (fvbi.toString().equals("@mandysax.core.annotation.BindView(value=NO_VALUE)"))
+					if (fvbi.toString().equals(Annotation.BINDVIEW))
 					{	
-					FieldUtils.setField(field, mActivity, mActivity.findViewById(Class.forName(mActivity.getPackageName() + ".R$id").newInstance().getClass().getDeclaredField(field.getName()).getInt(field.getName())));	
+						FieldUtils.setField(field, mActivity, mActivity.findViewById(Class.forName(mActivity.getPackageName() + ".R$id").newInstance().getClass().getDeclaredField(field.getName()).getInt(field.getName())));	
 					}
 					else
 					{
@@ -105,7 +110,9 @@ public class AppCompatActivity extends Activity implements LifecycleOwner
 					{
 						fragment = (Fragment) Class.forName(field.getType().getName()).newInstance();
 						FieldUtils.setField(field, mActivity, fragment);
-						if (!fragment.isAdded())
+						if (!fragment.isAdded() && mActivity.findViewById(ffbt.value()) instanceof FragmentPage)
+							mActivity.getFragmentManager().beginTransaction().add(R.id.fragmentpageFrameLayout1, fragment, field.getName()).hide(fragment).commit();		
+						else
 							mActivity.getFragmentManager().beginTransaction().add(ffbt.value(), fragment, field.getName()).hide(fragment).commit();		
 					}
 					else
@@ -116,63 +123,7 @@ public class AppCompatActivity extends Activity implements LifecycleOwner
 				catch (Exception e)
 				{
 				}
-
-		for (final Method method : cls.getMethods())
-			if (method.isAnnotationPresent(ViewClick.class))
-			{
-				ViewClick vc = method.getAnnotation(ViewClick.class);
-				mActivity.findViewById(vc.value()).setOnClickListener(new OnClickListener(){
-						@Override
-						public void onClick(View p1)
-						{
-							try
-							{
-								method.invoke(mActivity);
-							}
-							catch (Exception e)
-							{
-								e.printStackTrace();
-							}
-						}
-					});
-			}
-			else
-			if (method.isAnnotationPresent(ViewLongClick.class))
-			{
-				ViewLongClick vc = method.getAnnotation(ViewLongClick.class);
-				mActivity.findViewById(vc.value()).setOnLongClickListener(new OnLongClickListener(){
-						@Override
-						public boolean onLongClick(View p1)
-						{
-							try
-							{
-								method.invoke(mActivity);
-							}
-							catch (Exception e)
-							{
-								e.printStackTrace();
-							}
-							return true;
-						}
-					});
-			}
-			else
-			if (method.isAnnotationPresent(RunThread.class))
-				new Thread(new Runnable(){
-						@Override
-						public void run()
-						{
-							try
-							{
-								method.invoke(mActivity);
-							}
-							catch (Exception e)
-							{
-								e.printStackTrace();
-							}
-						}
-					}).start();
 	}
-	
+
 }
 

@@ -1,12 +1,16 @@
 package com.FMJJ.MandySa.model;
 
-import android.support.v4.media.*;
-import com.FMJJ.MandySa.data.*;
-import com.FMJJ.MandySa.service.contentcatalogs.*;
-import java.util.*;
-import mandysax.data.*;
-import mandysax.lifecycle.*;
-import org.json.*;
+import android.support.v4.media.MediaMetadataCompat;
+import com.FMJJ.MandySa.data.musicGet;
+import com.FMJJ.MandySa.data.searchMusic;
+import com.FMJJ.MandySa.service.contentcatalogs.MusicLibrary;
+import java.util.ArrayList;
+import java.util.List;
+import mandysax.data.Callback;
+import mandysax.lifecycle.LiveData;
+import mandysax.lifecycle.MutableLiveData;
+import mandysax.lifecycle.ViewModel;
+import org.json.JSONException;
 
 public class SearchViewModel extends ViewModel
 {
@@ -20,7 +24,7 @@ public class SearchViewModel extends ViewModel
 	public final LiveData<List<MediaMetadataCompat>> song_bottom = _song_bottom;
 
 	public final List<MediaMetadataCompat> song_list = new ArrayList<MediaMetadataCompat>();
-	
+
 	private int song_page = 1;
 
 	private String song_name;
@@ -29,7 +33,7 @@ public class SearchViewModel extends ViewModel
 	{
 		song_name = name;
 		if (song_name == null)return;
-		new Anna().baseUrl(url.url2 + name + "&offset=" + (page - 1) * 30).addKeyWord("result", "songs").enqueue(musicGet.class, new Callback<musicGet>(){
+		new searchMusic().addUrl(name + "&offset=" + (page - 1) * 30).enqueue(musicGet.class, new Callback<musicGet>(){
 
 				List<MediaMetadataCompat> list= new ArrayList<MediaMetadataCompat>();
 

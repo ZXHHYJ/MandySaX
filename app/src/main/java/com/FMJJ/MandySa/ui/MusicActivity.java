@@ -1,6 +1,6 @@
 package com.FMJJ.MandySa.ui;
-import android.os.*;
-import com.FMJJ.MandySa.*;
+import android.os.Bundle;
+import com.FMJJ.MandySa.R;
 
 public class MusicActivity extends BaseActivity
 {

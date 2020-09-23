@@ -1,23 +1,32 @@
 package com.FMJJ.MandySa.ui;
 
-import android.content.*;
-import android.os.*;
-import android.support.v4.media.*;
-import android.text.*;
-import android.text.style.*;
-import android.view.*;
-import android.widget.*;
-import androidx.recyclerview.widget.*;
-import androidx.swiperefreshlayout.widget.*;
-import com.FMJJ.MandySa.*;
-import com.FMJJ.MandySa.model.*;
-import com.FMJJ.MandySa.service.contentcatalogs.*;
-import java.util.*;
-import java.util.regex.*;
-import mandysax.core.annotation.*;
-import mandysax.lifecycle.*;
-
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.media.MediaMetadataCompat;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import com.FMJJ.MandySa.R;
+import com.FMJJ.MandySa.model.SearchViewModel;
+import com.FMJJ.MandySa.service.contentcatalogs.MusicLibrary;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import mandysax.core.annotation.BindLayoutId;
+import mandysax.core.annotation.BindView;
+import mandysax.lifecycle.FragmentCompat;
 import mandysax.lifecycle.Observer;
+import mandysax.lifecycle.ViewModelProviders;
 
 @BindLayoutId(R.layout.search_fragment)
 public class SearchFragment extends FragmentCompat
