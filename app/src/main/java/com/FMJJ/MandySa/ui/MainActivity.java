@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity
 	private HomeFragment home_fragment;
 
 	@BindFragment(R.id.mainFragmentPage)
-	private RecommendFragment recommend_fragment;
+	private LiveFragment recommend_fragment;
 
 	@BindFragment(R.id.mainFragmentPage)
 	private SearchFragment search_fragment;
@@ -105,10 +105,10 @@ public class MainActivity extends BaseActivity
 		mainFragmentPage.add(home_fragment, recommend_fragment, search_fragment, my_fragment);
 		mainFragmentPage.showFragment(viewModel.index);
 		mainBottomNavigationBar.setTextColorRes(R.color.theme_color);
-        mainBottomNavigationBar.addItemView("主页", R.mipmap.ic_music, R.mipmap.ic_music_black);
-        mainBottomNavigationBar.addItemView("推荐", R.mipmap.ic_cards_heart, R.mipmap.ic_cards_heart_black);
-        mainBottomNavigationBar.addItemView("搜索", R.mipmap.ic_magnify_outline, R.mipmap.ic_magnify_outline_black);
-		mainBottomNavigationBar.addItemView("我的", R.mipmap.ic_account, R.mipmap.ic_account_black);
+        mainBottomNavigationBar.addItemView(getString(R.string.home), R.mipmap.ic_music, R.mipmap.ic_music_black);
+        mainBottomNavigationBar.addItemView(getString(R.string.live), R.mipmap.ic_cards_heart, R.mipmap.ic_cards_heart_black);
+        mainBottomNavigationBar.addItemView(getString(R.string.search), R.mipmap.ic_magnify_outline, R.mipmap.ic_magnify_outline_black);
+		mainBottomNavigationBar.addItemView(getString(R.string.my), R.mipmap.ic_account, R.mipmap.ic_account_black);
         mainBottomNavigationBar.setSelected(viewModel.index);
 		mainBottomNavigationBar.setOnItemViewSelectedListener(new BottomNavigationBar.OnItemViewSelectedListener() {
 				@Override

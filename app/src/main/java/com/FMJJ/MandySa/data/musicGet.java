@@ -1,6 +1,9 @@
 package com.FMJJ.MandySa.data;
-import mandysax.core.annotation.*;
-import org.json.*;
+import mandysax.core.annotation.ARRAY;
+import mandysax.core.annotation.GET;
+import mandysax.core.annotation.INT;
+import mandysax.core.annotation.STRING;
+import org.json.JSONArray;
 
 @GET("ARRAY")
 public class musicGet

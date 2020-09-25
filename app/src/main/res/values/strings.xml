@@ -2,9 +2,9 @@
 <resources>
 
     <string name="app_name">MandySa</string>
-    <string name="label_pause">Pause</string>
-    <string name="label_play">Play</string>
-    <string name="label_previous">Previous track</string>
-    <string name="label_next">Next track</string>
+    <string name="home">主页</string>
+    <string name="live">喜欢</string>
+    <string name="search">搜索</string>
+    <string name="my">我的</string>
 	
 </resources>

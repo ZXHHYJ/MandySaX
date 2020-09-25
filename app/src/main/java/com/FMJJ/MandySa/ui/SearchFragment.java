@@ -43,7 +43,7 @@ public class SearchFragment extends FragmentCompat
 	private RecyclerView music_rv;
 
 	@BindView(R.id.searchImageView1)
-	private ImageView back;
+	private ImageView search;
 
 	@BindView(R.id.searchfragmentSwipeRefreshLayout1)
 	private SwipeRefreshLayout music_sl;
@@ -52,6 +52,15 @@ public class SearchFragment extends FragmentCompat
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
+		search.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+					search();
+				}	
+			
+		});
 		search_edit.setOnKeyListener(new View.OnKeyListener() {
 				@Override
 				public boolean onKey(View v, int keyCode, KeyEvent event)

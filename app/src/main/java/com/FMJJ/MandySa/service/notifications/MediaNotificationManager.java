@@ -63,28 +63,28 @@ public class MediaNotificationManager {
         mPlayAction =
                 new NotificationCompat.Action(
                         R.mipmap.ic_play,
-                        mService.getString(R.string.label_play),
+                        "",
                         MediaButtonReceiver.buildMediaButtonPendingIntent(
                                 mService,
                                 PlaybackStateCompat.ACTION_PLAY));
         mPauseAction =
                 new NotificationCompat.Action(
                         R.mipmap.ic_pause,
-                        mService.getString(R.string.label_pause),
+                        "",
                         MediaButtonReceiver.buildMediaButtonPendingIntent(
                                 mService,
                                 PlaybackStateCompat.ACTION_PAUSE));
         mNextAction =
                 new NotificationCompat.Action(
                         R.mipmap.ic_skip_next_outline,
-                        mService.getString(R.string.label_next),
+                        "",
                         MediaButtonReceiver.buildMediaButtonPendingIntent(
                                 mService,
                                 PlaybackStateCompat.ACTION_SKIP_TO_NEXT));
         mPrevAction =
                 new NotificationCompat.Action(
                         R.mipmap.ic_skip_previous_outline,
-                        mService.getString(R.string.label_previous),
+                        "",
                         MediaButtonReceiver.buildMediaButtonPendingIntent(
                                 mService,
                                 PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS));

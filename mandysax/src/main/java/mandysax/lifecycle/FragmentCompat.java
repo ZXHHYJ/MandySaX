@@ -19,11 +19,14 @@ public class FragmentCompat extends Fragment implements LifecycleOwner,FragmentC
 	private final Lifecycle lifecycle = new Lifecycle();
 
 	private FragmentPage page;
-	
+
+	@Override
+	public void onCreate(Bundle savedInstanceState)
 	{
+		super.onCreate(savedInstanceState);
 		DataEnum.LIFECYCLE.put(getClass().getCanonicalName(), lifecycle);
 	}
-
+	
 	@Override
 	public Lifecycle getLifecycle()
 	{
@@ -38,7 +41,7 @@ public class FragmentCompat extends Fragment implements LifecycleOwner,FragmentC
 	}
 
 	@Override
-	public void startFragment(FragmentCompat fragment)
+	public void startFragment(Class fragment)
 	{
 		if(page!=null){
 			
