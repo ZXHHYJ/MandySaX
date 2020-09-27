@@ -43,9 +43,7 @@ public class FragmentCompat extends Fragment implements LifecycleOwner,FragmentC
 	@Override
 	public void startFragment(Class fragment)
 	{
-		if(page!=null){
-			
-		}
+		if(page!=null)page.startFragment(fragment);
 	}
 	
 	@Override

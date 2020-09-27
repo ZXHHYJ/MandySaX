@@ -14,14 +14,22 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 import java.util.List;
 import mandysax.R;
+import mandysax.data.SafetyHashMap;
 import mandysax.lifecycle.FragmentCompat;
 
 public class FragmentPage extends RelativeLayout
 {
-
-	private final List<Fragment> list=new ArrayList<Fragment>();;
-
+	private int screenWidth;
+    private float fractionX;
+    private OnLayoutTranslateListener onLayoutTranslateListener;
+	private String[] fragment_key;
+	private final SafetyHashMap<String,Fragment> fragment_map=new SafetyHashMap<String,Fragment>();
 	private BottomNavigationBar bottom_bar;
+
+	private Activity getActivity()
+	{
+		return (Activity)getContext();
+	}
 
 	public FragmentPage(Context p0)
 	{
@@ -39,6 +47,59 @@ public class FragmentPage extends RelativeLayout
 	{
 		inflate(getContext(), R.layout.fragment_page, this);
 	}
+
+	protected void onSizeChanged(int w, int h, int oldW, int oldH)
+	{
+
+        // Assign the actual screen width to our class variable.
+        screenWidth = w;
+
+        super.onSizeChanged(w, h, oldW, oldH);
+    }
+
+    public float getFractionX()
+	{
+        return fractionX;
+    }
+
+    public void setFractionX(float xFraction)
+	{
+        this.fractionX = xFraction;
+
+        // When we modify the xFraction, we want to adjust the x translation
+        // accordingly.  Here, the scale is that if xFraction is -1, then
+        // the layout is off screen to the left, if xFraction is 0, then the
+        // layout is exactly on the screen, and if xFraction is 1, then the
+        // layout is completely offscreen to the right.
+        setX((screenWidth > 0) ? (xFraction * screenWidth) : 0);
+
+        if (xFraction == 1 || xFraction == -1)
+		{
+            setAlpha(0);
+        }
+		else if (xFraction < 1 /* enter */|| xFraction > -1)
+		{
+            if (getAlpha() != 1)
+			{
+                setAlpha(1);
+            }
+        }
+
+        if (onLayoutTranslateListener != null)
+		{
+            onLayoutTranslateListener.onLayoutTranslate(this, xFraction);
+        }
+    }
+
+    public void setOnLayoutTranslateListener(OnLayoutTranslateListener onLayoutTranslateListener)
+	{
+        this.onLayoutTranslateListener = onLayoutTranslateListener;
+    }
+
+    private static interface OnLayoutTranslateListener
+	{
+        void onLayoutTranslate(FragmentPage view, float xFraction);
+    }
 
 	@Override
 	protected void dispatchDraw(Canvas canvas)
@@ -72,38 +133,76 @@ public class FragmentPage extends RelativeLayout
 		}
 	}
 
-	public List<Fragment> add(Fragment... list)
+	public void add(Class... fragmentClass,int index){
+		add(fragmentClass);
+		showFragment(index);
+	}
+	
+	public void add(Class... fragmentClass)
 	{
-		for (Fragment fragment:list)
+		final List<String> list=new ArrayList<String>();
+		for (Class _fragmentClass:fragmentClass)
 		{
-			if(fragment == null)throw new NullPointerException("Fragment not null!");
-			this.list.add(fragment);
-			if (fragment instanceof FragmentCompat)((FragmentCompat)fragment).setFragmentPage(this);
+			Fragment fragment= initFragment(_fragmentClass);
+			if (fragment != null)
+			{
+				fragment_map.put(_fragmentClass.getCanonicalName(), fragment);
+				list.add(_fragmentClass.getCanonicalName());
+			}
+			else throw new NullPointerException("Could not initialize fragment:" + _fragmentClass.getCanonicalName());
 		}
-		return this.list;
+		fragment_key = list.toArray(new String[0]);
 	}
 
-	public List<Fragment> add(Fragment... list, int index)
+	private Fragment initFragment(Class _fragmentClass)
 	{
-		add(list);
-		showFragment(index);
-		return this.list;
+		try
+		{
+			Fragment fragment=getActivity().getFragmentManager().findFragmentByTag(_fragmentClass.getCanonicalName());
+			if (fragment == null)fragment = (Fragment) Class.forName(_fragmentClass.getCanonicalName()).newInstance();
+			if (!fragment.isAdded())
+				getActivity().getFragmentManager().beginTransaction().add(R.id.fragmentpageFrameLayout1, fragment, _fragmentClass.getCanonicalName()).hide(fragment).commit();		
+			return fragment;
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
+	}
+
+	public void startFragment(Class fragment)
+	{
+		Fragment startFragment=fragment_map.get(fragment);
+		if (startFragment != null)
+		{
+			getActivity().
+				getFragmentManager()
+				.beginTransaction()
+				.setCustomAnimations(
+				R.anim.slide_right_in, R.anim.slide_left_out,
+				R.anim.slide_left_in, R.anim.slide_right_out)
+				//.replace(R.id.your_fragment, YourFragment.newInstance())
+				.commit();
+		}
+		else throw new NullPointerException("Unable to startFragment:" + fragment.getName());
 	}
 
 	public void showFragment(int index)
 	{
-		if(index<list.size()){
-		final FragmentTransaction transaction =((Activity) getContext()).getFragmentManager().beginTransaction();
-		for (int i=0;i < list.size();i++)
+		if (index < fragment_key.length)
 		{
-			if (!list.get(i).isHidden())
+			final FragmentTransaction transaction =getActivity().getFragmentManager().beginTransaction();
+			for (int i=0;i < fragment_key.length;i++)
 			{
-				transaction.hide(list.get(i));
+				if (!fragment_map.get(fragment_key[i]).isHidden())
+				{
+					transaction.hide(fragment_map.get(fragment_key[i]));
+				}
 			}
+			transaction.show(fragment_map.get(fragment_key[index]));
+			transaction.commit();
 		}
-		transaction.show(list.get(index));
-		transaction.commit();
-		}else throw new  ArrayIndexOutOfBoundsException("index > Fragment List!");
+	    else throw new  ArrayIndexOutOfBoundsException("index > Fragment List!");
 	}
 
 	@Override
@@ -127,10 +226,10 @@ public class FragmentPage extends RelativeLayout
 		return p instanceof LayoutParams ;
 	}
 
-	public static class LayoutParams extends RelativeLayout.LayoutParams
+	private class LayoutParams extends RelativeLayout.LayoutParams
 	{		
 		public boolean show;
-	    public boolean top;
+		public boolean top;
 		public boolean bottom;
 
 		public LayoutParams(Context context, AttributeSet object)
@@ -139,26 +238,26 @@ public class FragmentPage extends RelativeLayout
 			TypedArray array = context.obtainStyledAttributes(object, R.styleable.FragmentPage);
 			show = array.getBoolean(R.styleable.FragmentPage_always_show, true);
 			top = array.getBoolean(R.styleable.FragmentPage_navigationbar_top, false);
-	    	bottom = array.getBoolean(R.styleable.FragmentPage_always_bottom, false);
+			bottom = array.getBoolean(R.styleable.FragmentPage_always_bottom, false);
 			array.recycle();
 		}
 
-        public LayoutParams(int width, int height)
+		public LayoutParams(int width, int height)
 		{
 			super(width, height);
 		}
 
-        public LayoutParams(android.view.ViewGroup.LayoutParams source)
+		public LayoutParams(android.view.ViewGroup.LayoutParams source)
 		{
 			super(source);
 		}
 
-        public LayoutParams(android.view.ViewGroup.MarginLayoutParams source)
+		public LayoutParams(android.view.ViewGroup.MarginLayoutParams source)
 		{
 			super(source);
 		}
 
-        public LayoutParams(android.widget.FrameLayout.LayoutParams source)
+		public LayoutParams(android.widget.FrameLayout.LayoutParams source)
 		{
 			super(source);
 		}

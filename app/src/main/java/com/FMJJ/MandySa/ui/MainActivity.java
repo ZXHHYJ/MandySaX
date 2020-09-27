@@ -14,7 +14,6 @@ import com.FMJJ.MandySa.client.MediaBrowserHelper;
 import com.FMJJ.MandySa.model.MainViewModel;
 import com.FMJJ.MandySa.service.MusicService;
 import java.util.List;
-import mandysax.core.annotation.BindFragment;
 import mandysax.core.annotation.BindLayoutId;
 import mandysax.core.annotation.BindView;
 import mandysax.design.BottomNavigationBar;
@@ -27,18 +26,6 @@ public class MainActivity extends BaseActivity
 {
 
 	private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
-	@BindFragment(R.id.mainFragmentPage)
-	private HomeFragment home_fragment;
-
-	@BindFragment(R.id.mainFragmentPage)
-	private LiveFragment recommend_fragment;
-
-	@BindFragment(R.id.mainFragmentPage)
-	private SearchFragment search_fragment;
-
-	@BindFragment(R.id.mainFragmentPage)
-	private MyFragment my_fragment;
 
 	@BindView
 	private FragmentPage mainFragmentPage;
@@ -81,8 +68,8 @@ public class MainActivity extends BaseActivity
 				public void onClick(View p1)
 				{
 				}
-			
-		});
+
+			});
 		mainMusicView.getPlaybutton().setOnClickListener(new View.OnClickListener(){
 
 				@Override
@@ -99,10 +86,10 @@ public class MainActivity extends BaseActivity
 				}
 			});
 	}
-	
+
 	private void initFragment()
 	{
-		mainFragmentPage.add(home_fragment, recommend_fragment, search_fragment, my_fragment);
+		mainFragmentPage.add(HomeFragment.class, LiveFragment.class, SearchFragment.class, MyFragment.class);
 		mainFragmentPage.showFragment(viewModel.index);
 		mainBottomNavigationBar.setTextColorRes(R.color.theme_color);
         mainBottomNavigationBar.addItemView(getString(R.string.home), R.mipmap.ic_music, R.mipmap.ic_music_black);

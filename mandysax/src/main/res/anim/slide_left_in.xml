@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <translate
-        android:fromXDelta="-100%p"
-        android:toXDelta="0%p"
-        android:duration="500"/>
-
-    <alpha
-        android:fromAlpha="0.5"
-        android:toAlpha="1.0"
-        android:duration="500"/>
-
+    <objectAnimator
+        android:duration="500"
+        android:propertyName="fractionX"
+        android:valueFrom="-1"
+        android:valueTo="0"
+        android:valueType="floatType" />
 </set>
