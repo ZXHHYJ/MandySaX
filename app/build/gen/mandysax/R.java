@@ -444,17 +444,15 @@ containing a value of this type.
         public static final int notification_background=0x7f07005a;
         public static final int notification_main_column=0x7f070053;
         public static final int notification_main_column_container=0x7f070052;
-        public static final int pad_mode=0x7f070065;
-        public static final int phone_mode=0x7f070064;
+        public static final int pad_mode=0x7f070063;
+        public static final int phone_mode=0x7f070062;
         public static final int recommendfragmentButton1=0x7f07003b;
         public static final int right_icon=0x7f070059;
         public static final int right_side=0x7f070054;
-        public static final int searchEditText1=0x7f070060;
-        public static final int searchImageView1=0x7f070061;
-        public static final int searchfragmentEditText1=0x7f07005e;
-        public static final int searchfragmentImageView1=0x7f07005f;
-        public static final int searchfragmentRecyclerView1=0x7f070063;
-        public static final int searchfragmentSwipeRefreshLayout1=0x7f070062;
+        public static final int searchbarEditText1=0x7f07005e;
+        public static final int searchbarImageView1=0x7f07005f;
+        public static final int searchfragmentRecyclerView1=0x7f070061;
+        public static final int searchfragmentSwipeRefreshLayout1=0x7f070060;
         public static final int status_bar_latest_event_content=0x7f07004f;
         public static final int tag_accessibility_actions=0x7f070024;
         public static final int tag_accessibility_clickable_spans=0x7f070025;
@@ -499,9 +497,10 @@ containing a value of this type.
         public static final int notification_template_media_custom=0x7f040016;
         public static final int notification_template_part_chronometer=0x7f040017;
         public static final int notification_template_part_time=0x7f040018;
-        public static final int search_fragment=0x7f040019;
-        public static final int search_list_fragment=0x7f04001a;
-        public static final int setting_fragment=0x7f04001b;
+        public static final int search_bar=0x7f040019;
+        public static final int search_fragment=0x7f04001a;
+        public static final int search_list_fragment=0x7f04001b;
+        public static final int setting_fragment=0x7f04001c;
     }
     public static final class menu {
         public static final int choose_mode=0x7f0c0000;

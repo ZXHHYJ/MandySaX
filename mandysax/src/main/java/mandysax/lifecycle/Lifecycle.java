@@ -34,14 +34,15 @@ public class Lifecycle
 		for (LifecycleObserver event:observer)
 			this.event.add(event);
 	}
-
+	
 	private void PostSate(Event State)
 	{
 		for (LifecycleObserver observer:event)
 			observer.Observer(State);
 	}
-	
-	protected void onCreate(){
+
+	protected void onCreate()
+	{
 		PostSate(Event.ON_CREATE);
 	}
 

@@ -60,7 +60,6 @@ public class AppCompatActivity extends Activity implements LifecycleOwner
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);	
-		System.out.println(getViewModelStore());
 		init(this);
 		DataEnum.LIFECYCLE.put(getClass().getCanonicalName(), mLifecycle);
 		mLifecycle.onCreate();

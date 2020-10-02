@@ -1,7 +1,8 @@
 package mandysax.lifecycle;
-import android.os.*;
-import java.util.*;
-import mandysax.lifecycle.Lifecycle.Event;
+import android.os.Handler;
+import android.os.Message;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class LiveData <T extends Object>
 {
@@ -10,59 +11,64 @@ public abstract class LiveData <T extends Object>
 
 	protected final List<Observer<? super T>> callBack = new ArrayList<Observer<? super T>>();
 
+	private final List<Observer<? super T>> task_callBack = new ArrayList<Observer<? super T>>();
+
 	protected final LiveDataCallBack cb = new LiveDataCallBack();
 
 	private Lifecycle lifecycle;
-	
+
 	private boolean active=true;
-	
+
 	public void observeForever(Observer<? super T> p1)
 	{
 		callBack.add(p1);
 	}
 
-	public void observe(final LifecycleOwner p0,final Observer<? super T> p1)
+	public void observe(final LifecycleOwner p0, final Observer<? super T> p1)
 	{
-		lifecycle=p0.getLifecycle();
+		lifecycle = p0.getLifecycle();
 		lifecycle.addObsever(new LifecycleObserver(){
 
 				@Override
 				public void Observer(Lifecycle.Event State)
 				{
-					if(State==Lifecycle.Event.ON_DESTORY)
+					if (State == Lifecycle.Event.ON_DESTORY)
 					{
-						active=false;
+						active = false;
 						callBack.remove(p1);
-					}else
-					if(State==Lifecycle.Event.ON_PAUSE||State==Lifecycle.Event.ON_STOP||State==Lifecycle.Event.ON_DESTORY){
-						active=false;
-					}else active=true;
+					}
+					else
+					if (State == Lifecycle.Event.ON_PAUSE || State == Lifecycle.Event.ON_STOP || State == Lifecycle.Event.ON_DESTORY)
+					{
+						active = false;
+					}
+					else
+					{
+						active = true;
+						for (Observer<? super T> c:task_callBack)
+							c.onChanged(content);
+						task_callBack.clear();
+					}
 				}
-				
-		});
+
+			});
 		callBack.add(p1);
 	}
-	
-	public T getValue(){
+
+	public T getValue()
+	{
 		return content;
 	}
-	
+
     protected void start()
 	{
-		if(active)
 		for (Observer<? super T> c:callBack)
-			c.onChanged(content);
-		else lifecycle.addObsever(new LifecycleObserver(){
-
-					@Override
-					public void Observer(Lifecycle.Event State)
-					{
-						if(State==Lifecycle.Event.ON_RESUME){
-							start();
-						}
-					}
-
-				});
+			if (active)
+				c.onChanged(content);
+			else
+			{
+				task_callBack.add(c);
+			}
 	}
 
 	protected class LiveDataCallBack extends Handler 
@@ -74,6 +80,6 @@ public abstract class LiveData <T extends Object>
 			((LiveData)msg.obj).start();
 		}
 	}
-	
+
 }
 

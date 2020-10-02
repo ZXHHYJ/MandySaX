@@ -6,13 +6,13 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -36,33 +36,57 @@ public class SearchListFragment extends FragmentCompat
 
 	private music_listAdaper music_listAdaper;
 
-	@BindView(R.id.searchEditText1)
+	@BindView(R.id.searchbarEditText1)
 	private EditText search_edit;
+
+	@BindView(R.id.searchbarImageView1)
+	private ImageView search;
 
 	@BindView(R.id.searchfragmentRecyclerView1)
 	private RecyclerView music_rv;
-
-	@BindView(R.id.searchImageView1)
-	private ImageView search;
 
 	@BindView(R.id.searchfragmentSwipeRefreshLayout1)
 	private SwipeRefreshLayout music_sl;
 
 	@Override
+	public void onStart()
+	{
+		search_edit.setText(viewModel.getSearchName());
+		super.onStart();
+	}
+
+	@Override
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		viewModel=ViewModelProviders.of(this).get(SearchViewModel.class);
+		viewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
+		viewModel.status.observe(this, new Observer<Integer>(){
+
+				@Override
+				public void onChanged(Integer p1)
+				{
+					if (p1 == viewModel.LOAD)
+					{
+						System.out.println("执行了这里");
+						music_sl.setRefreshing(true);
+					}
+					else if (p1 == viewModel.BUG){
+						music_sl.setRefreshing(false);
+						Toast.makeText(getContext(), "电波无法到达哟", 10).show();
+						}
+				}
+
+			});
 		search.setOnClickListener(new View.OnClickListener(){
 
 				@Override
 				public void onClick(View p1)
 				{
-					search();
+					startFragment(SearchFragment.class);
 				}	
 
 			});
-
+		search_edit.setFocusable(false);
 		search_edit.setOnClickListener(new View.OnClickListener(){
 
 				@Override
@@ -70,20 +94,7 @@ public class SearchListFragment extends FragmentCompat
 				{
 					startFragment(SearchFragment.class);
 				}
-
 			});
-		search_edit.setOnKeyListener(new View.OnKeyListener() {
-				@Override
-				public boolean onKey(View v, int keyCode, KeyEvent event)
-				{
-					if (keyCode == KeyEvent.KEYCODE_ENTER)
-					{	
-						search();
-					}
-					return false;
-				}
-            });
-
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 		music_rv.setLayoutManager(linearLayoutManager);  
         music_rv.setHasFixedSize(true);
@@ -143,12 +154,6 @@ public class SearchListFragment extends FragmentCompat
 			});
 	}
 
-	private void search()
-	{
-		music_sl.setRefreshing(true);
-		viewModel.song_search(search_edit.getText().toString());	
-	}
-
 	private class music_listAdaper extends RecyclerView.Adapter<musicList_ViewHolder>
 	{
 
@@ -157,8 +162,8 @@ public class SearchListFragment extends FragmentCompat
 		{
 			final String title=list.get(p2).getString(MediaMetadataCompat.METADATA_KEY_TITLE);
 			final String singer=list.get(p2).getString(MediaMetadataCompat.METADATA_KEY_ARTIST);
-			setSearchContentColor(title, search_edit.getText().toString(), p1.Song_name);
-			setSearchContentColor(singer, search_edit.getText().toString(), p1.Singer_name);
+			setSearchContentColor(title, viewModel.getSearchName(), p1.Song_name);
+			setSearchContentColor(singer, viewModel.getSearchName(), p1.Singer_name);
 			p1.onclick.setOnClickListener(new View.OnClickListener(){
 					@Override
 					public void onClick(View p1)

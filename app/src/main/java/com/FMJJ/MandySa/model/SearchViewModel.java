@@ -11,9 +11,14 @@ import mandysax.lifecycle.LiveData;
 import mandysax.lifecycle.MutableLiveData;
 import mandysax.lifecycle.ViewModel;
 import org.json.JSONException;
+import android.widget.Toast;
 
 public class SearchViewModel extends ViewModel
 {
+	
+	public static int BUG=2;
+	
+	public static int LOAD=0;
 
 	private final MutableLiveData<List<MediaMetadataCompat>> _song_search = new MutableLiveData<List<MediaMetadataCompat>>();
 
@@ -23,12 +28,16 @@ public class SearchViewModel extends ViewModel
 
 	public final LiveData<List<MediaMetadataCompat>> song_bottom = _song_bottom;
 
+	private final MutableLiveData<Integer> _status = new MutableLiveData<Integer>();
+	
+	public final LiveData<Integer>  status=_status;
+	
 	public final List<MediaMetadataCompat> song_list = new ArrayList<MediaMetadataCompat>();
 
 	private int song_page = 1;
 
-	private String song_name;
-
+	private String song_name="";
+	
 	private void search_song(final String name, final int page)
 	{
 		song_name = name;
@@ -38,17 +47,20 @@ public class SearchViewModel extends ViewModel
 				List<MediaMetadataCompat> list= new ArrayList<MediaMetadataCompat>();
 
 				@Override
-				public void onEnd()
+				public void onEnd(boolean bug)
 				{
+					if(!bug){
 					if (page == 1)
 					{
 						_song_search.postValue(list);
 					}
 					else _song_bottom.postValue(list);
+					}
+					else _status.postValue(BUG);
 				}
 
 				@Override
-				public void onSuccess(musicGet decodeStream)
+				public void onStart(musicGet decodeStream)
 				{
 					String singer="";
 					if (decodeStream.artists != null)
@@ -66,17 +78,16 @@ public class SearchViewModel extends ViewModel
 					list.add(MusicLibrary.createMediaMetadataCompat(decodeStream.id + "", decodeStream.name, singer, ""));
 				}
 
-				@Override
-				public void onFailure()
-				{
-					System.out.println("出错");
-				}
-
 			}).start();
+	}
+	
+	public String getSearchName(){
+		return song_name;
 	}
 
 	public void song_search(String name)
 	{
+		_status.setValue(LOAD);
 		if (name == null)name = song_name;
 		song_page = 1;
 		search_song(name, song_page);

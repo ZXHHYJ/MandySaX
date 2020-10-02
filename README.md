@@ -305,3 +305,52 @@ public class MainActivity extends AppCompatActivity
 }
 ```
 
+# Update log
+
++ v1.4.0 beta1
+  - 新增Xlist列表，使用HashMap存储数据，披着List的外衣(有顺序)，目前发现其使用场景十分狭小
+  - 优化大量细节
+  - 删除部分不规范的代码
+  - 删除几乎无用的代码（少量注解）
+  - 大量修改ViewModel实现方法，详见demo
+  - 修复bug（LiveData生命周期bug...)
+  - 2020-10-02 22:59
+
++ v1.3.5
+  - 新增不可存储null的基于HashMap的SafetyHashMap（鸡肋）
+  - Anna支持以继承的方法设置默认URL和keyword
+  - FragmentPage和FragmentCompat大更新，有望在1.4.0中实现“导航”功能
+  - LiveData支持感知生命周期
+  - 2020-09-27 21:29
+
++ v1.3.0
+  - 优化Anna
+  - 将部分不符合规范的类名进行的更改
+  - 提升运行效率（感知不强）
+  - 大量细节优化
+  - 简化部分api
+  - 2020-09-17 23:19
+
++ v1.2.0
+  - 在构建ViewModel时支持向ViewModel传递参数
+  - 完成Anna的开发
+  - AppCompatActivity、FragmentCompat完美支持注解
+  - 细节优化
+  - 修复bug
+  - 2020-09-01 23:21
+
++ v1.1.0
+  - 大改项目架构，更加符合代码规范
+  - 新增design组件库，支持BottomNavigationBar、FragmentPage、MusicView三大控件
+  - 新增FragmentCompat，默认实现LifecycleAbstract，支持获取ViewModel
+  - Anna雏形
+  - MutableLiveData与LiveData互相转换
+  - ViewModel支持获取Context
+  - 添加注解
+  - 修复bug
+  - 2020-08-29 23:37
+
++ v1.0
+  - 更名为MandySaX
+  - 完成生命周期组件ViewModel、LiveData、Lifecycle三个主要组件
+  - 2020-07-26 19:25

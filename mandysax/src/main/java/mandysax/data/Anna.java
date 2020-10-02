@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 public class Anna
 {
-	
+
 	private Callback<Object> callback;
 	private Class cls;
 	private String url=getUrl();
@@ -31,9 +31,10 @@ public class Anna
 		this.url = url;
 		return this;
 	}
-	
-	public Anna addUrl(String url){
-		this.url=this.url+url;
+
+	public Anna addUrl(String url)
+	{
+		this.url = this.url + url;
 		return this;
 	}
 
@@ -42,15 +43,17 @@ public class Anna
 		this.key = key;
 		return this;
 	}
-	
-	protected String getUrl(){
+
+	protected String getUrl()
+	{
 		return "";
 	}
-	
-	protected String[] getKeyword(){
+
+	protected String[] getKeyword()
+	{
 		return null;
 	}
-	
+
 	public <E extends Class,T> Anna enqueue(E cls, Callback<T> callback)
 	{
 		this.callback = (Callback<Object>) callback;
@@ -76,25 +79,25 @@ public class Anna
 									{
 										for (int i = 0;i < json.length();i++)
 										{
-											callback.onSuccess(new CallFactory().create(cls, json.getString(i)));
+											callback.onStart(new CallFactory().create(cls, json.getString(i)));
 										}
-										callback.onEnd();
+										callback.onEnd(false);
 									}
-									else callback.onFailure();
+									else callback.onEnd(true);
 									break;
 								case "STRING":		
-									callback.onSuccess(new CallFactory().create(cls, get));
-									callback.onEnd();
+									callback.onStart(new CallFactory().create(cls, get));
+									callback.onEnd(false);
 									break;
 								default:
-									callback.onFailure();
+									callback.onEnd(true);
 									break;
 							}
-						else callback.onFailure();
+						else callback.onEnd(true);
 					}
 					catch (Exception e)
 					{
-
+						callback.onEnd(true);
 					}
 				}
 
@@ -112,7 +115,8 @@ public class Anna
 				content = new JSONObject(content).optString(string);
 			}
 			catch (JSONException e)
-			{}
+			{
+			}
 		}
 		return content;
 	}
@@ -131,14 +135,15 @@ public class Anna
             HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();   
 			connection.setRequestMethod("GET");   
             if (connection.getResponseCode() == 200)         
-                return inputStream2String(connection.getInputStream());  
-			return null;       
+                return inputStream2String(connection.getInputStream());       
         }
         catch (Exception e)
 		{
 			return null;
 		}
-    }
+		
+		return null;
+	}
 
 	private static String inputStream2String(InputStream is) throws IOException
     {

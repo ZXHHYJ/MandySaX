@@ -2,7 +2,6 @@ package mandysax.data;
 
 public interface Callback<T>
 {
-	public void onSuccess(T decodeStream);
-	public void onFailure();
-	public void onEnd();
+	public void onStart(T decodeStream);
+	public void onEnd(boolean bug);
 }
