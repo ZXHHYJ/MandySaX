@@ -65,7 +65,7 @@ public abstract class LiveData <T extends Object>
 				});
 	}
 
-	private class LiveDataCallBack extends Handler 
+	protected class LiveDataCallBack extends Handler 
 	{
 		@Override
 		public void handleMessage(Message msg)

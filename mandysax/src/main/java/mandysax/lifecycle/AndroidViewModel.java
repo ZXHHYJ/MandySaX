@@ -3,22 +3,17 @@ import android.content.Context;
 
 class AndroidViewModel
 {
-	private static Context application;
-	
+	private static Context mApplication;
+
+	protected Context getApplication()
 	{
-		DataEnum.VIEWMODEL.put(getClass().getCanonicalName(), this);
+		return mApplication;
 	}
-	
-	public Context getApplication(){
-		return application;
+
+	protected static void init(Context context)
+	{
+		if (mApplication == null)
+			mApplication = context;
 	}
-	
-	public static void init(Context con){
-		application=con;
-	}
-	
-	public void onCleared(){
-		DataEnum.VIEWMODEL.remove(getClass().getCanonicalName());
-	}
-	
+
 }

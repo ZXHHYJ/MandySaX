@@ -2,36 +2,21 @@ package mandysax.lifecycle;
 
 public final class ViewModelLifecycle
 {
-	private final Lifecycle lifecycle;
+	private final ViewModelStore mViewModelStore;
 
-	private final Factory factory;
+	private final Factory mFactory;
 
-	public ViewModelLifecycle(final LifecycleOwner lifecycle)
+	public ViewModelLifecycle(final AppCompatActivity activity, final Factory factory)
 	{
-		this.lifecycle = lifecycle.getLifecycle();
-		this.factory = null;
+		this.mViewModelStore = activity.getViewModelStore();
+		this.mFactory = factory;
 	}
 
-	public ViewModelLifecycle(final LifecycleOwner lifecycle, Factory factory)
+	public <T extends ViewModel> T get(final Class<T> name)
 	{
-		this.lifecycle = lifecycle.getLifecycle();
-		this.factory = factory;
-	}
-
-	public <T extends ViewModel> T  get(final Class<T> name)
-	{
-		lifecycle.addObsever(new LifecycleObserver(){
-
-				@Override
-				public void Observer(Lifecycle.Event State)
-				{
-					if(State==Lifecycle.Event.ON_KILL)
-					((ViewModel)DataEnum.VIEWMODEL.get(name.getCanonicalName())).onCleared();
-				}
-			
-		});
-		T viewmodel;
-		return (viewmodel = (T)DataEnum.VIEWMODEL.get(name.getCanonicalName())) == null ?factory == null ? new ViewModelFactory().create(name): factory.create(name): viewmodel;
+		T viewmodel=(viewmodel = (T)mViewModelStore.get(name)) == null ?mFactory == null ? new ViewModelFactory().create(name): mFactory.create(name): viewmodel;
+		mViewModelStore.put(name,viewmodel);
+		return viewmodel;
 	}
 
 	final class ViewModelFactory implements Factory

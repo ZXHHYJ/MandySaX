@@ -8,12 +8,6 @@
 package mandysax;
 
 public final class R {
-    public static final class anim {
-        public static int slide_left_in=0x7f050000;
-        public static int slide_left_out=0x7f050001;
-        public static int slide_right_in=0x7f050002;
-        public static int slide_right_out=0x7f050003;
-    }
     public static final class attr {
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
@@ -72,25 +66,25 @@ containing a value of this type.
         public static int textUnCheckedColor=0x7f010005;
     }
     public static final class color {
-        public static int notification_bg=0x7f060000;
+        public static int notification_bg=0x7f050000;
     }
     public static final class drawable {
         public static int round_layout=0x7f020000;
         public static int singer=0x7f020001;
     }
     public static final class id {
-        public static int check_show_text=0x7f070000;
-        public static int fragmentpageFrameLayout1=0x7f070005;
-        public static int fragmentpageFrameLayout2=0x7f070004;
-        public static int fragmentpageLinearLayout1=0x7f070006;
-        public static int mandysamusicviewImageView1=0x7f070008;
-        public static int mandysamusicviewImageView2=0x7f07000b;
-        public static int mandysamusicviewTextView1=0x7f070009;
-        public static int musicviewLinearLayout1=0x7f070007;
-        public static int musicviewProgressBar1=0x7f07000a;
-        public static int no_image=0x7f070001;
-        public static int no_text=0x7f070002;
-        public static int normal=0x7f070003;
+        public static int check_show_text=0x7f060000;
+        public static int fragmentpageFrameLayout1=0x7f060005;
+        public static int fragmentpageFrameLayout2=0x7f060004;
+        public static int fragmentpageLinearLayout1=0x7f060006;
+        public static int mandysamusicviewImageView1=0x7f060008;
+        public static int mandysamusicviewImageView2=0x7f06000b;
+        public static int mandysamusicviewTextView1=0x7f060009;
+        public static int musicviewLinearLayout1=0x7f060007;
+        public static int musicviewProgressBar1=0x7f06000a;
+        public static int no_image=0x7f060001;
+        public static int no_text=0x7f060002;
+        public static int normal=0x7f060003;
     }
     public static final class layout {
         public static int fragment_page=0x7f040000;

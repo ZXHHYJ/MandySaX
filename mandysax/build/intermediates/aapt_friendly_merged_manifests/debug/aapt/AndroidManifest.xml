@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mandysax" >
+
+    <application>
+        <provider
+            android:name="mandysax.lifecycle.LifecycleContentProvider"
+            android:authorities="dollar_openBracket_applicationId_closeBracket.MandySa" />
+    </application>
+
+</manifest>

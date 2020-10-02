@@ -27,6 +27,7 @@
 		android:roundIcon="@mipmap/ic_launcher_round">
 
 		<activity
+			android:windowSoftInputMode="adjustPan|stateHidden"
 			android:name=".ui.MainActivity"
 			android:configChanges="uiMode"
 			android:launchMode="singleTask">

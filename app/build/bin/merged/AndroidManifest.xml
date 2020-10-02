@@ -27,7 +27,8 @@
         <activity
             android:name="com.FMJJ.MandySa.ui.MainActivity"
             android:configChanges="uiMode"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

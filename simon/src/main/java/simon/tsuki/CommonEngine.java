@@ -7,29 +7,27 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import simon.tuke.Tuke;
 
-public class CommonEngine implements Tsuki.Engine
-{
+public class CommonEngine implements Tsuki.Engine {
     private boolean disk,memory;
-    public CommonEngine(boolean isdiskcache,boolean ismemorycache){
-        this.disk=isdiskcache;
-        this.memory=ismemorycache;
+    public CommonEngine(boolean isdiskcache, boolean ismemorycache) {
+        this.disk = isdiskcache;
+        this.memory = ismemorycache;
     }
     @Override
-    public Bitmap getBitmap(Tsuki.TsukiTask task)
-    {
+    public Bitmap getBitmap(Tsuki.TsukiTask task) {
         Bitmap bmp = null;
-        if(memory)
-         bmp=MemoryCache.Common.getBitmapFromMemCache(task.getUrl());
-        if(bmp!=null)
-         return bmp;
-        if(disk)
-        bmp=Tuke.getBitmap(task.getUrl(),null);
-        if(bmp!=null)
-         return bmp;
+        if (memory)
+			bmp = MemoryCache.Common.getBitmapFromMemCache(task.getUrl());
+        if (bmp != null)
+			return bmp;
+        if (disk)
+			bmp = Tuke.getBitmap(task.getUrl(), null);
+        if (bmp != null)
+			return bmp;
         return webget(task);
     }
-    private Bitmap webget(Tsuki.TsukiTask task){
-       Bitmap bmp;
+    private Bitmap webget(Tsuki.TsukiTask task) {
+		Bitmap bmp;
         try {
             URL myurl = new URL(task.getUrl());
             // 获得连接
@@ -40,18 +38,17 @@ public class CommonEngine implements Tsuki.Engine
             conn.connect();
             InputStream is = conn.getInputStream();//获得图片的数据流
             bmp = BitmapFactory.decodeStream(is);//读取图像数据
-            if(disk)
-                Tuke.write(task.getUrl(),bmp);
-            if(memory)
-                MemoryCache.Common.addBitmapToMemoryCache(task.getUrl(),bmp);
+            if (disk)
+                Tuke.write(task.getUrl(), bmp);
+            if (memory)
+                MemoryCache.Common.addBitmapToMemoryCache(task.getUrl(), bmp);
             is.close();
             return bmp;
         } catch (Exception e) {
             return task.getErrorBitmap();
         }
     }
-    public enum MemoryCache
-    {
+    enum MemoryCache {
         Common();
         private static LruCache<String, Bitmap> mMemoryCache;
         public  static void setMaxCache(int max){
@@ -65,7 +62,7 @@ public class CommonEngine implements Tsuki.Engine
                 }
             };
         }
-        public MemoryCache(){
+        MemoryCache(){
             refresh((int)(Runtime.getRuntime().maxMemory() / 1024));
         }
         //添加Bitmap到内存缓存中去

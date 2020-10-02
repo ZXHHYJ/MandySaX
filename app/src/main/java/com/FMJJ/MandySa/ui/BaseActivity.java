@@ -1,5 +1,6 @@
 package com.FMJJ.MandySa.ui;
 import android.content.res.Configuration;
+import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.view.View;
 import mandysax.lifecycle.AppCompatActivity;
@@ -8,6 +9,7 @@ public class BaseActivity extends AppCompatActivity
 {
 	private void setAndroidNativeLightStatusBar()
 	{
+		if (VERSION.SDK_INT < 23)return;
 		View decor = getWindow().getDecorView();
 		int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
@@ -31,7 +33,6 @@ public class BaseActivity extends AppCompatActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
 		setAndroidNativeLightStatusBar();
 	}

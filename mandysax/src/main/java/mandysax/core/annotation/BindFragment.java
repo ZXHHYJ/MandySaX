@@ -5,6 +5,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface BindFragment
 {
-	int value()
+	int value();
 }
 

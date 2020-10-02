@@ -1,3 +1,9 @@
 package mandysax.lifecycle;
 
-public class ViewModel extends AndroidViewModel{}
+public abstract class ViewModel extends AndroidViewModel
+{
+	protected void onCleared()
+	{
+		
+	}
+}

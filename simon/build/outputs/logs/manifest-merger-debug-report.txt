@@ -1,0 +1,19 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml:2:1-9:12
+	package
+		ADDED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml:3:2-17
+		INJECTED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml
+		INJECTED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml:4:2-8:16
+provider#simon.tuke.TukeInit
+ADDED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml:5:3-7:40
+	android:authorities
+		ADDED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml:6:4-47
+	android:name
+		ADDED from /storage/emulated/0/AppProjects/MandySa/simon/src/main/AndroidManifest.xml:7:4-38

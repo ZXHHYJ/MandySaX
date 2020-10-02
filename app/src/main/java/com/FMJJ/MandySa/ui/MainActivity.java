@@ -6,7 +6,6 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
-import android.view.KeyEvent;
 import android.view.View;
 import androidx.annotation.NonNull;
 import com.FMJJ.MandySa.R;
@@ -25,8 +24,7 @@ import mandysax.lifecycle.ViewModelProviders;
 public class MainActivity extends BaseActivity
 {
 
-	private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
+	private MainViewModel viewModel;
 	@BindView
 	private FragmentPage mainFragmentPage;
 
@@ -59,6 +57,7 @@ public class MainActivity extends BaseActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		viewModel=ViewModelProviders.of(this).get(MainViewModel.class);
 		mMediaBrowserHelper = new MediaBrowserConnection(this);
         mMediaBrowserHelper.registerCallback(new MediaBrowserListener());
 		initFragment();
@@ -89,7 +88,7 @@ public class MainActivity extends BaseActivity
 
 	private void initFragment()
 	{
-		mainFragmentPage.add(HomeFragment.class, LiveFragment.class, SearchFragment.class, MyFragment.class);
+		mainFragmentPage.add(HomeFragment.class, LiveFragment.class, SearchListFragment.class, MyFragment.class);
 		mainFragmentPage.showFragment(viewModel.index);
 		mainBottomNavigationBar.setTextColorRes(R.color.theme_color);
         mainBottomNavigationBar.addItemView(getString(R.string.home), R.mipmap.ic_music, R.mipmap.ic_music_black);
@@ -107,16 +106,7 @@ public class MainActivity extends BaseActivity
 			});
 	}
 
-	@Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-	{
-        if (keyCode == KeyEvent.KEYCODE_BACK)
-		{
-            moveTaskToBack(true);
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+	
 
 	private class MediaBrowserConnection extends MediaBrowserHelper
 	{

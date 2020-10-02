@@ -2,7 +2,7 @@ package simon.tuke;
 import android.graphics.*;
 import java.io.*;
 
-public class DiskCache {
+final class DiskCache {
 	File mfile;
 	public DiskCache(String name,String mpath) {
 		path=mpath;basename=name;

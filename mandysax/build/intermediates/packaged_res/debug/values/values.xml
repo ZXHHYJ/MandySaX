@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="notification_bg">#e91e63</color>
+    <declare-styleable name="BottomNavigationBar">
+        <attr format="enum" name="show_type">
+            <enum name="normal" value="0"/>
+            <enum name="no_text" value="1"/>
+            <enum name="no_image" value="2"/>
+            <enum name="check_show_text" value="3"/>
+        </attr>
+        <attr format="color" name="textCheckedColor"/>
+        <attr format="color" name="textUnCheckedColor"/>
+    </declare-styleable>
+    <declare-styleable name="FragmentPage">  
+        <attr format="boolean" name="navigationbar_top"/>  
+        <attr format="boolean" name="always_show"/>  
+		<attr format="boolean" name="always_bottom"/>
+	</declare-styleable>
+</resources>

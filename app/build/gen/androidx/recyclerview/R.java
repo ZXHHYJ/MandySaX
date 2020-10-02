@@ -11,10 +11,6 @@ public final class R {
     public static final class anim {
         public static final int bottom_in=0x7f050000;
         public static final int bottom_out=0x7f050001;
-        public static final int slide_left_in=0x7f050002;
-        public static final int slide_left_out=0x7f050003;
-        public static final int slide_right_in=0x7f050004;
-        public static final int slide_right_out=0x7f050005;
     }
     public static final class attr {
         /**  Alpha multiplier applied to the base color. 
@@ -349,24 +345,25 @@ containing a value of this type.
     }
     public static final class drawable {
         public static final int button=0x7f020000;
-        public static final int notification_action_background=0x7f020001;
-        public static final int notification_bg=0x7f020002;
-        public static final int notification_bg_low=0x7f020003;
-        public static final int notification_bg_low_normal=0x7f020004;
-        public static final int notification_bg_low_pressed=0x7f020005;
-        public static final int notification_bg_normal=0x7f020006;
-        public static final int notification_bg_normal_pressed=0x7f020007;
-        public static final int notification_icon_background=0x7f020008;
-        public static final int notification_template_icon_bg=0x7f020011;
-        public static final int notification_template_icon_low_bg=0x7f020012;
-        public static final int notification_tile_bg=0x7f020009;
-        public static final int notify_panel_notification_icon_bg=0x7f02000a;
-        public static final int round_edit=0x7f02000b;
-        public static final int round_layout=0x7f02000c;
-        public static final int singer=0x7f02000d;
-        public static final int twotone_arrow_back_black_24dp=0x7f02000e;
-        public static final int twotone_search_black_24dp=0x7f02000f;
-        public static final int twotone_star_black_24dp=0x7f020010;
+        public static final int image_1=0x7f020001;
+        public static final int notification_action_background=0x7f020002;
+        public static final int notification_bg=0x7f020003;
+        public static final int notification_bg_low=0x7f020004;
+        public static final int notification_bg_low_normal=0x7f020005;
+        public static final int notification_bg_low_pressed=0x7f020006;
+        public static final int notification_bg_normal=0x7f020007;
+        public static final int notification_bg_normal_pressed=0x7f020008;
+        public static final int notification_icon_background=0x7f020009;
+        public static final int notification_template_icon_bg=0x7f020012;
+        public static final int notification_template_icon_low_bg=0x7f020013;
+        public static final int notification_tile_bg=0x7f02000a;
+        public static final int notify_panel_notification_icon_bg=0x7f02000b;
+        public static final int round_edit=0x7f02000c;
+        public static final int round_layout=0x7f02000d;
+        public static final int singer=0x7f02000e;
+        public static final int twotone_arrow_back_black_24dp=0x7f02000f;
+        public static final int twotone_search_black_24dp=0x7f020010;
+        public static final int twotone_star_black_24dp=0x7f020011;
     }
     public static final class id {
         public static final int accessibility_action_clickable_span=0x7f070001;
@@ -447,15 +444,17 @@ containing a value of this type.
         public static final int notification_background=0x7f07005a;
         public static final int notification_main_column=0x7f070053;
         public static final int notification_main_column_container=0x7f070052;
-        public static final int pad_mode=0x7f070063;
-        public static final int phone_mode=0x7f070062;
+        public static final int pad_mode=0x7f070065;
+        public static final int phone_mode=0x7f070064;
         public static final int recommendfragmentButton1=0x7f07003b;
         public static final int right_icon=0x7f070059;
         public static final int right_side=0x7f070054;
-        public static final int searchEditText1=0x7f07005e;
-        public static final int searchImageView1=0x7f07005f;
-        public static final int searchfragmentRecyclerView1=0x7f070061;
-        public static final int searchfragmentSwipeRefreshLayout1=0x7f070060;
+        public static final int searchEditText1=0x7f070060;
+        public static final int searchImageView1=0x7f070061;
+        public static final int searchfragmentEditText1=0x7f07005e;
+        public static final int searchfragmentImageView1=0x7f07005f;
+        public static final int searchfragmentRecyclerView1=0x7f070063;
+        public static final int searchfragmentSwipeRefreshLayout1=0x7f070062;
         public static final int status_bar_latest_event_content=0x7f07004f;
         public static final int tag_accessibility_actions=0x7f070024;
         public static final int tag_accessibility_clickable_spans=0x7f070025;
@@ -501,7 +500,8 @@ containing a value of this type.
         public static final int notification_template_part_chronometer=0x7f040017;
         public static final int notification_template_part_time=0x7f040018;
         public static final int search_fragment=0x7f040019;
-        public static final int setting_fragment=0x7f04001a;
+        public static final int search_list_fragment=0x7f04001a;
+        public static final int setting_fragment=0x7f04001b;
     }
     public static final class menu {
         public static final int choose_mode=0x7f0c0000;

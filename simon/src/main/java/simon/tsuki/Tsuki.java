@@ -1,10 +1,10 @@
 package simon.tsuki;
+import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.ImageView;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import android.os.Handler;
-import android.os.Looper;
-import android.graphics.Bitmap;
 
 public class Tsuki
 {
@@ -116,9 +116,9 @@ public class Tsuki
         }
    }
   public interface Engine{
-       Bitmap getBitmap(TsukiTask task)
+       Bitmap getBitmap(TsukiTask task);
    }
   public interface Editor{
-      Bitmap EditBitmap(Bitmap oldBit,TsukiTask task)
+      Bitmap EditBitmap(Bitmap oldBit,TsukiTask task);
   }
 }

@@ -15,57 +15,98 @@ import mandysax.utils.FieldUtils;
 public class AppCompatActivity extends Activity implements LifecycleOwner
 {
 
-	private final Lifecycle lifecycle = new Lifecycle();
+	private final Lifecycle mLifecycle = new Lifecycle();
+
+	private ViewModelStore mViewModelStore;
+
+	private NonConfigurationInstances mLastNonConfigurationInstances;
+
+	public ViewModelStore getViewModelStore()
+	{
+        if (getApplication() != null)
+		{
+            if (mViewModelStore == null)
+			{
+                NonConfigurationInstances nonConfigurationInstances = (NonConfigurationInstances)getLastNonConfigurationInstance();
+                if (nonConfigurationInstances != null)
+                    mViewModelStore = nonConfigurationInstances.viewModelStore; 
+                if (mViewModelStore == null)
+                    mViewModelStore = new ViewModelStore(); 
+            } 
+            return this.mViewModelStore;
+        } 
+        throw new IllegalStateException("Your activity is not yet attached to the Application instance. You can't request ViewModel before onCreate call.");
+    }
+
+	@Override
+	public final Object onRetainNonConfigurationInstance()
+	{
+		if (mLastNonConfigurationInstances == null)
+		{
+			NonConfigurationInstances nci = new NonConfigurationInstances();
+			nci.viewModelStore = mViewModelStore;
+			return nci;
+		}
+		else return mLastNonConfigurationInstances;
+	}
+
+	@Override
+	public Object getLastNonConfigurationInstance()
+	{
+		return super.getLastNonConfigurationInstance();
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);	
+		System.out.println(getViewModelStore());
 		init(this);
-		DataEnum.LIFECYCLE.put(getClass().getCanonicalName(), lifecycle);
+		DataEnum.LIFECYCLE.put(getClass().getCanonicalName(), mLifecycle);
+		mLifecycle.onCreate();
 	}
 
 	@Override
 	public Lifecycle getLifecycle()
 	{
-		return lifecycle;
+		return mLifecycle;
 	}
 
 	@Override
 	protected void onStart()
 	{
 		super.onStart();
-		lifecycle.onStart();
+		mLifecycle.onStart();
 	}
 
 	@Override
 	protected void onResume()
 	{
 		super.onResume();
-		lifecycle.onResume();
+		mLifecycle.onResume();
 	}
 
 	@Override
 	protected void onPause()
 	{
 		super.onPause();
-		lifecycle.onPause();
+		mLifecycle.onPause();
 	}
 
 	@Override
 	protected void onStop()
 	{
 		super.onStop();
-		lifecycle.onStop();
+		mLifecycle.onStop();
 	}
 
 	@Override
 	protected void onDestroy()
 	{
 		super.onDestroy();
-		lifecycle.onDestory();
+		mLifecycle.onDestory();
 		if (!isChangingConfigurations())
-			lifecycle.onKill();
+			mViewModelStore.clear();
 		DataEnum.LIFECYCLE.remove(getClass().getCanonicalName());		
 	}
 
@@ -124,6 +165,9 @@ public class AppCompatActivity extends Activity implements LifecycleOwner
 				{
 				}
 	}
-
+	static final class NonConfigurationInstances
+	{
+		ViewModelStore viewModelStore;
+	}
 }
 

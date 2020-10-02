@@ -3,9 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 import mandysax.data.SafetyHashMap;
 
-final enum DataEnum
+enum DataEnum
 {
-	VIEWMODEL(new SafetyHashMap<String ,ViewModel>()),
 	LIFECYCLE(new SafetyHashMap<String ,Lifecycle>());
 	private final SafetyHashMap<String,Object> con;
 
@@ -42,41 +41,36 @@ public class Lifecycle
 			observer.Observer(State);
 	}
 	
-	public void onCreate(){
+	protected void onCreate(){
 		PostSate(Event.ON_CREATE);
 	}
 
-	public void onStart()
+	protected void onStart()
 	{
 		PostSate(Event.ON_START);
 	}
 
-	public void onResume()
+	protected void onResume()
 	{
 		PostSate(Event.ON_RESUME);
 	}
 
-	public void onPause()
+	protected void onPause()
 	{
 		PostSate(Event.ON_PAUSE);
 	}
 
-	public void onStop()
+	protected void onStop()
 	{
 		PostSate(Event.ON_STOP);
 	}
 
-	public void onDestory()
+	protected void onDestory()
 	{
 		PostSate(Event.ON_DESTORY);
 	}
 
-	protected void onKill()
-	{
-		PostSate(Event.ON_KILL);
-	}
-
-	public final enum Event
+	public enum Event
 	{
 		ON_CREATE,
 		ON_START,
@@ -84,7 +78,6 @@ public class Lifecycle
 		ON_PAUSE,
 		ON_STOP,
 		ON_DESTORY,
-		ON_KILL;
 	}
 
 }

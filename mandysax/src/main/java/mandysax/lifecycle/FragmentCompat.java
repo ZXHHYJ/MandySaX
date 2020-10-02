@@ -1,8 +1,5 @@
 package mandysax.lifecycle;
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
-import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,36 +13,37 @@ import mandysax.utils.FieldUtils;
 
 public class FragmentCompat extends Fragment implements LifecycleOwner,FragmentCompatImpl
 {
-	private final Lifecycle lifecycle = new Lifecycle();
+	private final Lifecycle mLifecycle = new Lifecycle();
 
-	private FragmentPage page;
+	private FragmentPage mPage;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		DataEnum.LIFECYCLE.put(getClass().getCanonicalName(), lifecycle);
+		DataEnum.LIFECYCLE.put(getClass().getCanonicalName(), mLifecycle);
+		mLifecycle.onCreate();
 	}
-	
+
 	@Override
 	public Lifecycle getLifecycle()
 	{
-		return lifecycle;
+		return mLifecycle;
 	}
 
 	@Override
 	public void setFragmentPage(FragmentPage page)
 	{
-		if(page==null)
-		this.page=page;
+		if (this.mPage == null)
+			this.mPage = page;
 	}
 
 	@Override
 	public void startFragment(Class fragment)
 	{
-		if(page!=null)page.startFragment(fragment);
+		if (mPage != null)mPage.startFragment(fragment);
 	}
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -53,65 +51,48 @@ public class FragmentCompat extends Fragment implements LifecycleOwner,FragmentC
 	}
 
 	@Override
-	public void onAttach(Activity activity)
-	{
-		super.onAttach(activity);
-		if(VERSION.SDK_INT<23)//兼容低版本
-					onAttach(activity);		
-	}
-
-	@Override
-	public void onAttach(Context context)
-	{
-		super.onAttach(context);
-		if (context instanceof AppCompatActivity)
-			((AppCompatActivity) context).getLifecycle().addObsever(new LifecycleObserver(){
-
-					@Override
-					public void Observer(Lifecycle.Event State)
-					{
-						if (State == Lifecycle.Event.ON_KILL)
-							FragmentCompat.this.lifecycle.onKill();
-					}
-				});
-	}
-
-	@Override
 	public void onStart()
 	{
 		super.onStart();
-		lifecycle.onStart();
+		mLifecycle.onStart();
 	}
 
 	@Override
 	public void onStop()
 	{
 		super.onStop();
-		lifecycle.onStop();
+		mLifecycle.onStop();
 	}
 
 	@Override
 	public void onResume()
 	{
 		super.onResume();
-		lifecycle.onResume();
+		mLifecycle.onResume();
 	}
 
 	@Override
 	public void onPause()
 	{
 		super.onPause();
-		lifecycle.onPause();
+		mLifecycle.onPause();
 	}
 
 	@Override
 	public void onDestroy()
 	{
 		super.onDestroy();
-		lifecycle.onDestory();
+		mLifecycle.onDestory();
 		DataEnum.LIFECYCLE.remove(getClass().getCanonicalName());
 	}
-	
+
+	@Override
+	public void onDetach()
+	{
+		super.onDetach();
+		mPage=null;
+	}
+
 	private final static View init(final Fragment mFragment)
 	{
 		final Class cls = mFragment.getClass();
