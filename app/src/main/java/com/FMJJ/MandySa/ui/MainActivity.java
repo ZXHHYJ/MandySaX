@@ -57,6 +57,7 @@ public class MainActivity extends BaseActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		getFragmentManager().beginTransaction();
 		viewModel=ViewModelProviders.of(this).get(MainViewModel.class);
 		mMediaBrowserHelper = new MediaBrowserConnection(this);
         mMediaBrowserHelper.registerCallback(new MediaBrowserListener());

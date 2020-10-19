@@ -510,18 +510,19 @@ containing a value of this type.
         public static final int ic_account_black=0x7f030001;
         public static final int ic_android_black_24dp=0x7f030002;
         public static final int ic_android_green_24dp=0x7f030003;
-        public static final int ic_cards_heart=0x7f030004;
-        public static final int ic_cards_heart_black=0x7f030005;
-        public static final int ic_launcher=0x7f030006;
-        public static final int ic_launcher_round=0x7f030007;
-        public static final int ic_magnify_outline=0x7f030008;
-        public static final int ic_magnify_outline_black=0x7f030009;
-        public static final int ic_music=0x7f03000a;
-        public static final int ic_music_black=0x7f03000b;
-        public static final int ic_pause=0x7f03000c;
-        public static final int ic_play=0x7f03000d;
-        public static final int ic_skip_next_outline=0x7f03000e;
-        public static final int ic_skip_previous_outline=0x7f03000f;
+        public static final int ic_baseline_arrow_back_24dp=0x7f030004;
+        public static final int ic_cards_heart=0x7f030005;
+        public static final int ic_cards_heart_black=0x7f030006;
+        public static final int ic_launcher=0x7f030007;
+        public static final int ic_launcher_round=0x7f030008;
+        public static final int ic_magnify_outline=0x7f030009;
+        public static final int ic_magnify_outline_black=0x7f03000a;
+        public static final int ic_music=0x7f03000b;
+        public static final int ic_music_black=0x7f03000c;
+        public static final int ic_pause=0x7f03000d;
+        public static final int ic_play=0x7f03000e;
+        public static final int ic_skip_next_outline=0x7f03000f;
+        public static final int ic_skip_previous_outline=0x7f030010;
     }
     public static final class string {
         public static final int app_name=0x7f080001;
@@ -532,9 +533,10 @@ containing a value of this type.
         public static final int status_bar_notification_info_overflow=0x7f080000;
     }
     public static final class style {
-        public static final int AppButton=0x7f0a000d;
-        public static final int AppTheme=0x7f0a000c;
-        public static final int AppTitle=0x7f0a000e;
+        public static final int AppButton=0x7f0a000f;
+        public static final int AppTheme=0x7f0a000e;
+        public static final int AppTitle=0x7f0a000d;
+        public static final int AppUniversal=0x7f0a000c;
         public static final int TextAppearance_Compat_Notification=0x7f0a0000;
         public static final int TextAppearance_Compat_Notification_Info=0x7f0a0001;
         public static final int TextAppearance_Compat_Notification_Info_Media=0x7f0a0007;

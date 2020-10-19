@@ -11,11 +11,4 @@
 		<item name="android:background">@drawable/button</item>
 	</style>
 	
-	<style name="AppTitle" parent="@android:style/Widget.Material">
-		<item name="android:textSize">22sp</item>
-		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
-		<item name="android:layout_marginLeft">10dp</item>
-		<item name="android:layout_marginTop">5dp</item>
-	</style>
-	
 </resources>

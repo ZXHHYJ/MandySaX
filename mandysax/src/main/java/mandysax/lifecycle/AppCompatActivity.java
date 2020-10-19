@@ -1,6 +1,6 @@
 package mandysax.lifecycle;
 import android.app.Activity;
-import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -12,101 +12,26 @@ import mandysax.core.annotation.BindView;
 import mandysax.design.FragmentPage;
 import mandysax.utils.FieldUtils;
 
-public class AppCompatActivity extends Activity implements LifecycleOwner
+public class AppCompatActivity extends FragmentActivity
 {
-
-	private final Lifecycle mLifecycle = new Lifecycle();
-
-	private ViewModelStore mViewModelStore;
-
-	private NonConfigurationInstances mLastNonConfigurationInstances;
-
-	public ViewModelStore getViewModelStore()
-	{
-        if (getApplication() != null)
-		{
-            if (mViewModelStore == null)
-			{
-                NonConfigurationInstances nonConfigurationInstances = (NonConfigurationInstances)getLastNonConfigurationInstance();
-                if (nonConfigurationInstances != null)
-                    mViewModelStore = nonConfigurationInstances.viewModelStore; 
-                if (mViewModelStore == null)
-                    mViewModelStore = new ViewModelStore(); 
-            } 
-            return this.mViewModelStore;
-        } 
-        throw new IllegalStateException("Your activity is not yet attached to the Application instance. You can't request ViewModel before onCreate call.");
-    }
-
-	@Override
-	public final Object onRetainNonConfigurationInstance()
-	{
-		if (mLastNonConfigurationInstances == null)
-		{
-			NonConfigurationInstances nci = new NonConfigurationInstances();
-			nci.viewModelStore = mViewModelStore;
-			return nci;
-		}
-		else return mLastNonConfigurationInstances;
-	}
-
-	@Override
-	public Object getLastNonConfigurationInstance()
-	{
-		return super.getLastNonConfigurationInstance();
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		super.onCreate(savedInstanceState);	
+		super.onCreate(savedInstanceState);
 		init(this);
-		DataEnum.LIFECYCLE.put(getClass().getCanonicalName(), mLifecycle);
-		mLifecycle.onCreate();
 	}
 
 	@Override
-	public Lifecycle getLifecycle()
+	public void startActivity(Intent intent)
 	{
-		return mLifecycle;
+		super.startActivity(intent);
 	}
 
 	@Override
-	protected void onStart()
+	public void startActivity(Intent intent, Bundle options)
 	{
-		super.onStart();
-		mLifecycle.onStart();
-	}
-
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
-		mLifecycle.onResume();
-	}
-
-	@Override
-	protected void onPause()
-	{
-		super.onPause();
-		mLifecycle.onPause();
-	}
-
-	@Override
-	protected void onStop()
-	{
-		super.onStop();
-		mLifecycle.onStop();
-	}
-
-	@Override
-	protected void onDestroy()
-	{
-		super.onDestroy();
-		mLifecycle.onDestory();
-		if (!isChangingConfigurations())
-			mViewModelStore.clear();
-		DataEnum.LIFECYCLE.remove(getClass().getCanonicalName());		
+		super.startActivity(intent, options);
 	}
 
 	private final static void init(final Activity mActivity)
@@ -115,12 +40,12 @@ public class AppCompatActivity extends Activity implements LifecycleOwner
 		if (cls.isAnnotationPresent(BindLayoutId.class))
 			try
 			{  
-                Method setContentViewMethod = cls.getMethod("setContentView", int.class);   
-                setContentViewMethod.invoke(mActivity, ((BindLayoutId)cls.getAnnotation(BindLayoutId.class)).value());
-            }
+				Method setContentViewMethod = cls.getMethod("setContentView", int.class);   
+				setContentViewMethod.invoke(mActivity, ((BindLayoutId)cls.getAnnotation(BindLayoutId.class)).value());
+			}
 			catch ( Exception e )
 			{  
-            }
+			}
 		for (Field field : cls.getDeclaredFields())
 			if (field.isAnnotationPresent(BindView.class))
 			{
@@ -145,10 +70,10 @@ public class AppCompatActivity extends Activity implements LifecycleOwner
 				try
 				{
 					BindFragment ffbt = field.getAnnotation(BindFragment.class);		
-					Fragment fragment=mActivity.getFragmentManager().findFragmentByTag(field.getName());
+					android.app.Fragment fragment=mActivity.getFragmentManager().findFragmentByTag(field.getName());
 					if (fragment == null)
 					{
-						fragment = (Fragment) Class.forName(field.getType().getName()).newInstance();
+						fragment = (android.app.Fragment) Class.forName(field.getType().getName()).newInstance();
 						FieldUtils.setField(field, mActivity, fragment);
 						if (!fragment.isAdded() && mActivity.findViewById(ffbt.value()) instanceof FragmentPage)
 							mActivity.getFragmentManager().beginTransaction().add(R.id.fragmentpageFrameLayout1, fragment, field.getName()).hide(fragment).commit();		
@@ -164,9 +89,5 @@ public class AppCompatActivity extends Activity implements LifecycleOwner
 				{
 				}
 	}
-	static final class NonConfigurationInstances
-	{
-		ViewModelStore viewModelStore;
-	}
-}
 
+}

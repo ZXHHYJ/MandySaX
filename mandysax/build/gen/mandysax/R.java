@@ -73,18 +73,18 @@ containing a value of this type.
         public static int singer=0x7f020001;
     }
     public static final class id {
-        public static int check_show_text=0x7f060000;
-        public static int fragmentpageFrameLayout1=0x7f060005;
-        public static int fragmentpageFrameLayout2=0x7f060004;
-        public static int fragmentpageLinearLayout1=0x7f060006;
-        public static int mandysamusicviewImageView1=0x7f060008;
-        public static int mandysamusicviewImageView2=0x7f06000b;
-        public static int mandysamusicviewTextView1=0x7f060009;
-        public static int musicviewLinearLayout1=0x7f060007;
-        public static int musicviewProgressBar1=0x7f06000a;
-        public static int no_image=0x7f060001;
-        public static int no_text=0x7f060002;
-        public static int normal=0x7f060003;
+        public static int check_show_text=0x7f070000;
+        public static int fragmentpageFrameLayout1=0x7f070005;
+        public static int fragmentpageFrameLayout2=0x7f070004;
+        public static int fragmentpageLinearLayout1=0x7f070006;
+        public static int mandysamusicviewImageView1=0x7f070008;
+        public static int mandysamusicviewImageView2=0x7f07000b;
+        public static int mandysamusicviewTextView1=0x7f070009;
+        public static int musicviewLinearLayout1=0x7f070007;
+        public static int musicviewProgressBar1=0x7f07000a;
+        public static int no_image=0x7f070001;
+        public static int no_text=0x7f070002;
+        public static int normal=0x7f070003;
     }
     public static final class layout {
         public static int fragment_page=0x7f040000;
@@ -93,8 +93,13 @@ containing a value of this type.
     public static final class mipmap {
         public static int ic_android_black_24dp=0x7f030000;
         public static int ic_android_green_24dp=0x7f030001;
-        public static int ic_pause=0x7f030002;
-        public static int ic_play=0x7f030003;
+        public static int ic_baseline_arrow_back_24dp=0x7f030002;
+        public static int ic_pause=0x7f030003;
+        public static int ic_play=0x7f030004;
+    }
+    public static final class style {
+        public static int AppTitle=0x7f060001;
+        public static int AppUniversal=0x7f060000;
     }
     public static final class styleable {
         /** Attributes that can be used with a BottomNavigationBar.

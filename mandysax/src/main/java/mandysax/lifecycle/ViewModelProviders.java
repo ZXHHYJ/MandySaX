@@ -12,12 +12,12 @@ public final class ViewModelProviders
 		return new ViewModelLifecycle(activity, factory);
 	}
 
-	public static ViewModelLifecycle of(FragmentCompat fragment)
+	public static ViewModelLifecycle of(Fragment fragment)
 	{	
 		return new ViewModelLifecycle((AppCompatActivity)fragment.getActivity(), null);
 	}
 
-	public static ViewModelLifecycle of(FragmentCompat fragment, Factory factory)
+	public static ViewModelLifecycle of(Fragment fragment, Factory factory)
 	{	
 		return new ViewModelLifecycle((AppCompatActivity)fragment.getActivity(), factory);
 	}

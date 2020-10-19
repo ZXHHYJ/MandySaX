@@ -11,15 +11,11 @@ import mandysax.lifecycle.LiveData;
 import mandysax.lifecycle.MutableLiveData;
 import mandysax.lifecycle.ViewModel;
 import org.json.JSONException;
-import android.widget.Toast;
 
 public class SearchViewModel extends ViewModel
 {
-	
-	public static int BUG=2;
-	
-	public static int LOAD=0;
 
+	//只将不可变的livedata暴露，可以更加保证数据的封装性
 	private final MutableLiveData<List<MediaMetadataCompat>> _song_search = new MutableLiveData<List<MediaMetadataCompat>>();
 
 	public final LiveData<List<MediaMetadataCompat>> song_search = _song_search;
@@ -28,16 +24,12 @@ public class SearchViewModel extends ViewModel
 
 	public final LiveData<List<MediaMetadataCompat>> song_bottom = _song_bottom;
 
-	private final MutableLiveData<Integer> _status = new MutableLiveData<Integer>();
-	
-	public final LiveData<Integer>  status=_status;
-	
 	public final List<MediaMetadataCompat> song_list = new ArrayList<MediaMetadataCompat>();
 
 	private int song_page = 1;
 
-	private String song_name="";
-	
+	private String song_name;
+
 	private void search_song(final String name, final int page)
 	{
 		song_name = name;
@@ -49,14 +41,8 @@ public class SearchViewModel extends ViewModel
 				@Override
 				public void onEnd(boolean bug)
 				{
-					if(!bug){
-					if (page == 1)
-					{
-						_song_search.postValue(list);
-					}
-					else _song_bottom.postValue(list);
-					}
-					else _status.postValue(BUG);
+					if(bug)list=null;//告诉观察者网络出错了
+					(page == 1 ?_song_search: _song_bottom).postValue(list);
 				}
 
 				@Override
@@ -68,9 +54,9 @@ public class SearchViewModel extends ViewModel
 						{
 							try
 							{
-								if(i!=0)
-									singer+="/";
-								singer +=decodeStream.artists.getJSONObject(i).getString("name");
+								if (i != 0)
+									singer += "/";
+								singer += decodeStream.artists.getJSONObject(i).getString("name");
 							}
 							catch (JSONException e)
 							{}
@@ -80,15 +66,11 @@ public class SearchViewModel extends ViewModel
 
 			}).start();
 	}
-	
-	public String getSearchName(){
-		return song_name;
-	}
 
 	public void song_search(String name)
 	{
-		_status.setValue(LOAD);
-		if (name == null)name = song_name;
+		if (name == null)name = song_name;//name=null代表刷新操作
+		if(name==null)return;//如果还是null就不执行任何操作
 		song_page = 1;
 		search_song(name, song_page);
 	}

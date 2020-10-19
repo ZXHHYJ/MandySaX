@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:12
+-keep class simon.tuke.TukeInit { <init>(...); }
+

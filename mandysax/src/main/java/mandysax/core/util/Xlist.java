@@ -5,11 +5,11 @@ import mandysax.data.SafetyHashMap;
 
 public class Xlist<E extends Object> implements XlistImpl
 {
-	private int[] key=new int[0];
+	private int[] key=new int[0];//key数组
 
-	private E old_data;
+	private E old_data;//旧数据
 
-	private final SafetyHashMap<Integer,E> map=new SafetyHashMap<Integer,E>();
+	private final SafetyHashMap<Integer,E> map=new SafetyHashMap<Integer,E>();//存储的数据
 
 	@Override
 	public E add(E... p1)
@@ -24,6 +24,14 @@ public class Xlist<E extends Object> implements XlistImpl
 	@Override
 	public E add(int p1, E p2)
 	{
+		for (int i=0;i < key.length;i++)
+		{
+			if (p2.hashCode() == key[i])
+			{
+				remove(p1);
+				return add(p2);	
+			}
+		}
 		if (p2 == null)throw new NullPointerException("Cannot add null");
 		if (p1 > key.length)
 		{

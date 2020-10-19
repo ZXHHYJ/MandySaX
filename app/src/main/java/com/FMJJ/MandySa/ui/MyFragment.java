@@ -1,9 +1,24 @@
 package com.FMJJ.MandySa.ui;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import com.FMJJ.MandySa.R;
-import mandysax.core.annotation.BindLayoutId;
-import mandysax.lifecycle.FragmentCompat;
+import mandysax.lifecycle.Fragment;
 
-@BindLayoutId(R.layout.my_fragment)
-public class MyFragment extends FragmentCompat
+public class MyFragment extends Fragment
 {
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container)
+	{
+		return inflater.inflate(R.layout.my_fragment,container,false);
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);
+	}
+	
 }

@@ -7,12 +7,11 @@ import mandysax.lifecycle.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity
 {
-	private void setAndroidNativeLightStatusBar()
+	private final void setAndroidNativeLightStatusBar()
 	{
-		if (VERSION.SDK_INT < 23)return;
-		View decor = getWindow().getDecorView();
+		if (VERSION.SDK_INT < 29)return;
+		final View decor = getWindow().getDecorView();
 		int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-
 		if (currentNightMode == Configuration.UI_MODE_NIGHT_NO)
 		{
 			decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
