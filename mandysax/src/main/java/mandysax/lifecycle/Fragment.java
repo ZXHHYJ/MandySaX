@@ -77,7 +77,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 		{
 			final Fragment startfragment=(Fragment) fragment.newInstance();
 			if(startfragment==null)return;
-			mActivity.getMannger().add(getViewGroup().getId(), startfragment).show(startfragment).addToBackStack();
+			mActivity.getMannger().add(getViewGroup().getId(), startfragment).hide(this).show(startfragment).addToBackStack();
 			startfragment.getLifecycle().addObsever(new LifecycleObserver(){
 
 					@Override
@@ -85,6 +85,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 					{
 						if (State == Lifecycle.Event.ON_DESTORY)
 						{
+							mActivity.getMannger().show(Fragment.this);
 							onFragmentResult(startfragment.getIntent());
 						}
 					}

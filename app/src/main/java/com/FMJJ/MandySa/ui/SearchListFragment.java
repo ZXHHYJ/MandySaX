@@ -25,8 +25,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import mandysax.lifecycle.Fragment;
-import mandysax.lifecycle.Observer;
 import mandysax.lifecycle.ViewModelProviders;
+import mandysax.lifecycle.livedata.Observer;
 
 public class SearchListFragment extends Fragment
 {

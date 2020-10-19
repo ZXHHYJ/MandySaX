@@ -1,4 +1,4 @@
-package mandysax.lifecycle;
+package mandysax.lifecycle.livedata;
 
 public abstract interface Observer<T>
 {

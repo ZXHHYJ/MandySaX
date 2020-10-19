@@ -1,4 +1,4 @@
-package mandysax.lifecycle;
+package mandysax.lifecycle.livedata;
 import android.os.Message;
 
 public class MutableLiveData <T extends Object> extends LiveData<T>

@@ -29,7 +29,7 @@ public class LiveFragment extends Fragment
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		/*button.setOnClickListener(new View.OnClickListener(){
+		button.setOnClickListener(new View.OnClickListener(){
 
 				@Override
 				public void onClick(View p1)
@@ -37,7 +37,7 @@ public class LiveFragment extends Fragment
 					startFragment(SettingFragment.class);
 				}	
 
-			});*/
+			});
 	}
 
 }

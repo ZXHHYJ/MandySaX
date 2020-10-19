@@ -113,7 +113,7 @@ public class FragmentPage extends RelativeLayout
 		{
 			final Fragment startfragment=(Fragment) fragment.newInstance();
 			if (startfragment == null)return;
-			((FragmentActivity)getContext()).getMannger().add(getId(), startfragment).show(startfragment).addToBackStack();
+			((FragmentActivity)getContext()).getMannger().add(R.id.fragmentpageFrameLayout1, startfragment).hide(oldfragment).show(startfragment).addToBackStack();
 			startfragment.getLifecycle().addObsever(new LifecycleObserver(){
 
 					@Override
@@ -146,6 +146,7 @@ public class FragmentPage extends RelativeLayout
 							/*
 							 动画执行
 							 */
+							((FragmentActivity)getContext()).getMannger().show(oldfragment);
 							oldfragment.onFragmentResult(startfragment.getIntent());
 						}
 					}

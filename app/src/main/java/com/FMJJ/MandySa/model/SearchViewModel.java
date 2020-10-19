@@ -7,9 +7,9 @@ import com.FMJJ.MandySa.service.contentcatalogs.MusicLibrary;
 import java.util.ArrayList;
 import java.util.List;
 import mandysax.data.Callback;
-import mandysax.lifecycle.LiveData;
-import mandysax.lifecycle.MutableLiveData;
 import mandysax.lifecycle.ViewModel;
+import mandysax.lifecycle.livedata.LiveData;
+import mandysax.lifecycle.livedata.MutableLiveData;
 import org.json.JSONException;
 
 public class SearchViewModel extends ViewModel
