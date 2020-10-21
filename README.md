@@ -326,6 +326,10 @@ public class MainActivity extends AppCompatActivity
 
 # Update log
 
++ v1.4.1 beta1
+  - 修复fragment生命周期onActivityCreated错误
+  - 2020-10-21 17:46
+
 + v1.4.0
   - 完成了fragment的开发
   - 2020-10-19 20:26
