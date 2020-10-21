@@ -28,7 +28,7 @@
 
 		<activity
 			android:windowSoftInputMode="adjustPan|stateHidden"
-			android:name=".ui.MainActivity"
+			android:name=".ui.main.MainActivity"
 			android:configChanges="uiMode"
 			android:launchMode="singleTask">
 
@@ -45,13 +45,10 @@
 		</activity>
 
 		<activity
-			android:name=".ui.MusicActivity"/>
-
-		<activity
-			android:name=".ui.SplashActivity"/>
+			android:name=".ui.music.MusicActivity"/>
 
 		<service
-			android:name=".service.MusicService">
+			android:name=".logic.model.MusicService">
 
 			<intent-filter>
 

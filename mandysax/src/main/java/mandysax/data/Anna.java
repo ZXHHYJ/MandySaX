@@ -204,7 +204,7 @@ public class Anna
                 if (executor == null)
 				{
                     executor = new ThreadPoolExecutor(1, 5, 60, TimeUnit.SECONDS,
-													  new LinkedBlockingQueue());
+													  new LinkedBlockingQueue<Runnable>());
                 }
             }
         }

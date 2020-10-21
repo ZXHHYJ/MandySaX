@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import mandysax.design.FragmentPage;
-import mandysax.lifecycle.Lifecycle.Event;
 
 public class Fragment implements FragmentImpl,LifecycleOwner
 {
@@ -66,23 +65,19 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	}
 
 	@Override
-	public void startFragment(Class fragment)
+	public Fragment startFragment(Class fragment)
 	{
-		if (mPage != null)
-		{
-			mPage.startFragment(this, fragment);
-			return;
-		}
-		try
+        try
 		{
 			final Fragment startfragment=(Fragment) fragment.newInstance();
-			if(startfragment==null)return;
+			//if(startfragment==null)throw;
 			mActivity.getMannger().add(getViewGroup().getId(), startfragment).hide(this).show(startfragment).addToBackStack();
 			startfragment.getLifecycle().addObsever(new LifecycleObserver(){
 
 					@Override
 					public void Observer(Lifecycle.Event State)
 					{
+                        if(!getActivity().isDestroyed())
 						if (State == Lifecycle.Event.ON_DESTORY)
 						{
 							mActivity.getMannger().show(Fragment.this);
@@ -90,14 +85,20 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 						}
 					}
 				});
+            if (mPage != null)
+            {
+                mPage.startFragment(this, startfragment);
+                //return null;
+            }
+            return startfragment;
 		}
 		catch (InstantiationException e)
 		{
-			throw new InstantiationError("Cannot instantiate "+fragment.getName());
+			throw new InstantiationError("Cannot instantiate " + fragment.getName());
 		}
 		catch (IllegalAccessException e)
 		{
-			throw new IllegalAccessError("Illegal access to "+fragment.getName());
+			throw new IllegalAccessError("Illegal access to " + fragment.getName());
 		}
 	}
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:foreground="?android:attr/selectableItemBackground"
+	android:orientation="horizontal"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:id="@+id/musiclistLinearLayout1"
+	android:gravity="left|center"
+	android:paddingTop="5dp"
+	android:paddingBottom="5dp">
+
+	<TextView
+		android:layout_width="45dp"
+		android:layout_height="45dp"
+		android:textSize="15sp"
+		android:id="@+id/musicitemNumber"
+		android:gravity="center"/>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="wrap_content"
+		android:layout_height="45dp">
+
+		<TextView
+			android:lines="1"
+			android:singleLine="true"
+			android:textSize="16sp"
+			android:textColor="@color/text_color"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/musiclistSongName"/>
+
+		<TextView
+			android:textStyle="normal"
+			android:lines="1"
+			android:singleLine="true"
+			android:textSize="13sp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:id="@+id/musiclistSinger"
+			android:layout_marginTop="5dp"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+

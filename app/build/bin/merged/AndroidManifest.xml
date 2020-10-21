@@ -25,7 +25,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name="com.FMJJ.MandySa.ui.MainActivity"
+            android:name="com.FMJJ.MandySa.ui.main.MainActivity"
             android:configChanges="uiMode"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan|stateHidden" >
@@ -35,10 +35,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.FMJJ.MandySa.ui.MusicActivity" />
-        <activity android:name="com.FMJJ.MandySa.ui.SplashActivity" />
+        <activity android:name="com.FMJJ.MandySa.ui.music.MusicActivity" />
 
-        <service android:name="com.FMJJ.MandySa.service.MusicService" >
+        <service android:name="com.FMJJ.MandySa.logic.model.MusicService" >
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>

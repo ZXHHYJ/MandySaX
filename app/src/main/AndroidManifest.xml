@@ -14,7 +14,7 @@
 		android:roundIcon="@mipmap/ic_launcher_round">
 		<activity
 			android:windowSoftInputMode="adjustPan|stateHidden"
-			android:name=".ui.MainActivity"
+			android:name=".ui.main.MainActivity"
 			android:configChanges="uiMode"
 			android:launchMode="singleTask">
 			<intent-filter>
@@ -22,10 +22,9 @@
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-		<activity android:name=".ui.MusicActivity"/>
-		<activity android:name=".ui.SplashActivity"/>
+		<activity android:name=".ui.music.MusicActivity"/>
 		<service
-			android:name=".service.MusicService">
+			android:name=".logic.model.MusicService">
 			<intent-filter>
 				<action android:name="android.media.browse.MediaBrowserService"/>
 			</intent-filter>

@@ -13,7 +13,7 @@ public interface FragmentImpl
 
 	public void setFragmentPage(FragmentPage page);
 
-	public void startFragment(Class fragment);
+	public Fragment startFragment(Class fragment);
 
 	public void onFragmentResult(Intent data);
 

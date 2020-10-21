@@ -1,6 +1,6 @@
 package mandysax.lifecycle;
 
-public interface Factory {
-   public <T extends ViewModel> T create(Class<T> modelClass);
+public abstract interface Factory
+{
+    public abstract <T extends ViewModel> T create(Class<T> modelClass);
 }
-

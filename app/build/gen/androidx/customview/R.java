@@ -214,6 +214,14 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int navigationbar_top=0x7f010017;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int night_mode=0x7f01001d;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -399,61 +407,61 @@ containing a value of this type.
         public static final int accessibility_custom_action_7=0x7f07001f;
         public static final int accessibility_custom_action_8=0x7f070020;
         public static final int accessibility_custom_action_9=0x7f070021;
-        public static final int action0=0x7f07004d;
-        public static final int action_container=0x7f07004a;
-        public static final int action_divider=0x7f070051;
-        public static final int action_image=0x7f07004b;
-        public static final int action_text=0x7f07004c;
-        public static final int actions=0x7f07005b;
+        public static final int action0=0x7f07004e;
+        public static final int action_container=0x7f07004b;
+        public static final int action_divider=0x7f070052;
+        public static final int action_image=0x7f07004c;
+        public static final int action_text=0x7f07004d;
+        public static final int actions=0x7f07005c;
         public static final int async=0x7f07002f;
         public static final int blocking=0x7f070030;
-        public static final int cancel_action=0x7f07004e;
+        public static final int cancel_action=0x7f07004f;
         public static final int check_show_text=0x7f070034;
-        public static final int chronometer=0x7f070056;
+        public static final int chronometer=0x7f070057;
         public static final int dialog_button=0x7f070037;
-        public static final int end_padder=0x7f07005d;
+        public static final int end_padder=0x7f07005e;
         public static final int forever=0x7f070031;
         public static final int fragmentpageFrameLayout1=0x7f070039;
         public static final int fragmentpageFrameLayout2=0x7f070038;
         public static final int fragmentpageLinearLayout1=0x7f07003a;
-        public static final int icon=0x7f070058;
-        public static final int icon_group=0x7f07005c;
-        public static final int info=0x7f070057;
+        public static final int icon=0x7f070059;
+        public static final int icon_group=0x7f07005d;
+        public static final int info=0x7f070058;
         public static final int italic=0x7f070032;
         public static final int item_touch_helper_previous_elevation=0x7f070000;
+        public static final int like=0x7f070063;
+        public static final int likefragmentRecyclerView=0x7f07003b;
         public static final int line1=0x7f070022;
         public static final int line3=0x7f070023;
         public static final int mainBottomNavigationBar=0x7f07003d;
         public static final int mainFragmentPage=0x7f07003c;
         public static final int mainMusicView=0x7f07003e;
-        public static final int mandysamusicviewImageView1=0x7f070046;
-        public static final int mandysamusicviewImageView2=0x7f070049;
-        public static final int mandysamusicviewTextView1=0x7f070047;
-        public static final int media_actions=0x7f070050;
+        public static final int mandysamusicviewImageView1=0x7f070047;
+        public static final int mandysamusicviewImageView2=0x7f07004a;
+        public static final int mandysamusicviewTextView1=0x7f070048;
+        public static final int media_actions=0x7f070051;
+        public static final int musicitemNumber=0x7f070043;
         public static final int musiclistLinearLayout1=0x7f070042;
-        public static final int musiclistTextView1=0x7f070043;
-        public static final int musiclistTextView2=0x7f070044;
+        public static final int musiclistSinger=0x7f070045;
+        public static final int musiclistSongName=0x7f070044;
         public static final int musicplayalbumpicture=0x7f07003f;
         public static final int musicplaysmalltitle=0x7f070041;
         public static final int musicplaytitle=0x7f070040;
-        public static final int musicviewLinearLayout1=0x7f070045;
-        public static final int musicviewProgressBar1=0x7f070048;
+        public static final int musicviewLinearLayout1=0x7f070046;
+        public static final int musicviewProgressBar1=0x7f070049;
         public static final int no_image=0x7f070035;
         public static final int no_text=0x7f070036;
         public static final int normal=0x7f070033;
-        public static final int notification_background=0x7f07005a;
-        public static final int notification_main_column=0x7f070053;
-        public static final int notification_main_column_container=0x7f070052;
-        public static final int pad_mode=0x7f070063;
-        public static final int phone_mode=0x7f070062;
-        public static final int recommendfragmentButton1=0x7f07003b;
-        public static final int right_icon=0x7f070059;
-        public static final int right_side=0x7f070054;
-        public static final int searchbarEditText1=0x7f07005e;
-        public static final int searchbarImageView1=0x7f07005f;
-        public static final int searchfragmentRecyclerView1=0x7f070061;
-        public static final int searchfragmentSwipeRefreshLayout1=0x7f070060;
-        public static final int status_bar_latest_event_content=0x7f07004f;
+        public static final int notification_background=0x7f07005b;
+        public static final int notification_main_column=0x7f070054;
+        public static final int notification_main_column_container=0x7f070053;
+        public static final int right_icon=0x7f07005a;
+        public static final int right_side=0x7f070055;
+        public static final int searchbarEditText1=0x7f07005f;
+        public static final int searchbarImageView1=0x7f070060;
+        public static final int searchfragmentRecyclerView1=0x7f070062;
+        public static final int searchfragmentSwipeRefreshLayout1=0x7f070061;
+        public static final int status_bar_latest_event_content=0x7f070050;
         public static final int tag_accessibility_actions=0x7f070024;
         public static final int tag_accessibility_clickable_spans=0x7f070025;
         public static final int tag_accessibility_heading=0x7f070026;
@@ -464,7 +472,7 @@ containing a value of this type.
         public static final int tag_unhandled_key_listeners=0x7f07002b;
         public static final int text=0x7f07002c;
         public static final int text2=0x7f07002d;
-        public static final int time=0x7f070055;
+        public static final int time=0x7f070056;
         public static final int title=0x7f07002e;
     }
     public static final class integer {
@@ -475,11 +483,11 @@ containing a value of this type.
         public static final int custom_dialog=0x7f040000;
         public static final int fragment_page=0x7f040001;
         public static final int home_fragment=0x7f040002;
-        public static final int live_fragment=0x7f040003;
+        public static final int like_fragment=0x7f040003;
         public static final int main=0x7f040004;
         public static final int music=0x7f040005;
         public static final int music_fragment=0x7f040006;
-        public static final int music_list=0x7f040007;
+        public static final int music_item=0x7f040007;
         public static final int music_view=0x7f040008;
         public static final int my_fragment=0x7f040009;
         public static final int notification_action=0x7f04000a;
@@ -503,7 +511,7 @@ containing a value of this type.
         public static final int setting_fragment=0x7f04001c;
     }
     public static final class menu {
-        public static final int choose_mode=0x7f0c0000;
+        public static final int like_menu=0x7f0c0000;
     }
     public static final class mipmap {
         public static final int ic_account=0x7f030000;
@@ -526,9 +534,12 @@ containing a value of this type.
     }
     public static final class string {
         public static final int app_name=0x7f080001;
+        public static final int error=0x7f080007;
         public static final int home=0x7f080002;
-        public static final int live=0x7f080003;
+        public static final int isadded=0x7f080008;
+        public static final int like=0x7f080003;
         public static final int my=0x7f080005;
+        public static final int network_error=0x7f080006;
         public static final int search=0x7f080004;
         public static final int status_bar_notification_info_overflow=0x7f080000;
     }

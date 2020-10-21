@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	
+    <declare-styleable name="MusicView">  
+        <attr name="textPrompt" format="string"/>  
+        <attr name="textColor" format="color"/>  
+	</declare-styleable>
+    
 	<declare-styleable name="FragmentPage">  
         <attr name="navigationbar_top" format="boolean"/>  
         <attr name="always_show" format="boolean"/>  
@@ -17,5 +22,5 @@
         <attr name="textCheckedColor" format="color"/>
         <attr name="textUnCheckedColor" format="color"/>
     </declare-styleable>
-
+	
 </resources>

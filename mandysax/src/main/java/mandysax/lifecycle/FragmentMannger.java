@@ -74,13 +74,15 @@ public final class FragmentMannger implements FragmentManngerImpl
 			{
 				final View view1=fragment.onCreateView(LayoutInflater.from(context), fragment.getViewGroup(), savedInstanceState);
 				final View view2=fragment.onCreateView(LayoutInflater.from(context), fragment.getViewGroup());
-				fragment.onViewCreated(view1 == null ?view2: view1, savedInstanceState);		
+				fragment.onViewCreated(view1 == null ?view2: view1, savedInstanceState);
+                if (context != null)
+                    fragment.onActivityCreated(savedInstanceState);
 			}
 			else
 			if (!fragment.isInLayout())
-				fragment.onViewCreated(fragment.getView(), savedInstanceState);					
-			if (context != null)
-				fragment.onActivityCreated(savedInstanceState);
+            {
+				fragment.onViewCreated(fragment.getView(), savedInstanceState);	
+            }
 		}
 		return this;
 	}
@@ -111,7 +113,7 @@ public final class FragmentMannger implements FragmentManngerImpl
 		try
 		{
 			final Object object=replaceFragment.newInstance();
-			if ( object instanceof Fragment)
+			if (object instanceof Fragment)
 			{
 				final Fragment fragment=(Fragment) object;
 				//fragment.setRetainInstance(false);
@@ -146,17 +148,18 @@ public final class FragmentMannger implements FragmentManngerImpl
 	{
 		return fragments.get(tag);
     }
-	
+
 	@Override
 	public FragmentMannger remove(Fragment fragment)
 	{
-		if(fragment==null)return this;
+		if (fragment == null)return this;
 		//销毁fragment的生命周期
 		//确认是否保存
 		if (!fragment.getRetainInstance())fragments.remove(fragments.getClass());
 		fragment.onDestroyView();
 		fragment.onDestroy();
 		fragment.onDetach();	
+        fragments.remove(fragment.getClass());
 		return this;
 	}
 
@@ -196,12 +199,12 @@ public final class FragmentMannger implements FragmentManngerImpl
 		for (Fragment one:fragments.values())
 		{
 			/*
-			//应该在此恢复fragment到原布局上
-			if (one.isAdded())
-			{
-				//make
-			}
-			*/
+             //应该在此恢复fragment到原布局上
+             if (one.isAdded())
+             {
+             //make
+             }
+             */
 			if (one.isVisible())
 				one.onStart();
         }

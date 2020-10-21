@@ -10,8 +10,8 @@ import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import java.util.ArrayList;
 import mandysax.R;
-import mandysax.core.util.Xlist;
 import mandysax.lifecycle.Fragment;
 import mandysax.lifecycle.FragmentActivity;
 import mandysax.lifecycle.FragmentMannger;
@@ -21,9 +21,8 @@ import mandysax.lifecycle.LifecycleObserver;
 public class FragmentPage extends RelativeLayout
 {
 	private final static int ANIM_TIME=320;//动画时长
-	//private final List<Fragment> return_stack=new ArrayList<Fragment>();//返回栈
 
-	private final Xlist<Fragment> fragment_list=new Xlist<Fragment>();//主fragment
+	private final ArrayList<Fragment> fragment_list=new ArrayList<Fragment>();//主fragment
 
 	private final LinearLayout top_viewgroup;
 
@@ -84,7 +83,7 @@ public class FragmentPage extends RelativeLayout
 			{
 				fragment_list.add(fragment);
 			}
-			else throw new NullPointerException("Could not initialize fragment:" + _fragmentClass.getCanonicalName());
+			else throw new NullPointerException("Could not initialize fragment:" + _fragmentClass.getName());
 		}
 	}
 
@@ -104,63 +103,49 @@ public class FragmentPage extends RelativeLayout
 		}
 	}
 
-	public void startFragment(final Fragment oldfragment, Class fragment)
+	public void startFragment(final Fragment oldfragment, Fragment newfragment)
 	{
 		/*
 		 动画执行
 		 */
-		try
-		{
-			final Fragment startfragment=(Fragment) fragment.newInstance();
-			if (startfragment == null)return;
-			((FragmentActivity)getContext()).getMannger().add(R.id.fragmentpageFrameLayout1, startfragment).hide(oldfragment).show(startfragment).addToBackStack();
-			startfragment.getLifecycle().addObsever(new LifecycleObserver(){
+        newfragment.getLifecycle().addObsever(new LifecycleObserver(){
 
-					@Override
-					public void Observer(Lifecycle.Event State)
-					{
-						if (State == Lifecycle.Event.ON_DESTORY)
-						{
-							/*
-							 动画执行
-							 */
-							TranslateAnimation top = new TranslateAnimation(0, 0, bottom_viewgroup.getHeight(), 0);									
-							top.setDuration(ANIM_TIME);
-							top.setAnimationListener(new Animation.AnimationListener() {
-									@Override
-									public void onAnimationStart(Animation animation)
-									{
-									}
-									@Override
-									public void onAnimationRepeat(Animation animation)
-									{
-									}
-									@Override
-									public void onAnimationEnd(Animation animation)
-									{			
-									}
-								});     
-							bottom_viewgroup.setVisibility(View.VISIBLE);
-							bottom_viewgroup.setAnimation(top);
-							top_viewgroup.setAnimation(top);
-							/*
-							 动画执行
-							 */
-							((FragmentActivity)getContext()).getMannger().show(oldfragment);
-							oldfragment.onFragmentResult(startfragment.getIntent());
-						}
-					}
-				});
-		}
-		catch (InstantiationException e)
-		{
-			throw new InstantiationError("Cannot instantiate " + fragment.getName());
-		}
-		catch (IllegalAccessException e)
-		{
-			throw new IllegalAccessError("Illegal access to " + fragment.getName());
-		}
-		
+                @Override
+                public void Observer(Lifecycle.Event State)
+                {
+                    if (!oldfragment.getActivity().isDestroyed())
+                        if (State == Lifecycle.Event.ON_DESTORY)
+                        {
+                            /*
+                             动画执行
+                             */
+                            TranslateAnimation top = new TranslateAnimation(0, 0, bottom_viewgroup.getHeight(), 0);                                 
+                            top.setDuration(ANIM_TIME);
+                            top.setAnimationListener(new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation)
+                                    {
+                                    }
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation)
+                                    {
+                                    }
+                                    @Override
+                                    public void onAnimationEnd(Animation animation)
+                                    {           
+                                    }
+                                });     
+                            bottom_viewgroup.setVisibility(View.VISIBLE);
+                            bottom_viewgroup.setAnimation(top);
+                            top_viewgroup.setAnimation(top);
+                            /*
+                             动画执行
+                             */
+                            //isMain = true;
+                        }
+                }       
+            });
+
 		/*
 		 动画执行
 		 */
@@ -182,6 +167,7 @@ public class FragmentPage extends RelativeLayout
 					bottom_viewgroup.setVisibility(View.GONE);
 				}
 			});     
+        //isMain = false;
 		bottom_viewgroup.setAnimation(bottom);
 		top_viewgroup.setAnimation(bottom);
 		/*
@@ -191,21 +177,21 @@ public class FragmentPage extends RelativeLayout
 
 	public void showFragment(int index)
 	{
-		//if (return_stack.isEmpty())
-		if (index < fragment_list.size())
-		{
+        //if (isMain)
+            if (index < fragment_list.size())
+            {
 
-			FragmentMannger mannger = ((FragmentActivity)getContext()).getMannger();
-			for (int i=0;i < fragment_list.size();i++)
-			{
-				if (!fragment_list.get(i).isHidden())
-				{
-					mannger.hide(fragment_list.get(i));
-				}
-			}	
-			mannger.show(fragment_list.get(index));
-		}
-		else throw new  ArrayIndexOutOfBoundsException("index > Fragment List!");
+                FragmentMannger mannger = ((FragmentActivity)getContext()).getMannger();
+                for (int i=0;i < fragment_list.size();i++)
+                {
+                    if (!fragment_list.get(i).isHidden())
+                    {
+                        mannger.hide(fragment_list.get(i));
+                    }
+                }	
+                mannger.show(fragment_list.get(index));
+            }
+      else throw new  ArrayIndexOutOfBoundsException("index > Fragment List!");
 	}
 
 	@Override

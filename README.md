@@ -307,6 +307,18 @@ public class MainActivity extends AppCompatActivity
 
 # Update log
 
++ v1.4.0
+  - 完成了fragment的开发
+  - 2020-10-19 20:26
+
++ v1.4.0 beta3
+  - 修复fragment的部分bug，优化部分细节
+  - 2020-10-09 22:22
+
++ v1.4.0 beta2
+  - 新增lifecycle成员fragment(50%)
+  - 2020-10-05 00:42
+
 + v1.4.0 beta1
   - 新增Xlist列表，使用HashMap存储数据，披着List的外衣(有顺序)，目前发现其使用场景十分狭小
   - 优化大量细节

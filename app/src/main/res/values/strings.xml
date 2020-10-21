@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MandySa</string>
-    <string name="home">主页</string>
-    <string name="live">喜欢</string>
-    <string name="search">搜索</string>
-    <string name="my">我的</string>
-	
+    <string name="app_name">MandySa Music</string>
+    <string name="home">Homepage</string>
+    <string name="like">like</string>
+    <string name="search">search for</string>
+    <string name="my">mine</string>
+    <string name="network_error">Network Error</string>
+    <string name="error">No more</string>
+	<string name="isadded">Added to likes</string>
+    
 </resources>

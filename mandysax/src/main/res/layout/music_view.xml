@@ -26,7 +26,8 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
 			android:textSize="15sp"
-			android:id="@+id/mandysamusicviewTextView1"/>
+			android:id="@+id/mandysamusicviewTextView1"
+			android:textColor="@android:color/black"/>
 
 		<ProgressBar
 			android:layout_width="50dp"
