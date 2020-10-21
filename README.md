@@ -260,7 +260,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
  在onCreateView中使用如下代码
  ![image](http://39.106.7.220/mandysa/ShowFragment.jpg)
 
-**getMannger()**的方法和说明：
+**getMannger**的方法和说明：
  | 方法 | 说明 |
 | :--: | :--: |
 | add(int id, Fragment fragment) | 在指定控件上添加fragment |
