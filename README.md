@@ -241,22 +241,43 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 		...
 	}
 
-	public List<Fragment> add(Fragment... fragment, int index)
-	{
-		...
-	}
-
  ```
  **FragmentPage**的方法和说明：
  | 方法 | 说明 |
 | :--: | :--: |
-| add(Fragment... fragment) | 添加fragment |
-| add(Fragment... fragment, int index) | 添加fragment，index为默认显示的fragment下标 |
+| add(Fragment... fragment) | 添加fragment，FragmentPage会自动管理 |
 | showFragment(int index) | 显示下标为index的fragment |
+
+ # Usage Fragment&FragmentActivity
+ 
+ * 仅1.4.0 beta或更新版本
+ 
+ 新建一个class并继承自**mandysa.lifecycle.Fragment**
+ 
+ 重写**onCreateView**方法，在此返回**Fragment**的布局
+ 
+ >在FragmentActivity中显示Fragment
+ 
+ 修改Activity继承自FragmentActivity或AppCompatActivity
+ 
+ 在onCreateView中使用如下代码
+
+**getMannger()**的方法和说明：
+ | 方法 | 说明 |
+| :--: | :--: |
+| add(int id, Fragment fragment) | 在指定控件上添加fragment |
+| replace(int id, Class replaceFragment) | 在指定控件上显示fragment |
+| add(int id, Fragment fragment, Object tag) | 在指定控件上添加fragment，并设置标签 |
+| findFragmentByTag(Object tag) | 按tag寻找fragment |
+| show(Fragment fragment) | 显示fragment |
+| hide(Fragment fragment) | 隐藏fragment |
+| remove(Fragment fragment) | 移除fragment |
+| addToBackStack() | 为fragment添加返回栈 |
+
 
  # Usage 注解
  
- >注：需要继承AppCompatActivity或FragmentCompat的类才可以使用
+ >注：需要继承AppCompatActivity或FragmentCompat的类才可以使用（1.4.1 beta1之后废弃）
  
  * @BindLayoutId(R.layout.x)
  >设置布局为R.layout.x
