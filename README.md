@@ -250,7 +250,7 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
 
  # Usage Fragment&FragmentActivity
  
- * 仅1.4.0 beta或更新版本
+ * 仅1.4.0 beta1或更高版本
  
  新建一个class并继承自**mandysa.lifecycle.Fragment**
  重写**onCreateView**方法，在此返回**Fragment**的布局
