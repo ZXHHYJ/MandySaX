@@ -253,14 +253,12 @@ bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
  * 仅1.4.0 beta或更新版本
  
  新建一个class并继承自**mandysa.lifecycle.Fragment**
- 
  重写**onCreateView**方法，在此返回**Fragment**的布局
- 
+ ![image](http://39.106.7.220/mandysa/Fragment.jpg)
  >在FragmentActivity中显示Fragment
- 
- 修改Activity继承自FragmentActivity或AppCompatActivity
- 
+ 修改你的**Activity**继承自**FragmentActivity**或**AppCompatActivity**
  在onCreateView中使用如下代码
+ ![image](http://39.106.7.220/mandysa/ShowFragment.jpg)
 
 **getMannger()**的方法和说明：
  | 方法 | 说明 |

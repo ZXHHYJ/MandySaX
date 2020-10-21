@@ -16,7 +16,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int always_bottom=0x7f010004;
+        public static int always_bottom=0x7f010004;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -24,7 +24,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int always_show=0x7f010003;
+        public static int always_show=0x7f010003;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -32,7 +32,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int navigationbar_top=0x7f010002;
+        public static int navigationbar_top=0x7f010002;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -45,7 +45,7 @@ containing a value of this type.
 <tr><td><code>check_show_text</code></td><td>3</td><td></td></tr>
 </table>
          */
-        public static final int show_type=0x7f010005;
+        public static int show_type=0x7f010005;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -54,7 +54,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int textCheckedColor=0x7f010006;
+        public static int textCheckedColor=0x7f010006;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -63,7 +63,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int textColor=0x7f010001;
+        public static int textColor=0x7f010001;
         /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -71,7 +71,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int textPrompt=0x7f010000;
+        public static int textPrompt=0x7f010000;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -80,43 +80,43 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int textUnCheckedColor=0x7f010007;
+        public static int textUnCheckedColor=0x7f010007;
     }
     public static final class color {
-        public static final int notification_bg=0x7f050000;
+        public static int notification_bg=0x7f050000;
     }
     public static final class drawable {
-        public static final int round_layout=0x7f020000;
-        public static final int singer=0x7f020001;
+        public static int round_layout=0x7f020000;
+        public static int singer=0x7f020001;
     }
     public static final class id {
-        public static final int check_show_text=0x7f070000;
-        public static final int fragmentpageFrameLayout1=0x7f070005;
-        public static final int fragmentpageFrameLayout2=0x7f070004;
-        public static final int fragmentpageLinearLayout1=0x7f070006;
-        public static final int mandysamusicviewImageView1=0x7f070008;
-        public static final int mandysamusicviewImageView2=0x7f07000b;
-        public static final int mandysamusicviewTextView1=0x7f070009;
-        public static final int musicviewLinearLayout1=0x7f070007;
-        public static final int musicviewProgressBar1=0x7f07000a;
-        public static final int no_image=0x7f070001;
-        public static final int no_text=0x7f070002;
-        public static final int normal=0x7f070003;
+        public static int check_show_text=0x7f070000;
+        public static int fragmentpageFrameLayout1=0x7f070005;
+        public static int fragmentpageFrameLayout2=0x7f070004;
+        public static int fragmentpageLinearLayout1=0x7f070006;
+        public static int mandysamusicviewImageView1=0x7f070008;
+        public static int mandysamusicviewImageView2=0x7f07000b;
+        public static int mandysamusicviewTextView1=0x7f070009;
+        public static int musicviewLinearLayout1=0x7f070007;
+        public static int musicviewProgressBar1=0x7f07000a;
+        public static int no_image=0x7f070001;
+        public static int no_text=0x7f070002;
+        public static int normal=0x7f070003;
     }
     public static final class layout {
-        public static final int fragment_page=0x7f040000;
-        public static final int music_view=0x7f040001;
+        public static int fragment_page=0x7f040000;
+        public static int music_view=0x7f040001;
     }
     public static final class mipmap {
-        public static final int ic_android_black_24dp=0x7f030000;
-        public static final int ic_android_green_24dp=0x7f030001;
-        public static final int ic_baseline_arrow_back_24dp=0x7f030002;
-        public static final int ic_pause=0x7f030003;
-        public static final int ic_play=0x7f030004;
+        public static int ic_android_black_24dp=0x7f030000;
+        public static int ic_android_green_24dp=0x7f030001;
+        public static int ic_baseline_arrow_back_24dp=0x7f030002;
+        public static int ic_pause=0x7f030003;
+        public static int ic_play=0x7f030004;
     }
     public static final class style {
-        public static final int AppTitle=0x7f060001;
-        public static final int AppUniversal=0x7f060000;
+        public static int AppTitle=0x7f060001;
+        public static int AppUniversal=0x7f060000;
     }
     public static final class styleable {
         /** Attributes that can be used with a BottomNavigationBar.
@@ -154,7 +154,7 @@ containing a value of this type.
 </table>
           @attr name mandysax:show_type
         */
-        public static final int BottomNavigationBar_show_type = 0;
+        public static int BottomNavigationBar_show_type = 0;
         /**
           <p>This symbol is the offset where the {@link mandysax.R.attr#textCheckedColor}
           attribute's value can be found in the {@link #BottomNavigationBar} array.
@@ -169,7 +169,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name mandysax:textCheckedColor
         */
-        public static final int BottomNavigationBar_textCheckedColor = 1;
+        public static int BottomNavigationBar_textCheckedColor = 1;
         /**
           <p>This symbol is the offset where the {@link mandysax.R.attr#textUnCheckedColor}
           attribute's value can be found in the {@link #BottomNavigationBar} array.
@@ -184,7 +184,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name mandysax:textUnCheckedColor
         */
-        public static final int BottomNavigationBar_textUnCheckedColor = 2;
+        public static int BottomNavigationBar_textUnCheckedColor = 2;
         /** Attributes that can be used with a FragmentPage.
            <p>Includes the following attributes:</p>
            <table>
@@ -215,7 +215,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name mandysax:always_bottom
         */
-        public static final int FragmentPage_always_bottom = 2;
+        public static int FragmentPage_always_bottom = 2;
         /**
           <p>This symbol is the offset where the {@link mandysax.R.attr#always_show}
           attribute's value can be found in the {@link #FragmentPage} array.
@@ -229,7 +229,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name mandysax:always_show
         */
-        public static final int FragmentPage_always_show = 1;
+        public static int FragmentPage_always_show = 1;
         /**
           <p>This symbol is the offset where the {@link mandysax.R.attr#navigationbar_top}
           attribute's value can be found in the {@link #FragmentPage} array.
@@ -243,7 +243,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name mandysax:navigationbar_top
         */
-        public static final int FragmentPage_navigationbar_top = 0;
+        public static int FragmentPage_navigationbar_top = 0;
         /** Attributes that can be used with a MusicView.
            <p>Includes the following attributes:</p>
            <table>
@@ -273,7 +273,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name mandysax:textColor
         */
-        public static final int MusicView_textColor = 1;
+        public static int MusicView_textColor = 1;
         /**
           <p>This symbol is the offset where the {@link mandysax.R.attr#textPrompt}
           attribute's value can be found in the {@link #MusicView} array.
@@ -287,6 +287,6 @@ theme attribute (in the form
 containing a value of this type.
           @attr name mandysax:textPrompt
         */
-        public static final int MusicView_textPrompt = 0;
+        public static int MusicView_textPrompt = 0;
     };
 }

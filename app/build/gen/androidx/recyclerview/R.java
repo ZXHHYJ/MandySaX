@@ -29,7 +29,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int always_bottom=0x7f010019;
+        public static final int always_bottom=0x7f01001b;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -37,7 +37,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int always_show=0x7f010018;
+        public static final int always_show=0x7f01001a;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -213,7 +213,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int navigationbar_top=0x7f010017;
+        public static final int navigationbar_top=0x7f010019;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -221,7 +221,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int night_mode=0x7f01001d;
+        public static final int night_mode=0x7f01001f;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -246,7 +246,7 @@ containing a value of this type.
 <tr><td><code>check_show_text</code></td><td>3</td><td></td></tr>
 </table>
          */
-        public static final int show_type=0x7f01001a;
+        public static final int show_type=0x7f01001c;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -281,7 +281,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int textCheckedColor=0x7f01001b;
+        public static final int textCheckedColor=0x7f01001d;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -290,7 +290,24 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int textUnCheckedColor=0x7f01001c;
+        public static final int textColor=0x7f010018;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textPrompt=0x7f010017;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textUnCheckedColor=0x7f01001e;
         /**  The index of the font in the tcc font file. If the font file referenced is not in the
         tcc format, this attribute needs not be specified. 
          <p>Must be an integer value, such as "<code>100</code>".
@@ -577,7 +594,7 @@ containing a value of this type.
            @see #BottomNavigationBar_textUnCheckedColor
          */
         public static final int[] BottomNavigationBar = {
-            0x7f01001a, 0x7f01001b, 0x7f01001c
+            0x7f01001c, 0x7f01001d, 0x7f01001e
         };
         /**
           <p>This symbol is the offset where the {@link com.FMJJ.MandySa.R.attr#show_type}
@@ -995,7 +1012,7 @@ containing a value of this type.
            @see #FragmentPage_navigationbar_top
          */
         public static final int[] FragmentPage = {
-            0x7f010017, 0x7f010018, 0x7f010019
+            0x7f010019, 0x7f01001a, 0x7f01001b
         };
         /**
           <p>This symbol is the offset where the {@link com.FMJJ.MandySa.R.attr#always_bottom}
@@ -1228,6 +1245,50 @@ containing a value of this type.
           @attr name android:offset
         */
         public static final int GradientColorItem_android_offset = 1;
+        /** Attributes that can be used with a MusicView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #MusicView_textColor com.FMJJ.MandySa:textColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #MusicView_textPrompt com.FMJJ.MandySa:textPrompt}</code></td><td></td></tr>
+           </table>
+           @see #MusicView_textColor
+           @see #MusicView_textPrompt
+         */
+        public static final int[] MusicView = {
+            0x7f010017, 0x7f010018
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.FMJJ.MandySa.R.attr#textColor}
+          attribute's value can be found in the {@link #MusicView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.FMJJ.MandySa:textColor
+        */
+        public static final int MusicView_textColor = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.FMJJ.MandySa.R.attr#textPrompt}
+          attribute's value can be found in the {@link #MusicView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.FMJJ.MandySa:textPrompt
+        */
+        public static final int MusicView_textPrompt = 0;
         /** Attributes that can be used with a RecyclerView.
            <p>Includes the following attributes:</p>
            <table>
