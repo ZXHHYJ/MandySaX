@@ -8,15 +8,15 @@ import com.FMJJ.MandySa.R;
 public class MusicListViewHolder extends RecyclerView.ViewHolder
 {
 
-    public TextView Serial_number,Song_name,Singer_name;
+    public TextView serialNumber,songName,singerName;
     public View onclick;
 
     public MusicListViewHolder(View view)
     { 
         super(view); 
-        Serial_number=view.findViewById(R.id.musicitemNumber);
-        Song_name = view.findViewById(R.id.musiclistSongName);
-        Singer_name = view.findViewById(R.id.musiclistSinger);
+        serialNumber=view.findViewById(R.id.musicitemNumber);
+        songName = view.findViewById(R.id.musiclistSongName);
+        singerName = view.findViewById(R.id.musiclistSinger);
         onclick = view.findViewById(R.id.musiclistLinearLayout1);
     } 
 }

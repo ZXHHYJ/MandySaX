@@ -9,7 +9,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/search"
-		style="@style/AppTitle"/>
+		style="@style/Theme.MandySa.Title"/>
 
 	<LinearLayout
 		android:orientation="horizontal"
@@ -17,8 +17,7 @@
 		android:layout_height="wrap_content"
 		android:background="@drawable/round_edit"
 		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
-		android:layout_marginBottom="5dp">
+		android:layout_marginRight="10dp">
 
 		<EditText
 			android:background="@null"
@@ -40,6 +39,11 @@
 			android:id="@+id/searchbarImageView1"/>
 
 	</LinearLayout>
+
+	<View
+		android:background="?android:attr/dividerVertical"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"/>
 
 </LinearLayout>
 

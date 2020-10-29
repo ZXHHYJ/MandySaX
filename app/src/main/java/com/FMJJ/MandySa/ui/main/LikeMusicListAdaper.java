@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import com.FMJJ.MandySa.R;
 import com.FMJJ.MandySa.logic.model.MusicItem;
+import com.FMJJ.MandySa.logic.model.contentcatalogs.MusicLibrary;
 import com.FMJJ.MandySa.ui.main.MusicListViewHolder;
 import java.util.ArrayList;
-import com.FMJJ.MandySa.logic.model.contentcatalogs.MusicLibrary;
 
 public class LikeMusicListAdaper extends RecyclerView.Adapter<MusicListViewHolder>
 {
@@ -17,9 +17,9 @@ public class LikeMusicListAdaper extends RecyclerView.Adapter<MusicListViewHolde
     @Override
     public void onBindViewHolder(MusicListViewHolder p1, final int p2)
     {
-        p1.Serial_number.setText(p2+1+"");
-        p1.Song_name.setText(list.get(p2).title);
-        p1.Singer_name.setText(list.get(p2).artist);
+        p1.serialNumber.setText(p2+1+"");
+        p1.songName.setText(list.get(p2).title);
+        p1.singerName.setText(list.get(p2).artist);
         p1.onclick.setOnClickListener(new View.OnClickListener(){
 
                 @Override

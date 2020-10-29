@@ -9,5 +9,7 @@
     <string name="network_error">网络错误</string>
     <string name="error">没有更多了</string>
     <string name="isadded">已添加至喜欢</string>
+    <string name="playall">播放所有歌曲</string>
+    <string name="musictint">让生活充满音乐</string>
     
 </resources>

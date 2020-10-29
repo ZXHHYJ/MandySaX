@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import mandysax.design.FragmentPage;
 
 public interface FragmentImpl
 {
 
-	public void setFragmentPage(FragmentPage page);
+	//public void setFragmentPage(FragmentPage page);
 
 	public Fragment startFragment(Class fragment);
 
@@ -51,6 +50,8 @@ public interface FragmentImpl
 
     public void onCreate(Bundle activitySavedInstanceState);
 
+    public View onCreateView(LayoutInflater inflater, ViewGroup container);
+    
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle activitySavedInstanceState);
 
     public void onViewCreated(View view, Bundle activitySavedInstanceState);

@@ -1,6 +1,5 @@
 package mandysax.lifecycle;
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
@@ -94,6 +93,7 @@ public class FragmentActivity extends Activity implements LifecycleOwner,Fragmen
 	{
 		for (Fragment fragment:mannger.getFragments())
 			fragment.onMultiWindowModeChanged(isInMultiWindowMode, newConfig);
+        super.onMultiWindowModeChanged(isInMultiWindowMode, newConfig);
 	}
 
 	@Override
@@ -101,6 +101,7 @@ public class FragmentActivity extends Activity implements LifecycleOwner,Fragmen
 	{
 		for (Fragment fragment:mannger.getFragments())
 			fragment.onMultiWindowModeChanged(isInMultiWindowMode);
+        super.onMultiWindowModeChanged(isInMultiWindowMode);
 	}
 
 	@Override
@@ -108,6 +109,7 @@ public class FragmentActivity extends Activity implements LifecycleOwner,Fragmen
 	{
 		for (Fragment fragment:mannger.getFragments())
 			fragment.onConfigurationChanged(newConfig);
+        super.onConfigurationChanged(newConfig);
 	}
 
 	/*

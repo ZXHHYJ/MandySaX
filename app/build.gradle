@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "30.0.0-rc1"
 
     defaultConfig {
@@ -22,7 +22,8 @@ android {
 dependencies {
 	compile project(':mandysax')
 	compile project(':simon')
-	compile "androidx.media:media:1.1.0"
-	compile 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-	compile 'androidx.recyclerview:recyclerview:1.1.0'
+    
+	compile "androidx.media:media:1.+"
+	compile 'androidx.swiperefreshlayout:swiperefreshlayout:1.+'
+	compile 'androidx.recyclerview:recyclerview:1.+'
 	}

@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:orientation="vertical"
-	android:background="@drawable/image_1">
-
-	<Button
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Button"
-		style="@style/AppButton"/>
-
-	<mandysax.design.fragment
-		android:name="com.FMJJ.MandySa.ui.aaa"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content">
-
-	</mandysax.design.fragment>
-
-</LinearLayout>
+	android:orientation="horizontal"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"/>
 

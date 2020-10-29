@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:foreground="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+	android:layout_height="50dp"
+	android:gravity="center_vertical">
+
+	<ImageView
+		android:layout_width="45dp"
+		android:layout_height="45dp"
+		android:id="@+id/musicitemNumber"
+		android:gravity="center"
+		android:src="@mipmap/ic_play_circle"
+		android:padding="10dp"/>
+
+	<TextView
+        android:textColor="@android:color/black"
+		android:lines="1"
+		android:singleLine="true"
+		android:textSize="16sp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:maxHeight="45dp"
+		android:text="@string/playall"/>
+
+</LinearLayout>
+

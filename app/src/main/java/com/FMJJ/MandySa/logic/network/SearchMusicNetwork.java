@@ -1,17 +1,22 @@
 package com.FMJJ.MandySa.logic.network;
-import mandysax.data.Anna;
+import android.content.Context;
+import mandysax.data.anna.Anna;
 
 public class SearchMusicNetwork extends Anna
 {
 
+    public SearchMusicNetwork(Context context){
+        super(context);
+    }
+    
 	@Override
-	protected String getUrl()
+	public String getUrl()
 	{
 		return "http://47.100.93.91:3000/search?keywords=";
 	}
 
 	@Override
-	protected String[] getKeyword()
+	public String[] getKeyword()
 	{
 		return new String[]{"result", "songs"};
 	}

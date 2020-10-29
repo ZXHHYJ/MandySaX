@@ -2,15 +2,15 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:foreground="?android:attr/selectableItemBackground"
-	android:orientation="horizontal"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:id="@+id/musiclistLinearLayout1"
-	android:gravity="left|center"
+	android:gravity="center_vertical"
 	android:paddingTop="5dp"
 	android:paddingBottom="5dp">
 
 	<TextView
+		android:textStyle="italic"
 		android:layout_width="45dp"
 		android:layout_height="45dp"
 		android:textSize="15sp"

@@ -35,15 +35,15 @@ public class SearchListFragment extends Fragment
 
     private SearchViewModel viewModel;
 
-	private MusicListAdaper music_listAdaper;
+	private MusicListAdaper musicListAdaper;
 
-	private EditText search_edit;
+	private EditText searchEdit;
 
-	private ImageView search;
+	private ImageView searchButton;
 
-	private RecyclerView music_rv;
+	private RecyclerView musicList;
 
-	private SwipeRefreshLayout music_sl;
+	private SwipeRefreshLayout musicSl;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container)
@@ -52,24 +52,14 @@ public class SearchListFragment extends Fragment
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-		search_edit = view.findViewById(R.id.searchbarEditText1);
-		search = view.findViewById(R.id.searchbarImageView1);
-		music_rv = view.findViewById(R.id.searchfragmentRecyclerView1);
-		music_sl = view.findViewById(R.id.searchfragmentSwipeRefreshLayout1);
-	}
-
-	@Override
 	public void onFragmentResult(Intent data)
 	{
 		super.onFragmentResult(data);
 		if (!TextUtils.isEmpty(data.getCharSequenceExtra("search_content")))
 		{
-			music_sl.setRefreshing(true);
+			musicSl.setRefreshing(true);
 			viewModel.song_search(data.getCharSequenceExtra("search_content").toString());
-			search_edit.setText(data.getCharSequenceExtra("search_content"));
+			searchEdit.setText(data.getCharSequenceExtra("search_content"));
 		}
 	}
 
@@ -77,8 +67,12 @@ public class SearchListFragment extends Fragment
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		viewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
-		search.setOnClickListener(new View.OnClickListener(){
+		searchEdit = findViewById(R.id.searchbarEditText1);
+        searchButton = findViewById(R.id.searchbarImageView1);
+        musicList = findViewById(R.id.searchfragmentRecyclerView1);
+        musicSl = findViewById(R.id.searchfragmentSwipeRefreshLayout1);  
+        viewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
+		searchButton.setOnClickListener(new View.OnClickListener(){
 
 				@Override
 				public void onClick(View p1)
@@ -87,9 +81,9 @@ public class SearchListFragment extends Fragment
 				}	
 
 			});
-		search_edit.setFocusable(false);
-		search_edit.setLongClickable(false);
-		search_edit.setOnClickListener(new View.OnClickListener(){
+		searchEdit.setFocusable(false);
+		searchEdit.setLongClickable(false);
+		searchEdit.setOnClickListener(new View.OnClickListener(){
 
 				@Override
 				public void onClick(View p1)
@@ -98,11 +92,11 @@ public class SearchListFragment extends Fragment
 				}
 			});
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-		music_rv.setLayoutManager(linearLayoutManager);  
-        music_rv.setHasFixedSize(true);
-		music_listAdaper = new MusicListAdaper(getContext(), viewModel.song_list);
-		music_rv.setAdapter(music_listAdaper);
-		music_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+		musicList.setLayoutManager(linearLayoutManager);  
+        musicList.setHasFixedSize(true);
+		musicListAdaper = new MusicListAdaper(getContext(), viewModel.song_list);
+		musicList.setAdapter(musicListAdaper);
+		musicList.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
 				@Override
 				public void onScrolled(RecyclerView recyclerView, int dx, int dy)
@@ -112,19 +106,24 @@ public class SearchListFragment extends Fragment
 					int lastCompletelyVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
 					if (lastCompletelyVisibleItemPosition == layoutManager.getItemCount() - 1)
 					{
-						music_sl.setRefreshing(true);			
+						musicSl.setRefreshing(true);			
 						viewModel.song_bottom();
 					}
 				}
 			});
-        music_sl.setColorScheme(R.color.theme_color);
-        music_sl.setOnRefreshListener(
+        musicSl.setProgressViewOffset(true, 0, 280);
+        musicSl.setColorScheme(R.color.theme_color);
+        musicSl.setOnRefreshListener(
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh()
 				{
-					music_sl.setRefreshing(true);       
-					viewModel.song_search(null);
+                    if (!TextUtils.isEmpty(searchEdit.getText()))
+                    {
+                        musicSl.setRefreshing(true);     
+                        viewModel.song_search(null);
+                    }
+                    else musicSl.setRefreshing(false);
                 }
             }
         );
@@ -132,17 +131,11 @@ public class SearchListFragment extends Fragment
 				@Override
 				public void onChanged(List<MediaMetadataCompat> p1)
 				{
-					if (p1 != null)
-					{
-						viewModel.song_list.clear();
-						viewModel.song_list.addAll(p1);	
-						music_listAdaper.notifyDataSetChanged(); 
-					}
-					else
-					{
-						Toast.makeText(getContext(), getContext().getString(R.string.error), 10).show();
-					}
-					music_sl.setRefreshing(false);
+                    musicSl.setRefreshing(false);
+					if (p1 == null)return;		
+                    viewModel.song_list.clear();
+                    viewModel.song_list.addAll(p1);	
+                    musicListAdaper.notifyDataSetChanged();			
 				}
 			});
 		viewModel.song_bottom.observeForever(new Observer<List<MediaMetadataCompat>>() {
@@ -150,16 +143,10 @@ public class SearchListFragment extends Fragment
 				@Override
 				public void onChanged(List<MediaMetadataCompat> p1)
 				{
-					if (p1 != null)
-					{
-						viewModel.song_list.addAll(p1);	
-						music_listAdaper.notifyDataSetChanged();
-					}
-					else
-					{
-						Toast.makeText(getContext(), getContext().getString(R.string.error), 10).show();
-					}
-					music_sl.setRefreshing(false);
+                    musicSl.setRefreshing(false);
+					if (p1 == null)return;		
+                    viewModel.song_list.addAll(p1);	
+                    musicListAdaper.notifyDataSetChanged();
 				}
 			});
 	}
@@ -172,9 +159,9 @@ public class SearchListFragment extends Fragment
 		{
 			final String title=list.get(p2).getString(MediaMetadataCompat.METADATA_KEY_TITLE);
 			final String singer=list.get(p2).getString(MediaMetadataCompat.METADATA_KEY_ARTIST);
-            p1.Serial_number.setText(p2+1+"");
-            setSearchContentColor(title, search_edit.getText().toString(), p1.Song_name);
-			setSearchContentColor(singer, search_edit.getText().toString(), p1.Singer_name);
+            p1.serialNumber.setText(p2 + 1 + "");
+            setSearchContentColor(title, searchEdit.getText().toString(), p1.songName);
+			setSearchContentColor(singer, searchEdit.getText().toString(), p1.singerName);
 			p1.onclick.setOnClickListener(new View.OnClickListener(){
 					@Override
 					public void onClick(View p1)

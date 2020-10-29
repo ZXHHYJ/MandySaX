@@ -135,7 +135,7 @@ public class MediaNotificationManager {
                         .setShowActionsInCompactView(0, 1, 2)
                         // For backwards compatibility with Android L and earlier.
 						)
-                .setColor(ContextCompat.getColor(mService, R.color.notification_bg))
+                //.setColor(ContextCompat.getColor(mService, R.color.notification_bg))
                 .setSmallIcon(R.mipmap.ic_music)
 				//.setLargeIcon(R.drawable.image_1)
                 // Pending intent that is fired when user clicks on notification.

@@ -1,5 +1,6 @@
 package mandysax.lifecycle;
 import java.util.HashMap;
+import android.util.Log;
 
 public final class ViewModelStore
 {
@@ -24,6 +25,7 @@ public final class ViewModelStore
      */
     public final void clear()
 	{
+        //Log.d("clear","clear all viewmodel");
         for (ViewModel vm : mMap.values())
 		{
             vm.onCleared();

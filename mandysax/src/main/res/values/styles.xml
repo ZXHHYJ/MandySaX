@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="AppUniversal" parent="@android:style/Widget.Material">
+    <style name="Theme.MandySa.FilletButton" parent="@android:style/Widget.Holo">
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:background">@drawable/fillet_button</item>
+    </style>
+
+    <style name="Theme.MandySa.Button" parent="@android:style/Widget.Holo">
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:background">@drawable/button</item>
+	</style>
+    
+	<style name="Theme.MandySa.Universal" parent="@android:style/Widget.Material">
 		<item name="android:layout_marginLeft">10dp</item>
 		<item name="android:layout_marginTop">5dp</item>
 	</style>
 
-	<style name="AppTitle" parent="@style/AppUniversal">
-		<item name="android:textSize">22sp</item>
-		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+	<style name="Theme.MandySa.Title" parent="@style/Theme.MandySa.Universal">
+		<item name="android:textSize">25sp</item>
+		<item name="android:fontFamily">sans-serif-light</item>  
 	</style>
 
 </resources>

@@ -1,20 +1,19 @@
 package mandysax.lifecycle;
-import java.util.ArrayList;
-import java.util.List;
+import android.util.ArrayMap;
 
 public class Lifecycle
 {
-	private final List<LifecycleObserver> event = new ArrayList<LifecycleObserver>();
+	private final ArrayMap<String,LifecycleObserver> event = new ArrayMap<String,LifecycleObserver>();
 
 	public void addObsever(LifecycleObserver... observer)
 	{
 		for (LifecycleObserver event:observer)
-			this.event.add(event);
+			this.event.put(event.toString(),event);
 	}
 
 	private void PostSate(Event State)
 	{
-		for (LifecycleObserver observer:event)
+		for (LifecycleObserver observer:event.values())
 			observer.Observer(State);
 	}
 

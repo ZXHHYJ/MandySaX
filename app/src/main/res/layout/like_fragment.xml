@@ -9,7 +9,16 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/like"
-		style="@style/AppTitle"/>
+		style="@style/Theme.MandySa.Title"/>
+
+	<include
+		layout="@layout/play_all"
+		android:id="@+id/likefragmentinclude1"/>
+
+	<View
+		android:background="?android:attr/dividerVertical"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"/>
 
 	<androidx.recyclerview.widget.RecyclerView
 		android:paddingBottom="60dp"

@@ -9,5 +9,7 @@
     <string name="network_error">Network Error</string>
     <string name="error">No more</string>
 	<string name="isadded">Added to likes</string>
+    <string name="playall">Play All Songs</string>
+    <string name="musictint">Fill life with music</string>
     
 </resources>

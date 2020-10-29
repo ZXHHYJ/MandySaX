@@ -3,7 +3,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import java.util.Collection;
-import mandysax.data.SafetyHashMap;
+import java.util.HashMap;
 
 public final class FragmentMannger implements FragmentManngerImpl
 {
@@ -11,8 +11,9 @@ public final class FragmentMannger implements FragmentManngerImpl
 	//进度：viewgroup这里
 	//进度：做动画，似乎要解析xml？？？
     //进度：返回栈
+    //ok
 
-    private final SafetyHashMap<Object,Fragment> fragments;//这个hashmap可以保证不会添加空的fragment
+    private final HashMap<Object,Fragment> fragments;//这个hashmap可以保证不会添加空的fragment
 
 	private Bundle savedInstanceState;
 
@@ -27,7 +28,7 @@ public final class FragmentMannger implements FragmentManngerImpl
     public FragmentMannger(FragmentActivity context)
 	{
         this.context = context;
-        fragments = new SafetyHashMap<Object,Fragment>();
+        fragments = new HashMap<Object,Fragment>();
     }
 
 	//感觉不应该用public此类
@@ -47,16 +48,24 @@ public final class FragmentMannger implements FragmentManngerImpl
     public FragmentMannger add(int id, Fragment fragment, Object tag)
 	{	
 		//构建fragment生命周期
-		//	if (fragments.get(fragment.getClass()) != null) return this;
 		fragment.onAttach(context);
-		fragment.onCreate(savedInstanceState);//后面做
+		fragment.onCreate(savedInstanceState);
 		//this.fragment.onStart();
 		//没有show()不应该走start周期
 		fragment.setViewGroupId(id);
-		if (tag == null)
+		if (!fragment.isInLayout())
 		{
-			fragments.put(fragment.getClass(), fragment);
+			final View view1=fragment.onCreateView(LayoutInflater.from(context), fragment.getViewGroup(), savedInstanceState);
+			final View view2=fragment.onCreateView(LayoutInflater.from(context), fragment.getViewGroup());
+			fragment.onViewCreated(view1 == null ?view2: view1, savedInstanceState);
+			if (context != null)
+				fragment.onActivityCreated(savedInstanceState);
 		}
+		else
+		{
+			fragment.onViewCreated(fragment.getView(), savedInstanceState);	
+		}
+		fragments.put(tag == null ?fragment.getClass(): tag, fragment);
 		oldFragment = fragment;
         return this;
     }
@@ -70,19 +79,7 @@ public final class FragmentMannger implements FragmentManngerImpl
 			fragment.onStart();
 			fragment.onResume();	
 			//走生命周期
-		    if (fragment.getView() == null)
-			{
-				final View view1=fragment.onCreateView(LayoutInflater.from(context), fragment.getViewGroup(), savedInstanceState);
-				final View view2=fragment.onCreateView(LayoutInflater.from(context), fragment.getViewGroup());
-				fragment.onViewCreated(view1 == null ?view2: view1, savedInstanceState);
-                if (context != null)
-                    fragment.onActivityCreated(savedInstanceState);
-			}
-			else
-			if (!fragment.isInLayout())
-            {
-				fragment.onViewCreated(fragment.getView(), savedInstanceState);	
-            }
+		    fragment.getView().setVisibility(View.VISIBLE);
 		}
 		return this;
 	}
@@ -92,14 +89,13 @@ public final class FragmentMannger implements FragmentManngerImpl
 	{
 		if (fragment == null)return this;
 		//一样，省事
-		if (fragment.isAdded())
-			if (fragment.getViewGroup() != null)
-			{
-				fragment.getViewGroup().removeView(fragment.getView());
-				fragment.onPause();
-				fragment.onStop();			
-				fragment.onDestroyView();
-			}
+		if (fragment.isVisible())
+		{
+			fragment.getView().setVisibility(View.GONE);
+			fragment.onPause();
+			fragment.onStop();			
+			//fragment.onDestroyView();
+		}
 		return this;
 	}
 
@@ -155,11 +151,12 @@ public final class FragmentMannger implements FragmentManngerImpl
 		if (fragment == null)return this;
 		//销毁fragment的生命周期
 		//确认是否保存
-		if (!fragment.getRetainInstance())fragments.remove(fragments.getClass());
+		//fragment.getViewGroup().removeView(fragment.getView());
 		fragment.onDestroyView();
 		fragment.onDestroy();
 		fragment.onDetach();	
-        fragments.remove(fragment.getClass());
+		if (!fragment.getRetainInstance())fragments.remove(fragment.getClass());
+        //fragments.remove(fragment.getClass());
 		return this;
 	}
 
@@ -172,7 +169,7 @@ public final class FragmentMannger implements FragmentManngerImpl
 
 	/*
 	 生命周期
-	 */
+	 */;
 
 	void resumeFragment()
 	{
@@ -205,36 +202,37 @@ public final class FragmentMannger implements FragmentManngerImpl
              //make
              }
              */
-			if (one.isVisible())
-				one.onStart();
+			//if (one.isVisible())
+			one.onStart();
         }
 	}
 
 	void resume()
 	{
 		for (Fragment one:fragments.values())
-			if (one.isVisible())
-				one.onResume();
+		//if (one.isVisible())
+			one.onResume();
 	}
 
 	void pause()
 	{
 		for (Fragment one:fragments.values())
-			if (one.isVisible())
-				one.onPause();
+		//if (one.isVisible())
+			one.onPause();
 	}
 
 	void stop()
 	{
 		for (Fragment one:fragments.values())
-			if (one.isVisible())
-				one.onStop();
+		//if (one.isVisible())
+			one.onStop();
 	}
 
     void destroy()
 	{
 		for (Fragment one:fragments.values())
 			remove(one);
+        savedInstanceState = null;
 		oldFragment = null;
 		context = null;
     }

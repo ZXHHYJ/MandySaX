@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import mandysax.design.FragmentPage;
 
 public class Fragment implements FragmentImpl,LifecycleOwner
 {
@@ -22,15 +21,13 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 
 	//private ViewGroup root;
 
-	private FragmentPage mPage;//fragment page
+	//private FragmentPage mPage;//fragment page
 
 	private boolean mAdded;//fragment已添加？
 
 	private boolean mDetached;//fragment已解绑activity？
 
 	private boolean mRemoving;//fragment正在移除？
-
-	private boolean mInLayout;//fragment布局已经加载?
 
 	private boolean mResumed;//fragment处于可见状态？
 
@@ -40,9 +37,11 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 
 	private Intent mIntent;
 
-	public final <T extends android.view.View> T findViewById(int id)
+	public final <T extends View> T findViewById(int id)
 	{
+        if(isInLayout())
 		return view.findViewById(id);
+        throw new NullPointerException("layout not loaded");
 	}
 
 	@Override
@@ -57,12 +56,12 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 		return mLifecycle;
 	}
 
-	@Override
+	/*@Override
 	public void setFragmentPage(FragmentPage page)
 	{
 		if (this.mPage == null)
 			this.mPage = page;
-	}
+	}*/
 
 	@Override
 	public Fragment startFragment(Class fragment)
@@ -77,19 +76,19 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 					@Override
 					public void Observer(Lifecycle.Event State)
 					{
-                        if(!getActivity().isDestroyed())
-						if (State == Lifecycle.Event.ON_DESTORY)
-						{
-							mActivity.getMannger().show(Fragment.this);
-							onFragmentResult(startfragment.getIntent());
-						}
+                        if (!getActivity().isDestroyed())
+                            if (State == Lifecycle.Event.ON_DESTORY)
+                            {
+                                mActivity.getMannger().show(Fragment.this);
+                                onFragmentResult(startfragment.getIntent());
+                            }
 					}
 				});
-            if (mPage != null)
-            {
-                mPage.startFragment(this, startfragment);
+            //if (mPage != null)
+            //{
+                //mPage.startFragment(this, startfragment);
                 //return null;
-            }
+            //}
             return startfragment;
 		}
 		catch (InstantiationException e)
@@ -118,15 +117,11 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 		return mActivity;
 	}
 
+    @Override
 	public FragmentActivity getActivity()
 	{
         return mActivity;
     }
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container)
-	{
-		return null;
-	}
 
 	@Override
     public void startActivity(Intent intent)
@@ -161,7 +156,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	@Override
 	public boolean isInLayout()
 	{
-		return mInLayout;
+		return view!=null;
 	}
 
 	@Override
@@ -212,7 +207,14 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	{
 		//getActivity().getLifecycles().put(getClass().getCanonicalName(), mLifecycle);
 		mLifecycle.onCreate();
+        mAdded = true;
 		mRemoving = false;
+	}
+    
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container)
+    {
+        return null;
 	}
 
 	@Override
@@ -226,11 +228,11 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	{
 		if (view == null)return;
 		this.view = view;
-		mInLayout = true;
-		mAdded = true;
+		view.setVisibility(View.GONE);
 		if (getViewGroup() != null)
 			getViewGroup().addView(getView());
-		//这里记得放报错信息
+		//mInLayout = true;
+			//这里记得放报错信息
 	}
 
 	@Override
@@ -307,7 +309,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	@Override
 	public void onDestroyView()
 	{
-		mInLayout = false;
+		//mInLayout = false;
 		if (getViewGroup() != null)
 			getViewGroup().removeView(getView());//获取根布局，移出fragment布局
 		if (!mRetainInstance)
@@ -331,7 +333,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	{
 		mDetached = true;
 		mActivity = null;
-		mPage = null;
+		//mPage = null;
 	}
 
 }

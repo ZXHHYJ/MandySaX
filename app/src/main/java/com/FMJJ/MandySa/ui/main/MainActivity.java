@@ -8,36 +8,42 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.view.View;
 import androidx.annotation.NonNull;
-import com.FMJJ.MandySa.R;
 import com.FMJJ.MandySa.logic.MediaBrowserHelper;
 import com.FMJJ.MandySa.logic.model.MusicService;
 import com.FMJJ.MandySa.ui.BaseActivity;
+import com.FMJJ.MandySa.ui.main.HomeFragment;
+import com.FMJJ.MandySa.ui.main.LikeFragment;
+import com.FMJJ.MandySa.ui.main.MyFragment;
+import com.FMJJ.MandySa.ui.main.SearchListFragment;
+import com.FMJJ.MandySa.ui.music.MusicActivity;
 import java.util.List;
-import mandysax.design.BottomNavigationBar;
-import mandysax.design.FragmentPage;
-import mandysax.design.MusicView;
+import mandysax.R;
+import mandysax.fragmentpage.widget.FragmentPage;
 import mandysax.lifecycle.ViewModelProviders;
+import mandysax.musiccontroller.widget.MusicController;
+import mandysax.navigationbar.widget.BottomNavigationBar;
 
 public class MainActivity extends BaseActivity
 {
 
 	private MainViewModel viewModel;
 
-	private FragmentPage mainFragmentPage;
-    
-	private MusicView mainMusicView;
+	private FragmentPage fragmentPage;
+	
+	private MusicController musicController;
 
-	private BottomNavigationBar mainBottomNavigationBar;
+	private BottomNavigationBar bottomNavigationBar;
 
-	private MediaBrowserHelper mMediaBrowserHelper;
+	private MediaBrowserHelper mediaBrowserHelper;
 
     private boolean mIsPlaying;
+
 
     @Override
     public void onStart()
 	{
         super.onStart();
-        mMediaBrowserHelper.onStart();
+        mediaBrowserHelper.onStart();
     }
 
     @Override
@@ -45,7 +51,7 @@ public class MainActivity extends BaseActivity
 	{
         super.onStop();
 		//  mSeekBarAudio.disconnectController();
-        mMediaBrowserHelper.onStop();
+        mediaBrowserHelper.onStop();
     }
 
 	@Override
@@ -53,33 +59,34 @@ public class MainActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-		mainFragmentPage=findViewById(R.id.mainFragmentPage);
-        mainMusicView=findViewById(R.id.mainMusicView);
-        mainBottomNavigationBar=findViewById(R.id.mainBottomNavigationBar);
-        viewModel=ViewModelProviders.of(this).get(MainViewModel.class);
-		mMediaBrowserHelper = new MediaBrowserConnection(this);
-        mMediaBrowserHelper.registerCallback(new MediaBrowserListener());
+		fragmentPage = findViewById(R.id.mainFragmentPage);
+        musicController = findViewById(R.id.mainMusicController);
+        bottomNavigationBar = findViewById(R.id.mainBottomNavigationBar);
+        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+		mediaBrowserHelper = new MediaBrowserConnection(this);
+        mediaBrowserHelper.registerCallback(new MediaBrowserListener());
 		initFragment();
-		mainMusicView.setOnClickListener(new View.OnClickListener(){
+		musicController.setOnClickListener(new View.OnClickListener(){
 
 				@Override
 				public void onClick(View p1)
 				{
+                    MusicActivity.startActivity(MainActivity.this);
 				}
 
 			});
-		mainMusicView.getPlaybutton().setOnClickListener(new View.OnClickListener(){
+		musicController.getPlaybutton().setOnClickListener(new View.OnClickListener(){
 
 				@Override
 				public void onClick(View p1)
 				{
 					if (mIsPlaying)
 					{
-                        mMediaBrowserHelper.getTransportControls().pause();
+                        mediaBrowserHelper.getTransportControls().pause();
                     }
 					else
 					{
-                        mMediaBrowserHelper.getTransportControls().play();
+                        mediaBrowserHelper.getTransportControls().play();
                     }
 				}
 			});
@@ -87,28 +94,26 @@ public class MainActivity extends BaseActivity
 
 	private void initFragment()
 	{
-		mainFragmentPage.add(HomeFragment.class, LikeFragment.class, SearchListFragment.class, MyFragment.class);
-		mainFragmentPage.showFragment(viewModel.index);
-		mainBottomNavigationBar.setTextColorRes(R.color.theme_color);
-        mainBottomNavigationBar.addItemView(getString(R.string.home), R.mipmap.ic_music, R.mipmap.ic_music_black);
-        mainBottomNavigationBar.addItemView(getString(R.string.like), R.mipmap.ic_cards_heart, R.mipmap.ic_cards_heart_black);
-        mainBottomNavigationBar.addItemView(getString(R.string.search), R.mipmap.ic_magnify_outline, R.mipmap.ic_magnify_outline_black);
-		mainBottomNavigationBar.addItemView(getString(R.string.my), R.mipmap.ic_account, R.mipmap.ic_account_black);
-        mainBottomNavigationBar.setSelected(viewModel.index);
-		mainBottomNavigationBar.setOnItemViewSelectedListener(new BottomNavigationBar.OnItemViewSelectedListener() {
+		fragmentPage.add(HomeFragment.class, LikeFragment.class, SearchListFragment.class, MyFragment.class);
+		fragmentPage.showFragment(viewModel.index);
+        bottomNavigationBar.addItemView(getString(R.string.home), R.mipmap.ic_music, R.mipmap.ic_music_black);
+        bottomNavigationBar.addItemView(getString(R.string.like), R.mipmap.ic_cards_heart, R.mipmap.ic_cards_heart_black);
+        bottomNavigationBar.addItemView(getString(R.string.search), R.mipmap.ic_magnify_outline, R.mipmap.ic_magnify_outline_black);
+		bottomNavigationBar.addItemView(getString(R.string.my), R.mipmap.ic_account, R.mipmap.ic_account_black);
+        bottomNavigationBar.setSelected(viewModel.index);
+		bottomNavigationBar.setOnItemViewSelectedListener(new BottomNavigationBar.OnItemViewSelectedListener() {
 				@Override
 				public void onItemClcik(View v, int index)
 				{
 					viewModel.index = index;
-					mainFragmentPage.showFragment(index);
+					fragmentPage.showFragment(index);
 				}
 			});
 	}
 
-	
-
 	private class MediaBrowserConnection extends MediaBrowserHelper
 	{
+
         private MediaBrowserConnection(Context context)
 		{
             super(context, MusicService.class);
@@ -150,6 +155,7 @@ public class MainActivity extends BaseActivity
 
     private class MediaBrowserListener extends MediaControllerCompat.Callback
 	{
+
         @Override
         public void onPlaybackStateChanged(PlaybackStateCompat playbackState)
 		{
@@ -157,13 +163,13 @@ public class MainActivity extends BaseActivity
 			{
 				mIsPlaying = playbackState != null && playbackState.getState() == PlaybackStateCompat.STATE_PLAYING;
 				if (playbackState.getState() == PlaybackStateCompat.STATE_PLAYING)
-					mainMusicView.playmode();
+					musicController.playMode();
 				else
 				if (playbackState.getState() == PlaybackStateCompat.STATE_PAUSED)
-					mainMusicView.stopmode();
+					musicController.stopMode();
 				else
 				if (playbackState.getState() == PlaybackStateCompat.STATE_CONNECTING)
-					mainMusicView.loadmode();
+					musicController.loadMode();
 			}
 		}
 
@@ -174,7 +180,7 @@ public class MainActivity extends BaseActivity
 			{
                 return;
             }
-            mainMusicView.setTitle(
+            musicController.setTitle(
 				mediaMetadata.getString(MediaMetadataCompat.METADATA_KEY_TITLE));
             /*mArtistTextView.setText(
 			 mediaMetadata.getString(MediaMetadataCompat.METADATA_KEY_ARTIST));

@@ -1,4 +1,5 @@
 package mandysax.lifecycle;
+import android.util.Log;
 
 public final class ViewModelLifecycle
 {
@@ -14,12 +15,13 @@ public final class ViewModelLifecycle
 
 	public <T extends ViewModel> T get(final Class<T> name)
 	{
+        Log.d("get viewmodel",name.getName());
 		T viewmodel=(viewmodel = (T)mViewModelStore.get(name)) == null ?mFactory == null ? new ViewModelFactory().create(name): mFactory.create(name): viewmodel;
 		mViewModelStore.put(name,viewmodel);
 		return viewmodel;
 	}
 
-	final class ViewModelFactory implements Factory
+	private final class ViewModelFactory implements Factory
 	{
 
 		@Override

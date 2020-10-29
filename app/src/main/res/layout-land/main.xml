@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="horizontal">
+
+	<RelativeLayout
+		android:layout_weight="0.8"
+		android:layout_width="0dp"
+		android:layout_height="match_parent">
+
+		<mandysax.navigationbar.widget.BottomNavigationBar
+			android:layout_alignParentBottom="true"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/mainBottomNavigationBar"/>
+
+		<mandysax.fragmentpage.widget.FragmentPage
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_above="@id/mainBottomNavigationBar"
+			android:id="@+id/mainFragmentPage"/>
+
+		<mandysax.musiccontroller.widget.MusicController
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/mainMusicController"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+			app:textTint="@string/musictint"
+			android:layout_above="@id/mainBottomNavigationBar"/>
+
+		<View
+			android:background="?android:attr/dividerVertical"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:layout_above="@id/mainBottomNavigationBar"/>
+
+	</RelativeLayout>
+
+	<FrameLayout
+		android:layout_height="match_parent"
+		android:layout_weight="0.8"
+		android:layout_width="0dp"/>
+
+</LinearLayout>
+
