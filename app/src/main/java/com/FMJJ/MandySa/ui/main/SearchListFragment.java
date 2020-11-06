@@ -2,12 +2,11 @@ package com.FMJJ.MandySa.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.media.MediaMetadataCompat;
-import android.text.SpannableString;
-import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,8 +22,6 @@ import com.FMJJ.MandySa.R;
 import com.FMJJ.MandySa.logic.dao.LikeMusicDao;
 import com.FMJJ.MandySa.logic.model.contentcatalogs.MusicLibrary;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import mandysax.lifecycle.Fragment;
 import mandysax.lifecycle.ViewModelProviders;
 import mandysax.lifecycle.livedata.Observer;
@@ -46,21 +42,17 @@ public class SearchListFragment extends Fragment
 	private SwipeRefreshLayout musicSl;
 
 	@Override
+	public void onConfigurationChanged(Configuration newConfig)
+	{
+		super.onConfigurationChanged(newConfig);
+		//for(int i=0;i<getViewGroup();i++){
+	}
+
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container)
 	{
 		return inflater.inflate(R.layout.search_list_fragment, container, false);
-	}
-
-	@Override
-	public void onFragmentResult(Intent data)
-	{
-		super.onFragmentResult(data);
-		if (!TextUtils.isEmpty(data.getCharSequenceExtra("search_content")))
-		{
-			musicSl.setRefreshing(true);
-			viewModel.song_search(data.getCharSequenceExtra("search_content").toString());
-			searchEdit.setText(data.getCharSequenceExtra("search_content"));
-		}
 	}
 
 	@Override
@@ -77,19 +69,13 @@ public class SearchListFragment extends Fragment
 				@Override
 				public void onClick(View p1)
 				{
-					startFragment(SearchFragment.class);
+					if (!TextUtils.isEmpty(searchEdit.getText()))
+					{
+						musicSl.setRefreshing(true);
+						viewModel.song_search(searchEdit.getText().toString());
+					}
 				}	
 
-			});
-		searchEdit.setFocusable(false);
-		searchEdit.setLongClickable(false);
-		searchEdit.setOnClickListener(new View.OnClickListener(){
-
-				@Override
-				public void onClick(View p1)
-				{
-					startFragment(SearchFragment.class);
-				}
 			});
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 		musicList.setLayoutManager(linearLayoutManager);  
@@ -106,13 +92,13 @@ public class SearchListFragment extends Fragment
 					int lastCompletelyVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
 					if (lastCompletelyVisibleItemPosition == layoutManager.getItemCount() - 1)
 					{
-						musicSl.setRefreshing(true);			
+						//musicSl.setRefreshing(true);			
 						viewModel.song_bottom();
 					}
 				}
 			});
-        musicSl.setProgressViewOffset(true, 0, 280);
-        musicSl.setColorScheme(R.color.theme_color);
+        musicSl.setProgressViewOffset(false, 0, 280);
+        musicSl.setColorScheme(R.color.default_checked_color);
         musicSl.setOnRefreshListener(
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -143,7 +129,7 @@ public class SearchListFragment extends Fragment
 				@Override
 				public void onChanged(List<MediaMetadataCompat> p1)
 				{
-                    musicSl.setRefreshing(false);
+                    //musicSl.setRefreshing(false);
 					if (p1 == null)return;		
                     viewModel.song_list.addAll(p1);	
                     musicListAdaper.notifyDataSetChanged();
@@ -157,11 +143,11 @@ public class SearchListFragment extends Fragment
 		@Override
 		public void onBindViewHolder(MusicListViewHolder p1, final int p2)
 		{
-			final String title=list.get(p2).getString(MediaMetadataCompat.METADATA_KEY_TITLE);
-			final String singer=list.get(p2).getString(MediaMetadataCompat.METADATA_KEY_ARTIST);
+			p1.songName.setText(list.get(p2).getString(MediaMetadataCompat.METADATA_KEY_TITLE));
+			p1.singerName.setText(list.get(p2).getString(MediaMetadataCompat.METADATA_KEY_ARTIST));
             p1.serialNumber.setText(p2 + 1 + "");
-            setSearchContentColor(title, searchEdit.getText().toString(), p1.songName);
-			setSearchContentColor(singer, searchEdit.getText().toString(), p1.singerName);
+			//  setSearchContentColor(title, searchEdit.getText().toString(), p1.songName);
+			//setSearchContentColor(singer, searchEdit.getText().toString(), p1.singerName);
 			p1.onclick.setOnClickListener(new View.OnClickListener(){
 					@Override
 					public void onClick(View p1)
@@ -177,6 +163,7 @@ public class SearchListFragment extends Fragment
                         // 这里的view代表popupMenu需要依附的view
                         final PopupMenu popupMenu = new PopupMenu(getContext(), p1);
                         // 获取布局文件
+						popupMenu.setGravity(Gravity.RIGHT);
                         popupMenu.getMenuInflater().inflate(R.menu.like_menu, popupMenu.getMenu());
                         popupMenu.show();
                         // 通过上面这几行代码，就可以把控件显示出来了
@@ -228,16 +215,16 @@ public class SearchListFragment extends Fragment
 			return list.size(); 
 		} 
 
-		private void setSearchContentColor(String name, String KeyWord, TextView tv)
-		{
-			final SpannableString s = new SpannableString(name);
-			final Matcher m = Pattern.compile(KeyWord).matcher(s);
-			while (m.find())
-			{
-				s.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.search_color)), m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			}
-			tv.setText(s);
-		}
+		/*private void setSearchContentColor(String name, String KeyWord, TextView tv)
+		 {
+		 final SpannableString s = new SpannableString(name);
+		 final Matcher m = Pattern.compile(KeyWord).matcher(s);
+		 while (m.find())
+		 {
+		 s.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.search_color)), m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		 }
+		 tv.setText(s);
+		 }*/
 
 	} 
 

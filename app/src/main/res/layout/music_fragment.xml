@@ -19,15 +19,15 @@
 			android:id="@+id/musicplayalbumpicture"/>
 
 		<TextView
-			android:textColor="@color/text_color"
+			android:textColor="@android:color/black"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:id="@+id/musicplaytitle"
 			android:layout_below="@id/musicplayalbumpicture"/>
 
-		<TextView
-			android:textColor="@color/text_color"
+		<TextView	
+			android:textColor="@android:color/black"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textAppearance="?android:attr/textAppearanceMedium"

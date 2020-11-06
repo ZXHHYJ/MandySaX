@@ -9,7 +9,8 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/like"
-		style="@style/Theme.MandySa.Title"/>
+		style="@style/Theme.MandySa.Title"
+		android:textColor="@android:color/black"/>
 
 	<include
 		layout="@layout/play_all"

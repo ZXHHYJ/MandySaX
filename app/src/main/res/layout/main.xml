@@ -4,14 +4,14 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-
+	
 	<mandysax.navigationbar.widget.BottomNavigationBar
 		android:layout_alignParentBottom="true"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/mainBottomNavigationBar"
-		app:textCheckedColor="@color/theme_color"
-		app:textUnCheckedColor="@color/theme_black_color"/>
+		app:textCheckedColor="@color/default_checked_color"
+		app:textUnCheckedColor="@color/default_unchecked_color"/>
 
 	<mandysax.fragmentpage.widget.FragmentPage
 		android:layout_width="match_parent"
@@ -33,6 +33,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="1dp"
 		android:layout_above="@id/mainBottomNavigationBar"/>
-
+	
 </RelativeLayout>
 

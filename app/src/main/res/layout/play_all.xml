@@ -7,6 +7,7 @@
 	android:gravity="center_vertical">
 
 	<ImageView
+		android:tint="@android:color/black"
 		android:layout_width="45dp"
 		android:layout_height="45dp"
 		android:id="@+id/musicitemNumber"

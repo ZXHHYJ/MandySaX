@@ -24,8 +24,9 @@
 			</intent-filter>
 		</activity>
 		<activity 
-            android:name=".ui.music.MusicActivity"
-            android:theme="@style/TransparentTheme"/>
+            android:name=".ui.music.MusicActivity"/>
+		<actovity 
+			android:name=".ui.playlist.PlayListActivity"/>
 		<service
 			android:name=".logic.model.MusicService">
 			<intent-filter>

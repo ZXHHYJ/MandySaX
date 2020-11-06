@@ -5,16 +5,10 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="@string/home"
-		style="@style/Theme.MandySa.Title"/>
-
-	<View
-		android:background="?android:attr/dividerVertical"
+	<mandysax.toolbar.widget.Toolbar
 		android:layout_width="match_parent"
-		android:layout_height="1dp"/>
+		android:layout_height="wrap_content"
+		android:name="@string/home"/>
 
 </LinearLayout>
 

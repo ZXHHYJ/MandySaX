@@ -37,9 +37,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.FMJJ.MandySa.ui.music.MusicActivity"
-            android:theme="@style/TransparentTheme" />
+        <activity android:name="com.FMJJ.MandySa.ui.music.MusicActivity" />
+
+        <actovity android:name=".ui.playlist.PlayListActivity" />
 
         <service android:name="com.FMJJ.MandySa.logic.model.MusicService" >
             <intent-filter>

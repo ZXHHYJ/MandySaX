@@ -8,6 +8,7 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.view.View;
 import androidx.annotation.NonNull;
+import com.FMJJ.MandySa.R;
 import com.FMJJ.MandySa.logic.MediaBrowserHelper;
 import com.FMJJ.MandySa.logic.model.MusicService;
 import com.FMJJ.MandySa.ui.BaseActivity;
@@ -17,7 +18,6 @@ import com.FMJJ.MandySa.ui.main.MyFragment;
 import com.FMJJ.MandySa.ui.main.SearchListFragment;
 import com.FMJJ.MandySa.ui.music.MusicActivity;
 import java.util.List;
-import mandysax.R;
 import mandysax.fragmentpage.widget.FragmentPage;
 import mandysax.lifecycle.ViewModelProviders;
 import mandysax.musiccontroller.widget.MusicController;
@@ -29,7 +29,7 @@ public class MainActivity extends BaseActivity
 	private MainViewModel viewModel;
 
 	private FragmentPage fragmentPage;
-	
+
 	private MusicController musicController;
 
 	private BottomNavigationBar bottomNavigationBar;
@@ -95,20 +95,15 @@ public class MainActivity extends BaseActivity
 	private void initFragment()
 	{
 		fragmentPage.add(HomeFragment.class, LikeFragment.class, SearchListFragment.class, MyFragment.class);
-		fragmentPage.showFragment(viewModel.index);
-        bottomNavigationBar.addItemView(getString(R.string.home), R.mipmap.ic_music, R.mipmap.ic_music_black);
-        bottomNavigationBar.addItemView(getString(R.string.like), R.mipmap.ic_cards_heart, R.mipmap.ic_cards_heart_black);
-        bottomNavigationBar.addItemView(getString(R.string.search), R.mipmap.ic_magnify_outline, R.mipmap.ic_magnify_outline_black);
-		bottomNavigationBar.addItemView(getString(R.string.my), R.mipmap.ic_account, R.mipmap.ic_account_black);
-        bottomNavigationBar.setSelected(viewModel.index);
-		bottomNavigationBar.setOnItemViewSelectedListener(new BottomNavigationBar.OnItemViewSelectedListener() {
-				@Override
-				public void onItemClcik(View v, int index)
-				{
-					viewModel.index = index;
-					fragmentPage.showFragment(index);
-				}
-			});
+		if (viewModel.index.getValue().intValue() == 0)
+			fragmentPage.showFragment(viewModel.index.getValue().intValue());
+        bottomNavigationBar
+			.addItemView(getString(R.string.home), R.mipmap.ic_music, R.mipmap.ic_music_black)
+			.addItemView(getString(R.string.like), R.mipmap.ic_cards_heart, R.mipmap.ic_cards_heart_black)
+			.addItemView(getString(R.string.search), R.mipmap.ic_magnify_outline, R.mipmap.ic_magnify_outline_black)
+			.addItemView(getString(R.string.my), R.mipmap.ic_account, R.mipmap.ic_account_black)
+			.setSelected(viewModel.index.getValue().intValue())
+			.setOnItemViewSelectedListener(fragmentPage, viewModel.index);
 	}
 
 	private class MediaBrowserConnection extends MediaBrowserHelper

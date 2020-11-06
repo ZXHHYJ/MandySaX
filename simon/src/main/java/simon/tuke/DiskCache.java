@@ -27,7 +27,7 @@ final class DiskCache {
 		return BitmapFactory.decodeFile(string(key));
 	}
 	
-    public  void saveBitmap(String key,Bitmap mBitmap) throws FileNotFoundException, IOException {
+    public void saveBitmap(String key,Bitmap mBitmap) throws FileNotFoundException, IOException {
         File filePic=new File(string(key));
             FileOutputStream fos = new FileOutputStream(filePic);
             mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);

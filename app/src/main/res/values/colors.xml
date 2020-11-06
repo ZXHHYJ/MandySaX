@@ -1,8 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="theme_color">@color/default_checked_color</color>
-    <color name="theme_black_color">@color/default_unchecked_color</color>
-    <color name="main_color">@android:color/white</color>
-    <color name="text_color">@android:color/black</color>
-	<color name="search_color">#FF4EC7A0</color>
-	</resources>
+</resources>
