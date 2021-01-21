@@ -1,26 +1,7 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-buildscript {
-    repositories {
-        maven { url 'https://plugins.gradle.org/m2/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
-    }
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29"
 }
 
-allprojects {
-    repositories {
-        maven { url 'https://plugins.gradle.org/m2/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
-    }
-}
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}

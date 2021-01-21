@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="simon">
-	<application>
-		<provider
-			android:authorities="${applicationId}.Tuke"
-			android:name="simon.tuke.TukeInit"/>
-	</application>
-</manifest>

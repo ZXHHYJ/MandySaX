@@ -1,391 +1,217 @@
-# Gift-for-Mandy-Sa
-送给封茗囧菌的小礼物
-*这个项目最初的简介是：此项目为封茗囧菌而做
+# 初衷
 
-# MandySaX
-mandysax is an open source library that facilitates Android program development. It supports responsive programming, activity and fragment life cycle management, MVVM architecture development... Welcome to start
+这个项目最开始是个浏览器，叫做 MandySa，很多人怀疑是给封茗囧菌做的，这个不用怀疑，一开始确实是为她做的，纪念陪伴自己整个青春的偶像封茗囧菌。
 
-# MandySaX MVVM-ViewModel
+**以此纪念我逝去的青春。**
 
->新建ViewModel类
+# 介绍
+
+MandySaX 是一个开源库，可加快 Android 程序开发。 它支持响应式编程，有 viewmodel，支持 activity 和 fragment 生命周期管理，最近 MandySaX 也为自己的 activity 开发了属于自己的 fragment。MandySaX 多用于 MVVM 架构的轻量级应用，欢迎 start。
+
+**这是我们推荐的架构：**
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0110/213209_e5b36d37_8555846.png "")
+
+如果需要它的使用方法，请继续阅读吧
+
+# 注意事项
+
+目前这个 MandySaX 只建议用于一些轻量级的项目，正在慢慢扩充 MandySaX...
+
+# 导入
+
+把下载项目文件，放到需要导入的项目的起始目录，然后长按，点击导入
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0110/213300_3a2cf839_8555846.png "")
+
+下面我们可以开始使用了
+
+# 使用
+
+### 使用 ViewModel
+
+新建一个类并继承自 ViewModel
+
 ```java
 public class MainViewModel extends ViewModel
 {
-    public MainViewModel(String p0)
-    {
-    ....
-    }
+public MainViewModel(String p0)
+{
+....
+}
 ... 
 }
 ```
 
-在继承**AppCompatActivity**的activity或**FragmentCompat**的fragment中写入如下代码（推荐）
+在继承
+
+```mandysax.plus.fragment.FragmentActivity```的 activity 或```mandysax.plus.fragment.Fragment```的 fragment 中写入如下代码（推荐）
+
 ```java
-private final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+private MainViewModel viewModel;
+
+@Override
+protected void onCreate(Bundle savedInstanceState)
+{
+super.onCreate(savedInstanceState);
+viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+}
 ```
 
->默认情况下ViewModel不支持向构造函数中传递参数，若需要向构造函数中传递参数
-```java
-private final MainViewModel viewModel=ViewModelProviders.of(this, new Factory(){
+默认情况下 ViewModel 不支持向构造函数中传递参数，若需要向构造函数中传递参数
 
-			@Override
-			public <T extends ViewModel> T create(Class<T> modelClass)
-			{
-				return (T)new MainViewModel("参数");
-			}
-		}).get(MainViewModel.class);
+```java
+private MainViewModel viewModel;
+
+@Override
+protected void onCreate(Bundle savedInstanceState)
+{
+super.onCreate(savedInstanceState);
+viewModel = ViewModelProviders.of(this, new Factory(){
+
+@Override
+public <T extends ViewModel> T create(Class<T> modelClass)
+{
+return (T)new MainViewModel("参数");
+}
+}).get(MainViewModel.class);
+}
 ```
 
->注意：千万不要让ViewModel持有Activity或Fragment的实例，ViewModel的生命周期是长于它们的，这会导致Activity或Fragment无法释放而造成内存泄露
+### 注意：千万不要让 ViewModel 持有 Activity 或 Fragment 的实例，ViewModel 的生命周期是长于它们的，这会导致 Activity 或 Fragment 无法释放而造成内存泄露
 
 **ViewModel**的生命周期：
-![image](http://39.106.7.220/mandysa/ViewModel.jpg)
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0110/213330_1a34051c_8555846.jpeg "ViewModel 的生命周期.jpg")
 
 **ViewModel**的方法和说明：
+
 | 方法 | 说明 |
 | :--: | :--: |
-| onCleared() | ViewModel回收时调用 |
+| onCleared() | ViewModel 回收时调用 |
 
 **ViewModelProviders**的方法和说明：
+
 | 方法 | 说明 |
 | :--: | :--: |
-| of(LifecycleOwner lifecycle) | 返回一个ViewModelLifecycle |
-| of(LifecycleOwner lifecycle,Factory factory) | 自定义ViewModel的构造方法并返回一个ViewModelLifecycle |
+| of(LifecycleOwner lifecycle) | 返回一个 ViewModelLifecycle |
+| of(LifecycleOwner lifecycle,Factory factory) | 自定义 ViewModel 的构造方法并返回一个 ViewModelLifecycle |
 
 **ViewModelLifecycle**的方法和说明：
+
 | 方法 | 说明 |
 | :--: | :--: |
-| get(final Class<T> name) | 返回要获取的ViewModel实例 |
+| get(final Class<T> name) | 返回要获取的 ViewModel 实例 |
 | ... | ... |
 
-# MandySaX MVVM-LiveData
->LiveData是一个用于持有数据并支持数据可被监听（观察），十分建议搭配ViewModel使用
+至此 ViewModel 的使用方法已全部介绍
 
-定义一个可变的LiveData对象，并假设它的泛型类型为String
+### 使用 LiveData
+
+>LiveData 是一个用于持有数据并支持数据可被监听（观察），十分建议搭配 ViewModel 使用
+
+定义一个可变的 LiveData 对象，并假设它的泛型类型为 String
+
 ```java
 private final MutableLiveData<String> livedata = new MutableLiveData<String>();
 ```
+
 也可以在初始化时直接设置数据
+
 ```java
 private final MutableLiveData<String> livedata = new MutableLiveData<String>("默认数据");
 ```
 
-向可变的LiveData提交数据
+向可变的 LiveData 提交数据
+
 ```java
 livedata.setValue("数据");
 ```
->若在子线程中需要更新数据，且数据变化后需要[更新UI]，则建议使用postValue来更新数据
+
+>在线程不安全的情况下则建议使用 postValue 来更新数据
+
 ```java
 livedata.postValue("在子线程中更新数据")
 ```
 
-观察LiveData的数据变化
+观察 LiveData 的数据变化
+
 ```java
 livedata.observeForever(new Observer<String>() {
 
-				@Override
-				public void onChanged(String p1)
-				{
-					System.out.println(p1);
-				}
-			});
+@Override
+public void onChanged(String p1)
+{
+System.out.println(p1);
+}
+});
 ```
->上述的监听方法无法跟随Activity或Fragment的生命周期，若需要在Activity不活跃时暂停响应、销毁时取消监听，可以这样设置
+
+>上述的监听方法无法跟随 Activity 或 Fragment 的生命周期，若需要在 Activity 不活跃时暂停响应、销毁时取消监听，可以这样设置
+
 ```java
-//this为LifecycleOwner的实例
-//注：AppCompatActivity和FragmentCompat本身就是一个LifecycleOwner实例
+//this 为 LifecycleOwner 的实例
+//注：FragmentActivity 和 Fragment 本身就是一个 LifecycleOwner 实例
 livedata.observe(this, new Observer<String>(){
 
-				@Override
-				public void onChanged(String p1)
-				{
-				    System.out.println(p1);
-				}
-					
-		});
+@Override
+public void onChanged(String p1)
+{
+System.out.println(p1);
+}
+
+});
 ```
-考虑到数据的封装性，MandySaX也提供不可变的LiveData
+
+考虑到数据的封装性，MandySaX 也提供不可变的 LiveData
+
 ```java
 private final LiveData<String> _livedata = livedata;
-//livedata为上面的MutableLiveData实例
+//livedata 为上面的 MutableLiveData 实例
 ```
->建议只暴露不可变的LiveData，将可变的LiveData私有，从而保证了数据的封装性
-  
-  **LiveData**的方法和说明：  
+
+>建议只暴露不可变的 LiveData，将可变的 LiveData 私有，从而保证了数据的封装性
+
+**LiveData**的方法和说明：
+
 | 方法 | 说明 |
 | :--: | :--: |
-| setValue(T value) | 更新数据 |
-| postValue(T value) | 切换到主线程并更新数据 |
+| setValue(T value) | 直接更新数据 |
+| postValue(T value) | 以线程安全的方式更新数据 |
 | observe(LifecycleOwner lifecycle, Observer observer) | 以注重生命周期的方法观察数据 |
-| observeForever(Observer observer) | 观察数据 |
+| observeForever(Observer observer) | 直接观察数据 |
 
-# Usage BottomNavigationBar
+至此 LiveData 的使用方法已全部介绍
 
-控件演示：
-![image](http://39.106.7.220/mandysa/BottomNavigationBar.jpg)
+### 使用 Fragment
 
-   > 在布局xml文件中放置
-   ```xml
-   <mandysax.design.BottomNavigationBar
-   android:layout_height="wrap_content"
-   android:layout_width="match_parent"
-   app:textCheckedColor="@color/checked"
-   app:textUnCheckedColor="@color/unchecked"
-   app:show_type="no_image"/>
-   ```
-   
-   * textCheckedColor 字体选中颜色
-   * textUnCheckedColor 字体未选中颜色
-   * show_type 显示模式（下方4种模式的小写形式）
-   
-   **BottomNavigationBar**的方法、说明和参数：
+> 起初 MandySaX 并没有想过做自己 fragment，做这个 fragment 的原因是我在自己的项目中用到了 fragment，测试时发现不同系统版本的 fragment 的实际运行效果各不相同，甚至闪退，后来发现谷歌在 Android9.0 时也已经废弃了系统 fragment，自此开始了自己的 fragment 的开发
+
+fragment 是可以让你的 app 纵享丝滑的设计，优化 app 时，如果可以，你可以把 activity 换成 fragment，减少内存占有和提高 app 运行的效率，如果你的 app 当前或以后有移植平板等大屏设备的计划，那时可以让你节省大量时间和精力。
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0110/213410_a2788ba0_8555846.png "")
+
+**生命周期，和系统的大差不差**
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0110/213435_3b4f5a50_8555846.png "")
+
+至此 Fragment 的使用方法已全部介绍
+
+### 使用 FragmentActivity
+
+**因为和系统 Activity 几乎一致，故只介绍一些特别的地方**
+
+**FragmentActivity**的方法和说明：
+
 | 方法 | 说明 |
 | :--: | :--: |
-| setType(NavShowType type) | 设置控件样式 |
-| setSelected(int index) | 设置选中的item |
-| 参数 | 说明 |
-| NavShowType.NORMAL | 普通模式，包含文字和图片 |
-| NavShowType.NO_TEXT | 无文字模式 |
-| NavShowType.NO_IMAGE | 无图模式 |
-| NavShowType.CHECKED_SHOW_TEXT | 普通无文字 选中出现文字 |
+| getMannger() | 返回一个 FragmentMannger |
+| setContentView(Class fragmentClass) | 使用 fragment 作为 activity 的主界面 |
+| getActivityFragment() | 返回当前 activity 的主界面 fragment 实例 |
+| findFragmentByTag(Object tag) | 获取标签为 tag 的 fragment 实例 |
 
-   > 在java代码中为bar添加子项
-   
-   ```java
-bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bnBar);
-        /*
-        add bottom navigation item
-        param1 bottom text
-        param2 bottom image checked
-        param3 bottom image unchecked
-         */
-        bottomNavigationBar.addItemView("test",选中图片资源,未选中图片资源);
-```
+至此 FragmentActivity 的使用方法已**基本**介绍
 
-> 设置点击回调,以处理之后与ViewPager或FragmentPage的交互
+...
 
-```java
-//set Callback
-        bottomNavigationBar.setOnItemViewSelectedListener(new BottomNavigationBar.OnItemViewSelectedListener() {
-            /**
-             * call when item clicked
-             * @param v clicked item
-             * @param index item index
-             */
-            @Override
-            public void onItemClcik(View v, int index) {
-
-            }
-        });
-```
-
-# Usage FragmentPage
->注：此控件十分建议搭配注解使用
-
-与**BottomNavigationBar**搭配使用：
-![image](http://39.106.7.220/mandysa/FragmentPage.jpg)
-
-
-在布局xml文件中放置
-```xml
-<mandysax.design.FragmentPage
- android:layout_width="match_parent"
- android:layout_height="match_parent"/>
- ```
- 
- 为这个FragmentPage设置一个底部栏
- ```xml
- <?xml version="1.0" encoding="utf-8"?>
-<mandysax.design.FragmentPage xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:id="@+id/mainFragmentPage">
-
-	<mandysax.design.BottomNavigationBar
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:id="@+id/mainBottomNavigationBar"/>
-		
-		...
-
-</mandysax.design.FragmentPage>
- ```
- 
- 往底部栏上添加一个控件
- ```xml
- <?xml version="1.0" encoding="utf-8"?>
-<mandysax.design.FragmentPage xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:id="@+id/mainFragmentPage">
-
-	...
-
-	<mandysax.design.MusicView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:id="@+id/mainMusicView"
-		android:layout_marginLeft="5dp"
-		android:layout_marginRight="5dp"
-		app:navigationbar_top="true"/>
-
-</mandysax.design.FragmentPage>
- ```
- 
- > 你可以使用FragmentPage的add方法添加多个fragment
- ```java
- public List<Fragment> add(Fragment... fragment)
-	{
-		...
-	}
-
- ```
- **FragmentPage**的方法和说明：
- | 方法 | 说明 |
-| :--: | :--: |
-| add(Fragment... fragment) | 添加fragment，FragmentPage会自动管理 |
-| showFragment(int index) | 显示下标为index的fragment |
-
- # Usage Fragment&FragmentActivity
- 
- * 仅1.4.0 beta1或更高版本
- 
- 新建一个class并继承自**mandysa.lifecycle.Fragment**
- 重写**onCreateView**方法，在此返回**Fragment**的布局
- ![image](http://39.106.7.220/mandysa/Fragment.jpg)
- >在FragmentActivity中显示Fragment
- 修改你的**Activity**继承自**FragmentActivity**或**AppCompatActivity**
- 在onCreateView中使用如下代码
- ![image](http://39.106.7.220/mandysa/ShowFragment.jpg)
-
-**getMannger**的方法和说明：
- | 方法 | 说明 |
-| :--: | :--: |
-| add(int id, Fragment fragment) | 在指定控件上添加fragment |
-| replace(int id, Class replaceFragment) | 在指定控件上显示fragment |
-| add(int id, Fragment fragment, Object tag) | 在指定控件上添加fragment，并设置标签 |
-| findFragmentByTag(Object tag) | 按tag寻找fragment |
-| show(Fragment fragment) | 显示fragment |
-| hide(Fragment fragment) | 隐藏fragment |
-| remove(Fragment fragment) | 移除fragment |
-| addToBackStack() | 为fragment添加返回栈 |
-
-
- # Usage 注解
- 
- >注：需要继承AppCompatActivity或FragmentCompat的类才可以使用（1.4.1 beta1之后废弃）
- 
- * @BindLayoutId(R.layout.x)
- >设置布局为R.layout.x
- * @BindFragment(R.id.x)
- >加载fragment，并添加到R.id.x，在屏幕旋转后依旧可以保证两个fragment对象一致
- * @BindView(R.id.x)
- >绑定控件R.id.x
- * @BindView
- >根据变量名称去绑定控件,findViewById(R.id.变量名称),R为当前context的getPackageName()路径
-
-
-示例：
- ```java
- import ...;
-
-@BindLayoutId(R.layout.main)//设置布局
-public class MainActivity extends AppCompatActivity
-{
-
-	@BindFragment(R.id.mainFragmentPage)
-	private HomeFragment home_fragment;
-
-	@BindFragment(R.id.mainFragmentPage)
-	private RecommendFragment recommend_fragment;
-
-	@BindFragment(R.id.mainFragmentPage)
-	private SearchFragment search_fragment;
-
-	@BindFragment(R.id.mainFragmentPage)
-	private MyFragment my_fragment;
-
-	@BindView
-	private FragmentPage mainFragmentPage;
-
-    ...
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		mainFragmentPage.add(home_fragment, recommend_fragment, search_fragment, my_fragment);
-		//关键
-		...
-	}
-	
-	...
-}
-```
-
-# Update log
-
-+ v1.4.1 beta1
-  - 修复fragment生命周期onActivityCreated错误
-  - 2020-10-21 17:46
-
-+ v1.4.0
-  - 完成了fragment的开发
-  - 2020-10-19 20:26
-
-+ v1.4.0 beta3
-  - 修复fragment的部分bug，优化部分细节
-  - 2020-10-09 22:22
-
-+ v1.4.0 beta2
-  - 新增lifecycle成员fragment(50%)
-  - 2020-10-05 00:42
-
-+ v1.4.0 beta1
-  - 新增Xlist列表，使用HashMap存储数据，披着List的外衣(有顺序)，目前发现其使用场景十分狭小
-  - 优化大量细节
-  - 删除部分不规范的代码
-  - 删除几乎无用的代码（少量注解）
-  - 大量修改ViewModel实现方法，详见demo
-  - 修复bug（LiveData生命周期bug...)
-  - 2020-10-02 22:59
-
-+ v1.3.5
-  - 新增不可存储null的基于HashMap的SafetyHashMap（鸡肋）
-  - Anna支持以继承的方法设置默认URL和keyword
-  - FragmentPage和FragmentCompat大更新，有望在1.4.0中实现“导航”功能
-  - LiveData支持感知生命周期
-  - 2020-09-27 21:29
-
-+ v1.3.0
-  - 优化Anna
-  - 将部分不符合规范的类名进行的更改
-  - 提升运行效率（感知不强）
-  - 大量细节优化
-  - 简化部分api
-  - 2020-09-17 23:19
-
-+ v1.2.0
-  - 在构建ViewModel时支持向ViewModel传递参数
-  - 完成Anna的开发
-  - AppCompatActivity、FragmentCompat完美支持注解
-  - 细节优化
-  - 修复bug
-  - 2020-09-01 23:21
-
-+ v1.1.0
-  - 大改项目架构，更加符合代码规范
-  - 新增design组件库，支持BottomNavigationBar、FragmentPage、MusicView三大控件
-  - 新增FragmentCompat，默认实现LifecycleAbstract，支持获取ViewModel
-  - Anna雏形
-  - MutableLiveData与LiveData互相转换
-  - ViewModel支持获取Context
-  - 添加注解
-  - 修复bug
-  - 2020-08-29 23:37
-
-+ v1.0
-  - 更名为MandySaX
-  - 完成生命周期组件ViewModel、LiveData、Lifecycle三个主要组件
-  - 2020-07-26 19:25
+**还有四个重要组件未介绍，后期补齐，见谅**
