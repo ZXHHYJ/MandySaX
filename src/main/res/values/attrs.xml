@@ -6,11 +6,14 @@
             <enum name="normal" value="0"></enum>
             <enum name="no_text" value="1"></enum>
             <enum name="no_image" value="2"></enum>
-            <enum name="check_show_text" value="3"></enum>
         </attr>
         <attr name="textCheckedColor" format="color"/>
         <attr name="textUnCheckedColor" format="color"/>
 		<attr name="textSize" format="dimension"/>
     </declare-styleable>
+    
+      <declare-styleable name="MusicView">  
+        <attr name="textTint" format="string"/>  
+  	</declare-styleable>
 	
 </resources>

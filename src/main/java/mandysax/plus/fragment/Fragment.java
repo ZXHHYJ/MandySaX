@@ -1,5 +1,4 @@
 package mandysax.plus.fragment;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,46 +11,40 @@ import mandysax.plus.lifecycle.LifecycleOwner;
 
 public class Fragment implements FragmentImpl,LifecycleOwner
 {
+	/*
+	 *mandysax实现了一个Fragment作为系统Fragment的替代品
+	 *系统Fragment已废弃
+	 *为在Fragment中使用ViewModel,Lifecycle,LiveData提供了便利
+	 */
 
-	//context
-	private FragmentActivity mActivity;
+	private FragmentActivity mActivity;//上下文
 
-	//lifecycle
-	private final Lifecycle mLifecycle = new Lifecycle();
+	private String mTag;
 
-	//fragment layout
-	private View view;
+	private final Lifecycle mLifecycle = new Lifecycle();//生命周期
 
-	//main layout
-	private int layoutRes=0;
+	private View mView;//fragment控件
 
-	//fragment is addsd
-	private boolean mAdded;
+	private int mLayoutId=0;//父控件id
 
-	//fragment is Detached
 	private boolean mDetached;
 
-	//fragment is removing
 	private boolean mRemoving;
 
-	//fragment is running
 	private boolean mResumed;
 
-	//RetainInstance is false, which means that the instance will not be saved after the configuration is changed, and the default is true
-	private boolean mRetainInstance=true;
-
-	//store each fragment callback data.
-	private Intent mIntent;
+	private boolean mRetainInstance=true;//决定了配置变更后是否保留fragment
 
 	protected LayoutInflater getLayoutInflater()
 	{
 		return mActivity.getLayoutInflater();
 	}
 
+	@Override
     public <T extends View> T findViewById(int id)
     {   
-        if (view != null)
-            return view.findViewById(id);
+        if (mView != null)
+            return mView.findViewById(id);
         return null;
     }
 
@@ -62,15 +55,16 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	}
 
     @Override
-	public Intent getIntent()
-	{
-		return mIntent == null ?mIntent = new Intent(): mIntent;
-	}
-
-    @Override
 	public Context getContext()
 	{
 		return mActivity;
+	}
+
+
+	@Override
+	public String getTag()
+	{
+		return mTag;
 	}
 
     @Override
@@ -91,10 +85,16 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 		mActivity.startActivity(intent, options);
 	}
 
+	/*
+	 *2.0.0中对isAdded()的逻辑进行了调整
+	 *避免了返回true但Fragment并没有添加的bug
+	 */
     @Override
 	public boolean isAdded()
 	{
-		return mAdded;
+		if (mActivity != null)
+			return mActivity.findFragmentByTag(mTag) != null;
+		return false;
 	}
 
     @Override
@@ -112,7 +112,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
     @Override
 	public boolean isInLayout()
 	{
-		return view != null;
+		return mView != null;
 	}
 
     @Override
@@ -124,7 +124,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
     @Override
 	public boolean isVisible()
 	{
-		return view != null ?view.getVisibility() == View.VISIBLE: false;
+		return mView != null ?mView.getVisibility() == View.VISIBLE: false;
 	}
 
     @Override
@@ -143,26 +143,37 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 		this.mRetainInstance = retain;
 	}
 
-
     @Override
 	public boolean getRetainInstance()
 	{
 		return mRetainInstance;
 	}
 
+	void setTag(String tag, int id)
+	{
+		mTag = tag;
+		mLayoutId = id;
+	}
+
 	protected void onAttach(Context context)
 	{
-		if (mActivity == null)//Repeated binding is not allowed
-			mActivity = (FragmentActivity) context;
+		mActivity = (FragmentActivity) context;
 		mDetached = false;
+		mRemoving = false;
 	}
 
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		//getActivity().getLifecycles().put(getClass().getCanonicalName(), mLifecycle);
 		mLifecycle.onCreate();
-        mAdded = true;
-		mRemoving = false;
+	}
+
+	/*
+	 *2.0.0新增
+	 */
+
+	protected int onCreateView()
+	{
+		return 0;
 	}
 
     protected View onCreateView(LayoutInflater inflater, ViewGroup container)
@@ -170,39 +181,25 @@ public class Fragment implements FragmentImpl,LifecycleOwner
         return null;
 	}
 
-	protected View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-	{
-		return null;
-	}
-
 	protected void onViewCreated(View view, Bundle savedInstanceState)
 	{
-		if (view == null)return;
-		this.view = view;
-		if (view.getVisibility() != View.GONE)
-			view.setVisibility(View.GONE);
-		if (getViewGroup() != null)
-		{
-			getViewGroup().addView(getView());
-		}
+        if (view == null)return;
+		if (getViewGroup() == null)throw new NullPointerException(getClass().getCanonicalName() + " ViewGroup not found");
+		this.mView = view;	
+		getView().setVisibility(View.GONE);
+		getViewGroup().addView(getView());
 	}
 
     @Override
 	public View getView()
 	{
-		return view;
+		return mView;
 	}
 
-	protected final void setViewGroupId(int id)
+	final ViewGroup getViewGroup()
 	{
-		if (layoutRes == 0)layoutRes = id;
-	}
-
-	protected ViewGroup getViewGroup()
-	{
-		if (mActivity != null)
-			return mActivity.findViewById(layoutRes);
-		return null;
+        if (mActivity == null)return null;
+        return mActivity.findViewById(mLayoutId);
 	}
 
 	protected void onActivityCreated(Bundle savedInstanceState)
@@ -228,6 +225,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	{
 	}
 
+    @Deprecated
 	protected void onMultiWindowModeChanged(boolean isInMultiWindowMode)
 	{
 	}
@@ -249,29 +247,27 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 
 	protected void onDestroyView()
 	{
-		//mInLayout = false;
 		mRemoving = true;
-		if (getViewGroup() != null && getView() != null)
-			getViewGroup().removeView(getView());//获取根布局，移出fragment布局
+		if (getView() != null)
+			if (getView().getParent() != null)
+			{
+				((ViewGroup)getView().getParent()).removeView(getView());
+			}
 		if (!mRetainInstance)
 		{
-			mAdded = false;
-			view = null;//确认不保存fragment后将其view释放
+			mView = null;//确认不保存fragment后将其view释放
 		}
-		//root = null;//取消对根部局的引用，避免内存泄露
 	}
 
 	protected void onDestroy()
 	{
 		mLifecycle.onDestory();
-		//getActivity().getLifecycles().remove(getClass().getCanonicalName());
-	}
+    }
 
 	protected void onDetach()
 	{
 		mDetached = true;
 		mActivity = null;
-		//mPage = null;
 	}
 
 }

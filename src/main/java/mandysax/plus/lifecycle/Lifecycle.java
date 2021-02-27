@@ -11,7 +11,7 @@ public class Lifecycle
 			this.event.put(event.toString(), event);
 	}
 
-	private void PostSate(Event State)
+	private void PostSate(String State)
 	{
 		for (LifecycleObserver observer:event.values())
 			observer.Observer(State);
@@ -48,14 +48,15 @@ public class Lifecycle
 		event.clear();
 	}
 
-	public enum Event
+	public static class Event
 	{
-		ON_CREATE,
-		ON_START,
-		ON_RESUME,
-		ON_PAUSE,
-		ON_STOP,
-		ON_DESTORY,
+		public static final String
+		ON_CREATE="Lifecycle.Event.ON_CREATE",
+		ON_START="Lifecycle.Event.ON_START",
+		ON_RESUME="Lifecycle.Event.ON_RESUME",
+		ON_PAUSE="Lifecycle.Event.ON_PAUSE",
+		ON_STOP="Lifecycle.Event.ON_STOP",
+		ON_DESTORY="Lifecycle.Event.ON_DESTORY";
 	}
 
 }

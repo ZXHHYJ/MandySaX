@@ -5,21 +5,26 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import mandysax.plus.fragment.Fragment;
 import mandysax.plus.fragment.FragmentActivity;
-import mandysax.plus.fragment.FragmentMannger;
+import mandysax.plus.fragment.FragmentController.FragmentController2;
 
 public class FragmentPage extends FrameLayout
 {
 
 	public final static String TAG=FragmentPage.class.getCanonicalName();
 
-	private final ArrayList<Class> classList=new ArrayList<Class>();
+	//管理器
+	private final ArrayList<Fragment> mFragmentList=new ArrayList<>();
 
-	private int oldIndex=-1;
+	//之前的下标
+	private int mLastIndex=-1;
 
-	private int index;
-	
-	private FragmentMannger mMannger;
+	//当前下标
+	private int mIndex;
 
+	//fragment管理器
+	private FragmentController2 mMannger;
+
+	//用于存储fragment下标
 	private PageFragment pageFragment;
 
 	public FragmentPage(Context p0)
@@ -36,61 +41,78 @@ public class FragmentPage extends FrameLayout
 
 	private void init()
 	{
+		//此控件只支持mandysax的activity
 		if (getContext() instanceof FragmentActivity)
 		{
 			pageFragment = (PageFragment) getMannger().findFragmentByTag(TAG);
 			if (pageFragment == null)
 			{
-				getMannger().add(getId(), pageFragment = new PageFragment(), TAG);
+				getMannger().add(getId(), pageFragment = new PageFragment(), TAG).commit();
 			}
 			else
 			{
-				oldIndex = pageFragment.index;
+				mLastIndex = pageFragment.old_index;
+				mIndex = pageFragment.index;
 			}
 		}
 		else
 		{
-			throw new RuntimeException("this activity is not a subclass of FragmentActivity");
+			throw new RuntimeException("FragmentPage activity is not a subclass of FragmentActivity");
 		}
 	}
 
+	/*
+	 *添加fragment到显示列表
+	 */
 	public FragmentPage add(Class... fragmentClass)
 	{
-		if (fragmentClass != null)
-			if (classList.isEmpty())
-				for (Class className:fragmentClass)
+		for (Class className:fragmentClass)
+		{
+			Fragment getFragment=getMannger().findFragmentByTag(className.getCanonicalName());
+			if (getFragment == null)
+				try
 				{
-					classList.add(className);
+					Fragment fragment=(Fragment)className.newInstance();
+					getMannger().add(getId(), fragment).commit();
+					mFragmentList.add(fragment);
 				}
-				return this;
+				catch (Exception e)
+				{
+					throw new RuntimeException(e.getMessage());
+				}
+			else mFragmentList.add(getFragment);
+		}
+		return this;
 	}
 
-	public int getIndex(){
-		return index;
+	/*
+	 *获取当前显示Fragment下标
+	 */
+	public int getIndex()
+	{
+		return mIndex;
 	}
-	
+
+	/*
+	 *显示指定下标的Fragment
+	 */
 	public void showFragment(int index)
 	{
-		this.index=index;
-		if (getMannger().findFragmentByTag(index - 999) == null)
-		{
-			getMannger().replace(getId(), classList.get(index), index - 999);
-		}
-		else
-		{
-			getMannger()
-				.hide(getMannger().findFragmentByTag(oldIndex - 999))
-				.show(getMannger().findFragmentByTag(index - 999));
-		}
-		pageFragment.index = oldIndex = index;
+		this.mIndex = index;
+		if (mLastIndex != -1)
+			getMannger().hide(mFragmentList.get(mLastIndex)).commit();
+		getMannger().show(mFragmentList.get(index)).commit();
+		pageFragment.index = mLastIndex = index;
 	}
 
-	private FragmentMannger getMannger()
+	private FragmentController2 getMannger()
 	{
-		return mMannger == null ?mMannger = ((FragmentActivity)getContext()).getMannger(): mMannger;
+		return mMannger == null ?mMannger = ((FragmentActivity)getContext()).getFragmentPlusManager(): mMannger;
 	}
 
-}class PageFragment extends Fragment
+}
+class PageFragment extends Fragment
 {
+	public int old_index=-1;
 	public int index=-1;
 }

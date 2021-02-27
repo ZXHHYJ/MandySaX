@@ -1,6 +1,6 @@
 package mandysax.plus.lifecycle.livedata;
 
-public abstract interface Observer<T>
+public interface Observer<T extends Object>
 {
-	abstract void onChanged(T p1);
+	 public void onChanged(T p1);
 }

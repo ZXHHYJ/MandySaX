@@ -1,13 +1,12 @@
 package mandysax.plus.lifecycle;
 import android.content.Context;
 
-abstract class AndroidViewModel
+public class AndroidViewModel extends ViewModel
 {
 	private static Context mApplication;
 
     static void init(Context context)
     {
-        if (mApplication == null)
             mApplication = context;
 	}
     

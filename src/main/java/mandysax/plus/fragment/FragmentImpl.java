@@ -8,9 +8,9 @@ public interface FragmentImpl
 {
     public <T extends View> T findViewById(int id)
     
-    public Intent getIntent()
-    
     public Context getContext()
+	
+	public String getTag()
     
     public FragmentActivity getActivity()
     

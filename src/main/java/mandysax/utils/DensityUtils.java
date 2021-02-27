@@ -1,5 +1,4 @@
 package mandysax.utils;
-
 import android.content.Context;
 
 /**
