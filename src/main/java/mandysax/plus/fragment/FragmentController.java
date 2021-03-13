@@ -5,10 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import mandysax.plus.lifecycle.Lifecycle;
 import mandysax.plus.lifecycle.LifecycleObserver;
-import mandysax.plus.transaction.Transaction;
-import mandysax.utils.Log.LogUtils;
 
 public final class FragmentController implements FragmentControllerImpl
 {
@@ -18,27 +19,368 @@ public final class FragmentController implements FragmentControllerImpl
 	 *FragmentController2相当于起了记录作用
 	 *将各种操作从之前的FeagmentManager中分离
 	 */
+	public interface OnBackStackChangedListener
+	{
+		public void onBackStackChanged()
+	}
+
+	enum STACK
+	{
+		SHOW,
+		HIDE,
+		REMOVE,
+		REPLACE,
+		ADD;
+	}
+
+	final class Op
+	{
+		int id;
+		String tag;
+		STACK stack;
+		Fragment fragment;
+		int enterAnim;
+		int exitAnim;
+		int popEnterAnim;
+		int popExitAnim;
+		boolean isAddToBackStack;
+		ArrayList<Fragment> removed;
+	}
+
+	public class BackStackRecord
+	{
+
+		private final List<Op> mActive;
+
+		public BackStackRecord(List<Op> opl)
+		{
+			mActive = opl;
+		}
+
+		public void run()
+		{
+			/*run*/
+			for (Op op:mActive)
+			{
+				moveToStack(op);
+			}		
+		}
+
+		public void rollback()
+		{
+			/*rollback*/
+			for (final Op op:mActive)
+			{
+				if (op.stack == STACK.REMOVE)return;
+				if (op.stack == STACK.ADD)return;
+				if (op.stack == STACK.SHOW)
+				{
+					hide(op.fragment, op.popExitAnim);
+					return;
+				}
+				if (op.stack == STACK.HIDE)
+				{
+					show(op.fragment, op.popEnterAnim);
+					return;
+				}
+				if (op.stack == STACK.REPLACE && op.isAddToBackStack)
+				{
+					op.fragment.getLifecycle().addObsever(new LifecycleObserver(){
+
+							@Override
+							public void Observer(String State)
+							{
+								if (State == Lifecycle.Event.ON_STOP && op.fragment.isHidden())
+								{
+									System.out.println("remove");
+									remove(op.fragment);
+								}
+							}			
+						});
+					hide(op.fragment, op.popExitAnim);
+					for (Fragment fragment:op.removed)
+					{
+						show(fragment, op.enterAnim);
+					}		
+				}
+			}		
+		}
+
+		public void moveToStack(Op op)
+		{
+			switch (op.stack)
+			{
+				case ADD:
+					add(op.fragment, op.id, op.tag);
+					break;
+				case SHOW:
+					show(op.fragment, op.enterAnim);
+					break;
+				case HIDE:
+					hide(op.fragment, op.exitAnim);
+					break;
+				case REPLACE:
+					replace(op);
+					break;
+				case REMOVE:
+					remove(op.fragment);
+					break;
+			}
+		}
+
+		public void replace(Op op)
+		{
+			for (Map.Entry<String, Fragment> entry : getFragmentManager().entrySet())
+			{
+				final Fragment fragment2=entry.getValue();
+				if (fragment2.getViewGroup() != null && fragment2.getViewGroup().getId() == op.id)
+				{
+					if (fragment2.isVisible())
+					{
+						if (op.removed == null)
+							op.removed = new ArrayList<Fragment>();
+						op.removed.add(fragment2);
+						if (!op.isAddToBackStack)
+						{			
+							fragment2.getLifecycle().addObsever(new LifecycleObserver(){
+
+									@Override
+									public void Observer(String State)
+									{	
+										if (State == Lifecycle.Event.ON_STOP && fragment2.isHidden())
+										{
+											remove(fragment2);
+										}
+									}			
+								});
+						}
+						hide(fragment2, op.exitAnim);
+					}
+				}
+			}
+			add(op.fragment, op.id, op.tag);
+			show(op.fragment, op.popEnterAnim);
+		}
+
+		public void add(Fragment fragment, int id, String tag)
+		{
+			if (fragment.isAdded())return;
+			tag = tag == null ?fragment.getClass().getCanonicalName(): tag;
+			getFragmentManager().addFragment(fragment, tag);
+			fragment.setTag(tag, id);
+			fragment.onAttach(mActivity);
+			fragment.onCreate(mSavedInstanceState);
+			if (!fragment.isInLayout())
+			{
+				View view1 = null;
+				if (fragment.onCreateView() != 0)
+					view1 = fragment.getLayoutInflater().inflate(fragment.onCreateView(), fragment.getViewGroup(), false); 
+				View view2=fragment.onCreateView(LayoutInflater.from(mActivity), fragment.getViewGroup());
+				fragment.onViewCreated(view1 == null ?view2: view1, mSavedInstanceState);
+				fragment.onActivityCreated(mSavedInstanceState);
+			}
+		}
+
+		public void remove(Fragment fragment)
+		{
+			getFragmentManager().removeFragment(fragment);
+			fragment.onDestroyView();
+			fragment.onDestroy();
+			fragment.onDetach();
+		}
+
+		public void show(final Fragment fragment, int anim)
+		{
+			if (fragment.isAdded() && fragment.isHidden())
+				if (fragment.getView() != null)
+				{
+					fragment.getView().setVisibility(View.VISIBLE);
+					if (anim != 0)
+					{
+						Animation startAnim=AnimationUtils.loadAnimation(mActivity, anim);
+						startAnim.setAnimationListener(new Animation.AnimationListener(){
+
+								@Override
+								public void onAnimationStart(Animation p1)
+								{
+									fragment.onStart();
+								}
+
+								@Override
+								public void onAnimationEnd(Animation p1)
+								{
+									fragment.onResume();	
+								}
+
+								@Override
+								public void onAnimationRepeat(Animation p1)
+								{
+								}
+							});
+						fragment.getView().startAnimation(startAnim);	
+					}	
+				}
+		}
+
+		public void hide(final Fragment fragment, int anim)
+		{
+			if (fragment.isAdded() && fragment.isVisible())
+			{
+				if (fragment.getView() != null)
+				{
+					if (anim != 0)
+					{
+						Animation exitAnim=AnimationUtils.loadAnimation(mActivity, anim);
+						exitAnim.setAnimationListener(new Animation.AnimationListener(){
+
+								@Override
+								public void onAnimationStart(Animation p1)
+								{
+									fragment.onPause();
+								}
+
+								@Override
+								public void onAnimationEnd(Animation p1)
+								{
+									fragment.getView().setVisibility(View.GONE);
+									fragment.onStop();
+								}
+
+								@Override
+								public void onAnimationRepeat(Animation p1)
+								{
+								}
+							});
+						fragment.getView().startAnimation(exitAnim);
+					}
+					else
+					{
+						fragment.getView().setVisibility(View.GONE);
+						fragment.onPause();
+						fragment.onStop();
+					}
+				}
+			}
+		}
+
+	}
+
+	public class BackStack
+	{
+
+		private ArrayList<OnBackStackChangedListener> mBackl;
+
+		private ArrayList<BackStackRecord> mBackStack;
+
+		private ArrayList<Integer> mBackStackIndices;
+
+	    public int allocBackStackIndex(BackStackRecord bse)
+		{
+			synchronized (this)
+			{
+				if (mBackStack == null)
+					mBackStack = new ArrayList<BackStackRecord>();
+				if (mBackStackIndices == null)
+					mBackStackIndices = new ArrayList<>();		
+				for (int i=0;i < mBackStackIndices.size();i++)
+				{
+					if (mBackStackIndices.get(i) == null)
+					{	
+						mBackStack.set(i, bse);
+						mBackStackIndices.remove(i);
+						return i;
+					}
+				}
+				mBackStack.add(bse);
+				mBackStackIndices.add(mBackStackIndices.size());
+				return mBackStackIndices.size() - 1;
+			}
+		}
+
+		public void freeBackStackIndex(int index)
+		{
+			mBackStack.set(index, null);
+			mBackStackIndices.add(index);
+		}
+
+		public boolean popBackStack()
+		{
+			if (mBackStack == null)return false;
+			int index=mBackStack.size() - 1;
+			if (mBackStack.size() >= 1)
+			{
+				BackStackRecord bsr=mBackStack.get(index);
+				if (bsr == null)return false;
+				bsr.rollback();
+				freeBackStackIndex(index);
+				return true;
+			}
+			return false;
+		}
+
+		public void addOnBackStackChangedListener(OnBackStackChangedListener listener)
+		{
+			mBackl.add(listener);
+
+		}
+
+		public void removeOnBackStackChangedListener(OnBackStackChangedListener listener)
+		{
+			mBackl.remove(listener);
+		}
+
+
+	}
+
+	private final BackStack mFragmentBackStack=new BackStack();
+
 	public class FragmentController2 implements FragmentController2Impl
 	{
 
-		private final Transaction<FragmentHash>.TransactionManager<FragmentHash> mManager=mHash.beginTransaction();//默认直接开启事务，免去这个繁琐步骤
+		private ArrayList<Op> mOpl=new ArrayList<Op>();
 
-		private int mStartAnim,mExitAnim,mStartAnim2,mExitAnim2;
+		private int mIndex=0;
+
+		@Override
+		public FragmentController2Impl removeOnBackStackChangedListener(OnBackStackChangedListener listener)
+		{
+			mFragmentBackStack.removeOnBackStackChangedListener(listener);
+			return this;
+		}
+
+		@Override
+		public FragmentController2Impl addOnBackStackChangedListener(OnBackStackChangedListener listener)
+		{
+			mFragmentBackStack.addOnBackStackChangedListener(listener);
+			return this;
+		}
+
+		private int
+		mEnterAnim,
+		mExitAnim,
+		mPopEnterAnim,
+		mPopExitAnim;
 
 		private boolean mIsAddBackStack=false;//记录有没有添加到返回栈
 
-		private Fragment mLeftFragment;
 		/*
 		 *这个变量用于记录add操作时的Fragment
 		 *系统Fragment在这个步骤默认已经向容器添加了Fragment而我并没有这么做，这样在add后的show(Fragment fragment)操作繁琐，就添加了无参的show()
 		 *这样能更好的控制Fragment，因为有的Fragment并没有界面，默认添加到容器有些限制Fragment的操作上限
 		 */
-
-		private FragmentHash initFragmentHash(Fragment fragment, STACK stark/*执行的操作*/ , String tag, int id)
+		public Op addOp(int id, Fragment fragment, STACK stack, String tag)
 		{
-			FragmentHash hash=new FragmentHash(fragment, tag, stark, id, stark == STACK.SHOW ?mStartAnim: stark == STACK.HIDE ?mStartAnim2: 0, stark == STACK.SHOW ?mExitAnim: stark == STACK.HIDE ?mExitAnim2: 0);
-			mManager.putData(hash);
-			return hash;
+			Op op=new Op();
+			op.id = id;
+			op.fragment = fragment;
+			op.stack = stack;
+			op.tag = tag;
+			op.enterAnim = mEnterAnim;
+			op.exitAnim = mExitAnim;
+			op.popEnterAnim = mPopEnterAnim;
+			op.popExitAnim = mPopExitAnim;
+			mOpl.add(op);
+			return op;
 		}
 
 		@Override
@@ -48,102 +390,95 @@ public final class FragmentController implements FragmentControllerImpl
 		}
 
 		@Override
-		public FragmentController2 setCustomAnimations(int startAnim/*show 开始动画*/, int exitAnim/*show 结束动画*/, int startAnim2/*hide开始动画*/, int exitAnim2)
+		public FragmentController2Impl setCustomAnimations(int enterAnim, int exitAnim, int popEnterAnim, int popExitAnim)
 		{
-			mStartAnim = startAnim;
+			mEnterAnim = enterAnim;
 			mExitAnim = exitAnim;
-			mStartAnim2 = startAnim2;
-			mExitAnim2 = exitAnim2;
+			mPopEnterAnim = popEnterAnim;
+			mPopExitAnim = popExitAnim;
 			return this;
 		}
 
 		@Override
-		public FragmentController2 add(int id, Fragment fragment)
+		public FragmentController2Impl add(int id, Fragment fragment)
 		{
 			return add(id, fragment, null);
 		}
 
 		@Override
-		public FragmentController2 add(int id, Fragment fragment, String tag)
+		public FragmentController2Impl add(int id, Fragment fragment, String tag)
 		{
-			mLeftFragment = fragment;
-			initFragmentHash(fragment, STACK.ADD, tag, id);
+			addOp(id, fragment, STACK.ADD, tag);
 			return this;
 		}
 
 		@Override
-		public FragmentController2 remove(Fragment fragment)
+		public FragmentController2Impl remove(Fragment fragment)
 		{
-			initFragmentHash(fragment, STACK.REMOVE, null, 0);
+			addOp(0, fragment, STACK.REMOVE, null);
 			return this;
 		}
 
 		@Override
-		public FragmentController2 show(Fragment fragment)
+		public FragmentController2Impl show(Fragment fragment)
 		{
-			initFragmentHash(fragment, STACK.SHOW, null, 0);
+			addOp(0, fragment, STACK.SHOW, null);
 			return this;
 		}
 
 		@Override
-		public FragmentController2 show()
+		public FragmentController2Impl hide(Fragment fragment)
 		{
-			if (mLeftFragment == null)throw new NullPointerException("There is no add() operation before show()");
-			show(mLeftFragment);
+			addOp(0, fragment, STACK.HIDE, null);
 			return this;
 		}
 
 		@Override
-		public FragmentController2 hide(Fragment fragment)
-		{
-			initFragmentHash(fragment, STACK.HIDE, null, 0);
-			return this;
-		}
-
-		@Override
-		public FragmentController2 replace(int id, Class replaceFragment)
+		public FragmentController2Impl replace(int id, Class replaceFragment)
 		{
 			return replace(id, replaceFragment, replaceFragment.getCanonicalName());
 		}
 
 		@Override
-		public FragmentController2 replace(int id, Class replaceFragment, String tag)
+		public FragmentController2Impl replace(int id, Class replaceFragment, String tag)
 		{
 			try
-			{
-				for (Fragment fragment2:getFragmentManager().getFragments())
-					if (fragment2.getViewGroup() != null && fragment2.getViewGroup().getId() == id)
-					{
-						if (fragment2.isVisible())
-							hide(fragment2);		
-					}
-				Fragment fragment=(Fragment)replaceFragment.newInstance();
-				add(id, fragment, tag).show();
+			{	
+				addOp(id, (Fragment)replaceFragment.newInstance() , STACK.REPLACE, tag);
 			}
-			catch (IllegalAccessException e)
-			{}
 			catch (InstantiationException e)
 			{}
+			catch (IllegalAccessException e)
+			{}
 			return this;
 		}
 
-		public FragmentController2 addToBackStack()
+		@Override
+		public FragmentController2Impl addToBackStack()
 		{
 			mIsAddBackStack = true;
-			commit();
+			for (int i=mIndex;i < mOpl.size();i++)
+			{
+				mOpl.get(i).isAddToBackStack = true;
+			}
+			mIndex = mOpl.size() - 1;
 			return this;
 		}
 
-		public void commit()
+		@Override
+		public int commit()
 		{
 			if (mIsAddBackStack == true)
 			{
-				mManager.commit();
+				BackStackRecord bsr=new BackStackRecord(mOpl);
+				bsr.run();
+				return mFragmentBackStack.allocBackStackIndex(bsr);
 			}
 			else
 			{
-				mManager.chancel();
-			}
+				new BackStackRecord(mOpl).run();
+				return -1;
+			}	
 		}
 
 	}
@@ -160,171 +495,7 @@ public final class FragmentController implements FragmentControllerImpl
 		mActivity = actvity;
 	}
 
-	public enum STACK
-	{
-		SHOW,
-		HIDE,
-		REMOVE,
-		ADD;
-	}
-
-	public class FragmentHash
-	{
-		final Fragment fragment;
-		final String tag;
-		final STACK stack;
-		final int id,startAnim,exitAnim;
-
-		public FragmentHash(Fragment fragment, String tag, STACK stack, int id, int startAnim, int exitAnim)
-		{
-			this.fragment = fragment;
-			this.tag = tag;
-			this.stack = stack;
-			this.id = id;
-			this.startAnim = startAnim;
-			this.exitAnim = exitAnim;
-		}	
-
-	}
-
-	private Transaction<FragmentHash> mHash=new Transaction<FragmentHash>().setOnUpDatahListener(new Transaction.OnUpDatahListener<FragmentHash>(){
-
-			@Override
-			public void chancelData(FragmentController.FragmentHash data)
-			{
-				/*默认操作*/
-				initHash(data);
-			}
-
-			@Override
-			public void commitData(FragmentController.FragmentHash data)
-			{
-				/*添加返回栈会走这里*/
-				initHash(data);
-			}
-
-			@Override
-			public void backData(FragmentController.FragmentHash data)
-			{
-				/*回退后的*/
-				if (data.stack == STACK.REMOVE)return;
-				if (data.stack == STACK.ADD)return;
-				initHash(new FragmentHash(data.fragment, data.tag, data.stack == STACK.SHOW ?STACK.HIDE: STACK.SHOW, data.id, data.startAnim, data.exitAnim));
-			}
-
-		});
-
-	private void initHash(final FragmentHash hash)
-	{
-		LogUtils.w(getClass(), hash.stack + " " + hash.fragment);
-		switch (hash.stack)
-		{
-			case SHOW:
-				if (hash.fragment.isAdded() && hash.fragment.isHidden())
-				{
-					/*
-					 *在2.0.0中，Fragment实现了ViewStub延迟加载
-					 */
-					if (hash.fragment.getView() != null)
-					{
-						hash.fragment.getView().setVisibility(View.VISIBLE);
-					}
-					else return;
-					if (hash.startAnim != 0)
-					{
-						Animation startAnim=AnimationUtils.loadAnimation(mActivity, hash.startAnim);
-						startAnim.setAnimationListener(new Animation.AnimationListener(){
-
-								@Override
-								public void onAnimationStart(Animation p1)
-								{
-									hash.fragment.onStart();
-								}
-
-								@Override
-								public void onAnimationEnd(Animation p1)
-								{
-									hash.fragment.onResume();	
-								}
-
-								@Override
-								public void onAnimationRepeat(Animation p1)
-								{
-								}
-							});
-						hash.fragment.getView().startAnimation(startAnim);	
-					}	
-				}
-				break;
-			case HIDE:
-				if (hash.fragment.isAdded() && hash.fragment.isVisible())
-				{
-					if (hash.fragment.getView() != null)
-					{
-						if (hash.exitAnim != 0)
-						{
-							Animation exitAnim=AnimationUtils.loadAnimation(mActivity, hash.exitAnim);
-							exitAnim.setAnimationListener(new Animation.AnimationListener(){
-
-									@Override
-									public void onAnimationStart(Animation p1)
-									{
-										hash.fragment.onPause();
-									}
-
-									@Override
-									public void onAnimationEnd(Animation p1)
-									{
-										hash.fragment.getView().setVisibility(View.GONE);
-										hash.fragment.onStop();
-									}
-
-									@Override
-									public void onAnimationRepeat(Animation p1)
-									{
-									}
-								});
-							hash.fragment.getView().startAnimation(exitAnim);
-						}
-						else
-						{
-							hash.fragment.getView().setVisibility(View.GONE);
-							hash.fragment.onPause();
-							hash.fragment.onStop();
-						}
-					}
-				}
-				break;
-			case REMOVE:
-				if (!hash.fragment.getRetainInstance())
-				{
-					getFragmentManager().removeFragment(hash.fragment);
-				}
-				hash.fragment.onDestroyView();
-				hash.fragment.onDestroy();
-				hash.fragment.onDetach();
-				break;
-			case ADD:
-				if (hash.fragment.isAdded())return;
-				String tag=hash.tag == null ?hash.fragment.getClass().getCanonicalName(): hash.tag;
-				getFragmentManager().addFragment(hash.fragment, tag);
-				hash.fragment.setTag(tag, hash.id);
-				hash.fragment.onAttach(mActivity);
-				hash.fragment.onCreate(mSavedInstanceState);
-				if (!hash.fragment.isInLayout())
-				{
-					View view1 = null;
-					if (hash.fragment.onCreateView() != 0)
-						view1 = hash.fragment.getLayoutInflater().inflate(hash.fragment.onCreateView(), hash.fragment.getViewGroup(), false); 
-					View view2=hash.fragment.onCreateView(LayoutInflater.from(mActivity), hash.fragment.getViewGroup());
-					hash.fragment.onViewCreated(view1 == null ?view2: view1, mSavedInstanceState);
-					hash.fragment.onActivityCreated(mSavedInstanceState);
-				}
-				break;
-		}
-	}
-
-	private FragmentManager getFragmentManager()
+	private FragmentManagerImpl getFragmentManager()
 	{
 		return mManager;
 	}
@@ -332,11 +503,25 @@ public final class FragmentController implements FragmentControllerImpl
 	@Override
 	public boolean onBackFragment()
 	{
-		return mHash.rollback();
+		for (Map.Entry<String, Fragment> entry : getFragmentManager().entrySet())
+		{
+			Fragment fragment=entry.getValue();
+			if (fragment.isAdded())
+				if (fragment.isVisible())
+					if (fragment.onBackPressed())
+						return true;
+		}
+		return false;
 	}
 
 	@Override
-	public FragmentController2 getFragmentController2()
+	public boolean popBackStack()
+	{
+		return mFragmentBackStack.popBackStack();
+	}
+
+	@Override
+	public FragmentController2Impl getFragmentController2()
 	{
 		return new FragmentController2();
 	}
@@ -348,8 +533,9 @@ public final class FragmentController implements FragmentControllerImpl
 	@Override
 	public void resumeFragment()
 	{
-		for (Fragment fragment:getFragmentManager().getFragments())
+		for (Map.Entry<String, Fragment> entry : getFragmentManager().entrySet())
 		{
+			Fragment fragment=entry.getValue();
 			if (fragment.isAdded() && fragment.isInLayout())
 			{
 				if (fragment.getView() != null && fragment.getViewGroup() != null)
@@ -367,16 +553,17 @@ public final class FragmentController implements FragmentControllerImpl
 	{
 		mActivity = activity;
 		mSavedInstanceState = activitySavedInstanceState;
-		for (Fragment fragment:getFragmentManager().getFragments())
+		for (Map.Entry<String, Fragment> entry : getFragmentManager().entrySet())
 		{
-			fragment.onAttach(mActivity);
+			entry.getValue().onAttach(mActivity);
 		}
 		activity.getLifecycle().addObsever(new LifecycleObserver(){
 				@Override
 				public void Observer(String State)
 				{
-					for (Fragment fragment:getFragmentManager().getFragments())
+					for (Map.Entry<String, Fragment> entry : getFragmentManager().entrySet())
 					{
+						Fragment fragment=entry.getValue();
 						//只有显示的Fragment才可以接收到生命周期事件
 						switch (State)
 						{
@@ -397,10 +584,12 @@ public final class FragmentController implements FragmentControllerImpl
 									fragment.onStop();
 								break;
 							case Lifecycle.Event.ON_DESTORY:
-								getFragmentController2().remove(fragment).commit();
-								if (!getFragmentManager().getFragments().isEmpty() && !activity.isChangingConfigurations())
+								fragment.onDestroyView();
+								fragment.onDestroy();
+								fragment.onDetach();
+								if (!activity.isChangingConfigurations())
 								{
-									getFragmentManager().getFragments().clear();
+									getFragmentManager().clear();
 								}
 								mSavedInstanceState = null;
 								mActivity = null;
@@ -414,40 +603,41 @@ public final class FragmentController implements FragmentControllerImpl
 	@Override
 	public void saveInstanceState(Bundle outState)
 	{
-		for (Fragment fragment:getFragmentManager().getFragments())
+		for (Map.Entry<String, Fragment> entry : getFragmentManager().entrySet())
 		{
-			fragment.onSaveInstanceState(outState);
+			entry.getValue().onSaveInstanceState(outState);
 		}
 	}
 
 	@Override
 	public void multiWindowModeChanged(boolean isInMultiWindowMode, Configuration newConfig)
 	{
-		for (Fragment fragment:getFragmentManager().getFragments())
+		for (Map.Entry<String, Fragment> entry : getFragmentManager().entrySet())
 		{
-			fragment.onMultiWindowModeChanged(isInMultiWindowMode, newConfig);
+			entry.getValue().onMultiWindowModeChanged(isInMultiWindowMode, newConfig);
 		}
 	}
 
 	@Override
 	public void multiWindowModeChanged(boolean isInMultiWindowMode)
 	{
-		for (Fragment fragment:getFragmentManager().getFragments())
+		for (Map.Entry<String, Fragment> entry : getFragmentManager().entrySet())
 		{
-			fragment.onMultiWindowModeChanged(isInMultiWindowMode);
+			entry.getValue().onMultiWindowModeChanged(isInMultiWindowMode);
 		}
 	}
 
 	@Override
 	public void configurationChanged(Configuration newConfig)
 	{
-		for (Fragment fragment:getFragmentManager().getFragments())
+		for (Map.Entry<String, Fragment> entry : getFragmentManager().entrySet())
 		{
-			fragment.onConfigurationChanged(newConfig);
+			entry.getValue().onConfigurationChanged(newConfig);
 		}
 	}
 
 	/*
 	 *控制器的生命周期
 	 */
+
 }

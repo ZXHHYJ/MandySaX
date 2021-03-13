@@ -5,7 +5,7 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import mandysax.plus.fragment.Fragment;
 import mandysax.plus.fragment.FragmentActivity;
-import mandysax.plus.fragment.FragmentController.FragmentController2;
+import mandysax.plus.fragment.FragmentController2Impl;
 
 public class FragmentPage extends FrameLayout
 {
@@ -22,7 +22,7 @@ public class FragmentPage extends FrameLayout
 	private int mIndex;
 
 	//fragment管理器
-	private FragmentController2 mMannger;
+	private FragmentController2Impl mMannger;
 
 	//用于存储fragment下标
 	private PageFragment pageFragment;
@@ -105,7 +105,7 @@ public class FragmentPage extends FrameLayout
 		pageFragment.index = mLastIndex = index;
 	}
 
-	private FragmentController2 getMannger()
+	private FragmentController2Impl getMannger()
 	{
 		return mMannger == null ?mMannger = ((FragmentActivity)getContext()).getFragmentPlusManager(): mMannger;
 	}

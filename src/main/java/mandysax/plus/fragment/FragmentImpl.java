@@ -32,9 +32,7 @@ public interface FragmentImpl
 
     public boolean isHidden()
     
-    public void setRetainInstance(boolean retain)
-
-    public boolean getRetainInstance()
-    
     public View getView()
+	
+	public boolean onBackPressed()
 }

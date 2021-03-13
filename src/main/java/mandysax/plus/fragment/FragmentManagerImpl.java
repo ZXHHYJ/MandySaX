@@ -1,5 +1,7 @@
 package mandysax.plus.fragment;
-import java.util.List;
+
+import java.util.Set;
+import java.util.Map;
 
 public interface FragmentManagerImpl
 {
@@ -7,7 +9,9 @@ public interface FragmentManagerImpl
 
 	public void removeFragment(Fragment fragment)
 
-	public List<Fragment> getFragments()
-
 	public Fragment tagGetFragment(String tag)
+	
+	public Set<Map.Entry<String, Fragment>> entrySet()
+	
+	public void clear()
 }

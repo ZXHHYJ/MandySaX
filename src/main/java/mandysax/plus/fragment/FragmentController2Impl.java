@@ -1,29 +1,30 @@
 package mandysax.plus.fragment;
-import mandysax.plus.fragment.FragmentController.*;
 
 public interface FragmentController2Impl
 {
 	public Fragment findFragmentByTag(String tag)
 
-	public FragmentController2 setCustomAnimations(int startAnim, int exitAnim , int startAnim2,int exitAnim2)
+	public FragmentController2Impl setCustomAnimations(int enterAnim, int exitAnim, int popEnterAnim, int popExitAnim)
 	
-	public FragmentController2 add(int id, Fragment fragment)
+	public FragmentController2Impl add(int id, Fragment fragment)
 	
-	public FragmentController2 add(int id, Fragment fragment, String tag)
+	public FragmentController2Impl add(int id, Fragment fragment, String tag)
 	
-	public FragmentController2 remove(Fragment fragment)
+	public FragmentController2Impl remove(Fragment fragment)
 
-	public FragmentController2 show(Fragment fragment)
+	public FragmentController2Impl show(Fragment fragment)
 	
-	public FragmentController2 show()
+	public FragmentController2Impl hide(Fragment fragment)
+
+	public FragmentController2Impl replace(int id, Class replaceFragment)
+
+	public FragmentController2Impl replace(int id, Class replaceFragment, String tag)
+
+	public FragmentController2Impl addToBackStack()
 	
-	public FragmentController2 hide(Fragment fragment)
-
-	public FragmentController2 replace(int id, Class replaceFragment)
-
-	public FragmentController2 replace(int id, Class replaceFragment, String tag)
-
-	public FragmentController2 addToBackStack()
+	public FragmentController2Impl addOnBackStackChangedListener(FragmentController.OnBackStackChangedListener listener)
 	
-	public void commit()
+	public FragmentController2Impl removeOnBackStackChangedListener(FragmentController.OnBackStackChangedListener listener)
+	
+	public int commit()
 }

@@ -47,7 +47,7 @@ public class NavigationItem extends LinearLayout
 			textView.setText(text);
 			textView.setTextColor(getContext().getColor(unchecked));
 			textView.setTextSize(12);
-			textView.setPadding(0, DensityUtils.dip2px(context, 1), 0, 0);
+			textView.setPadding(0, DensityUtils.dp2px(context, 1), 0, 0);
 			textView.setGravity(Gravity.CENTER);
 			addView(textView);
 		}

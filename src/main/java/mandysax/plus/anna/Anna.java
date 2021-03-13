@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 import mandysax.plus.anna.annotation.GET;
 import mandysax.plus.anna.annotation.PATH;
 import mandysax.plus.repository.Key;
-import mandysax.utils.Log.LogUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -60,7 +59,6 @@ public abstract class Anna
 			mUrl += ((index == 0 ?"?": "&") + key + "=" + postkey.getObject(key));
 			index++;
 		}
-		LogUtils.i(getClass(), mUrl);
 		return this;
 	}
 

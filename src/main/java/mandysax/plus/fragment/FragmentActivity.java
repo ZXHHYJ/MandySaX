@@ -28,12 +28,12 @@ public class FragmentActivity extends Activity implements LifecycleOwner
 		return getFragmentPlusManager().findFragmentByTag(tag);
 	}
 
-    public FragmentController.FragmentController2 getFragmentPlusManager()
+    public FragmentController2Impl getFragmentPlusManager()
 	{
 		return getFragmentController().getFragmentController2();
 	}
 
-	private FragmentController getFragmentController()
+	private FragmentControllerImpl getFragmentController()
 	{
 		if (mFragmentController == null)
 		{
@@ -197,6 +197,8 @@ public class FragmentActivity extends Activity implements LifecycleOwner
 	public void onBackPressed()
 	{
 		if (getFragmentController().onBackFragment())
+			return;
+		if (getFragmentController().popBackStack())
 			return;
 		else super.onBackPressed();
 	}

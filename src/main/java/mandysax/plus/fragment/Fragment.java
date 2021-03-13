@@ -11,6 +11,13 @@ import mandysax.plus.lifecycle.LifecycleOwner;
 
 public class Fragment implements FragmentImpl,LifecycleOwner
 {
+
+	@Override
+	public boolean onBackPressed()
+	{
+		return false;
+	}
+	
 	/*
 	 *mandysax实现了一个Fragment作为系统Fragment的替代品
 	 *系统Fragment已废弃
@@ -32,8 +39,6 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	private boolean mRemoving;
 
 	private boolean mResumed;
-
-	private boolean mRetainInstance=true;//决定了配置变更后是否保留fragment
 
 	protected LayoutInflater getLayoutInflater()
 	{
@@ -135,18 +140,6 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 
 	protected void onHiddenChanged(boolean hidden)
 	{
-	}
-
-    @Override
-	public void setRetainInstance(boolean retain)
-	{
-		this.mRetainInstance = retain;
-	}
-
-    @Override
-	public boolean getRetainInstance()
-	{
-		return mRetainInstance;
 	}
 
 	void setTag(String tag, int id)
@@ -253,10 +246,10 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 			{
 				((ViewGroup)getView().getParent()).removeView(getView());
 			}
-		if (!mRetainInstance)
+		/*if (!mRetainInstance)
 		{
 			mView = null;//确认不保存fragment后将其view释放
-		}
+		}*/
 	}
 
 	protected void onDestroy()

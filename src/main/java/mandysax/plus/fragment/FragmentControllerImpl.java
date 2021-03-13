@@ -7,7 +7,15 @@ public interface FragmentControllerImpl
 
 	public boolean onBackFragment()
 
-	public FragmentController.FragmentController2 getFragmentController2()
+	public boolean popBackStack()
+	
+	/*public boolean popBackStack(int index)
+	
+	public int getBackStackEntryCount()
+	
+	public Fragment getBackStackEntryAt(int index)*/
+	
+	public FragmentController2Impl getFragmentController2()
 
 	public void resumeFragment()
 
@@ -20,10 +28,5 @@ public interface FragmentControllerImpl
 	public void multiWindowModeChanged(boolean isInMultiWindowMode)
 
 	public void configurationChanged(Configuration newConfig)
-
-	/*public void buildLifecycle(LifecycleOwner lifecycle)
-
-	 public void destroy()
-
-	 public void clear()*/
+	
 }

@@ -1,74 +1,45 @@
 package mandysax.plus.fragment;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 public final class FragmentManager implements FragmentManagerImpl
 {
 
-	private static class HaveFragment
+	@Override
+	public Set<Map.Entry<String, Fragment>> entrySet()
 	{
-
-		public HaveFragment(Fragment fragment, String tag)
-		{
-			this.fragment = fragment;
-			this.tag = tag;
-		}
-
-		Fragment fragment;
-		String tag;
-
-		@Override
-		public boolean equals(Object obj)
-		{
-			return tag.equals(obj);
-		}
-
+		return fragments.entrySet();
 	}
 
-    private final List<HaveFragment> fragments=new ArrayList<HaveFragment>();
+	private final LinkedHashMap<String,Fragment> fragments=new LinkedHashMap<>();
+
+    @Override
+	public void clear()
+	{
+		fragments.clear();
+	}
 
 	@Override
 	public void addFragment(Fragment fragment, String tag)
 	{
-		fragments.add(new HaveFragment(fragment, tag));
+		fragments.put(tag, fragment);
 	}
 
 	@Override
 	public void removeFragment(Fragment fragment)
 	{
-		fragments.remove(getRemoveData(fragment));
-	}
-
-	@Override
-	public List<Fragment> getFragments()
-	{
-		ArrayList<Fragment> fragments=new ArrayList<Fragment>();
-		for (HaveFragment have:this.fragments)
+		for (Map.Entry<String, Fragment> entry : entrySet())
 		{
-			fragments.add(have.fragment);
+			if (entry.getValue().equals(fragment))
+				fragments.remove(entry.getKey());
 		}
-		return fragments;
-	}
-
-	private HaveFragment getRemoveData(Fragment fragment)
-	{
-		for (HaveFragment have:fragments)
-		{
-			if (have.fragment.equals(fragment))
-				return have;
-		}
-		return null;
 	}
 
 	@Override
 	public Fragment tagGetFragment(String tag)
 	{
-		for (HaveFragment have:fragments)
-		{
-			if (have.equals(tag))
-				return have.fragment;
-		}
-		return null;
+		return fragments.get(tag);
     }
 
 }

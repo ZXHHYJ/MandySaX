@@ -9,6 +9,8 @@ public class ActivityPlus extends FragmentActivity implements ActivityPlusImpl
 {
 
 	public static final String FRAGMENT_TAG=WXY + "";
+	
+	private static final LayoutInflaterFactoryV21 mLayoutInflaterFactoryV21=new LayoutInflaterFactoryV21();
 
 	@Override
 	public Fragment getActivityFragment()
@@ -20,7 +22,7 @@ public class ActivityPlus extends FragmentActivity implements ActivityPlusImpl
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		getLayoutInflater().setFactory2(new LayoutInflaterFactoryV21());
+		getLayoutInflater().setFactory2(mLayoutInflaterFactoryV21);
 	}
 
 	@Override
