@@ -6,7 +6,6 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
-import mandysax.design.fragmentpage.widget.FragmentPage;
 
 public class BottomNavigationBar extends LinearLayout implements OnClickListener
 {
@@ -19,7 +18,7 @@ public class BottomNavigationBar extends LinearLayout implements OnClickListener
 
 	public BottomNavigationBar setTextColor(int checked, int unchecked)
 	{
-		for (NavigationItem item:items)
+		for (NavigationItem item:mItems)
 		{
 			item.setTextColor(checked, unchecked);
 		}
@@ -31,39 +30,38 @@ public class BottomNavigationBar extends LinearLayout implements OnClickListener
 		return this;
     }
 
-	public BottomNavigationBar setOnItemViewSelectedListener(final FragmentPage page)
-	{
-		onClick(getChildAt(page.getIndex()));
-		this.onItemViewSelectedListener = new OnItemViewSelectedListener(){
-			@Override
-			public void onItemClcik(int index)
-			{
-				page.showFragment(index);
-			}
-		};
-		return this;
-	}
+	/*public BottomNavigationBar setOnItemViewSelectedListener(final FragmentPage page)
+	 {
+	 onClick(getChildAt(page.getIndex()));
+	 this.onItemViewSelectedListener = new OnItemViewSelectedListener(){
+	 @Override
+	 public void onItemClcik(int index)
+	 {
+	 page.showFragment(index);
+	 }
+	 };
+	 return this;
+	 }*/
 
     @Override
     public void onClick(View p1)
     {
         NavigationItem item=(NavigationItem) p1;  	
-		if (index != item.getIndex())
+		if (mIndex != item.getIndex())
 		{
-			((NavigationItem)getChildAt(index)).check();
+			((NavigationItem)getChildAt(mIndex)).check();
 			item.check();
-			index = item.getIndex();
+			mIndex = item.getIndex();
 		}
-		else return;
 		if (onItemViewSelectedListener != null)
 			onItemViewSelectedListener.onItemClcik(item.getIndex());
-    }
+	}
 
-    private int index;
+    private int mIndex;
 
     private OnItemViewSelectedListener onItemViewSelectedListener;
 
-    private final List<NavigationItem> items=new ArrayList<NavigationItem>();
+    private final List<NavigationItem> mItems=new ArrayList<NavigationItem>();
 
     public BottomNavigationBar(Context context, AttributeSet attrs)
     {
@@ -96,11 +94,11 @@ public class BottomNavigationBar extends LinearLayout implements OnClickListener
 
     public BottomNavigationBar addItem(String text, int image, int image2)
 	{
-        NavigationItem item=new NavigationItem(items.size(), text, getContext(), image, image2);
+        NavigationItem item=new NavigationItem(mItems.size(), text, getContext(), image, image2);
         item.setOnClickListener(this);
-        items.add(item);
+        mItems.add(item);
         addView(item);
-		if (items.size() == 1)items.get(0).check();
+		if (mItems.size() == 1)mItems.get(0).check();
 		return this;
     }
 

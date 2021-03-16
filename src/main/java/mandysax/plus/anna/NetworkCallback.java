@@ -3,5 +3,5 @@ package mandysax.plus.anna;
 public interface NetworkCallback<T>
 {
 	public void onLoading(boolean isLoaded,T model);
-    public void onError(String msg);
+    public void onError(int code);
 }

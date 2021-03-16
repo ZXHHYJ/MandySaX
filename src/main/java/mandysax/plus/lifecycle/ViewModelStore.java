@@ -1,17 +1,26 @@
 package mandysax.plus.lifecycle;
 import java.util.HashMap;
 
-public final class ViewModelStore
+public final class ViewModelStore implements ViewModelStoreImpl
 {
 	private HashMap<Class,ViewModel> mMap;
 
-	protected final void put(Class key, ViewModel viewModel)
+    @Override
+	public void put(Class key, ViewModel viewModel)
 	{
-		if (mMap == null) mMap = new HashMap<Class,ViewModel>();
-        mMap.put(key, viewModel);
+		if (mMap == null)
+		{
+			synchronized (this)
+			{
+				if (mMap == null)
+					mMap = new HashMap<Class,ViewModel>();
+			}
+		}
+	    mMap.put(key, viewModel);
     }
 
-    protected final ViewModel get(Class key)
+    @Override
+    public ViewModel get(Class key)
 	{
 		if (mMap == null)return null;
         return mMap.get(key);
@@ -20,6 +29,7 @@ public final class ViewModelStore
     /**
      *  Clears internal storage and notifies ViewModels that they are no longer used.
      */
+    @Override
     public void clear()
 	{
 		if (mMap != null)

@@ -1,6 +1,6 @@
 package mandysax.plus.lifecycle;
 
-public abstract interface LifecycleObserver
+public interface LifecycleObserver
 {
 	public void Observer(String State);
 }

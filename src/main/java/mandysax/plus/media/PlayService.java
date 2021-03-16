@@ -35,33 +35,30 @@ public final class PlayService extends Service
 					pause();
 					break;
 				case PlaybackState.STATE_SKIPPING_TO_NEXT:
-					getMediaController().getValue().getTransportControls().skipToNext();
+					skipToNext();
 					break;
 				case PlaybackState.STATE_SKIPPING_TO_PREVIOUS:
-					getMediaController().getValue().getTransportControls().skipToPrevious();
+					skipToPrevious();
 					break;
 				case PlaybackState.STATE_STOPPED:
 					if (isPlaying)
 						pause();
-					stopSelf();
+					//stopSelf();
 					break;
 			}
 		}
 	}
 
-    private OnPlayStateReceiver myReceiver;
-
 	private void registerBroadcast()
 	{
-		myReceiver = new OnPlayStateReceiver();
-		registerReceiver(myReceiver, new IntentFilter(Media.CHANNEL_NAME));
+		registerReceiver(new OnPlayStateReceiver(), new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
 	}
 
     private MediaSession session;
 
     private PlayNotification notification;
 
-    private List<MediaMetadata> mediaList=new ArrayList<>();
+    private List<MediaMetadata.Builder> mediaList=new ArrayList<>();
 	//播放列表
 
     private final MutableLiveData<MediaController> _controller = new MutableLiveData<MediaController>();
@@ -83,18 +80,18 @@ public final class PlayService extends Service
     {
         if (notification != null)
             return;
-		registerBroadcast();
         notification = new PlayNotification(this);
         notification.build();
+        registerBroadcast();
     }
 
     public void play()
     {   
         getMediaController().apply(new Observer<MediaController>(){
                 @Override
-                public void onChanged(MediaController p2)
+                public void onChanged(MediaController p1)
                 {
-                    p2.getTransportControls().play();              
+                    p1.getTransportControls().play();              
                 }
             });
     }
@@ -103,13 +100,38 @@ public final class PlayService extends Service
     {
         getMediaController().apply(new Observer<MediaController>(){
                 @Override
-                public void onChanged(MediaController p2)
+                public void onChanged(MediaController p1)
                 {
-					p2.getTransportControls().pause();
+					p1.getTransportControls().pause();
                 }
             });
     }
-    public void setMediaList(List<MediaMetadata> mediaList)
+
+    public void skipToNext()
+    {
+        getMediaController().apply(new Observer<MediaController>(){
+
+                @Override
+                public void onChanged(MediaController p1)
+                {
+                    p1.getTransportControls().skipToNext();
+                }                        
+            });
+    }
+
+    public void skipToPrevious()
+    {
+        getMediaController().apply(new Observer<MediaController>(){
+
+                @Override
+                public void onChanged(MediaController p1)
+                {
+                    p1.getTransportControls().skipToPrevious();
+                }                        
+            });
+    }   
+
+    public void setMediaList(List<MediaMetadata.Builder> mediaList)
     {
         this.mediaList = mediaList;
     }
@@ -135,7 +157,7 @@ public final class PlayService extends Service
         return index.getValue();
     }
 
-    public List<MediaMetadata> getMediaList()
+    public List<MediaMetadata.Builder> getMediaList()
     {
         return mediaList;
     }
@@ -200,8 +222,8 @@ public final class PlayService extends Service
                                 @Override
                                 public void onChanged(MediaController p2)
                                 {
-                                    getSession().setMetadata(getMediaList().get(p1));
-                                    p2.getTransportControls().playFromMediaId(MediaMetadataFactory.analyze(getMediaList().get(p1)).getId(), null);
+                                    getSession().setMetadata(getMediaList().get(p1).build());
+                                    p2.getTransportControls().playFromMediaId(MediaMetadataFactory.analyze(getMediaList().get(p1).build()).getId(), null);
                                 }
                             });
                     }

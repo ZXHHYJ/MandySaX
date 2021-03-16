@@ -49,6 +49,7 @@ public abstract class LiveData <T extends Object>
 
 	public LiveData<T> observe(LifecycleOwner p0, final Observer<? super T> p1)
 	{
+        observeForever(p1);
 		p0.getLifecycle().addObsever(new LifecycleObserver(){
 
 				@Override
@@ -58,8 +59,7 @@ public abstract class LiveData <T extends Object>
 						callBack.remove(p1);
 				}
 
-			});
-		callBack.add(p1);
+			});	
 		return this;
 	}
 

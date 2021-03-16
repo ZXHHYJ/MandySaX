@@ -1,30 +1,24 @@
 # 初衷
 
-这个项目最开始是个浏览器，叫做 MandySa，很多人怀疑是给封茗囧菌做的，这个不用怀疑，一开始确实是为她做的，纪念陪伴自己整个青春的偶像封茗囧菌。
+最开始是模仿 AndroidX 中优秀的理念和组件，随着自己对 MVVM 架构的理解和 MandySaX 的完善，这个项目转而为一些轻量级的 app 提供 MVVM 架构支持。
 
-**以此纪念我逝去的青春。**
+**我希望它可以帮助到你们**
 
 # 介绍
 
-MandySaX 是一个开源库，可加快 Android 程序开发。 它支持响应式编程，有 viewmodel，支持 activity 和 fragment 生命周期管理，最近 MandySaX 也为自己的 activity 开发了属于自己的 fragment。MandySaX 多用于 MVVM 架构的轻量级应用，欢迎 start。
-
-**这是我们推荐的架构：**
+**推荐的架构：**
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0110/213209_e5b36d37_8555846.png "")
 
-如果需要它的使用方法，请继续阅读吧
-
 # 注意事项
 
-目前这个 MandySaX 只建议用于一些轻量级的项目，正在慢慢扩充 MandySaX...
+*目前这个 MandySaX 只建议用于一些轻量级的项目，正在慢慢扩充 MandySaX...*
+
+> 自 2.0.0 版本之后，MandySaX 已可以用于部分生产环境
 
 # 导入
 
-把下载项目文件，放到需要导入的项目的起始目录，然后长按，点击导入
-
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0110/213300_3a2cf839_8555846.png "")
-
-下面我们可以开始使用了
+暂时省略...
 
 # 使用
 
@@ -39,7 +33,7 @@ public MainViewModel(String p0)
 {
 ....
 }
-... 
+...
 }
 ```
 
@@ -49,7 +43,6 @@ public MainViewModel(String p0)
 
 ```java
 private MainViewModel viewModel;
-
 @Override
 protected void onCreate(Bundle savedInstanceState)
 {
@@ -62,13 +55,11 @@ viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
 ```java
 private MainViewModel viewModel;
-
 @Override
 protected void onCreate(Bundle savedInstanceState)
 {
 super.onCreate(savedInstanceState);
 viewModel = ViewModelProviders.of(this, new Factory(){
-
 @Override
 public <T extends ViewModel> T create(Class<T> modelClass)
 {
@@ -138,7 +129,6 @@ livedata.postValue("在子线程中更新数据")
 
 ```java
 livedata.observeForever(new Observer<String>() {
-
 @Override
 public void onChanged(String p1)
 {
@@ -153,13 +143,11 @@ System.out.println(p1);
 //this 为 LifecycleOwner 的实例
 //注：FragmentActivity 和 Fragment 本身就是一个 LifecycleOwner 实例
 livedata.observe(this, new Observer<String>(){
-
 @Override
 public void onChanged(String p1)
 {
 System.out.println(p1);
 }
-
 });
 ```
 
@@ -215,3 +203,57 @@ fragment 是可以让你的 app 纵享丝滑的设计，优化 app 时，如果�
 ...
 
 **还有四个重要组件未介绍，后期补齐，见谅**
+
+# 更新内容
+
+1.修复 Fragment 在特定条件下没有 removeView 的问题
+
+2.修复 Fragment 生命周期错乱的问题
+
+3.修复 Fragment 可能发生的内存泄漏的问题
+
+4.修复 Fragment 的 isAdded 方法返回值没有可靠性的问题
+
+5.Fragment 返回栈重构
+
+6.Fragment 控制器重构
+
+7.Fragment 支持<fragment>标签
+
+8.Fragment 支持显示隐藏、进栈出栈动画
+
+9.修复 Fragment 控制器在部分生命周期中 add/remove 可能发生的闪退问题
+
+10.修复 Fragment 的 replace 方法同时搭配添加返回栈可能导致的 Fragment 显示错乱问题
+
+11.修复 Fragment 添加返回栈后返回 Fragment 无法释放的问题
+
+12.修复 Fragment 在隐藏时也可以接收生命周期事件的问题
+
+13.优化 Fragment 的 onActivityCreated 方法执行时 Activity 可能还没有构建完毕的问题
+
+14.Fragment 控制器新增针对 Fragment 返回栈的四个 API
+
+15.Fragment 支持获取自身 Tag
+
+16.Fragment 支持 onBackPressed()方法，优先级高于 Activity
+
+17.Lifecycle 新添加 onRestart 周期
+
+18.ViewModelProviders 支持自定义 ViewModelStore 来提供更大的作用域
+
+19.AndroidViewModel 和 ViewModel 分离
+
+20.Anna 更改部分 API
+
+21.Anna 支持单独对某个变量设置 path 了，请使用 PATH 注解
+
+22.Anna 支持 POST 和 LONG 两个新的注解
+
+23.Anna 新增 postKey 方法自动插入参数
+
+23.优化 Anna 网络请求
+
+24...
+
+更多更新内容请参考源码。

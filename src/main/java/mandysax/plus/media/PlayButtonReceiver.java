@@ -20,6 +20,6 @@ public class PlayButtonReceiver
 
     public static PendingIntent buildDeleteIntent(Context context)
     {
-        return PendingIntent.getBroadcast(context, PlaybackState.STATE_STOPPED, new Intent(Media.CHANNEL_NAME).putExtra(Media.PLAY_BACK_STATE, PlaybackState.STATE_STOPPED), PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getBroadcast(context, PlaybackState.STATE_STOPPED, new Intent(Intent.ACTION_MEDIA_BUTTON).putExtra(Media.PLAY_BACK_STATE, PlaybackState.STATE_STOPPED), PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }

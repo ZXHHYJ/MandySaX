@@ -16,7 +16,7 @@ public final class FragmentManager implements FragmentManagerImpl
 
     @Override
 	public void clear()
-	{
+	{	
 		fragments.clear();
 	}
 
@@ -32,7 +32,10 @@ public final class FragmentManager implements FragmentManagerImpl
 		for (Map.Entry<String, Fragment> entry : entrySet())
 		{
 			if (entry.getValue().equals(fragment))
+			{
 				fragments.remove(entry.getKey());
+				return;
+			}
 		}
 	}
 

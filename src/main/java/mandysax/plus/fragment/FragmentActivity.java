@@ -5,29 +5,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import mandysax.plus.lifecycle.Lifecycle;
+import mandysax.plus.lifecycle.LifecycleImpl;
 import mandysax.plus.lifecycle.LifecycleOwner;
 import mandysax.plus.lifecycle.ViewModelStore;
+import mandysax.plus.lifecycle.ViewModelStoreImpl;
 
-public class FragmentActivity extends Activity implements LifecycleOwner
+public class FragmentActivity extends Activity implements FragmentActivityImpl,LifecycleOwner
 {
 
-	public static final int WXY=20030725;//记一个不可以忘记的朋友<晓柳>
-
-	public static final String VIEWMODEL_FRAGMENT_TAG="VIEWMODEL_FRAGMENT_TAG";
+	//记一个不可以忘记的朋友<晓柳>
 
 	private final Lifecycle mLifecycle = new Lifecycle();
 
 	private FragmentController mFragmentController;
 
+	private ViewModelStore mViewModelStore;
+
 	private NonConfigurationInstances mLastNonConfigurationInstances;
 
-	private ViewModelFragment mViewModelFragment;
+	private static final LayoutInflaterFactoryV21 sLayoutInflaterFactoryV21=new LayoutInflaterFactoryV21();
 
-	public Fragment findFragmentByTag(String tag)
-	{
-		return getFragmentPlusManager().findFragmentByTag(tag);
-	}
-
+    @Override
     public FragmentController2Impl getFragmentPlusManager()
 	{
 		return getFragmentController().getFragmentController2();
@@ -37,35 +35,23 @@ public class FragmentActivity extends Activity implements LifecycleOwner
 	{
 		if (mFragmentController == null)
 		{
-			NonConfigurationInstances nonConfigurationInstances = (NonConfigurationInstances)getLastNonConfigurationInstance();
-			if (nonConfigurationInstances != null)
-			{
-				return mFragmentController = nonConfigurationInstances.fragmentController;
-			}
-			else return mFragmentController = new FragmentController(this);
+            getLastNonConfigurationInstance();
+            if (mFragmentController == null)mFragmentController = new FragmentController(this);
+            return mFragmentController;
 		}
 		return mFragmentController;
 	}
 
-	protected void onAttachFragment(Fragment fragment)
+    @Override
+	public ViewModelStoreImpl getViewModelStore()
 	{
-	}
-
-	private final ViewModelFragment getViewModelFragment()
-	{
-		mViewModelFragment = (FragmentActivity.ViewModelFragment) getFragmentPlusManager().findFragmentByTag(VIEWMODEL_FRAGMENT_TAG);
-		if (mViewModelFragment == null)
+		if (mViewModelStore == null)
 		{
-			mViewModelFragment = new ViewModelFragment();
-			getFragmentPlusManager().add(0, mViewModelFragment, VIEWMODEL_FRAGMENT_TAG).commit();
-			return mViewModelFragment;
+            getLastNonConfigurationInstance();
+            if (mViewModelStore == null)mViewModelStore = new ViewModelStore();
+            return mViewModelStore;
 		}
-		return mViewModelFragment;
-	}
-
-	public final ViewModelStore getViewModelStore()
-	{
-		return getViewModelFragment().viewModelStore;
+		return mViewModelStore;
 	}
 
 	@Override
@@ -75,6 +61,7 @@ public class FragmentActivity extends Activity implements LifecycleOwner
 		{
 			NonConfigurationInstances nci = new NonConfigurationInstances();
 			nci.fragmentController = mFragmentController;
+			nci.viewModelStore = mViewModelStore;
 			return nci;
 		}
 		else return mLastNonConfigurationInstances;
@@ -83,7 +70,11 @@ public class FragmentActivity extends Activity implements LifecycleOwner
 	@Override
 	public Object getLastNonConfigurationInstance()
 	{
-		return super.getLastNonConfigurationInstance();
+		NonConfigurationInstances nci=(FragmentActivity.NonConfigurationInstances) super.getLastNonConfigurationInstance();
+		if (nci == null)return null;
+		if (mFragmentController == null)mFragmentController = nci.fragmentController;
+		if (mViewModelStore == null)mViewModelStore = nci.viewModelStore;
+		return nci;
 	}
 
 	@Override
@@ -100,7 +91,7 @@ public class FragmentActivity extends Activity implements LifecycleOwner
 		getFragmentController().multiWindowModeChanged(isInMultiWindowMode, newConfig);
 	}
 
-    @java.lang.Deprecated
+    @Deprecated
 	@Override
 	public void onMultiWindowModeChanged(boolean isInMultiWindowMode)
 	{
@@ -147,13 +138,14 @@ public class FragmentActivity extends Activity implements LifecycleOwner
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		getLayoutInflater().setFactory2(sLayoutInflaterFactoryV21);
 		super.onCreate(savedInstanceState);
 		getFragmentController().create(this, savedInstanceState);//配置变更后context已经被管理者移除了，需要重新赋值
 		mLifecycle.onCreate();
 	}
-
+    
 	@Override
-	public Lifecycle getLifecycle()
+	public LifecycleImpl getLifecycle()
 	{
 		return mLifecycle;
 	}
@@ -164,6 +156,13 @@ public class FragmentActivity extends Activity implements LifecycleOwner
 		super.onStart();
 		mLifecycle.onStart();
 	}
+    
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+        mLifecycle.onRestart();
+    }
 
 	@Override
 	protected void onResume()
@@ -198,7 +197,7 @@ public class FragmentActivity extends Activity implements LifecycleOwner
 	{
 		if (getFragmentController().onBackFragment())
 			return;
-		if (getFragmentController().popBackStack())
+		if (getFragmentController().getFragmentController2().popBackStack())
 			return;
 		else super.onBackPressed();
 	}
@@ -206,10 +205,6 @@ public class FragmentActivity extends Activity implements LifecycleOwner
     private static final class NonConfigurationInstances
 	{
 	    FragmentController fragmentController;//fragment的控制器
-	}
-
-	private static final class ViewModelFragment extends Fragment
-	{
 		ViewModelStore viewModelStore=new ViewModelStore();//viewmodel的管理者
 	}
 

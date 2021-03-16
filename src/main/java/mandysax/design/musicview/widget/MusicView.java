@@ -2,16 +2,18 @@ package mandysax.design.musicview.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import mandysax.R;
 import mandysax.utils.DensityUtils;
+import android.text.TextUtils;
 
 public class MusicView extends LinearLayout
 {
+
 	public enum PlayStack
 	{
 		PLAY,
@@ -22,7 +24,7 @@ public class MusicView extends LinearLayout
 
     private TextView mTitle,mSubTitle;
 
-	private boolean mPlay=false;
+    private PlayStack mStack= PlayStack.PLAY;
 
     public MusicView(Context context)
     {
@@ -44,25 +46,32 @@ public class MusicView extends LinearLayout
 				@Override
 				public void run()
 				{
+                    int dp11=DensityUtils.dp2px(getContext(), 11);
+
 					mCover = new ImageView(getContext());
 					mCover.setScaleType(ImageView.ScaleType.CENTER_CROP);
 					mCover.setLayoutParams(new LinearLayout.LayoutParams(getHeight(), getHeight()));
 					addView(mCover);
 					mTitle = new TextView(getContext());
+                    mTitle.setSingleLine();
+                    mTitle.setEllipsize(TextUtils.TruncateAt.END);
 					mTitle.setTextColor(android.R.color.black);
 					mTitle.setTextAppearance(android.R.style.TextAppearance_Large);
-					mTitle.setTextSize(16);
+					mTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
 
 					mSubTitle = new TextView(getContext());
+                    mSubTitle.setSingleLine();
+                    mSubTitle.setEllipsize(TextUtils.TruncateAt.END);
 					mSubTitle.setTextColor(android.R.color.black);
 					mSubTitle.setTextAppearance(android.R.style.TextAppearance_Small);
-					mSubTitle.setTextSize(13);
+					mSubTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 
 					LinearLayout layout= new LinearLayout(getContext());
 					layout.setOrientation(LinearLayout.VERTICAL);
 					layout.setGravity(Gravity.CENTER);
 					layout.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, 1));
-					layout.addView(mTitle);
+					layout.setPadding(dp11, 0, 0, 0);
+                    layout.addView(mTitle);
 					layout.addView(mSubTitle);
 					addView(layout);
 
@@ -70,24 +79,14 @@ public class MusicView extends LinearLayout
 					mController.setLayoutParams(new LinearLayout.LayoutParams(getHeight(), getHeight()));
 					mController.setImageDrawable(getContext().getDrawable(R.mipmap.ic_play));
 					mController.setColorFilter(getContext().getColor(android.R.color.black));
-					int dp10=DensityUtils.dp2px(getContext(), 10);
-					mController.setPadding(dp10, dp10, dp10, dp10);		
-					mController.setOnClickListener(new View.OnClickListener(){
-
-							@Override
-							public void onClick(View p1)
-							{
-								setPlayStack(mPlay ?PlayStack.STOP: PlayStack.PLAY);
-								mPlay = !mPlay;
-							}
-						});
+                    mController.setPadding(dp11, dp11, dp11, dp11);		
 					addView(mController);
 
 					mNextTrack = new ImageView(getContext());
 					mNextTrack.setLayoutParams(new LinearLayout.LayoutParams(getHeight(), getHeight()));
 					mNextTrack.setImageDrawable(getContext().getDrawable(R.mipmap.ic_skip_next));
 					mNextTrack.setColorFilter(getContext().getColor(android.R.color.black));
-					mNextTrack.setPadding(dp10, dp10, dp10, dp10);		
+					mNextTrack.setPadding(dp11, dp11, dp11, dp11);		
 					addView(mNextTrack);
 
 					if (attrs != null)
@@ -109,39 +108,69 @@ public class MusicView extends LinearLayout
 			});
     }
 
-	public ImageView getPlaybutton()
-	{
-		return mController;
-	}
+    public ImageView getPlayButton()
+    {
+        return mController;
+    }
 
 	public ImageView getNextTrackButton()
 	{
 		return mNextTrack;
 	}
 
-	public MusicView setPlayStack(PlayStack stack)
+    public PlayStack getPlayStack()
+    {
+        return mStack;
+    }
+
+	public MusicView setPlayStack(final PlayStack stack)
 	{
-		switch (stack)
-		{
-			case PLAY:
-				mController.setImageResource(R.mipmap.ic_pause);
-				break;
-			case STOP:
-				mController.setImageResource(R.mipmap.ic_play);
-				break;
-		}
+        post(new Runnable(){
+
+                @Override
+                public void run()
+                {
+                    mStack = stack;
+                    switch (stack)
+                    {
+                        case PLAY:
+                            mController.setImageResource(R.mipmap.ic_play);
+                            break;
+                        case STOP:
+                            mController.setImageResource(R.mipmap.ic_pause);
+                            break;
+                        default:
+                            break;
+                    }
+                }          
+            });	
 		return this;
 	}
 
-	public MusicView setTitle(String title)
+	public MusicView setTitle(final String title)
 	{
-		mTitle.setText(title);
+        post(new Runnable(){
+
+                @Override
+                public void run()
+                {
+                    mTitle.setText(title);
+                }          
+            
+        });
 		return this;
 	}
 
-	public MusicView setSubTitle(String title)
+	public MusicView setSubTitle(final String title)
 	{
-		mSubTitle.setText(title);
+        post(new Runnable(){
+
+                @Override
+                public void run()
+                {
+                    mSubTitle.setText(title);
+                }
+            });	
 		return this;
 	}
 
@@ -149,4 +178,5 @@ public class MusicView extends LinearLayout
 	{
 		return mCover;
 	}
+
 }

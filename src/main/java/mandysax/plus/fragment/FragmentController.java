@@ -10,9 +10,19 @@ import java.util.List;
 import java.util.Map;
 import mandysax.plus.lifecycle.Lifecycle;
 import mandysax.plus.lifecycle.LifecycleObserver;
+import mandysax.plus.lifecycle.livedata.MutableLiveData;
+import mandysax.plus.lifecycle.livedata.Observer;
 
-public final class FragmentController implements FragmentControllerImpl
+public final class FragmentController implements FragmentControllerImpl,LifecycleObserver
 {
+
+	@Override
+	public void Observer(String State)
+	{
+		if (mActivityCreated.getValue() == null)
+			if (State == Lifecycle.Event.ON_START)		
+				mActivityCreated.setValue(true);	
+	}
 
 	/*
 	 *将对Fragment的各种操作都放在FragmentController中
@@ -57,6 +67,16 @@ public final class FragmentController implements FragmentControllerImpl
 			mActive = opl;
 		}
 
+		public Fragment get(int index)
+		{
+			return mActive.get(index).fragment;
+		}
+
+		public int size()
+		{
+			return mActive.size();
+		}
+
 		public void run()
 		{
 			/*run*/
@@ -92,7 +112,6 @@ public final class FragmentController implements FragmentControllerImpl
 							{
 								if (State == Lifecycle.Event.ON_STOP && op.fragment.isHidden())
 								{
-									System.out.println("remove");
 									remove(op.fragment);
 								}
 							}			
@@ -162,22 +181,35 @@ public final class FragmentController implements FragmentControllerImpl
 			show(op.fragment, op.popEnterAnim);
 		}
 
-		public void add(Fragment fragment, int id, String tag)
+		public void add(final Fragment fragment, int id, String tag)
 		{
-			if (fragment.isAdded())return;
 			tag = tag == null ?fragment.getClass().getCanonicalName(): tag;
-			getFragmentManager().addFragment(fragment, tag);
-			fragment.setTag(tag, id);
-			fragment.onAttach(mActivity);
-			fragment.onCreate(mSavedInstanceState);
-			if (!fragment.isInLayout())
+			if (fragment.isAdded())
+			{
+				fragment.setTag(tag, id);
+			}
+			else
+			{
+				getFragmentManager().addFragment(fragment, tag);
+				fragment.setTag(tag, id);
+				fragment.onAttach(mActivity);
+				fragment.onCreate(mSavedInstanceState);
+			}
+			if (!fragment.isInLayout() && id != 0)
 			{
 				View view1 = null;
 				if (fragment.onCreateView() != 0)
 					view1 = fragment.getLayoutInflater().inflate(fragment.onCreateView(), fragment.getViewGroup(), false); 
 				View view2=fragment.onCreateView(LayoutInflater.from(mActivity), fragment.getViewGroup());
 				fragment.onViewCreated(view1 == null ?view2: view1, mSavedInstanceState);
-				fragment.onActivityCreated(mSavedInstanceState);
+				mActivityCreated.apply(new Observer<Boolean>(){
+
+						@Override
+						public void onChanged(Boolean p1)
+						{
+							fragment.onActivityCreated(mSavedInstanceState);
+						}
+					});
 			}
 		}
 
@@ -303,10 +335,21 @@ public final class FragmentController implements FragmentControllerImpl
 			mBackStackIndices.add(index);
 		}
 
-		public boolean popBackStack()
+		public int getBackStackEntryCount()
+		{
+			if (mBackStack == null)return 0;	
+			return mBackStack.get(mBackStack.size() - 1).size();
+		}
+
+		public Fragment getBackStackEntryAt(int index)
+		{
+			if (mBackStack == null)return null;
+			return mBackStack.get(mBackStack.size() - 1).get(index);
+		}
+
+		public boolean popBackStack(int index)
 		{
 			if (mBackStack == null)return false;
-			int index=mBackStack.size() - 1;
 			if (mBackStack.size() >= 1)
 			{
 				BackStackRecord bsr=mBackStack.get(index);
@@ -315,6 +358,13 @@ public final class FragmentController implements FragmentControllerImpl
 				freeBackStackIndex(index);
 				return true;
 			}
+			return false;
+		}
+
+		public boolean popBackStack()
+		{
+			if (mBackStack != null)
+				return popBackStack(mBackStack.size() - 1);
 			return false;
 		}
 
@@ -336,6 +386,30 @@ public final class FragmentController implements FragmentControllerImpl
 
 	public class FragmentController2 implements FragmentController2Impl
 	{
+
+		@Override
+		public boolean popBackStack()
+		{
+			return mFragmentBackStack.popBackStack();
+		}
+
+		@Override
+		public boolean popBackStack(int index)
+		{
+			return mFragmentBackStack.popBackStack(index);
+		}
+
+		@Override
+		public int getBackStackEntryCount()
+		{
+			return mFragmentBackStack.getBackStackEntryCount();
+		}
+
+		@Override
+		public FragmentImpl getBackStackEntryAt(int index)
+		{
+			return mFragmentBackStack.getBackStackEntryAt(index);
+		}
 
 		private ArrayList<Op> mOpl=new ArrayList<Op>();
 
@@ -368,11 +442,11 @@ public final class FragmentController implements FragmentControllerImpl
 		 *系统Fragment在这个步骤默认已经向容器添加了Fragment而我并没有这么做，这样在add后的show(Fragment fragment)操作繁琐，就添加了无参的show()
 		 *这样能更好的控制Fragment，因为有的Fragment并没有界面，默认添加到容器有些限制Fragment的操作上限
 		 */
-		public Op addOp(int id, Fragment fragment, STACK stack, String tag)
+		public Op addOp(int id, FragmentImpl fragment, STACK stack, String tag)
 		{
 			Op op=new Op();
 			op.id = id;
-			op.fragment = fragment;
+			op.fragment = (Fragment) fragment;
 			op.stack = stack;
 			op.tag = tag;
 			op.enterAnim = mEnterAnim;
@@ -384,9 +458,15 @@ public final class FragmentController implements FragmentControllerImpl
 		}
 
 		@Override
-		public Fragment findFragmentByTag(String tag)
+		public <T extends FragmentImpl> T findFragmentByTag(String tag)
 		{
-			return getFragmentManager().tagGetFragment(tag);
+			return (T)getFragmentManager().tagGetFragment(tag);
+		}
+
+		@Override
+		public <T extends FragmentImpl> T findFragmentById(int id)
+		{
+			return findFragmentByTag(id + "");
 		}
 
 		@Override
@@ -400,34 +480,34 @@ public final class FragmentController implements FragmentControllerImpl
 		}
 
 		@Override
-		public FragmentController2Impl add(int id, Fragment fragment)
+		public FragmentController2Impl add(int id, FragmentImpl fragment)
 		{
 			return add(id, fragment, null);
 		}
 
 		@Override
-		public FragmentController2Impl add(int id, Fragment fragment, String tag)
+		public FragmentController2Impl add(int id, FragmentImpl fragment, String tag)
 		{
 			addOp(id, fragment, STACK.ADD, tag);
 			return this;
 		}
 
 		@Override
-		public FragmentController2Impl remove(Fragment fragment)
+		public FragmentController2Impl remove(FragmentImpl fragment)
 		{
 			addOp(0, fragment, STACK.REMOVE, null);
 			return this;
 		}
 
 		@Override
-		public FragmentController2Impl show(Fragment fragment)
+		public FragmentController2Impl show(FragmentImpl fragment)
 		{
 			addOp(0, fragment, STACK.SHOW, null);
 			return this;
 		}
 
 		@Override
-		public FragmentController2Impl hide(Fragment fragment)
+		public FragmentController2Impl hide(FragmentImpl fragment)
 		{
 			addOp(0, fragment, STACK.HIDE, null);
 			return this;
@@ -446,9 +526,7 @@ public final class FragmentController implements FragmentControllerImpl
 			{	
 				addOp(id, (Fragment)replaceFragment.newInstance() , STACK.REPLACE, tag);
 			}
-			catch (InstantiationException e)
-			{}
-			catch (IllegalAccessException e)
+			catch (IllegalAccessException | InstantiationException e)
 			{}
 			return this;
 		}
@@ -489,10 +567,13 @@ public final class FragmentController implements FragmentControllerImpl
 
 	private FragmentActivity mActivity;
 
+	private final MutableLiveData<Boolean> mActivityCreated=new MutableLiveData<Boolean>();
+
 	public FragmentController(FragmentActivity actvity)
 	{
 		mManager = new FragmentManager();
 		mActivity = actvity;
+		actvity.getLifecycle().addObsever(this);
 	}
 
 	private FragmentManagerImpl getFragmentManager()
@@ -512,12 +593,6 @@ public final class FragmentController implements FragmentControllerImpl
 						return true;
 		}
 		return false;
-	}
-
-	@Override
-	public boolean popBackStack()
-	{
-		return mFragmentBackStack.popBackStack();
 	}
 
 	@Override
@@ -571,6 +646,10 @@ public final class FragmentController implements FragmentControllerImpl
 								if (fragment.isVisible())
 									fragment.onStart();
 								break;
+                            case Lifecycle.Event.ON_RESTART:
+                                if (fragment.isVisible())
+									fragment.onRestart();
+                                break;
 							case Lifecycle.Event.ON_RESUME:
 								if (fragment.isVisible())
 									fragment.onResume();
@@ -587,12 +666,13 @@ public final class FragmentController implements FragmentControllerImpl
 								fragment.onDestroyView();
 								fragment.onDestroy();
 								fragment.onDetach();
+								mSavedInstanceState = null;
+								mActivity = null;
 								if (!activity.isChangingConfigurations())
 								{
 									getFragmentManager().clear();
-								}
-								mSavedInstanceState = null;
-								mActivity = null;
+									return;//stop for
+								}				
 								break;
 						}
 					}

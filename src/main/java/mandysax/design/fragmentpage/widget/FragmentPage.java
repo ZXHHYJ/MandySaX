@@ -4,13 +4,11 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import mandysax.plus.fragment.Fragment;
-import mandysax.plus.fragment.FragmentActivity;
+import mandysax.plus.fragment.FragmentActivityImpl;
 import mandysax.plus.fragment.FragmentController2Impl;
 
 public class FragmentPage extends FrameLayout
 {
-
-	public final static String TAG=FragmentPage.class.getCanonicalName();
 
 	//管理器
 	private final ArrayList<Fragment> mFragmentList=new ArrayList<>();
@@ -24,41 +22,14 @@ public class FragmentPage extends FrameLayout
 	//fragment管理器
 	private FragmentController2Impl mMannger;
 
-	//用于存储fragment下标
-	private PageFragment pageFragment;
-
 	public FragmentPage(Context p0)
 	{
 		super(p0);
-		init();
 	}
 
 	public FragmentPage(Context p0, AttributeSet p1)
 	{
 		super(p0, p1);
-		init();
-	}
-
-	private void init()
-	{
-		//此控件只支持mandysax的activity
-		if (getContext() instanceof FragmentActivity)
-		{
-			pageFragment = (PageFragment) getMannger().findFragmentByTag(TAG);
-			if (pageFragment == null)
-			{
-				getMannger().add(getId(), pageFragment = new PageFragment(), TAG).commit();
-			}
-			else
-			{
-				mLastIndex = pageFragment.old_index;
-				mIndex = pageFragment.index;
-			}
-		}
-		else
-		{
-			throw new RuntimeException("FragmentPage activity is not a subclass of FragmentActivity");
-		}
 	}
 
 	/*
@@ -102,17 +73,12 @@ public class FragmentPage extends FrameLayout
 		if (mLastIndex != -1)
 			getMannger().hide(mFragmentList.get(mLastIndex)).commit();
 		getMannger().show(mFragmentList.get(index)).commit();
-		pageFragment.index = mLastIndex = index;
+		mLastIndex = index;
 	}
 
 	private FragmentController2Impl getMannger()
 	{
-		return mMannger == null ?mMannger = ((FragmentActivity)getContext()).getFragmentPlusManager(): mMannger;
+		return mMannger == null ?mMannger = ((FragmentActivityImpl)getContext()).getFragmentPlusManager(): mMannger;
 	}
 
-}
-class PageFragment extends Fragment
-{
-	public int old_index=-1;
-	public int index=-1;
 }

@@ -2,15 +2,13 @@ package mandysax.plus.media;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.media.MediaMetadata;
 import android.media.session.PlaybackState;
 import mandysax.R;
 import mandysax.plus.media.PlayNotification;
 import mandysax.plus.media.factory.MediaMetadataFactory;
+import android.content.Intent;
 
 public final class PlayNotification extends Notification.Builder
 {
@@ -39,12 +37,12 @@ public final class PlayNotification extends Notification.Builder
             PlayButtonReceiver.buildMediaButtonAction(service, R.mipmap.ic_skip_next, PlaybackState.STATE_SKIPPING_TO_NEXT);
         mPrevAction =
             PlayButtonReceiver.buildMediaButtonAction(service, R.mipmap.ic_skip_previous, PlaybackState.STATE_SKIPPING_TO_PREVIOUS);
-        NotificationChannel notificationChannel = new NotificationChannel(Media.CHANNEL_ID, Media.CHANNEL_NAME, NotificationManager.IMPORTANCE_LOW);
+        NotificationChannel notificationChannel = new NotificationChannel(Media.CHANNEL_ID, Intent.ACTION_MEDIA_BUTTON, NotificationManager.IMPORTANCE_LOW);
         notificationChannel.setDescription(Media.CHANNEL_DESCRIPTION);
         notificationChannel.enableVibration(false);
         manager.createNotificationChannel(notificationChannel);     
         setShowWhen(false);
-        //setWhen(0);
+        setWhen(0);
         setAction(false);
         //setActions(mPrevAction, ! false ? mPlayAction: mPauseAction, mNextAction);  
         setDeleteIntent(PlayButtonReceiver.buildDeleteIntent(service));

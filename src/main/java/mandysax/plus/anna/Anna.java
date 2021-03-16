@@ -86,68 +86,73 @@ public abstract class Anna
 
 	public void start()
 	{
-		getExecutor().execute(new Runnable(){
-				@Override
-				public void run()
-				{
-					try
-					{
-						String type;
-						String method;
-						if (mModelClass.isAnnotationPresent(GET.class))
-						{
-							type = ((GET)mModelClass.getAnnotation(GET.class)).value();
-							method = "GET";
-						}
-						else if (mModelClass.isAnnotationPresent(PATH.class))
-						{
-						    type = ((PATH)mModelClass.getAnnotation(PATH.class)).value();
-							method = "POST";
-						}
-						else return;
-						HttpURLConnection connection = (HttpURLConnection) new URL(mUrl).openConnection();   
-						if (mConnectTimeout != 0)
-							connection.setConnectTimeout(mConnectTimeout);
-						if (mReadTimeout != 0)
-							connection.setReadTimeout(mReadTimeout);
-						connection.setRequestMethod(method);   
-						connection.setInstanceFollowRedirects(true);
-						if (connection.getResponseCode() == 200)         
-						{
-							String data= inputStream2String(connection.getInputStream());
-							connection.disconnect();
-							if (getKeyword() != null)
-								for (String string: getKeyword())
-								{
-									data = new JSONObject(data).optString(string);
-								}
-							switch (type)
-							{
-								case "ARRAY":
-									JSONArray json = new JSONArray(data);
-									if (json != null)
-									{
-										for (int i = 0;i < json.length();i++)
-										{
-											mCallback.onLoading(mLoading = i == json.length() - 1,  CallFactory.create(mModelClass, json.getString(i)));
-										}
-									}
-									else
-									{
-										mCallback.onLoading(mLoading = true, null);
-									}
-									break;
-								default:
-									mCallback.onLoading(mLoading = true,  CallFactory.create(mModelClass, data));
-							}   
-						}
-					}
-					catch (Exception e)
-					{
-						mCallback.onError(e.getMessage());
-					}
-				}
-			});
+        synchronized (this)
+        {
+            getExecutor().execute(new Runnable(){
+                    @Override
+                    public void run()
+                    {
+                        try
+                        {
+                            String type;
+                            String method;
+                            if (mModelClass.isAnnotationPresent(GET.class))
+                            {
+                                type = ((GET)mModelClass.getAnnotation(GET.class)).value();
+                                method = "GET";
+                            }
+                            else if (mModelClass.isAnnotationPresent(PATH.class))
+                            {
+                                type = ((PATH)mModelClass.getAnnotation(PATH.class)).value();
+                                method = "POST";
+                            }
+                            else throw new RuntimeException("The wrong request type is in " + mModelClass.getCanonicalName());
+                            HttpURLConnection connection = (HttpURLConnection) new URL(mUrl).openConnection();   
+                            if (mConnectTimeout != 0)
+                                connection.setConnectTimeout(mConnectTimeout);
+                            if (mReadTimeout != 0)
+                                connection.setReadTimeout(mReadTimeout);
+                            connection.setRequestMethod(method);   
+                            connection.setInstanceFollowRedirects(true);
+                            if (connection.getResponseCode() == 200)         
+                            {
+                                String data= inputStream2String(connection.getInputStream());
+                                connection.disconnect();
+                                if (getKeyword() != null)
+                                    for (String string: getKeyword())
+                                    {
+                                        data = new JSONObject(data).optString(string);
+                                    }
+                                switch (type)
+                                {
+                                    case "ARRAY":
+                                        JSONArray json = new JSONArray(data);
+                                        if (json != null)
+                                        {
+                                            for (int i = 0;i < json.length();i++)
+                                            {
+                                                mCallback.onLoading(mLoading = i == json.length() - 1,  CallFactory.create(mModelClass, json.getString(i)));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            mCallback.onLoading(mLoading = true, null);
+                                        }
+                                        break;
+                                    case "STRING":
+                                        mCallback.onLoading(mLoading = true,  CallFactory.create(mModelClass, data));
+                                        break;
+                                }   
+                            }
+                            else mCallback.onError(connection.getResponseCode());
+                        }
+                        catch (Exception e)
+                        {
+                            throw new RuntimeException(e.getMessage());
+                        }
+                    }
+                });
+        }
 	}
 
 	private String inputStream2String(InputStream is) throws IOException
@@ -162,7 +167,7 @@ public abstract class Anna
     }
 
 	private static ThreadPoolExecutor executor;
-    private static ThreadPoolExecutor getExecutor()
+    private final static ThreadPoolExecutor getExecutor()
 	{
         if (executor == null)
 		{
@@ -170,7 +175,7 @@ public abstract class Anna
 			{
                 if (executor == null)
 				{
-					return executor = new ThreadPoolExecutor(1, 2, 60, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
+					return executor = new ThreadPoolExecutor(1, 5, 60, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
                 }
             }
         }

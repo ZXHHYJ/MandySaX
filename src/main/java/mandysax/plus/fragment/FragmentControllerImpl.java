@@ -6,14 +6,6 @@ public interface FragmentControllerImpl
 {
 
 	public boolean onBackFragment()
-
-	public boolean popBackStack()
-	
-	/*public boolean popBackStack(int index)
-	
-	public int getBackStackEntryCount()
-	
-	public Fragment getBackStackEntryAt(int index)*/
 	
 	public FragmentController2Impl getFragmentController2()
 

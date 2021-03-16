@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import mandysax.plus.lifecycle.Lifecycle;
+import mandysax.plus.lifecycle.LifecycleImpl;
 import mandysax.plus.lifecycle.LifecycleOwner;
 
 public class Fragment implements FragmentImpl,LifecycleOwner
@@ -17,7 +18,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	{
 		return false;
 	}
-	
+
 	/*
 	 *mandysax实现了一个Fragment作为系统Fragment的替代品
 	 *系统Fragment已废弃
@@ -54,7 +55,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
     }
 
 	@Override
-	public Lifecycle getLifecycle()
+	public LifecycleImpl getLifecycle()
 	{
 		return mLifecycle;
 	}
@@ -98,7 +99,7 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	public boolean isAdded()
 	{
 		if (mActivity != null)
-			return mActivity.findFragmentByTag(mTag) != null;
+			return mActivity.getFragmentPlusManager().findFragmentByTag(mTag) != null;
 		return false;
 	}
 
@@ -177,9 +178,9 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 	protected void onViewCreated(View view, Bundle savedInstanceState)
 	{
         if (view == null)return;
-		if (getViewGroup() == null)throw new NullPointerException(getClass().getCanonicalName() + " ViewGroup not found");
 		this.mView = view;	
-		getView().setVisibility(View.GONE);
+	    getView().setVisibility(View.GONE);
+		if (getViewGroup() == null)throw new NullPointerException("Can't find the parent layout of " + getClass().getCanonicalName());
 		getViewGroup().addView(getView());
 	}
 
@@ -204,6 +205,11 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 		mResumed = true;
 		mLifecycle.onStart();
 	}
+
+    protected void onRestart()
+    {
+        mLifecycle.onRestart();
+    }
 
 	protected void onResume()
 	{
@@ -247,9 +253,9 @@ public class Fragment implements FragmentImpl,LifecycleOwner
 				((ViewGroup)getView().getParent()).removeView(getView());
 			}
 		/*if (!mRetainInstance)
-		{
-			mView = null;//确认不保存fragment后将其view释放
-		}*/
+		 {
+		 mView = null;//确认不保存fragment后将其view释放
+		 }*/
 	}
 
 	protected void onDestroy()

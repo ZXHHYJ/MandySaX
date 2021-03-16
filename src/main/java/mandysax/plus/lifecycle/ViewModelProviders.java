@@ -1,25 +1,25 @@
 package mandysax.plus.lifecycle;
-import mandysax.plus.fragment.Fragment;
-import mandysax.plus.fragment.FragmentActivity;
+import mandysax.plus.fragment.FragmentActivityImpl;
+import mandysax.plus.fragment.FragmentImpl;
 
 public final class ViewModelProviders
 {
-	public static ViewModelLifecycle of(FragmentActivity activity)
+	public static ViewModelLifecycle of(FragmentActivityImpl activity)
 	{	
 		return new ViewModelLifecycle(activity.getViewModelStore(), null);
 	}
 
-	public static ViewModelLifecycle of(FragmentActivity activity, Factory factory)
+	public static ViewModelLifecycle of(FragmentActivityImpl activity, Factory factory)
 	{	
 		return new ViewModelLifecycle(activity.getViewModelStore(), factory);
 	}
 
-	public static ViewModelLifecycle of(Fragment fragment)
+	public static ViewModelLifecycle of(FragmentImpl fragment)
 	{	
 		return new ViewModelLifecycle(fragment.getActivity().getViewModelStore(), null);
 	}
 
-	public static ViewModelLifecycle of(Fragment fragment, Factory factory)
+	public static ViewModelLifecycle of(FragmentImpl fragment, Factory factory)
 	{	
 		return new ViewModelLifecycle(fragment.getActivity().getViewModelStore(), factory);
 	}
@@ -28,7 +28,7 @@ public final class ViewModelProviders
 	 *2.0.0中新增API
 	 *用途是提供一个全局ViewModel
 	 */
-    public static ViewModelLifecycle of(ViewModelStore viewModelStore, Factory factory)
+    public static ViewModelLifecycle of(ViewModelStoreImpl viewModelStore, Factory factory)
 	{	
 		return new ViewModelLifecycle(viewModelStore, factory);
 	}
@@ -38,7 +38,7 @@ public final class ViewModelProviders
 	 */
 	public static final class ViewModelLifecycle
 	{
-		private final ViewModelStore mViewModelStore;
+		private final ViewModelStoreImpl mViewModelStore;
 
 		private final ViewModelProviders.Factory mFactory;
 
@@ -46,7 +46,7 @@ public final class ViewModelProviders
 		 *在2.0.0中ViewModelLifecycle不再需要FragmentActivity参数
 		 *只需要提供ViewModelStore,管理器便可工作
 		 */
-		public ViewModelLifecycle(ViewModelStore viewModelStore, ViewModelProviders.Factory factory)
+		public ViewModelLifecycle(ViewModelStoreImpl viewModelStore, ViewModelProviders.Factory factory)
 		{
 			this.mViewModelStore = viewModelStore;
 			this.mFactory = factory;
@@ -54,9 +54,9 @@ public final class ViewModelProviders
 
 		public <T extends ViewModel> T get(Class<T> name)
 		{
-			T viewmodel=(viewmodel = (T)mViewModelStore.get(name)) == null ?mFactory == null ? new ViewModelProviders.Factory().create(name): mFactory.create(name): viewmodel;
-			mViewModelStore.put(name, viewmodel);
-			return viewmodel;
+			ViewModel viewModel=(viewModel = mViewModelStore.get(name)) == null ?mFactory == null ? new ViewModelProviders.Factory().create(name): mFactory.create(name): viewModel;
+			mViewModelStore.put(name, viewModel);
+			return (T)viewModel;
 		}
 
 	}

@@ -60,10 +60,10 @@ public final class PlayManager implements PlayManagerImpl
                                             p2.onMetadataChanged(media);
                                         }
                                     });
-									/*System.out.println(p2);
-									System.out.println(p1.getSession());*/
-                              p2.onPlaybackStateChanged(p1.getSession().getController().getPlaybackState());
-                              p2.onMetadataChanged(p1.getSession().getController().getMetadata());
+                                /*System.out.println(p2);
+                                 System.out.println(p1.getSession());*/
+                                p2.onPlaybackStateChanged(p1.getSession().getController().getPlaybackState());
+                                p2.onMetadataChanged(p1.getSession().getController().getMetadata());
                             }           
                         });
                 }
@@ -103,9 +103,9 @@ public final class PlayManager implements PlayManagerImpl
         @Override
         protected void onDestroy()
         {
+            onPlayManagerListener.setValue(null);
             super.onDestroy();
             super.onDetach();
-            onPlayManagerListener.setValue(null);
         }
 
 	}
@@ -114,16 +114,13 @@ public final class PlayManager implements PlayManagerImpl
 
     private final FragmentActivity context;
 
-    private PlayManager(FragmentActivity context)
+    private PlayManager(FragmentActivity activity)
     {
-        this.context = context;
+        context = activity;
         String ID = "weixiaoliu";
-		PlayManager.PlayManagerFragment fragment1 = (PlayManager.PlayManagerFragment) context.findFragmentByTag(ID);
+		PlayManager.PlayManagerFragment fragment1 = activity.getFragmentPlusManager().findFragmentByTag(ID);
 		if (fragment1 == null)
-		{
-			playManagerFragment = new PlayManagerFragment();
-			context.getFragmentPlusManager().add(0, playManagerFragment, ID).commit();  
-		}
+			activity.getFragmentPlusManager().add(0, playManagerFragment = new PlayManagerFragment(), ID).commit();  
 		else playManagerFragment = fragment1;
     }
 
@@ -155,7 +152,7 @@ public final class PlayManager implements PlayManagerImpl
         return this;
     }
 
-    public PlayManager playMedia(final List<MediaMetadata> mediaList, final int index)
+    public PlayManager playMedia(final List<MediaMetadata.Builder> mediaList, final int index)
     {
         playManagerFragment.service.apply(new Observer<PlayService>(){
                 @Override
@@ -163,42 +160,17 @@ public final class PlayManager implements PlayManagerImpl
                 {
                     p1.setMediaList(mediaList);
                     p1.setMediaIndex(index);
-                    p1.getSession().setMetadata(mediaList.get(index));
+                    p1.getSession().setMetadata(mediaList.get(index).build());
                     p1.getMediaController().apply(new Observer<MediaController>(){
                             @Override
                             public void onChanged(MediaController p1)
                             {
-                                p1.getTransportControls().playFromMediaId(MediaMetadataFactory.analyze(mediaList.get(index)).getId(), null);                         
+                                p1.getTransportControls().playFromMediaId(MediaMetadataFactory.analyze(mediaList.get(index).build()).getId(), null);                         
                             }                                 
                         });     
                 }           
             });
 
-        return this;
-    }
-
-    public PlayManager playMedia(final MediaMetadata media)
-    {
-        if (media == null)return this;
-
-        playManagerFragment.service.apply(new Observer<PlayService>(){
-
-                @Override
-                public void onChanged(final PlayService p1)
-                {
-                    p1.setMediaList(List.of(media));
-                    p1.setMediaIndex(0);
-                    p1.getMediaController().apply(new Observer<MediaController>(){
-                            @Override
-                            public void onChanged(MediaController p2)
-                            {
-                                //       playManagerFragment.binder.getValue().getService().upMediaNotfication(media);
-                                p1.getSession().setMetadata(media);
-                                p2.getTransportControls().playFromMediaId(MediaMetadataFactory.analyze(media).getId(), null);
-                            }
-                        });
-                }           
-            });
         return this;
     }
 
@@ -209,17 +181,8 @@ public final class PlayManager implements PlayManagerImpl
                 @Override
                 public void onChanged(PlayService p1)
                 {
-                    p1.getMediaController().apply(new Observer<MediaController>(){
-
-                            @Override
-                            public void onChanged(MediaController p1)
-                            {
-                                p1.getTransportControls().play();
-                            }
-                        });
+                    p1.play();
                 }
-
-
             });
         return this;
     }
@@ -231,14 +194,35 @@ public final class PlayManager implements PlayManagerImpl
                 @Override
                 public void onChanged(PlayService p1)
                 {
-                    p1.getMediaController().apply(new Observer<MediaController>(){
+                    p1.pause();
+                }
 
-                            @Override
-                            public void onChanged(MediaController p1)
-                            {
-                                p1.getTransportControls().pause();
-                            }
-                        });
+            });
+        return this;
+    }
+
+    public PlayManager skipToNext()
+    {
+        playManagerFragment.service.apply(new Observer<PlayService>(){
+
+                @Override
+                public void onChanged(PlayService p1)
+                {
+                    p1.skipToNext();
+                }
+
+            });
+        return this;
+    }
+
+    public PlayManager skipToPrevious()
+    {
+        playManagerFragment.service.apply(new Observer<PlayService>(){
+
+                @Override
+                public void onChanged(PlayService p1)
+                {
+                    p1.skipToPrevious();
                 }
 
             });
