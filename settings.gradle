@@ -1,3 +1,2 @@
-rootProject.name = "mandysax"
-include ':app'
-include ':mandysax'
+include ':app','Tuke','Anna','AndroidSlidingUpPanel','MandySaX'
+rootProject.name = "MandySa Music"

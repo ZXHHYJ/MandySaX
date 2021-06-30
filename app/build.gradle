@@ -1,32 +1,32 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+
+    compileSdkVersion 'android-S'
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
-        applicationId "studio.mandysa.mandysax"
-        minSdkVersion 21
+        applicationId "studio.mandysa.music"
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
     }
-
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    implementation project(path: ':mandysax')
+    implementation project(':Tuke')
+    implementation 'com.yanzhenjie:sofia:1.0.5'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'me.wcy:lrcview:2.2'
+    implementation project(':Anna')
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation project(':AndroidSlidingUpPanel')
+    implementation project(':MandySaX')
 }
