@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:gravity="center_vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/song_album_size"
+        android:layout_height="@dimen/song_album_size"
+        android:layout_marginLeft="@dimen/default_side_margin"
+        android:layout_marginTop="@dimen/default_item_margin"
+        android:layout_marginRight="@dimen/default_side_margin"
+        android:layout_marginBottom="@dimen/default_item_margin"
+        app:cardCornerRadius="@dimen/round_card_radius"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/iv_singerItem_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="歌手头像"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_singerItem_singerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
+
+</LinearLayout>

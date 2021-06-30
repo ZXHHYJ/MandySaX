@@ -1,0 +1,73 @@
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <LinearLayout     
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/browser"
+            style="@style/AppTitle"/>
+
+        <View
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/default_side_margin"
+            android:layout_marginRight="@dimen/default_side_margin"
+            android:background="?android:attr/dividerVertical"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <TextView
+            style="@style/AppSmallTitle"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/default_side_margin"
+            android:layout_marginRight="@dimen/default_side_margin"
+            android:layout_marginBottom="@dimen/default_text_margin_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommended_playlist"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:paddingEnd="@dimen/default_side_margin"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_recommendedList_playList"
+            tools:ignore="RtlSymmetry" />
+
+        <View
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/default_side_margin"
+            android:layout_marginRight="@dimen/default_side_margin"
+            android:background="?android:attr/dividerVertical"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <TextView
+            style="@style/AppSmallTitle"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/default_side_margin"
+            android:layout_marginRight="@dimen/default_side_margin"
+            android:layout_marginBottom="@dimen/default_text_margin_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommended_song"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_recommendedList_newSongList"/>
+
+    </LinearLayout>
+    
+</androidx.core.widget.NestedScrollView>

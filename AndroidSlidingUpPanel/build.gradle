@@ -1,0 +1,10 @@
+apply plugin: 'com.android.library'
+android {
+	compileSdkVersion 30
+	defaultConfig {
+		targetSdkVersion 30
+	}
+}
+dependencies {
+	api 'androidx.recyclerview:recyclerview:1.2.1'
+}

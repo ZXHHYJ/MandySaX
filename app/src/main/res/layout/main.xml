@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        android:id="@+id/sl_main_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        app:umanoDragView="@+id/slide_fragment_host"
+        app:umanoShadowHeight="4dp">
+
+        <mandysax.navigation.widget.NavigationPage
+            android:id="@+id/navPage_main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <mandysax.navigation.widget.Navigation
+                android:id="@+id/nav_browser_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fragment="studio.mandysa.music.ui.fragment.RecommendedListFragment"
+                app:defaultNavHost="true" />
+
+            <mandysax.navigation.widget.Navigation
+                android:id="@+id/nav_database_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fragment="studio.mandysa.music.ui.fragment.DatabaseFragment" />
+
+            <mandysax.navigation.widget.Navigation
+                android:id="@+id/nav_search_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fragment="studio.mandysa.music.ui.fragment.SearchFragment" />
+
+            <mandysax.navigation.widget.Navigation
+                android:id="@+id/nav_me_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fragment="studio.mandysa.music.ui.fragment.MeFragment" />
+
+        </mandysax.navigation.widget.NavigationPage>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/controller_fragment"
+                android:name="studio.mandysa.music.ui.fragment.ControllerFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="Instantiatable" />
+
+            <fragment
+                android:id="@+id/play_fragment"
+                android:name="studio.mandysa.music.ui.fragment.PlayFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="Instantiatable" />
+
+        </FrameLayout>
+
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_main_nav_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white">
+
+        <studio.mandysa.music.ui.view.bottomnavigationbar.BottomNavigationBar
+            android:id="@+id/bnb_main_view"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/dividerVertical" />
+
+    </FrameLayout>
+
+</FrameLayout>

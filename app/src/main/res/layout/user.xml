@@ -1,0 +1,113 @@
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+  
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/me"
+        style="@style/AppTitle"/>
+
+    <View
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginLeft="@dimen/default_side_margin"
+        android:layout_marginRight="@dimen/default_side_margin"
+        android:background="?android:attr/dividerVertical"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="@dimen/default_side_margin"
+            app:cardCornerRadius="@dimen/default_card_radius"
+            app:cardElevation="0dp"
+            android:layout_width="@dimen/playlist_album_size"
+            android:layout_height="@dimen/playlist_album_size">
+
+            <ImageView
+                android:scaleType="centerCrop"
+                android:id="@+id/iv_user_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="头像" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:lines="2"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="18sp"
+                android:layout_marginEnd="@dimen/default_side_margin"
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_user_name"/>
+
+            <TextView
+                android:textStyle="normal"
+                android:lines="3"
+                android:ellipsize="end"
+                android:textSize="14sp"
+                android:layout_marginEnd="@dimen/default_side_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/tv_user_description"
+                android:layout_marginTop="@dimen/default_text_margin"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginLeft="@dimen/default_side_margin"
+        android:layout_marginRight="@dimen/default_side_margin"
+        android:background="?android:attr/dividerVertical"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/default_side_margin"
+            android:layout_marginRight="@dimen/default_side_margin"
+            style="@style/AppSmallTitle"
+            android:text="@string/my_playlist"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_user_playlist"/>
+
+    </LinearLayout>
+    
+</LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_side_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginRight="@dimen/default_side_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="@dimen/default_card_radius"
+        app:cardElevation="0dp">
+
+        <EditText
+            android:id="@+id/edtTxt_searchList_view"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:autofillHints="搜索框"
+            android:background="@null"
+            android:gravity="center|left"
+            android:hint="@string/search_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:padding="@dimen/default_margin"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            tools:ignore="RtlHardcoded" />
+
+    </androidx.cardview.widget.CardView>
+
+    <studio.mandysa.music.ui.view.bottomnavigationbar.BottomNavigationBar
+        android:id="@+id/bnb_searchList_view"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@android:color/white" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/default_side_margin"
+        android:layout_marginRight="@dimen/default_side_margin"
+        android:background="?android:attr/dividerVertical" />
+
+    <mandysax.navigation.widget.NavigationPage
+        android:id="@+id/navPage_searchList_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <mandysax.navigation.widget.Navigation
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fragment="studio.mandysa.music.ui.fragment.SearchMusicFragment"
+            app:defaultNavHost="true" />
+
+        <mandysax.navigation.widget.Navigation
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fragment="studio.mandysa.music.ui.fragment.SearchSingerFragment" />
+
+    </mandysax.navigation.widget.NavigationPage>
+
+</LinearLayout>
+
+
