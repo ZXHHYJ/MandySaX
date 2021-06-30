@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Fragment">
+        <attr name="android:name" />
+        <attr name="android:tag" />
+    </declare-styleable>
+
+    <declare-styleable name="Navigation">
+        <attr name="android:fragment" />
+    </declare-styleable>
+
+    <declare-styleable name="NavigationPage">
+        <attr name="defaultNavHost" format="boolean" />
+        <attr name="fragment" format="string" />
+    </declare-styleable>
+
+</resources>

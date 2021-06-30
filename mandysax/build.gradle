@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+
+ext {
+    VER_CODE = 20200
+    VER_NAME = "2.2.0"
+}
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode VER_CODE
+        versionName VER_NAME
+    }
+
+}
+
+dependencies {
+}
