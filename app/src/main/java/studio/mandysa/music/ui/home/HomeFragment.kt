@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
+import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
 import studio.mandysa.music.databinding.FragmentHomeBinding
-import studio.mandysa.jiowo.jiuwo.utils.RecyclerViewUtils.linear
-import studio.mandysa.jiowo.jiuwo.utils.RecyclerViewUtils.setup
 import studio.mandysa.music.ui.base.BaseFragment
 
 class HomeFragment : BaseFragment() {

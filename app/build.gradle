@@ -31,8 +31,11 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.hannesa2:AndroidSlidingUpPanel:4.2.2' // Android X
     implementation 'com.yanzhenjie:sofia:1.0.5'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation project(':MandySaX')
+    implementation project(':JiuWo')
+    implementation project(':BottomNavigationBar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

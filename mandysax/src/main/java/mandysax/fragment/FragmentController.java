@@ -66,7 +66,7 @@ public final class FragmentController extends FragmentStateManager {
             }
             mBackStack.add(bsr);
             dumpBsc();
-            return mBackStackIndices.size() - 1;
+            return mBackStack.size() - 1;
         }
 
         //消费指定返回栈，并添加到可用的下标

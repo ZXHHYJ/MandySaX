@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MandySa Music</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">主页</string>
+    <string name="title_search">搜索</string>
 </resources>

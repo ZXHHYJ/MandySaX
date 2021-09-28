@@ -68,11 +68,6 @@ public final class NavController {
      * 后退一步
      */
     public synchronized void navigateUp() {
-        if (mViewModel.getBackStackIndexLast() >= 2)
-            popBackStack();
-    }
-
-    private void popBackStack() {
         if (mViewModel.getBackStackEntryCount() >= 1) {
             mNavFragment
                     .getFragmentPlusManager()

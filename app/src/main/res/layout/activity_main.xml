@@ -1,15 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/main_fragment"
-        android:name="studio.mandysa.music.ui.main.MainFragment"
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        android:id="@+id/main_sliding_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="Instantiatable" />
+        android:gravity="bottom"
+        app:umanoPanelHeight="0dp"
+        app:umanoShadowHeight="@dimen/umano_shadow_height">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <mandysax.fragment.FragmentView
+            android:id="@+id/main_fragment"
+            android:name="studio.mandysa.music.ui.main.MainFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <mandysax.fragment.FragmentView
+                android:id="@+id/controller_fragment"
+                android:name="studio.mandysa.music.ui.controller.ControllerFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+            <mandysax.fragment.FragmentView
+                android:id="@+id/play_fragment"
+                android:name="studio.mandysa.music.ui.play.PlayFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0" />
+
+        </FrameLayout>
+
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <studio.mandysa.bottomnavigationbar.BottomNavigationBar
+            android:id="@+id/bottomNavigationBar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:background="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/dividerVertical" />
+    </FrameLayout>
+
+</FrameLayout>
