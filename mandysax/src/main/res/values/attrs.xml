@@ -6,10 +6,4 @@
         <attr name="android:tag" />
     </declare-styleable>
 
-    <declare-styleable name="FragmentPage">
-        <attr name="defaultNavHost" format="boolean" />
-        <attr name="android:name" />
-        <attr name="android:tag" />
-    </declare-styleable>
-
 </resources>

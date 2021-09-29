@@ -28,17 +28,18 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     private Bundle mArguments;
     private FragmentActivity mActivity;
 
+    /**
+     * @return 当前fragment的子fragmentPlusManager
+     */
     @Override
     public @NonNull
     FragmentManager getFragmentPlusManager() {
         return getActivity().getFragmentController().getFragmentManager(this);
     }
 
-    @Override
-    public boolean onBackPressed() {
-        return false;
-    }
-
+    /**
+     * @return 返回不影响activity生命周期的LayoutInflater
+     */
     public @NonNull
     final LayoutInflater getLayoutInflater() {
         return getActivity().getLayoutInflater().cloneInContext(mActivity.getApplicationContext());
@@ -49,27 +50,44 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
         return mView != null ? mView.findViewById(i) : null;
     }
 
+    /**
+     * @return 此lifecycle与activity的lifecycle同步
+     */
     @Override
     public @NonNull
     Lifecycle getLifecycle() {
         return mLifecycle;
     }
 
+    /**
+     * @return 获取fragment的ViewLifecycleOwner
+     * 此lifecycle才是fragment的生命周期
+     * viewModels也由它管理
+     */
     public @NonNull
     FragmentViewLifecycleOwner getViewLifecycleOwner() {
         return mViewLifecycleOwner;
     }
 
+    /**
+     * @return ApplicationContext
+     */
     @Override
     public Context getContext() {
         return getActivity().getApplicationContext();
     }
 
+    /**
+     * @return fragment添加时设置的tag
+     */
     @Override
     public String getTag() {
         return mTag;
     }
 
+    /**
+     * @return 获取宿主activity
+     */
     @Override
     public FragmentActivity getActivity() {
         if (mActivity == null) {

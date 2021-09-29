@@ -1,5 +1,7 @@
 package mandysax.navigation;
 
+import androidx.annotation.NonNull;
+
 import mandysax.fragment.Fragment;
 import mandysax.fragment.FragmentTransaction;
 import mandysax.lifecycle.Lifecycle;
@@ -19,10 +21,10 @@ public final class NavController {
     private final FragmentTransaction mFragmentTransaction;
 
     /**
-     * @param navHostFragment     需要导航的HostFragment
+     * @param navHostFragment     带导航的NavHostFragment
      * @param fragmentTransaction 自定义事务
      */
-    public NavController(NavHostFragment navHostFragment, FragmentTransaction fragmentTransaction) {
+    public NavController(@NonNull NavHostFragment navHostFragment, FragmentTransaction fragmentTransaction) {
         mNavFragment = navHostFragment;
         mViewModel = ViewModelProviders.of(navHostFragment.getViewLifecycleOwner()).get(NavControllerViewModel.class);
         mFragmentTransaction = fragmentTransaction;
@@ -30,7 +32,6 @@ public final class NavController {
 
     /**
      * @param fragment 需要导航到的fragment
-     * @param <T>      碎片泛型
      */
     public synchronized <T extends Fragment> void navigate(T fragment) {
         mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
@@ -54,6 +55,7 @@ public final class NavController {
                     .addToBackStack();
             fragment.getViewLifecycleOwner().getLifecycle().addObserver(state -> {
                 if (state == Lifecycle.Event.ON_STOP && mViewModel.getLastFragment() == fragment) {
+                    mViewModel.getLastFragment().getFragmentPlusManager().beginTransaction().remove(fragment).commit();
                     mViewModel.removeLast();
                 }
             });

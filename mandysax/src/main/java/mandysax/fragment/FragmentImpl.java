@@ -39,6 +39,4 @@ interface FragmentImpl {
 
     View getRoot();
 
-    @Deprecated
-    boolean onBackPressed();
 }

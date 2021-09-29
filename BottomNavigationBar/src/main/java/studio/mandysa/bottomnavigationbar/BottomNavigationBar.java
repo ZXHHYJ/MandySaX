@@ -52,6 +52,10 @@ public class BottomNavigationBar extends LinearLayout implements OnClickListener
         if (mListener != null) mListener.onclick(position);
     }
 
+    public int getPosition() {
+        return mPosition;
+    }
+
     public BottomNavigationBar addItem(String text) {
         addItem(0, text);
         return this;
