@@ -12,9 +12,8 @@
         app:umanoPanelHeight="0dp"
         app:umanoShadowHeight="@dimen/umano_shadow_height">
 
-        <mandysax.fragment.FragmentView
-            android:id="@+id/main_fragment"
-            android:name="studio.mandysa.music.ui.main.MainFragment"
+        <mandysax.fragmentpage.widget.FragmentPage
+            android:id="@+id/main_fragment_page"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

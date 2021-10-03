@@ -22,28 +22,36 @@ class FragmentStateManager extends FragmentStore {
     FragmentActivity mActivity;
     Bundle mSavedInstanceState;
 
-    void dumpSaveInstanceState(Bundle outState) {
+    void dispatchSaveInstanceState(Bundle outState) {
         for (Fragment fragment : values()) {
             fragment.onSaveInstanceState(outState);
         }
     }
 
-    void dumpOnMultiWindowModeChanged(boolean isInMultiWindowMode, Configuration newConfig) {
+    void dispatchOnMultiWindowModeChanged(boolean isInMultiWindowMode, Configuration newConfig) {
         for (Fragment fragment : values()) {
             fragment.onMultiWindowModeChanged(isInMultiWindowMode, newConfig);
         }
     }
 
-    void dumpOnConfigurationChanged(Configuration newConfig) {
+    void dispatchOnConfigurationChanged(Configuration newConfig) {
         for (Fragment fragment : values()) {
             fragment.onConfigurationChanged(newConfig);
         }
     }
 
-    void dumpAdd(Fragment parentFragment, @NonNull Fragment fragment, int id, String tag) {
+    /**
+     * 添加fragment
+     *
+     * @param parentFragment 父fragment
+     * @param fragment       待添加的fragment
+     * @param id             view id
+     * @param tag            标记
+     */
+    void dispatchAdd(Fragment parentFragment, @NonNull Fragment fragment, int id, String tag) {
         tag = tag == null ? fragment.getClass().getCanonicalName() : tag;
         if (fragment.isAdded()) {
-            throw new RuntimeException("Fragment " + fragment.getClass().getCanonicalName() + " has been added of ");
+            throw new RuntimeException("Fragment has been added");
         } else {
             fragment.set(tag, id);
             fragment.dumpOnAttach(mActivity);
@@ -64,7 +72,13 @@ class FragmentStateManager extends FragmentStore {
         }
     }
 
-    void dumpShow(@NonNull Fragment fragment, int anim) {
+    /**
+     * 显示fragment
+     *
+     * @param fragment 待显示的fragment
+     * @param anim     动画id
+     */
+    void dispatchShow(@NonNull Fragment fragment, int anim) {
         if (fragment.isDetached()) {
             throw new IllegalStateException("fragment not added");
         }
@@ -77,7 +91,13 @@ class FragmentStateManager extends FragmentStore {
         }
     }
 
-    void dumpRemove(Fragment fragment, int anim) {
+    /**
+     * 移除fragment
+     *
+     * @param fragment 待移除的fragment
+     * @param anim     动画id
+     */
+    void dispatchRemove(Fragment fragment, int anim) {
         remove(fragment);
         if (fragment.getRoot() != null && anim != 0) {
             Animation exitAnim = AnimationUtils.loadAnimation(fragment.getContext(), anim);
@@ -106,7 +126,13 @@ class FragmentStateManager extends FragmentStore {
         fragment.dispatchOnDetach();
     }
 
-    void dumpHide(@NonNull Fragment fragment, int anim) {
+    /**
+     * 隐藏fragment
+     *
+     * @param fragment 待隐藏的fragment
+     * @param anim     动画id
+     */
+    void dispatchHide(@NonNull Fragment fragment, int anim) {
         if (fragment.isDetached()) {
             throw new IllegalStateException("fragment not added");
         }
@@ -137,7 +163,12 @@ class FragmentStateManager extends FragmentStore {
 
     }
 
-    void dumpReplace(Op op) {
+    /**
+     * 切换fragment
+     *
+     * @param op 操作集合
+     */
+    void dispatchReplace(Op op) {
         for (Fragment fragment : values()) {
             if (fragment.getRoot() == null) {
                 continue;
@@ -154,7 +185,7 @@ class FragmentStateManager extends FragmentStore {
                         if (state != Lifecycle.Event.ON_STOP) {
                             return;
                         }
-                        dumpRemove(fragment, op.popExitAnim);
+                        dispatchRemove(fragment, op.popExitAnim);
                     });
                 } else {
                     if (op.removed == null) {
@@ -162,35 +193,35 @@ class FragmentStateManager extends FragmentStore {
                     }
                     op.removed.add(fragment);
                 }
-                dumpHide(fragment, op.exitAnim);
+                dispatchHide(fragment, op.exitAnim);
             }
         }
-        dumpAdd(op.parentFragment, op.fragment, op.id, op.tag);
-        dumpShow(op.fragment, op.popEnterAnim);
+        dispatchAdd(op.parentFragment, op.fragment, op.id, op.tag);
+        dispatchShow(op.fragment, op.popEnterAnim);
     }
 
-    void dumpOnAttach(FragmentActivity activity) {
+    void dispatchOnAttach(FragmentActivity activity) {
         mActivity = activity;
         for (Fragment fragment : values()) {
             fragment.dumpOnAttach(activity);
         }
     }
 
-    void dumpResumeFragment() {
+    void dispatchResumeFragment() {
         for (Fragment fragment : values()) {
             if (fragment.isAdded() && fragment.isInLayout()) {
                 if (fragment.getRoot() != null && fragment.getViewGroup() != null) {
                     fragment.getViewGroup().addView(fragment.getRoot());
                 }
                 if (fragment.isVisible()) {
-                    dumpShow(fragment, 0);
+                    dispatchShow(fragment, 0);
                 }
             }
             mActivityCreated.lazy(p1 -> fragment.onActivityCreated(mSavedInstanceState));
         }
     }
 
-    void dumpOnStart() {
+    void dispatchOnStart() {
         for (Fragment fragment : values()) {
             if (fragment.isVisible()) {
                 fragment.dispatchOnStart();
@@ -201,7 +232,7 @@ class FragmentStateManager extends FragmentStore {
         }
     }
 
-    void dumpOnRestart() {
+    void dispatchOnRestart() {
         for (Fragment fragment : values()) {
             if (fragment.isVisible()) {
                 fragment.dispatchOnRestart();
@@ -209,7 +240,7 @@ class FragmentStateManager extends FragmentStore {
         }
     }
 
-    void dumpOnResume() {
+    void dispatchOnResume() {
         for (Fragment fragment : values()) {
             if (fragment.isVisible()) {
                 fragment.dispatchOnResume();
@@ -217,7 +248,7 @@ class FragmentStateManager extends FragmentStore {
         }
     }
 
-    void dumpOnPause() {
+    void dispatchOnPause() {
         for (Fragment fragment : values()) {
             if (fragment.isVisible()) {
                 fragment.dispatchOnPause();
@@ -225,7 +256,7 @@ class FragmentStateManager extends FragmentStore {
         }
     }
 
-    void dumpOnStop() {
+    void dispatchOnStop() {
         for (Fragment fragment : values()) {
             if (fragment.isVisible()) {
                 fragment.dispatchOnStop();
@@ -233,7 +264,7 @@ class FragmentStateManager extends FragmentStore {
         }
     }
 
-    void dumpOnDestroy() {
+    void dispatchOnDestroy() {
         for (Fragment fragment : values()) {
             fragment.dispatchOnDestroyView();
             fragment.dispatchOnDestroy();

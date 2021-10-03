@@ -37,80 +37,80 @@ public class FragmentActivity extends ComponentActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        getFragmentStateManager().dumpSaveInstanceState(outState);
+        getFragmentStateManager().dispatchSaveInstanceState(outState);
     }
 
     @Override
     public void onMultiWindowModeChanged(boolean isInMultiWindowMode, Configuration newConfig) {
         super.onMultiWindowModeChanged(isInMultiWindowMode, newConfig);
-        getFragmentStateManager().dumpOnMultiWindowModeChanged(isInMultiWindowMode, newConfig);
+        getFragmentStateManager().dispatchOnMultiWindowModeChanged(isInMultiWindowMode, newConfig);
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        getFragmentStateManager().dumpOnConfigurationChanged(newConfig);
+        getFragmentStateManager().dispatchOnConfigurationChanged(newConfig);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         LayoutInflaterCompat.setFactory2(super.getLayoutInflater(), new FragmentLayoutInflaterFactory());
         super.onCreate(savedInstanceState);
-        getFragmentStateManager().dumpOnAttach(this);
+        getFragmentStateManager().dispatchOnAttach(this);
     }
 
     @Override
     public void setContentView(View view) {
         super.setContentView(view);
-        getFragmentStateManager().dumpResumeFragment();
+        getFragmentStateManager().dispatchResumeFragment();
     }
 
     @Override
     public void setContentView(int layoutResId) {
         super.setContentView(layoutResId);
-        getFragmentStateManager().dumpResumeFragment();
+        getFragmentStateManager().dispatchResumeFragment();
     }
 
     @Override
     public void setContentView(View view, ViewGroup.LayoutParams params) {
         super.setContentView(view, params);
-        getFragmentStateManager().dumpResumeFragment();
+        getFragmentStateManager().dispatchResumeFragment();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        getFragmentStateManager().dumpOnResume();
+        getFragmentStateManager().dispatchOnResume();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        getFragmentStateManager().dumpOnStart();
+        getFragmentStateManager().dispatchOnStart();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        getFragmentStateManager().dumpOnRestart();
+        getFragmentStateManager().dispatchOnRestart();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        getFragmentStateManager().dumpOnPause();
+        getFragmentStateManager().dispatchOnPause();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        getFragmentStateManager().dumpOnStop();
+        getFragmentStateManager().dispatchOnStop();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        getFragmentStateManager().dumpOnDestroy();
+        getFragmentStateManager().dispatchOnDestroy();
         if (!isChangingConfigurations()) {
             getViewModelStore().clear();
         }

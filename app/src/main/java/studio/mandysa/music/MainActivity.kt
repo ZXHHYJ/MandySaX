@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
 import com.yanzhenjie.sofia.Sofia
-import mandysax.navigation.Navigation
+import mandysax.fragment.Fragment
+import mandysax.fragmentpage.widget.FragmentPage
 import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.ui.base.BaseActivity
+import studio.mandysa.music.ui.home.HomeFragment
 import studio.mandysa.music.ui.search.SearchFragment
 
 class MainActivity : BaseActivity() {
@@ -17,15 +19,24 @@ class MainActivity : BaseActivity() {
         setContentView(mBinding.root)
         mBinding.apply {
             mainSlidingView.shadowHeight = 0
+            mainFragmentPage.setAdapter(object : FragmentPage.Adapter {
+                override fun onCreateFragment(position: Int): Fragment? =
+                    when (position) {
+                        0 -> HomeFragment()
+                        1 -> SearchFragment()
+                        else -> null
+                    }
+            })
+            //mainFragmentPage.position = 0
             bottomNavigationBar.addItem(R.drawable.ic_home, getString(R.string.title_home))
             bottomNavigationBar.addItem(R.drawable.ic_search, getString(R.string.title_search))
             bottomNavigationBar.setOnItemViewSelectedListener {
                 when (it) {
                     0 -> {
-                        Navigation.findViewNavController(mainFragment).navigateUp()
+                        mainFragmentPage.position = 0
                     }
                     1 -> {
-                        Navigation.findViewNavController(mainFragment).navigate(SearchFragment())
+                        mainFragmentPage.position = 1
                     }
                 }
             }
@@ -40,7 +51,7 @@ class MainActivity : BaseActivity() {
                         )
                     }
                 }
-                mainFragment.setPadding(
+                mainFragmentPage.setPadding(
                     0,
                     insets.systemWindowInsetTop,
                     0,

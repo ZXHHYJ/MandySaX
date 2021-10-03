@@ -24,10 +24,10 @@ class NavigationItem extends LinearLayout {
     public NavigationItem(int index, String text, Context context, int resource) {
         super(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            TypedArray ta = getContext().obtainStyledAttributes(new int[]{android.R.attr.selectableItemBackground});
+            TypedArray ta = getContext().obtainStyledAttributes(new int[]{android.R.attr.selectableItemBackgroundBorderless});
             Drawable mDefaultFocusHighlightCache = ta.getDrawable(0);
             ta.recycle();
-            setForeground(mDefaultFocusHighlightCache);
+            setBackground(mDefaultFocusHighlightCache);
         }
         this.mPosition = index;
         setGravity(Gravity.CENTER);

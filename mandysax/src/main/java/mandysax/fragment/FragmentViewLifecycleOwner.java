@@ -1,7 +1,6 @@
 package mandysax.fragment;
 
 import mandysax.lifecycle.Lifecycle;
-import mandysax.lifecycle.LifecycleObserver;
 import mandysax.lifecycle.LifecycleOwner;
 import mandysax.lifecycle.ViewModelStore;
 import mandysax.lifecycle.ViewModelStoreImpl;

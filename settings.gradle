@@ -7,6 +7,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "MandySa Music"
-include ':app','MandySaX'
+include ':app', 'mandysax'
 include ':JiuWo'
 include ':BottomNavigationBar'

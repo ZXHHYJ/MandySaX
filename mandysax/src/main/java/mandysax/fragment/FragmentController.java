@@ -173,19 +173,19 @@ public final class FragmentController extends FragmentStateManager {
                 switch (op.stack) {
                     case ADD:
                     case SHOW:
-                        dumpHide(op.fragment, op.popExitAnim);
+                        dispatchHide(op.fragment, op.popExitAnim);
                         break;
                     case HIDE:
-                        dumpShow(op.fragment, op.popEnterAnim);
+                        dispatchShow(op.fragment, op.popEnterAnim);
                         break;
                     case REMOVE:
                         break;
                     case REPLACE:
                         if (op.isAddToBackStack) {
-                            dumpRemove(op.fragment, op.popExitAnim);
+                            dispatchRemove(op.fragment, op.popExitAnim);
                             if (op.removed != null) {
                                 for (Fragment fragment : op.removed) {
-                                    dumpShow(fragment, op.popEnterAnim);
+                                    dispatchShow(fragment, op.popEnterAnim);
                                 }
                             }
                         }
@@ -199,19 +199,19 @@ public final class FragmentController extends FragmentStateManager {
         public void moveToStack(@NonNull Op op) {
             switch (op.stack) {
                 case ADD:
-                    dumpAdd(op.parentFragment, op.fragment, op.id, op.tag);
+                    dispatchAdd(op.parentFragment, op.fragment, op.id, op.tag);
                     break;
                 case SHOW:
-                    dumpShow(op.fragment, op.enterAnim);
+                    dispatchShow(op.fragment, op.enterAnim);
                     break;
                 case HIDE:
-                    dumpHide(op.fragment, op.exitAnim);
+                    dispatchHide(op.fragment, op.exitAnim);
                     break;
                 case REPLACE:
-                    dumpReplace(op);
+                    dispatchReplace(op);
                     break;
                 case REMOVE:
-                    dumpRemove(op.fragment, op.popExitAnim);
+                    dispatchRemove(op.fragment, op.popExitAnim);
                     break;
                 default:
             }

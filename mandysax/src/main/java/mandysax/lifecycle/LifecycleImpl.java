@@ -1,6 +1,6 @@
 package mandysax.lifecycle;
 
-public interface LifecycleImpl extends LifecycleControllerImpl{
+public interface LifecycleImpl extends LifecycleControllerImpl {
 
     void addObserver(LifecycleObserver... observer);
 

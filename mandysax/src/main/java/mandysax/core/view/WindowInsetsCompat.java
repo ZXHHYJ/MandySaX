@@ -1,10 +1,10 @@
 package mandysax.core.view;
 
+import static android.os.Build.VERSION_CODES.R;
+
 import android.graphics.Insets;
 import android.os.Build;
 import android.view.WindowInsets;
-
-import static android.os.Build.VERSION_CODES.R;
 
 /**
  * @author liuxiaoliu66
