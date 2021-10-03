@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 
@@ -12,14 +11,15 @@ import mandysax.fragment.Fragment;
 import mandysax.fragment.FragmentTransaction;
 import mandysax.fragment.FragmentView;
 import mandysax.navigation.NavController;
+import mandysax.navigation.NavHostFragmentView;
 
 public class NavHostFragment extends Fragment {
 
-    private FrameLayout mRoot;
+    private NavHostFragmentView mRoot;
 
     @Override
     protected View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRoot = new FrameLayout(inflater.getContext());
+        mRoot = new NavHostFragmentView(inflater.getContext(), this);
         mRoot.setId(View.generateViewId());
         return mRoot;
     }

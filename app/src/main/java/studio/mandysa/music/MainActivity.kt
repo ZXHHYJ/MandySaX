@@ -28,7 +28,6 @@ class MainActivity : BaseActivity() {
                         else -> null
                     }
             })
-            //mainFragmentPage.position = 0
             bottomNavigationBar.addItem(R.drawable.ic_home, getString(R.string.title_home))
             bottomNavigationBar.addItem(R.drawable.ic_search, getString(R.string.title_search))
             bottomNavigationBar.setOnItemViewSelectedListener {
