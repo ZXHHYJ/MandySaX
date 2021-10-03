@@ -49,7 +49,7 @@ class FragmentStateManager extends FragmentStore {
      * @param tag            标记
      */
     void dispatchAdd(Fragment parentFragment, @NonNull Fragment fragment, int id, String tag) {
-        tag = tag == null ? fragment.getClass().getCanonicalName() : tag;
+        tag = tag == null ? fragment.toString() : tag;
         if (fragment.isAdded()) {
             throw new RuntimeException("Fragment has been added");
         } else {

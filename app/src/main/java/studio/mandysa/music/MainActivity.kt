@@ -6,6 +6,7 @@ import androidx.core.view.ViewCompat
 import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
 import mandysax.fragmentpage.widget.FragmentPage
+import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.ui.base.BaseActivity
 import studio.mandysa.music.ui.home.HomeFragment
@@ -22,8 +23,8 @@ class MainActivity : BaseActivity() {
             mainFragmentPage.setAdapter(object : FragmentPage.Adapter {
                 override fun onCreateFragment(position: Int): Fragment? =
                     when (position) {
-                        0 -> HomeFragment()
-                        1 -> SearchFragment()
+                        0 -> NavHostFragment.create(HomeFragment())
+                        1 -> NavHostFragment.create(SearchFragment())
                         else -> null
                     }
             })
