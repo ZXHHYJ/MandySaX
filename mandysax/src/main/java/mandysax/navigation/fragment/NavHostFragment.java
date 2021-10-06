@@ -21,11 +21,6 @@ public class NavHostFragment extends Fragment {
         return mRoot;
     }
 
-    @Override
-    protected void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-    }
-
     public NavController getNavController() {
         return getNavController(null);
     }

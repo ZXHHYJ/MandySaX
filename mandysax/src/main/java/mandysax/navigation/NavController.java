@@ -66,7 +66,7 @@ public final class NavController {
                                 fragment.getActivity().onBackPressed();
                                 return;
                             }
-                            FragmentTransaction fragmentTransaction = fragment.getFragmentPlusManager().beginTransaction();
+                            FragmentTransaction fragmentTransaction = mNavFragment.getFragmentPlusManager().beginTransaction();
                             fragmentTransaction.remove(fragment);
                             fragmentTransaction.show(mViewModel.getLastFragment());
                             fragmentTransaction.commit();
