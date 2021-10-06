@@ -12,6 +12,7 @@ import studio.mandysa.music.ui.base.BaseFragment
 class HomeFragment : BaseFragment() {
 
     private val mBinding: FragmentHomeBinding by bindView()
+
     public override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?

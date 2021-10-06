@@ -27,13 +27,13 @@ public final class ViewModelProviders {
      * @param factory        ViewModelProviders.Factory object
      * @return ViewModelLifecycle object
      */
-    public static ViewModelLifecycle of(ViewModelStoreImpl viewModelStore, Factory factory) {
+    public static ViewModelLifecycle of(ViewModelStore viewModelStore, Factory factory) {
         return new ViewModelLifecycle(viewModelStore, factory);
     }
 
     public static final class ViewModelLifecycle {
 
-        private final ViewModelStoreImpl mViewModelStore;
+        private final ViewModelStore mViewModelStore;
 
         private final ViewModelProviders.Factory mFactory;
 
@@ -41,7 +41,7 @@ public final class ViewModelProviders {
          *在2.0.0中ViewModelLifecycle不再需要FragmentActivity参数
          *只需要提供ViewModelStore,管理器便可工作
          */
-        public ViewModelLifecycle(ViewModelStoreImpl viewModelStore, ViewModelProviders.Factory factory) {
+        public ViewModelLifecycle(ViewModelStore viewModelStore, ViewModelProviders.Factory factory) {
             this.mViewModelStore = viewModelStore;
             this.mFactory = factory;
         }

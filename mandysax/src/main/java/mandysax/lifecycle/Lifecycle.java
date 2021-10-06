@@ -1,75 +1,15 @@
 package mandysax.lifecycle;
 
-import java.util.Arrays;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 /**
  * @author liuxiaoliu66
  */
-public final class Lifecycle implements LifecycleImpl {
+public abstract class Lifecycle {
 
-    private final CopyOnWriteArrayList<LifecycleObserver> mObservers = new CopyOnWriteArrayList<>();
+    public Lifecycle.Event event;
 
-    public Event event;
+    public abstract void addObserver(LifecycleObserver... observer);
 
-    @Override
-    public void addObserver(LifecycleObserver... observer) {
-        mObservers.addAll(Arrays.asList(observer));
-        postEvent(event);
-    }
-
-    @Override
-    public void removeObserver(LifecycleObserver... observers) {
-        if (!mObservers.isEmpty()) {
-            if (observers.length > 1)
-                mObservers.removeAll(Arrays.asList(observers));
-            else mObservers.remove(observers[0]);
-        }
-    }
-
-    private void postEvent(Event newEvent) {
-        event = newEvent;
-        for (LifecycleObserver observer : mObservers) {
-            observer.Observer(newEvent);
-            /*observer.Observer(Event.ON_ANY);*/
-        }
-    }
-
-    @Override
-    public void dispatchOnCreate() {
-        postEvent(Event.ON_CREATE);
-    }
-
-    @Override
-    public void dispatchOnStart() {
-        postEvent(Event.ON_START);
-    }
-
-    @Override
-    public void dispatchOnRestart() {
-        postEvent(Event.ON_RESTART);
-    }
-
-    @Override
-    public void dispatchOnResume() {
-        postEvent(Event.ON_RESUME);
-    }
-
-    @Override
-    public void dispatchOnPause() {
-        postEvent(Event.ON_PAUSE);
-    }
-
-    @Override
-    public void dispatchOnStop() {
-        postEvent(Event.ON_STOP);
-    }
-
-    @Override
-    public void dispatchOnDestroy() {
-        postEvent(Event.ON_DESTROY);
-        mObservers.clear();
-    }
+    public abstract void removeObserver(LifecycleObserver... observers);
 
     public enum Event {
 

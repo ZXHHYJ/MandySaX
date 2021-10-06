@@ -13,9 +13,13 @@ class MeFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
-        container: ViewGroup,
-        savedInstanceState: Bundle
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         return mBinding.root
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }

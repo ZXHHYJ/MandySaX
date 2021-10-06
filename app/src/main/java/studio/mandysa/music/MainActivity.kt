@@ -69,10 +69,4 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        if (mBinding.bottomNavigationBar.position == 1) {
-            mBinding.bottomNavigationBar.position = 0
-        } else
-            super.onBackPressed()
-    }
 }

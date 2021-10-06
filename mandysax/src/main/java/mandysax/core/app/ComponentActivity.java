@@ -11,6 +11,7 @@ import java.util.Iterator;
 import mandysax.lifecycle.Lifecycle;
 import mandysax.lifecycle.LifecycleObserver;
 import mandysax.lifecycle.LifecycleOwner;
+import mandysax.lifecycle.LifecycleRegistry;
 import mandysax.lifecycle.ViewModel;
 import mandysax.lifecycle.ViewModelProviders;
 import mandysax.lifecycle.ViewModelStore;
@@ -21,57 +22,51 @@ import mandysax.lifecycle.ViewModelStoreOwner;
  * @author liuxiaoliu66
  */
 public class ComponentActivity extends Activity implements LifecycleOwner, ViewModelStoreOwner {
-    private final Lifecycle mLifecycle = new Lifecycle();
-    private ViewModelStore mViewModelStore;
+    private final LifecycleRegistry mLifecycle = new LifecycleRegistry();
+    private ViewModelStoreImpl mViewModelStore;
     private NonConfigurationInstances mLastNonConfigurationInstances = null;
-
-    private boolean mIsOnCreate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mLifecycle.markState(Lifecycle.Event.ON_CREATE);
         getOnBackPressedDispatcher().mFallbackOnBackPressed = ComponentActivity.super::onBackPressed;
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mLifecycle.dispatchOnStart();
-        if (!mIsOnCreate) {
-            mLifecycle.dispatchOnCreate();
-            mIsOnCreate = true;
-        }
+        mLifecycle.markState(Lifecycle.Event.ON_START);
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        mLifecycle.dispatchOnRestart();
+        mLifecycle.markState(Lifecycle.Event.ON_RESTART);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mLifecycle.dispatchOnResume();
+        mLifecycle.markState(Lifecycle.Event.ON_RESUME);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mLifecycle.dispatchOnPause();
+        mLifecycle.markState(Lifecycle.Event.ON_PAUSE);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mLifecycle.dispatchOnStop();
+        mLifecycle.markState(Lifecycle.Event.ON_STOP);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mLifecycle.dispatchOnDestroy();
-        mIsOnCreate = false;
+        mLifecycle.markState(Lifecycle.Event.ON_DESTROY);
         getOnBackPressedDispatcher().mFallbackOnBackPressed = null;
     }
 
@@ -90,11 +85,11 @@ public class ComponentActivity extends Activity implements LifecycleOwner, ViewM
     }
 
     @Override
-    public ViewModelStoreImpl getViewModelStore() {
+    public ViewModelStore getViewModelStore() {
         if (mViewModelStore == null) {
             getLastNonConfigurationInstance();
             if (mViewModelStore == null) {
-                mViewModelStore = new ViewModelStore();
+                mViewModelStore = new ViewModelStoreImpl();
             }
             return mViewModelStore;
         }
@@ -105,7 +100,7 @@ public class ComponentActivity extends Activity implements LifecycleOwner, ViewM
     public Object onRetainNonConfigurationInstance() {
         if (mLastNonConfigurationInstances == null) {
             NonConfigurationInstances nci = new NonConfigurationInstances();
-            nci.viewModelStore = mViewModelStore == null ? new ViewModelStore() : mViewModelStore;
+            nci.viewModelStore = mViewModelStore == null ? new ViewModelStoreImpl() : mViewModelStore;
             return mLastNonConfigurationInstances = nci;
         } else {
             return mLastNonConfigurationInstances;
@@ -135,7 +130,7 @@ public class ComponentActivity extends Activity implements LifecycleOwner, ViewM
 
         public void addCallback(@NonNull LifecycleOwner owner,
                                 OnBackPressedCallback onBackPressedCallback) {
-            Lifecycle lifecycle = owner.getLifecycle();
+            LifecycleRegistry lifecycle = (LifecycleRegistry) owner.getLifecycle();
             if (lifecycle.event == Lifecycle.Event.ON_DESTROY) {
                 return;
             }
@@ -217,23 +212,27 @@ public class ComponentActivity extends Activity implements LifecycleOwner, ViewM
             }
 
             @Override
-            public void Observer(Lifecycle.Event state) {
-                if (state == Lifecycle.Event.ON_START) {
-                    mCurrentCancellable = addCancellableCallback(mOnBackPressedCallback);
-                } else if (state == Lifecycle.Event.ON_STOP) {
-                    // Should always be non-null
-                    if (mCurrentCancellable != null) {
-                        mCurrentCancellable.cancel();
-                    }
-                } else if (state == Lifecycle.Event.ON_DESTROY) {
-                    cancel();
+            public void Observer(@NonNull Lifecycle.Event state) {
+                switch (state) {
+                    case ON_STOP:
+                        // Should always be non-null
+                        if (mCurrentCancellable != null) {
+                            mCurrentCancellable.cancel();
+                        }
+                        break;
+                    case ON_DESTROY:
+                        cancel();
+                        break;
+                    default:
+                        if (mCurrentCancellable == null)
+                            mCurrentCancellable = addCancellableCallback(mOnBackPressedCallback);
                 }
             }
         }
     }
 
     private static final class NonConfigurationInstances {
-        ViewModelStore viewModelStore;//ViewModel的管理者
+        ViewModelStoreImpl viewModelStore;//ViewModel的管理者
     }
 
 }

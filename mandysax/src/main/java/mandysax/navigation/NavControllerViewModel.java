@@ -1,5 +1,7 @@
 package mandysax.navigation;
 
+import androidx.annotation.Nullable;
+
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -16,62 +18,50 @@ public final class NavControllerViewModel extends ViewModel {
      */
     private final Deque<Fragment> mFragments = new LinkedList<>();
 
-    /**
-     * 记录返回栈id
-     */
-    private final Deque<Integer> mBackStacks = new LinkedList<>();
+    private Fragment mNowFragment;
 
     /**
      * 获取最后一个fragment
      *
      * @return fragment
      */
+    @Nullable
     public Fragment getLastFragment() {
         if (mFragments.isEmpty()) return null;
         return mFragments.getLast();
     }
 
-    /**
-     * 获取最后一个返回栈id
-     *
-     * @return id
-     */
-    public int getBackStackIndexLast() {
-        return mBackStacks.getLast();
+    public Fragment getNowFragment() {
+        return mNowFragment;
+    }
+
+    public int getFragmentSize() {
+        return mFragments.size();
     }
 
     /**
      * 添加到返回栈
      *
-     * @param fragment       需要添加的fragment
-     * @param backStackIndex 对应返回栈id
+     * @param fragment 需要添加的fragment
      */
-    public void add(Fragment fragment, int backStackIndex) {
-        mFragments.addLast(fragment);
-        mBackStacks.addLast(backStackIndex);
+    public void add(Fragment fragment) {
+        if (mNowFragment != null)
+            mFragments.addLast(mNowFragment);
+        mNowFragment = fragment;
     }
 
     /**
-     * 移除当前最后一个fragment和返回栈id
+     * 移除当前最后一个fragment
      */
     public void removeLast() {
+        mNowFragment = getLastFragment();
         mFragments.removeLast();
-        mBackStacks.removeLast();
-    }
-
-    /**
-     * 获取返回栈大小
-     *
-     * @return 返回栈大小
-     */
-    public int getBackStackEntryCount() {
-        return mBackStacks.size();
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
         mFragments.clear();
-        mBackStacks.clear();
+        mNowFragment = null;
     }
 }

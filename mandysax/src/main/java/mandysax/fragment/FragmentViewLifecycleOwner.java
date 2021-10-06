@@ -2,14 +2,15 @@ package mandysax.fragment;
 
 import mandysax.lifecycle.Lifecycle;
 import mandysax.lifecycle.LifecycleOwner;
+import mandysax.lifecycle.LifecycleRegistry;
 import mandysax.lifecycle.ViewModelStore;
 import mandysax.lifecycle.ViewModelStoreImpl;
 import mandysax.lifecycle.ViewModelStoreOwner;
 
 public final class FragmentViewLifecycleOwner implements LifecycleOwner, ViewModelStoreOwner {
 
-    private final Lifecycle mLifecycle = new Lifecycle();
-    private final ViewModelStore mViewModelStore = new ViewModelStore();
+    private final LifecycleRegistry mLifecycle = new LifecycleRegistry();
+    private final ViewModelStoreImpl mViewModelStore = new ViewModelStoreImpl();
 
     FragmentViewLifecycleOwner() {
         mLifecycle.addObserver(state -> {
@@ -25,7 +26,7 @@ public final class FragmentViewLifecycleOwner implements LifecycleOwner, ViewMod
     }
 
     @Override
-    public ViewModelStoreImpl getViewModelStore() {
+    public ViewModelStore getViewModelStore() {
         return mViewModelStore;
     }
 

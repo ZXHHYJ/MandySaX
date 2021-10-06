@@ -29,6 +29,7 @@ public final class Navigation {
             for (int i = 0; i < viewGroup.getChildCount(); i++) {
                 if (viewGroup.getChildAt(i) instanceof NavHostFragmentView) {
                     NavHostFragmentView navHostFragmentView = (NavHostFragmentView) viewGroup.getChildAt(i);
+                    if (navHostFragmentView.getVisibility() != View.VISIBLE) continue;
                     return fragmentTransaction == null
                             ?
                             navHostFragmentView.getNavHostFragment().getNavController()

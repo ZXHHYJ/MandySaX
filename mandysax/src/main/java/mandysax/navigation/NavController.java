@@ -2,6 +2,7 @@ package mandysax.navigation;
 
 import androidx.annotation.NonNull;
 
+import mandysax.core.app.OnBackPressedCallback;
 import mandysax.fragment.Fragment;
 import mandysax.fragment.FragmentTransaction;
 import mandysax.lifecycle.Lifecycle;
@@ -47,36 +48,45 @@ public final class NavController {
 
     private <T extends Fragment> void _navigate(T fragment, FragmentTransaction fragmentTransaction) {
         int navId = mNavFragment.getRoot().getId();
-        final Fragment lastFragment = mViewModel.getLastFragment();
-        if (lastFragment != null) {
-            fragmentTransaction
-                    .hide(lastFragment)
-                    .add(navId, fragment)
-                    .addToBackStack();
-            fragment.getViewLifecycleOwner().getLifecycle().addObserver(state -> {
-                if (state == Lifecycle.Event.ON_STOP && mViewModel.getLastFragment() == fragment) {
-                    mViewModel.getLastFragment().getFragmentPlusManager().beginTransaction().remove(fragment).commit();
-                    mViewModel.removeLast();
+        Fragment nowFragment = mViewModel.getNowFragment();
+        if (nowFragment != null)
+            fragmentTransaction.hide(nowFragment);
+        fragmentTransaction.add(navId, fragment);
+        fragmentTransaction.commit();
+        mViewModel.add(fragment);
+        fragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
+            @Override
+            public void Observer(Lifecycle.Event state) {
+                if (state == Lifecycle.Event.ON_START) {
+                    fragment.getActivity().getOnBackPressedDispatcher().addCallback(mNavFragment.getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            if (mViewModel.getLastFragment() == null) {
+                                remove();
+                                fragment.getActivity().onBackPressed();
+                                return;
+                            }
+                            FragmentTransaction fragmentTransaction = fragment.getFragmentPlusManager().beginTransaction();
+                            fragmentTransaction.remove(fragment);
+                            fragmentTransaction.show(mViewModel.getLastFragment());
+                            fragmentTransaction.commit();
+                            mViewModel.removeLast();
+                            remove();
+                        }
+                    });
                 }
-            });
-        } else {
-            fragmentTransaction
-                    .add(navId, fragment);
-        }
-        mViewModel.add(fragment, fragmentTransaction.commit());
+                if (state == Lifecycle.Event.ON_DESTROY) {
+                    fragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
+                }
+            }
+        });
     }
 
     /**
      * 后退一步
      */
     public synchronized void navigateUp() {
-        if (mViewModel.getBackStackEntryCount() >= 1) {
-            mNavFragment
-                    .getFragmentPlusManager()
-                    .popBackStack(
-                            mViewModel.getBackStackIndexLast()
-                    );
-        }
+        mNavFragment.getActivity().onBackPressed();
     }
 
 }

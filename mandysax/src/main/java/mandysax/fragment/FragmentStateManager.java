@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 
 import mandysax.lifecycle.Lifecycle;
+import mandysax.lifecycle.LifecycleObserver;
 import mandysax.lifecycle.livedata.MutableLiveData;
 
 class FragmentStateManager extends FragmentStore {
@@ -82,13 +83,14 @@ class FragmentStateManager extends FragmentStore {
         if (fragment.isDetached()) {
             throw new IllegalStateException("fragment not added");
         }
-        if (fragment.getRoot() != null) {
-            fragment.getRoot().setVisibility(View.VISIBLE);
-            if (anim != 0) {
-                fragment.getRoot().startAnimation(AnimationUtils.loadAnimation(fragment.getContext(), anim));
-            }
-            fragment.onHiddenChanged(false);
+        if (fragment.getRoot() == null) {
+            return;
         }
+        fragment.getRoot().setVisibility(View.VISIBLE);
+        if (anim != 0) {
+            fragment.getRoot().startAnimation(AnimationUtils.loadAnimation(fragment.getContext(), anim));
+        }
+        fragment.onHiddenChanged(false);
     }
 
     /**
@@ -136,31 +138,30 @@ class FragmentStateManager extends FragmentStore {
         if (fragment.isDetached()) {
             throw new IllegalStateException("fragment not added");
         }
-        if (fragment.getRoot() != null) {
-            if (anim != 0) {
-                Animation exitAnim = AnimationUtils.loadAnimation(fragment.getContext(), anim);
-                exitAnim.setAnimationListener(new Animation.AnimationListener() {
+        if (fragment.getRoot() == null)
+            return;
+        if (anim == 0) {
+            fragment.getRoot().setVisibility(View.GONE);
+        } else {
+            Animation exitAnim = AnimationUtils.loadAnimation(fragment.getContext(), anim);
+            exitAnim.setAnimationListener(new Animation.AnimationListener() {
 
-                    @Override
-                    public void onAnimationStart(Animation p1) {
-                    }
+                @Override
+                public void onAnimationStart(Animation p1) {
+                }
 
-                    @Override
-                    public void onAnimationEnd(Animation p1) {
-                        fragment.getRoot().setVisibility(View.GONE);
-                    }
+                @Override
+                public void onAnimationEnd(Animation p1) {
+                    fragment.getRoot().setVisibility(View.GONE);
+                }
 
-                    @Override
-                    public void onAnimationRepeat(Animation p1) {
-                    }
-                });
-                fragment.getRoot().startAnimation(exitAnim);
-            } else {
-                fragment.getRoot().setVisibility(View.GONE);
-            }
-            fragment.onHiddenChanged(true);
+                @Override
+                public void onAnimationRepeat(Animation p1) {
+                }
+            });
+            fragment.getRoot().startAnimation(exitAnim);
         }
-
+        fragment.onHiddenChanged(true);
     }
 
     /**
@@ -181,11 +182,15 @@ class FragmentStateManager extends FragmentStore {
                     continue;
                 }
                 if (!op.isAddToBackStack) {
-                    fragment.getLifecycle().addObserver(state -> {
-                        if (state != Lifecycle.Event.ON_STOP) {
-                            return;
+                    fragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
+                        @Override
+                        public void Observer(Lifecycle.Event state) {
+                            if (state != Lifecycle.Event.ON_STOP) {
+                                return;
+                            }
+                            dispatchRemove(fragment, op.popExitAnim);
+                            fragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
                         }
-                        dispatchRemove(fragment, op.popExitAnim);
                     });
                 } else {
                     if (op.removed == null) {

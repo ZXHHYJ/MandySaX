@@ -11,12 +11,13 @@ import androidx.annotation.NonNull;
 
 import mandysax.lifecycle.Lifecycle;
 import mandysax.lifecycle.LifecycleOwner;
+import mandysax.lifecycle.LifecycleRegistry;
 
 /**
  * @author liuxiaoliu66
  */
 public class Fragment extends FragmentLifecycle implements FragmentImpl, LifecycleOwner {
-    private final Lifecycle mLifecycle = new Lifecycle();
+    private final LifecycleRegistry mLifecycle = new LifecycleRegistry();
     private final FragmentViewLifecycleOwner mViewLifecycleOwner = new FragmentViewLifecycleOwner();
     private boolean mDetached;
     private int mLayoutId = 0;
@@ -154,7 +155,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     void dumpOnCreate(Bundle bundle) {
-        mLifecycle.dispatchOnCreate();
+        mLifecycle.markState(Lifecycle.Event.ON_CREATE);
         onCreate(bundle);
     }
 
@@ -193,28 +194,28 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
 
     void dispatchOnStart() {
         mResumed = true;
-        mLifecycle.dispatchOnStart();
+        mLifecycle.markState(Lifecycle.Event.ON_START);
         onStart();
     }
 
     void dispatchOnRestart() {
-        mLifecycle.dispatchOnRestart();
+        mLifecycle.markState(Lifecycle.Event.ON_RESTART);
         onRestart();
     }
 
     void dispatchOnResume() {
-        mLifecycle.dispatchOnResume();
+        mLifecycle.markState(Lifecycle.Event.ON_RESUME);
         onResume();
     }
 
     void dispatchOnPause() {
-        mLifecycle.dispatchOnPause();
+        mLifecycle.markState(Lifecycle.Event.ON_PAUSE);
         onPause();
     }
 
     void dispatchOnStop() {
         mResumed = false;
-        mLifecycle.dispatchOnStop();
+        mLifecycle.markState(Lifecycle.Event.ON_STOP);
         onStop();
     }
 
@@ -227,7 +228,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     void dispatchOnDestroy() {
-        mLifecycle.dispatchOnDestroy();
+        mLifecycle.markState(Lifecycle.Event.ON_DESTROY);
         onDestroy();
     }
 
@@ -240,21 +241,20 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     @Override
     protected void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (hidden) {
-            mViewLifecycleOwner.getLifecycle().dispatchOnStop();
-        } else {
-            mViewLifecycleOwner.getLifecycle().dispatchOnStart();
-        }
+        LifecycleRegistry lifecycleRegistry = (LifecycleRegistry) getViewLifecycleOwner().getLifecycle();
+        lifecycleRegistry.markState(hidden ? Lifecycle.Event.ON_STOP : Lifecycle.Event.ON_START);
     }
 
     void dispatchAdd() {
         mAdded = true;
-        mViewLifecycleOwner.getLifecycle().dispatchOnCreate();
+        LifecycleRegistry lifecycleRegistry = (LifecycleRegistry) getViewLifecycleOwner().getLifecycle();
+        lifecycleRegistry.markState(Lifecycle.Event.ON_CREATE);
     }
 
     void dispatchRemove() {
         mAdded = false;
-        mViewLifecycleOwner.getLifecycle().dispatchOnDestroy();
+        LifecycleRegistry lifecycleRegistry = (LifecycleRegistry) getViewLifecycleOwner().getLifecycle();
+        lifecycleRegistry.markState(Lifecycle.Event.ON_DESTROY);
     }
 
 }

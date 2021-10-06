@@ -9,17 +9,14 @@ import androidx.annotation.NonNull;
 
 import mandysax.fragment.Fragment;
 import mandysax.fragment.FragmentTransaction;
-import mandysax.fragment.FragmentView;
 import mandysax.navigation.NavController;
 import mandysax.navigation.NavHostFragmentView;
 
 public class NavHostFragment extends Fragment {
 
-    private NavHostFragmentView mRoot;
-
     @Override
     protected View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRoot = new NavHostFragmentView(inflater.getContext(), this);
+        NavHostFragmentView mRoot = new NavHostFragmentView(inflater.getContext(), this);
         mRoot.setId(View.generateViewId());
         return mRoot;
     }
@@ -27,10 +24,6 @@ public class NavHostFragment extends Fragment {
     @Override
     protected void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        for (int i = 0; i < mRoot.getChildCount(); i++) {
-            if (mRoot.getChildAt(i) instanceof FragmentView)
-                mRoot.getChildAt(i).setVisibility(hidden ? View.GONE : View.VISIBLE);
-        }
     }
 
     public NavController getNavController() {

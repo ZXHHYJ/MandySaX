@@ -3,7 +3,6 @@ package mandysax.fragment;
 /**
  * @author liuxiaoliu66
  */
-@SuppressWarnings("All")
 public interface FragmentTransaction {
 
     FragmentTransaction setCustomAnimations(int enterAnim, int exitAnim, int popEnterAnim, int popExitAnim);
