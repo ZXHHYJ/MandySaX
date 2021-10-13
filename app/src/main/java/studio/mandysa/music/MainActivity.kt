@@ -6,6 +6,8 @@ import androidx.core.view.ViewCompat
 import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
 import mandysax.fragmentpage.widget.FragmentPage
+import mandysax.lifecycle.Lifecycle
+import mandysax.lifecycle.LifecycleObserver
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.ui.base.BaseActivity
@@ -24,7 +26,13 @@ class MainActivity : BaseActivity() {
                 override fun onCreateFragment(position: Int): Fragment? =
                     when (position) {
                         0 -> NavHostFragment.create(HomeFragment())
-                        1 -> NavHostFragment.create(SearchFragment())
+                        1 -> NavHostFragment.create(SearchFragment()).also {
+                            it.viewLifecycleOwner.lifecycle.addObserver(object : LifecycleObserver {
+                                override fun Observer(state: Lifecycle.Event?) {
+                                    println("Lifecycle:$state")
+                                }
+                            })
+                        }
                         else -> null
                     }
             })
@@ -57,7 +65,7 @@ class MainActivity : BaseActivity() {
                     0,
                     0
                 )
-                bottomNavigationBar.setPadding(
+                bottomNavLayout.setPadding(
                     insets.systemWindowInsetLeft,
                     0,
                     insets.systemWindowInsetRight,

@@ -224,8 +224,7 @@ public class ComponentActivity extends Activity implements LifecycleOwner, ViewM
                         cancel();
                         break;
                     default:
-                        if (mCurrentCancellable == null)
-                            mCurrentCancellable = addCancellableCallback(mOnBackPressedCallback);
+                        mCurrentCancellable = addCancellableCallback(mOnBackPressedCallback);
                 }
             }
         }

@@ -35,10 +35,6 @@ public final class NavControllerViewModel extends ViewModel {
         return mNowFragment;
     }
 
-    public int getFragmentSize() {
-        return mFragments.size();
-    }
-
     /**
      * 添加到返回栈
      *

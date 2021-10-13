@@ -39,6 +39,7 @@
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
     <FrameLayout
+        android:id="@+id/bottomNavLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
@@ -47,7 +48,6 @@
             android:id="@+id/bottomNavigationBar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_gravity="bottom"
             android:background="@color/white" />
 
         <View

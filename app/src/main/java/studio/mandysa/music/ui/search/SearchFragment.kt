@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import mandysax.lifecycle.Lifecycle
-import mandysax.lifecycle.LifecycleObserver
 import mandysax.navigation.Navigation
 import studio.mandysa.music.databinding.FragmentSearchBinding
 import studio.mandysa.music.ui.base.BaseFragment
@@ -29,11 +27,6 @@ class SearchFragment : BaseFragment() {
         view?.setOnClickListener {
             Navigation.findViewNavController(view).navigate(MeFragment())
         }
-        viewLifecycleOwner.lifecycle.addObserver(object : LifecycleObserver {
-            override fun Observer(state: Lifecycle.Event?) {
-                println("Lifecycle:$state")
-            }
-        })
     }
 
     override fun onDestroyView() {
