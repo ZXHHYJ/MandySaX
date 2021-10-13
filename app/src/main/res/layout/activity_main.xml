@@ -46,11 +46,17 @@
         <studio.mandysa.bottomnavigationbar.BottomNavigationBar
             android:id="@+id/bottomNavigationBar"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="56dp"
             android:layout_gravity="bottom"
             android:background="@color/white" />
 
         <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/dividerVertical" />
+
+        <View
+            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?android:attr/dividerVertical" />
