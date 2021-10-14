@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import mandysax.fragment.Fragment;
-import mandysax.fragment.FragmentTransaction;
 import mandysax.navigation.NavController;
 import mandysax.navigation.NavHostFragmentView;
 
@@ -22,11 +21,7 @@ public class NavHostFragment extends Fragment {
     }
 
     public NavController getNavController() {
-        return getNavController(null);
-    }
-
-    public NavController getNavController(FragmentTransaction fragmentTransaction) {
-        return new NavController(this, fragmentTransaction);
+        return new NavController(this);
     }
 
     @NonNull

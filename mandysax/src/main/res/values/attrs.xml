@@ -6,4 +6,11 @@
         <attr name="android:tag" />
     </declare-styleable>
 
+    <declare-styleable name="NavHostFragmentView">
+        <attr name="fragmentEnterAnim" format="reference"/>
+        <attr name="fragmentExitAnim" format="reference"/>
+        <attr name="fragmentPopEnterAnim" format="reference"/>
+        <attr name="fragmentPopExitAnim" format="reference"/>
+    </declare-styleable>
+
 </resources>

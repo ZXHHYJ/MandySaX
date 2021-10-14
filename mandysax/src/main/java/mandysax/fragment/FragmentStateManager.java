@@ -99,8 +99,7 @@ class FragmentStateManager extends FragmentStore {
      * @param fragment 待移除的fragment
      * @param anim     动画id
      */
-    void dispatchRemove(Fragment fragment, int anim) {
-        remove(fragment);
+    void dispatchRemove(@NonNull Fragment fragment, int anim) {
         if (fragment.getRoot() != null && anim != 0) {
             Animation exitAnim = AnimationUtils.loadAnimation(fragment.getContext(), anim);
             exitAnim.setAnimationListener(new Animation.AnimationListener() {
@@ -114,6 +113,7 @@ class FragmentStateManager extends FragmentStore {
                     fragment.dispatchOnDestroyView();
                     fragment.dispatchOnDestroy();
                     fragment.dispatchOnDetach();
+                    remove(fragment);
                 }
 
                 @Override
@@ -126,6 +126,7 @@ class FragmentStateManager extends FragmentStore {
         fragment.dispatchOnDestroyView();
         fragment.dispatchOnDestroy();
         fragment.dispatchOnDetach();
+        remove(fragment);
     }
 
     /**

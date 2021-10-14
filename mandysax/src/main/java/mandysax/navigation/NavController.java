@@ -1,7 +1,10 @@
 package mandysax.navigation;
 
+import android.content.res.TypedArray;
+
 import androidx.annotation.NonNull;
 
+import mandysax.R;
 import mandysax.core.app.OnBackPressedCallback;
 import mandysax.fragment.Fragment;
 import mandysax.fragment.FragmentTransaction;
@@ -19,16 +22,12 @@ public final class NavController {
 
     private final NavControllerViewModel mViewModel;
 
-    private final FragmentTransaction mFragmentTransaction;
-
     /**
-     * @param navHostFragment     带导航的NavHostFragment
-     * @param fragmentTransaction 自定义事务
+     * @param navHostFragment 带导航的NavHostFragment
      */
-    public NavController(@NonNull NavHostFragment navHostFragment, FragmentTransaction fragmentTransaction) {
+    public NavController(@NonNull NavHostFragment navHostFragment) {
         mNavFragment = navHostFragment;
         mViewModel = ViewModelProviders.of(navHostFragment.getViewLifecycleOwner()).get(NavControllerViewModel.class);
-        mFragmentTransaction = fragmentTransaction;
     }
 
     /**
@@ -39,14 +38,35 @@ public final class NavController {
             @Override
             public void Observer(Lifecycle.Event state) {
                 if (state == Lifecycle.Event.ON_START) {
-                    _navigate(fragment, mFragmentTransaction == null ? mNavFragment.getFragmentPlusManager().beginTransaction() : mFragmentTransaction);
+                    _navigate(fragment, 0, 0, 0, 0);
                     mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
                 }
             }
         });
     }
 
-    private <T extends Fragment> void _navigate(T fragment, FragmentTransaction fragmentTransaction) {
+    public synchronized <T extends Fragment> void navigate(int animStyle, T fragment) {
+        mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
+            @Override
+            public void Observer(Lifecycle.Event state) {
+                if (state == Lifecycle.Event.ON_START) {
+                    int[] attr = new int[]{R.attr.fragmentEnterAnim, R.attr.fragmentExitAnim, R.attr.fragmentPopEnterAnim, R.attr.fragmentPopExitAnim};
+                    TypedArray array = mNavFragment.getActivity().getTheme().obtainStyledAttributes(animStyle, attr);
+                    _navigate(fragment, array.getResourceId(0, 0), array.getResourceId(1, 0), array.getResourceId(2, 0), array.getResourceId(3, 0));
+                    array.recycle();
+                    mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
+                }
+            }
+        });
+    }
+
+    private FragmentTransaction beginTransaction() {
+        return mNavFragment.getFragmentPlusManager().beginTransaction();
+    }
+
+    private <T extends Fragment> void _navigate(T fragment, int fragmentEnterAnim, int fragmentExitAnim, int fragmentPopEnterAnim, int fragmentPopExitAnim) {
+        FragmentTransaction fragmentTransaction = beginTransaction();
+        fragmentTransaction.setCustomAnimations(fragmentEnterAnim, fragmentExitAnim, 0, 0);
         int navId = mNavFragment.getRoot().getId();
         Fragment nowFragment = mViewModel.getNowFragment();
         if (nowFragment != null)
@@ -66,7 +86,8 @@ public final class NavController {
                                 fragment.getActivity().onBackPressed();
                                 return;
                             }
-                            FragmentTransaction fragmentTransaction = mNavFragment.getFragmentPlusManager().beginTransaction();
+                            FragmentTransaction fragmentTransaction = beginTransaction();
+                            fragmentTransaction.setCustomAnimations(fragmentPopEnterAnim, 0,0,fragmentPopExitAnim);
                             fragmentTransaction.remove(fragment);
                             fragmentTransaction.show(mViewModel.getLastFragment());
                             fragmentTransaction.commit();

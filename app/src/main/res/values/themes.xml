@@ -6,4 +6,11 @@
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
     </style>
+
+    <style name="test">
+        <item name="fragmentEnterAnim">@anim/nav_enter_anim</item>
+        <item name="fragmentExitAnim">@anim/nav_exit_anim</item>
+        <item name="fragmentPopEnterAnim">@anim/nav_pop_enter_anim</item>
+        <item name="fragmentPopExitAnim">@anim/nav_pop_exit_anim</item>
+    </style>
 </resources>
