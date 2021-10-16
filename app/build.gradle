@@ -31,6 +31,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.gitee.liuxiaoliu66:mandysax-media-player:0.9.8'
+    implementation 'com.gitee.liuxiaoliu66:anna:2.1.0'
+    implementation 'com.facebook.fresco:fresco:2.6.0'
     implementation 'com.github.hannesa2:AndroidSlidingUpPanel:4.2.2' // Android X
     implementation 'com.yanzhenjie:sofia:1.0.5'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'

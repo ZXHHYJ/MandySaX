@@ -15,7 +15,14 @@
         <mandysax.fragmentpage.widget.FragmentPage
             android:id="@+id/main_fragment_page"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/dividerVertical" />
+
+        </mandysax.fragmentpage.widget.FragmentPage>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -56,9 +63,9 @@
             android:background="?android:attr/dividerVertical" />
 
         <View
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_gravity="bottom"
             android:background="?android:attr/dividerVertical" />
     </FrameLayout>
 

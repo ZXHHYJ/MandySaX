@@ -6,18 +6,21 @@ import androidx.core.view.ViewCompat
 import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
 import mandysax.fragmentpage.widget.FragmentPage
-import mandysax.lifecycle.Lifecycle
-import mandysax.lifecycle.LifecycleObserver
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.ui.base.BaseActivity
+import studio.mandysa.music.ui.event.ShareViewModel
 import studio.mandysa.music.ui.home.HomeFragment
 import studio.mandysa.music.ui.search.SearchFragment
 
 class MainActivity : BaseActivity() {
+
     private val mBinding: ActivityMainBinding by inflate()
+
+    private val mEvent: ShareViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        Sofia.with(this).invasionStatusBar().invasionNavigationBar()
+        Sofia.with(this).invasionStatusBar().invasionNavigationBar().statusBarDarkFont()
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
         mBinding.apply {
@@ -26,25 +29,21 @@ class MainActivity : BaseActivity() {
                 override fun onCreateFragment(position: Int): Fragment? =
                     when (position) {
                         0 -> NavHostFragment.create(HomeFragment())
-                        1 -> NavHostFragment.create(SearchFragment()).also {
-                            it.viewLifecycleOwner.lifecycle.addObserver(object : LifecycleObserver {
-                                override fun Observer(state: Lifecycle.Event?) {
-                                    println("Lifecycle:$state")
-                                }
-                            })
-                        }
+                        1 -> NavHostFragment.create(SearchFragment())
                         else -> null
                     }
             })
+            mEvent.homePosLiveData.observe(this@MainActivity,
+                { mainFragmentPage.position = it })
             bottomNavigationBar.addItem(R.drawable.ic_home, getString(R.string.title_home))
             bottomNavigationBar.addItem(R.drawable.ic_search, getString(R.string.title_search))
             bottomNavigationBar.setOnItemViewSelectedListener {
                 when (it) {
                     0 -> {
-                        mainFragmentPage.position = 0
+                        mEvent.homePosLiveData.value = 0
                     }
                     1 -> {
-                        mainFragmentPage.position = 1
+                        mEvent.homePosLiveData.value = 1
                     }
                 }
             }
@@ -63,7 +62,7 @@ class MainActivity : BaseActivity() {
                     0,
                     insets.systemWindowInsetTop,
                     0,
-                    0
+                    insets.systemWindowInsetBottom
                 )
                 bottomNavLayout.setPadding(
                     insets.systemWindowInsetLeft,
