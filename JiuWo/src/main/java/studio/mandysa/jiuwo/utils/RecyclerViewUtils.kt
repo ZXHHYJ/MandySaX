@@ -3,7 +3,6 @@ package studio.mandysa.jiuwo.utils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import studio.mandysa.jiuwo.adapter.RecyclerAdapter
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModel
 
 object RecyclerViewUtils {
 
@@ -23,9 +22,17 @@ object RecyclerViewUtils {
         return adapter
     }
 
-    fun RecyclerView.addModel(list:List<*>) {
-        val adapter=adapter as RecyclerAdapter
-        adapter.models=list
+    fun RecyclerView.addModel(list: List<Any>) {
+        val adapter = adapter as RecyclerAdapter
+        adapter.addModels(list)
     }
+
+    var RecyclerView.models
+        get() = (adapter as RecyclerAdapter).model
+        set(value) {
+            val adapter = adapter as RecyclerAdapter
+            adapter.clearModels()
+            adapter.addModels(value as List<Any>)
+        }
 
 }

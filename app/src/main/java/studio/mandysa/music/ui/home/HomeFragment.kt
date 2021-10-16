@@ -51,11 +51,9 @@ class HomeFragment : BaseFragment() {
         NeteaseCloudMusicApi::class.java.create().apply {
             recommendedPlaylist.set(object : Callback<PlaylistModel> {
                 override fun onResponse(t: PlaylistModel?) {
-                    print(t)
                 }
 
                 override fun onFailure(code: Int) {
-                    print(code)
                 }
 
             })

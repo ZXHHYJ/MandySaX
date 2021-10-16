@@ -14,7 +14,7 @@
             android:id="@+id/song_cover"
             app:roundAsCircle="true"
             app:roundingBorderColor="@android:color/black"
-            app:roundingBorderWidth="1dp"
+            app:roundingBorderWidth="1px"
             android:layout_width="@dimen/size_album"
             android:layout_height="@dimen/size_album"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"

@@ -16,12 +16,7 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
 
     private var onBind: (RecyclerAdapter.() -> Unit)? = null
 
-    var models: List<Any?>? = null
-        @SuppressLint("NotifyDataSetChanged")
-        set(value) {
-            notifyDataSetChanged()
-            field = value
-        }
+    private var mModels: MutableList<Any?>? = null
 
     var model: Any? = null
 
@@ -35,13 +30,13 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
         mType[M::class.java] = id
     }
 
-    fun <M> RecyclerAdapter.getModel(): M = model as M
+    inline fun <reified M> RecyclerAdapter.getModel(): M = model as M
 
     inline fun <reified M> RecyclerAdapter.getModelOrNull(): M? = model as? M
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        if (models != null) {
-            for (any in models!!) {
+        if (mModels != null) {
+            for (any in mModels!!) {
                 if (any != null)
                     for (type in mType) {
                         if (type.key == any::class.java) {
@@ -60,14 +55,14 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        model = models?.get(position)
+        model = mModels?.get(position)
         mItemView = holder.itemView
         onBind?.invoke(this)
     }
 
     override fun getItemCount(): Int {
-        if (models == null) return 0
-        return models!!.size
+        if (mModels == null) return 0
+        return mModels!!.size
     }
 
     fun getItemViewType(): Int {
@@ -76,5 +71,26 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
 
     fun getItemView(): View {
         return mItemView!!
+    }
+
+    fun addModels(models: List<Any>) {
+        mModels = if (mModels == null) {
+            models.toMutableList()
+        } else {
+            val data = mModels
+            data!!.addAll(models)
+            data
+        }
+        notifyItemInserted(models.size)
+    }
+
+    fun getModels(): List<Any?>? {
+        return mModels
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearModels() {
+        mModels?.clear()
+        notifyDataSetChanged()
     }
 }
