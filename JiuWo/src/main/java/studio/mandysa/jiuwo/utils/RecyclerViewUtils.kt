@@ -1,5 +1,6 @@
 package studio.mandysa.jiuwo.utils
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import studio.mandysa.jiuwo.adapter.RecyclerAdapter
@@ -28,11 +29,12 @@ object RecyclerViewUtils {
     }
 
     var RecyclerView.models
-        get() = (adapter as RecyclerAdapter).model
+        get() = (adapter as RecyclerAdapter).mModels as List<Any?>
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             val adapter = adapter as RecyclerAdapter
-            adapter.clearModels()
-            adapter.addModels(value as List<Any>)
+            adapter.mModels = value as MutableList<Any?>
+            adapter.notifyDataSetChanged()
         }
 
 }

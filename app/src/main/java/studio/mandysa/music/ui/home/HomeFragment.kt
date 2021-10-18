@@ -54,7 +54,7 @@ class HomeFragment : BaseFragment() {
                                     }
                                 }
                             }
-                            models = getModel<PlaylistModel>().playlist
+                            models = getModel<PlaylistModel>().playlist!!
                         }
                     }
                     R.layout.item_song -> {

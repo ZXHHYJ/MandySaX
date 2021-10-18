@@ -9,9 +9,9 @@ class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
 
     private var onBind: (BindingViewHolder.() -> Unit)? = null
 
-    private var mModels: MutableList<Any?>? = null
+    var mModels: MutableList<Any?>? = null
 
-    var model: Any? = null
+    var mModel: Any? = null
 
     fun onBind(block: BindingViewHolder.() -> Unit) {
         onBind = block
@@ -21,30 +21,21 @@ class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
 
     inline fun <reified M> addType(@LayoutRes id: Int) {
         mType[M::class.java] = id
+        println(M::class.java.toString() + " " + id)
     }
 
-    inline fun <reified M> RecyclerAdapter.getModel(): M = model as M
+    inline fun <reified M> getModel(): M = mModel as M
 
-    inline fun <reified M> RecyclerAdapter.getModelOrNull(): M? = model as? M
+    inline fun <reified M> getModelOrNull(): M? = mModel as? M
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
-        if (mModels != null) {
-            for (any in mModels!!) {
-                if (any != null)
-                    for (type in mType) {
-                        if (type.key == any::class.java) {
-                            return BindingViewHolder(
-                                parent, type.value
-                            )
-                        }
-                    }
-            }
-        }
-        return null!!
+        return BindingViewHolder(
+            parent, mType[mModels!![viewType]!!::class.java]!!
+        )
     }
 
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
-        model = mModels?.get(position)
+        mModel = mModels?.get(position)
         onBind?.invoke(holder)
     }
 
