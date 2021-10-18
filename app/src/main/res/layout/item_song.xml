@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<studio.mandysa.music.ui.all.view.CTripHomeScaleLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/viewCardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/song_cover"
-            app:roundAsCircle="true"
-            app:roundingBorderColor="@android:color/black"
-            app:roundingBorderWidth="1px"
+        <androidx.cardview.widget.CardView
+            style="@style/imageCardView"
             android:layout_width="@dimen/size_album"
             android:layout_height="@dimen/size_album"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-            android:layout_marginVertical="@dimen/item_margin"
-            tools:ignore="ContentDescription" />
+            android:layout_marginVertical="@dimen/item_margin">
+
+            <ImageView
+                android:id="@+id/song_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null" />
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,5 +52,5 @@
         </LinearLayout>
 
     </LinearLayout>
-</studio.mandysa.music.ui.all.view.CTripHomeScaleLayout>
+</androidx.cardview.widget.CardView>
 

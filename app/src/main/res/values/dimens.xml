@@ -1,6 +1,6 @@
 <resources>
 
-    <dimen name="height_edittext">55dp</dimen>
+    <dimen name="card_corner_radius">10dp</dimen>
 
     <dimen name="size_album">60dp</dimen>
 
@@ -13,8 +13,6 @@
 
     <dimen name="text_margin_small">5dp</dimen>
     <dimen name="nav_height">56dp</dimen>
-
-    <dimen name="item_album_width">110dp</dimen>
 
     <dimen name="umano_shadow_height">3dp</dimen>
 

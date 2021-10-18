@@ -4,13 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModel
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
+import studio.mandysa.jiuwo.utils.RecyclerViewUtils.models
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentHomeBinding
+import studio.mandysa.music.databinding.ItemPlaylistBinding
 import studio.mandysa.music.databinding.ItemSongBinding
+import studio.mandysa.music.databinding.LayoutRvBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.NewSongModel
 import studio.mandysa.music.logic.model.PlaylistModel
@@ -20,6 +25,8 @@ import studio.mandysa.music.ui.base.BaseFragment
 class HomeFragment : BaseFragment() {
 
     private val mBinding: FragmentHomeBinding by bindView()
+
+    private var mImageLoader: ImageLoader = ImageLoader.getInstance()
 
     public override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,15 +41,30 @@ class HomeFragment : BaseFragment() {
             addType<PlaylistModel>(R.layout.layout_rv)
             addType<NewSongModel>(R.layout.item_song)
             onBind {
-                when (getModelOrNull<Any>()) {
-                    is PlaylistModel -> {
+                when (itemViewType) {
+                    R.layout.layout_rv -> {
+                        LayoutRvBinding.bind(itemView).recyclerView.apply {
+                            linear(orientation = RecyclerView.HORIZONTAL).setup {
+                                addType<PlaylistModel.Playlist>(R.layout.item_playlist)
+                                onBind {
+                                    val model = getModel<PlaylistModel.Playlist>()
+                                    ItemPlaylistBinding.bind(itemView).apply {
+                                        playlistTitle.text = model.name
+                                        mImageLoader.displayImage(model.picUrl, playlistCover)
+                                    }
+                                }
+                            }
+                            models = getModel<PlaylistModel>().playlist
+                        }
                     }
-                    is NewSongModel -> {
+                    R.layout.item_song -> {
                         val model = getModel<NewSongModel>()
-                        ItemSongBinding.bind(getItemView()).apply {
+                        ItemSongBinding.bind(itemView).apply {
                             songName.text = model.title
                             songSingerName.text = model.artist[0].name
-                            songCover.setImageURI(model.coverUrl)
+                            mImageLoader.displayImage(model.coverUrl, songCover)
+                            itemView.setOnClickListener {
+                            }
                         }
                     }
                 }
@@ -51,6 +73,7 @@ class HomeFragment : BaseFragment() {
         NeteaseCloudMusicApi::class.java.create().apply {
             recommendedPlaylist.set(object : Callback<PlaylistModel> {
                 override fun onResponse(t: PlaylistModel?) {
+                    mBinding.homeList.addModel(listOf(t!!))
                 }
 
                 override fun onFailure(code: Int) {
@@ -68,5 +91,10 @@ class HomeFragment : BaseFragment() {
 
             })
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mImageLoader.clearMemoryCache()
     }
 }

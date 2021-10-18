@@ -1,32 +1,25 @@
 package studio.mandysa.jiuwo.adapter
 
 import android.annotation.SuppressLint
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
+class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
 
-    private var mItemViewType: Int = -1
-
-    private var mItemView: View? = null
-
-    private var onBind: (RecyclerAdapter.() -> Unit)? = null
+    private var onBind: (BindingViewHolder.() -> Unit)? = null
 
     private var mModels: MutableList<Any?>? = null
 
     var model: Any? = null
 
-    fun onBind(block: RecyclerAdapter.() -> Unit) {
+    fun onBind(block: BindingViewHolder.() -> Unit) {
         onBind = block
     }
 
     val mType = HashMap<Class<*>, Int>()
 
-    inline fun <reified M> RecyclerAdapter.addType(@LayoutRes id: Int) {
+    inline fun <reified M> addType(@LayoutRes id: Int) {
         mType[M::class.java] = id
     }
 
@@ -34,19 +27,15 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
 
     inline fun <reified M> RecyclerAdapter.getModelOrNull(): M? = model as? M
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
         if (mModels != null) {
             for (any in mModels!!) {
                 if (any != null)
                     for (type in mType) {
                         if (type.key == any::class.java) {
-                            mItemViewType = type.value
                             return BindingViewHolder(
-                                LayoutInflater.from(parent.context).inflate(
-                                    type.value,
-                                    parent, false
-                                )
-                            );
+                                parent, type.value
+                            )
                         }
                     }
             }
@@ -54,10 +43,9 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
         return null!!
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
         model = mModels?.get(position)
-        mItemView = holder.itemView
-        onBind?.invoke(this)
+        onBind?.invoke(holder)
     }
 
     override fun getItemCount(): Int {
@@ -65,12 +53,8 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
         return mModels!!.size
     }
 
-    fun getItemViewType(): Int {
-        return mItemViewType
-    }
-
-    fun getItemView(): View {
-        return mItemView!!
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
     fun addModels(models: List<Any>) {
@@ -82,10 +66,6 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
             data
         }
         notifyItemInserted(models.size)
-    }
-
-    fun getModels(): List<Any?>? {
-        return mModels
     }
 
     @SuppressLint("NotifyDataSetChanged")

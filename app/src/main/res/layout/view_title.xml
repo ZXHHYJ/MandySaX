@@ -11,13 +11,12 @@
             android:textColor="@color/black"
             android:textSize="23sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/avatar"
             app:layout_constraintHorizontal_bias="0.114"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.51" />
 
-        <com.facebook.drawee.view.SimpleDraweeView
+     <!--   <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -27,6 +26,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:roundAsCircle="true"
             app:roundingBorderColor="@android:color/black"
-            app:roundingBorderWidth="1dp" />
+            app:roundingBorderWidth="1dp" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>

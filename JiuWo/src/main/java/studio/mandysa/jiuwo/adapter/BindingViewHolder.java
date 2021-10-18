@@ -1,12 +1,17 @@
 package studio.mandysa.jiuwo.adapter;
 
-import android.view.View;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BindingViewHolder extends RecyclerView.ViewHolder {
-    public BindingViewHolder(@NonNull View itemView) {
-        super(itemView);
+
+    public final int itemViewType;
+
+    public BindingViewHolder(ViewGroup parent, int viewType) {
+        super(LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false));
+        itemViewType = viewType;
     }
+
 }
