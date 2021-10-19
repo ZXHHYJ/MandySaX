@@ -11,6 +11,7 @@ import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModel
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.models
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
+import studio.mandysa.jiuwo.utils.RecyclerViewUtils.staggered
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentHomeBinding
 import studio.mandysa.music.databinding.ItemPlaylistBinding
@@ -44,7 +45,7 @@ class HomeFragment : BaseFragment() {
                 when (itemViewType) {
                     R.layout.layout_rv -> {
                         LayoutRvBinding.bind(itemView).recyclerView.apply {
-                            linear(orientation = RecyclerView.HORIZONTAL).setup {
+                            staggered(2, orientation = RecyclerView.HORIZONTAL).setup {
                                 addType<PlaylistModel.Playlist>(R.layout.item_playlist)
                                 onBind {
                                     val model = getModel<PlaylistModel.Playlist>()

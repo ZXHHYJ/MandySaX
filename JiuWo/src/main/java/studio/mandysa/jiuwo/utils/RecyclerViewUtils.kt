@@ -3,6 +3,7 @@ package studio.mandysa.jiuwo.utils
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import studio.mandysa.jiuwo.adapter.RecyclerAdapter
 
 object RecyclerViewUtils {
@@ -13,6 +14,14 @@ object RecyclerViewUtils {
         layoutManager = LinearLayoutManager(context).also {
             it.orientation = orientation
         }
+        return this;
+    }
+
+    fun RecyclerView.staggered(
+        spanCount: Int = 1,
+        @RecyclerView.Orientation orientation: Int = RecyclerView.VERTICAL
+    ): RecyclerView {
+        layoutManager = StaggeredGridLayoutManager(spanCount, orientation)
         return this;
     }
 

@@ -21,7 +21,6 @@ class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
 
     inline fun <reified M> addType(@LayoutRes id: Int) {
         mType[M::class.java] = id
-        println(M::class.java.toString() + " " + id)
     }
 
     inline fun <reified M> getModel(): M = mModel as M
