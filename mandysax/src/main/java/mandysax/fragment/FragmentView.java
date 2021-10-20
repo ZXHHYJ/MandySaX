@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import mandysax.R;
+import mandysax.core.R;
 
 /**
  * @author Administrator

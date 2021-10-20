@@ -6,7 +6,7 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "MandySa Music"
+rootProject.name = "MandySa_Music"
 include ':app', 'mandysax'
 include ':JiuWo'
 include ':BottomNavigationBar'

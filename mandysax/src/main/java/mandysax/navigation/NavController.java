@@ -4,7 +4,7 @@ import android.content.res.TypedArray;
 
 import androidx.annotation.NonNull;
 
-import mandysax.R;
+import mandysax.core.R;
 import mandysax.core.app.OnBackPressedCallback;
 import mandysax.fragment.Fragment;
 import mandysax.fragment.FragmentTransaction;

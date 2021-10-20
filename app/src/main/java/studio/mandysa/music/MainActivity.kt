@@ -79,7 +79,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun initPmi() {
+    /*private fun initPmi() {
         val instance = DefaultPlayerManager.getInstance().changeMusicLiveData()
         instance.observe(this) {
             instance.removeObservers(this)
@@ -116,6 +116,6 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-    }
+    }*/
 
 }
