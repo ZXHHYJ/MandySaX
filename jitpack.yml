@@ -1,0 +1,6 @@
+jdk:
+  - openjdk11
+
+install:
+  - ./gradlew :mandysax:build :mandysax:publishToMavenLocal
+  - find . -name "*.aar"

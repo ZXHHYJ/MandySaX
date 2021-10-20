@@ -1,11 +1,14 @@
 package studio.mandysa.music
 
 import android.os.Bundle
+import android.view.View
 import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
 import mandysax.fragmentpage.widget.FragmentPage
+import mandysax.media.DefaultPlayerManager
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.ui.base.BaseActivity
@@ -72,6 +75,45 @@ class MainActivity : BaseActivity() {
                 )
                 //initPmi()
                 insets
+            }
+        }
+    }
+
+    private fun initPmi() {
+        val instance = DefaultPlayerManager.getInstance().changeMusicLiveData()
+        instance.observe(this) {
+            instance.removeObservers(this)
+            mBinding.run {
+                bottomNavLayout.post {
+                    mainSlidingView.run {
+                        panelHeight =
+                            mBinding.bottomNavLayout.height * 2 - mBinding.bottomNavLayout.paddingBottom
+                        shadowHeight =
+                            resources.getDimensionPixelSize(R.dimen.umano_shadow_height)
+                        postDelayed({
+                            addPanelSlideListener(object :
+                                SlidingUpPanelLayout.PanelSlideListener {
+                                val y: Float = mBinding.bottomNavLayout.y
+                                override fun onPanelSlide(panel: View, slideOffset: Float) {
+                                    mBinding.run {
+                                        val by: Float = y + bottomNavLayout.height * slideOffset * 8
+                                        bottomNavLayout.y = by
+                                        val alpha = slideOffset * 12
+                                        controllerFragment.alpha = 1 - alpha
+                                        playFragment.alpha = alpha
+                                    }
+                                }
+
+                                override fun onPanelStateChanged(
+                                    panel: View,
+                                    previousState: SlidingUpPanelLayout.PanelState,
+                                    newState: SlidingUpPanelLayout.PanelState
+                                ) {
+                                }
+                            })
+                        }, 220)
+                    }
+                }
             }
         }
     }

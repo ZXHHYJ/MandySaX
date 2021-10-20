@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
+import mandysax.navigation.Navigation
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModel
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.models
@@ -16,11 +17,12 @@ import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentHomeBinding
 import studio.mandysa.music.databinding.ItemPlaylistBinding
 import studio.mandysa.music.databinding.ItemSongBinding
-import studio.mandysa.music.databinding.LayoutRvBinding
+import studio.mandysa.music.databinding.LayoutPlaylistHeadBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.NewSongModel
 import studio.mandysa.music.logic.model.PlaylistModel
 import studio.mandysa.music.logic.utils.ClassUtils.create
+import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.base.BaseFragment
 
 class HomeFragment : BaseFragment() {
@@ -39,12 +41,12 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.homeList.linear().setup {
-            addType<PlaylistModel>(R.layout.layout_rv)
+            addType<PlaylistModel>(R.layout.layout_playlist_head)
             addType<NewSongModel>(R.layout.item_song)
             onBind {
                 when (itemViewType) {
-                    R.layout.layout_rv -> {
-                        LayoutRvBinding.bind(itemView).recyclerView.apply {
+                    R.layout.layout_playlist_head -> {
+                        LayoutPlaylistHeadBinding.bind(itemView).playlistList.apply {
                             staggered(2, orientation = RecyclerView.HORIZONTAL).setup {
                                 addType<PlaylistModel.Playlist>(R.layout.item_playlist)
                                 onBind {
@@ -52,6 +54,13 @@ class HomeFragment : BaseFragment() {
                                     ItemPlaylistBinding.bind(itemView).apply {
                                         playlistTitle.text = model.name
                                         mImageLoader.displayImage(model.picUrl, playlistCover)
+                                        playlistCover.setOnClickListener {
+                                            Navigation.findViewNavController(it)
+                                                .navigate(
+                                                    R.style.test,
+                                                    PlaylistFragment(model.id!!)
+                                                )
+                                        }
                                     }
                                 }
                             }

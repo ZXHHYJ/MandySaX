@@ -13,8 +13,10 @@ public final class Navigation {
      * @return 找到的距离最近的导航控制器
      */
     public static NavController findViewNavController(View view) {
+        if (!(view instanceof ViewGroup))
+            return findViewNavController(((View) view.getParent()));
         ViewGroup viewGroup = (ViewGroup) view;
-        while (viewGroup != null)
+        while (true)
             for (int i = 0; i < viewGroup.getChildCount(); i++) {
                 if (viewGroup.getChildAt(i) instanceof NavHostFragmentView) {
                     NavHostFragmentView navHostFragmentView = (NavHostFragmentView) viewGroup.getChildAt(i);
@@ -23,7 +25,6 @@ public final class Navigation {
                 }
                 viewGroup = (ViewGroup) viewGroup.getParent();
             }
-        throw new NullPointerException("The RootView of this view has no navigation");
     }
 
 }

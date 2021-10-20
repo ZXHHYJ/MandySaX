@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:orientation="vertical"
-        tools:ignore="UseCompoundDrawables">
+        tools:ignore="UseCompoundDrawables,UselessParent">
 
         <androidx.cardview.widget.CardView
             style="@style/imageCardView"
@@ -20,6 +20,7 @@
                 android:id="@+id/playlist_cover"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:foreground="?android:attr/selectableItemBackground"
                 tools:ignore="ContentDescription" />
 
         </androidx.cardview.widget.CardView>
@@ -36,6 +37,6 @@
             tools:ignore="SmallSp" />
 
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</FrameLayout>
 
 
