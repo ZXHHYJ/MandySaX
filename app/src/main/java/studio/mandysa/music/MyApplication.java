@@ -7,10 +7,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
+import mandysax.media.DefaultPlayerManager;
+
 public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        DefaultPlayerManager.init(this);
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 /*.showStubImage(R.drawable.ic_stub) // 设置图片下载期间显示的图片
                 .showImageOnLoading(R.drawable.ic_empty)    //设置下载过程中图片显示

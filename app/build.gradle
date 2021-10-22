@@ -31,8 +31,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.gitee.liuxiaoliu66:mandysax-media-player:0.9.8'
     implementation 'com.gitee.liuxiaoliu66:anna:2.1.0'
+    implementation 'com.gitee.liuxiaoliu66:bottom-navigation-bar:1.0.0'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     implementation 'com.github.hannesa2:AndroidSlidingUpPanel:4.2.2' // Android X
     implementation 'com.yanzhenjie:sofia:1.0.5'
@@ -40,6 +40,6 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation project(':mandysax')
     implementation project(':JiuWo')
-    implementation project(':BottomNavigationBar')
+    implementation project(':media')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

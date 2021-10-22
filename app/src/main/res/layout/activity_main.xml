@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,18 +22,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <mandysax.fragment.FragmentView
+            <fragment
                 android:id="@+id/controller_fragment"
                 android:name="studio.mandysa.music.ui.controller.ControllerFragment"
                 android:layout_width="match_parent"
-                android:layout_height="0dp" />
+                android:layout_height="0dp"
+                tools:ignore="Instantiatable" />
 
-            <mandysax.fragment.FragmentView
+            <fragment
                 android:id="@+id/play_fragment"
                 android:name="studio.mandysa.music.ui.play.PlayFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0" />
+                android:alpha="0"
+                tools:ignore="Instantiatable" />
 
         </FrameLayout>
 
@@ -42,13 +45,13 @@
         android:id="@+id/bottomNavLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:background="@color/white">
 
         <studio.mandysa.bottomnavigationbar.BottomNavigationBar
             android:id="@+id/bottomNavigationBar"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/white" />
+            android:layout_height="56dp" />
 
         <View
             android:layout_width="match_parent"

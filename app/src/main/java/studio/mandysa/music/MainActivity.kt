@@ -2,6 +2,7 @@ package studio.mandysa.music
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
@@ -22,10 +23,16 @@ class MainActivity : BaseActivity() {
 
     private val mEvent: ShareViewModel by viewModels()
 
+    private var controllerFragment: ViewGroup? = null
+
+    private var playFragment: ViewGroup? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Sofia.with(this).invasionStatusBar().invasionNavigationBar().statusBarDarkFont()
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        controllerFragment = findViewById(R.id.controller_fragment)
+        playFragment = findViewById(R.id.play_fragment)
         mBinding.apply {
             mainSlidingView.shadowHeight = 0
             mainFragmentPage.setAdapter(object : FragmentPage.Adapter {
@@ -55,7 +62,7 @@ class MainActivity : BaseActivity() {
                     bottomNavigationBar.post {
                         mainSlidingView.panelHeight =
                             bottomNavigationBar.height
-                        controllerFragment.layoutParams = FrameLayout.LayoutParams(
+                        controllerFragment!!.layoutParams = FrameLayout.LayoutParams(
                             FrameLayout.LayoutParams.MATCH_PARENT,
                             bottomNavigationBar.height
                         )
@@ -65,7 +72,7 @@ class MainActivity : BaseActivity() {
                     0,
                     insets.systemWindowInsetTop,
                     0,
-                    insets.systemWindowInsetBottom
+                    0
                 )
                 bottomNavLayout.setPadding(
                     insets.systemWindowInsetLeft,
@@ -73,21 +80,20 @@ class MainActivity : BaseActivity() {
                     insets.systemWindowInsetRight,
                     insets.systemWindowInsetBottom
                 )
-                //initPmi()
+                initPmi()
                 insets
             }
         }
     }
 
-    /*private fun initPmi() {
+    private fun initPmi() {
         val instance = DefaultPlayerManager.getInstance().changeMusicLiveData()
-        instance.observe(this) {
-            instance.removeObservers(this)
+        instance.lazy(this) {
             mBinding.run {
-                bottomNavLayout.post {
+                bottomNavigationBar.post {
                     mainSlidingView.run {
                         panelHeight =
-                            mBinding.bottomNavLayout.height * 2 - mBinding.bottomNavLayout.paddingBottom
+                            mBinding.bottomNavigationBar.height * 2 - mBinding.bottomNavigationBar.paddingBottom
                         shadowHeight =
                             resources.getDimensionPixelSize(R.dimen.umano_shadow_height)
                         postDelayed({
@@ -96,11 +102,12 @@ class MainActivity : BaseActivity() {
                                 val y: Float = mBinding.bottomNavLayout.y
                                 override fun onPanelSlide(panel: View, slideOffset: Float) {
                                     mBinding.run {
-                                        val by: Float = y + bottomNavLayout.height * slideOffset * 8
+                                        val by: Float =
+                                            y + bottomNavLayout.height * slideOffset * 8
                                         bottomNavLayout.y = by
                                         val alpha = slideOffset * 12
-                                        controllerFragment.alpha = 1 - alpha
-                                        playFragment.alpha = alpha
+                                        controllerFragment!!.alpha = 1 - alpha
+                                        playFragment!!.alpha = alpha
                                     }
                                 }
 
@@ -116,6 +123,6 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-    }*/
+    }
 
 }

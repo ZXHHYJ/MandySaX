@@ -9,6 +9,8 @@ class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
 
     private var onBind: (BindingViewHolder.() -> Unit)? = null
 
+    var modelPosition = -1
+
     var mModels: MutableList<Any?>? = null
 
     var mModel: Any? = null
@@ -35,6 +37,7 @@ class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
 
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
         mModel = mModels?.get(position)
+        modelPosition = position
         onBind?.invoke(holder)
     }
 

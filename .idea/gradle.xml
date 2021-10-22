@@ -11,10 +11,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/BottomNavigationBar" />
             <option value="$PROJECT_DIR$/JiuWo" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/mandysax" />
+            <option value="$PROJECT_DIR$/media" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
