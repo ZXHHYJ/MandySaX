@@ -2,6 +2,8 @@ package studio.mandysa.music;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.soloader.SoLoader;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -13,6 +15,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        SoLoader.init(this, false);
+        Fresco.initialize(this);
         DefaultPlayerManager.init(this);
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 /*.showStubImage(R.drawable.ic_stub) // 设置图片下载期间显示的图片

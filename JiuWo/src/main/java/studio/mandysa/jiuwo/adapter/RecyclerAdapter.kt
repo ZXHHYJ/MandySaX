@@ -1,6 +1,7 @@
 package studio.mandysa.jiuwo.adapter
 
 import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
 
     private var onBind: (BindingViewHolder.() -> Unit)? = null
+
+    private var onCreate: (ViewCreate.() -> Unit)? = null
 
     var modelPosition = -1
 
@@ -17,6 +20,10 @@ class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
 
     fun onBind(block: BindingViewHolder.() -> Unit) {
         onBind = block
+    }
+
+    fun onCreate(block: ViewCreate.() -> Unit) {
+        onCreate = block
     }
 
     val mType = HashMap<Class<*>, Int>()
@@ -30,9 +37,13 @@ class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
     inline fun <reified M> getModelOrNull(): M? = mModel as? M
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
-        return BindingViewHolder(
-            parent, mType[mModels!![viewType]!!::class.java]!!
-        )
+        val type = mType[mModels!![viewType]!!::class.java]!!
+        val viewCreate = ViewCreate(type)
+        onCreate?.invoke(viewCreate)
+        if (viewCreate.view == null) {
+            viewCreate.view = LayoutInflater.from(parent.context).inflate(type, parent, false)
+        }
+        return BindingViewHolder(viewCreate)
     }
 
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
