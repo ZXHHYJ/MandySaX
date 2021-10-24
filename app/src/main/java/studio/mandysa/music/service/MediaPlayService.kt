@@ -5,20 +5,22 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
 import android.media.MediaMetadata
 import android.media.session.MediaSession
 import android.media.session.PlaybackState
 import android.os.IBinder
-import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.media.DefaultPlayerManager
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import java.io.InputStream
 
 
 class MediaPlayService : Service() {
 
     private val mInstance = DefaultPlayerManager.getInstance()
-
-    private var mImageLoader: ImageLoader? = null
 
     private inner class OnPlayStateReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -42,18 +44,24 @@ class MediaPlayService : Service() {
             mMediaNotification!!.setContentTitle(it.title)
             mMediaNotification!!.setContentText(it.artist[0].name)
 
-            if (mImageLoader == null) {
-                mImageLoader = ImageLoader.getInstance()
-            }
-            val bitmap = mImageLoader!!.loadImageSync(it.coverUrl)
-            mMediaNotification!!.run {
-                setLargeIcon(
-                    Icon.createWithBitmap(
-                        bitmap
+            val okHttpClient = OkHttpClient()
+            val request = Request.Builder()
+                .url(it.coverUrl)
+                .build()
+
+            okHttpClient.newCall(request).execute().body?.apply {
+                val inputStream: InputStream = this.byteStream() //得到图片的流
+                val bitmap: Bitmap = BitmapFactory.decodeStream(inputStream)
+                mMediaNotification!!.run {
+                    setLargeIcon(
+                        Icon.createWithBitmap(
+                            bitmap
+                        )
                     )
-                )
-                build()
+                    build()
+                }
             }
+
         }
         mInstance.pauseLiveData().observeForever {
             upPlaybackState()

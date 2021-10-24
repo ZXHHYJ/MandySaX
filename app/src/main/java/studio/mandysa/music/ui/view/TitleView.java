@@ -25,6 +25,7 @@ public final class TitleView extends FrameLayout {
 
     public void setAvatarUrl(String url) {
         //mBinding.avatar.setImageURI(url);
+
     }
 
 }

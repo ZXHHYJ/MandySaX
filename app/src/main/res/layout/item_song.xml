@@ -16,11 +16,10 @@
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
             android:layout_marginVertical="@dimen/item_margin">
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/song_cover"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@null" />
+                android:layout_height="match_parent" />
 
         </androidx.cardview.widget.CardView>
 
