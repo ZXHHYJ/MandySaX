@@ -10,6 +10,7 @@ import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
 import mandysax.media.model.DefaultMusic
 import mandysax.navigation.Navigation
+import studio.mandysa.jiuwo.utils.BindingViewHolderUtils.modelPosition
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModel
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.models

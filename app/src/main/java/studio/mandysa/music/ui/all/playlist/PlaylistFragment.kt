@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModel
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
@@ -22,7 +21,6 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
 
     private val mBinding: FragmentPlaylistBinding by bindView()
 
-    private var mImageLoader: ImageLoader = ImageLoader.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +40,7 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
                     ItemSongBinding.bind(itemView).apply {
                         songName.text = model.title
                         songSingerName.text = model.artist[0].name
-                        mImageLoader.displayImage(model.coverUrl, songCover)
+                        songCover.setImageURI(model.coverUrl)
                     }
                 }
             }
@@ -71,8 +69,4 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
             })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mImageLoader.clearMemoryCache()
-    }
 }

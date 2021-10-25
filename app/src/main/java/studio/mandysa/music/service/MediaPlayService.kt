@@ -13,8 +13,8 @@ import android.media.session.MediaSession
 import android.media.session.PlaybackState
 import android.os.IBinder
 import mandysax.media.DefaultPlayerManager
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import okhttp3.*
+import java.io.IOException
 import java.io.InputStream
 
 
@@ -44,24 +44,30 @@ class MediaPlayService : Service() {
             mMediaNotification!!.setContentTitle(it.title)
             mMediaNotification!!.setContentText(it.artist[0].name)
 
-            val okHttpClient = OkHttpClient()
             val request = Request.Builder()
                 .url(it.coverUrl)
                 .build()
-
-            okHttpClient.newCall(request).execute().body?.apply {
-                val inputStream: InputStream = this.byteStream() //得到图片的流
-                val bitmap: Bitmap = BitmapFactory.decodeStream(inputStream)
-                mMediaNotification!!.run {
-                    setLargeIcon(
-                        Icon.createWithBitmap(
-                            bitmap
-                        )
-                    )
-                    build()
+            OkHttpClient().newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    call.cancel()
                 }
-            }
 
+                override fun onResponse(call: Call, response: Response) {
+                    response.body?.apply {
+                        val inputStream: InputStream = this.byteStream() //得到图片的流
+                        val bitmap: Bitmap = BitmapFactory.decodeStream(inputStream)
+                        mMediaNotification!!.run {
+                            setLargeIcon(
+                                Icon.createWithBitmap(
+                                    bitmap
+                                )
+                            )
+                            build()
+                        }
+                    }
+                }
+
+            })
         }
         mInstance.pauseLiveData().observeForever {
             upPlaybackState()
