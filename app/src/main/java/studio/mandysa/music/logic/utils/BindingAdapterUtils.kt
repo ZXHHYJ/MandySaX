@@ -5,5 +5,5 @@ import java.util.*
 
 object BindingAdapterUtils {
     fun <T> RecyclerAdapter.getModels() =
-        mModels as ArrayList<T>
+        models as ArrayList<T>
 }

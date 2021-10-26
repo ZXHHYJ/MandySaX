@@ -6,13 +6,25 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
+class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>() {
 
     private var onBind: (BindingViewHolder.() -> Unit)? = null
 
     private var onCreate: (ViewCreate.() -> Unit)? = null
 
-    var mModels: MutableList<Any?>? = null
+    var headers: List<Any?>? = null
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    var models: List<Any?>? = null
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     var mModel: Any? = null
 
@@ -35,44 +47,64 @@ class RecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
     inline fun <reified M> getModelOrNull(): M? = mModel as? M
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
-        val type = mType[mModels!![viewType]!!::class.java]!!
-        val viewCreate = ViewCreate(type)
+        val viewCreate = ViewCreate(viewType)
         onCreate?.invoke(viewCreate)
         if (viewCreate.view == null) {
-            viewCreate.view = LayoutInflater.from(parent.context).inflate(type, parent, false)
+            viewCreate.view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
         }
         return BindingViewHolder(viewCreate)
     }
 
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
-        mModel = mModels?.get(position)
-        print(position)
+        mModel = getModel(position)
         onBind?.invoke(holder)
     }
 
     override fun getItemCount(): Int {
-        if (mModels == null) return 0
-        return mModels!!.size
+        var i = models?.size
+        if (i == null) i = 0;
+        var e = headers?.size
+        if (e == null) e = 0;
+        return i + e
     }
 
     override fun getItemViewType(position: Int): Int {
-        return position
+        return mType[getModel(position)!!::class.java]!!
     }
 
     fun addModels(models: List<Any>) {
-        mModels = if (mModels == null) {
-            models.toMutableList()
-        } else {
-            val data = mModels
-            data!!.addAll(models)
-            data
-        }
+        this.models =
+            if (this.models == null) models else this.models!!.toMutableList().also {
+                it.addAll(models)
+            }
         notifyItemInserted(models.size)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun clearModels() {
-        mModels?.clear()
+    fun addHeader(model: Any) {
+        headers = if (headers == null)
+            listOf(model)
+        else headers!!.toMutableList().also {
+            it.add(model)
+        }
         notifyDataSetChanged()
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearModels() {
+        models = ArrayList()
+        headers = ArrayList()
+        notifyDataSetChanged()
+    }
+
+    private fun getModel(position: Int): Any? {
+        val headers = if (headers != null) this.headers!!.size else 0
+        return if (position >= headers) models!![position] else this.headers!![position]
+    }
+
+    inner class BindingViewHolder(viewCreate: ViewCreate) :
+        RecyclerView.ViewHolder(viewCreate.view) {
+        val modelPosition get() = layoutPosition - if (headers != null) headers!!.size else 0
+    }
+
 }

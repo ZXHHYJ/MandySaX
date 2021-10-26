@@ -1,6 +1,5 @@
 package studio.mandysa.jiuwo.utils
 
-import android.annotation.SuppressLint
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -33,17 +32,10 @@ object RecyclerViewUtils {
     }
 
     fun RecyclerView.addModel(list: List<Any>) {
-        val adapter = adapter as RecyclerAdapter
-        adapter.addModels(list)
+        recyclerAdapter.addModels(list)
     }
 
-    var RecyclerView.models
-        get() = (adapter as RecyclerAdapter).mModels as List<Any?>
-        @SuppressLint("NotifyDataSetChanged")
-        set(value) {
-            val adapter = adapter as RecyclerAdapter
-            adapter.mModels = value as MutableList<Any?>
-            adapter.notifyDataSetChanged()
-        }
+    val RecyclerView.recyclerAdapter
+        get() = (adapter as RecyclerAdapter)
 
 }

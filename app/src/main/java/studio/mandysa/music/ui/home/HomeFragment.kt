@@ -10,10 +10,9 @@ import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
 import mandysax.media.model.DefaultMusic
 import mandysax.navigation.Navigation
-import studio.mandysa.jiuwo.utils.BindingViewHolderUtils.modelPosition
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModel
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.models
+import studio.mandysa.jiuwo.utils.RecyclerViewUtils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.staggered
 import studio.mandysa.music.R
@@ -67,7 +66,7 @@ class HomeFragment : BaseFragment() {
                                     }
                                 }
                             }
-                            models = getModel<PlaylistModel>().playlist!!
+                            recyclerAdapter.models = getModel<PlaylistModel>().playlist!!
                         }
                     }
                     R.layout.item_song -> {
