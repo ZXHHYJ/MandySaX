@@ -16,6 +16,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.cardview.widget.CardView
+            style="@style/imageCardView"
+            android:layout_width="110dp"
+            android:layout_height="110dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/playlist_info_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
 </LinearLayout>
