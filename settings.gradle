@@ -10,3 +10,4 @@ rootProject.name = "MandySa_Music"
 include ':app', 'mandysax'
 include ':JiuWo'
 include ':media'
+include ':AndroidSlidingUpPanel'

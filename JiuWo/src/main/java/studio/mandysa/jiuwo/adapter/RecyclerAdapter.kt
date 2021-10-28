@@ -69,7 +69,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return mType[getModel(position)!!::class.java]!!
+        return mType[getModel(position)::class.java]!!
     }
 
     fun addModels(models: List<Any>) {
@@ -97,9 +97,10 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
         notifyDataSetChanged()
     }
 
-    private fun getModel(position: Int): Any? {
-        val headers = if (headers != null) this.headers!!.size else 0
-        return if (position >= headers) models!![position] else this.headers!![position]
+    private fun getModel(position: Int): Any {
+        var headerSize = headers?.size
+        if (headerSize == null) headerSize = 0
+        return if (position >= headerSize) models!![position-headerSize]!! else headers!![position]!!
     }
 
     inner class BindingViewHolder(viewCreate: ViewCreate) :

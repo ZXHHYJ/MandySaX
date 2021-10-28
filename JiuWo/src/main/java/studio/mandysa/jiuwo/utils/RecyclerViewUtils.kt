@@ -31,7 +31,11 @@ object RecyclerViewUtils {
         return adapter
     }
 
-    fun RecyclerView.addModel(list: List<Any>) {
+    fun RecyclerView.addHeader(model: Any) {
+        recyclerAdapter.addHeader(model)
+    }
+
+    fun RecyclerView.addModels(list: List<Any>) {
         recyclerAdapter.addModels(list)
     }
 

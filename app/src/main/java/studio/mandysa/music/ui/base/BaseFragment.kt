@@ -33,4 +33,5 @@ open class BaseFragment : Fragment() {
             return _binding!!
         }
     }
+
 }

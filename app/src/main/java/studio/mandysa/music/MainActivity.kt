@@ -90,7 +90,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initPmi() {
-        val instance = DefaultPlayerManager.getInstance().changeMusicLiveData()
+        val instance = DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
         instance.lazy(this) {
             mBinding.run {
                 bottomNavigationBar.post {

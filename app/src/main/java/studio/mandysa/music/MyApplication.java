@@ -10,7 +10,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Fresco.initialize(this);
-        DefaultPlayerManager.init(this);
+        Fresco.initialize(this);//初始化图片加载库
+        DefaultPlayerManager.init(this);//初始化播放管理器
     }
 }

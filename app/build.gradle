@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "studio.mandysa.music"
-        minSdk 23
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -31,15 +31,18 @@ android {
 }
 
 dependencies {
+    // 图片加载库：https://github.com/facebook/fresco
     implementation 'com.facebook.fresco:fresco:2.6.0'
+    // 网络请求库：https://gitee.com/liuxiaoliu66/anna
     implementation 'com.gitee.liuxiaoliu66:anna:2.1.0'
+    // bottomNavigationBar：https://gitee.com/liuxiaoliu66/bottom-navigation-bar
     implementation 'com.gitee.liuxiaoliu66:bottom-navigation-bar:1.0.0'
-    implementation 'com.github.hannesa2:AndroidSlidingUpPanel:4.2.2' // Android X
+    // 沉浸状态栏与导航栏：https://github.com/yanzhenjie/Sofia
     implementation 'com.yanzhenjie:sofia:1.0.5'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation project(':mandysax')
     implementation project(':JiuWo')
     implementation project(':media')
+    implementation project(':AndroidSlidingUpPanel')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

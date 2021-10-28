@@ -20,7 +20,7 @@ import java.io.InputStream
 
 class MediaPlayService : Service() {
 
-    private val mInstance = DefaultPlayerManager.getInstance()
+    private val mInstance = DefaultPlayerManager.getInstance() as DefaultPlayerManager
 
     private inner class OnPlayStateReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -142,7 +142,6 @@ class MediaPlayService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(mReceiver)
-        mInstance.stop()
         session!!.isActive = false
         session = null
     }

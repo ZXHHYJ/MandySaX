@@ -1,5 +1,9 @@
 package mandysax.lifecycle;
 
+import androidx.annotation.NonNull;
+
+import org.jetbrains.annotations.Contract;
+
 /**
  * @author Administrator
  */
@@ -9,7 +13,9 @@ public final class ViewModelProviders {
      * @param owner Object that implements ViewModelStoreOwner
      * @return ViewModelLifecycle object
      */
-    public static ViewModelLifecycle of(ViewModelStoreOwner owner) {
+    @NonNull
+    @Contract("_ -> new")
+    public static ViewModelLifecycle of(@NonNull ViewModelStoreOwner owner) {
         return new ViewModelLifecycle(owner.getViewModelStore(), null);
     }
 
@@ -18,7 +24,9 @@ public final class ViewModelProviders {
      * @param factory ViewModelProviders.Factory object
      * @return ViewModelLifecycle object
      */
-    public static ViewModelLifecycle of(ViewModelStoreOwner owner, Factory factory) {
+    @NonNull
+    @Contract("_, _ -> new")
+    public static ViewModelLifecycle of(@NonNull ViewModelStoreOwner owner, Factory factory) {
         return new ViewModelLifecycle(owner.getViewModelStore(), factory);
     }
 
@@ -27,6 +35,8 @@ public final class ViewModelProviders {
      * @param factory        ViewModelProviders.Factory object
      * @return ViewModelLifecycle object
      */
+    @NonNull
+    @Contract(value = "_, _ -> new", pure = true)
     public static ViewModelLifecycle of(ViewModelStore viewModelStore, Factory factory) {
         return new ViewModelLifecycle(viewModelStore, factory);
     }

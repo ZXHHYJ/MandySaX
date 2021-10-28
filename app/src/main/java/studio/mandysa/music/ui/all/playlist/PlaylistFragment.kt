@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import mandysax.anna2.callback.Callback
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModel
+import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModels
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
 import studio.mandysa.music.R
@@ -54,7 +54,7 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
                         .getMusicInfo(t!!.songList)
                         .set(object : Callback<List<MusicModel>> {
                             override fun onResponse(t: List<MusicModel>?) {
-                                mBinding.playlistList.addModel(t!!.toMutableList())
+                                mBinding.playlistList.addModels(t!!.toMutableList())
                             }
 
                             override fun onFailure(code: Int) {

@@ -173,8 +173,8 @@ class DefaultPlayerManager(
         private var instance: DefaultPlayerManager? = null
 
         @JvmStatic
-        fun getInstance(): DefaultPlayerManager {
-            return instance!!
+        fun getInstance(): DefaultPlayerManager? {
+            return instance
         }
 
         @JvmStatic

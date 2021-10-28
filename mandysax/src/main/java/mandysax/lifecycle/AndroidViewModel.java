@@ -2,7 +2,9 @@ package mandysax.lifecycle;
 
 import android.app.Application;
 
-public class AndroidViewModel extends ViewModel {
+import androidx.annotation.NonNull;
+
+public final class AndroidViewModel extends ViewModel {
 
     private final Application mApplication;
 
@@ -10,8 +12,8 @@ public class AndroidViewModel extends ViewModel {
         mApplication = application;
     }
 
-    public <T extends Application> T getApplication() {
-        return (T) mApplication;
+    public Application getApplication() {
+        return mApplication;
     }
 
     /**
@@ -24,8 +26,9 @@ public class AndroidViewModel extends ViewModel {
             mApplication = application;
         }
 
+        @NonNull
         @Override
-        public <T extends ViewModel> T create(Class<T> modelClass) {
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             return (T) new AndroidViewModel(mApplication);
         }
     }

@@ -5,4 +5,6 @@
 
     <string name="recommended_playlist">推荐歌单</string>
     <string name="recommended_song">推荐歌曲</string>
+
+    <string name="playlist">歌单</string>
 </resources>

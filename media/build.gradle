@@ -20,5 +20,6 @@ android {
 }
 
 dependencies {
-    api 'com.gitee.liuxiaoliu66:MandySaX:2.1.4'
+    //implementation 'com.gitee.liuxiaoliu66:MandySaX:2.1.4'
+    implementation project(':mandysax')
 }
