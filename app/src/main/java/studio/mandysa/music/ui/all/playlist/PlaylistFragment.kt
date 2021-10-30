@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import mandysax.anna2.callback.Callback
+import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addHeader
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModels
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlaylistBinding
+import studio.mandysa.music.databinding.ItemPlaylistInfoHeadBinding
 import studio.mandysa.music.databinding.ItemSongBinding
 import studio.mandysa.music.logic.model.MusicModel
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
@@ -34,13 +36,26 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         mBinding.apply {
             playlistList.linear().setup {
+                addType<PlaylistInfoModel>(R.layout.item_playlist_info_head)
                 addType<MusicModel>(R.layout.item_song)
                 onBind {
-                    val model = getModel<MusicModel>()
-                    ItemSongBinding.bind(itemView).apply {
-                        songName.text = model.title
-                        songSingerName.text = model.artist[0].name
-                        songCover.setImageURI(model.coverUrl)
+                    when (itemViewType) {
+                        R.layout.item_playlist_info_head -> {
+                            val model = getModel<PlaylistInfoModel>()
+                            ItemPlaylistInfoHeadBinding.bind(itemView).apply {
+                                cover.setImageURI(model.coverImgUrl)
+                                title.text = model.name
+                                todo.text = model.description
+                            }
+                        }
+                        R.layout.item_song -> {
+                            val model = getModel<MusicModel>()
+                            ItemSongBinding.bind(itemView).apply {
+                                songName.text = model.title
+                                songSingerName.text = model.artist[0].name
+                                songCover.setImageURI(model.coverUrl)
+                            }
+                        }
                     }
                 }
             }
@@ -49,9 +64,9 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
             .getSongListInfo(id)
             .set(object : Callback<PlaylistInfoModel> {
                 override fun onResponse(t: PlaylistInfoModel?) {
-
+                    mBinding.playlistList.addHeader(t!!)
                     NeteaseCloudMusicApi::class.java.create()
-                        .getMusicInfo(t!!.songList)
+                        .getMusicInfo(t.songList)
                         .set(object : Callback<List<MusicModel>> {
                             override fun onResponse(t: List<MusicModel>?) {
                                 mBinding.playlistList.addModels(t!!.toMutableList())

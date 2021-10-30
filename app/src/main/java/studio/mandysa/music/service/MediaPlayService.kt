@@ -20,6 +20,15 @@ import java.io.InputStream
 
 class MediaPlayService : Service() {
 
+    companion object {
+        @JvmStatic
+        var instance: MediaPlayService? = null
+    }
+
+    init {
+        instance = this
+    }
+
     private val mInstance = DefaultPlayerManager.getInstance() as DefaultPlayerManager
 
     private inner class OnPlayStateReceiver : BroadcastReceiver() {
@@ -36,11 +45,9 @@ class MediaPlayService : Service() {
         }
     }
 
-    init {
+
+    private fun init() {
         mInstance.changeMusicLiveData().observeForever {
-            if (mMediaNotification == null) {
-                createMediaNotification()
-            }
             mMediaNotification!!.setContentTitle(it.title)
             mMediaNotification!!.setContentText(it.artist[0].name)
 
@@ -112,15 +119,6 @@ class MediaPlayService : Service() {
 
     fun getSessionToken(): MediaSession.Token = session!!.sessionToken
 
-    //是否正在播放
-    private fun createMediaNotification() {
-        if (mMediaNotification != null) return
-        registerBroadcast()
-        mMediaNotification = PlayNotification(this).also {
-            it.build()
-        }
-    }
-
     private fun registerBroadcast() {
         mReceiver = OnPlayStateReceiver()
         registerReceiver(mReceiver, IntentFilter(Intent.ACTION_MEDIA_BUTTON))
@@ -137,6 +135,11 @@ class MediaPlayService : Service() {
                 }
             })
         }
+        registerBroadcast()
+        mMediaNotification = PlayNotification(this).also {
+            it.build()
+        }
+        init()
     }
 
     override fun onDestroy() {
@@ -144,6 +147,7 @@ class MediaPlayService : Service() {
         unregisterReceiver(mReceiver)
         session!!.isActive = false
         session = null
+        instance = null
     }
 
     override fun onBind(p0: Intent?): IBinder? = null

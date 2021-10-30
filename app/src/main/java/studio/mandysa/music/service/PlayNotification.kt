@@ -6,27 +6,23 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.media.session.PlaybackState
-import android.os.Build
 import studio.mandysa.music.R
 
 class PlayNotification(private val serviceMedia: MediaPlayService) : Notification.Builder(
-    serviceMedia
+    serviceMedia, Media.CHANNEL_ID
 ) {
 
     init {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val manager =
-                serviceMedia.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            setChannelId(Media.CHANNEL_ID)
-            val notificationChannel = NotificationChannel(
-                Media.CHANNEL_ID,
-                Media.CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_LOW
-            )
-            notificationChannel.description = Media.CHANNEL_DESCRIPTION
-            notificationChannel.enableVibration(false)
-            manager.createNotificationChannel(notificationChannel)
-        }
+        val manager =
+            serviceMedia.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationChannel = NotificationChannel(
+            Media.CHANNEL_ID,
+            Media.CHANNEL_NAME,
+            NotificationManager.IMPORTANCE_LOW
+        )
+        notificationChannel.description = Media.CHANNEL_DESCRIPTION
+        notificationChannel.enableVibration(false)
+        manager.createNotificationChannel(notificationChannel)
     }
 
     private val mPlayAction: Notification.Action = PlayButtonReceiver.buildMediaButtonAction(
@@ -53,9 +49,7 @@ class PlayNotification(private val serviceMedia: MediaPlayService) : Notificatio
 
     fun setAction(isPlaying: Boolean): PlayNotification {
         mIsPlaying = isPlaying
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            setActions(mPrevAction, if (!isPlaying) mPlayAction else mPauseAction, mNextAction)
-        }
+        setActions(mPrevAction, if (!isPlaying) mPlayAction else mPauseAction, mNextAction)
         return this
     }
 

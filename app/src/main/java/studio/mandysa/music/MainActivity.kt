@@ -13,6 +13,7 @@ import mandysax.fragmentpage.widget.FragmentPage
 import mandysax.media.DefaultPlayerManager
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.music.databinding.ActivityMainBinding
+import studio.mandysa.music.service.MediaGuardService
 import studio.mandysa.music.service.MediaPlayService
 import studio.mandysa.music.ui.base.BaseActivity
 import studio.mandysa.music.ui.event.ShareViewModel
@@ -31,7 +32,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Sofia.with(this).invasionStatusBar().invasionNavigationBar().statusBarDarkFont()
-        startService(Intent(this, MediaPlayService::class.java))
+        startService(Intent(this, MediaGuardService::class.java))
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
         controllerFragment = findViewById(R.id.controller_fragment)
@@ -96,7 +97,7 @@ class MainActivity : BaseActivity() {
                 bottomNavigationBar.post {
                     mainSlidingView.run {
                         panelHeight =
-                            mBinding.bottomNavigationBar.height * 2 - mBinding.bottomNavigationBar.paddingBottom
+                            mBinding.bottomNavigationBar.height * 2 + mBinding.bottomNavigationBar.paddingBottom
                         shadowHeight =
                             resources.getDimensionPixelSize(R.dimen.umano_shadow_height)
                         postDelayed({

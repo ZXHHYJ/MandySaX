@@ -60,7 +60,6 @@ class DefaultPlayerManager(
 
     private var mTimer: Timer? = null
 
-    //private final MutableLiveData<Integer> mCurrentPosition = new MutableLiveData<>();
     override fun changePlayListLiveData(): LiveData<List<DefaultMusic<DefaultArtist>>?> {
         return mPlayList
     }
