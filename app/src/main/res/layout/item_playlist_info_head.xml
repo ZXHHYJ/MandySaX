@@ -18,7 +18,7 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            style="@style/imageCardView"
+            style="@style/ImageCardViewStyle"
             android:layout_width="110dp"
             android:layout_height="110dp">
 

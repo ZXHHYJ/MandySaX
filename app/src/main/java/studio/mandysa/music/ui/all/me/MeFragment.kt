@@ -1,4 +1,4 @@
-package studio.mandysa.music.ui.me
+package studio.mandysa.music.ui.all.me
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        style="@style/AppSmallTitle"
+        style="@style/AppSmallTitleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
@@ -32,7 +32,7 @@
         android:background="?android:attr/dividerVertical" />
 
     <TextView
-        style="@style/AppSmallTitle"
+        style="@style/AppSmallTitleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"

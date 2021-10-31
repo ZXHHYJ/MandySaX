@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/viewCardView"
+    android:id="@+id/card_view"
+    style="@style/ViewCardViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,7 +11,7 @@
         android:gravity="center_vertical">
 
         <androidx.cardview.widget.CardView
-            style="@style/imageCardView"
+            style="@style/ImageCardViewStyle"
             android:layout_width="@dimen/size_album"
             android:layout_height="@dimen/size_album"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import mandysax.anna2.callback.Callback
+import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
 import mandysax.media.model.DefaultMusic
 import mandysax.navigation.Navigation
@@ -72,6 +73,7 @@ class HomeFragment : BaseFragment() {
                     }
                     R.layout.item_song -> {
                         val model = getModel<NewSongModel>()
+                        val modelPosition = this.modelPosition
                         ItemSongBinding.bind(itemView).apply {
                             songName.text = model.title
                             songSingerName.text = model.artist[0].name
@@ -85,6 +87,12 @@ class HomeFragment : BaseFragment() {
                                     play()
                                 }
                             }
+                            DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
+                                .observe(viewLifecycleOwner) {
+                                    if (it.equals(getModels<DefaultMusic<DefaultArtist>>().createAlbum()[modelPosition])) {
+                                        cardView.setCardBackgroundColor(context.getColor(R.color.blue))
+                                    } else cardView.setCardBackgroundColor(0)
+                                }
                         }
                     }
                 }

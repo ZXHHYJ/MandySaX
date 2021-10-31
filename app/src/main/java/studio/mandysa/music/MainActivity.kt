@@ -1,6 +1,5 @@
 package studio.mandysa.music
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +12,6 @@ import mandysax.fragmentpage.widget.FragmentPage
 import mandysax.media.DefaultPlayerManager
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.music.databinding.ActivityMainBinding
-import studio.mandysa.music.service.MediaGuardService
-import studio.mandysa.music.service.MediaPlayService
 import studio.mandysa.music.ui.base.BaseActivity
 import studio.mandysa.music.ui.event.ShareViewModel
 import studio.mandysa.music.ui.home.HomeFragment
@@ -32,7 +29,6 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Sofia.with(this).invasionStatusBar().invasionNavigationBar().statusBarDarkFont()
-        startService(Intent(this, MediaGuardService::class.java))
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
         controllerFragment = findViewById(R.id.controller_fragment)

@@ -24,15 +24,16 @@ class ControllerFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getInstance().changeMusicLiveData().observe(viewLifecycleOwner) {
-            mBinding.run {
+            mBinding.apply {
                 controllerTitle.text = it.title
+                controllerCover.setImageURI(it.coverUrl)
             }
         }
         getInstance().pauseLiveData().observe(viewLifecycleOwner) {
             mBinding.controllerPlayOrPause.setImageResource(if (it) R.drawable.ic_play else R.drawable.ic_pause)
         }
         mBinding.controllerPlayOrPause.setOnClickListener {
-            getInstance().run {
+            getInstance().apply {
                 if (pauseLiveData().value == true)
                     play()
                 else pause()

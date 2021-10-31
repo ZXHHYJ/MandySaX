@@ -1,16 +1,43 @@
-package studio.mandysa.music;
+package studio.mandysa.music
 
-import android.app.Application;
+import android.app.Application
+import android.content.Intent
+import com.facebook.drawee.backends.pipeline.Fresco
+import mandysax.media.DefaultPlayerManager
+import mandysax.media.DefaultPlayerManager.Companion.init
+import studio.mandysa.music.service.MediaPlayService
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-
-import mandysax.media.DefaultPlayerManager;
-
-public class MyApplication extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Fresco.initialize(this);//初始化图片加载库
-        DefaultPlayerManager.init(this);//初始化播放管理器
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        Fresco.initialize(this) //初始化图片加载库
+        init(this) //初始化播放管理器
+        DefaultPlayerManager.getInstance()!!.apply {
+            pauseLiveData().observeForever {
+                if (MediaPlayService.instance == null) {
+                    synchronized(MediaPlayService::class.java) {
+                        startService(
+                            Intent(
+                                this@MyApplication,
+                                MediaPlayService::class.java
+                            )
+                        )
+                    }
+                }
+            }
+            changeMusicLiveData()
+                .observeForever {
+                    if (MediaPlayService.instance == null) {
+                        synchronized(MediaPlayService::class.java) {
+                            startService(
+                                Intent(
+                                    this@MyApplication,
+                                    MediaPlayService::class.java
+                                )
+                            )
+                        }
+                    }
+                }
+        }
     }
 }

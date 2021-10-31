@@ -14,7 +14,7 @@ import android.media.session.PlaybackState
 import android.os.IBinder
 import mandysax.media.DefaultPlayerManager
 import okhttp3.*
-import java.io.IOException
+import okio.IOException
 import java.io.InputStream
 
 
@@ -45,7 +45,6 @@ class MediaPlayService : Service() {
         }
     }
 
-
     private fun init() {
         mInstance.changeMusicLiveData().observeForever {
             mMediaNotification!!.setContentTitle(it.title)
@@ -73,8 +72,8 @@ class MediaPlayService : Service() {
                         }
                     }
                 }
-
             })
+
         }
         mInstance.pauseLiveData().observeForever {
             upPlaybackState()

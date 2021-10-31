@@ -29,7 +29,6 @@
         </activity>
 
         <service android:name=".service.MediaPlayService" />
-        <service android:name=".service.MediaGuardService" />
     </application>
 
 </manifest>

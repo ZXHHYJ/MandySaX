@@ -12,7 +12,7 @@
         tools:ignore="UseCompoundDrawables,UselessParent">
 
         <androidx.cardview.widget.CardView
-            style="@style/imageCardView"
+            style="@style/ImageCardViewStyle"
             android:layout_width="match_parent"
             android:layout_height="110dp">
 
