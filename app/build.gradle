@@ -39,10 +39,12 @@ dependencies {
     implementation 'com.gitee.liuxiaoliu66:bottom-navigation-bar:1.0.0'
     // 沉浸状态栏与导航栏：https://github.com/yanzhenjie/Sofia
     implementation 'com.yanzhenjie:sofia:1.0.5'
+
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation project(':mandysax')
     implementation project(':JiuWo')
     implementation project(':media')
     implementation project(':AndroidSlidingUpPanel')
+    implementation project(':statelayout')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

@@ -21,6 +21,7 @@ import java.io.InputStream
 class MediaPlayService : Service() {
 
     companion object {
+        @Volatile
         @JvmStatic
         var instance: MediaPlayService? = null
     }

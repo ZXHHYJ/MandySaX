@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/mandysax" />
             <option value="$PROJECT_DIR$/media" />
+            <option value="$PROJECT_DIR$/statelayout" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

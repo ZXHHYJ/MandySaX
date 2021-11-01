@@ -47,6 +47,7 @@ class MainActivity : BaseActivity() {
                 { mainFragmentPage.position = it })
             bottomNavigationBar.addItem(R.drawable.ic_home, getString(R.string.title_home))
             bottomNavigationBar.addItem(R.drawable.ic_search, getString(R.string.title_search))
+            bottomNavigationBar.setTextColor(R.color.main)
             bottomNavigationBar.setOnItemViewSelectedListener {
                 when (it) {
                     0 -> {

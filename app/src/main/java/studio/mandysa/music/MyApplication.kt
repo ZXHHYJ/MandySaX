@@ -15,27 +15,23 @@ class MyApplication : Application() {
         DefaultPlayerManager.getInstance()!!.apply {
             pauseLiveData().observeForever {
                 if (MediaPlayService.instance == null) {
-                    synchronized(MediaPlayService::class.java) {
+                    startService(
+                        Intent(
+                            this@MyApplication,
+                            MediaPlayService::class.java
+                        )
+                    )
+                }
+            }
+            changeMusicLiveData()
+                .observeForever {
+                    if (MediaPlayService.instance == null) {
                         startService(
                             Intent(
                                 this@MyApplication,
                                 MediaPlayService::class.java
                             )
                         )
-                    }
-                }
-            }
-            changeMusicLiveData()
-                .observeForever {
-                    if (MediaPlayService.instance == null) {
-                        synchronized(MediaPlayService::class.java) {
-                            startService(
-                                Intent(
-                                    this@MyApplication,
-                                    MediaPlayService::class.java
-                                )
-                            )
-                        }
                     }
                 }
         }
