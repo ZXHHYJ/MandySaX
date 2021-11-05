@@ -20,13 +20,19 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
         var errorLayout: Int = -1
 
         @JvmStatic
-        private var empty: (View.() -> Unit)? = null
+        var contentLayout: Int = -1
 
         @JvmStatic
-        private var loading: (View.() -> Unit)? = null
+        var empty: (View.() -> Unit)? = null
 
         @JvmStatic
-        private var error: (View.() -> Unit)? = null
+        var loading: (View.() -> Unit)? = null
+
+        @JvmStatic
+        var error: (View.() -> Unit)? = null
+
+        @JvmStatic
+        var content: (View.() -> Unit)? = null
     }
 
     private var mEmpty: (View.() -> Unit)? = empty
@@ -35,11 +41,23 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
 
     private var mError: (View.() -> Unit)? = error
 
+    private var mContent: (View.() -> Unit)? = content
+
     private val mEmptyLayout: Int
 
     private val mLoadingLayout: Int
 
     private val mErrorLayout: Int
+
+    private val mContentLayout: Int
+
+    private var mEmptyView: View? = null
+
+    private var mLoadingView: View? = null
+
+    private var mErrorView: View? = null
+
+    private var mContentView: View? = null
 
     init {
         val typedArray: TypedArray =
@@ -48,6 +66,8 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
         mLoadingLayout =
             typedArray.getResourceId(R.styleable.StateLayout_loadingLayout, loadingLayout)
         mErrorLayout = typedArray.getResourceId(R.styleable.StateLayout_errorLayout, errorLayout)
+        mContentLayout =
+            typedArray.getResourceId(R.styleable.StateLayout_contentLayout, contentLayout)
         typedArray.recycle()
         val layoutInflater = LayoutInflater.from(context)
         addView(
@@ -59,6 +79,10 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
         )
         addView(
             layoutInflater.inflate(mErrorLayout, this, false).also { it.visibility = View.GONE }, 2
+        )
+        addView(
+            layoutInflater.inflate(mContentLayout, this, false).also { it.visibility = View.GONE },
+            3
         )
     }
 
@@ -75,25 +99,61 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     }
 
     fun showEmptyState() {
-        val view = showChildAt(0)
-        mEmpty?.invoke(view)
+        hideAllViews()
+        if (mEmptyView == null) {
+            addView(
+                LayoutInflater.from(context).inflate(mEmptyLayout, this, false)
+                    .also {
+                        mEmptyView = it
+                    }, 0
+            )
+        } else mEmptyView!!.visibility = View.VISIBLE
+        mEmpty?.invoke(mEmptyView!!)
     }
 
     fun showLoadingState() {
-        val view = showChildAt(1)
-        mLoading?.invoke(view)
+        hideAllViews()
+        if (mLoadingView == null) {
+            addView(
+                LayoutInflater.from(context).inflate(mLoadingLayout, this, false)
+                    .also {
+                        mLoadingView = it
+                    }, 0
+            )
+        } else mLoadingView!!.visibility = View.VISIBLE
+        mLoading?.invoke(mLoadingView!!)
     }
 
     fun showErrorState() {
-        val view = showChildAt(2)
-        mError?.invoke(view)
+        hideAllViews()
+        if (mErrorView == null) {
+            addView(
+                LayoutInflater.from(context).inflate(mErrorLayout, this, false)
+                    .also {
+                        mErrorView = it
+                    }, 0
+            )
+        } else mErrorView!!.visibility = View.VISIBLE
+        mError?.invoke(mErrorView!!)
     }
 
-    private fun showChildAt(index: Int): View {
-        for (index2 in listOf(0, 1, 2)) {
-            getChildAt(index).visibility = if (index2 != index) View.GONE else View.VISIBLE
+    fun showContentState() {
+        hideAllViews()
+        if (mContentView == null) {
+            addView(
+                LayoutInflater.from(context).inflate(mContentLayout, this, false)
+                    .also {
+                        mContentView = it
+                    }, 0
+            )
+        } else mContentView!!.visibility = View.VISIBLE
+        mContent?.invoke(mContentView!!)
+    }
+
+    private fun hideAllViews() {
+        for (index in 0..childCount) {
+            getChildAt(index).visibility = View.GONE
         }
-        return getChildAt(index)
     }
 
 }

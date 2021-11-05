@@ -6,10 +6,16 @@ import com.facebook.drawee.backends.pipeline.Fresco
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.DefaultPlayerManager.Companion.init
 import studio.mandysa.music.service.MediaPlayService
+import studio.mandysa.statelayout.StateLayout
 
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        StateLayout.apply {
+            loadingLayout = R.layout.layout_loading
+            emptyLayout = R.layout.layout_empty
+            errorLayout = R.layout.layout_error
+        }
         Fresco.initialize(this) //初始化图片加载库
         init(this) //初始化播放管理器
         DefaultPlayerManager.getInstance()!!.apply {
