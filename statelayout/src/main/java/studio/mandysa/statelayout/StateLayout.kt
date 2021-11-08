@@ -84,54 +84,67 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     }
 
     fun showEmptyState() {
-        hideAllViews()
-        if (mEmptyView == null) {
+        if (mEmptyView == null)
             addView(
                 LayoutInflater.from(context).inflate(mEmptyLayout, this, false)
                     .also {
                         mEmptyView = it
                     }
             )
-        } else mEmptyView!!.visibility = View.VISIBLE
-        mEmpty?.invoke(mEmptyView!!)
+        hideAllViews(mErrorView!!)?.apply {
+            visibility = View.VISIBLE
+            mEmpty?.invoke(this)
+        }
     }
 
     fun showLoadingState() {
-        hideAllViews()
-        if (mLoadingView == null) {
+        if (mLoadingView == null)
             addView(
                 LayoutInflater.from(context).inflate(mLoadingLayout, this, false)
                     .also {
                         mLoadingView = it
                     }
             )
-        } else mLoadingView!!.visibility = View.VISIBLE
-        mLoading?.invoke(mLoadingView!!)
+        hideAllViews(mLoadingView!!)?.apply {
+            visibility = View.VISIBLE
+            mLoading?.invoke(this)
+        }
     }
 
     fun showErrorState() {
-        hideAllViews()
-        if (mErrorView == null) {
+        if (mErrorView == null)
             addView(
                 LayoutInflater.from(context).inflate(mErrorLayout, this, false)
                     .also {
                         mErrorView = it
                     }
             )
-        } else mErrorView!!.visibility = View.VISIBLE
-        mError?.invoke(mErrorView!!)
+        hideAllViews(mErrorView!!)?.apply {
+            visibility = View.VISIBLE
+            mError?.invoke(this)
+        }
     }
 
     fun showContentState() {
-        hideAllViews()
-        mContentView?.visibility = View.VISIBLE
-        mContent?.invoke(mContentView!!)
+        hideAllViews(mContentView!!)?.apply {
+            visibility = View.VISIBLE
+            mContent?.invoke(this)
+        }
     }
 
-    private fun hideAllViews() {
+    private fun hideAllViews(view: View): View? {
+        var dout = false
         for (index in 0 until childCount) {
-            getChildAt(index).visibility = View.GONE
+            getChildAt(index).apply {
+                if (visibility == View.VISIBLE)
+                    if (equals(view)) {
+                        dout = true
+                        visibility = View.VISIBLE
+                    } else
+                        visibility = View.GONE
+            }
         }
+        return if (dout) null else view
     }
 
 }
