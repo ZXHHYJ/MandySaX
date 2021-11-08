@@ -44,80 +44,87 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBinding.homeList.linear().setup {
-            addType<PlaylistModel>(R.layout.item_playlist_head)
-            addType<NewSongModel>(R.layout.item_song)
-            onBind {
-                when (itemViewType) {
-                    R.layout.item_playlist_head -> {
-                        ItemPlaylistHeadBinding.bind(itemView).playlistList.apply {
-                            staggered(2, orientation = RecyclerView.HORIZONTAL).setup {
-                                addType<PlaylistModel.Playlist>(R.layout.item_playlist)
-                                onBind {
-                                    val model = getModel<PlaylistModel.Playlist>()
-                                    ItemPlaylistBinding.bind(itemView).apply {
-                                        playlistTitle.text = model.name
-                                        playlistCover.setImageURI(model.picUrl)
-                                        playlistCover.setOnClickListener {
-                                            Navigation.findViewNavController(it)
-                                                .navigate(
-                                                    R.style.test,
-                                                    PlaylistFragment(model.id!!)
-                                                )
+        mBinding.apply {
+            homeList.linear().setup {
+                addType<PlaylistModel>(R.layout.item_playlist_head)
+                addType<NewSongModel>(R.layout.item_song)
+                onBind {
+                    when (itemViewType) {
+                        R.layout.item_playlist_head -> {
+                            ItemPlaylistHeadBinding.bind(itemView).playlistList.apply {
+                                staggered(2, orientation = RecyclerView.HORIZONTAL).setup {
+                                    addType<PlaylistModel.Playlist>(R.layout.item_playlist)
+                                    onBind {
+                                        val model = getModel<PlaylistModel.Playlist>()
+                                        ItemPlaylistBinding.bind(itemView).apply {
+                                            playlistTitle.text = model.name
+                                            playlistCover.setImageURI(model.picUrl)
+                                            playlistCover.setOnClickListener {
+                                                Navigation.findViewNavController(it)
+                                                    .navigate(
+                                                        R.style.test,
+                                                        PlaylistFragment(model.id!!)
+                                                    )
+                                            }
                                         }
                                     }
                                 }
+                                recyclerAdapter.models = getModel<PlaylistModel>().playlist!!
                             }
-                            recyclerAdapter.models = getModel<PlaylistModel>().playlist!!
                         }
-                    }
-                    R.layout.item_song -> {
-                        val model = getModel<NewSongModel>()
-                        val modelPosition = this.modelPosition
-                        ItemSongBinding.bind(itemView).apply {
-                            songName.text = model.title
-                            songSingerName.text = model.artist[0].name
-                            songCover.setImageURI(model.coverUrl)
-                            itemView.setOnClickListener {
-                                getInstance().apply {
-                                    loadAlbum(
-                                        getModels<DefaultMusic<DefaultArtist>>().createAlbum(),
-                                        modelPosition
-                                    )
-                                    play()
+                        R.layout.item_song -> {
+                            val model = getModel<NewSongModel>()
+                            val modelPosition = this.modelPosition
+                            ItemSongBinding.bind(itemView).apply {
+                                songName.text = model.title
+                                songSingerName.text = model.artist[0].name
+                                songCover.setImageURI(model.coverUrl)
+                                itemView.setOnClickListener {
+                                    getInstance().apply {
+                                        loadAlbum(
+                                            getModels<DefaultMusic<DefaultArtist>>().createAlbum(),
+                                            modelPosition
+                                        )
+                                        play()
+                                    }
                                 }
+                                DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
+                                    .observe(viewLifecycleOwner) {
+                                        if (it.equals(getModels<DefaultMusic<DefaultArtist>>().createAlbum()[modelPosition])) {
+                                            cardView.setCardBackgroundColor(context.getColor(R.color.blue))
+                                        } else cardView.setCardBackgroundColor(0)
+                                    }
                             }
-                            DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
-                                .observe(viewLifecycleOwner) {
-                                    if (it.equals(getModels<DefaultMusic<DefaultArtist>>().createAlbum()[modelPosition])) {
-                                        cardView.setCardBackgroundColor(context.getColor(R.color.blue))
-                                    } else cardView.setCardBackgroundColor(0)
-                                }
                         }
                     }
                 }
             }
-        }
-        NeteaseCloudMusicApi::class.java.create().apply {
-            recommendedPlaylist.set(object : Callback<PlaylistModel> {
-                override fun onResponse(t: PlaylistModel?) {
-                    mBinding.homeList.addHeader(t!!)
+            statelayout.showLoading {
+                NeteaseCloudMusicApi::class.java.create().apply {
+                    recommendedPlaylist.set(object : Callback<PlaylistModel> {
+                        override fun onResponse(t: PlaylistModel?) {
+                            statelayout.showContentState()
+                            mBinding.homeList.addHeader(t!!)
+                        }
+
+                        override fun onFailure(code: Int) {
+                        }
+
+                    })
+                    recommendedSong.set(object : Callback<List<NewSongModel>> {
+                        override fun onResponse(t: List<NewSongModel>?) {
+                            statelayout.showContentState()
+                            mBinding.homeList.addModels(t!!)
+                        }
+
+                        override fun onFailure(code: Int) {
+
+                        }
+
+                    })
                 }
-
-                override fun onFailure(code: Int) {
-                }
-
-            })
-            recommendedSong.set(object : Callback<List<NewSongModel>> {
-                override fun onResponse(t: List<NewSongModel>?) {
-                    mBinding.homeList.addModels(t!!)
-                }
-
-                override fun onFailure(code: Int) {
-
-                }
-
-            })
+            }
+            statelayout.showLoadingState()
         }
     }
 
