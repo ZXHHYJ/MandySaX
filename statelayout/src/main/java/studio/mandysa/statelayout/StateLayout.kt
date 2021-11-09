@@ -28,13 +28,16 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
 
         @JvmStatic
         var error: (View.() -> Unit)? = null
+
+        @JvmStatic
+        var retryId = -1
     }
 
-    private var mEmpty: (View.() -> Unit)? = empty
+    private var mEmpty: (View.() -> Unit)? = null
 
-    private var mLoading: (View.() -> Unit)? = loading
+    private var mLoading: (View.() -> Unit)? = null
 
-    private var mError: (View.() -> Unit)? = error
+    private var mError: (View.() -> Unit)? = null
 
     private var mContent: (View.() -> Unit)? = null
 
@@ -52,9 +55,11 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
 
     private var mContentView: View? = null
 
+    private var mRetryId = retryId
+
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
         super.addView(child, index, params)
-        if (mContentView == null) mContentView = child!!
+        if (mContentView == null) mContentView = child.also { child?.visibility = View.GONE }!!
     }
 
     init {
@@ -67,18 +72,30 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
         typedArray.recycle()
     }
 
+    /**
+     * 设置显示内容视图执行事件
+     */
     fun showContent(block: View.() -> Unit) {
         mContent = block
     }
 
+    /**
+     * 设置显示空视图执行事件
+     */
     fun showEmpty(block: View.() -> Unit) {
         mEmpty = block
     }
 
+    /**
+     * 设置显示加载试图执行事件
+     */
     fun showLoading(block: View.() -> Unit) {
         mLoading = block
     }
 
+    /**
+     * 设置显示错误视图执行事件
+     */
     fun showError(block: View.() -> Unit) {
         mError = block
     }
@@ -89,10 +106,12 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
                 LayoutInflater.from(context).inflate(mEmptyLayout, this, false)
                     .also {
                         mEmptyView = it
+                        setRetryEvent(it)
                     }
             )
         hideAllViews(mErrorView!!)?.apply {
             visibility = View.VISIBLE
+            empty?.invoke(this)
             mEmpty?.invoke(this)
         }
     }
@@ -107,6 +126,7 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
             )
         hideAllViews(mLoadingView!!)?.apply {
             visibility = View.VISIBLE
+            loading?.invoke(this)
             mLoading?.invoke(this)
         }
     }
@@ -117,10 +137,12 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
                 LayoutInflater.from(context).inflate(mErrorLayout, this, false)
                     .also {
                         mErrorView = it
+                        setRetryEvent(it)
                     }
             )
         hideAllViews(mErrorView!!)?.apply {
             visibility = View.VISIBLE
+            error?.invoke(this)
             mError?.invoke(this)
         }
     }
@@ -132,19 +154,24 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
         }
     }
 
+    private fun setRetryEvent(view: View) {
+        if (mRetryId != -1)
+            view.findViewById<View>(mRetryId).setOnClickListener {
+                showLoadingState()
+            }
+    }
+
     private fun hideAllViews(view: View): View? {
         var dout = false
         for (index in 0 until childCount) {
             getChildAt(index).apply {
-                if (visibility == View.VISIBLE)
-                    if (equals(view)) {
-                        dout = true
-                        visibility = View.VISIBLE
-                    } else
-                        visibility = View.GONE
+                if (this.equals(view)) {
+                    dout = true
+                } else
+                    visibility = View.GONE
             }
         }
-        return if (dout) null else view
+        return if (dout) view else null
     }
 
 }

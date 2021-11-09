@@ -20,17 +20,7 @@ class MyApplication : Application() {
         init(this) //初始化播放管理器
         DefaultPlayerManager.getInstance()!!.apply {
             pauseLiveData().observeForever {
-                if (MediaPlayService.instance == null) {
-                    startService(
-                        Intent(
-                            this@MyApplication,
-                            MediaPlayService::class.java
-                        )
-                    )
-                }
-            }
-            changeMusicLiveData()
-                .observeForever {
+                if (it == false)
                     if (MediaPlayService.instance == null) {
                         startService(
                             Intent(
@@ -39,6 +29,18 @@ class MyApplication : Application() {
                             )
                         )
                     }
+            }
+            changeMusicLiveData()
+                .observeForever {
+                    if (it != null)
+                        if (MediaPlayService.instance == null) {
+                            startService(
+                                Intent(
+                                    this@MyApplication,
+                                    MediaPlayService::class.java
+                                )
+                            )
+                        }
                 }
         }
     }
