@@ -108,6 +108,7 @@ class HomeFragment : BaseFragment() {
                         }
 
                         override fun onFailure(code: Int) {
+                            statelayout.showErrorState()
                         }
 
                     })
@@ -118,7 +119,7 @@ class HomeFragment : BaseFragment() {
                         }
 
                         override fun onFailure(code: Int) {
-
+                            statelayout.showErrorState()
                         }
 
                     })

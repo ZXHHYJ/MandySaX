@@ -19,29 +19,27 @@ class MyApplication : Application() {
         Fresco.initialize(this) //初始化图片加载库
         init(this) //初始化播放管理器
         DefaultPlayerManager.getInstance()!!.apply {
-            pauseLiveData().observeForever {
-                if (it == false)
-                    if (MediaPlayService.instance == null) {
-                        startService(
-                            Intent(
-                                this@MyApplication,
-                                MediaPlayService::class.java
-                            )
-                        )
-                    }
-            }
+            pauseLiveData()
+                .observeForever {
+                    if (it == false)
+                        startPlayerService()
+                }
             changeMusicLiveData()
                 .observeForever {
                     if (it != null)
-                        if (MediaPlayService.instance == null) {
-                            startService(
-                                Intent(
-                                    this@MyApplication,
-                                    MediaPlayService::class.java
-                                )
-                            )
-                        }
+                        startPlayerService()
                 }
+        }
+    }
+
+    private fun startPlayerService() {
+        if (MediaPlayService.instance == null) {
+            startService(
+                Intent(
+                    this@MyApplication,
+                    MediaPlayService::class.java
+                )
+            )
         }
     }
 }

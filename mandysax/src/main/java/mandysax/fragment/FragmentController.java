@@ -2,6 +2,8 @@ package mandysax.fragment;
 
 import androidx.annotation.NonNull;
 
+import org.jetbrains.annotations.Contract;
+
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -131,6 +133,8 @@ public final class FragmentController extends FragmentStateManager {
     }
 
 
+    @NonNull
+    @Contract(value = "_ -> new", pure = true)
     public final FragmentManager getFragmentManager(Fragment fragment) {
         return new FragmentManagerImpl(fragment);
     }
