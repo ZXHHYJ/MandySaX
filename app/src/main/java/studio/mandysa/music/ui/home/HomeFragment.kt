@@ -45,7 +45,7 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.apply {
-            homeList.linear().setup {
+            recycler.linear().setup {
                 addType<PlaylistModel>(R.layout.item_playlist_head)
                 addType<NewSongModel>(R.layout.item_song)
                 onBind {
@@ -104,7 +104,7 @@ class HomeFragment : BaseFragment() {
                     recommendedPlaylist.set(object : Callback<PlaylistModel> {
                         override fun onResponse(t: PlaylistModel?) {
                             statelayout.showContentState()
-                            mBinding.homeList.addHeader(t!!)
+                            mBinding.recycler.addHeader(t!!)
                         }
 
                         override fun onFailure(code: Int) {
@@ -115,7 +115,7 @@ class HomeFragment : BaseFragment() {
                     recommendedSong.set(object : Callback<List<NewSongModel>> {
                         override fun onResponse(t: List<NewSongModel>?) {
                             statelayout.showContentState()
-                            mBinding.homeList.addModels(t!!)
+                            mBinding.recycler.addModels(t!!)
                         }
 
                         override fun onFailure(code: Int) {

@@ -31,6 +31,8 @@ android {
 }
 
 dependencies {
+    // 映射存储库：https://github.com/Tencent/MMKV
+    implementation 'com.tencent:mmkv:1.2.11'
     // 图片加载库：https://github.com/facebook/fresco
     implementation 'com.facebook.fresco:fresco:2.6.0'
     // 网络请求库：https://gitee.com/liuxiaoliu66/anna

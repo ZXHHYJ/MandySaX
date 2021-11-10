@@ -3,6 +3,7 @@ package studio.mandysa.music
 import android.app.Application
 import android.content.Intent
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.tencent.mmkv.MMKV
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.DefaultPlayerManager.Companion.init
 import studio.mandysa.music.service.MediaPlayService
@@ -16,6 +17,7 @@ class MyApplication : Application() {
             emptyLayout = R.layout.layout_empty
             errorLayout = R.layout.layout_error
         }
+        MMKV.initialize(this)
         Fresco.initialize(this) //初始化图片加载库
         init(this) //初始化播放管理器
         DefaultPlayerManager.getInstance()!!.apply {

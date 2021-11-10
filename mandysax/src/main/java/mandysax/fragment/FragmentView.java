@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import mandysax.core.R;
 
 /**
- * @author Administrator
+ * @author liuxiaoliu66
  */
 public class FragmentView extends FrameLayout {
 
@@ -24,7 +24,7 @@ public class FragmentView extends FrameLayout {
         if (context instanceof FragmentActivity) {
             mActivity = (FragmentActivity) context;
         }
-        @SuppressLint({"Recycle", "CustomViewStyleable"}) TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Fragment);
+        @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Fragment);
         mName = typedArray.getString(R.styleable.Fragment_android_name);
         mTag = typedArray.getString(R.styleable.Fragment_android_tag);
         typedArray.recycle();

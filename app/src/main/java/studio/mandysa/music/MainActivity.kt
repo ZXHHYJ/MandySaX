@@ -15,6 +15,7 @@ import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.ui.base.BaseActivity
 import studio.mandysa.music.ui.event.ShareViewModel
 import studio.mandysa.music.ui.home.HomeFragment
+import studio.mandysa.music.ui.me.MeFragment
 import studio.mandysa.music.ui.search.SearchFragment
 
 class MainActivity : BaseActivity() {
@@ -36,27 +37,24 @@ class MainActivity : BaseActivity() {
         mBinding.apply {
             mainSlidingView.shadowHeight = 0
             mainFragmentPage.setAdapter(object : FragmentPage.Adapter {
-                override fun onCreateFragment(position: Int): Fragment? =
-                    when (position) {
-                        0 -> NavHostFragment.create(HomeFragment())
-                        1 -> NavHostFragment.create(SearchFragment())
-                        else -> null
-                    }
+                override fun onCreateFragment(position: Int): Fragment =
+                    NavHostFragment.create(
+                        when (position) {
+                            0 -> HomeFragment()
+                            1 -> SearchFragment()
+                            2 -> MeFragment()
+                            else -> null
+                        }
+                    )
             })
             mEvent.homePosLiveData.observe(this@MainActivity,
                 { mainFragmentPage.position = it })
             bottomNavigationBar.addItem(R.drawable.ic_home, getString(R.string.title_home))
             bottomNavigationBar.addItem(R.drawable.ic_search, getString(R.string.title_search))
+            bottomNavigationBar.addItem(R.drawable.ic_person, getString(R.string.me))
             bottomNavigationBar.setTextColor(R.color.main)
             bottomNavigationBar.setOnItemViewSelectedListener {
-                when (it) {
-                    0 -> {
-                        mEvent.homePosLiveData.value = 0
-                    }
-                    1 -> {
-                        mEvent.homePosLiveData.value = 1
-                    }
-                }
+                mEvent.homePosLiveData.value = it
             }
             ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
                 if (mainSlidingView.panelHeight == 0) {
