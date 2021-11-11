@@ -124,11 +124,10 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    /*override fun onDestroy() {
-        super.onDestroy()
-        if (!isChangingConfigurations) {
-            ImageLoader.getInstance().destroy()
-        }
-    }*/
+    override fun onBackPressed() {
+        if (mBinding.mainSlidingView.panelState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            mBinding.mainSlidingView.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+        } else super.onBackPressed()
+    }
 
 }

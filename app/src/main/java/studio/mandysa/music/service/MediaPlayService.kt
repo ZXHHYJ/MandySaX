@@ -6,16 +6,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
 import android.media.MediaMetadata
 import android.media.session.MediaSession
 import android.media.session.PlaybackState
 import android.os.IBinder
+import android.view.View
+import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.assist.FailReason
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener
 import mandysax.media.DefaultPlayerManager
-import okhttp3.*
-import okio.IOException
-import java.io.InputStream
 
 
 class MediaPlayService : Service() {
@@ -29,6 +29,8 @@ class MediaPlayService : Service() {
     init {
         instance = this
     }
+
+    private val mImageLoader = ImageLoader.getInstance()
 
     private val mInstance = DefaultPlayerManager.getInstance() as DefaultPlayerManager
 
@@ -51,30 +53,36 @@ class MediaPlayService : Service() {
             mMediaNotification!!.setContentTitle(it.title)
             mMediaNotification!!.setContentText(it.artist[0].name)
 
-            val request = Request.Builder()
-                .url(it.coverUrl)
-                .build()
-            OkHttpClient().newCall(request).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
-                    call.cancel()
+            mImageLoader.loadImage(it.coverUrl, object : ImageLoadingListener {
+                override fun onLoadingStarted(imageUri: String?, view: View?) {
                 }
 
-                override fun onResponse(call: Call, response: Response) {
-                    response.body?.apply {
-                        val inputStream: InputStream = this.byteStream() //得到图片的流
-                        val bitmap: Bitmap = BitmapFactory.decodeStream(inputStream)
-                        mMediaNotification!!.run {
-                            setLargeIcon(
-                                Icon.createWithBitmap(
-                                    bitmap
-                                )
+                override fun onLoadingFailed(
+                    imageUri: String?,
+                    view: View?,
+                    failReason: FailReason?
+                ) {
+                }
+
+                override fun onLoadingComplete(
+                    imageUri: String?,
+                    view: View?,
+                    loadedImage: Bitmap?
+                ) {
+                    mMediaNotification!!.run {
+                        setLargeIcon(
+                            Icon.createWithBitmap(
+                                loadedImage
                             )
-                            build()
-                        }
+                        )
+                        build()
                     }
                 }
-            })
 
+                override fun onLoadingCancelled(imageUri: String?, view: View?) {
+                }
+
+            })
         }
         mInstance.pauseLiveData().observeForever {
             upPlaybackState()
@@ -144,6 +152,7 @@ class MediaPlayService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+        mImageLoader.clearMemoryCache()
         unregisterReceiver(mReceiver)
         session!!.isActive = false
         session = null

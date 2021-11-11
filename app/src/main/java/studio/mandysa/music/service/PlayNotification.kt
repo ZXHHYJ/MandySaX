@@ -4,8 +4,11 @@ import android.app.Notification
 import android.app.Notification.MediaStyle
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.media.session.PlaybackState
+import studio.mandysa.music.MainActivity
 import studio.mandysa.music.R
 
 class PlayNotification(private val serviceMedia: MediaPlayService) : Notification.Builder(
@@ -65,6 +68,14 @@ class PlayNotification(private val serviceMedia: MediaPlayService) : Notificatio
     init {
         setShowWhen(false)
         setAction(false)
+        setContentIntent(
+            PendingIntent.getActivity(
+                serviceMedia,
+                0,
+                Intent(serviceMedia, MainActivity::class.java),
+                PendingIntent.FLAG_IMMUTABLE
+            )
+        )
         setDeleteIntent(PlayButtonReceiver.buildDeleteIntent(serviceMedia))
         style =
             MediaStyle().setShowActionsInCompactView(0, 1, 2)

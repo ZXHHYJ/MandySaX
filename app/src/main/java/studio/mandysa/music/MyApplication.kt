@@ -12,7 +12,6 @@ import mandysax.media.DefaultPlayerManager
 import mandysax.media.DefaultPlayerManager.Companion.init
 import studio.mandysa.music.service.MediaPlayService
 import studio.mandysa.statelayout.StateLayout
-import java.io.File
 
 
 class MyApplication : Application() {
@@ -25,14 +24,11 @@ class MyApplication : Application() {
         }
         MMKV.initialize(this)
 
-        val cacheDir = File(getExternalFilesDir(null)!!.path)
-
         val options = DisplayImageOptions.Builder()
             .cacheInMemory(true)
             .cacheOnDisk(true)
             .bitmapConfig(Bitmap.Config.RGB_565)
             .build()
-
 
         //这样自定义设置后就可以管理二级缓存和三级缓存了
         val configuration = ImageLoaderConfiguration.Builder(this)
@@ -69,4 +65,5 @@ class MyApplication : Application() {
             )
         }
     }
+
 }
