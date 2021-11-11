@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nostra13.universalimageloader.core.ImageLoader
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentControllerBinding
 import studio.mandysa.music.logic.utils.DefaultPlayManagerUtils.getInstance
@@ -12,6 +13,8 @@ import studio.mandysa.music.ui.base.BaseFragment
 class ControllerFragment : BaseFragment() {
 
     private val mBinding: FragmentControllerBinding by bindView()
+
+    private val mImageLoader = ImageLoader.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +29,7 @@ class ControllerFragment : BaseFragment() {
         getInstance().changeMusicLiveData().observe(viewLifecycleOwner) {
             mBinding.apply {
                 controllerTitle.text = it.title
-                controllerCover.setImageURI(it.coverUrl)
+                mImageLoader.displayImage(it.coverUrl, controllerCover)
             }
         }
         getInstance().pauseLiveData().observe(viewLifecycleOwner) {
@@ -42,6 +45,11 @@ class ControllerFragment : BaseFragment() {
         mBinding.controllerNextSong.setOnClickListener {
             getInstance().skipToNext()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mImageLoader.clearMemoryCache()
     }
 
 }

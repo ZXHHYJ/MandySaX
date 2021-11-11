@@ -12,10 +12,11 @@
         android:layout_height="48dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin">
 
-        <com.facebook.drawee.view.SimpleDraweeView
+        <ImageView
             android:id="@+id/controller_cover"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            tools:ignore="ContentDescription" />
 
     </androidx.cardview.widget.CardView>
 

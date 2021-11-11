@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addHeader
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModels
@@ -17,11 +18,14 @@ import studio.mandysa.music.logic.model.MusicModel
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.PlaylistInfoModel
 import studio.mandysa.music.logic.utils.ClassUtils.create
+import studio.mandysa.music.logic.utils.ObservableUtils.set
 import studio.mandysa.music.ui.base.BaseFragment
 
 class PlaylistFragment(private val id: String) : BaseFragment() {
 
     private val mBinding: FragmentPlaylistBinding by bindView()
+
+    private val mImageLoader = ImageLoader.getInstance()
 
 
     override fun onCreateView(
@@ -43,7 +47,7 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
                         R.layout.item_playlist_info_head -> {
                             val model = getModel<PlaylistInfoModel>()
                             ItemPlaylistInfoHeadBinding.bind(itemView).apply {
-                                cover.setImageURI(model.coverImgUrl)
+                                mImageLoader.displayImage(model.coverImgUrl, cover)
                                 title.text = model.name
                                 todo.text = model.description
                             }
@@ -53,7 +57,7 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
                             ItemSongBinding.bind(itemView).apply {
                                 songName.text = model.title
                                 songSingerName.text = model.artist[0].name
-                                songCover.setImageURI(model.coverUrl)
+                                mImageLoader.displayImage(model.coverUrl, songCover)
                             }
                         }
                     }
@@ -62,7 +66,7 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
         }
         NeteaseCloudMusicApi::class.java.create()
             .getSongListInfo(id)
-            .set(object : Callback<PlaylistInfoModel> {
+            .set(lifecycle, object : Callback<PlaylistInfoModel> {
                 override fun onResponse(t: PlaylistInfoModel?) {
                     mBinding.playlistList.addHeader(t!!)
                     NeteaseCloudMusicApi::class.java.create()
@@ -82,6 +86,11 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
 
                 }
             })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mImageLoader.clearMemoryCache()
     }
 
 }

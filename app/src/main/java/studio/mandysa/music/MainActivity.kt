@@ -124,4 +124,11 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    /*override fun onDestroy() {
+        super.onDestroy()
+        if (!isChangingConfigurations) {
+            ImageLoader.getInstance().destroy()
+        }
+    }*/
+
 }

@@ -33,8 +33,8 @@ android {
 dependencies {
     // 映射存储库：https://github.com/Tencent/MMKV
     implementation 'com.tencent:mmkv:1.2.11'
-    // 图片加载库：https://github.com/facebook/fresco
-    implementation 'com.facebook.fresco:fresco:2.6.0'
+    // 图片加载库：https://github.com/nostra13/Android-Universal-Image-Loader
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     // 网络请求库：https://gitee.com/liuxiaoliu66/anna
     implementation 'com.gitee.liuxiaoliu66:anna:2.1.0'
     // bottomNavigationBar：https://gitee.com/liuxiaoliu66/bottom-navigation-bar

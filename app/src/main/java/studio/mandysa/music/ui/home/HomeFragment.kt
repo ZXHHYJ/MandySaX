@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
@@ -28,12 +29,15 @@ import studio.mandysa.music.logic.utils.ArrayListUtils.createAlbum
 import studio.mandysa.music.logic.utils.BindingAdapterUtils.getModels
 import studio.mandysa.music.logic.utils.ClassUtils.create
 import studio.mandysa.music.logic.utils.DefaultPlayManagerUtils.getInstance
+import studio.mandysa.music.logic.utils.ObservableUtils.set
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.base.BaseFragment
 
 class HomeFragment : BaseFragment() {
 
     private val mBinding: FragmentHomeBinding by bindView()
+
+    private val mImageLoader = ImageLoader.getInstance()
 
     public override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +62,7 @@ class HomeFragment : BaseFragment() {
                                         val model = getModel<PlaylistModel.Playlist>()
                                         ItemPlaylistBinding.bind(itemView).apply {
                                             playlistTitle.text = model.name
-                                            playlistCover.setImageURI(model.picUrl)
+                                            mImageLoader.displayImage(model.picUrl, playlistCover)
                                             playlistCover.setOnClickListener {
                                                 Navigation.findViewNavController(it)
                                                     .navigate(
@@ -78,7 +82,7 @@ class HomeFragment : BaseFragment() {
                             ItemSongBinding.bind(itemView).apply {
                                 songName.text = model.title
                                 songSingerName.text = model.artist[0].name
-                                songCover.setImageURI(model.coverUrl)
+                                mImageLoader.displayImage(model.coverUrl, songCover)
                                 itemView.setOnClickListener {
                                     getInstance().apply {
                                         loadAlbum(
@@ -101,7 +105,7 @@ class HomeFragment : BaseFragment() {
             }
             statelayout.showLoading {
                 NeteaseCloudMusicApi::class.java.create().apply {
-                    recommendedPlaylist.set(object : Callback<PlaylistModel> {
+                    recommendedPlaylist.set(lifecycle, object : Callback<PlaylistModel> {
                         override fun onResponse(t: PlaylistModel?) {
                             statelayout.showContentState()
                             mBinding.recycler.addHeader(t!!)
@@ -112,7 +116,7 @@ class HomeFragment : BaseFragment() {
                         }
 
                     })
-                    recommendedSong.set(object : Callback<List<NewSongModel>> {
+                    recommendedSong.set(lifecycle, object : Callback<List<NewSongModel>> {
                         override fun onResponse(t: List<NewSongModel>?) {
                             statelayout.showContentState()
                             mBinding.recycler.addModels(t!!)
@@ -127,6 +131,11 @@ class HomeFragment : BaseFragment() {
             }
             statelayout.showLoadingState()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mImageLoader.clearMemoryCache()
     }
 
 }
