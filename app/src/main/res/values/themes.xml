@@ -3,6 +3,7 @@
     <style name="Theme.MandySaMusic" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:colorAccent">@color/blue</item>
+        <item name="android:colorPrimary">@android:color/black</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
     </style>

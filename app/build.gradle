@@ -38,11 +38,12 @@ dependencies {
     // 网络请求库：https://gitee.com/liuxiaoliu66/anna
     implementation 'com.gitee.liuxiaoliu66:anna:2.1.0'
     // bottomNavigationBar：https://gitee.com/liuxiaoliu66/bottom-navigation-bar
-    implementation 'com.gitee.liuxiaoliu66:bottom-navigation-bar:1.0.0'
+    //implementation 'com.gitee.liuxiaoliu66:bottom-navigation-bar:1.1.2'
     // 沉浸状态栏与导航栏：https://github.com/yanzhenjie/Sofia
     implementation 'com.yanzhenjie:sofia:1.0.5'
 
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation project(':bottomnavigationbar')
     implementation project(':mandysax')
     implementation project(':JiuWo')
     implementation project(':media')

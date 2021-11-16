@@ -16,7 +16,6 @@ import studio.mandysa.jiuwo.utils.RecyclerViewUtils.addModels
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.staggered
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentHomeBinding
 import studio.mandysa.music.databinding.ItemPlaylistBinding
@@ -56,7 +55,7 @@ class HomeFragment : BaseFragment() {
                     when (itemViewType) {
                         R.layout.item_playlist_head -> {
                             ItemPlaylistHeadBinding.bind(itemView).playlistList.apply {
-                                staggered(2, orientation = RecyclerView.HORIZONTAL).setup {
+                                linear(orientation = RecyclerView.HORIZONTAL).setup {
                                     addType<PlaylistModel.Playlist>(R.layout.item_playlist)
                                     onBind {
                                         val model = getModel<PlaylistModel.Playlist>()
@@ -95,8 +94,16 @@ class HomeFragment : BaseFragment() {
                                 DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
                                     .observe(viewLifecycleOwner) {
                                         if (it.equals(getModels<DefaultMusic<DefaultArtist>>().createAlbum()[modelPosition])) {
-                                            cardView.setCardBackgroundColor(context.getColor(R.color.blue))
-                                        } else cardView.setCardBackgroundColor(0)
+                                            songName.setTextColor(
+                                                context.getColor(R.color.blue)
+                                            )
+                                            songSingerName.setTextColor(context.getColor(R.color.blue))
+                                        } else {
+                                            songName.setTextColor(
+                                                context.getColor(android.R.color.black)
+                                            )
+                                            songSingerName.setTextColor(context.getColor(R.color.test2))
+                                        }
                                     }
                             }
                         }

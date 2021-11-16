@@ -70,4 +70,8 @@ interface NeteaseCloudMusicApi {
     @Get("search/hot")
     @Path("result/hots")
     fun getHotSearchList(): Observable<List<HotSearchModel>>
+
+    @Get("toplist")
+    @Path("list")
+    fun getToplist(): Observable<List<ToplistModel>>
 }

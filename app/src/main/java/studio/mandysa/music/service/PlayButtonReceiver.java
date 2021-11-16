@@ -11,15 +11,17 @@ import androidx.annotation.DrawableRes;
 
 public class PlayButtonReceiver {
 
+    public final static String PLAY_BACK_STATE = "pbs";
+
     public static Notification.Action buildMediaButtonAction(Context context, @DrawableRes int icon, int state) {
         return new Notification.Action.Builder(
                 Icon.createWithResource(context, icon),
                 null
                 ,
-                PendingIntent.getBroadcast(context, state, new Intent(Intent.ACTION_MEDIA_BUTTON).putExtra(Media.PLAY_BACK_STATE, state), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE)).build();
+                PendingIntent.getBroadcast(context, state, new Intent(Intent.ACTION_MEDIA_BUTTON).putExtra(PLAY_BACK_STATE, state), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE)).build();
     }
 
     public static PendingIntent buildDeleteIntent(Context context) {
-        return PendingIntent.getBroadcast(context, PlaybackState.STATE_STOPPED, new Intent(Intent.ACTION_MEDIA_BUTTON).putExtra(Media.PLAY_BACK_STATE, PlaybackState.STATE_STOPPED), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        return PendingIntent.getBroadcast(context, PlaybackState.STATE_STOPPED, new Intent(Intent.ACTION_MEDIA_BUTTON).putExtra(PLAY_BACK_STATE, PlaybackState.STATE_STOPPED), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
 }

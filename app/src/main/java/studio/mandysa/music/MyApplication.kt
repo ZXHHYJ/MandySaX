@@ -21,10 +21,12 @@ class MyApplication : Application() {
             loadingLayout = R.layout.layout_loading
             emptyLayout = R.layout.layout_empty
             errorLayout = R.layout.layout_error
+            retryId = R.id.cl_error_check
         }
         MMKV.initialize(this)
 
         val options = DisplayImageOptions.Builder()
+            .showImageOnLoading(R.drawable.all_iv_placeholder)
             .cacheInMemory(true)
             .cacheOnDisk(true)
             .bitmapConfig(Bitmap.Config.RGB_565)

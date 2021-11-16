@@ -1,12 +1,23 @@
 <resources>
+
     <string name="app_name">MandySa Music</string>
-    <string name="title_home">主页</string>
-    <string name="title_search">搜索</string>
+    <string name="home">主页</string>
+    <string name="search">搜索</string>
+    <string name="me">我的</string>
 
     <string name="recommended_playlist">推荐歌单</string>
     <string name="recommended_song">推荐歌曲</string>
 
     <string name="playlist">歌单</string>
     <string name="search_hint">输入歌曲或歌手名称</string>
-    <string name="me">我的</string>
+
+    <string name="CHANNEL_ID">media channel</string>
+    <string name="CHANNEL_NAME">媒体控制器</string>
+    <string name="CHANNEL_DESCRIPTION">播放控制</string>
+
+    <string name="empty">什么都没有</string>
+    <string name="you_are_offline">你已离线</string>
+    <string name="check_the_network">请检查网络后点击重试</string>
+
+    <string name="test">test</string>
 </resources>

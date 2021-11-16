@@ -36,7 +36,7 @@ class MediaPlayService : Service() {
 
     private inner class OnPlayStateReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            when (intent.extras!!.getInt(Media.PLAY_BACK_STATE)) {
+            when (intent.extras!!.getInt(PlayButtonReceiver.PLAY_BACK_STATE)) {
                 PlaybackState.STATE_PLAYING -> mInstance.play()
                 PlaybackState.STATE_PAUSED -> mInstance.pause()
                 PlaybackState.STATE_SKIPPING_TO_NEXT -> mInstance.skipToNext()

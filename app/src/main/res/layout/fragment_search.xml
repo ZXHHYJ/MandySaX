@@ -4,12 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/search_edit_frame"
         style="@style/AppEditTextStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_edittext"
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:layout_marginVertical="@dimen/text_margin_small"
         android:autofillHints="no"
         android:drawableStart="@drawable/ic_search"
         android:hint="@string/search_hint"
@@ -17,10 +18,17 @@
         android:inputType="text"
         android:padding="@dimen/default_margin"
         android:singleLine="true"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="16sp" />
 
-    <FrameLayout
-        android:id="@+id/show"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/dividerVertical" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>

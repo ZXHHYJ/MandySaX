@@ -11,40 +11,40 @@ import android.media.session.PlaybackState
 import studio.mandysa.music.MainActivity
 import studio.mandysa.music.R
 
-class PlayNotification(private val serviceMedia: MediaPlayService) : Notification.Builder(
-    serviceMedia, Media.CHANNEL_ID
+class PlayNotification(private val mediaPlayService: MediaPlayService) : Notification.Builder(
+    mediaPlayService, mediaPlayService.getString(R.string.CHANNEL_ID)
 ) {
 
     init {
         val manager =
-            serviceMedia.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            mediaPlayService.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notificationChannel = NotificationChannel(
-            Media.CHANNEL_ID,
-            Media.CHANNEL_NAME,
+            mediaPlayService.getString(R.string.CHANNEL_ID),
+            mediaPlayService.getString(R.string.CHANNEL_NAME),
             NotificationManager.IMPORTANCE_LOW
         )
-        notificationChannel.description = Media.CHANNEL_DESCRIPTION
+        notificationChannel.description = mediaPlayService.getString(R.string.CHANNEL_DESCRIPTION)
         notificationChannel.enableVibration(false)
         manager.createNotificationChannel(notificationChannel)
     }
 
     private val mPlayAction: Notification.Action = PlayButtonReceiver.buildMediaButtonAction(
-        serviceMedia,
+        mediaPlayService,
         R.drawable.ic_play,
         PlaybackState.STATE_PLAYING
     )
     private val mPauseAction: Notification.Action = PlayButtonReceiver.buildMediaButtonAction(
-        serviceMedia,
+        mediaPlayService,
         R.drawable.ic_pause,
         PlaybackState.STATE_PAUSED
     )
     private val mNextAction: Notification.Action = PlayButtonReceiver.buildMediaButtonAction(
-        serviceMedia,
+        mediaPlayService,
         R.drawable.ic_skip_next,
         PlaybackState.STATE_SKIPPING_TO_NEXT
     )
     private val mPrevAction: Notification.Action = PlayButtonReceiver.buildMediaButtonAction(
-        serviceMedia,
+        mediaPlayService,
         R.drawable.ic_skip_previous,
         PlaybackState.STATE_SKIPPING_TO_PREVIOUS
     )
@@ -60,8 +60,8 @@ class PlayNotification(private val serviceMedia: MediaPlayService) : Notificatio
         get() = 1
 
     override fun build(): Notification {
-        serviceMedia.startForeground(1, super.build())
-        if (!mIsPlaying) serviceMedia.stopForeground(false)
+        mediaPlayService.startForeground(id, super.build())
+        if (!mIsPlaying) mediaPlayService.stopForeground(false)
         return super.build()
     }
 
@@ -70,16 +70,16 @@ class PlayNotification(private val serviceMedia: MediaPlayService) : Notificatio
         setAction(false)
         setContentIntent(
             PendingIntent.getActivity(
-                serviceMedia,
+                mediaPlayService,
                 0,
-                Intent(serviceMedia, MainActivity::class.java),
+                Intent(mediaPlayService, MainActivity::class.java),
                 PendingIntent.FLAG_IMMUTABLE
             )
         )
-        setDeleteIntent(PlayButtonReceiver.buildDeleteIntent(serviceMedia))
+        setDeleteIntent(PlayButtonReceiver.buildDeleteIntent(mediaPlayService))
         style =
             MediaStyle().setShowActionsInCompactView(0, 1, 2)
-                .setMediaSession(serviceMedia.getSessionToken())
+                .setMediaSession(mediaPlayService.getSessionToken())
         setCategory(Notification.CATEGORY_SERVICE)
         setSmallIcon(R.drawable.ic_music)
     }
