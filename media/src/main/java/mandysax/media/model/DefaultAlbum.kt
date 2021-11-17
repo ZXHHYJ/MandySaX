@@ -16,7 +16,7 @@ class DefaultAlbum : AlbumModel<DefaultMusic<DefaultArtist>> {
 
     @SafeVarargs
     override fun remove(vararg musicModels: DefaultMusic<DefaultArtist>) {
-        mMusicList.removeAll(listOf(*musicModels))
+        mMusicList.removeAll(listOf(*musicModels).toSet())
     }
 
     override fun size(): Int {
@@ -26,4 +26,5 @@ class DefaultAlbum : AlbumModel<DefaultMusic<DefaultArtist>> {
     override fun get(index: Int): DefaultMusic<DefaultArtist> {
         return mMusicList[index]
     }
+
 }

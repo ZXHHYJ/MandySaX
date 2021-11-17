@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+
+import org.jetbrains.annotations.Contract;
+
 import mandysax.core.app.ComponentActivity;
 import mandysax.core.view.LayoutInflaterCompat;
 import mandysax.lifecycle.ViewModelProviders;
@@ -18,6 +22,8 @@ public class FragmentActivity extends ComponentActivity {
 
     private FragmentHost mHost;
 
+    @NonNull
+    @Contract(" -> new")
     public final FragmentManager getFragmentPlusManager() {
         return getFragmentController().getFragmentManager(null);
     }

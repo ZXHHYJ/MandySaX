@@ -52,9 +52,7 @@
             android:id="@+id/bottomNavigationBar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/nav_height"
-            android:orientation="vertical"
-            android:overScrollMode="never"
-            android:scrollbars="none" />
+            android:overScrollMode="never" />
 
         <View
             android:layout_width="match_parent"

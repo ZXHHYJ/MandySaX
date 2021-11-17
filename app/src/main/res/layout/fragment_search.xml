@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <AutoCompleteTextView
+    <EditText
         android:id="@+id/search_edit_frame"
         style="@style/AppEditTextStyle"
         android:layout_width="match_parent"
@@ -21,14 +23,35 @@
         android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="16sp" />
 
-    <View
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        android:id="@+id/search_sliding_view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/dividerVertical" />
+        android:layout_height="match_parent"
+        android:gravity="top"
+        app:umanoPanelHeight="0dp"
+        app:umanoShadowHeight="0dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/dividerVertical" />
+
+        </FrameLayout>
+
+        <fragment
+            android:id="@+id/search_list_fragment"
+            android:name="studio.mandysa.music.ui.searchlist.SearchListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="Instantiatable" />
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 </LinearLayout>

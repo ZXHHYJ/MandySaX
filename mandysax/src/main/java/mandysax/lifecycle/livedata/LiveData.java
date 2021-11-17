@@ -1,5 +1,7 @@
 package mandysax.lifecycle.livedata;
 
+import androidx.annotation.NonNull;
+
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import mandysax.lifecycle.Lifecycle;
@@ -105,7 +107,7 @@ public class LiveData<T> {
      * @param lifecycleOwner 生命周期所有者
      * @param observer       观察者
      */
-    public void observe(LifecycleOwner lifecycleOwner, Observer<? super T> observer) {
+    public void observe(@NonNull LifecycleOwner lifecycleOwner, Observer<? super T> observer) {
         events.add(new Event(lifecycleOwner.getLifecycle(), observer));
         if (content != null) observer.onChanged(content);
     }
@@ -117,7 +119,6 @@ public class LiveData<T> {
         for (Event event : events) {
             if (event.observer.equals(observer)) {
                 events.remove(event);
-                return;
             }
         }
     }

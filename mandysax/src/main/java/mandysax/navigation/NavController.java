@@ -1,5 +1,7 @@
 package mandysax.navigation;
 
+import static mandysax.lifecycle.Lifecycle.Event.ON_DESTROY;
+
 import android.content.res.TypedArray;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,7 @@ import mandysax.fragment.Fragment;
 import mandysax.fragment.FragmentTransaction;
 import mandysax.lifecycle.Lifecycle;
 import mandysax.lifecycle.LifecycleObserver;
+import mandysax.lifecycle.LifecycleRegistry;
 import mandysax.lifecycle.ViewModelProviders;
 import mandysax.navigation.fragment.NavHostFragment;
 
@@ -77,17 +80,41 @@ public final class NavController {
         fragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
             @Override
             public void Observer(Lifecycle.Event state) {
+                if (state == Lifecycle.Event.ON_CREATE) {
+                    mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
+
+                        {
+                            fragment.getViewLifecycleOwner().getLifecycle().addObserver(state1 -> {
+                                if (state1 == ON_DESTROY)
+                                    mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
+                            });
+                        }
+
+                        @Override
+                        public void Observer(Lifecycle.Event state) {
+                            switch (state) {
+                                case ON_START:
+                                    ((LifecycleRegistry) fragment.getViewLifecycleOwner().getLifecycle()).markState(Lifecycle.Event.ON_START);
+                                    break;
+                                case ON_STOP:
+                                    ((LifecycleRegistry) fragment.getViewLifecycleOwner().getLifecycle()).markState(Lifecycle.Event.ON_STOP);
+                                    break;
+                            }
+                        }
+                    });
+
+                }
                 if (state == Lifecycle.Event.ON_START) {
                     fragment.getActivity().getOnBackPressedDispatcher().addCallback(mNavFragment.getViewLifecycleOwner(), new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
                             if (mViewModel.getLastFragment() == null) {
                                 remove();
-                                fragment.getActivity().onBackPressed();
+                                mNavFragment.getActivity().onBackPressed();
                                 return;
                             }
                             FragmentTransaction fragmentTransaction = beginTransaction();
-                            fragmentTransaction.setCustomAnimations(fragmentPopEnterAnim, 0,0,fragmentPopExitAnim);
+                            fragmentTransaction.setCustomAnimations(fragmentPopEnterAnim, 0, 0, fragmentPopExitAnim);
                             fragmentTransaction.remove(fragment);
                             fragmentTransaction.show(mViewModel.getLastFragment());
                             fragmentTransaction.commit();
@@ -96,7 +123,7 @@ public final class NavController {
                         }
                     });
                 }
-                if (state == Lifecycle.Event.ON_DESTROY) {
+                if (state == ON_DESTROY) {
                     fragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
                 }
             }

@@ -3,6 +3,8 @@ package mandysax.lifecycle.livedata;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.annotation.NonNull;
+
 import mandysax.lifecycle.LifecycleOwner;
 
 /**
@@ -30,7 +32,7 @@ public class MutableLiveData<T> extends LiveData<T> {
     }
 
     @Override
-    public void observe(LifecycleOwner lifecycleOwner, Observer<? super T> observer) {
+    public void observe(@NonNull LifecycleOwner lifecycleOwner, Observer<? super T> observer) {
         super.observe(lifecycleOwner, observer);
     }
 

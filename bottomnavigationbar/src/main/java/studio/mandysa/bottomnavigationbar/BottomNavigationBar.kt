@@ -3,7 +3,6 @@ package studio.mandysa.bottomnavigationbar
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -23,7 +22,7 @@ class BottomNavigationBar : RecyclerView {
     @ColorInt
     private var mInActiveColor = context.getColor(R.color.default_unchecked_color)
 
-    private var mOrientation: Int
+    private val mOrientation: Int
 
     private val mSelectedPosition: MutableLiveData<Int?> = MutableLiveData(null)
 
@@ -54,14 +53,14 @@ class BottomNavigationBar : RecyclerView {
     }
 
     constructor(context: Context) : super(context) {
-        mOrientation = LinearLayout.HORIZONTAL
+        mOrientation = VERTICAL
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.BottomNavigationBar)
         mOrientation = typedArray.getInt(
             R.styleable.BottomNavigationBar_android_orientation,
-            LinearLayout.HORIZONTAL
+            VERTICAL
         )
         typedArray.recycle()
     }

@@ -93,7 +93,7 @@ class HomeFragment : BaseFragment() {
                                 }
                                 DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
                                     .observe(viewLifecycleOwner) {
-                                        if (it.equals(getModels<DefaultMusic<DefaultArtist>>().createAlbum()[modelPosition])) {
+                                        if (it.id == (getModels<DefaultMusic<DefaultArtist>>().createAlbum()[modelPosition]).id) {
                                             songName.setTextColor(
                                                 context.getColor(R.color.blue)
                                             )

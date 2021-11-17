@@ -25,17 +25,18 @@ class MainActivity : BaseActivity() {
 
     private val mEvent: ShareViewModel by viewModels()
 
-    private var controllerFragment: ViewGroup? = null
+    private var mControllerFragment: ViewGroup? = null
 
-    private var playFragment: ViewGroup? = null
+    private var mPlayFragment: ViewGroup? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Sofia.with(this).invasionStatusBar().invasionNavigationBar().statusBarDarkFont()
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
-        controllerFragment = findViewById(R.id.controller_fragment)
-        playFragment = findViewById(R.id.play_fragment)
+        mControllerFragment = findViewById(R.id.controller_fragment)
+        mPlayFragment = findViewById(R.id.play_fragment)
         mBinding.apply {
+            //不把shadowHeight设置为0的话后续修改shadowHeight都将失效！！
             mainSlidingView.shadowHeight = 0
             mainFragmentPage.setAdapter(object : FragmentPage.Adapter {
                 override fun onCreateFragment(position: Int): Fragment =
@@ -74,6 +75,13 @@ class MainActivity : BaseActivity() {
                 mEvent.homePosLiveData.value = it
             }
             ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
+                //避免底部导航遮挡内容
+                if (mainSlidingView.panelHeight == 0 && bottomNavLayout != null) {
+                    bottomNavigationBar.post {
+                        mainSlidingView.panelHeight =
+                            resources.getDimensionPixelOffset(R.dimen.nav_height)
+                    }
+                }
                 mainFragmentPage.setPadding(
                     0,
                     insets.systemWindowInsetTop,
@@ -92,12 +100,12 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    //配置音乐播放的动画
     private fun initPmi() {
-        val instance = DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
-        instance.lazy(this) {
-            mBinding.run {
+        DefaultPlayerManager.getInstance()!!.changeMusicLiveData().lazy(this) {
+            mBinding.apply {
                 bottomNavigationBar.post {
-                    mainSlidingView.run {
+                    mainSlidingView.apply {
                         panelHeight =
                             context.resources.getDimensionPixelOffset(R.dimen.nav_height) * if (bottomNavLayout != null) 2 else 1 + mBinding.bottomNavigationBar.paddingBottom
                         shadowHeight =
@@ -107,15 +115,15 @@ class MainActivity : BaseActivity() {
                                 SlidingUpPanelLayout.PanelSlideListener {
                                 val y = mBinding.bottomNavLayout?.y
                                 override fun onPanelSlide(panel: View, slideOffset: Float) {
-                                    mBinding.run {
+                                    mBinding.apply {
                                         y?.apply {
                                             val by: Float =
                                                 y + bottomNavLayout!!.height * slideOffset * 8
                                             bottomNavLayout.y = by
                                         }
                                         val alpha = slideOffset * 12
-                                        controllerFragment!!.alpha = 1 - alpha
-                                        playFragment!!.alpha = alpha
+                                        mControllerFragment!!.alpha = 1 - alpha
+                                        mPlayFragment!!.alpha = alpha
                                     }
                                 }
 
