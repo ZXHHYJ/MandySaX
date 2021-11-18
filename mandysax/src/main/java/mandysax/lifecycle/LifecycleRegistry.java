@@ -9,27 +9,22 @@ public final class LifecycleRegistry extends Lifecycle {
     private final ArrayList<LifecycleObserver> mObservers = new ArrayList<>();
 
     @Override
-    public void addObserver(@NonNull LifecycleObserver... observers) {
-        for (LifecycleObserver observer : observers) {
-            mObservers.add(observer);
-            if (event != null)
-                observer.Observer(event);
-        }
+    public void addObserver(@NonNull LifecycleObserver observer) {
+        mObservers.add(observer);
+        if (event != null)
+            observer.Observer(event);
     }
 
     @Override
-    public void removeObserver(@NonNull LifecycleObserver... observers) {
-        for (LifecycleObserver observer : observers) {
-            mObservers.remove(observer);
-        }
+    public void removeObserver(@NonNull LifecycleObserver observer) {
+        mObservers.remove(observer);
     }
 
     public void markState(Lifecycle.Event state) {
         event = state;
-        int size = mObservers.size();
-        for (int i = 0; i < size; i++)
-            if (i < mObservers.size())
-                mObservers.get(i).Observer(state);
+        for (int i = mObservers.size() - 1; i >= 0; i--) {
+            mObservers.get(i).Observer(state);
+        }
         if (state == Event.ON_DESTROY) {
             mObservers.clear();
         }

@@ -7,9 +7,9 @@ public abstract class Lifecycle {
 
     public Lifecycle.Event event;
 
-    public abstract void addObserver(LifecycleObserver... observer);
+    public abstract void addObserver(LifecycleObserver observer);
 
-    public abstract void removeObserver(LifecycleObserver... observers);
+    public abstract void removeObserver(LifecycleObserver observer);
 
     public enum Event {
 

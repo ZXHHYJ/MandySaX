@@ -1,8 +1,5 @@
 package mandysax.lifecycle.livedata;
 
-import android.os.Handler;
-import android.os.Looper;
-
 import androidx.annotation.NonNull;
 
 import mandysax.lifecycle.LifecycleOwner;
@@ -12,13 +9,12 @@ import mandysax.lifecycle.LifecycleOwner;
  */
 public class MutableLiveData<T> extends LiveData<T> {
 
-    private Handler mHandler;
-
     public MutableLiveData(T value) {
-        mValue = value;
+        super(value);
     }
 
     public MutableLiveData() {
+        super();
     }
 
     @Override
@@ -32,36 +28,18 @@ public class MutableLiveData<T> extends LiveData<T> {
     }
 
     @Override
-    public void observe(@NonNull LifecycleOwner lifecycleOwner, @NonNull Observer<? super T> observer) {
-        super.observe(lifecycleOwner, observer);
+    public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super T> observer) {
+        super.observe(owner, observer);
     }
 
     public void postValue(T value) {
-        if (isMainThread()) {
-            setValue(value);
-            return;
-        }
-        if (mHandler == null) {
-            synchronized (MutableLiveData.class) {
-                if (mHandler == null) {
-                    mHandler = new Handler(Looper.getMainLooper());
-                }
-            }
-        }
-        mHandler.post(() -> setValue(value));
+        super.postValue(value);
     }
 
     public void setValue(T value) {
-        if (!isMainThread()) {
-            throw new IllegalStateException("Cannot invoke setValue on a background thread");
-        }
-        mValue = value;
-        start();
+        super.setValue(value);
     }
 
-    private boolean isMainThread() {
-        return Looper.getMainLooper() == Looper.myLooper();
-    }
 
 }
 

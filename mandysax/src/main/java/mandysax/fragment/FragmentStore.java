@@ -109,8 +109,8 @@ class FragmentStore {
     }
 
     final void clear() {
-        for (Fragment fragment : values()) {
-            removeFragment(fragment);
+        for (int i = values().size() - 1; i >= 0; i--) {
+            removeFragment(values().get(i));
         }
         mFragments.clear();
         mStore.clear();
