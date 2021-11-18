@@ -60,6 +60,21 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
         onBind?.invoke(holder)
     }
 
+    override fun onViewAttachedToWindow(holder: BindingViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.onAttached?.invoke(holder)
+    }
+
+    override fun onViewDetachedFromWindow(holder: BindingViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.onDetached?.invoke(holder)
+    }
+
+    override fun onViewRecycled(holder: BindingViewHolder) {
+        super.onViewRecycled(holder)
+        holder.onRecycled?.invoke(holder)
+    }
+
     override fun getItemCount(): Int {
         var i = models?.size
         if (i == null) i = 0;
@@ -100,11 +115,30 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
     private fun getModel(position: Int): Any {
         var headerSize = headers?.size
         if (headerSize == null) headerSize = 0
-        return if (position >= headerSize) models!![position-headerSize]!! else headers!![position]!!
+        return if (position >= headerSize) models!![position - headerSize]!! else headers!![position]!!
     }
 
     inner class BindingViewHolder(viewCreate: ViewCreate) :
         RecyclerView.ViewHolder(viewCreate.view) {
+
+        internal var onAttached: (BindingViewHolder.() -> Unit)? = null
+
+        internal var onDetached: (BindingViewHolder.() -> Unit)? = null
+
+        internal var onRecycled: (BindingViewHolder.() -> Unit)? = null
+
+        fun onAttached(block: BindingViewHolder.() -> Unit) {
+            onAttached = block
+        }
+
+        fun onDetached(block: BindingViewHolder.() -> Unit) {
+            onDetached = block
+        }
+
+        fun onRecycled(block: BindingViewHolder.() -> Unit) {
+            onRecycled = block
+        }
+
         val modelPosition get() = layoutPosition - if (headers != null) headers!!.size else 0
     }
 

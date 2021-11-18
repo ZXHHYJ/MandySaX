@@ -39,4 +39,8 @@ class SearchMusicModel : DefaultMusic<DefaultArtist?>() {
         return Url.MUSIC_URL + id
     }
 
+    override fun toString(): String {
+        return id!!
+    }
+
 }

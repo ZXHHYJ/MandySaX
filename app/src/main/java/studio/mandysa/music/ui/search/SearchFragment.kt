@@ -1,5 +1,6 @@
 package studio.mandysa.music.ui.search
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -14,6 +15,8 @@ import mandysax.anna2.callback.Callback
 import mandysax.core.app.OnBackPressedCallback
 import mandysax.lifecycle.Lifecycle
 import mandysax.lifecycle.LifecycleObserver
+import mandysax.lifecycle.ViewModelProviders
+import mandysax.navigation.Navigation
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.staggered
@@ -25,6 +28,7 @@ import studio.mandysa.music.logic.model.ToplistModel
 import studio.mandysa.music.logic.utils.ClassUtils.create
 import studio.mandysa.music.logic.utils.EditTextUtils.hideInput
 import studio.mandysa.music.logic.utils.ObservableUtils.set
+import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.base.BaseFragment
 
 class SearchFragment : BaseFragment() {
@@ -32,6 +36,8 @@ class SearchFragment : BaseFragment() {
     private val mBinding: FragmentSearchBinding by bindView()
 
     private val mImageLoader = ImageLoader.getInstance()
+
+    private var mViewModel: SearchViewModel? = null
 
     private val mOnBackListener = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -47,6 +53,11 @@ class SearchFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         return mBinding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mViewModel = ViewModelProviders.of(activity)[SearchViewModel::class.java]
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -106,6 +117,7 @@ class SearchFragment : BaseFragment() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    mViewModel!!.SearchContentLiveData.value = s.toString()
                     searchSlidingView.panelState =
                         if (TextUtils.isEmpty(s)) SlidingUpPanelLayout.PanelState.COLLAPSED else SlidingUpPanelLayout.PanelState.EXPANDED
                 }
@@ -122,6 +134,13 @@ class SearchFragment : BaseFragment() {
                     ItemToplistBinding.bind(itemView).apply {
                         mImageLoader.displayImage(model.coverImgUrl, toplistCover)
                         toplistName.text = model.name
+                        toplistCover.setOnClickListener {
+                            Navigation.findViewNavController(it)
+                                .navigate(
+                                    R.style.test,
+                                    PlaylistFragment(model.id!!)
+                                )
+                        }
                     }
                 }
             }
@@ -148,6 +167,7 @@ class SearchFragment : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        mViewModel = null
         mImageLoader.clearMemoryCache()
     }
 

@@ -49,7 +49,7 @@
 
         <fragment
             android:id="@+id/search_list_fragment"
-            android:name="studio.mandysa.music.ui.searchlist.SearchListFragment"
+            android:name="studio.mandysa.music.ui.search.searchlist.SearchListFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:ignore="Instantiatable" />

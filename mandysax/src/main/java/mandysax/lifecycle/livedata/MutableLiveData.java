@@ -15,7 +15,7 @@ public class MutableLiveData<T> extends LiveData<T> {
     private Handler mHandler;
 
     public MutableLiveData(T value) {
-        content = value;
+        mValue = value;
     }
 
     public MutableLiveData() {
@@ -32,7 +32,7 @@ public class MutableLiveData<T> extends LiveData<T> {
     }
 
     @Override
-    public void observe(@NonNull LifecycleOwner lifecycleOwner, Observer<? super T> observer) {
+    public void observe(@NonNull LifecycleOwner lifecycleOwner, @NonNull Observer<? super T> observer) {
         super.observe(lifecycleOwner, observer);
     }
 
@@ -55,7 +55,7 @@ public class MutableLiveData<T> extends LiveData<T> {
         if (!isMainThread()) {
             throw new IllegalStateException("Cannot invoke setValue on a background thread");
         }
-        content = value;
+        mValue = value;
         start();
     }
 

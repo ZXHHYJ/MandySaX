@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
+import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
 import mandysax.media.model.DefaultMusic
@@ -91,9 +92,9 @@ class HomeFragment : BaseFragment() {
                                         play()
                                     }
                                 }
-                                DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
-                                    .observe(viewLifecycleOwner) {
-                                        if (it.id == (getModels<DefaultMusic<DefaultArtist>>().createAlbum()[modelPosition]).id) {
+                                val lifecycleObserver =
+                                    Observer<DefaultMusic<DefaultArtist>> { p1 ->
+                                        if (p1.id == model.id) {
                                             songName.setTextColor(
                                                 context.getColor(R.color.blue)
                                             )
@@ -105,6 +106,14 @@ class HomeFragment : BaseFragment() {
                                             songSingerName.setTextColor(context.getColor(R.color.test2))
                                         }
                                     }
+                                onAttached {
+                                    DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
+                                        .observe(viewLifecycleOwner, lifecycleObserver)
+                                }
+                                onDetached {
+                                    DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
+                                        .removeObserver(lifecycleObserver)
+                                }
                             }
                         }
                     }

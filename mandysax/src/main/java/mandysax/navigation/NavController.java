@@ -131,9 +131,9 @@ public final class NavController {
     }
 
     /**
-     * 后退一步
+     * 返回上一个fragment，没有则退出activity
      */
-    public synchronized void navigateUp() {
+    public void navigateUp() {
         mNavFragment.getActivity().onBackPressed();
     }
 

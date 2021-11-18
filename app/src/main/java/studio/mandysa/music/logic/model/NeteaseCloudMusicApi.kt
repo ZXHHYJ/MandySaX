@@ -28,7 +28,7 @@ interface NeteaseCloudMusicApi {
 
     @Get("song/detail")
     @Path("songs")
-    fun getMusicInfo(@Query("ids") ids: List<PlaylistInfoModel.SongList>?): Observable<List<MusicModel>>
+    fun getMusicInfo(@Query("ids") ids: List<Any>?): Observable<List<MusicModel>>
 
     /* @get:Path("result")*/
     @get:Get("personalized")

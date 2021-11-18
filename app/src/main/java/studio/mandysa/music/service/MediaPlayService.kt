@@ -69,7 +69,7 @@ class MediaPlayService : Service() {
                     view: View?,
                     loadedImage: Bitmap?
                 ) {
-                    mMediaNotification!!.run {
+                    mMediaNotification!!.apply {
                         setLargeIcon(
                             Icon.createWithBitmap(
                                 loadedImage

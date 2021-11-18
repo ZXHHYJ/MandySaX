@@ -107,7 +107,13 @@ class MainActivity : BaseActivity() {
                 bottomNavigationBar.post {
                     mainSlidingView.apply {
                         panelHeight =
-                            context.resources.getDimensionPixelOffset(R.dimen.nav_height) * if (bottomNavLayout != null) 2 else 1 + mBinding.bottomNavigationBar.paddingBottom
+                            (context.resources.getDimensionPixelOffset(R.dimen.nav_height) * if (bottomNavLayout != null) 2 else 1) + mBinding.mainFragmentPage.paddingBottom
+                        mBinding.mainFragmentPage.setPadding(
+                            0,
+                            mBinding.mainFragmentPage.paddingTop,
+                            0,
+                            0
+                        )
                         shadowHeight =
                             resources.getDimensionPixelSize(R.dimen.umano_shadow_height)
                         postDelayed({
