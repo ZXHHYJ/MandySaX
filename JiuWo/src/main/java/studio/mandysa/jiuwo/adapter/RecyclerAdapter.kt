@@ -76,11 +76,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
     }
 
     override fun getItemCount(): Int {
-        var i = models?.size
-        if (i == null) i = 0
-        var e = headers?.size
-        if (e == null) e = 0
-        return i + e
+        return (headers?.size ?: 0) + (models?.size ?: 0)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -88,21 +84,21 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
     }
 
     fun addModels(models: List<Any>) {
-        this.models =
-            if (this.models == null) models else this.models!!.toMutableList().also {
-                it.addAll(models)
-            }
-        notifyItemInserted(models.size)
+        if (this.models == null) this.models = models else {
+            val model2 = this.models as MutableList
+            model2.addAll(models)
+            notifyItemInserted(model2.size)
+        }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun addHeader(model: Any) {
-        headers = if (headers == null)
-            listOf(model)
-        else headers!!.toMutableList().also {
-            it.add(model)
+        if (headers == null)
+            headers = listOf(model)
+        else {
+            val headers2 = this.headers as MutableList
+            headers2.add(model)
+            notifyItemChanged(headers2.size)
         }
-        notifyDataSetChanged()
     }
 
     @SuppressLint("NotifyDataSetChanged")

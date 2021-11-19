@@ -55,10 +55,9 @@
         <SeekBar
             android:id="@+id/play_progress"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:layout_marginLeft="15dp"
+            android:layout_height="4dp"
+            android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
             android:background="@null"
             android:progressDrawable="@drawable/bg_play_seekbar"
             android:thumb="@null" />

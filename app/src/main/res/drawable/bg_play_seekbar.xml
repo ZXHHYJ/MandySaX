@@ -4,14 +4,14 @@
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="25dp" />
-            <solid android:color="#9AEEEFF3" />
+            <solid android:color="#EEEFF3" />
         </shape>
     </item>
     <item android:id="@android:id/progress">
         <clip>
             <shape>
                 <corners android:radius="25sp" />
-                <solid android:color="#EEEFF3" />
+                <solid android:color="@color/fragment_play_button_color" />
             </shape>
         </clip>
     </item>

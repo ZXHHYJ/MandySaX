@@ -99,8 +99,8 @@ public class LiveData<T> {
         observeForever(new Observer<T>() {
             @Override
             public void onChanged(T p2) {
-                if (mValue != null) {
-                    observer.onChanged(mValue);
+                if (p2 != null) {
+                    observer.onChanged(p2);
                     removeObserver(this);
                 }
             }

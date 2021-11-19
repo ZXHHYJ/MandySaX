@@ -107,7 +107,7 @@ class MainActivity : FragmentActivity() {
                         bottomNavigationBar.post {
                             mainSlidingView.apply {
                                 panelHeight =
-                                    (context.resources.getDimensionPixelOffset(R.dimen.nav_height) * if (bottomNavLayout != null) 2 else 1) + mBinding.mainFragmentPage.paddingBottom
+                                    (context.resources.getDimensionPixelOffset(R.dimen.nav_height) * if (bottomNavLayout != null) 2 else 1) + insets.systemWindowInsetBottom
                                 mBinding.mainFragmentPage.setPadding(
                                     0,
                                     mBinding.mainFragmentPage.paddingTop,
@@ -121,16 +121,14 @@ class MainActivity : FragmentActivity() {
                                         SlidingUpPanelLayout.PanelSlideListener {
                                         val y = mBinding.bottomNavLayout?.y
                                         override fun onPanelSlide(panel: View, slideOffset: Float) {
-                                            mBinding.apply {
-                                                y?.apply {
-                                                    val by: Float =
-                                                        y + bottomNavLayout!!.height * slideOffset * 8
-                                                    bottomNavLayout.y = by
-                                                }
-                                                val alpha = slideOffset * 12
-                                                controllerFragment.alpha = 1 - alpha
-                                                playFragment.alpha = alpha
+                                            y?.apply {
+                                                val by: Float =
+                                                    y + bottomNavLayout!!.height * slideOffset * 8
+                                                bottomNavLayout.y = by
                                             }
+                                            val alpha = slideOffset * 12
+                                            controllerFragment.alpha = 1 - alpha
+                                            playFragment.alpha = alpha
                                         }
 
                                         override fun onPanelStateChanged(
