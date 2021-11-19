@@ -1,13 +1,11 @@
-package studio.mandysa.music.ui.base
+package studio.mandysa.music.logic.utils
 
-import android.app.Activity
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import mandysax.fragment.FragmentActivity
-import mandysax.lifecycle.*
 
-open class BaseActivity : FragmentActivity() {
-    inline fun <reified VB : ViewBinding> Activity.inflate() = lazy {
+object FragmentActivityUtils {
+    inline fun <reified VB : ViewBinding> FragmentActivity.inflate() = lazy {
         inflateBinding<VB>(layoutInflater)
     }
 
@@ -15,11 +13,4 @@ open class BaseActivity : FragmentActivity() {
     inline fun <reified VB : ViewBinding> inflateBinding(layoutInflater: LayoutInflater) =
         VB::class.java.getMethod("inflate", LayoutInflater::class.java)
             .invoke(null, layoutInflater) as VB
-
-    inline fun <reified VB : ViewModel> BaseActivity.viewModels() = lazy {
-        return@lazy ViewModelProviders.of(
-            this
-        )[VB::class.java]
-    }
-
 }

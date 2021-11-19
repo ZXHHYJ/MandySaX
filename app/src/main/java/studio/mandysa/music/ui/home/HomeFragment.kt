@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
+import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
@@ -29,17 +30,17 @@ import studio.mandysa.music.logic.utils.ArrayListUtils.createAlbum
 import studio.mandysa.music.logic.utils.BindingAdapterUtils.getModels
 import studio.mandysa.music.logic.utils.ClassUtils.create
 import studio.mandysa.music.logic.utils.DefaultPlayManagerUtils.getInstance
+import studio.mandysa.music.logic.utils.FragmentUtils.bindView
 import studio.mandysa.music.logic.utils.ObservableUtils.set
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
-import studio.mandysa.music.ui.base.BaseFragment
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : Fragment() {
 
     private val mBinding: FragmentHomeBinding by bindView()
 
     private val mImageLoader = ImageLoader.getInstance()
 
-    public override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -151,7 +152,6 @@ class HomeFragment : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        println("onDestroyView")
         mImageLoader.clearMemoryCache()
     }
 

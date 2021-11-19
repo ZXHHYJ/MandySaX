@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
+import mandysax.fragment.FragmentActivity
 import mandysax.fragment.FragmentView
 import mandysax.fragmentpage.widget.FragmentPage
 import mandysax.lifecycle.Lifecycle
@@ -14,14 +15,15 @@ import mandysax.media.DefaultPlayerManager
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.bottomnavigationbar.BottomNavigationItem
 import studio.mandysa.music.databinding.ActivityMainBinding
-import studio.mandysa.music.ui.base.BaseActivity
+import studio.mandysa.music.logic.utils.FragmentActivityUtils.inflate
+import studio.mandysa.music.logic.utils.ViewModelUtils.viewModels
 import studio.mandysa.music.ui.event.ShareViewModel
 import studio.mandysa.music.ui.home.HomeFragment
 import studio.mandysa.music.ui.me.MeFragment
 import studio.mandysa.music.ui.search.SearchFragment
 
 
-class MainActivity : BaseActivity() {
+class MainActivity : FragmentActivity() {
 
     private val mBinding: ActivityMainBinding by inflate()
 

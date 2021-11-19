@@ -4,6 +4,7 @@ import static mandysax.lifecycle.Lifecycle.Event.ON_DESTROY;
 
 import android.content.res.TypedArray;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
 import mandysax.core.R;
@@ -36,7 +37,8 @@ public final class NavController {
     /**
      * @param fragment 需要导航到的fragment
      */
-    public synchronized <T extends Fragment> void navigate(T fragment) {
+    @MainThread
+    public <T extends Fragment> void navigate(T fragment) {
         mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
             @Override
             public void Observer(Lifecycle.Event state) {
@@ -48,7 +50,8 @@ public final class NavController {
         });
     }
 
-    public synchronized <T extends Fragment> void navigate(int animStyle, T fragment) {
+    @MainThread
+    public <T extends Fragment> void navigate(int animStyle, T fragment) {
         mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
             @Override
             public void Observer(Lifecycle.Event state) {
@@ -78,6 +81,9 @@ public final class NavController {
         fragmentTransaction.commit();
         mViewModel.add(fragment);
         fragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
+
+            private boolean mAddBackCallback = false;
+
             @Override
             public void Observer(Lifecycle.Event state) {
                 if (state == Lifecycle.Event.ON_CREATE) {
@@ -104,7 +110,8 @@ public final class NavController {
                     });
 
                 }
-                if (state == Lifecycle.Event.ON_START) {
+                if (state == Lifecycle.Event.ON_START && !mAddBackCallback) {
+                    mAddBackCallback = true;
                     fragment.getActivity().getOnBackPressedDispatcher().addCallback(mNavFragment.getViewLifecycleOwner(), new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {

@@ -215,16 +215,15 @@ public class ComponentActivity extends Activity implements LifecycleOwner, ViewM
             public void Observer(@NonNull Lifecycle.Event state) {
                 switch (state) {
                     case ON_STOP:
-                        // Should always be non-null
-                        if (mCurrentCancellable != null) {
-                            mCurrentCancellable.cancel();
-                        }
+                        mOnBackPressedCallback.setEnabled(false);
                         break;
                     case ON_DESTROY:
                         cancel();
                         break;
                     default:
-                        mCurrentCancellable = addCancellableCallback(mOnBackPressedCallback);
+                        if (mCurrentCancellable == null)
+                            mCurrentCancellable = addCancellableCallback(mOnBackPressedCallback);
+                        mOnBackPressedCallback.setEnabled(true);
                 }
             }
         }

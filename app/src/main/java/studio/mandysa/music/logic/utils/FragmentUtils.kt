@@ -1,16 +1,13 @@
-package studio.mandysa.music.ui.base
+package studio.mandysa.music.logic.utils
 
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.Lifecycle
-import mandysax.lifecycle.ViewModel
-import mandysax.lifecycle.ViewModelProviders
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-open class BaseFragment : Fragment() {
-
+object FragmentUtils {
     inline fun <reified VB : ViewBinding> bindView() =
         FragmentBindingDelegate(VB::class.java)
 
@@ -24,25 +21,12 @@ open class BaseFragment : Fragment() {
             if (_binding == null) {
                 _binding = clazz.getMethod("inflate", LayoutInflater::class.java)
                     .invoke(null, thisRef.layoutInflater) as VB
-                thisRef.viewLifecycleOwner.lifecycle.addObserver { state ->
-                    if (state == Lifecycle.Event.ON_DESTROY)
+                thisRef.viewLifecycleOwner.lifecycle.addObserver {
+                    if (it == Lifecycle.Event.ON_DESTROY)
                         _binding = null
                 }
             }
             return _binding!!
         }
     }
-
-    inline fun <reified VB : ViewModel> BaseFragment.viewModels() = lazy {
-        return@lazy ViewModelProviders.of(
-            viewLifecycleOwner
-        )[VB::class.java]
-    }
-
-    inline fun <reified VB : ViewModel> BaseFragment.activityViewModels() = lazy {
-        return@lazy ViewModelProviders.of(
-            activity
-        )[VB::class.java]
-    }
-
 }

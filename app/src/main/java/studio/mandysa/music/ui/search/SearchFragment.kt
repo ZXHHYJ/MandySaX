@@ -1,6 +1,5 @@
 package studio.mandysa.music.ui.search
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -13,8 +12,8 @@ import com.nostra13.universalimageloader.core.ImageLoader
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import mandysax.anna2.callback.Callback
 import mandysax.core.app.OnBackPressedCallback
+import mandysax.fragment.Fragment
 import mandysax.lifecycle.Lifecycle
-import mandysax.lifecycle.ViewModelProviders
 import mandysax.navigation.Navigation
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
@@ -26,17 +25,18 @@ import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.ToplistModel
 import studio.mandysa.music.logic.utils.ClassUtils.create
 import studio.mandysa.music.logic.utils.EditTextUtils.hideInput
+import studio.mandysa.music.logic.utils.FragmentUtils.bindView
 import studio.mandysa.music.logic.utils.ObservableUtils.set
+import studio.mandysa.music.logic.utils.ViewModelUtils.activityViewModels
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
-import studio.mandysa.music.ui.base.BaseFragment
 
-class SearchFragment : BaseFragment() {
+class SearchFragment : Fragment() {
 
     private val mBinding: FragmentSearchBinding by bindView()
 
     private val mImageLoader = ImageLoader.getInstance()
 
-    private var mViewModel: SearchViewModel? = null
+    private val mViewModel: SearchViewModel by activityViewModels()
 
     private val mOnBackListener = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -52,11 +52,6 @@ class SearchFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         return mBinding.root
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mViewModel = ViewModelProviders.of(activity)[SearchViewModel::class.java]
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -131,7 +126,7 @@ class SearchFragment : BaseFragment() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    mViewModel!!.searchContentLiveData.value = s.toString()
+                    mViewModel.searchContentLiveData.value = s.toString()
                     searchSlidingView.panelState =
                         if (TextUtils.isEmpty(s)) SlidingUpPanelLayout.PanelState.COLLAPSED else SlidingUpPanelLayout.PanelState.EXPANDED
                 }
@@ -171,7 +166,6 @@ class SearchFragment : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mViewModel = null
         mImageLoader.clearMemoryCache()
     }
 

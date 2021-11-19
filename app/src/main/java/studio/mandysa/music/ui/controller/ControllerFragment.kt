@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nostra13.universalimageloader.core.ImageLoader
+import mandysax.fragment.Fragment
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentControllerBinding
 import studio.mandysa.music.logic.utils.DefaultPlayManagerUtils.getInstance
-import studio.mandysa.music.ui.base.BaseFragment
+import studio.mandysa.music.logic.utils.FragmentUtils.bindView
 
-class ControllerFragment : BaseFragment() {
+class ControllerFragment : Fragment() {
 
     private val mBinding: FragmentControllerBinding by bindView()
 

@@ -1,6 +1,5 @@
 package studio.mandysa.music.ui.search.searchlist
 
-import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -8,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
-import mandysax.lifecycle.ViewModelProviders
+import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
@@ -26,19 +25,33 @@ import studio.mandysa.music.logic.network.ServiceCreator
 import studio.mandysa.music.logic.utils.ArrayListUtils.createAlbum
 import studio.mandysa.music.logic.utils.BindingAdapterUtils.getModels
 import studio.mandysa.music.logic.utils.ClassUtils.create
+import studio.mandysa.music.logic.utils.FragmentUtils.bindView
 import studio.mandysa.music.logic.utils.TextViewUtils.markByColor
-import studio.mandysa.music.ui.base.BaseFragment
+import studio.mandysa.music.logic.utils.ViewModelUtils.activityViewModels
 import studio.mandysa.music.ui.search.SearchViewModel
 
-class SearchListFragment : BaseFragment() {
+class SearchListFragment : Fragment() {
 
     private val mBinding: FragmentSearchListBinding by bindView()
 
     private val mImageLoader = ImageLoader.getInstance()
 
-    private var mViewModel: SearchViewModel? = null
+    private val mViewModel: SearchViewModel by activityViewModels()
 
     private var mPage = 1
+
+    /*
+            searchRecycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    val layoutManager = (recyclerView.layoutManager as LinearLayoutManager?)!!
+                    val lastCompletelyVisibleItemPosition =
+                        layoutManager.findLastCompletelyVisibleItemPosition()
+                    if (lastCompletelyVisibleItemPosition == layoutManager.itemCount - 1) {
+                        nextPage()
+                    }
+                }
+            })*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,14 +61,9 @@ class SearchListFragment : BaseFragment() {
         return mBinding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mViewModel = ViewModelProviders.of(activity)[SearchViewModel::class.java]
-    }
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel!!.searchContentLiveData.observe(viewLifecycleOwner) {
+        mViewModel.searchContentLiveData.observe(viewLifecycleOwner) {
             if (!TextUtils.isEmpty(it)) {
                 mBinding.statelayout.showLoadingState()
             }
@@ -74,8 +82,8 @@ class SearchListFragment : BaseFragment() {
                         mImageLoader.displayImage(model.coverUrl, songCover)
                         songName.text = model.title
                         songSingerName.text = model.artist[0].name
-                        songName.markByColor(mViewModel!!.searchContentLiveData.value)
-                        songSingerName.markByColor(mViewModel!!.searchContentLiveData.value)
+                        songName.markByColor(mViewModel.searchContentLiveData.value)
+                        songSingerName.markByColor(mViewModel.searchContentLiveData.value)
                         itemView.setOnClickListener {
                             DefaultPlayerManager.getInstance()!!.loadAlbum(
                                 getModels<DefaultMusic<DefaultArtist>>().createAlbum(),
@@ -95,8 +103,8 @@ class SearchListFragment : BaseFragment() {
                                         context.getColor(android.R.color.black)
                                     )
                                     songSingerName.setTextColor(context.getColor(R.color.test2))
-                                    songName.markByColor(mViewModel!!.searchContentLiveData.value)
-                                    songSingerName.markByColor(mViewModel!!.searchContentLiveData.value)
+                                    songName.markByColor(mViewModel.searchContentLiveData.value)
+                                    songSingerName.markByColor(mViewModel.searchContentLiveData.value)
                                 }
                             }
                         onAttached {
@@ -115,7 +123,7 @@ class SearchListFragment : BaseFragment() {
 
     private fun nextPage() {
         ServiceCreator.create(NeteaseCloudMusicApi::class.java)
-            .searchMusic(mViewModel!!.searchContentLiveData.value, (mPage - 1) * 30)
+            .searchMusic(mViewModel.searchContentLiveData.value, (mPage - 1) * 30)
             .set(object : Callback<List<SearchMusicModel>> {
                 override fun onResponse(t: List<SearchMusicModel>?) {
                     NeteaseCloudMusicApi::class.java.create()
@@ -147,7 +155,6 @@ class SearchListFragment : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mViewModel = null
         mImageLoader.clearMemoryCache()
     }
 }

@@ -220,7 +220,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     void dispatchOnDestroyView() {
-        this.mRemoving = true;
+        mRemoving = true;
         if (!(mView == null || mView.getParent() == null)) {
             ((ViewGroup) mView.getParent()).removeView(mView);
         }
@@ -241,20 +241,21 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     @Override
     protected void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        LifecycleRegistry lifecycleRegistry = (LifecycleRegistry) getViewLifecycleOwner().getLifecycle();
-        lifecycleRegistry.markState(hidden ? Lifecycle.Event.ON_STOP : Lifecycle.Event.ON_START);
+        getLifecycleRegistry().markState(hidden ? Lifecycle.Event.ON_STOP : Lifecycle.Event.ON_START);
     }
 
     void dispatchAdd() {
         mAdded = true;
-        LifecycleRegistry lifecycleRegistry = (LifecycleRegistry) getViewLifecycleOwner().getLifecycle();
-        lifecycleRegistry.markState(Lifecycle.Event.ON_CREATE);
+        getLifecycleRegistry().markState(Lifecycle.Event.ON_CREATE);
     }
 
     void dispatchRemove() {
         mAdded = false;
-        LifecycleRegistry lifecycleRegistry = (LifecycleRegistry) getViewLifecycleOwner().getLifecycle();
-        lifecycleRegistry.markState(Lifecycle.Event.ON_DESTROY);
+        getLifecycleRegistry().markState(Lifecycle.Event.ON_DESTROY);
+    }
+
+    private LifecycleRegistry getLifecycleRegistry() {
+        return (LifecycleRegistry) getViewLifecycleOwner().getLifecycle();
     }
 
 }

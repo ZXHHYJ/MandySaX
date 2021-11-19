@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import com.nostra13.universalimageloader.core.ImageLoader
+import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayBinding
-import studio.mandysa.music.ui.base.BaseFragment
+import studio.mandysa.music.logic.utils.FragmentUtils.bindView
 
-class PlayFragment : BaseFragment() {
+class PlayFragment : Fragment() {
 
     private val mBinding: FragmentPlayBinding by bindView()
 
