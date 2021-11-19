@@ -1,13 +1,15 @@
 package studio.mandysa.music
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
+import mandysax.fragment.FragmentView
 import mandysax.fragmentpage.widget.FragmentPage
+import mandysax.lifecycle.Lifecycle
 import mandysax.media.DefaultPlayerManager
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.bottomnavigationbar.BottomNavigationItem
@@ -25,16 +27,20 @@ class MainActivity : BaseActivity() {
 
     private val mEvent: ShareViewModel by viewModels()
 
-    private var mControllerFragment: ViewGroup? = null
-
-    private var mPlayFragment: ViewGroup? = null
-
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         Sofia.with(this).invasionStatusBar().invasionNavigationBar().statusBarDarkFont()
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
-        mControllerFragment = findViewById(R.id.controller_fragment)
-        mPlayFragment = findViewById(R.id.play_fragment)
+        val controllerFragment = findViewById<FragmentView>(R.id.controller_fragment)
+        val playFragment = findViewById<FragmentView>(R.id.play_fragment)
+        //解决playFragment点击无事件view会关闭播放界面的问题
+        playFragment.setOnTouchListener { _, _ -> mBinding.mainSlidingView.panelState == SlidingUpPanelLayout.PanelState.EXPANDED }
+        lifecycle.addObserver { state ->
+            //避免内存泄漏
+            if (state == Lifecycle.Event.ON_DESTROY)
+                playFragment.setOnTouchListener(null)
+        }
         mBinding.apply {
             //不把shadowHeight设置为0的话后续修改shadowHeight都将失效！！
             mainSlidingView.shadowHeight = 0
@@ -94,55 +100,50 @@ class MainActivity : BaseActivity() {
                     insets.systemWindowInsetRight,
                     insets.systemWindowInsetBottom
                 )
-                initPmi()
-                insets
-            }
-        }
-    }
-
-    //配置音乐播放的动画
-    private fun initPmi() {
-        DefaultPlayerManager.getInstance()!!.changeMusicLiveData().lazy(this) {
-            mBinding.apply {
-                bottomNavigationBar.post {
-                    mainSlidingView.apply {
-                        panelHeight =
-                            (context.resources.getDimensionPixelOffset(R.dimen.nav_height) * if (bottomNavLayout != null) 2 else 1) + mBinding.mainFragmentPage.paddingBottom
-                        mBinding.mainFragmentPage.setPadding(
-                            0,
-                            mBinding.mainFragmentPage.paddingTop,
-                            0,
-                            0
-                        )
-                        shadowHeight =
-                            resources.getDimensionPixelSize(R.dimen.umano_shadow_height)
-                        postDelayed({
-                            addPanelSlideListener(object :
-                                SlidingUpPanelLayout.PanelSlideListener {
-                                val y = mBinding.bottomNavLayout?.y
-                                override fun onPanelSlide(panel: View, slideOffset: Float) {
-                                    mBinding.apply {
-                                        y?.apply {
-                                            val by: Float =
-                                                y + bottomNavLayout!!.height * slideOffset * 8
-                                            bottomNavLayout.y = by
+                DefaultPlayerManager.getInstance()!!.changeMusicLiveData().lazy(this@MainActivity) {
+                    mBinding.apply {
+                        bottomNavigationBar.post {
+                            mainSlidingView.apply {
+                                panelHeight =
+                                    (context.resources.getDimensionPixelOffset(R.dimen.nav_height) * if (bottomNavLayout != null) 2 else 1) + mBinding.mainFragmentPage.paddingBottom
+                                mBinding.mainFragmentPage.setPadding(
+                                    0,
+                                    mBinding.mainFragmentPage.paddingTop,
+                                    0,
+                                    0
+                                )
+                                shadowHeight =
+                                    resources.getDimensionPixelSize(R.dimen.umano_shadow_height)
+                                postDelayed({
+                                    addPanelSlideListener(object :
+                                        SlidingUpPanelLayout.PanelSlideListener {
+                                        val y = mBinding.bottomNavLayout?.y
+                                        override fun onPanelSlide(panel: View, slideOffset: Float) {
+                                            mBinding.apply {
+                                                y?.apply {
+                                                    val by: Float =
+                                                        y + bottomNavLayout!!.height * slideOffset * 8
+                                                    bottomNavLayout.y = by
+                                                }
+                                                val alpha = slideOffset * 12
+                                                controllerFragment.alpha = 1 - alpha
+                                                playFragment.alpha = alpha
+                                            }
                                         }
-                                        val alpha = slideOffset * 12
-                                        mControllerFragment!!.alpha = 1 - alpha
-                                        mPlayFragment!!.alpha = alpha
-                                    }
-                                }
 
-                                override fun onPanelStateChanged(
-                                    panel: View,
-                                    previousState: SlidingUpPanelLayout.PanelState,
-                                    newState: SlidingUpPanelLayout.PanelState
-                                ) {
-                                }
-                            })
-                        }, 220)
+                                        override fun onPanelStateChanged(
+                                            panel: View,
+                                            previousState: SlidingUpPanelLayout.PanelState,
+                                            newState: SlidingUpPanelLayout.PanelState
+                                        ) {
+                                        }
+                                    })
+                                }, 220)
+                            }
+                        }
                     }
                 }
+                insets
             }
         }
     }

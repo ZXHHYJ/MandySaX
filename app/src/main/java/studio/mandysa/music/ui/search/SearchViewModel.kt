@@ -4,5 +4,5 @@ import mandysax.lifecycle.ViewModel
 import mandysax.lifecycle.livedata.MutableLiveData
 
 class SearchViewModel : ViewModel() {
-    val SearchContentLiveData = MutableLiveData<String>()
+    val searchContentLiveData = MutableLiveData<String>()
 }

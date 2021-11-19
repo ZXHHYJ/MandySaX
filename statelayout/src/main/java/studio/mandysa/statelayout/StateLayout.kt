@@ -29,8 +29,10 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
         @JvmStatic
         var error: (View.() -> Unit)? = null
 
-        @JvmStatic
-        var retryId = -1
+        private var retryId = -1
+        fun setRetryId(retryId: Int) {
+            this.retryId = retryId
+        }
     }
 
     private var mEmpty: (View.() -> Unit)? = null
@@ -41,11 +43,11 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
 
     private var mContent: (View.() -> Unit)? = null
 
-    private val mEmptyLayout: Int
+    private var mEmptyLayoutId: Int
 
-    private val mLoadingLayout: Int
+    private var mLoadingLayoutId: Int
 
-    private val mErrorLayout: Int
+    private var mErrorLayoutId: Int
 
     private var mEmptyView: View? = null
 
@@ -57,6 +59,22 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
 
     private var mRetryId = retryId
 
+    fun setEmptyLayoutId(id: Int) {
+        mEmptyLayoutId = id
+    }
+
+    fun setLoadingLayoutId(id: Int) {
+        mLoadingLayoutId = id
+    }
+
+    fun setErrorLayoutId(id: Int) {
+        mErrorLayoutId = id
+    }
+
+    fun setRetryId(retryId: Int) {
+        mRetryId = retryId
+    }
+
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
         super.addView(child, index, params)
         if (mContentView == null) mContentView = child.also { child?.visibility = View.GONE }!!
@@ -65,10 +83,10 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     init {
         val typedArray: TypedArray =
             context.obtainStyledAttributes(attrs, R.styleable.StateLayout)
-        mEmptyLayout = typedArray.getResourceId(R.styleable.StateLayout_emptyLayout, emptyLayout)
-        mLoadingLayout =
+        mEmptyLayoutId = typedArray.getResourceId(R.styleable.StateLayout_emptyLayout, emptyLayout)
+        mLoadingLayoutId =
             typedArray.getResourceId(R.styleable.StateLayout_loadingLayout, loadingLayout)
-        mErrorLayout = typedArray.getResourceId(R.styleable.StateLayout_errorLayout, errorLayout)
+        mErrorLayoutId = typedArray.getResourceId(R.styleable.StateLayout_errorLayout, errorLayout)
         typedArray.recycle()
     }
 
@@ -103,13 +121,13 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     fun showEmptyState() {
         if (mEmptyView == null)
             addView(
-                LayoutInflater.from(context).inflate(mEmptyLayout, this, false)
+                LayoutInflater.from(context).inflate(mEmptyLayoutId, this, false)
                     .also {
                         mEmptyView = it
                         setRetryEvent(it)
                     }
             )
-        hideAllViews(mErrorView!!)?.apply {
+        hideAllViews(mEmptyView!!)?.apply {
             visibility = View.VISIBLE
             empty?.invoke(this)
             mEmpty?.invoke(this)
@@ -119,7 +137,7 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     fun showLoadingState() {
         if (mLoadingView == null)
             addView(
-                LayoutInflater.from(context).inflate(mLoadingLayout, this, false)
+                LayoutInflater.from(context).inflate(mLoadingLayoutId, this, false)
                     .also {
                         mLoadingView = it
                     }
@@ -134,7 +152,7 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     fun showErrorState() {
         if (mErrorView == null)
             addView(
-                LayoutInflater.from(context).inflate(mErrorLayout, this, false)
+                LayoutInflater.from(context).inflate(mErrorLayoutId, this, false)
                     .also {
                         mErrorView = it
                         setRetryEvent(it)
@@ -156,7 +174,7 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
 
     private fun setRetryEvent(view: View) {
         if (mRetryId != -1)
-            view.findViewById<View>(mRetryId).setOnClickListener {
+            view.findViewById<View?>(mRetryId)?.setOnClickListener {
                 showLoadingState()
             }
     }

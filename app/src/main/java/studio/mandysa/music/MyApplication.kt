@@ -7,7 +7,6 @@ import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
-import com.tencent.mmkv.MMKV
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.DefaultPlayerManager.Companion.init
 import studio.mandysa.music.service.MediaPlayService
@@ -17,13 +16,12 @@ import studio.mandysa.statelayout.StateLayout
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        StateLayout.apply {
-            loadingLayout = R.layout.layout_loading
-            emptyLayout = R.layout.layout_empty
-            errorLayout = R.layout.layout_error
-            retryId = R.id.cl_error_check
+        StateLayout.let {
+            it.loadingLayout = R.layout.layout_loading
+            it.emptyLayout = R.layout.layout_empty
+            it.errorLayout = R.layout.layout_error
+            it.setRetryId(R.id.cl_error_check)
         }
-        MMKV.initialize(this)
 
         val options = DisplayImageOptions.Builder()
             .showImageOnLoading(R.drawable.all_iv_placeholder)
@@ -41,7 +39,7 @@ class MyApplication : Application() {
             .defaultDisplayImageOptions(options)
             .build()
 
-        ImageLoader.getInstance().init(configuration);//初始化完成
+        ImageLoader.getInstance().init(configuration)//初始化完成
         init(this) //初始化播放管理器
         DefaultPlayerManager.getInstance()!!.apply {
             pauseLiveData()

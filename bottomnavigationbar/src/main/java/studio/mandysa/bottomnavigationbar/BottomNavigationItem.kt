@@ -10,7 +10,7 @@ class BottomNavigationItem constructor(@DrawableRes imageRes: Int, text: String)
     @ColorInt
     internal var mInActiveColor: Int? = null
 
-    internal val mImageRes = imageRes;
+    internal val mImageRes = imageRes
 
     internal val mText = text
 

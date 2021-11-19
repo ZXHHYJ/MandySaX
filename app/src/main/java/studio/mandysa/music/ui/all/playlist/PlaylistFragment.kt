@@ -27,7 +27,6 @@ class PlaylistFragment(private val id: String) : BaseFragment() {
 
     private val mImageLoader = ImageLoader.getInstance()
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

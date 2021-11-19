@@ -77,9 +77,9 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
 
     override fun getItemCount(): Int {
         var i = models?.size
-        if (i == null) i = 0;
+        if (i == null) i = 0
         var e = headers?.size
-        if (e == null) e = 0;
+        if (e == null) e = 0
         return i + e
     }
 

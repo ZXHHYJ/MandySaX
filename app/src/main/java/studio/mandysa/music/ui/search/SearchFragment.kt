@@ -14,7 +14,6 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import mandysax.anna2.callback.Callback
 import mandysax.core.app.OnBackPressedCallback
 import mandysax.lifecycle.Lifecycle
-import mandysax.lifecycle.LifecycleObserver
 import mandysax.lifecycle.ViewModelProviders
 import mandysax.navigation.Navigation
 import studio.mandysa.jiuwo.utils.RecyclerViewUtils.recyclerAdapter
@@ -77,27 +76,42 @@ class SearchFragment : BaseFragment() {
             }
 
         })
-        viewLifecycleOwner.lifecycle.addObserver(object : LifecycleObserver {
-            override fun Observer(state: Lifecycle.Event?) {
-                when (state) {
-                    Lifecycle.Event.ON_DESTROY -> {
-                        mOnBackListener.remove()
-                    }
-                    Lifecycle.Event.ON_CREATE -> {
-                        activity.onBackPressedDispatcher.addCallback(mOnBackListener)
-                    }
-                    Lifecycle.Event.ON_START -> {
-                        mOnBackListener.isEnabled =
-                            mBinding.searchSlidingView.panelState == SlidingUpPanelLayout.PanelState.EXPANDED
-                    }
-                    Lifecycle.Event.ON_STOP -> {
-                        mOnBackListener.isEnabled = false
-                    }
-                    else -> {}
+        viewLifecycleOwner.lifecycle.addObserver { state ->
+            when (state) {
+                Lifecycle.Event.ON_DESTROY -> {
+                    mOnBackListener.remove()
                 }
+                Lifecycle.Event.ON_CREATE -> {
+                    activity.onBackPressedDispatcher.addCallback(mOnBackListener)
+                }
+                Lifecycle.Event.ON_START -> {
+                    mOnBackListener.isEnabled =
+                        mBinding.searchSlidingView.panelState == SlidingUpPanelLayout.PanelState.EXPANDED
+                }
+                Lifecycle.Event.ON_STOP -> {
+                    mOnBackListener.isEnabled = false
+                }
+                else -> {}
             }
-        })
+        }
         mBinding.apply {
+            statelayout.apply {
+                showLoading {
+                    NeteaseCloudMusicApi::class.java.create().getToplist()
+                        .set(lifecycle, object : Callback<List<ToplistModel>> {
+                            override fun onResponse(t: List<ToplistModel>?) {
+                                mBinding.recycler.recyclerAdapter.models = t!!
+                                showContentState()
+                            }
+
+                            override fun onFailure(code: Int) {
+                                showErrorState()
+                            }
+
+                        })
+                }
+                showLoadingState()
+            }
             searchSlidingView.isTouchEnabled = false
             searchEditFrame.setOnEditorActionListener { _, i, _ ->
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
@@ -117,7 +131,7 @@ class SearchFragment : BaseFragment() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    mViewModel!!.SearchContentLiveData.value = s.toString()
+                    mViewModel!!.searchContentLiveData.value = s.toString()
                     searchSlidingView.panelState =
                         if (TextUtils.isEmpty(s)) SlidingUpPanelLayout.PanelState.COLLAPSED else SlidingUpPanelLayout.PanelState.EXPANDED
                 }
@@ -145,17 +159,7 @@ class SearchFragment : BaseFragment() {
                 }
             }
         }
-        NeteaseCloudMusicApi::class.java.create().getToplist()
-            .set(lifecycle, object : Callback<List<ToplistModel>> {
-                override fun onResponse(t: List<ToplistModel>?) {
-                    mBinding.recycler.recyclerAdapter.models = t!!
-                }
 
-                override fun onFailure(code: Int) {
-
-                }
-
-            })
     }
 
     private fun hideInput() {

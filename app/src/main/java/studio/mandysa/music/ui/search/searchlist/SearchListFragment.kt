@@ -55,7 +55,7 @@ class SearchListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel!!.SearchContentLiveData.observe(viewLifecycleOwner) {
+        mViewModel!!.searchContentLiveData.observe(viewLifecycleOwner) {
             if (!TextUtils.isEmpty(it)) {
                 mBinding.statelayout.showLoadingState()
             }
@@ -74,8 +74,8 @@ class SearchListFragment : BaseFragment() {
                         mImageLoader.displayImage(model.coverUrl, songCover)
                         songName.text = model.title
                         songSingerName.text = model.artist[0].name
-                        songName.markByColor(mViewModel!!.SearchContentLiveData.value)
-                        songSingerName.markByColor(mViewModel!!.SearchContentLiveData.value)
+                        songName.markByColor(mViewModel!!.searchContentLiveData.value)
+                        songSingerName.markByColor(mViewModel!!.searchContentLiveData.value)
                         itemView.setOnClickListener {
                             DefaultPlayerManager.getInstance()!!.loadAlbum(
                                 getModels<DefaultMusic<DefaultArtist>>().createAlbum(),
@@ -95,8 +95,8 @@ class SearchListFragment : BaseFragment() {
                                         context.getColor(android.R.color.black)
                                     )
                                     songSingerName.setTextColor(context.getColor(R.color.test2))
-                                    songName.markByColor(mViewModel!!.SearchContentLiveData.value)
-                                    songSingerName.markByColor(mViewModel!!.SearchContentLiveData.value)
+                                    songName.markByColor(mViewModel!!.searchContentLiveData.value)
+                                    songSingerName.markByColor(mViewModel!!.searchContentLiveData.value)
                                 }
                             }
                         onAttached {
@@ -115,7 +115,7 @@ class SearchListFragment : BaseFragment() {
 
     private fun nextPage() {
         ServiceCreator.create(NeteaseCloudMusicApi::class.java)
-            .searchMusic(mViewModel!!.SearchContentLiveData.value, (mPage - 1) * 30)
+            .searchMusic(mViewModel!!.searchContentLiveData.value, (mPage - 1) * 30)
             .set(object : Callback<List<SearchMusicModel>> {
                 override fun onResponse(t: List<SearchMusicModel>?) {
                     NeteaseCloudMusicApi::class.java.create()

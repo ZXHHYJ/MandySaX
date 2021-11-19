@@ -13,7 +13,7 @@ object RecyclerViewUtils {
         layoutManager = LinearLayoutManager(context).also {
             it.orientation = orientation
         }
-        return this;
+        return this
     }
 
     fun RecyclerView.staggered(
@@ -21,7 +21,7 @@ object RecyclerViewUtils {
         @RecyclerView.Orientation orientation: Int = RecyclerView.VERTICAL
     ): RecyclerView {
         layoutManager = StaggeredGridLayoutManager(spanCount, orientation)
-        return this;
+        return this
     }
 
     fun RecyclerView.setup(block: RecyclerAdapter.(RecyclerView) -> Unit): RecyclerAdapter {

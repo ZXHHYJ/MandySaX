@@ -2,6 +2,8 @@
 <resources>
     <color name="border_color">#FFEFEFEF</color>
 
+    <color name="fragment_play_button_color">#323232</color>
+
     <color name="test2">#7A7A7A</color>
     <color name="main">#006DCC</color>
     <color name="blue">#FF2A81D2</color>

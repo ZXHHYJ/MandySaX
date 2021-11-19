@@ -494,7 +494,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
     /**
      * Adds a panel slide listener
      *
-     * @param listener
+     * @param listener listener
      */
     public void addPanelSlideListener(PanelSlideListener listener) {
         synchronized (mPanelSlideListeners) {

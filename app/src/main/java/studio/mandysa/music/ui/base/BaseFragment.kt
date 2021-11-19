@@ -4,7 +4,8 @@ import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.Lifecycle
-import mandysax.lifecycle.LifecycleObserver
+import mandysax.lifecycle.ViewModel
+import mandysax.lifecycle.ViewModelProviders
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -23,15 +24,25 @@ open class BaseFragment : Fragment() {
             if (_binding == null) {
                 _binding = clazz.getMethod("inflate", LayoutInflater::class.java)
                     .invoke(null, thisRef.layoutInflater) as VB
-                thisRef.viewLifecycleOwner.lifecycle.addObserver(object : LifecycleObserver {
-                    override fun Observer(state: Lifecycle.Event?) {
-                        if (state == Lifecycle.Event.ON_DESTROY)
-                            _binding = null
-                    }
-                })
+                thisRef.viewLifecycleOwner.lifecycle.addObserver { state ->
+                    if (state == Lifecycle.Event.ON_DESTROY)
+                        _binding = null
+                }
             }
             return _binding!!
         }
+    }
+
+    inline fun <reified VB : ViewModel> BaseFragment.viewModels() = lazy {
+        return@lazy ViewModelProviders.of(
+            viewLifecycleOwner
+        )[VB::class.java]
+    }
+
+    inline fun <reified VB : ViewModel> BaseFragment.activityViewModels() = lazy {
+        return@lazy ViewModelProviders.of(
+            activity
+        )[VB::class.java]
     }
 
 }

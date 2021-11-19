@@ -16,7 +16,7 @@ open class BaseActivity : FragmentActivity() {
         VB::class.java.getMethod("inflate", LayoutInflater::class.java)
             .invoke(null, layoutInflater) as VB
 
-    inline fun <reified VB : ViewModel> ViewModelStoreOwner.viewModels() = lazy {
+    inline fun <reified VB : ViewModel> BaseActivity.viewModels() = lazy {
         return@lazy ViewModelProviders.of(
             this
         )[VB::class.java]
