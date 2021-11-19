@@ -11,7 +11,7 @@ import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayBinding
-import studio.mandysa.music.logic.utils.FragmentUtils.bindView
+import studio.mandysa.music.logic.utils.bindView
 
 class PlayFragment : Fragment() {
 

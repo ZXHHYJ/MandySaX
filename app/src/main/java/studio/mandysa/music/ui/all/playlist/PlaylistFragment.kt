@@ -22,9 +22,9 @@ import studio.mandysa.music.databinding.ItemSongBinding
 import studio.mandysa.music.logic.model.MusicModel
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.PlaylistInfoModel
-import studio.mandysa.music.logic.utils.ClassUtils.create
-import studio.mandysa.music.logic.utils.FragmentUtils.bindView
-import studio.mandysa.music.logic.utils.ObservableUtils.set
+import studio.mandysa.music.logic.utils.bindView
+import studio.mandysa.music.logic.utils.create
+import studio.mandysa.music.logic.utils.set
 
 class PlaylistFragment(private val id: String) : Fragment() {
 
@@ -49,21 +49,22 @@ class PlaylistFragment(private val id: String) : Fragment() {
                 it.showLoading {
                     NeteaseCloudMusicApi::class.java.create()
                         .getSongListInfo(this@PlaylistFragment.id)
-                        .set(lifecycle, object : Callback<PlaylistInfoModel> {
+                        .set(viewLifecycleOwner.lifecycle, object : Callback<PlaylistInfoModel> {
                             override fun onResponse(t: PlaylistInfoModel?) {
                                 mBinding.recycler.addHeader(t!!)
                                 NeteaseCloudMusicApi::class.java.create()
                                     .getMusicInfo(t.songList)
-                                    .set(object : Callback<List<MusicModel>> {
-                                        override fun onResponse(t: List<MusicModel>?) {
-                                            mBinding.recycler.addModels(t!!.toMutableList())
-                                            it.showContentState()
-                                        }
+                                    .set(viewLifecycleOwner.lifecycle,
+                                        object : Callback<List<MusicModel>> {
+                                            override fun onResponse(t: List<MusicModel>?) {
+                                                mBinding.recycler.addModels(t!!.toMutableList())
+                                                it.showContentState()
+                                            }
 
-                                        override fun onFailure(code: Int) {
-                                            it.showErrorState()
-                                        }
-                                    })
+                                            override fun onFailure(code: Int) {
+                                                it.showErrorState()
+                                            }
+                                        })
                             }
 
                             override fun onFailure(code: Int) {

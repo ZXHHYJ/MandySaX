@@ -10,19 +10,17 @@ import java.util.regex.Pattern
 /**
  * @author liuxiaoliu66
  */
-object TextViewUtils {
-    fun TextView.markByColor(keyword: String?) {
-        if (keyword == null) return
-        val s = SpannableString(text)
-        val m = Pattern.compile(keyword).matcher(s)
-        while (m.find()) {
-            s.setSpan(
-                ForegroundColorSpan(context.getColor(R.color.main)),
-                m.start(),
-                m.end(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-        }
-        text = s
+fun TextView.markByColor(keyword: String?) {
+    if (keyword == null) return
+    val s = SpannableString(text)
+    val m = Pattern.compile(keyword).matcher(s)
+    while (m.find()) {
+        s.setSpan(
+            ForegroundColorSpan(context.getColor(R.color.main)),
+            m.start(),
+            m.end(),
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
     }
+    text = s
 }

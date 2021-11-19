@@ -23,11 +23,7 @@ import studio.mandysa.music.databinding.FragmentSearchBinding
 import studio.mandysa.music.databinding.ItemToplistBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.ToplistModel
-import studio.mandysa.music.logic.utils.ClassUtils.create
-import studio.mandysa.music.logic.utils.EditTextUtils.hideInput
-import studio.mandysa.music.logic.utils.FragmentUtils.bindView
-import studio.mandysa.music.logic.utils.ObservableUtils.set
-import studio.mandysa.music.logic.utils.ViewModelUtils.activityViewModels
+import studio.mandysa.music.logic.utils.*
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 
 class SearchFragment : Fragment() {
@@ -93,7 +89,7 @@ class SearchFragment : Fragment() {
             statelayout.apply {
                 showLoading {
                     NeteaseCloudMusicApi::class.java.create().getToplist()
-                        .set(lifecycle, object : Callback<List<ToplistModel>> {
+                        .set(viewLifecycleOwner.lifecycle, object : Callback<List<ToplistModel>> {
                             override fun onResponse(t: List<ToplistModel>?) {
                                 mBinding.recycler.recyclerAdapter.models = t!!
                                 showContentState()

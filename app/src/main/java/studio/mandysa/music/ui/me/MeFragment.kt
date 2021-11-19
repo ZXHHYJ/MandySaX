@@ -9,7 +9,7 @@ import mandysax.fragment.Fragment
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentMeBinding
 import studio.mandysa.music.databinding.LayoutLoginBinding
-import studio.mandysa.music.logic.utils.FragmentUtils.bindView
+import studio.mandysa.music.logic.utils.bindView
 
 class MeFragment : Fragment() {
 

@@ -15,8 +15,8 @@ import mandysax.media.DefaultPlayerManager
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.bottomnavigationbar.BottomNavigationItem
 import studio.mandysa.music.databinding.ActivityMainBinding
-import studio.mandysa.music.logic.utils.FragmentActivityUtils.inflate
-import studio.mandysa.music.logic.utils.ViewModelUtils.viewModels
+import studio.mandysa.music.logic.utils.inflate
+import studio.mandysa.music.logic.utils.viewModels
 import studio.mandysa.music.ui.event.ShareViewModel
 import studio.mandysa.music.ui.home.HomeFragment
 import studio.mandysa.music.ui.me.MeFragment

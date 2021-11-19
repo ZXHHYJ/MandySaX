@@ -8,8 +8,8 @@ import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.fragment.Fragment
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentControllerBinding
-import studio.mandysa.music.logic.utils.DefaultPlayManagerUtils.getInstance
-import studio.mandysa.music.logic.utils.FragmentUtils.bindView
+import studio.mandysa.music.logic.utils.bindView
+import studio.mandysa.music.logic.utils.getInstance
 
 class ControllerFragment : Fragment() {
 

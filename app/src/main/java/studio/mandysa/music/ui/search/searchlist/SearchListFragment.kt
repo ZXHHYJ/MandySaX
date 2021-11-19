@@ -22,12 +22,7 @@ import studio.mandysa.music.logic.model.MusicModel
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.SearchMusicModel
 import studio.mandysa.music.logic.network.ServiceCreator
-import studio.mandysa.music.logic.utils.ArrayListUtils.createAlbum
-import studio.mandysa.music.logic.utils.BindingAdapterUtils.getModels
-import studio.mandysa.music.logic.utils.ClassUtils.create
-import studio.mandysa.music.logic.utils.FragmentUtils.bindView
-import studio.mandysa.music.logic.utils.TextViewUtils.markByColor
-import studio.mandysa.music.logic.utils.ViewModelUtils.activityViewModels
+import studio.mandysa.music.logic.utils.*
 import studio.mandysa.music.ui.search.SearchViewModel
 
 class SearchListFragment : Fragment() {
@@ -124,11 +119,11 @@ class SearchListFragment : Fragment() {
     private fun nextPage() {
         ServiceCreator.create(NeteaseCloudMusicApi::class.java)
             .searchMusic(mViewModel.searchContentLiveData.value, (mPage - 1) * 30)
-            .set(object : Callback<List<SearchMusicModel>> {
+            .set(viewLifecycleOwner.lifecycle, object : Callback<List<SearchMusicModel>> {
                 override fun onResponse(t: List<SearchMusicModel>?) {
                     NeteaseCloudMusicApi::class.java.create()
                         .getMusicInfo(t!!)
-                        .set(object : Callback<List<MusicModel>> {
+                        .set(viewLifecycleOwner.lifecycle, object : Callback<List<MusicModel>> {
                             override fun onResponse(t: List<MusicModel>?) {
                                 mBinding.recycler.recyclerAdapter.models = t!!
                                 mBinding.statelayout.showContentState()

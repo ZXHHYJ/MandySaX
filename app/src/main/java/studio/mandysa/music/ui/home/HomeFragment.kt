@@ -26,12 +26,7 @@ import studio.mandysa.music.databinding.ItemSongBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.NewSongModel
 import studio.mandysa.music.logic.model.PlaylistModel
-import studio.mandysa.music.logic.utils.ArrayListUtils.createAlbum
-import studio.mandysa.music.logic.utils.BindingAdapterUtils.getModels
-import studio.mandysa.music.logic.utils.ClassUtils.create
-import studio.mandysa.music.logic.utils.DefaultPlayManagerUtils.getInstance
-import studio.mandysa.music.logic.utils.FragmentUtils.bindView
-import studio.mandysa.music.logic.utils.ObservableUtils.set
+import studio.mandysa.music.logic.utils.*
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 
 class HomeFragment : Fragment() {
@@ -122,28 +117,32 @@ class HomeFragment : Fragment() {
             }
             statelayout.showLoading {
                 NeteaseCloudMusicApi::class.java.create().apply {
-                    recommendedPlaylist.set(lifecycle, object : Callback<PlaylistModel> {
-                        override fun onResponse(t: PlaylistModel?) {
-                            statelayout.showContentState()
-                            mBinding.recycler.addHeader(t!!)
-                        }
+                    recommendedPlaylist.set(
+                        viewLifecycleOwner.lifecycle,
+                        object : Callback<PlaylistModel> {
+                            override fun onResponse(t: PlaylistModel?) {
+                                statelayout.showContentState()
+                                mBinding.recycler.addHeader(t!!)
+                            }
 
-                        override fun onFailure(code: Int) {
-                            statelayout.showErrorState()
-                        }
+                            override fun onFailure(code: Int) {
+                                statelayout.showErrorState()
+                            }
 
-                    })
-                    recommendedSong.set(lifecycle, object : Callback<List<NewSongModel>> {
-                        override fun onResponse(t: List<NewSongModel>?) {
-                            statelayout.showContentState()
-                            mBinding.recycler.addModels(t!!)
-                        }
+                        })
+                    recommendedSong.set(
+                        viewLifecycleOwner.lifecycle,
+                        object : Callback<List<NewSongModel>> {
+                            override fun onResponse(t: List<NewSongModel>?) {
+                                statelayout.showContentState()
+                                mBinding.recycler.addModels(t!!)
+                            }
 
-                        override fun onFailure(code: Int) {
-                            statelayout.showErrorState()
-                        }
+                            override fun onFailure(code: Int) {
+                                statelayout.showErrorState()
+                            }
 
-                    })
+                        })
                 }
             }
             statelayout.showLoadingState()
