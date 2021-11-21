@@ -58,14 +58,13 @@ class FragmentStateManager extends FragmentStore {
             fragment.dumpOnAttach(mActivity);
             fragment.dumpOnCreate(fragment.getArguments());
         }
-        if (!fragment.isInLayout() && id != 0) {
+        if (!fragment.isInLayout() && id != 0)
             fragment.dispatchOnViewCreated(fragment.onCreateView(
                     mActivity.getLayoutInflater().cloneInContext(mActivity.getApplicationContext()),
                     fragment.getViewGroup(),
                     fragment.getArguments()
             ));
-            mActivityCreated.lazy(p1 -> fragment.onActivityCreated(mSavedInstanceState));
-        }
+        mActivityCreated.lazy(p1 -> fragment.onActivityCreated(mSavedInstanceState));
         if (parentFragment == null) {
             add(fragment);
         } else {

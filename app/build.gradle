@@ -31,6 +31,7 @@ android {
 }
 
 dependencies {
+    implementation 'io.github.billywei01:fastkv:1.0.4'
     // 映射存储库：https://github.com/Tencent/MMKV
     //implementation 'com.tencent:mmkv:1.2.11'
     // 图片加载库：https://github.com/nostra13/Android-Universal-Image-Loader
@@ -39,8 +40,6 @@ dependencies {
     implementation 'com.gitee.liuxiaoliu66:anna:2.1.0'
     // bottomNavigationBar：https://gitee.com/liuxiaoliu66/bottom-navigation-bar
     //implementation 'com.gitee.liuxiaoliu66:bottom-navigation-bar:1.1.2'
-    // 沉浸状态栏与导航栏：https://github.com/yanzhenjie/Sofia
-    implementation 'com.yanzhenjie:sofia:1.0.5'
 
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation project(':bottomnavigationbar')

@@ -18,9 +18,7 @@
         android:hint="@string/search_hint"
         android:imeOptions="actionSearch"
         android:inputType="text"
-        android:padding="@dimen/default_margin"
         android:singleLine="true"
-        android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="16sp" />
 
     <com.sothree.slidinguppanel.SlidingUpPanelLayout
@@ -50,7 +48,9 @@
                     android:id="@+id/recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:overScrollMode="never" />
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:paddingTop="@dimen/double_item_margin" />
 
             </LinearLayout>
         </studio.mandysa.statelayout.StateLayout>

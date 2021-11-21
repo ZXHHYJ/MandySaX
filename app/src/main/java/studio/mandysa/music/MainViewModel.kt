@@ -1,9 +1,9 @@
-package studio.mandysa.music.ui.event
+package studio.mandysa.music
 
 import mandysax.lifecycle.ViewModel
 import mandysax.lifecycle.livedata.MutableLiveData
 
-class ShareViewModel : ViewModel() {
+class MainViewModel : ViewModel() {
 
     val homePosLiveData = MutableLiveData(0)
 

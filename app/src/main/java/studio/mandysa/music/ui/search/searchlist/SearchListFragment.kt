@@ -12,9 +12,9 @@ import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
 import mandysax.media.model.DefaultMusic
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.recyclerAdapter
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
+import studio.mandysa.jiuwo.utils.linear
+import studio.mandysa.jiuwo.utils.recyclerAdapter
+import studio.mandysa.jiuwo.utils.setup
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentSearchListBinding
 import studio.mandysa.music.databinding.ItemSongBinding

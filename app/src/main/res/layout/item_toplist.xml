@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="8dp"
     android:gravity="center"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         style="@style/ViewCardViewStyle"
-        android:layout_width="155dp"
-        android:layout_height="155dp">
+        android:layout_width="170dp"
+        android:layout_height="170dp">
 
         <ImageView
             android:id="@+id/toplist_cover"

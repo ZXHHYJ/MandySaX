@@ -2,14 +2,16 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@android:id/background">
-        <shape>
+        <shape
+            android:height="4dp">
             <corners android:radius="25dp" />
-            <solid android:color="#EEEFF3" />
+            <solid
+                android:color="#EEEFF3" />
         </shape>
     </item>
     <item android:id="@android:id/progress">
-        <clip>
-            <shape>
+        <clip  android:height="4dp">
+            <shape  android:height="4dp">
                 <corners android:radius="25sp" />
                 <solid android:color="@color/fragment_play_button_color" />
             </shape>

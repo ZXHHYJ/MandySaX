@@ -5,6 +5,7 @@ import mandysax.anna2.observable.Observable
 import mandysax.lifecycle.ViewModel
 import mandysax.lifecycle.livedata.LiveData
 import mandysax.lifecycle.livedata.MutableLiveData
+import mandysax.lifecycle.livedata.Observer
 import studio.mandysa.music.logic.model.MusicModel
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.PlaylistInfoModel
@@ -44,15 +45,18 @@ class PlaylistViewModel : ViewModel() {
 
     fun nextPage() {
         if (mObservable == null)
-            mMetadataLiveData.lazy { it ->
-                if (it == null) {
+        mMetadataLiveData.observeForever(object : Observer<List<PlaylistInfoModel.SongList>?> {
+            val mThis = this
+            override fun onChanged(p1: List<PlaylistInfoModel.SongList>?) {
+                if (p1 == null) {
                     mDataLiveData.value = null
-                    return@lazy
+                    mMetadataLiveData.removeObserver(mThis)
+                    return
                 }
                 val list = ArrayList<PlaylistInfoModel.SongList>()
                 val difference = 30 * mPage
                 if (difference > mMetadataLiveData.value!!.size)
-                    return@lazy
+                    return
                 for (i in difference until if (mMetadataLiveData.value!!.size - difference < 30)
                     difference + abs(mMetadataLiveData.value!!.size - difference)
                 else
@@ -66,14 +70,18 @@ class PlaylistViewModel : ViewModel() {
                                 mDataLiveData.value = t!!
                                 mPage++
                                 mObservable = null
+                                mMetadataLiveData.removeObserver(mThis)
                             }
 
                             override fun onFailure(code: Int) {
                                 mDataLiveData.value = null
                                 mObservable = null
+                                mMetadataLiveData.removeObserver(mThis)
                             }
                         })
                     }
             }
+
+        })
     }
 }

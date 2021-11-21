@@ -14,17 +14,17 @@ class FragmentBindingDelegate<VB : ViewBinding>(
     private val clazz: Class<VB>
 ) : ReadOnlyProperty<Fragment, VB> {
 
-    private var _binding: VB? = null
+    private var mBinding: VB? = null
 
     override fun getValue(thisRef: Fragment, property: KProperty<*>): VB {
-        if (_binding == null) {
-            _binding = clazz.getMethod("inflate", LayoutInflater::class.java)
+        if (mBinding == null) {
+            mBinding = clazz.getMethod("inflate", LayoutInflater::class.java)
                 .invoke(null, thisRef.layoutInflater) as VB
             thisRef.viewLifecycleOwner.lifecycle.addObserver {
                 if (it == Lifecycle.Event.ON_DESTROY)
-                    _binding = null
+                    mBinding = null
             }
         }
-        return _binding!!
+        return mBinding!!
     }
 }

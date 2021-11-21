@@ -15,9 +15,9 @@ import mandysax.core.app.OnBackPressedCallback
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.Lifecycle
 import mandysax.navigation.Navigation
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.recyclerAdapter
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.staggered
+import studio.mandysa.jiuwo.utils.recyclerAdapter
+import studio.mandysa.jiuwo.utils.setup
+import studio.mandysa.jiuwo.utils.staggered
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentSearchBinding
 import studio.mandysa.music.databinding.ItemToplistBinding
@@ -132,6 +132,7 @@ class SearchFragment : Fragment() {
                 }
 
             })
+            recycler.addItemDecoration(DoubleItemDecoration())
             recycler.staggered(2).setup {
                 addType<ToplistModel>(R.layout.item_toplist)
                 onBind {

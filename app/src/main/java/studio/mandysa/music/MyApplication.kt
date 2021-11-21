@@ -7,15 +7,16 @@ import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
+import io.fastkv.FastKVConfig
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.DefaultPlayerManager.Companion.init
 import studio.mandysa.music.service.MediaPlayService
 import studio.mandysa.statelayout.StateLayout
 
-
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+
         StateLayout.let {
             it.loadingLayout = R.layout.layout_loading
             it.emptyLayout = R.layout.layout_empty
@@ -34,7 +35,7 @@ class MyApplication : Application() {
         val configuration = ImageLoaderConfiguration.Builder(this)
             .diskCache(UnlimitedDiskCache(cacheDir))
             .memoryCacheSizePercentage(20)//设置占用内存的百分比
-            .diskCacheFileCount(100)//设置最大下载图片数
+            .diskCacheFileCount(100)
             .diskCacheSize(5 * 1024 * 1024)
             .defaultDisplayImageOptions(options)
             .build()

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.ViewCompat
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
-import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
 import mandysax.fragment.FragmentActivity
 import mandysax.fragment.FragmentView
@@ -17,7 +16,6 @@ import studio.mandysa.bottomnavigationbar.BottomNavigationItem
 import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.logic.utils.inflate
 import studio.mandysa.music.logic.utils.viewModels
-import studio.mandysa.music.ui.event.ShareViewModel
 import studio.mandysa.music.ui.home.HomeFragment
 import studio.mandysa.music.ui.me.MeFragment
 import studio.mandysa.music.ui.search.SearchFragment
@@ -27,11 +25,10 @@ class MainActivity : FragmentActivity() {
 
     private val mBinding: ActivityMainBinding by inflate()
 
-    private val mEvent: ShareViewModel by viewModels()
+    private val mEvent: MainViewModel by viewModels()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
-        Sofia.with(this).invasionStatusBar().invasionNavigationBar().statusBarDarkFont()
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
         val controllerFragment = findViewById<FragmentView>(R.id.controller_fragment)

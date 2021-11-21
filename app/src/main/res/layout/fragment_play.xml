@@ -22,7 +22,7 @@
                 android:id="@+id/play_cover"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,ImageContrastCheck" />
 
         </androidx.cardview.widget.CardView>
 
@@ -55,12 +55,13 @@
         <SeekBar
             android:id="@+id/play_progress"
             android:layout_width="match_parent"
-            android:layout_height="4dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:background="@null"
-            android:progressDrawable="@drawable/bg_play_seekbar"
-            android:thumb="@null" />
+            android:duplicateParentState="true"
+            android:progressTint="@color/fragment_play_button_color"
+            android:thumbTint="@color/fragment_play_button_color" />
 
         <LinearLayout
             android:layout_width="match_parent"

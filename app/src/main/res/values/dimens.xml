@@ -17,6 +17,7 @@
     <dimen name="umano_shadow_height">3dp</dimen>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="double_item_margin">6dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="height_edittext">55dp</dimen>

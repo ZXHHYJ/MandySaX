@@ -8,10 +8,10 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.RecyclerView
 import mandysax.lifecycle.livedata.MutableLiveData
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.linear
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.recyclerAdapter
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.setup
-import studio.mandysa.jiuwo.utils.RecyclerViewUtils.staggered
+import studio.mandysa.jiuwo.utils.linear
+import studio.mandysa.jiuwo.utils.recyclerAdapter
+import studio.mandysa.jiuwo.utils.setup
+import studio.mandysa.jiuwo.utils.staggered
 
 
 class BottomNavigationBar : RecyclerView {

@@ -6,14 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.fragment.Fragment
-import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentMeBinding
-import studio.mandysa.music.databinding.LayoutLoginBinding
+import studio.mandysa.music.logic.utils.activityViewModels
 import studio.mandysa.music.logic.utils.bindView
+import studio.mandysa.music.ui.event.UserViewModel
+import studio.mandysa.music.ui.login.LoginFragment
 
 class MeFragment : Fragment() {
 
     private val mBinding: FragmentMeBinding by bindView()
+
+    private val mEvent: UserViewModel by activityViewModels()
 
     private val mImageLoader = ImageLoader.getInstance()
 
@@ -29,18 +32,17 @@ class MeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mBinding.apply {
             statelayout.apply {
-                setEmptyLayoutId(R.layout.layout_login)
-                showEmpty {
-                    LayoutLoginBinding.bind(this).let {
-                        mImageLoader.displayImage(
-                            "https://cdn.colorhub.me/iE10vz7L36euvhRdZqrIi1YDTCSSl2xDkxI2x6LnhBo/auto/0/500/ce/0/bG9jYWw6Ly8vYTQv/ZDIvMGRmOGQ2Y2Vh/ZWQ2M2U5NTQ2YzYx/YTQ0NjEzMjJmMWJj/YWRkYTRkMi5qcGc.jpg",
-                            it.show
-                        )
-                    }
-                }
-                showEmptyState()
+                if (mEvent.getCookieLiveData().value == null)
+                    showEmptyState()
             }
         }
+        mEvent.getCookieLiveData().observe(viewLifecycleOwner) {
+
+        }
+        mEvent.getUserListLiveData().lazy(viewLifecycleOwner) {
+
+        }
+        LoginFragment().show(fragmentPlusManager)
     }
 
     override fun onDestroyView() {

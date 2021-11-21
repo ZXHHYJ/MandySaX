@@ -83,10 +83,10 @@ class StateLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     init {
         val typedArray: TypedArray =
             context.obtainStyledAttributes(attrs, R.styleable.StateLayout)
-        mEmptyLayoutId = typedArray.getResourceId(R.styleable.StateLayout_emptyLayout, emptyLayout)
+        mEmptyLayoutId = typedArray.getResourceId(R.styleable.StateLayout_emptyLayoutId, emptyLayout)
         mLoadingLayoutId =
-            typedArray.getResourceId(R.styleable.StateLayout_loadingLayout, loadingLayout)
-        mErrorLayoutId = typedArray.getResourceId(R.styleable.StateLayout_errorLayout, errorLayout)
+            typedArray.getResourceId(R.styleable.StateLayout_loadingLayoutId, loadingLayout)
+        mErrorLayoutId = typedArray.getResourceId(R.styleable.StateLayout_errorLayoutId, errorLayout)
         typedArray.recycle()
     }
 
