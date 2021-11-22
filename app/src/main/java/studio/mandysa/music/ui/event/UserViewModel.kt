@@ -1,29 +1,58 @@
 package studio.mandysa.music.ui.event
 
-import android.R.attr
+import com.tencent.mmkv.MMKV
+import mandysax.anna2.callback.Callback
 import mandysax.lifecycle.ViewModel
 import mandysax.lifecycle.livedata.LiveData
 import mandysax.lifecycle.livedata.MutableLiveData
-import studio.mandysa.music.logic.model.UserModel
-import android.R.attr.path
-
-import io.fastkv.FastKV
-
-
+import studio.mandysa.music.logic.model.LoginModel
+import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
+import studio.mandysa.music.logic.utils.create
 
 
 class UserViewModel : ViewModel() {
 
-    private val mCookieLiveData = MutableLiveData<String>()
+    companion object {
+        /*@JvmStatic
+        val MOBILE_PHONE_KEY = "mobile_phone_key"
 
-    private val mUserListLiveData = MutableLiveData<List<UserModel>>()
+        @JvmStatic
+        val PASSWORD_KEY = "password_key"*/
+
+        @JvmStatic
+        val COOKIE_KEY = "cookie_key"
+    }
+
+    private val mmkv = MMKV.defaultMMKV()
+
+    /*private var mMobilePhone = mmkv.decodeString(MOBILE_PHONE_KEY)
+
+    private var mPassword = mmkv.decodeString(PASSWORD_KEY)*/
+
+    private val mCookieLiveData = MutableLiveData<String>(mmkv.decodeString(COOKIE_KEY))
 
     fun getCookieLiveData(): LiveData<String> = mCookieLiveData
 
-    fun getUserListLiveData(): LiveData<List<UserModel>> = mUserListLiveData
-
     init {
+        mCookieLiveData.observeForever {
+            if (it != null) {
+                mmkv.encode(COOKIE_KEY, it)
+            }
+        }
+    }
 
+    fun login(mobilePhone: String, password: String) {
+        NeteaseCloudMusicApi::class.java.create().login(mobilePhone, password).set(object :
+            Callback<LoginModel> {
+            override fun onFailure(code: Int) {
+                mCookieLiveData.value = null;
+            }
+
+            override fun onResponse(t: LoginModel?) {
+                mCookieLiveData.value = t!!.cookie
+            }
+
+        })
     }
 
 }

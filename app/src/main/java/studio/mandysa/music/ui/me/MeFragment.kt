@@ -39,9 +39,6 @@ class MeFragment : Fragment() {
         mEvent.getCookieLiveData().observe(viewLifecycleOwner) {
 
         }
-        mEvent.getUserListLiveData().lazy(viewLifecycleOwner) {
-
-        }
         LoginFragment().show(fragmentPlusManager)
     }
 

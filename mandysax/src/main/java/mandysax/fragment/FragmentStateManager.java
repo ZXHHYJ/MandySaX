@@ -110,7 +110,7 @@ class FragmentStateManager extends FragmentStore {
                 @Override
                 public void onAnimationEnd(Animation p1) {
                     fragment.dispatchOnDestroyView();
-                    fragment.dispatchOnDestroy();
+                    //fragment.dispatchOnDestroy();
                     fragment.dispatchOnDetach();
                     remove(fragment);
                 }
@@ -123,7 +123,7 @@ class FragmentStateManager extends FragmentStore {
             return;
         }
         fragment.dispatchOnDestroyView();
-        fragment.dispatchOnDestroy();
+        //fragment.dispatchOnDestroy();
         fragment.dispatchOnDetach();
         remove(fragment);
     }
