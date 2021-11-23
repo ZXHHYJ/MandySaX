@@ -23,7 +23,7 @@ class FragmentActivityViewModelDelegate<VM : ViewModel>(private val clazz: Class
         if (mViewModel == null) {
             mViewModel =
                 ViewModelProviders.of(
-                    thisRef.activity
+                    thisRef.requireActivity()
                 )[clazz]
             thisRef.lifecycle.addObserver {
                 if (it == Lifecycle.Event.ON_DESTROY)

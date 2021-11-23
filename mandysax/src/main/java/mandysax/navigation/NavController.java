@@ -57,7 +57,7 @@ public final class NavController {
             public void Observer(Lifecycle.Event state) {
                 if (state == Lifecycle.Event.ON_START) {
                     int[] attr = new int[]{R.attr.fragmentEnterAnim, R.attr.fragmentExitAnim, R.attr.fragmentPopEnterAnim, R.attr.fragmentPopExitAnim};
-                    TypedArray array = mNavFragment.getActivity().getTheme().obtainStyledAttributes(animStyle, attr);
+                    TypedArray array = mNavFragment.requireActivity().getTheme().obtainStyledAttributes(animStyle, attr);
                     _navigate(fragment, array.getResourceId(0, 0), array.getResourceId(1, 0), array.getResourceId(2, 0), array.getResourceId(3, 0));
                     array.recycle();
                     mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
@@ -112,12 +112,12 @@ public final class NavController {
                 }
                 if (state == Lifecycle.Event.ON_START && !mAddBackCallback) {
                     mAddBackCallback = true;
-                    fragment.getActivity().getOnBackPressedDispatcher().addCallback(mNavFragment.getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+                    fragment.requireActivity().getOnBackPressedDispatcher().addCallback(mNavFragment.getViewLifecycleOwner(), new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
                             if (mViewModel.getLastFragment() == null) {
                                 remove();
-                                mNavFragment.getActivity().onBackPressed();
+                                mNavFragment.requireActivity().onBackPressed();
                                 return;
                             }
                             FragmentTransaction fragmentTransaction = beginTransaction();
@@ -141,7 +141,7 @@ public final class NavController {
      * 返回上一个fragment，没有则退出activity
      */
     public void navigateUp() {
-        mNavFragment.getActivity().onBackPressed();
+        mNavFragment.requireActivity().onBackPressed();
     }
 
 }

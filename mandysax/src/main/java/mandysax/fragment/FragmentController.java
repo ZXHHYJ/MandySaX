@@ -34,7 +34,7 @@ public final class FragmentController extends FragmentStateManager {
          */
         private ArrayList<Integer> mBackStackIndices;
 
-        public synchronized int allocBackStackIndex(final FragmentController.BackStackRecord bsr) {
+        public int allocBackStackIndex(final FragmentController.BackStackRecord bsr) {
             if (mBackStack == null) {
                 mBackStack = new ArrayList<>();
             }
@@ -57,7 +57,7 @@ public final class FragmentController extends FragmentStateManager {
 
             });
             for (int i = 0; i < mBackStackIndices.size(); i++) {
-                //nonnull时代表这里是个空位
+                //NonNull时代表这里是个空位
                 Integer index = mBackStackIndices.get(i);
                 if (index != null) {
                     mBackStack.set(index, bsr);//利用这个空位，避免list经常扩容
@@ -71,18 +71,32 @@ public final class FragmentController extends FragmentStateManager {
             return mBackStack.size() - 1;
         }
 
-        //消费指定返回栈，并添加到可用的下标
+        /**
+         * 消费指定返回栈，并添加到可用的下标
+         *
+         * @param index 带消费的返回栈下标
+         */
         public void freeBackStackIndex(int index) {
             mBackStack.set(index, null);
             mBackStackIndices.add(index);
         }
 
+        /**
+         * 获取当前返回栈大小
+         *
+         * @return 返回栈大小
+         */
         public int getBackStackSize() {
             if (mBackStack == null || mBackStackIndices == null) return 0;
             return mBackStack.size() - mBackStackIndices.size();
         }
 
-        //弹出指定返回栈
+        /**
+         * 弹出指定返回栈
+         *
+         * @param index 待弹出返回栈的下表
+         * @return 是否弹出成功
+         */
         public boolean popBackStack(int index) {
             if (mBackStack == null) {
                 return false;
@@ -99,7 +113,11 @@ public final class FragmentController extends FragmentStateManager {
             return false;
         }
 
-        //弹出栈顶
+        /**
+         * 弹出栈顶
+         *
+         * @return 是否弹出成功
+         */
         public boolean popBackStack() {
             if (mBackStack != null) {
                 return popBackStack(getBackStackSize() - 1);
@@ -107,14 +125,24 @@ public final class FragmentController extends FragmentStateManager {
             return false;
         }
 
-        public void addOnBackStackChangedListener(FragmentController.OnBackStackChangedListener listener) {
+        /**
+         * 添加返回栈更新监听器
+         *
+         * @param listener 待添加的监听器
+         */
+        public void addOnBackStackChangedListener(@NonNull FragmentController.OnBackStackChangedListener listener) {
             if (mBackListeners == null) {
                 mBackListeners = new CopyOnWriteArrayList<>();
             }
             mBackListeners.add(listener);
         }
 
-        public void removeOnBackStackChangedListener(FragmentController.OnBackStackChangedListener listener) {
+        /**
+         * 移除已添加的返回栈监听器
+         *
+         * @param listener 待移除的监听器
+         */
+        public void removeOnBackStackChangedListener(@NonNull FragmentController.OnBackStackChangedListener listener) {
             if (mBackListeners == null) {
                 mBackListeners = new CopyOnWriteArrayList<>();
             }
@@ -133,6 +161,12 @@ public final class FragmentController extends FragmentStateManager {
     }
 
 
+    /**
+     * 为指定的Fragment生成FragmentManager
+     *
+     * @param fragment 当前Fragment
+     * @return FragmentManager
+     */
     @NonNull
     @Contract(value = "_ -> new", pure = true)
     public final FragmentManager getFragmentManager(Fragment fragment) {
@@ -140,7 +174,6 @@ public final class FragmentController extends FragmentStateManager {
     }
 
     enum STACK {
-        //stack
         SHOW,
         HIDE,
         REMOVE,
@@ -148,10 +181,11 @@ public final class FragmentController extends FragmentStateManager {
         ADD
     }
 
+    /**
+     * 监听FragmentManager返回栈变更
+     */
     public interface OnBackStackChangedListener {
-        /**
-         * 监听FragmentManager返回栈变更
-         */
+
         void onBackStackChanged();
     }
 
@@ -163,15 +197,19 @@ public final class FragmentController extends FragmentStateManager {
             mActive = opl;
         }
 
+        /**
+         * 运行
+         */
         public void run() {
-            /*run*/
             for (Op op : mActive) {
                 moveToStack(op);
             }
         }
 
+        /**
+         * 回退
+         */
         public void rollback() {
-            /*rollback*/
             for (Op op : mActive) {
                 //fix bug form 2.1.0
                 switch (op.stack) {
@@ -226,18 +264,24 @@ public final class FragmentController extends FragmentStateManager {
     private class FragmentTransactionImpl implements FragmentTransaction {
 
         private final ArrayList<Op> mOpl = new ArrayList<>();
+
         private int
                 mEnterAnim,
                 mExitAnim,
                 mPopEnterAnim,
                 mPopExitAnim;
-        private boolean mIsAddBackStack = false;//记录有没有添加到返回栈
+        //记录有没有添加到返回栈
+        private boolean mAddBackStack = false;
+        //是否已经提交
         private boolean mCommitted;
-        private int mIndex = 0;//这个变量用来标记上次执行添加返回栈后的下标
+        //这个变量用来标记上次执行添加返回栈后的下标
+        private int mIndex = 0;
 
-        private Fragment mParentFragment;
+        //父Fragment
+        private final Fragment mParentFragment;
 
         public FragmentTransactionImpl() {
+            mParentFragment = null;
         }
 
         public FragmentTransactionImpl(Fragment parentFragment) {
@@ -333,7 +377,7 @@ public final class FragmentController extends FragmentStateManager {
 
         @Override
         public FragmentTransaction addToBackStack() {
-            mIsAddBackStack = true;
+            mAddBackStack = true;
             for (; mIndex < mOpl.size(); mIndex++) {
                 mOpl.get(mIndex).isAddToBackStack = true;
             }
@@ -347,7 +391,7 @@ public final class FragmentController extends FragmentStateManager {
 
         @Override
         public int commitNow() {
-            if (mIsAddBackStack) {
+            if (mAddBackStack) {
                 throw new IllegalStateException("Cannot addToBackStack");
             }
             return commitInternal(false);
@@ -369,7 +413,7 @@ public final class FragmentController extends FragmentStateManager {
             } else {
                 mHandler.post(bsr::run);
             }
-            return mIsAddBackStack ? mFragmentBackStack.allocBackStackIndex(bsr) : -1;
+            return mAddBackStack ? mFragmentBackStack.allocBackStackIndex(bsr) : -1;
         }
 
     }
@@ -413,13 +457,13 @@ public final class FragmentController extends FragmentStateManager {
             mFragmentBackStack.addOnBackStackChangedListener(listener);
         }
 
-        @SuppressWarnings("ALL")
+        @SuppressWarnings("unchecked")
         @Override
         public <T extends Fragment> T findFragmentByTag(String tag) {
             return (T) tagGetFragment(tag);
         }
 
-        @SuppressWarnings("ALL")
+        @SuppressWarnings("unchecked")
         @Override
         public <T extends Fragment> T findFragmentById(int id) {
             FragmentView fcv = mActivity.findViewById(id);

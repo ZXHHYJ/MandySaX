@@ -9,7 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 
-public class DialogFragment extends Fragment implements DialogInterface.OnDismissListener, DialogInterface.OnCancelListener {
+import mandysax.lifecycle.Lifecycle;
+import mandysax.lifecycle.LifecycleObserver;
+
+public class DialogFragment extends Fragment implements DialogInterface.OnDismissListener, DialogInterface.OnCancelListener, LifecycleObserver {
 
     private DialogInterface.OnCancelListener mCancelListener;
 
@@ -23,43 +26,60 @@ public class DialogFragment extends Fragment implements DialogInterface.OnDismis
     }
 
     @Override
+    protected void onDestroyView() {
+        super.onDestroyView();
+        requireActivity().getLifecycle().removeObserver(this);
+        dismissDialog();
+    }
+
+    @Override
     protected void onActivityCreated(Bundle bundle) {
         super.onActivityCreated(bundle);
+        requireActivity().getLifecycle().addObserver(this);
         mDialog = onCreateDialog(bundle);
         mDialog.setOnCancelListener(this);
         mDialog.setOnDismissListener(this);
         mDialog.show();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mDialog.setOnDismissListener(null);
-        dismissDialog();
-    }
-
-    @Override
-    protected void onDestroyView() {
-        super.onDestroyView();
-        dismissDialog();
-    }
-
+    /**
+     * 构建待显示的Dialog
+     *
+     * @param savedInstanceState SavedInstanceState
+     * @return 你的Dialog
+     */
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new Dialog(getContext(), getTheme());
     }
 
+    /**
+     * 获取你的Dialog
+     *
+     * @return 你的Dialog
+     */
     @Nullable
     public Dialog getDialog() {
         return mDialog;
     }
 
+    /**
+     * 显示DialogFragment
+     *
+     * @param manager FragmentManage
+     */
     public void show(@NonNull FragmentManager manager) {
         FragmentTransaction ft = manager.beginTransaction();
         ft.add(0, this);
         ft.commit();
     }
 
+    /**
+     * 显示DialogFragment
+     *
+     * @param transaction Fragment事务
+     * @return 事务id
+     */
     public int show(@NonNull FragmentTransaction transaction) {
         transaction.add(0, this);
         return transaction.commit();
@@ -74,7 +94,6 @@ public class DialogFragment extends Fragment implements DialogInterface.OnDismis
 
     public void dismiss() {
         dismissDialog();
-        onDismiss(null);
     }
 
     public void setCanceledOnTouchOutside(boolean cancel) {
@@ -119,4 +138,17 @@ public class DialogFragment extends Fragment implements DialogInterface.OnDismis
         mDismissListener = listener;
     }
 
+    @Override
+    public boolean isVisible() {
+        return mDialog != null && mDialog.isShowing();
+    }
+
+    @Override
+    public void Observer(Lifecycle.Event state) {
+        if (Lifecycle.Event.ON_DESTROY == state) {
+            if (mDialog != null)
+                mDialog.setOnDismissListener(null);
+            dismissDialog();
+        }
+    }
 }

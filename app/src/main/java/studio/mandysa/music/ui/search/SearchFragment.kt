@@ -73,7 +73,7 @@ class SearchFragment : Fragment() {
                     mOnBackListener.remove()
                 }
                 Lifecycle.Event.ON_CREATE -> {
-                    activity.onBackPressedDispatcher.addCallback(mOnBackListener)
+                    requireActivity().onBackPressedDispatcher.addCallback(mOnBackListener)
                 }
                 Lifecycle.Event.ON_START -> {
                     mOnBackListener.isEnabled =

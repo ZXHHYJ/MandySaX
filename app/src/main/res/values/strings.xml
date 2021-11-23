@@ -21,8 +21,12 @@
 
     <string name="user_manager">多账号管理</string>
 
-    <string name="user">账号</string>
+    <string name="phone">手机号</string>
     <string name="password">密码</string>
+
     <!--占位符-->
     <string name="test">test</string>
+
+    <string name="login">登录</string>
+    <string name="cancel">取消</string>
 </resources>

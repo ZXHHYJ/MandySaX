@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import mandysax.lifecycle.Lifecycle;
 import mandysax.lifecycle.LifecycleOwner;
@@ -35,7 +36,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     @Override
     public @NonNull
     FragmentManager getFragmentPlusManager() {
-        return getActivity().getFragmentController().getFragmentManager(this);
+        return requireActivity().getFragmentController().getFragmentManager(this);
     }
 
     /**
@@ -43,7 +44,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
      */
     public @NonNull
     final LayoutInflater getLayoutInflater() {
-        return getActivity().getLayoutInflater().cloneInContext(mActivity.getApplicationContext());
+        return requireActivity().getLayoutInflater().cloneInContext(mActivity.getApplicationContext());
     }
 
     @Override
@@ -75,7 +76,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
      */
     @Override
     public Context getContext() {
-        return getActivity().getApplicationContext();
+        return requireActivity().getApplicationContext();
     }
 
     /**
@@ -90,7 +91,14 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
      * @return 获取宿主activity
      */
     @Override
+    @Nullable
     public FragmentActivity getActivity() {
+        return mActivity;
+    }
+
+    @Override
+    @NonNull
+    public FragmentActivity requireActivity() {
         if (mActivity == null) {
             throw new NullPointerException("Fragment does not hold activity");
         }
@@ -99,12 +107,12 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
 
     @Override
     public void startActivity(Intent intent) {
-        getActivity().startActivity(intent);
+        requireActivity().startActivity(intent);
     }
 
     @Override
     public void startActivity(Intent intent, Bundle bundle) {
-        getActivity().startActivity(intent, bundle);
+        requireActivity().startActivity(intent, bundle);
     }
 
     @Override
@@ -176,7 +184,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     ViewGroup getViewGroup() {
-        ViewGroup viewGroup = getActivity().findViewById(mLayoutId);
+        ViewGroup viewGroup = requireActivity().findViewById(mLayoutId);
         if (viewGroup == null) {
             throw new IllegalStateException("Can't find parent layout or " + getClass().getCanonicalName());
         }
@@ -221,9 +229,8 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
 
     void dispatchOnDestroyView() {
         mRemoving = true;
-        if (!(mView == null || mView.getParent() == null)) {
+        if (mView != null && mView.getParent() != null)
             ((ViewGroup) mView.getParent()).removeView(mView);
-        }
         onDestroyView();
     }
 

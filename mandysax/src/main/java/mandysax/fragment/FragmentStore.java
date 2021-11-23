@@ -18,14 +18,12 @@ class FragmentStore {
         if (store.fragment.getTag().equals(tag)) {
             return store;
         }
-        CopyOnWriteArrayList<Store> children = store.stores;
-        if (children != null) {
-            Store target;
-            for (Store child : children) {
-                target = findStore(child, tag);
-                if (target != null) {
-                    return target;
-                }
+        if (store.stores == null) return null;
+        Store target;
+        for (Store child : store.stores) {
+            target = findStore(child, tag);
+            if (target != null) {
+                return target;
             }
         }
         return null;
@@ -33,11 +31,6 @@ class FragmentStore {
 
     @Nullable
     private Store findStore(String tag) {
-        for (Store value : mStore.values()) {
-            if (value.fragment.getTag().equals(tag)) {
-                return value;
-            }
-        }
         for (Store value : mStore.values()) {
             Store store = findStore(value, tag);
             if (store != null) {
@@ -47,7 +40,7 @@ class FragmentStore {
         return null;
     }
 
-    final void add(Fragment newFragment) {
+    final void add(@NonNull Fragment newFragment) {
         addFragment(newFragment);
         Store store = new Store();
         store.fragment = newFragment;
@@ -58,13 +51,12 @@ class FragmentStore {
         addFragment(newFragment);
         Store store = new Store();
         store.fragment = newFragment;
-        Store store1 = findStore(oldFragment.getTag());
-        store.parentStore = store1;
-        if (store1 != null) {
-            if (store1.stores == null) {
-                store1.stores = new CopyOnWriteArrayList<>();
+        store.parentStore = findStore(oldFragment.getTag());
+        if (store.parentStore != null) {
+            if (store.parentStore.stores == null) {
+                store.parentStore.stores = new CopyOnWriteArrayList<>();
             }
-            store1.stores.add(store);
+            store.parentStore.stores.add(store);
         }
     }
 
@@ -89,8 +81,9 @@ class FragmentStore {
                 }
             }
             if (store.parentStore != null) {
-                removeFragment(fragment);
                 store.parentStore.stores.remove(store);
+                removeFragment(fragment);
+                store.parentStore.stores = null;
             }
             store.fragment = null;
         }

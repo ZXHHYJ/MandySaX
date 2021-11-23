@@ -25,4 +25,9 @@
         <item name="android:background">@drawable/all_et_bg</item>
     </style>
 
+    <style name="MyDialog">
+        <!-- 是否有边框 -->
+        <item name="android:windowFrame">@null</item>
+    </style>
+
 </resources>

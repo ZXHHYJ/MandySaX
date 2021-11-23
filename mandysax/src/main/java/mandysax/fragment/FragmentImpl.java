@@ -17,6 +17,8 @@ interface FragmentImpl {
 
     FragmentActivity getActivity();
 
+    FragmentActivity requireActivity();
+
     FragmentManager getFragmentPlusManager();
 
     void startActivity(Intent intent);
