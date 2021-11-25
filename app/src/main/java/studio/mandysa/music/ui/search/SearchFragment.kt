@@ -143,7 +143,7 @@ class SearchFragment : Fragment() {
                         toplistCover.setOnClickListener {
                             Navigation.findViewNavController(it)
                                 .navigate(
-                                    R.style.test,
+                                    R.style.AppFragmentAnimStyle,
                                     PlaylistFragment(model.id!!)
                                 )
                         }

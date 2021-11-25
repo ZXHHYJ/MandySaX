@@ -1,5 +1,6 @@
 <resources>
 
+    <!--默认卡片圆角-->
     <dimen name="card_corner_radius">10dp</dimen>
 
     <dimen name="size_album">60dp</dimen>
@@ -12,13 +13,18 @@
     <dimen name="text_margin">8dp</dimen>
 
     <dimen name="text_margin_small">5dp</dimen>
+    <!--底部导航栏高度-->
     <dimen name="nav_height">56dp</dimen>
-
+    <!--阴影高度-->
     <dimen name="umano_shadow_height">3dp</dimen>
 
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!--双排item列表边距-->
     <dimen name="double_item_margin">6dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
     <dimen name="height_edittext">55dp</dimen>
+
+    <dimen name="widget_height">55dp</dimen>
 </resources>

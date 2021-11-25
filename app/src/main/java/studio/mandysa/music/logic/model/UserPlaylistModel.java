@@ -1,5 +1,7 @@
 package studio.mandysa.music.logic.model;
 
+import java.util.List;
+
 import mandysax.anna2.annotation.Path;
 import mandysax.anna2.annotation.Value;
 
@@ -7,20 +9,25 @@ import mandysax.anna2.annotation.Value;
  * @author liuxiaoliu66
  */
 public class UserPlaylistModel {
-    @Value("id")
-    public String id;
+    @Value("playlist")
+    public List<UserPlaylist> list;
 
-    @Value("name")
-    public String name;
+    public static class UserPlaylist{
+        @Value("id")
+        public String id;
 
-    @Value("nickname")
-    @Path("creator")
-    public String nickname;
+        @Value("name")
+        public String name;
 
-    @Value("coverImgUrl")
-    public String coverImgUrl;
+        @Value("nickname")
+        @Path("creator")
+        public String nickname;
 
-    @Value("signature")
-    public String signature;
+        @Value("coverImgUrl")
+        public String coverImgUrl;
+
+        @Value("signature")
+        public String signature;
+    }
 
 }

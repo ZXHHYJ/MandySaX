@@ -24,23 +24,19 @@ interface NeteaseCloudMusicApi {
 
     @Get("song/detail")
     @Path("songs")
-    fun getMusicInfo(@Query("ids") id: String?): Observable<MusicModel>
-
-    @Get("song/detail")
-    @Path("songs")
     fun getMusicInfo(@Query("ids") ids: List<Any>?): Observable<List<MusicModel>>
 
     /* @get:Path("result")*/
-    @get:Get("personalized")
-    val recommendedPlaylist: Observable<PlaylistModel>
+  /*  @get:Get("personalized")
+    val recommendedPlaylist: Observable<PlaylistModel>*/
 
     @get:Path("result")
     @get:Get("personalized/newsong")
     val recommendedSong: Observable<List<NewSongModel>>
 
     @Get("personalized")
-    @Path("result")
-    fun getRecommendedPlaylist(@FormData("cookie") cookie: String?): Observable<List<PlaylistModel>>
+  /*  @Path("result")*/
+    fun getRecommendedPlaylist(@FormData("cookie") cookie: String?): Observable<PlaylistModel>
 
     @Get("lyric")
     @Path("lrc")
@@ -57,8 +53,7 @@ interface NeteaseCloudMusicApi {
     ): Observable<LoginModel>
 
     @Get("user/playlist")
-    @Path("playlist")
-    fun getUserPlaylist(@Query("uid") uid: String?): Observable<List<UserPlaylistModel>>
+    fun getUserPlaylist(@Query("uid") uid: String?): Observable<UserPlaylistModel>
 
     @Post("user/account")
     @Path("profile")
@@ -66,10 +61,6 @@ interface NeteaseCloudMusicApi {
         @FormData("cookie") cookie: String?,
         @FormData("timestamp") timestamp: Long
     ): Observable<UserModel>
-
-    @Get("search/hot")
-    @Path("result/hots")
-    fun getHotSearchList(): Observable<List<HotSearchModel>>
 
     @Get("toplist")
     @Path("list")

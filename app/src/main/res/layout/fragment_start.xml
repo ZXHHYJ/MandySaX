@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        android:textColor="@android:color/black"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_login"
+        android:textColor="@color/tv_color_light"
+        android:textSize="17sp"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_edittext"
+        android:layout_marginTop="@dimen/item_margin_small"
+        android:autofillHints="phone"
+        android:background="@drawable/login_et_bg"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        android:padding="10dp"
+        android:textCursorDrawable="@drawable/all_et_cursor_color"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_edittext"
+        android:layout_marginTop="@dimen/item_margin_small"
+        android:autofillHints="password"
+        android:background="@drawable/login_et_bg"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textCursorDrawable="@drawable/all_et_cursor_color"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/AppButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_height"
+        android:layout_marginTop="@dimen/item_margin_small"
+        android:text="@string/login"
+        tools:ignore="TextContrastCheck" />
+
+</LinearLayout>

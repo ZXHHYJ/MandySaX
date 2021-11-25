@@ -13,7 +13,7 @@
         <clip  android:height="4dp">
             <shape  android:height="4dp">
                 <corners android:radius="25sp" />
-                <solid android:color="@color/fragment_play_button_color" />
+                <solid android:color="@color/fragment_play_widget_color" />
             </shape>
         </clip>
     </item>

@@ -27,7 +27,7 @@ class MyApplication : Application() {
         }
 
         val options = DisplayImageOptions.Builder()
-            .showImageOnLoading(R.drawable.all_iv_placeholder)
+            .showImageOnLoading(R.color.empty_iv_bg_color)
             .cacheInMemory(true)
             .cacheOnDisk(true)
             .bitmapConfig(Bitmap.Config.RGB_565)

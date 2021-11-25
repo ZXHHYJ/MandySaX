@@ -11,6 +11,7 @@
 
     <string name="recommended_playlist">推荐歌单</string>
     <string name="recommended_song">推荐歌曲</string>
+    <string name="me_playlist">我的歌单</string>
 
     <string name="playlist">歌单</string>
     <string name="search_hint">输入歌曲或歌手名称</string>
@@ -29,4 +30,6 @@
 
     <string name="login">登录</string>
     <string name="cancel">取消</string>
+    <string name="welcome">Hello\nwelcome to us!</string>
+    <string name="welcome_login">Log in to use all features of mandysa music</string>
 </resources>

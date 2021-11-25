@@ -48,7 +48,7 @@
                 android:layout_marginTop="@dimen/text_margin_small"
                 android:lines="1"
                 android:singleLine="true"
-                android:textColor="@color/test2"
+                android:textColor="@color/tv_color_light"
                 android:textSize="13sp" />
 
         </LinearLayout>

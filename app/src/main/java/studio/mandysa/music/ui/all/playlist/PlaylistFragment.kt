@@ -99,7 +99,7 @@ class PlaylistFragment(private val id: String) : Fragment() {
                                         songName.setTextColor(
                                             context.getColor(android.R.color.black)
                                         )
-                                        songSingerName.setTextColor(context.getColor(R.color.test2))
+                                        songSingerName.setTextColor(context.getColor(R.color.tv_color_light))
                                     }
                                 }
                             onAttached {

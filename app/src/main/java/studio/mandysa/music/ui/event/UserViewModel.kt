@@ -13,21 +13,11 @@ import studio.mandysa.music.logic.utils.create
 class UserViewModel : ViewModel() {
 
     companion object {
-        /*@JvmStatic
-        val MOBILE_PHONE_KEY = "mobile_phone_key"
-
-        @JvmStatic
-        val PASSWORD_KEY = "password_key"*/
-
         @JvmStatic
         val COOKIE_KEY = "cookie_key"
     }
 
     private val mmkv = MMKV.defaultMMKV()
-
-    /*private var mMobilePhone = mmkv.decodeString(MOBILE_PHONE_KEY)
-
-    private var mPassword = mmkv.decodeString(PASSWORD_KEY)*/
 
     private val mCookieLiveData = MutableLiveData<String>(mmkv.decodeString(COOKIE_KEY))
 

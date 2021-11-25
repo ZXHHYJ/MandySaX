@@ -24,12 +24,15 @@ import studio.mandysa.music.logic.model.NewSongModel
 import studio.mandysa.music.logic.model.PlaylistModel
 import studio.mandysa.music.logic.utils.*
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
+import studio.mandysa.music.ui.event.UserViewModel
 
 class HomeFragment : Fragment() {
 
     private val mBinding: FragmentHomeBinding by bindView()
 
     private val mImageLoader = ImageLoader.getInstance()
+
+    private val mEvent: UserViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +61,7 @@ class HomeFragment : Fragment() {
                                             playlistCover.setOnClickListener {
                                                 Navigation.findViewNavController(it)
                                                     .navigate(
-                                                        R.style.test,
+                                                        R.style.AppFragmentAnimStyle,
                                                         PlaylistFragment(model.id!!)
                                                     )
                                             }
@@ -95,7 +98,7 @@ class HomeFragment : Fragment() {
                                             songName.setTextColor(
                                                 context.getColor(android.R.color.black)
                                             )
-                                            songSingerName.setTextColor(context.getColor(R.color.test2))
+                                            songSingerName.setTextColor(context.getColor(R.color.tv_color_light))
                                         }
                                     }
                                 onAttached {
@@ -112,33 +115,35 @@ class HomeFragment : Fragment() {
                 }
             }
             statelayout.showLoading {
-                NeteaseCloudMusicApi::class.java.create().apply {
-                    recommendedPlaylist.set(
-                        viewLifecycleOwner.lifecycle,
-                        object : Callback<PlaylistModel> {
-                            override fun onResponse(t: PlaylistModel?) {
-                                statelayout.showContentState()
-                                mBinding.recycler.addHeader(t!!)
-                            }
+                mEvent.getCookieLiveData().lazy {
+                    NeteaseCloudMusicApi::class.java.create().apply {
+                        getRecommendedPlaylist(it).set(
+                            viewLifecycleOwner.lifecycle,
+                            object : Callback<PlaylistModel> {
+                                override fun onResponse(t: PlaylistModel?) {
+                                    statelayout.showContentState()
+                                    mBinding.recycler.addHeader(t!!)
+                                }
 
-                            override fun onFailure(code: Int) {
-                                statelayout.showErrorState()
-                            }
+                                override fun onFailure(code: Int) {
+                                    statelayout.showErrorState()
+                                }
 
-                        })
-                    recommendedSong.set(
-                        viewLifecycleOwner.lifecycle,
-                        object : Callback<List<NewSongModel>> {
-                            override fun onResponse(t: List<NewSongModel>?) {
-                                statelayout.showContentState()
-                                mBinding.recycler.addModels(t!!)
-                            }
+                            })
+                        recommendedSong.set(
+                            viewLifecycleOwner.lifecycle,
+                            object : Callback<List<NewSongModel>> {
+                                override fun onResponse(t: List<NewSongModel>?) {
+                                    statelayout.showContentState()
+                                    mBinding.recycler.addModels(t!!)
+                                }
 
-                            override fun onFailure(code: Int) {
-                                statelayout.showErrorState()
-                            }
+                                override fun onFailure(code: Int) {
+                                    statelayout.showErrorState()
+                                }
 
-                        })
+                            })
+                    }
                 }
             }
             statelayout.showLoadingState()

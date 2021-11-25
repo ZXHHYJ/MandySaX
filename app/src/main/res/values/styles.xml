@@ -7,6 +7,12 @@
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
     </style>
 
+    <style name="BgCardViewStyle">
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/widget_bg_color_light</item>
+    </style>
+
     <style name="ImageCardViewStyle">
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardElevation">0dp</item>
@@ -25,9 +31,22 @@
         <item name="android:background">@drawable/all_et_bg</item>
     </style>
 
-    <style name="MyDialog">
+    <style name="AppButtonStyle">
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:background">@drawable/btn_selector</item>
+    </style>
+
+    <!--无边框dialog-->
+    <style name="AppDialog">
         <!-- 是否有边框 -->
         <item name="android:windowFrame">@null</item>
+    </style>
+
+    <style name="AppFragmentAnimStyle">
+        <item name="fragmentEnterAnim">@anim/nav_enter_anim</item>
+        <item name="fragmentExitAnim">@anim/nav_exit_anim</item>
+        <item name="fragmentPopEnterAnim">@anim/nav_pop_enter_anim</item>
+        <item name="fragmentPopExitAnim">@anim/nav_pop_exit_anim</item>
     </style>
 
 </resources>
