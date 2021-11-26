@@ -5,7 +5,7 @@ import mandysax.anna2.observable.Observable
 import mandysax.lifecycle.Lifecycle
 import mandysax.lifecycle.LifecycleObserver
 
-fun <T> Observable<T>.set(lifecycle: Lifecycle, callback: Callback<T>) {
+inline fun <reified T> Observable<T>.set(lifecycle: Lifecycle, callback: Callback<T>) {
     set(callback)
     lifecycle.addObserver(object : LifecycleObserver {
         override fun Observer(state: Lifecycle.Event?) {
