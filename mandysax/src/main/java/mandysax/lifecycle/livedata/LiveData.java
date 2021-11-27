@@ -13,6 +13,7 @@ import mandysax.lifecycle.LifecycleObserver;
 import mandysax.lifecycle.LifecycleOwner;
 
 /**
+ * @author ZXHHYJ
  * @param <T> 需要包装的泛型类型
  */
 public class LiveData<T> {
@@ -168,7 +169,7 @@ public class LiveData<T> {
                 LiveData<T>.LifecycleBoundObserver lifecycleBoundObserver = ((LiveData<T>.LifecycleBoundObserver) wrapper);
                 lifecycleBoundObserver.mOwner.getLifecycle().addObserver(new LifecycleObserver() {
                     @Override
-                    public void Observer(Lifecycle.Event state) {
+                    public void observer(Lifecycle.Event state) {
                         switch (state) {
                             case ON_CREATE:
                             case ON_START:
@@ -206,7 +207,7 @@ public class LiveData<T> {
         }
 
         @Override
-        public void Observer(@NonNull Lifecycle.Event state) {
+        public void observer(@NonNull Lifecycle.Event state) {
             switch (state) {
                 case ON_CREATE:
                 case ON_PAUSE:

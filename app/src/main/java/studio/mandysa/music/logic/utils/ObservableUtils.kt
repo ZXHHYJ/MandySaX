@@ -8,7 +8,7 @@ import mandysax.lifecycle.LifecycleObserver
 inline fun <reified T> Observable<T>.set(lifecycle: Lifecycle, callback: Callback<T>) {
     set(callback)
     lifecycle.addObserver(object : LifecycleObserver {
-        override fun Observer(state: Lifecycle.Event?) {
+        override fun observer(state: Lifecycle.Event?) {
             if (state == Lifecycle.Event.ON_DESTROY) {
                 cancel()
                 lifecycle.removeObserver(this)

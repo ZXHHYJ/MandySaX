@@ -9,7 +9,6 @@ import mandysax.fragment.Fragment
 import mandysax.fragment.FragmentActivity
 import mandysax.fragment.FragmentView
 import mandysax.fragmentpage.widget.FragmentPage
-import mandysax.lifecycle.Lifecycle
 import mandysax.media.DefaultPlayerManager
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.bottomnavigationbar.BottomNavigationItem
@@ -42,11 +41,6 @@ class MainActivity : FragmentActivity() {
         val playFragment = findViewById<FragmentView>(R.id.play_fragment)
         //解决playFragment点击无事件view会关闭播放界面的问题
         playFragment.setOnTouchListener { _, _ -> mBinding.mainSlidingView.panelState == SlidingUpPanelLayout.PanelState.EXPANDED }
-        lifecycle.addObserver { state ->
-            //避免内存泄漏
-            if (state == Lifecycle.Event.ON_DESTROY)
-                playFragment.setOnTouchListener(null)
-        }
         mBinding.apply {
             //不把shadowHeight设置为0的话后续修改shadowHeight都将失效！！
             mainSlidingView.shadowHeight = 0

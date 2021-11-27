@@ -4,6 +4,7 @@
     <style name="ViewCardViewStyle">
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@null</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
     </style>
 
@@ -14,6 +15,7 @@
     </style>
 
     <style name="ImageCardViewStyle">
+        <item name="cardBackgroundColor">@null</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardElevation">0dp</item>
     </style>

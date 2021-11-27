@@ -104,9 +104,10 @@ class SearchFragment : Fragment() {
                 showLoadingState()
             }
             searchSlidingView.isTouchEnabled = false
-            searchEditFrame.setOnEditorActionListener { _, i, _ ->
+            searchEditFrame.setOnEditorActionListener { v, i, _ ->
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
                     hideInput()
+                    mViewModel.searchContentLiveData.value = v.text.toString()
                     searchSlidingView.panelState = SlidingUpPanelLayout.PanelState.EXPANDED
                 }
                 false
@@ -122,7 +123,6 @@ class SearchFragment : Fragment() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    mViewModel.searchContentLiveData.value = s.toString()
                     searchSlidingView.panelState =
                         if (TextUtils.isEmpty(s)) SlidingUpPanelLayout.PanelState.COLLAPSED else SlidingUpPanelLayout.PanelState.EXPANDED
                 }

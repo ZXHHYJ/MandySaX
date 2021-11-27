@@ -33,9 +33,12 @@
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/ic_skip_next.xml" value="0.165625" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/ic_skip_previous.xml" value="0.165625" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/login_et_bg.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout-sw600dp/fragment_show.xml" value="0.20703125" />
+        <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/a.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/dialog_login.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_controller.xml" value="0.275" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_home.xml" value="0.23725671918443003" />
+        <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_lyric.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_me.xml" value="0.23233695652173914" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_play.xml" value="0.17905405405405406" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_playlist.xml" value="0.2708333333333333" />
@@ -43,6 +46,7 @@
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_search.xml" value="0.165" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_search_history.xml" value="0.24139492753623187" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_search_list.xml" value="0.275" />
+        <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_show.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_start.xml" value="0.2259963768115942" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_users.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/item_add_user.xml" value="0.2749094202898551" />

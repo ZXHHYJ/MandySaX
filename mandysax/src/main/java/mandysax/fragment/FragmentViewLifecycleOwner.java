@@ -7,6 +7,9 @@ import mandysax.lifecycle.ViewModelStore;
 import mandysax.lifecycle.ViewModelStoreImpl;
 import mandysax.lifecycle.ViewModelStoreOwner;
 
+/**
+ * @author ZXHHYJ
+ */
 public final class FragmentViewLifecycleOwner implements LifecycleOwner, ViewModelStoreOwner {
 
     private final LifecycleRegistry mLifecycle = new LifecycleRegistry();

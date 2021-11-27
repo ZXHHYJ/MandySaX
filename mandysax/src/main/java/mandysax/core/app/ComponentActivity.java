@@ -212,7 +212,7 @@ public class ComponentActivity extends Activity implements LifecycleOwner, ViewM
             }
 
             @Override
-            public void Observer(@NonNull Lifecycle.Event state) {
+            public void observer(@NonNull Lifecycle.Event state) {
                 switch (state) {
                     case ON_STOP:
                         mOnBackPressedCallback.setEnabled(false);
@@ -221,8 +221,9 @@ public class ComponentActivity extends Activity implements LifecycleOwner, ViewM
                         cancel();
                         break;
                     default:
-                        if (mCurrentCancellable == null)
+                        if (mCurrentCancellable == null) {
                             mCurrentCancellable = addCancellableCallback(mOnBackPressedCallback);
+                        }
                         mOnBackPressedCallback.setEnabled(true);
                 }
             }

@@ -58,12 +58,13 @@ class FragmentStateManager extends FragmentStore {
             fragment.dumpOnAttach(mActivity);
             fragment.dumpOnCreate(fragment.getArguments());
         }
-        if (!fragment.isInLayout() && id != 0)
+        if (!fragment.isInLayout() && id != 0) {
             fragment.dispatchOnViewCreated(fragment.onCreateView(
                     mActivity.getLayoutInflater().cloneInContext(mActivity.getApplicationContext()),
                     fragment.getViewGroup(),
                     fragment.getArguments()
             ));
+        }
         mActivityCreated.lazy(p1 -> fragment.onActivityCreated(mSavedInstanceState));
         if (parentFragment == null) {
             add(fragment);
@@ -110,7 +111,6 @@ class FragmentStateManager extends FragmentStore {
                 @Override
                 public void onAnimationEnd(Animation p1) {
                     fragment.dispatchOnDestroyView();
-                    //fragment.dispatchOnDestroy();
                     fragment.dispatchOnDetach();
                     remove(fragment);
                 }
@@ -123,7 +123,6 @@ class FragmentStateManager extends FragmentStore {
             return;
         }
         fragment.dispatchOnDestroyView();
-        //fragment.dispatchOnDestroy();
         fragment.dispatchOnDetach();
         remove(fragment);
     }
@@ -138,8 +137,9 @@ class FragmentStateManager extends FragmentStore {
         if (fragment.isDetached()) {
             throw new IllegalStateException("fragment not added");
         }
-        if (fragment.getRoot() == null)
+        if (fragment.getRoot() == null) {
             return;
+        }
         if (anim == 0) {
             fragment.getRoot().setVisibility(View.GONE);
         } else {
@@ -184,7 +184,7 @@ class FragmentStateManager extends FragmentStore {
                 if (!op.isAddToBackStack) {
                     fragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
                         @Override
-                        public void Observer(Lifecycle.Event state) {
+                        public void observer(Lifecycle.Event state) {
                             if (state != Lifecycle.Event.ON_STOP) {
                                 return;
                             }

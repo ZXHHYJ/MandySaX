@@ -1,5 +1,7 @@
 package mandysax.lifecycle;
 
+import androidx.annotation.NonNull;
+
 /**
  * @author liuxiaoliu66
  */
@@ -41,7 +43,7 @@ public abstract class Lifecycle {
          * @param event is Lifecycle.Event
          * @return Is the current lifecycle greater than @param event
          */
-        public boolean exceedTo(Event event) {
+        public boolean exceedTo(@NonNull Event event) {
             return mSize > event.mSize;
         }
 

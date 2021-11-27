@@ -2,6 +2,9 @@ package mandysax.core.app;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * @author ZXHHYJ
+ */
 public abstract class OnBackPressedCallback {
 
     private boolean mEnabled;

@@ -87,7 +87,9 @@ public final class FragmentController extends FragmentStateManager {
          * @return 返回栈大小
          */
         public int getBackStackSize() {
-            if (mBackStack == null || mBackStackIndices == null) return 0;
+            if (mBackStack == null || mBackStackIndices == null) {
+                return 0;
+            }
             return mBackStack.size() - mBackStackIndices.size();
         }
 

@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import mandysax.fragment.Fragment;
 
+/**
+ * @author ZXHHYJ
+ */
 public class StateViewModel extends Fragment {
 
     String lifoTag;

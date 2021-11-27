@@ -18,7 +18,9 @@ class FragmentStore {
         if (store.fragment.getTag().equals(tag)) {
             return store;
         }
-        if (store.stores == null) return null;
+        if (store.stores == null) {
+            return null;
+        }
         Store target;
         for (Store child : store.stores) {
             target = findStore(child, tag);

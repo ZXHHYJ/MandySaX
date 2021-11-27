@@ -4,6 +4,9 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+/**
+ * @author ZXHHYJ
+ */
 public final class AndroidViewModel extends ViewModel {
 
     private final Application mApplication;

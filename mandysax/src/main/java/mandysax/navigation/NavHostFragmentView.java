@@ -8,6 +8,9 @@ import androidx.annotation.NonNull;
 
 import mandysax.navigation.fragment.NavHostFragment;
 
+/**
+ * @author ZXHHYJ
+ */
 @SuppressLint("ViewConstructor")
 public final class NavHostFragmentView extends FrameLayout {
 

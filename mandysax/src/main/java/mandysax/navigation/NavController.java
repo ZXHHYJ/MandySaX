@@ -19,6 +19,7 @@ import mandysax.navigation.fragment.NavHostFragment;
 
 /**
  * 导航控制器
+ * @author ZXHHYJ
  */
 public final class NavController {
 
@@ -41,7 +42,7 @@ public final class NavController {
     public <T extends Fragment> void navigate(T fragment) {
         mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
             @Override
-            public void Observer(Lifecycle.Event state) {
+            public void observer(Lifecycle.Event state) {
                 if (state == Lifecycle.Event.ON_START) {
                     _navigate(fragment, 0, 0, 0, 0);
                     mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
@@ -54,7 +55,7 @@ public final class NavController {
     public <T extends Fragment> void navigate(int animStyle, T fragment) {
         mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
             @Override
-            public void Observer(Lifecycle.Event state) {
+            public void observer(Lifecycle.Event state) {
                 if (state == Lifecycle.Event.ON_START) {
                     int[] attr = new int[]{R.attr.fragmentEnterAnim, R.attr.fragmentExitAnim, R.attr.fragmentPopEnterAnim, R.attr.fragmentPopExitAnim};
                     TypedArray array = mNavFragment.requireActivity().getTheme().obtainStyledAttributes(animStyle, attr);
@@ -85,7 +86,7 @@ public final class NavController {
             private boolean mAddBackCallback = false;
 
             @Override
-            public void Observer(Lifecycle.Event state) {
+            public void observer(Lifecycle.Event state) {
                 if (state == Lifecycle.Event.ON_CREATE) {
                     mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
 
@@ -97,7 +98,7 @@ public final class NavController {
                         }
 
                         @Override
-                        public void Observer(Lifecycle.Event state) {
+                        public void observer(Lifecycle.Event state) {
                             switch (state) {
                                 case ON_START:
                                     ((LifecycleRegistry) fragment.getViewLifecycleOwner().getLifecycle()).markState(Lifecycle.Event.ON_START);

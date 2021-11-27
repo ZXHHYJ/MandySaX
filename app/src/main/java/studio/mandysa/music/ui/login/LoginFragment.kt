@@ -13,8 +13,8 @@ class LoginFragment(private val mobilePhone: String, private val password: Strin
     DialogFragment() {
     private val mEvent: UserViewModel by activityViewModels()
 
-    override fun onActivityCreated(bundle: Bundle?) {
-        super.onActivityCreated(bundle)
+    override fun onCreate(bundle: Bundle?) {
+        super.onCreate(bundle)
         mEvent.login(mobilePhone, password)
         mEvent.getCookieLiveData().lazy {
             dismiss()

@@ -11,6 +11,9 @@ import mandysax.fragment.Fragment;
 import mandysax.navigation.NavController;
 import mandysax.navigation.NavHostFragmentView;
 
+/**
+ * @author ZXHHYJ
+ */
 public class NavHostFragment extends Fragment {
 
     @Override

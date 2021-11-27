@@ -12,6 +12,9 @@ import androidx.annotation.StyleRes;
 import mandysax.lifecycle.Lifecycle;
 import mandysax.lifecycle.LifecycleObserver;
 
+/**
+ * @author ZXHHYJ
+ */
 public class DialogFragment extends Fragment implements DialogInterface.OnDismissListener, DialogInterface.OnCancelListener, LifecycleObserver {
 
     private DialogInterface.OnCancelListener mCancelListener;
@@ -118,14 +121,16 @@ public class DialogFragment extends Fragment implements DialogInterface.OnDismis
 
     @Override
     public void onCancel(DialogInterface dialog) {
-        if (mCancelListener != null)
+        if (mCancelListener != null) {
             mCancelListener.onCancel(dialog);
+        }
     }
 
     @Override
     public final void onDismiss(DialogInterface dialog) {
-        if (mDismissListener != null && dialog != null)
+        if (mDismissListener != null && dialog != null) {
             mDismissListener.onDismiss(dialog);
+        }
         getFragmentPlusManager().beginTransaction().remove(this).commit();
     }
 
@@ -144,10 +149,11 @@ public class DialogFragment extends Fragment implements DialogInterface.OnDismis
     }
 
     @Override
-    public void Observer(Lifecycle.Event state) {
+    public void observer(Lifecycle.Event state) {
         if (Lifecycle.Event.ON_DESTROY == state) {
-            if (mDialog != null)
+            if (mDialog != null) {
                 mDialog.setOnDismissListener(null);
+            }
             dismissDialog();
         }
     }

@@ -50,7 +50,7 @@ public class FragmentPage extends mandysax.fragment.FragmentView {
             fragment = mAdapter.onCreateFragment(position);
             fragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
                 @Override
-                public void Observer(Lifecycle.Event state) {
+                public void observer(Lifecycle.Event state) {
                     if (state == Lifecycle.Event.ON_CREATE) {
                         getFragment().tags.put(position, getFragment().lifoTag = fragment.getTag());
                         fragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);

@@ -61,7 +61,7 @@ public final class ViewModelProviders {
          * @param <T>  extends ViewModel
          * @return Your ViewModel object
          */
-        @SuppressWarnings("All")
+        @SuppressWarnings("unchecked")
         public <T extends ViewModel> T get(Class<T> name) {
             ViewModel viewModel = mViewModelStore.get(name);
             if (viewModel == null) {
@@ -77,6 +77,8 @@ public final class ViewModelProviders {
     public interface Factory {
 
         /**
+         * 返回构建的ViewModel
+         *
          * @param modelClass The ViewModel class that needs to be create
          * @param <T>        extends ViewModel
          * @return Your ViewModel object

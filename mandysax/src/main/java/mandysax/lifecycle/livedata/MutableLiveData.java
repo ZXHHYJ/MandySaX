@@ -32,10 +32,12 @@ public class MutableLiveData<T> extends LiveData<T> {
         super.observe(owner, observer);
     }
 
+    @Override
     public void postValue(T value) {
         super.postValue(value);
     }
 
+    @Override
     public void setValue(T value) {
         super.setValue(value);
     }

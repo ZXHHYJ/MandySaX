@@ -229,8 +229,9 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
 
     void dispatchOnDestroyView() {
         mRemoving = true;
-        if (mView != null && mView.getParent() != null)
+        if (mView != null && mView.getParent() != null) {
             ((ViewGroup) mView.getParent()).removeView(mView);
+        }
         onDestroyView();
     }
 

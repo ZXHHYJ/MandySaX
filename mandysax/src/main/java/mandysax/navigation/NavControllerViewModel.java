@@ -10,6 +10,7 @@ import mandysax.lifecycle.ViewModel;
 
 /**
  * 用于存储导航的返回栈信息
+ * @author ZXHHYJ
  */
 public final class NavControllerViewModel extends ViewModel {
 
