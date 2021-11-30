@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.ViewCompat
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
+import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
 import mandysax.fragment.FragmentActivity
 import mandysax.fragment.FragmentView
@@ -33,6 +34,7 @@ class MainActivity : FragmentActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Sofia.with(this).invasionStatusBar().invasionNavigationBar().statusBarDarkFont().navigationBarDarkFont()
         setContentView(mBinding.root)
         //判断有没有登录，没有登录的话就打开登录界面
         if (mUserViewModel.getCookieLiveData().value == null)
@@ -65,7 +67,7 @@ class MainActivity : FragmentActivity() {
                     R.drawable.ic_search,
                     getString(R.string.search)
                 ), BottomNavigationItem(
-                    R.drawable.ic_person,
+                    R.drawable.ic_person_fill28px,
                     getString(R.string.me)
                 )
             )

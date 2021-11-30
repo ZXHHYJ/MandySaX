@@ -26,7 +26,9 @@ class LoginFragment(private val mobilePhone: String, private val password: Strin
         return AlertDialog.Builder(requireActivity())
             .setCancelable(false)
             .setView(layoutInflater.inflate(R.layout.layout_loading, null))
-            .create()
+            .create().also {
+                it.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+            }
     }
 
 

@@ -41,6 +41,8 @@ dependencies {
     // bottomNavigationBar：https://gitee.com/liuxiaoliu66/bottom-navigation-bar
     //implementation 'com.gitee.liuxiaoliu66:bottom-navigation-bar:1.1.2'
 
+    implementation 'com.gitee.liuxiaoliu66:sofia:1.0.2'
+
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation project(':bottomnavigationbar')
     implementation project(':mandysax')

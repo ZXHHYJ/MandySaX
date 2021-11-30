@@ -19,7 +19,7 @@
     <dimen name="umano_shadow_height">3dp</dimen>
 
     <!--双排item列表边距-->
-    <dimen name="double_item_margin">6dp</dimen>
+    <dimen name="double_item_margin">10dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>

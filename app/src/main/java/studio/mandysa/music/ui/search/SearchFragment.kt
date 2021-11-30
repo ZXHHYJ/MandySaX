@@ -140,7 +140,7 @@ class SearchFragment : Fragment() {
                     ItemToplistBinding.bind(itemView).apply {
                         mImageLoader.displayImage(model.coverImgUrl, toplistCover)
                         toplistName.text = model.name
-                        toplistCover.setOnClickListener {
+                        itemView.setOnClickListener {
                             Navigation.findViewNavController(it)
                                 .navigate(
                                     R.style.AppFragmentAnimStyle,

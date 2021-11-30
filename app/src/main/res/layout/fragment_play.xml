@@ -22,6 +22,7 @@
                 android:id="@+id/play_cover"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 tools:ignore="ContentDescription,ImageContrastCheck" />
 
         </androidx.cardview.widget.CardView>
@@ -36,20 +37,22 @@
 
         <TextView
             android:id="@+id/play_song_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
             android:maxLines="1"
+            android:text="@string/test"
             android:textColor="@color/fragment_play_widget_color"
             android:textSize="19sp" />
 
         <TextView
             android:id="@+id/play_singer_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
             android:layout_marginTop="7dp"
             android:maxLines="1"
+            android:text="@string/test"
             android:textSize="16sp" />
 
         <SeekBar

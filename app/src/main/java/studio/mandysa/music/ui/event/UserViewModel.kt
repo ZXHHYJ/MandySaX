@@ -35,7 +35,7 @@ class UserViewModel : ViewModel() {
         NeteaseCloudMusicApi::class.java.create().login(mobilePhone, password).set(object :
             Callback<LoginModel> {
             override fun onFailure(code: Int) {
-                mCookieLiveData.value = null;
+                mCookieLiveData.value = null
             }
 
             override fun onResponse(t: LoginModel?) {

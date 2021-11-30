@@ -28,11 +28,13 @@
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/ic_home.xml" value="0.2866666666666667" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/ic_music.xml" value="0.15" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/ic_pause.xml" value="0.165625" />
+        <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/ic_person.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/ic_play.xml" value="0.165625" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/ic_search.xml" value="0.2866666666666667" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/ic_skip_next.xml" value="0.165625" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/ic_skip_previous.xml" value="0.165625" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/login_et_bg.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/drawable/test.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout-sw600dp/fragment_show.xml" value="0.20703125" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/a.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/dialog_login.xml" value="0.2760416666666667" />
@@ -47,7 +49,7 @@
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_search_history.xml" value="0.24139492753623187" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_search_list.xml" value="0.275" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_show.xml" value="0.2760416666666667" />
-        <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_start.xml" value="0.2259963768115942" />
+        <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_start.xml" value="0.1" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/fragment_users.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/item_add_user.xml" value="0.2749094202898551" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/item_default_head.xml" value="0.335" />
@@ -59,7 +61,7 @@
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/item_playlist_info_head.xml" value="0.275" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/item_search_song.xml" value="0.275" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/item_song.xml" value="0.275" />
-        <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/item_toplist.xml" value="0.45" />
+        <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/item_toplist.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/item_user.xml" value="0.2749094202898551" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/layout_empty.xml" value="0.275" />
         <entry key="..\:/Users/ZXHHYJ/StudioProjects/MandySaX/app/src/main/res/layout/layout_error.xml" value="0.275" />

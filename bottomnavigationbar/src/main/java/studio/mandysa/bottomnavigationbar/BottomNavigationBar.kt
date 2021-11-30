@@ -75,7 +75,7 @@ class BottomNavigationBar : RecyclerView {
                 onBind {
                     val model = getModel<BottomNavigationItem>()
                     val itemIcon = itemView.findViewById<ImageView>(R.id.image1)
-                    val itemTitle = itemView.findViewById<TextView>(R.id.text1)
+                    val itemTitle = itemView.findViewById<TextView?>(R.id.text1)
                     itemIcon.setImageResource(model.mImageRes)
                     itemIcon.setColorFilter(mInActiveColor)
                     itemTitle.text = model.mText

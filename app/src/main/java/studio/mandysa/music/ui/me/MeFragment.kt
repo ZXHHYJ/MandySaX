@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
@@ -12,10 +11,11 @@ import mandysax.navigation.Navigation
 import studio.mandysa.jiuwo.utils.linear
 import studio.mandysa.jiuwo.utils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.setup
+import studio.mandysa.jiuwo.utils.staggered
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentMeBinding
 import studio.mandysa.music.databinding.ItemMePlaylistBinding
-import studio.mandysa.music.databinding.ItemPlaylistBinding
+import studio.mandysa.music.databinding.ItemToplistBinding
 import studio.mandysa.music.databinding.ItemUserBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.UserModel
@@ -26,6 +26,7 @@ import studio.mandysa.music.logic.utils.create
 import studio.mandysa.music.logic.utils.set
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.event.UserViewModel
+import studio.mandysa.music.ui.search.DoubleItemDecoration
 
 class MeFragment : Fragment() {
 
@@ -60,16 +61,17 @@ class MeFragment : Fragment() {
                         }
                         R.layout.item_me_playlist -> {
                             ItemMePlaylistBinding.bind(itemView).playlistList.apply {
-                                linear(orientation = HORIZONTAL).setup {
-                                    addType<UserPlaylistModel.UserPlaylist>(R.layout.item_playlist)
+                                addItemDecoration(DoubleItemDecoration())
+                                staggered(2).setup {
+                                    addType<UserPlaylistModel.UserPlaylist>(R.layout.item_toplist)
                                     onBind {
                                         val model = getModel<UserPlaylistModel.UserPlaylist>()
-                                        ItemPlaylistBinding.bind(itemView).apply {
+                                        ItemToplistBinding.bind(itemView).apply {
                                             mImageLoader.displayImage(
                                                 model.coverImgUrl,
-                                                playlistCover
+                                                toplistCover
                                             )
-                                            playlistTitle.text = model.name
+                                            toplistName.text = model.name
                                         }
                                         itemView.setOnClickListener {
                                             Navigation.findViewNavController(it)
@@ -104,7 +106,7 @@ class MeFragment : Fragment() {
                                     }
 
                                     override fun onResponse(t: UserPlaylistModel?) {
-                                        recycler.recyclerAdapter.models = listOf(t)
+                                        recycler.recyclerAdapter.addModels(listOf(t!!))
                                     }
 
                                 })

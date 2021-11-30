@@ -50,11 +50,17 @@
 
             <TextView
                 android:id="@+id/todo"
-                android:gravity="bottom"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="bottom" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/default_margin"
+        android:background="?android:attr/dividerVertical" />
 
 </LinearLayout>
