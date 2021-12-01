@@ -53,7 +53,7 @@ class PlaylistFragment(private val id: String) : Fragment() {
                         mBinding.recycler.addModels(it)
                         showContentState()
                     }
-                    mViewModel.getPlaylistInfoModelLiveData().observe(viewLifecycleOwner){
+                    mViewModel.getPlaylistInfoModelLiveData().observe(viewLifecycleOwner) {
                         mBinding.recycler.addHeader(it)
                     }
                 }

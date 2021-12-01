@@ -31,11 +31,10 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:gravity="center"
-        android:maxLines="2"
         android:singleLine="true"
         android:text="@string/test"
         android:textColor="@android:color/black"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 
 </LinearLayout>
 

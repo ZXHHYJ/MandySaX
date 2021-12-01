@@ -25,6 +25,7 @@ import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.ToplistModel
 import studio.mandysa.music.logic.utils.*
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
+import studio.mandysa.music.ui.decoration.DoubleItemDecoration
 
 class SearchFragment : Fragment() {
 

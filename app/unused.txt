@@ -1674,7 +1674,6 @@ androidx.recyclerview.widget.LinearLayoutManager:
     private static final float MAX_SCROLL_FACTOR
     private static final java.lang.String TAG
     public static final int VERTICAL
-    public android.graphics.PointF computeScrollVectorForPosition(int)
     public int findFirstCompletelyVisibleItemPosition()
     public int getInitialPrefetchItemCount()
     public boolean getRecycleChildrenOnDetach()
@@ -1682,15 +1681,28 @@ androidx.recyclerview.widget.LinearLayoutManager:
     public boolean getStackFromEnd()
     private void logChildren()
     public void prepareForDrop(android.view.View,android.view.View,int,int)
-    public void scrollToPosition(int)
     public void scrollToPositionWithOffset(int,int)
     public void setInitialPrefetchItemCount(int)
     public void setRecycleChildrenOnDetach(boolean)
     public void setSmoothScrollbarEnabled(boolean)
     public void smoothScrollToPosition(androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State,int)
     void validateChildOrder()
-androidx.recyclerview.widget.LinearSmoothScroller
-androidx.recyclerview.widget.LinearSnapHelper
+androidx.recyclerview.widget.LinearSmoothScroller:
+    private static final boolean DEBUG
+    private static final float MILLISECONDS_PER_INCH
+    public static final int SNAP_TO_ANY
+    public static final int SNAP_TO_END
+    public static final int SNAP_TO_START
+    private static final float TARGET_SEEK_EXTRA_SCROLL_RATIO
+    private static final int TARGET_SEEK_SCROLL_DISTANCE_PX
+    public int calculateDtToFit(int,int,int,int,int)
+    public int calculateDxToMakeVisible(android.view.View,int)
+    public int calculateDyToMakeVisible(android.view.View,int)
+    protected int getHorizontalSnapPreference()
+    protected int getVerticalSnapPreference()
+    protected void onTargetFound(android.view.View,androidx.recyclerview.widget.RecyclerView$State,androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action)
+androidx.recyclerview.widget.LinearSnapHelper:
+    private static final float INVALID_DISTANCE
 androidx.recyclerview.widget.ListAdapter$1
 androidx.recyclerview.widget.ListAdapter
 androidx.recyclerview.widget.ListUpdateCallback
@@ -1777,16 +1789,13 @@ androidx.recyclerview.widget.RecyclerView$LayoutManager:
     public boolean isMeasurementCacheEnabled()
     public void layoutDecorated(android.view.View,int,int,int,int)
     public void measureChild(android.view.View,int,int)
-    void onSmoothScrollerStopped(androidx.recyclerview.widget.RecyclerView$SmoothScroller)
     public void postOnAnimation(java.lang.Runnable)
     public void removeAllViews()
     public void removeDetachedView(android.view.View)
-    public void scrollToPosition(int)
     public void setAutoMeasureEnabled(boolean)
     public final void setItemPrefetchEnabled(boolean)
     public void setMeasurementCacheEnabled(boolean)
     public void smoothScrollToPosition(androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State,int)
-    public void startSmoothScroll(androidx.recyclerview.widget.RecyclerView$SmoothScroller)
     public void stopIgnoringView(android.view.View)
 androidx.recyclerview.widget.RecyclerView$LayoutParams:
     public int getAbsoluteAdapterPosition()
@@ -1794,8 +1803,6 @@ androidx.recyclerview.widget.RecyclerView$LayoutParams:
     public int getViewAdapterPosition()
     public int getViewPosition()
     public boolean viewNeedsUpdate()
-androidx.recyclerview.widget.RecyclerView$OnFlingListener:
-    public void <init>()
 androidx.recyclerview.widget.RecyclerView$Orientation
 androidx.recyclerview.widget.RecyclerView$RecycledViewPool:
     private static final int DEFAULT_MAX_SCRAP
@@ -1810,30 +1817,19 @@ androidx.recyclerview.widget.RecyclerView$RecyclerViewDataObserver:
     public void onItemRangeRemoved(int,int)
     public void onStateRestorationPolicyChanged()
 androidx.recyclerview.widget.RecyclerView$SimpleOnItemTouchListener
-androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action
-androidx.recyclerview.widget.RecyclerView$SmoothScroller$ScrollVectorProvider
+androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action:
+    public static final int UNDEFINED_DURATION
+    public void <init>(int,int,int)
+    public int getDuration()
+    public int getDx()
+    public int getDy()
+    public android.view.animation.Interpolator getInterpolator()
+    public void setDuration(int)
+    public void setDx(int)
+    public void setDy(int)
+    public void setInterpolator(android.view.animation.Interpolator)
 androidx.recyclerview.widget.RecyclerView$SmoothScroller:
-    private androidx.recyclerview.widget.RecyclerView$LayoutManager mLayoutManager
-    private boolean mPendingInitialRun
-    private androidx.recyclerview.widget.RecyclerView mRecyclerView
-    private final androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action mRecyclingAction
-    private boolean mRunning
-    private boolean mStarted
-    private int mTargetPosition
-    private android.view.View mTargetView
-    public void <init>()
-    public android.graphics.PointF computeScrollVectorForPosition(int)
-    public android.view.View findViewByPosition(int)
-    public int getChildCount()
-    public int getChildPosition(android.view.View)
-    public androidx.recyclerview.widget.RecyclerView$LayoutManager getLayoutManager()
     public void instantScrollToPosition(int)
-    protected void normalize(android.graphics.PointF)
-    protected abstract void onSeekTargetStep(int,int,androidx.recyclerview.widget.RecyclerView$State,androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action)
-    protected abstract void onStart()
-    protected abstract void onStop()
-    protected abstract void onTargetFound(android.view.View,androidx.recyclerview.widget.RecyclerView$State,androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action)
-    void start(androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$LayoutManager)
 androidx.recyclerview.widget.RecyclerView$State:
     static final int STEP_ANIMATIONS
     static final int STEP_LAYOUT
@@ -1915,7 +1911,6 @@ androidx.recyclerview.widget.RecyclerView:
     public void invalidateItemDecorations()
     public boolean isAnimating()
     public boolean isLayoutFrozen()
-    void jumpToPositionForSmoothScroller(int)
     public void nestedScrollBy(int,int)
     public void removeItemDecorationAt(int)
     public void removeOnChildAttachStateChangeListener(androidx.recyclerview.widget.RecyclerView$OnChildAttachStateChangeListener)
@@ -1930,9 +1925,8 @@ androidx.recyclerview.widget.SimpleItemAnimator:
     private static final java.lang.String TAG
     public boolean getSupportsChangeAnimations()
     public void setSupportsChangeAnimations(boolean)
-androidx.recyclerview.widget.SnapHelper$1
-androidx.recyclerview.widget.SnapHelper$2
-androidx.recyclerview.widget.SnapHelper
+androidx.recyclerview.widget.SnapHelper:
+    static final float MILLISECONDS_PER_INCH
 androidx.recyclerview.widget.SortedList$BatchedCallback
 androidx.recyclerview.widget.SortedList$Callback
 androidx.recyclerview.widget.SortedList
@@ -1969,7 +1963,6 @@ androidx.recyclerview.widget.StaggeredGridLayoutManager:
     private static final float MAX_SCROLL_FACTOR
     private static final java.lang.String TAG
     public static final int VERTICAL
-    public android.graphics.PointF computeScrollVectorForPosition(int)
     public int[] findFirstCompletelyVisibleItemPositions(int[])
     public int[] findFirstVisibleItemPositions(int[])
     public int[] findLastCompletelyVisibleItemPositions(int[])
@@ -1978,7 +1971,6 @@ androidx.recyclerview.widget.StaggeredGridLayoutManager:
     public int getOrientation()
     public boolean getReverseLayout()
     public int getSpanCount()
-    public void scrollToPosition(int)
     public void scrollToPositionWithOffset(int,int)
     public void setGapStrategy(int)
     public void smoothScrollToPosition(androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State,int)
@@ -9714,7 +9706,6 @@ androidx.recyclerview.widget.LinearLayoutManager$SavedState:
 androidx.recyclerview.widget.LinearLayoutManager:
     public boolean mRecycleChildrenOnDetach
     public void <init>(int,boolean)
-    public void calculateExtraLayoutSpace(androidx.recyclerview.widget.RecyclerView$State,int[])
     public androidx.recyclerview.widget.LinearLayoutManager$LayoutState createLayoutState()
     public final android.view.View findFirstPartiallyOrCompletelyInvisibleChild()
     public int findFirstVisibleItemPosition()
@@ -9735,6 +9726,19 @@ androidx.recyclerview.widget.LinearLayoutManager:
     public final void updateAnchorInfoForLayout(androidx.recyclerview.widget.RecyclerView$Recycler,androidx.recyclerview.widget.RecyclerView$State,androidx.recyclerview.widget.LinearLayoutManager$AnchorInfo)
     public final void updateLayoutStateToFillEnd(androidx.recyclerview.widget.LinearLayoutManager$AnchorInfo)
     public final void updateLayoutStateToFillStart(androidx.recyclerview.widget.LinearLayoutManager$AnchorInfo)
+androidx.recyclerview.widget.LinearSmoothScroller:
+    public android.graphics.PointF mTargetVector
+    public float calculateSpeedPerPixel(android.util.DisplayMetrics)
+    public int calculateTimeForDeceleration(int)
+    public final int clampApplyScroll(int,int)
+    public final float getSpeedPerPixel()
+    public void onSeekTargetStep(int,int,androidx.recyclerview.widget.RecyclerView$State,androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action)
+    public void onStart()
+    public void onStop()
+    public void updateActionForInterimTarget(androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action)
+androidx.recyclerview.widget.LinearSnapHelper:
+    public final float computeDistancePerChild(androidx.recyclerview.widget.RecyclerView$LayoutManager,androidx.recyclerview.widget.OrientationHelper)
+    public int findTargetSnapPosition(androidx.recyclerview.widget.RecyclerView$LayoutManager,int,int)
 androidx.recyclerview.widget.OpReorderer$Callback:
     public abstract androidx.recyclerview.widget.AdapterHelper$UpdateOp obtainUpdateOp(int,int,int,java.lang.Object)
     public abstract void recycleUpdateOp(androidx.recyclerview.widget.AdapterHelper$UpdateOp)
@@ -9852,7 +9856,6 @@ androidx.recyclerview.widget.RecyclerView$LayoutManager$LayoutPrefetchRegistry:
 androidx.recyclerview.widget.RecyclerView$LayoutManager:
     public boolean mAutoMeasure
     public final androidx.recyclerview.widget.ViewBoundsCheck$Callback mHorizontalBoundCheckCallback
-    public androidx.recyclerview.widget.RecyclerView$SmoothScroller mSmoothScroller
     public final androidx.recyclerview.widget.ViewBoundsCheck$Callback mVerticalBoundCheckCallback
     public void addDisappearingView(android.view.View)
     public void addDisappearingView(android.view.View,int)
@@ -9872,7 +9875,6 @@ androidx.recyclerview.widget.RecyclerView$LayoutManager:
     public int getDecoratedRight(android.view.View)
     public int getHeight()
     public int getHeightMode()
-    public int getItemCount()
     public int getLeftDecorationWidth(android.view.View)
     public int getRightDecorationWidth(android.view.View)
     public int getSelectionModeForAccessibility()
@@ -9899,6 +9901,7 @@ androidx.recyclerview.widget.RecyclerView$LayoutManager:
     public void onMeasure(int,int)
     public boolean onRequestChildFocus(androidx.recyclerview.widget.RecyclerView)
     public boolean onRequestChildFocus1(androidx.recyclerview.widget.RecyclerView,android.view.View,android.view.View)
+    public void onSmoothScrollerStopped(androidx.recyclerview.widget.RecyclerView$SmoothScroller)
     public boolean performAccessibilityAction(int)
     public boolean performAccessibilityAction(int,android.os.Bundle)
     public boolean performAccessibilityActionForItem()
@@ -9909,6 +9912,7 @@ androidx.recyclerview.widget.RecyclerView$LayoutManager:
     public void requestSimpleAnimationsInNextLayout()
     public final void scrapOrRecycleView(androidx.recyclerview.widget.RecyclerView$Recycler,int,android.view.View)
     public void setMeasuredDimension(int,int)
+    public void startSmoothScroll(androidx.recyclerview.widget.RecyclerView$SmoothScroller)
     public void stopSmoothScroller()
 androidx.recyclerview.widget.RecyclerView$LayoutParams:
     public boolean isViewInvalid()
@@ -9961,12 +9965,34 @@ androidx.recyclerview.widget.RecyclerView$SavedState$1:
     public androidx.recyclerview.widget.RecyclerView$SavedState[] newArray(int)
 androidx.recyclerview.widget.RecyclerView$SavedState:
     public void copyFrom(androidx.recyclerview.widget.RecyclerView$SavedState)
-androidx.recyclerview.widget.RecyclerView$SmoothScroller
+androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action:
+    public void <init>(int,int,int,android.view.animation.Interpolator)
+    public boolean hasJumpTarget()
+    public void jumpTo(int)
+    public void update(int,int,int,android.view.animation.Interpolator)
+    public final void validate()
+androidx.recyclerview.widget.RecyclerView$SmoothScroller:
+    public boolean mStarted
+    public android.graphics.PointF computeScrollVectorForPosition(int)
+    public android.view.View findViewByPosition(int)
+    public int getChildCount()
+    public int getChildPosition(android.view.View)
+    public androidx.recyclerview.widget.RecyclerView$LayoutManager getLayoutManager()
+    public int getTargetPosition()
+    public boolean isPendingInitialRun()
+    public boolean isRunning()
+    public void normalize(android.graphics.PointF)
+    public void onChildAttachedToWindow(android.view.View)
+    public abstract void onSeekTargetStep(int,int,androidx.recyclerview.widget.RecyclerView$State,androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action)
+    public abstract void onStart()
+    public abstract void onStop()
+    public abstract void onTargetFound(android.view.View,androidx.recyclerview.widget.RecyclerView$State,androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action)
+    public void setTargetPosition(int)
+    public void start(androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$LayoutManager)
 androidx.recyclerview.widget.RecyclerView$State:
     public android.util.SparseArray mData
     public int mRemainingScrollHorizontal
     public int mRemainingScrollVertical
-    public int mTargetPosition
     public int getTargetScrollPosition()
     public boolean hasTargetScrollPosition()
     public boolean isPreLayout()
@@ -9978,8 +10004,6 @@ androidx.recyclerview.widget.RecyclerView$ViewFlinger:
     public final int computeScrollDuration(int,int)
     public void fling(int,int)
     public final void internalPostOnAnimation()
-    public void smoothScrollBy(int,int,int,android.view.animation.Interpolator)
-    public void stop()
 androidx.recyclerview.widget.RecyclerView$ViewHolder:
     public void clearPayload()
     public void clearTmpDetachFlag()
@@ -10006,12 +10030,10 @@ androidx.recyclerview.widget.RecyclerView:
     public static final boolean POST_UPDATES_ON_ANIMATION
     public boolean mEnableFastScroller
     public java.util.List mOnChildAttachStateListeners
-    public androidx.recyclerview.widget.RecyclerView$OnFlingListener mOnFlingListener
     public void <init>(android.content.Context,android.util.AttributeSet,int)
     public void absorbGlows(int,int)
     public void addItemDecoration(androidx.recyclerview.widget.RecyclerView$ItemDecoration,int)
     public void addOnItemTouchListener(androidx.recyclerview.widget.RecyclerView$OnItemTouchListener)
-    public void addOnScrollListener(androidx.recyclerview.widget.RecyclerView$OnScrollListener)
     public void animateAppearance(androidx.recyclerview.widget.RecyclerView$ViewHolder,androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo,androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo)
     public final void animateChange(androidx.recyclerview.widget.RecyclerView$ViewHolder,androidx.recyclerview.widget.RecyclerView$ViewHolder,androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo,androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo,boolean,boolean)
     public void animateDisappearance(androidx.recyclerview.widget.RecyclerView$ViewHolder,androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo,androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo)
@@ -10101,6 +10123,19 @@ androidx.recyclerview.widget.SimpleItemAnimator:
     public void onMoveStarting()
     public void onRemoveFinished()
     public void onRemoveStarting()
+androidx.recyclerview.widget.SnapHelper$2:
+    public float calculateSpeedPerPixel(android.util.DisplayMetrics)
+    public void onTargetFound(android.view.View,androidx.recyclerview.widget.RecyclerView$State,androidx.recyclerview.widget.RecyclerView$SmoothScroller$Action)
+androidx.recyclerview.widget.SnapHelper:
+    public void attachToRecyclerView(androidx.recyclerview.widget.RecyclerView)
+    public int[] calculateScrollDistance(int,int)
+    public androidx.recyclerview.widget.RecyclerView$SmoothScroller createScroller(androidx.recyclerview.widget.RecyclerView$LayoutManager)
+    public androidx.recyclerview.widget.LinearSmoothScroller createSnapScroller(androidx.recyclerview.widget.RecyclerView$LayoutManager)
+    public final void destroyCallbacks()
+    public abstract int findTargetSnapPosition(androidx.recyclerview.widget.RecyclerView$LayoutManager,int,int)
+    public boolean onFling(int,int)
+    public final void setupCallbacks()
+    public final boolean snapFromFling(androidx.recyclerview.widget.RecyclerView$LayoutManager,int,int)
 androidx.recyclerview.widget.StaggeredGridLayoutManager$AnchorInfo:
     public void assignCoordinateFromPadding(int)
     public void saveSpanReferenceLines(androidx.recyclerview.widget.StaggeredGridLayoutManager$Span[])
@@ -10145,7 +10180,6 @@ androidx.recyclerview.widget.StaggeredGridLayoutManager:
     public boolean areAllEndsEqual()
     public boolean areAllStartsEqual()
     public final void attachViewToSpans(android.view.View,androidx.recyclerview.widget.StaggeredGridLayoutManager$LayoutParams,androidx.recyclerview.widget.LayoutState)
-    public final int calculateScrollDirectionForPosition(int)
     public final boolean checkSpanForGap(androidx.recyclerview.widget.StaggeredGridLayoutManager$Span)
     public final int convertFocusDirectionToLayoutDirection(int)
     public final androidx.recyclerview.widget.StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem createFullSpanItemFromEnd(int)

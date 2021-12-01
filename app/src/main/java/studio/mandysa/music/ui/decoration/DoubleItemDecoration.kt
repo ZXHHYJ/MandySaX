@@ -1,4 +1,4 @@
-package studio.mandysa.music.ui.search
+package studio.mandysa.music.ui.decoration
 
 import android.graphics.Rect
 import android.view.View

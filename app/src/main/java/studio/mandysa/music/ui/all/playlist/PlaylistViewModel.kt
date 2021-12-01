@@ -45,43 +45,43 @@ class PlaylistViewModel : ViewModel() {
 
     fun nextPage() {
         if (mObservable == null)
-        mMetadataLiveData.observeForever(object : Observer<List<PlaylistInfoModel.SongList>?> {
-            val mThis = this
-            override fun onChanged(p1: List<PlaylistInfoModel.SongList>?) {
-                if (p1 == null) {
-                    mDataLiveData.value = null
-                    mMetadataLiveData.removeObserver(mThis)
-                    return
-                }
-                val list = ArrayList<PlaylistInfoModel.SongList>()
-                val difference = 30 * mPage
-                if (difference > mMetadataLiveData.value!!.size)
-                    return
-                for (i in difference until if (mMetadataLiveData.value!!.size - difference < 30)
-                    difference + abs(mMetadataLiveData.value!!.size - difference)
-                else
-                    30 * (mPage + 1)) {
-                    list.add(mMetadataLiveData.value!![i])
-                }
-                mObservable = NeteaseCloudMusicApi::class.java.create()
-                    .getMusicInfo(list).also {
-                        it.set(object : Callback<List<MusicModel>> {
-                            override fun onResponse(t: List<MusicModel>?) {
-                                mDataLiveData.value = t!!
-                                mPage++
-                                mObservable = null
-                                mMetadataLiveData.removeObserver(mThis)
-                            }
-
-                            override fun onFailure(code: Int) {
-                                mDataLiveData.value = null
-                                mObservable = null
-                                mMetadataLiveData.removeObserver(mThis)
-                            }
-                        })
+            mMetadataLiveData.observeForever(object : Observer<List<PlaylistInfoModel.SongList>?> {
+                val mThis = this
+                override fun onChanged(p1: List<PlaylistInfoModel.SongList>?) {
+                    if (p1 == null) {
+                        mDataLiveData.value = null
+                        mMetadataLiveData.removeObserver(mThis)
+                        return
                     }
-            }
+                    val list = ArrayList<PlaylistInfoModel.SongList>()
+                    val difference = 30 * mPage
+                    if (difference > mMetadataLiveData.value!!.size)
+                        return
+                    for (i in difference until if (mMetadataLiveData.value!!.size - difference < 30)
+                        difference + abs(mMetadataLiveData.value!!.size - difference)
+                    else
+                        30 * (mPage + 1)) {
+                        list.add(mMetadataLiveData.value!![i])
+                    }
+                    mObservable = NeteaseCloudMusicApi::class.java.create()
+                        .getMusicInfo(list).also {
+                            it.set(object : Callback<List<MusicModel>> {
+                                override fun onResponse(t: List<MusicModel>?) {
+                                    mDataLiveData.value = t!!
+                                    mPage++
+                                    mObservable = null
+                                    mMetadataLiveData.removeObserver(mThis)
+                                }
 
-        })
+                                override fun onFailure(code: Int) {
+                                    mDataLiveData.value = null
+                                    mObservable = null
+                                    mMetadataLiveData.removeObserver(mThis)
+                                }
+                            })
+                        }
+                }
+
+            })
     }
 }

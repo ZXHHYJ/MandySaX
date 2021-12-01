@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
@@ -26,6 +27,7 @@ import studio.mandysa.music.logic.utils.*
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.event.UserViewModel
 
+
 class HomeFragment : Fragment() {
 
     private val mBinding: FragmentHomeBinding by bindView()
@@ -47,10 +49,13 @@ class HomeFragment : Fragment() {
             recycler.linear().setup {
                 addType<PlaylistModel>(R.layout.item_playlist_head)
                 addType<NewSongModel>(R.layout.item_song)
+                val snapHelper = LinearSnapHelper()
                 onBind {
                     when (itemViewType) {
                         R.layout.item_playlist_head -> {
                             ItemPlaylistHeadBinding.bind(itemView).playlistList.apply {
+                                snapHelper.attachToRecyclerView(this)
+                                addItemDecoration(ThreePointsDecoration())
                                 linear(orientation = RecyclerView.HORIZONTAL).setup {
                                     addType<PlaylistModel.Playlist>(R.layout.item_playlist)
                                     onBind {

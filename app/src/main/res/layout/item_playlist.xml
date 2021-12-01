@@ -1,21 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--推荐歌单item-->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!--推荐歌单item-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="UselessParent">
 
-    <LinearLayout
-        android:layout_width="95dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+    <studio.mandysa.music.ui.view.SquareLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp">
 
         <androidx.cardview.widget.CardView
             style="@style/ImageCardViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="95dp">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/playlist_cover"
@@ -26,17 +24,16 @@
 
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/playlist_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@android:color/black"
-            android:textSize="11sp"
-            tools:ignore="SmallSp" />
+    </studio.mandysa.music.ui.view.SquareLayout>
 
-    </LinearLayout>
-</FrameLayout>
+    <TextView
+        android:id="@+id/playlist_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@android:color/black"
+        android:textSize="11sp"
+        tools:ignore="SmallSp" />
 
-
+</LinearLayout>

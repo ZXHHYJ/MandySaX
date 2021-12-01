@@ -26,7 +26,7 @@ import studio.mandysa.music.logic.utils.create
 import studio.mandysa.music.logic.utils.set
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.event.UserViewModel
-import studio.mandysa.music.ui.search.DoubleItemDecoration
+import studio.mandysa.music.ui.decoration.DoubleItemDecoration
 
 class MeFragment : Fragment() {
 
