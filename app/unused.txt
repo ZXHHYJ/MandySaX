@@ -2567,82 +2567,6 @@ com.sothree.slidinguppanel.library.R$styleable:
     public static final int RecyclerView_stackFromEnd
     private void <init>()
 com.sothree.slidinguppanel.library.R
-com.tencent.mmkv.BuildConfig
-com.tencent.mmkv.MMKV:
-    private static final int ASHMEM_MODE
-    private static final int BACKUP_MODE
-    private static final int CONTEXT_MODE_MULTI_PROCESS
-    public static final int MULTI_PROCESS_MODE
-    public static final int SINGLE_PROCESS_MODE
-    public long actualSize()
-    public void async()
-    public static com.tencent.mmkv.MMKV backedUpMMKVWithID(java.lang.String,int,java.lang.String,java.lang.String)
-    public long count()
-    public static com.tencent.mmkv.NativeBuffer createNativeBuffer(int)
-    public boolean decodeBool(java.lang.String)
-    public boolean decodeBool(java.lang.String,boolean)
-    public byte[] decodeBytes(java.lang.String)
-    public byte[] decodeBytes(java.lang.String,byte[])
-    public double decodeDouble(java.lang.String)
-    public double decodeDouble(java.lang.String,double)
-    public float decodeFloat(java.lang.String)
-    public float decodeFloat(java.lang.String,float)
-    public int decodeInt(java.lang.String)
-    public int decodeInt(java.lang.String,int)
-    public long decodeLong(java.lang.String)
-    public long decodeLong(java.lang.String,long)
-    public android.os.Parcelable decodeParcelable(java.lang.String,java.lang.Class)
-    public android.os.Parcelable decodeParcelable(java.lang.String,java.lang.Class,android.os.Parcelable)
-    public java.lang.String decodeString(java.lang.String,java.lang.String)
-    public java.util.Set decodeStringSet(java.lang.String)
-    public static com.tencent.mmkv.MMKV defaultMMKV(int,java.lang.String)
-    public static void destroyNativeBuffer(com.tencent.mmkv.NativeBuffer)
-    public boolean encode(java.lang.String,double)
-    public boolean encode(java.lang.String,float)
-    public boolean encode(java.lang.String,int)
-    public boolean encode(java.lang.String,long)
-    public boolean encode(java.lang.String,android.os.Parcelable)
-    public boolean encode(java.lang.String,boolean)
-    public boolean encode(java.lang.String,byte[])
-    public byte[] getBytes(java.lang.String,byte[])
-    public static java.lang.String getRootDir()
-    public int getValueActualSize(java.lang.String)
-    public int getValueSize(java.lang.String)
-    public int importFromSharedPreferences(android.content.SharedPreferences)
-    public static java.lang.String initialize(android.content.Context,com.tencent.mmkv.MMKV$LibLoader)
-    public static java.lang.String initialize(android.content.Context,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel)
-    public static java.lang.String initialize(android.content.Context,com.tencent.mmkv.MMKVLogLevel)
-    public static java.lang.String initialize(android.content.Context,java.lang.String)
-    public static java.lang.String initialize(android.content.Context,java.lang.String,com.tencent.mmkv.MMKV$LibLoader)
-    public static java.lang.String initialize(android.content.Context,java.lang.String,com.tencent.mmkv.MMKVLogLevel)
-    public static java.lang.String initialize(java.lang.String)
-    public static java.lang.String initialize(java.lang.String,com.tencent.mmkv.MMKV$LibLoader)
-    public static java.lang.String initialize(java.lang.String,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel)
-    public static java.lang.String initialize(java.lang.String,com.tencent.mmkv.MMKVLogLevel)
-    public static boolean isFileValid(java.lang.String)
-    public static com.tencent.mmkv.MMKV mmkvWithAshmemFD(java.lang.String,int,int,java.lang.String)
-    public static com.tencent.mmkv.MMKV mmkvWithAshmemID(android.content.Context,java.lang.String,int,int,java.lang.String)
-    public static com.tencent.mmkv.MMKV mmkvWithID(java.lang.String)
-    public static com.tencent.mmkv.MMKV mmkvWithID(java.lang.String,int)
-    public static com.tencent.mmkv.MMKV mmkvWithID(java.lang.String,int,java.lang.String)
-    public static com.tencent.mmkv.MMKV mmkvWithID(java.lang.String,int,java.lang.String,java.lang.String)
-    public static com.tencent.mmkv.MMKV mmkvWithID(java.lang.String,java.lang.String)
-    public android.content.SharedPreferences$Editor putBytes(java.lang.String,byte[])
-    public static void registerContentChangeNotify(com.tencent.mmkv.MMKVContentChangeNotification)
-    public static void registerHandler(com.tencent.mmkv.MMKVHandler)
-    public static void setLogLevel(com.tencent.mmkv.MMKVLogLevel)
-    public void sync()
-    public long totalSize()
-    public static void unregisterContentChangeNotify()
-    public static void unregisterHandler()
-    public int writeValueToNativeBuffer(java.lang.String,com.tencent.mmkv.NativeBuffer)
-com.tencent.mmkv.MMKVContentProvider
-com.tencent.mmkv.MMKVHandler:
-    public abstract boolean wantLogRedirecting()
-com.tencent.mmkv.NativeBuffer
-com.tencent.mmkv.ParcelableMMKV$1
-com.tencent.mmkv.ParcelableMMKV
-com.tencent.mmkv.R
 com.yanzhenjie.sofia.Bar:
     public abstract com.yanzhenjie.sofia.Bar navigationBarBackground(int)
     public abstract com.yanzhenjie.sofia.Bar navigationBarBackground(android.graphics.drawable.Drawable)
@@ -8828,6 +8752,35 @@ org.jetbrains.annotations.NotNull
 org.jetbrains.annotations.Nullable
 org.jetbrains.annotations.PropertyKey
 org.jetbrains.annotations.TestOnly
+simon.tuke.BuildConfig
+simon.tuke.GlobalMemoryCache:
+    public void remove(java.lang.String)
+    public void removeAll()
+simon.tuke.R
+simon.tuke.Tuke:
+    private final simon.tuke.Tuke$Config config
+    public void <init>(simon.tuke.Tuke$Config)
+    public java.io.Serializable get(java.lang.String)
+    public java.io.Serializable get(java.lang.String,java.io.Serializable)
+    public java.io.Serializable get(java.lang.String,java.io.Serializable,boolean)
+    public java.io.Serializable get(java.lang.String,boolean)
+    public static void init(simon.tuke.Tuke$Config)
+    public boolean remove(java.lang.String)
+    public void removeAll()
+    public static java.io.Serializable tukeGet(java.lang.String,java.io.Serializable)
+    public static java.io.Serializable tukeGet(java.lang.String,boolean)
+    public static void tukeRemove(java.lang.String)
+    public static void tukeRemoveAll()
+    public void write(java.lang.String,java.io.Serializable)
+simon.tuke.TukeCache:
+    public abstract void remove(java.lang.String)
+    public abstract void removeAll()
+simon.tuke.TukeDelegateKt$tuke$1
+simon.tuke.TukeDelegateKt
+simon.tuke.TukeImpl:
+    public void <init>()
+    public static boolean remove(simon.tuke.Tuke$Config,java.lang.String)
+    public static void removeAll(simon.tuke.Tuke$Config)
 studio.mandysa.bottomnavigationbar.BottomNavigationBar:
     public void <init>(android.content.Context)
     public final studio.mandysa.bottomnavigationbar.BottomNavigationBar setInActiveColor(int)
@@ -8929,59 +8882,7 @@ studio.mandysa.bottomnavigationbar.R$layout:
     private void <init>()
 studio.mandysa.bottomnavigationbar.R$string
 studio.mandysa.bottomnavigationbar.R$style
-studio.mandysa.bottomnavigationbar.R$styleable:
-    public static final int ColorStateListItem_alpha
-    public static final int ColorStateListItem_android_alpha
-    public static final int ColorStateListItem_android_color
-    public static final int FontFamilyFont_android_font
-    public static final int FontFamilyFont_android_fontStyle
-    public static final int FontFamilyFont_android_fontVariationSettings
-    public static final int FontFamilyFont_android_fontWeight
-    public static final int FontFamilyFont_android_ttcIndex
-    public static final int FontFamilyFont_font
-    public static final int FontFamilyFont_fontStyle
-    public static final int FontFamilyFont_fontVariationSettings
-    public static final int FontFamilyFont_fontWeight
-    public static final int FontFamilyFont_ttcIndex
-    public static final int FontFamily_fontProviderAuthority
-    public static final int FontFamily_fontProviderCerts
-    public static final int FontFamily_fontProviderFetchStrategy
-    public static final int FontFamily_fontProviderFetchTimeout
-    public static final int FontFamily_fontProviderPackage
-    public static final int FontFamily_fontProviderQuery
-    public static final int Fragment_android_name
-    public static final int Fragment_android_tag
-    public static final int GradientColorItem_android_color
-    public static final int GradientColorItem_android_offset
-    public static final int GradientColor_android_centerColor
-    public static final int GradientColor_android_centerX
-    public static final int GradientColor_android_centerY
-    public static final int GradientColor_android_endColor
-    public static final int GradientColor_android_endX
-    public static final int GradientColor_android_endY
-    public static final int GradientColor_android_gradientRadius
-    public static final int GradientColor_android_startColor
-    public static final int GradientColor_android_startX
-    public static final int GradientColor_android_startY
-    public static final int GradientColor_android_tileMode
-    public static final int GradientColor_android_type
-    public static final int NavHostFragmentView_fragmentEnterAnim
-    public static final int NavHostFragmentView_fragmentExitAnim
-    public static final int NavHostFragmentView_fragmentPopEnterAnim
-    public static final int NavHostFragmentView_fragmentPopExitAnim
-    public static final int RecyclerView_android_clipToPadding
-    public static final int RecyclerView_android_descendantFocusability
-    public static final int RecyclerView_android_orientation
-    public static final int RecyclerView_fastScrollEnabled
-    public static final int RecyclerView_fastScrollHorizontalThumbDrawable
-    public static final int RecyclerView_fastScrollHorizontalTrackDrawable
-    public static final int RecyclerView_fastScrollVerticalThumbDrawable
-    public static final int RecyclerView_fastScrollVerticalTrackDrawable
-    public static final int RecyclerView_layoutManager
-    public static final int RecyclerView_reverseLayout
-    public static final int RecyclerView_spanCount
-    public static final int RecyclerView_stackFromEnd
-    private void <init>()
+studio.mandysa.bottomnavigationbar.R$styleable
 studio.mandysa.bottomnavigationbar.R
 studio.mandysa.jiuwo.BuildConfig
 studio.mandysa.jiuwo.R$attr
@@ -10717,26 +10618,6 @@ com.sothree.slidinguppanel.library.R$styleable:
     public static final int SlidingUpPanelLayout_umanoScrollInterpolator
     public static final int SlidingUpPanelLayout_umanoScrollableView
     public static final int SlidingUpPanelLayout_umanoShadowHeight
-com.tencent.mmkv.MMKV$1
-com.tencent.mmkv.MMKV$LibLoader
-com.tencent.mmkv.MMKV:
-    public static com.tencent.mmkv.MMKVHandler gCallbackHandler
-    public static com.tencent.mmkv.MMKVContentChangeNotification gContentChangeNotify
-    public static boolean gWantLogReDirecting
-    public static final java.util.HashMap mCreators
-    public static com.tencent.mmkv.MMKV checkProcessMode(long,java.lang.String,int)
-    public boolean containsKey(java.lang.String)
-    public java.util.Set decodeStringSet(java.lang.String,java.util.Set)
-    public java.util.Set decodeStringSet(java.lang.String,java.util.Set,java.lang.Class)
-    public static void disableProcessModeChecker()
-    public static java.lang.String doInitialize(java.lang.String,java.lang.String,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel)
-    public static void enableProcessModeChecker()
-    public boolean encode(java.lang.String,java.util.Set)
-    public static java.lang.String initialize(android.content.Context,java.lang.String,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel)
-    public static int logLevel2Int(com.tencent.mmkv.MMKVLogLevel)
-    public void removeValueForKey(java.lang.String)
-com.tencent.mmkv.MMKVContentChangeNotification
-com.tencent.mmkv.MMKVHandler
 com.yanzhenjie.sofia.HostLayout$Companion
 com.yanzhenjie.sofia.HostLayout:
     public static final com.yanzhenjie.sofia.HostLayout$Companion Companion
@@ -11288,14 +11169,12 @@ mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9
     private synthetic void $r8$constructor$mandysax$media$DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0(mandysax.media.DefaultPlayerManager)
     private synthetic void $r8$constructor$studio$mandysa$music$MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$1(studio.mandysa.music.databinding.ActivityMainBinding)
     private synthetic void $r8$constructor$studio$mandysa$music$MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$2(studio.mandysa.music.MainActivity)
-    private synthetic void $r8$constructor$studio$mandysa$music$ui$event$UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0(studio.mandysa.music.ui.event.UserViewModel)
     private synthetic void $r8$constructor$studio$mandysa$music$ui$login$LoginFragment$$InternalSyntheticLambda$0$ff74fc31986190c9daa3e0e6af9c788ce65744b36dc33bc4eda0a401f8054b2e$0(studio.mandysa.music.ui.login.LoginFragment)
     private synthetic void $r8$constructor$studio$mandysa$music$ui$search$searchlist$SearchListFragment$$InternalSyntheticLambda$0$8bd6ba5d5a0ff75f3bc6df6f2fe8671d6e70dda68b20404e571427fa10864ee7$0(studio.mandysa.music.ui.search.searchlist.SearchListFragment)
     private synthetic void $r8$constructor$studio$mandysa$music$ui$start$StartFragment$$InternalSyntheticLambda$0$ec8788419a53bf5f94bcd8102f674ca81b75c93aee8fbbb72d822500bebb036d$0(studio.mandysa.music.ui.start.StartFragment)
     private final void onChanged$mandysax$media$DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0(java.lang.Object)
     private final void onChanged$studio$mandysa$music$MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$1(java.lang.Object)
     private final void onChanged$studio$mandysa$music$MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$2(java.lang.Object)
-    private final void onChanged$studio$mandysa$music$ui$event$UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0(java.lang.Object)
     private final void onChanged$studio$mandysa$music$ui$login$LoginFragment$$InternalSyntheticLambda$0$ff74fc31986190c9daa3e0e6af9c788ce65744b36dc33bc4eda0a401f8054b2e$0(java.lang.Object)
     private final void onChanged$studio$mandysa$music$ui$search$searchlist$SearchListFragment$$InternalSyntheticLambda$0$8bd6ba5d5a0ff75f3bc6df6f2fe8671d6e70dda68b20404e571427fa10864ee7$0(java.lang.Object)
     private final void onChanged$studio$mandysa$music$ui$start$StartFragment$$InternalSyntheticLambda$0$ec8788419a53bf5f94bcd8102f674ca81b75c93aee8fbbb72d822500bebb036d$0(java.lang.Object)
@@ -11804,7 +11683,6 @@ okhttp3.internal.Internal:
     public static final int default_checked_color$studio$mandysa$bottomnavigationbar$R$color
     public static final int default_unchecked_color$studio$mandysa$bottomnavigationbar$R$color
     public static final int image1$studio$mandysa$bottomnavigationbar$R$id
-    public static final int item_horizontal$studio$mandysa$bottomnavigationbar$R$layout
     public static final int item_vertical$studio$mandysa$bottomnavigationbar$R$layout
     public static final int text1$studio$mandysa$bottomnavigationbar$R$id
     public static final int access$getAndroidLevel$p(java.util.logging.LogRecord)
@@ -12587,6 +12465,29 @@ okio.internal.HashFunction
 okio.internal.HashFunctionKt$newHashFunction$1
 okio.internal.HashFunctionKt
 okio.internal.SegmentedByteStringKt
+simon.tuke.GlobalMemoryCache$1:
+    public final synthetic simon.tuke.GlobalMemoryCache this$0
+    public int sizeOf(simon.tuke.TukePackage)
+simon.tuke.GlobalMemoryCache:
+    public java.io.Serializable get(java.lang.String)
+simon.tuke.Tuke$1:
+    public void onError(java.lang.String,java.lang.Exception)
+simon.tuke.Tuke$Config:
+    public simon.tuke.Tuke$Config setExceptionCatcher(simon.tuke.Tuke$ExceptionCatcher)
+    public simon.tuke.Tuke$Config setMemoryCache(simon.tuke.TukeCache)
+simon.tuke.Tuke$ExceptionCatcher:
+    public abstract void onError(java.lang.String,java.lang.Exception)
+simon.tuke.Tuke:
+    public static void init(android.content.Context)
+    public static java.io.Serializable tukeGet(java.lang.String)
+    public static java.io.Serializable tukeGet(java.lang.String,java.io.Serializable,boolean)
+    public static void tukeWrite(java.lang.String,java.io.Serializable)
+simon.tuke.TukeCache:
+    public abstract void add(java.lang.String,java.io.Serializable,int)
+    public abstract java.io.Serializable get(java.lang.String)
+simon.tuke.TukeImpl:
+    public static java.io.Serializable get(simon.tuke.Tuke$Config,java.lang.String,boolean)
+    public static void write(simon.tuke.Tuke$Config,java.lang.String,java.io.Serializable)
 studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0:
     private synthetic void $r8$constructor$studio$mandysa$bottomnavigationbar$BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0(studio.mandysa.bottomnavigationbar.BottomNavigationBar,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder)
     private synthetic void $r8$constructor$studio$mandysa$music$ui$start$StartFragment$$InternalSyntheticLambda$0$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$0(studio.mandysa.music.databinding.FragmentStartBinding,studio.mandysa.music.ui.start.StartFragment)
@@ -12603,7 +12504,6 @@ studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1:
 studio.mandysa.bottomnavigationbar.BottomNavigationBar:
     public static final synthetic int access$getMActiveColor$p(studio.mandysa.bottomnavigationbar.BottomNavigationBar)
     public static final synthetic int access$getMInActiveColor$p(studio.mandysa.bottomnavigationbar.BottomNavigationBar)
-    public static final synthetic int access$getMOrientation$p(studio.mandysa.bottomnavigationbar.BottomNavigationBar)
     public static final synthetic mandysax.lifecycle.livedata.MutableLiveData access$getMSelectedPosition$p(studio.mandysa.bottomnavigationbar.BottomNavigationBar)
     public final studio.mandysa.bottomnavigationbar.BottomNavigationBar setActiveColor(int)
     public final studio.mandysa.bottomnavigationbar.BottomNavigationBar setActiveColorResource(int)
@@ -12617,16 +12517,6 @@ studio.mandysa.bottomnavigationbar.BottomNavigationItem:
 studio.mandysa.bottomnavigationbar.R$color
 studio.mandysa.bottomnavigationbar.R$id
 studio.mandysa.bottomnavigationbar.R$layout
-studio.mandysa.bottomnavigationbar.R$styleable:
-    public static final int BottomNavigationBar_android_orientation
-    public static final int[] ColorStateListItem
-    public static final int[] FontFamily
-    public static final int[] FontFamilyFont
-    public static final int[] Fragment
-    public static final int[] GradientColor
-    public static final int[] GradientColorItem
-    public static final int[] NavHostFragmentView
-    public static final int[] RecyclerView
 studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder:
     public kotlin.jvm.functions.Function1 onRecycled
     public final kotlin.jvm.functions.Function1 getOnAttached$JiuWo_release()
@@ -12659,7 +12549,7 @@ studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$d54b39b717b64d9cd99
 studio.mandysa.music.MainActivity$$InternalSyntheticLambda$3$7d35a39c1595945e950800fcc3d06397f2f2e98a572caf842c54b9eef5601ef5$0
 studio.mandysa.music.MainActivity$onCreate$2$4$2$1$1$1$1$1:
     public final synthetic studio.mandysa.music.MainActivity this$0
-    public final java.lang.Float getY()
+    public final float getY()
 studio.mandysa.music.MainActivity$special$$inlined$inflate$1:
     public final androidx.viewbinding.ViewBinding invoke()
 studio.mandysa.music.MainActivity$special$$inlined$viewModels$1:
@@ -12753,7 +12643,6 @@ studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0
     private final void onClick$studio$mandysa$music$ui$controller$ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2(android.view.View)
     private final void onClick$studio$mandysa$music$ui$controller$ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$3(android.view.View)
 studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$3
-studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0
 studio.mandysa.music.ui.login.LoginFragment$$InternalSyntheticLambda$0$ff74fc31986190c9daa3e0e6af9c788ce65744b36dc33bc4eda0a401f8054b2e$0
 studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0:
     private synthetic void $r8$constructor$studio$mandysa$music$ui$play$PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0(studio.mandysa.music.ui.play.PlayFragment)

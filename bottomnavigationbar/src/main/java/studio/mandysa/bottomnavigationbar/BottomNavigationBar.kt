@@ -8,7 +8,6 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.RecyclerView
 import mandysax.lifecycle.livedata.MutableLiveData
-import studio.mandysa.jiuwo.utils.linear
 import studio.mandysa.jiuwo.utils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.setup
 import studio.mandysa.jiuwo.utils.staggered
@@ -21,8 +20,6 @@ class BottomNavigationBar : RecyclerView {
 
     @ColorInt
     private var mInActiveColor = context.getColor(R.color.default_unchecked_color)
-
-    private val mOrientation: Int
 
     private val mSelectedPosition: MutableLiveData<Int?> = MutableLiveData(null)
 
@@ -52,34 +49,23 @@ class BottomNavigationBar : RecyclerView {
         mSelectedPosition.value = position
     }
 
-    constructor(context: Context) : super(context) {
-        mOrientation = VERTICAL
-    }
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.BottomNavigationBar)
-        mOrientation = typedArray.getInt(
-            R.styleable.BottomNavigationBar_android_orientation,
-            VERTICAL
-        )
-        typedArray.recycle()
-    }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     var models: List<BottomNavigationItem>? = null
         set(value) {
             field = value
-            (if (mOrientation != HORIZONTAL)
-                staggered(field!!.size, orientation = mOrientation)
-            else linear()).setup {
-                addType<BottomNavigationItem>(if (mOrientation == HORIZONTAL) R.layout.item_horizontal else R.layout.item_vertical)
+            staggered(field!!.size).setup {
+                addType<BottomNavigationItem>(R.layout.item_vertical)
                 onBind {
                     val model = getModel<BottomNavigationItem>()
                     val itemIcon = itemView.findViewById<ImageView>(R.id.image1)
-                    val itemTitle = itemView.findViewById<TextView?>(R.id.text1)
+                    val itemTitle: TextView? = itemView.findViewById(R.id.text1)
                     itemIcon.setImageResource(model.mImageRes)
                     itemIcon.setColorFilter(mInActiveColor)
-                    itemTitle.text = model.mText
-                    itemTitle.setTextColor(mInActiveColor)
+                    itemTitle?.text = model.mText
+                    itemTitle?.setTextColor(mInActiveColor)
                     itemView.setOnClickListener {
                         mSelectedPosition.value = modelPosition
                     }
@@ -91,7 +77,7 @@ class BottomNavigationBar : RecyclerView {
                             itemIcon.setColorFilter(
                                 this
                             )
-                            itemTitle.setTextColor(
+                            itemTitle?.setTextColor(
                                 this
                             )
                         }

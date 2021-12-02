@@ -19,6 +19,7 @@ import mandysax.navigation.fragment.NavHostFragment;
 
 /**
  * 导航控制器
+ *
  * @author ZXHHYJ
  */
 public final class NavController {
@@ -44,7 +45,7 @@ public final class NavController {
             @Override
             public void observer(Lifecycle.Event state) {
                 if (state == Lifecycle.Event.ON_START) {
-                    _navigate(fragment, 0, 0, 0, 0);
+                    navigate(fragment, 0, 0, 0, 0);
                     mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
                 }
             }
@@ -59,7 +60,7 @@ public final class NavController {
                 if (state == Lifecycle.Event.ON_START) {
                     int[] attr = new int[]{R.attr.fragmentEnterAnim, R.attr.fragmentExitAnim, R.attr.fragmentPopEnterAnim, R.attr.fragmentPopExitAnim};
                     TypedArray array = mNavFragment.requireActivity().getTheme().obtainStyledAttributes(animStyle, attr);
-                    _navigate(fragment, array.getResourceId(0, 0), array.getResourceId(1, 0), array.getResourceId(2, 0), array.getResourceId(3, 0));
+                    navigate(fragment, array.getResourceId(0, 0), array.getResourceId(1, 0), array.getResourceId(2, 0), array.getResourceId(3, 0));
                     array.recycle();
                     mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
                 }
@@ -71,13 +72,14 @@ public final class NavController {
         return mNavFragment.getFragmentPlusManager().beginTransaction();
     }
 
-    private <T extends Fragment> void _navigate(T fragment, int fragmentEnterAnim, int fragmentExitAnim, int fragmentPopEnterAnim, int fragmentPopExitAnim) {
+    private <T extends Fragment> void navigate(T fragment, int fragmentEnterAnim, int fragmentExitAnim, int fragmentPopEnterAnim, int fragmentPopExitAnim) {
         FragmentTransaction fragmentTransaction = beginTransaction();
         fragmentTransaction.setCustomAnimations(fragmentEnterAnim, fragmentExitAnim, 0, 0);
         int navId = mNavFragment.getRoot().getId();
         Fragment nowFragment = mViewModel.getNowFragment();
-        if (nowFragment != null)
+        if (nowFragment != null) {
             fragmentTransaction.hide(nowFragment);
+        }
         fragmentTransaction.add(navId, fragment);
         fragmentTransaction.commit();
         mViewModel.add(fragment);
@@ -92,8 +94,9 @@ public final class NavController {
 
                         {
                             fragment.getViewLifecycleOwner().getLifecycle().addObserver(state1 -> {
-                                if (state1 == ON_DESTROY)
+                                if (state1 == ON_DESTROY) {
                                     mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
+                                }
                             });
                         }
 
@@ -105,6 +108,8 @@ public final class NavController {
                                     break;
                                 case ON_STOP:
                                     ((LifecycleRegistry) fragment.getViewLifecycleOwner().getLifecycle()).markState(Lifecycle.Event.ON_STOP);
+                                    break;
+                                default:
                                     break;
                             }
                         }

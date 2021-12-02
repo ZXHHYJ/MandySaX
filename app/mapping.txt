@@ -1,22 +1,56 @@
 # compiler: R8
 # compiler_version: 3.0.73
 # min_api: 26
-# pg_map_id: fb7d3ed
+# pg_map_id: e795871
 # common_typos_disable
 a.R$color$$ExternalSyntheticOutline0 -> a.a:
     java.lang.StringBuilder androidx.cardview.R$color$$InternalSyntheticOutline$146$fb9b4c7b1bc803e64b9c103e350da7fa7a8b3d86cffd193e85f4d24d5cec28ac$0.m(java.lang.String) -> a
-a2.ControllerFragment$$ExternalSyntheticLambda0 -> a2.a:
-    studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2 studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.INSTANCE -> b
-    studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$3 studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$3.INSTANCE -> c
-    int studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.$r8$classId -> a
-    void studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.<clinit>() -> <clinit>
-    void studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.$r8$init$bridge() -> <init>
-    void studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.onClick$bridge(android.view.View) -> onClick
-a2.ControllerFragment$$ExternalSyntheticLambda1 -> a2.b:
-    studio.mandysa.music.ui.controller.ControllerFragment studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$0.f$0 -> b
-    int studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$0.$r8$classId -> a
-    void studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$0.$r8$init$bridge(studio.mandysa.music.ui.controller.ControllerFragment) -> <init>
-    void studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$0.onChanged$bridge(java.lang.Object) -> onChanged
+a2.MediaPlayService$$ExternalSyntheticLambda0 -> a2.a:
+    studio.mandysa.music.service.MediaPlayService studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.f$0 -> b
+    int studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.$r8$classId -> a
+    void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.$r8$init$bridge(studio.mandysa.music.service.MediaPlayService) -> <init>
+    1:1:void studio.mandysa.music.service.MediaPlayService.init$lambda-3(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0:0 -> onChanged
+    1:1:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    2:2:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0:0 -> onChanged
+    3:3:void studio.mandysa.music.service.MediaPlayService.init$lambda-2(studio.mandysa.music.service.MediaPlayService,java.lang.Boolean):0:0 -> onChanged
+    3:3:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    4:4:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0:0 -> onChanged
+    5:5:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0:0 -> onChanged
+    5:5:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    6:6:java.lang.String mandysax.media.model.DefaultArtist.getName():0:0 -> onChanged
+    6:6:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0 -> onChanged
+    6:6:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    7:7:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0:0 -> onChanged
+    7:7:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    8:8:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.listener.ImageLoadingListener,com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener):0:0 -> onChanged
+    8:8:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.listener.ImageLoadingListener):0 -> onChanged
+    8:8:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0 -> onChanged
+    8:8:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    9:9:com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.ImageLoaderConfiguration.getMaxImageSize():0:0 -> onChanged
+    9:9:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.listener.ImageLoadingListener,com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener):0 -> onChanged
+    9:9:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.listener.ImageLoadingListener):0 -> onChanged
+    9:9:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0 -> onChanged
+    9:9:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    10:10:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.listener.ImageLoadingListener,com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener):0:0 -> onChanged
+    10:10:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.listener.ImageLoadingListener):0 -> onChanged
+    10:10:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0 -> onChanged
+    10:10:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    11:11:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0:0 -> onChanged
+    12:12:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0:0 -> onChanged
+    12:12:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    13:13:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.changeMusicLiveData():0:0 -> onChanged
+    13:13:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0 -> onChanged
+    13:13:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    14:14:java.lang.Object mandysax.lifecycle.livedata.LiveData.getValue():0:0 -> onChanged
+    14:14:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0 -> onChanged
+    14:14:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    15:15:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0:0 -> onChanged
+    15:15:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    16:16:java.lang.String mandysax.media.model.DefaultArtist.getName():0:0 -> onChanged
+    16:16:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0 -> onChanged
+    16:16:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+    17:17:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0:0 -> onChanged
+    17:17:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
 androidx.cardview.R$color -> a.b:
     void kotlin.ExceptionsKt__ExceptionsKt.addSuppressed(java.lang.Throwable,java.lang.Throwable) -> a
     void kotlin.text.StringsKt__AppendableKt.appendElement(java.lang.Appendable,java.lang.Object,kotlin.jvm.functions.Function1) -> b
@@ -4717,20 +4751,23 @@ b0.ViewDragHelper$$ExternalSyntheticLambda1 -> b0.d:
     1:1:void com.sothree.slidinguppanel.ViewDragHelper.lambda$new$1():0:0 -> run
     1:1:void com.sothree.slidinguppanel.ViewDragHelper$$InternalSyntheticLambda$0$61a486b718c4c14bbcb7f3ca02f78dc45a66c9a897f125151c88d8356de0f559$0.run$bridge():0 -> run
     2:2:void com.sothree.slidinguppanel.ViewDragHelper$$InternalSyntheticLambda$0$61a486b718c4c14bbcb7f3ca02f78dc45a66c9a897f125151c88d8356de0f559$0.run$bridge():0:0 -> run
-b2.PlayFragment$$ExternalSyntheticLambda0 -> b2.a:
-    mandysax.media.DefaultPlayerManager studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$4.f$0 -> b
-    int studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$4.$r8$classId -> a
-    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$4.$r8$init$bridge(mandysax.media.DefaultPlayerManager) -> <init>
-    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$4.onClick$bridge(android.view.View) -> onClick
-b2.PlayFragment$$ExternalSyntheticLambda1 -> b2.b:
-    studio.mandysa.music.ui.play.PlayFragment studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.f$0 -> b
-    int studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.$r8$classId -> a
-    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.$r8$init$bridge(studio.mandysa.music.ui.play.PlayFragment) -> <init>
-    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.onChanged$bridge(java.lang.Object) -> onChanged
-c2.StartFragment$$ExternalSyntheticLambda0 -> c2.a:
-    android.app.AlertDialog studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$0$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.f$0 -> a
-    void studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$0$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.<init>(android.app.AlertDialog) -> <init>
-    void studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$0$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.onShow(android.content.DialogInterface) -> onShow
+b2.ControllerFragment$$ExternalSyntheticLambda0 -> b2.a:
+    studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2 studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.INSTANCE -> b
+    studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$3 studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$3.INSTANCE -> c
+    int studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.$r8$classId -> a
+    void studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.<clinit>() -> <clinit>
+    void studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.$r8$init$bridge() -> <init>
+    void studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.onClick$bridge(android.view.View) -> onClick
+b2.ControllerFragment$$ExternalSyntheticLambda1 -> b2.b:
+    studio.mandysa.music.ui.controller.ControllerFragment studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$0.f$0 -> b
+    int studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$0.$r8$classId -> a
+    void studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$0.$r8$init$bridge(studio.mandysa.music.ui.controller.ControllerFragment) -> <init>
+    void studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$0$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$0.onChanged$bridge(java.lang.Object) -> onChanged
+c2.UserViewModel$$ExternalSyntheticLambda0 -> c2.a:
+    studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0 studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0.INSTANCE -> a
+    void studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0.<clinit>() -> <clinit>
+    void studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0.<init>() -> <init>
+    void studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0.onChanged(java.lang.Object) -> onChanged
 com.nostra13.universalimageloader.cache.disc.DiskCache -> m.a:
     boolean save(java.lang.String,java.io.InputStream,com.nostra13.universalimageloader.utils.IoUtils$CopyListener) -> a
     java.io.File get(java.lang.String) -> b
@@ -6537,57 +6574,6 @@ com.sothree.slidinguppanel.ViewDragHelper$Callback -> com.sothree.slidinguppanel
     void onViewPositionChanged(android.view.View,int,int,int,int) -> a
 com.sothree.slidinguppanel.library.R$styleable -> c0.a:
     int[] SlidingUpPanelLayout -> a
-com.tencent.mmkv.MMKV -> com.tencent.mmkv.MMKV:
-    java.util.EnumMap recoverIndex -> a
-    java.util.Set checkedHandleSet -> d
-    java.util.EnumMap logLevel2Index -> b
-    boolean isProcessModeCheckerEnabled -> f
-    com.tencent.mmkv.MMKVLogLevel[] index2LogLevel -> c
-    java.lang.String rootDir -> e
-    java.lang.String decodeString(java.lang.String) -> a
-    1:1:com.tencent.mmkv.MMKV checkProcessMode(long,java.lang.String,int):0:0 -> b
-    1:1:com.tencent.mmkv.MMKV defaultMMKV():0 -> b
-    2:2:com.tencent.mmkv.MMKV defaultMMKV():0:0 -> b
-    boolean encode(java.lang.String,java.lang.String) -> c
-    1:1:boolean containsKey(java.lang.String):0:0 -> contains
-    1:1:boolean contains(java.lang.String):0 -> contains
-    1:1:java.lang.String initialize(android.content.Context,java.lang.String,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel):0:0 -> d
-    1:1:java.lang.String initialize(android.content.Context):0 -> d
-    2:2:void disableProcessModeChecker():0:0 -> d
-    2:2:java.lang.String initialize(android.content.Context,java.lang.String,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel):0 -> d
-    2:2:java.lang.String initialize(android.content.Context):0 -> d
-    3:3:void enableProcessModeChecker():0:0 -> d
-    3:3:java.lang.String initialize(android.content.Context,java.lang.String,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel):0 -> d
-    3:3:java.lang.String initialize(android.content.Context):0 -> d
-    4:4:java.lang.String initialize(android.content.Context,java.lang.String,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel):0:0 -> d
-    4:4:java.lang.String initialize(android.content.Context):0 -> d
-    5:5:java.lang.String doInitialize(java.lang.String,java.lang.String,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel):0:0 -> d
-    5:5:java.lang.String initialize(android.content.Context,java.lang.String,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel):0 -> d
-    5:5:java.lang.String initialize(android.content.Context):0 -> d
-    6:6:void enableProcessModeChecker():0:0 -> d
-    6:6:java.lang.String initialize(android.content.Context,java.lang.String,com.tencent.mmkv.MMKV$LibLoader,com.tencent.mmkv.MMKVLogLevel):0 -> d
-    6:6:java.lang.String initialize(android.content.Context):0 -> d
-    void simpleLog(com.tencent.mmkv.MMKVLogLevel,java.lang.String) -> e
-    1:1:java.util.Set decodeStringSet(java.lang.String,java.util.Set):0:0 -> getStringSet
-    1:1:java.util.Set getStringSet(java.lang.String,java.util.Set):0 -> getStringSet
-    2:2:java.util.Set decodeStringSet(java.lang.String,java.util.Set,java.lang.Class):0:0 -> getStringSet
-    2:2:java.util.Set decodeStringSet(java.lang.String,java.util.Set):0 -> getStringSet
-    2:2:java.util.Set getStringSet(java.lang.String,java.util.Set):0 -> getStringSet
-    1:1:boolean encode(java.lang.String,java.util.Set):0:0 -> putStringSet
-    1:1:android.content.SharedPreferences$Editor putStringSet(java.lang.String,java.util.Set):0 -> putStringSet
-    1:1:void removeValueForKey(java.lang.String):0:0 -> remove
-    1:1:android.content.SharedPreferences$Editor remove(java.lang.String):0 -> remove
-com.tencent.mmkv.MMKVLogLevel -> com.tencent.mmkv.a:
-    com.tencent.mmkv.MMKVLogLevel LevelNone -> e
-    com.tencent.mmkv.MMKVLogLevel LevelWarning -> c
-    com.tencent.mmkv.MMKVLogLevel LevelError -> d
-    com.tencent.mmkv.MMKVLogLevel LevelDebug -> a
-    com.tencent.mmkv.MMKVLogLevel LevelInfo -> b
-    com.tencent.mmkv.MMKVLogLevel[] $VALUES -> f
-com.tencent.mmkv.MMKVRecoverStrategic -> com.tencent.mmkv.b:
-    com.tencent.mmkv.MMKVRecoverStrategic OnErrorRecover -> b
-    com.tencent.mmkv.MMKVRecoverStrategic[] $VALUES -> c
-    com.tencent.mmkv.MMKVRecoverStrategic OnErrorDiscard -> a
 com.yanzhenjie.sofia.Bar -> d0.a:
     com.yanzhenjie.sofia.Bar statusBarDarkFont() -> a
     com.yanzhenjie.sofia.Bar invasionNavigationBar() -> b
@@ -6660,7 +6646,6 @@ d1.DefaultPlayerManager$$ExternalSyntheticLambda3 -> d1.d:
     void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.$r8$init$bridge(mandysax.media.DefaultPlayerManager) -> <init>
     void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$2.$r8$init$bridge(studio.mandysa.music.MainActivity) -> <init>
     void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$1.$r8$init$bridge(studio.mandysa.music.databinding.ActivityMainBinding) -> <init>
-    void studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0.$r8$init$bridge(studio.mandysa.music.ui.event.UserViewModel) -> <init>
     void studio.mandysa.music.ui.login.LoginFragment$$InternalSyntheticLambda$0$ff74fc31986190c9daa3e0e6af9c788ce65744b36dc33bc4eda0a401f8054b2e$0.$r8$init$bridge(studio.mandysa.music.ui.login.LoginFragment) -> <init>
     void studio.mandysa.music.ui.search.searchlist.SearchListFragment$$InternalSyntheticLambda$0$8bd6ba5d5a0ff75f3bc6df6f2fe8671d6e70dda68b20404e571427fa10864ee7$0.$r8$init$bridge(studio.mandysa.music.ui.search.searchlist.SearchListFragment) -> <init>
     void studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$0$ec8788419a53bf5f94bcd8102f674ca81b75c93aee8fbbb72d822500bebb036d$0.$r8$init$bridge(studio.mandysa.music.ui.start.StartFragment) -> <init>
@@ -6691,6 +6676,20 @@ d1.DefaultPlayerManager$$ExternalSyntheticLambda3 -> d1.d:
     12:12:void mandysax.media.DefaultPlayerManager._init_$lambda-4(mandysax.media.DefaultPlayerManager,int):0 -> onChanged
     12:12:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
     13:13:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0:0 -> onChanged
+d2.PlayFragment$$ExternalSyntheticLambda0 -> d2.a:
+    mandysax.media.DefaultPlayerManager studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$4.f$0 -> b
+    int studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$4.$r8$classId -> a
+    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$4.$r8$init$bridge(mandysax.media.DefaultPlayerManager) -> <init>
+    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$4.onClick$bridge(android.view.View) -> onClick
+d2.PlayFragment$$ExternalSyntheticLambda1 -> d2.b:
+    studio.mandysa.music.ui.play.PlayFragment studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.f$0 -> b
+    int studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.$r8$classId -> a
+    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.$r8$init$bridge(studio.mandysa.music.ui.play.PlayFragment) -> <init>
+    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$0$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.onChanged$bridge(java.lang.Object) -> onChanged
+e2.StartFragment$$ExternalSyntheticLambda0 -> e2.a:
+    android.app.AlertDialog studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$0$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.f$0 -> a
+    void studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$0$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.<init>(android.app.AlertDialog) -> <init>
+    void studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$0$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.onShow(android.content.DialogInterface) -> onShow
 k.ChildHelper$$ExternalSyntheticOutline0 -> k.a:
     java.lang.String androidx.recyclerview.widget.ChildHelper$$InternalSyntheticOutline$146$15398aae86476eec60caca5d09637f734a26055c9ccac5a450896a96c996c38e$0.m(androidx.recyclerview.widget.RecyclerView,java.lang.StringBuilder) -> a
 k.GridLayoutManager$$ExternalSyntheticOutline0 -> k.b:
@@ -15280,28 +15279,42 @@ r0.Anna2$$ExternalSyntheticLambda0 -> r0.a:
     2:2:java.lang.Object mandysax.anna2.factory.CallAdapterFactory.create(java.lang.Class,mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> invoke
     2:2:java.lang.Object mandysax.anna2.Anna2.create$lambda-0(mandysax.anna2.Anna2,java.lang.Object,java.lang.reflect.Method,java.lang.Object[]):0 -> invoke
     2:2:java.lang.Object mandysax.anna2.Anna2$$InternalSyntheticLambda$0$493a6547d8a8d677079c0308fc8990118f36f3290a63f3d2b1ef3f5e3aeb2ec0$0.invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]):0 -> invoke
+simon.tuke.GlobalMemoryCache -> v1.a:
+    android.util.LruCache cache -> a
+    void add(java.lang.String,java.io.Serializable,int) -> a
+simon.tuke.GlobalMemoryCache$1 -> v1.a$a:
+    1:1:int simon.tuke.GlobalMemoryCache$1.sizeOf(java.lang.String,simon.tuke.TukePackage):0:0 -> sizeOf
+    1:1:int sizeOf(java.lang.Object,java.lang.Object):0 -> sizeOf
+simon.tuke.Tuke -> v1.c:
+    simon.tuke.Tuke$Config signalConfig -> a
+simon.tuke.Tuke$1 -> v1.b:
+simon.tuke.Tuke$Config -> v1.c$a:
+    java.lang.String path -> a
+    simon.tuke.Tuke$ExceptionCatcher catcher -> c
+    simon.tuke.TukeCache memoryCache -> d
+    java.lang.String name -> b
+simon.tuke.Tuke$ExceptionCatcher -> v1.c$b:
+simon.tuke.TukeCache -> v1.d:
+simon.tuke.TukeImpl -> v1.e:
+    java.lang.String handleKey(java.lang.String) -> a
+simon.tuke.TukePackage -> v1.f:
+    int size -> b
+    java.io.Serializable obj -> a
 studio.mandysa.bottomnavigationbar.BottomNavigationBar -> studio.mandysa.bottomnavigationbar.BottomNavigationBar:
     int mActiveColor -> D0
-    mandysax.lifecycle.livedata.MutableLiveData mSelectedPosition -> G0
+    mandysax.lifecycle.livedata.MutableLiveData mSelectedPosition -> F0
     int mInActiveColor -> E0
-    int mOrientation -> F0
-    java.util.List models -> H0
-    1:1:androidx.recyclerview.widget.RecyclerView studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.staggered(androidx.recyclerview.widget.RecyclerView,int,int):0:0 -> setModels
-    1:1:void setModels(java.util.List):0 -> setModels
-    2:2:void setModels(java.util.List):0:0 -> setModels
+    java.util.List models -> G0
 studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1 -> studio.mandysa.bottomnavigationbar.BottomNavigationBar$a:
     studio.mandysa.bottomnavigationbar.BottomNavigationBar this$0 -> a
     1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> invoke
     1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    2:2:int studio.mandysa.bottomnavigationbar.BottomNavigationBar.access$getMOrientation$p(studio.mandysa.bottomnavigationbar.BottomNavigationBar):0:0 -> invoke
+    2:2:java.util.HashMap studio.mandysa.jiuwo.adapter.RecyclerAdapter.getMType():0:0 -> invoke
     2:2:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0 -> invoke
     2:2:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    3:3:java.util.HashMap studio.mandysa.jiuwo.adapter.RecyclerAdapter.getMType():0:0 -> invoke
-    3:3:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0 -> invoke
+    3:3:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> invoke
     3:3:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    4:4:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> invoke
-    4:4:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    5:5:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> invoke
+    4:4:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> invoke
 studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1 -> studio.mandysa.bottomnavigationbar.a:
     studio.mandysa.bottomnavigationbar.BottomNavigationBar this$0 -> b
     studio.mandysa.jiuwo.adapter.RecyclerAdapter $this_setup -> a
@@ -15338,12 +15351,10 @@ studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1 -> studio.mand
     13:13:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> invoke
     13:13:java.lang.Object invoke(java.lang.Object):0 -> invoke
     14:14:java.lang.Object invoke(java.lang.Object):0:0 -> invoke
-studio.mandysa.bottomnavigationbar.BottomNavigationItem -> v1.c:
+studio.mandysa.bottomnavigationbar.BottomNavigationItem -> w1.c:
     java.lang.String mText -> b
     int mImageRes -> a
-studio.mandysa.bottomnavigationbar.R$styleable -> v1.d:
-    int[] BottomNavigationBar -> a
-studio.mandysa.jiuwo.adapter.RecyclerAdapter -> w1.a:
+studio.mandysa.jiuwo.adapter.RecyclerAdapter -> x1.a:
     java.util.HashMap mType -> g
     java.lang.Object mModel -> f
     java.util.List models -> e
@@ -15387,7 +15398,7 @@ studio.mandysa.jiuwo.adapter.RecyclerAdapter -> w1.a:
     void onBind(kotlin.jvm.functions.Function1) -> k
     1:1:void androidx.recyclerview.widget.RecyclerView$Adapter.notifyDataSetChanged():0:0 -> l
     1:1:void setModels(java.util.List):0 -> l
-studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder -> w1.a$a:
+studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder -> x1.a$a:
     kotlin.jvm.functions.Function1 onDetached -> v
     studio.mandysa.jiuwo.adapter.RecyclerAdapter this$0 -> w
     kotlin.jvm.functions.Function1 onAttached -> u
@@ -15459,17 +15470,14 @@ studio.mandysa.music.MainActivity$onCreate$2$1 -> studio.mandysa.music.MainActiv
     6:6:void mandysax.navigation.NavController.navigate(mandysax.fragment.Fragment):0 -> a
     6:6:mandysax.navigation.fragment.NavHostFragment mandysax.navigation.fragment.NavHostFragment.create(mandysax.fragment.Fragment):0 -> a
     6:6:mandysax.fragment.Fragment onCreateFragment(int):0 -> a
-studio.mandysa.music.MainActivity$onCreate$2$4$2$1$1$1$1$1 -> x1.e:
+studio.mandysa.music.MainActivity$onCreate$2$4$2$1$1$1$1$1 -> y1.e:
+    float y -> a
     mandysax.fragment.FragmentView $controllerFragment -> b
-    java.lang.Float y -> a
     mandysax.fragment.FragmentView $playFragment -> c
     studio.mandysa.music.databinding.ActivityMainBinding $this_apply -> d
     1:1:studio.mandysa.music.databinding.ActivityMainBinding studio.mandysa.music.MainActivity.access$getMBinding(studio.mandysa.music.MainActivity):0:0 -> <init>
     1:1:void <init>(studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView,mandysax.fragment.FragmentView,studio.mandysa.music.databinding.ActivityMainBinding):0 -> <init>
     2:2:void <init>(studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView,mandysax.fragment.FragmentView,studio.mandysa.music.databinding.ActivityMainBinding):0:0 -> <init>
-    1:1:java.lang.Float studio.mandysa.music.MainActivity$onCreate$2$4$2$1$1$1$1$1.getY():0:0 -> onPanelSlide
-    1:1:void onPanelSlide(android.view.View,float):0 -> onPanelSlide
-    2:2:void onPanelSlide(android.view.View,float):0:0 -> onPanelSlide
 studio.mandysa.music.MainActivity$special$$inlined$inflate$1 -> studio.mandysa.music.MainActivity$b:
     mandysax.fragment.FragmentActivity $this_inflate -> a
     1:1:androidx.viewbinding.ViewBinding invoke():0:0 -> invoke
@@ -15482,179 +15490,189 @@ studio.mandysa.music.MainActivity$special$$inlined$viewModels$2 -> studio.mandys
     mandysax.fragment.FragmentActivity $this_viewModels -> a
     1:1:mandysax.lifecycle.ViewModel invoke():0:0 -> invoke
     1:1:java.lang.Object invoke():0 -> invoke
-studio.mandysa.music.MainViewModel -> x1.f:
+studio.mandysa.music.MainViewModel -> y1.f:
     mandysax.lifecycle.livedata.MutableLiveData homePosLiveData -> a
 studio.mandysa.music.MyApplication -> studio.mandysa.music.MyApplication:
     int $r8$clinit -> a
-    1:1:void studio.mandysa.statelayout.StateLayout.access$setLoadingLayout$cp(int):0:0 -> onCreate
-    1:1:void studio.mandysa.statelayout.StateLayout$Companion.setLoadingLayout(int):0 -> onCreate
+    1:1:void simon.tuke.Tuke.init(android.content.Context):0:0 -> onCreate
     1:1:void onCreate():0 -> onCreate
-    2:2:void studio.mandysa.statelayout.StateLayout.access$setEmptyLayout$cp(int):0:0 -> onCreate
-    2:2:void studio.mandysa.statelayout.StateLayout$Companion.setEmptyLayout(int):0 -> onCreate
+    2:2:simon.tuke.Tuke$Config simon.tuke.Tuke$Config.setMemoryCache(simon.tuke.TukeCache):0:0 -> onCreate
+    2:2:void simon.tuke.Tuke.init(android.content.Context):0 -> onCreate
     2:2:void onCreate():0 -> onCreate
-    3:3:void studio.mandysa.statelayout.StateLayout.access$setErrorLayout$cp(int):0:0 -> onCreate
-    3:3:void studio.mandysa.statelayout.StateLayout$Companion.setErrorLayout(int):0 -> onCreate
+    3:3:void simon.tuke.Tuke.init(android.content.Context):0:0 -> onCreate
     3:3:void onCreate():0 -> onCreate
-    4:4:void studio.mandysa.statelayout.StateLayout.access$setRetryId$cp(int):0:0 -> onCreate
-    4:4:void studio.mandysa.statelayout.StateLayout$Companion.setRetryId(int):0 -> onCreate
+    4:4:simon.tuke.Tuke$Config simon.tuke.Tuke$Config.setExceptionCatcher(simon.tuke.Tuke$ExceptionCatcher):0:0 -> onCreate
+    4:4:void simon.tuke.Tuke.init(android.content.Context):0 -> onCreate
     4:4:void onCreate():0 -> onCreate
-    5:5:void onCreate():0:0 -> onCreate
-    6:6:com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showImageOnLoading(int):0:0 -> onCreate
+    5:5:void studio.mandysa.statelayout.StateLayout.access$setLoadingLayout$cp(int):0:0 -> onCreate
+    5:5:void studio.mandysa.statelayout.StateLayout$Companion.setLoadingLayout(int):0 -> onCreate
+    5:5:void onCreate():0 -> onCreate
+    6:6:void studio.mandysa.statelayout.StateLayout.access$setEmptyLayout$cp(int):0:0 -> onCreate
+    6:6:void studio.mandysa.statelayout.StateLayout$Companion.setEmptyLayout(int):0 -> onCreate
     6:6:void onCreate():0 -> onCreate
-    7:7:com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cacheInMemory(boolean):0:0 -> onCreate
+    7:7:void studio.mandysa.statelayout.StateLayout.access$setErrorLayout$cp(int):0:0 -> onCreate
+    7:7:void studio.mandysa.statelayout.StateLayout$Companion.setErrorLayout(int):0 -> onCreate
     7:7:void onCreate():0 -> onCreate
-    8:8:com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cacheOnDisk(boolean):0:0 -> onCreate
+    8:8:void studio.mandysa.statelayout.StateLayout.access$setRetryId$cp(int):0:0 -> onCreate
+    8:8:void studio.mandysa.statelayout.StateLayout$Companion.setRetryId(int):0 -> onCreate
     8:8:void onCreate():0 -> onCreate
     9:9:void onCreate():0:0 -> onCreate
-    10:10:com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.bitmapConfig(android.graphics.Bitmap$Config):0:0 -> onCreate
+    10:10:com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showImageOnLoading(int):0:0 -> onCreate
     10:10:void onCreate():0 -> onCreate
-    11:11:void onCreate():0:0 -> onCreate
-    12:12:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCache(com.nostra13.universalimageloader.cache.disc.DiskCache):0:0 -> onCreate
+    11:11:com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cacheInMemory(boolean):0:0 -> onCreate
+    11:11:void onCreate():0 -> onCreate
+    12:12:com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cacheOnDisk(boolean):0:0 -> onCreate
     12:12:void onCreate():0 -> onCreate
-    13:13:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
-    13:13:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCache(com.nostra13.universalimageloader.cache.disc.DiskCache):0 -> onCreate
-    13:13:void onCreate():0 -> onCreate
-    14:14:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCache(com.nostra13.universalimageloader.cache.disc.DiskCache):0:0 -> onCreate
+    13:13:void onCreate():0:0 -> onCreate
+    14:14:com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.bitmapConfig(android.graphics.Bitmap$Config):0:0 -> onCreate
     14:14:void onCreate():0 -> onCreate
-    15:15:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
-    15:15:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCache(com.nostra13.universalimageloader.cache.disc.DiskCache):0 -> onCreate
-    15:15:void onCreate():0 -> onCreate
+    15:15:void onCreate():0:0 -> onCreate
     16:16:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCache(com.nostra13.universalimageloader.cache.disc.DiskCache):0:0 -> onCreate
     16:16:void onCreate():0 -> onCreate
-    17:17:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheSizePercentage(int):0:0 -> onCreate
+    17:17:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
+    17:17:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCache(com.nostra13.universalimageloader.cache.disc.DiskCache):0 -> onCreate
     17:17:void onCreate():0 -> onCreate
-    18:18:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
-    18:18:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheSizePercentage(int):0 -> onCreate
+    18:18:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCache(com.nostra13.universalimageloader.cache.disc.DiskCache):0:0 -> onCreate
     18:18:void onCreate():0 -> onCreate
-    19:19:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheSizePercentage(int):0:0 -> onCreate
+    19:19:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
+    19:19:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCache(com.nostra13.universalimageloader.cache.disc.DiskCache):0 -> onCreate
     19:19:void onCreate():0 -> onCreate
-    20:20:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheFileCount(int):0:0 -> onCreate
+    20:20:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCache(com.nostra13.universalimageloader.cache.disc.DiskCache):0:0 -> onCreate
     20:20:void onCreate():0 -> onCreate
-    21:21:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
-    21:21:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheFileCount(int):0 -> onCreate
+    21:21:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheSizePercentage(int):0:0 -> onCreate
     21:21:void onCreate():0 -> onCreate
-    22:22:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheFileCount(int):0:0 -> onCreate
+    22:22:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
+    22:22:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheSizePercentage(int):0 -> onCreate
     22:22:void onCreate():0 -> onCreate
-    23:23:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheSize(int):0:0 -> onCreate
+    23:23:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheSizePercentage(int):0:0 -> onCreate
     23:23:void onCreate():0 -> onCreate
-    24:24:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
-    24:24:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheSize(int):0 -> onCreate
+    24:24:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheFileCount(int):0:0 -> onCreate
     24:24:void onCreate():0 -> onCreate
-    25:25:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheSize(int):0:0 -> onCreate
+    25:25:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
+    25:25:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheFileCount(int):0 -> onCreate
     25:25:void onCreate():0 -> onCreate
-    26:26:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.defaultDisplayImageOptions(com.nostra13.universalimageloader.core.DisplayImageOptions):0:0 -> onCreate
+    26:26:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheFileCount(int):0:0 -> onCreate
     26:26:void onCreate():0 -> onCreate
-    27:27:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
-    27:27:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
+    27:27:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheSize(int):0:0 -> onCreate
     27:27:void onCreate():0 -> onCreate
-    28:28:com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createFileNameGenerator():0:0 -> onCreate
-    28:28:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
-    28:28:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
+    28:28:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
+    28:28:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheSize(int):0 -> onCreate
     28:28:void onCreate():0 -> onCreate
-    29:29:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
-    29:29:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
+    29:29:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.diskCacheSize(int):0:0 -> onCreate
     29:29:void onCreate():0 -> onCreate
-    30:30:java.io.File com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createReserveDiskCacheDir(android.content.Context):0:0 -> onCreate
-    30:30:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0 -> onCreate
-    30:30:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
-    30:30:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
+    30:30:com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.defaultDisplayImageOptions(com.nostra13.universalimageloader.core.DisplayImageOptions):0:0 -> onCreate
     30:30:void onCreate():0 -> onCreate
-    31:31:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getCacheDirectory(android.content.Context):0:0 -> onCreate
-    31:31:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context,java.lang.String):0 -> onCreate
-    31:31:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context):0 -> onCreate
-    31:31:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0 -> onCreate
-    31:31:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
+    31:31:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
     31:31:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     31:31:void onCreate():0 -> onCreate
-    32:32:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context,java.lang.String):0:0 -> onCreate
-    32:32:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context):0 -> onCreate
-    32:32:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0 -> onCreate
+    32:32:com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createFileNameGenerator():0:0 -> onCreate
     32:32:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     32:32:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     32:32:void onCreate():0 -> onCreate
-    33:33:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0:0 -> onCreate
-    33:33:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
+    33:33:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
     33:33:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     33:33:void onCreate():0 -> onCreate
-    34:34:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getCacheDirectory(android.content.Context):0:0 -> onCreate
+    34:34:java.io.File com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createReserveDiskCacheDir(android.content.Context):0:0 -> onCreate
     34:34:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0 -> onCreate
     34:34:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     34:34:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     34:34:void onCreate():0 -> onCreate
-    35:35:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0:0 -> onCreate
+    35:35:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getCacheDirectory(android.content.Context):0:0 -> onCreate
+    35:35:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context,java.lang.String):0 -> onCreate
+    35:35:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context):0 -> onCreate
+    35:35:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0 -> onCreate
     35:35:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     35:35:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     35:35:void onCreate():0 -> onCreate
-    36:36:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
+    36:36:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context,java.lang.String):0:0 -> onCreate
+    36:36:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context):0 -> onCreate
+    36:36:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0 -> onCreate
+    36:36:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     36:36:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     36:36:void onCreate():0 -> onCreate
-    37:37:com.nostra13.universalimageloader.cache.memory.MemoryCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(android.content.Context,int):0:0 -> onCreate
+    37:37:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0:0 -> onCreate
     37:37:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     37:37:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     37:37:void onCreate():0 -> onCreate
-    38:38:boolean com.nostra13.universalimageloader.core.DefaultConfigurationFactory.isLargeHeap(android.content.Context):0:0 -> onCreate
-    38:38:com.nostra13.universalimageloader.cache.memory.MemoryCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(android.content.Context,int):0 -> onCreate
+    38:38:java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getCacheDirectory(android.content.Context):0:0 -> onCreate
+    38:38:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0 -> onCreate
     38:38:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     38:38:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     38:38:void onCreate():0 -> onCreate
-    39:39:int com.nostra13.universalimageloader.core.DefaultConfigurationFactory.getLargeMemoryClass(android.app.ActivityManager):0:0 -> onCreate
-    39:39:com.nostra13.universalimageloader.cache.memory.MemoryCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(android.content.Context,int):0 -> onCreate
+    39:39:com.nostra13.universalimageloader.cache.disc.DiskCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiskCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,long,int):0:0 -> onCreate
     39:39:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     39:39:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     39:39:void onCreate():0 -> onCreate
-    40:40:com.nostra13.universalimageloader.cache.memory.MemoryCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(android.content.Context,int):0:0 -> onCreate
-    40:40:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
+    40:40:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
     40:40:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     40:40:void onCreate():0 -> onCreate
-    41:41:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
+    41:41:com.nostra13.universalimageloader.cache.memory.MemoryCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(android.content.Context,int):0:0 -> onCreate
+    41:41:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     41:41:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     41:41:void onCreate():0 -> onCreate
-    42:42:com.nostra13.universalimageloader.core.download.ImageDownloader com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createImageDownloader(android.content.Context):0:0 -> onCreate
+    42:42:boolean com.nostra13.universalimageloader.core.DefaultConfigurationFactory.isLargeHeap(android.content.Context):0:0 -> onCreate
+    42:42:com.nostra13.universalimageloader.cache.memory.MemoryCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(android.content.Context,int):0 -> onCreate
     42:42:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     42:42:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     42:42:void onCreate():0 -> onCreate
-    43:43:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
+    43:43:int com.nostra13.universalimageloader.core.DefaultConfigurationFactory.getLargeMemoryClass(android.app.ActivityManager):0:0 -> onCreate
+    43:43:com.nostra13.universalimageloader.cache.memory.MemoryCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(android.content.Context,int):0 -> onCreate
+    43:43:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     43:43:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     43:43:void onCreate():0 -> onCreate
-    44:44:com.nostra13.universalimageloader.core.decode.ImageDecoder com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createImageDecoder(boolean):0:0 -> onCreate
+    44:44:com.nostra13.universalimageloader.cache.memory.MemoryCache com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(android.content.Context,int):0:0 -> onCreate
     44:44:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     44:44:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     44:44:void onCreate():0 -> onCreate
     45:45:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
     45:45:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     45:45:void onCreate():0 -> onCreate
-    46:46:com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.createSimple():0:0 -> onCreate
+    46:46:com.nostra13.universalimageloader.core.download.ImageDownloader com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createImageDownloader(android.content.Context):0:0 -> onCreate
     46:46:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
     46:46:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     46:46:void onCreate():0 -> onCreate
     47:47:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
     47:47:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     47:47:void onCreate():0 -> onCreate
-    48:48:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0:0 -> onCreate
+    48:48:com.nostra13.universalimageloader.core.decode.ImageDecoder com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createImageDecoder(boolean):0:0 -> onCreate
+    48:48:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
+    48:48:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     48:48:void onCreate():0 -> onCreate
-    49:49:void onCreate():0:0 -> onCreate
-    50:50:void com.nostra13.universalimageloader.core.ImageLoader.init(com.nostra13.universalimageloader.core.ImageLoaderConfiguration):0:0 -> onCreate
+    49:49:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
+    49:49:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
+    49:49:void onCreate():0 -> onCreate
+    50:50:com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.createSimple():0:0 -> onCreate
+    50:50:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0 -> onCreate
+    50:50:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     50:50:void onCreate():0 -> onCreate
-    51:51:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
-    51:51:void com.nostra13.universalimageloader.core.ImageLoader.init(com.nostra13.universalimageloader.core.ImageLoaderConfiguration):0 -> onCreate
+    51:51:void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFieldsWithDefaultValues():0:0 -> onCreate
+    51:51:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0 -> onCreate
     51:51:void onCreate():0 -> onCreate
-    52:52:void com.nostra13.universalimageloader.core.ImageLoader.init(com.nostra13.universalimageloader.core.ImageLoaderConfiguration):0:0 -> onCreate
+    52:52:com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build():0:0 -> onCreate
     52:52:void onCreate():0 -> onCreate
-    53:53:void mandysax.media.DefaultPlayerManager$Companion.init(android.content.Context):0:0 -> onCreate
-    53:53:void onCreate():0 -> onCreate
-    54:54:void mandysax.media.DefaultPlayerManager.access$setInstance$cp(mandysax.media.DefaultPlayerManager):0:0 -> onCreate
-    54:54:void mandysax.media.DefaultPlayerManager$Companion.init(android.content.Context):0 -> onCreate
+    53:53:void onCreate():0:0 -> onCreate
+    54:54:void com.nostra13.universalimageloader.core.ImageLoader.init(com.nostra13.universalimageloader.core.ImageLoaderConfiguration):0:0 -> onCreate
     54:54:void onCreate():0 -> onCreate
-    55:55:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.pauseLiveData():0:0 -> onCreate
+    55:55:void com.nostra13.universalimageloader.utils.L.w(java.lang.String,java.lang.Object[]):0:0 -> onCreate
+    55:55:void com.nostra13.universalimageloader.core.ImageLoader.init(com.nostra13.universalimageloader.core.ImageLoaderConfiguration):0 -> onCreate
     55:55:void onCreate():0 -> onCreate
-    56:56:void onCreate():0:0 -> onCreate
-    57:57:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.changeMusicLiveData():0:0 -> onCreate
+    56:56:void com.nostra13.universalimageloader.core.ImageLoader.init(com.nostra13.universalimageloader.core.ImageLoaderConfiguration):0:0 -> onCreate
+    56:56:void onCreate():0 -> onCreate
+    57:57:void mandysax.media.DefaultPlayerManager$Companion.init(android.content.Context):0:0 -> onCreate
     57:57:void onCreate():0 -> onCreate
-    58:58:void onCreate():0:0 -> onCreate
-    59:59:void com.nostra13.universalimageloader.core.ImageLoader.init(com.nostra13.universalimageloader.core.ImageLoaderConfiguration):0:0 -> onCreate
+    58:58:void mandysax.media.DefaultPlayerManager.access$setInstance$cp(mandysax.media.DefaultPlayerManager):0:0 -> onCreate
+    58:58:void mandysax.media.DefaultPlayerManager$Companion.init(android.content.Context):0 -> onCreate
+    58:58:void onCreate():0 -> onCreate
+    59:59:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.pauseLiveData():0:0 -> onCreate
     59:59:void onCreate():0 -> onCreate
-    60:60:com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.bitmapConfig(android.graphics.Bitmap$Config):0:0 -> onCreate
-    60:60:void onCreate():0 -> onCreate
+    60:60:void onCreate():0:0 -> onCreate
+    61:61:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.changeMusicLiveData():0:0 -> onCreate
+    61:61:void onCreate():0 -> onCreate
+    62:62:void onCreate():0:0 -> onCreate
+    63:63:void com.nostra13.universalimageloader.core.ImageLoader.init(com.nostra13.universalimageloader.core.ImageLoaderConfiguration):0:0 -> onCreate
+    63:63:void onCreate():0 -> onCreate
+    64:64:com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.bitmapConfig(android.graphics.Bitmap$Config):0:0 -> onCreate
+    64:64:void onCreate():0 -> onCreate
 studio.mandysa.music.logic.network.ServiceCreator -> studio.mandysa.music.logic.network.ServiceCreator:
     1:1:mandysax.anna2.Anna2 mandysax.anna2.Anna2$Companion.build():0:0 -> <clinit>
     1:1:mandysax.anna2.Anna2 mandysax.anna2.Anna2.build():0 -> <clinit>
@@ -15769,7 +15787,7 @@ studio.mandysa.music.service.MediaPlayService$OnPlayStateReceiver -> studio.mand
     10:10:mandysax.media.DefaultPlayerManager studio.mandysa.music.service.MediaPlayService.access$getMInstance$p(studio.mandysa.music.service.MediaPlayService):0:0 -> onReceive
     10:10:void onReceive(android.content.Context,android.content.Intent):0 -> onReceive
     11:11:void onReceive(android.content.Context,android.content.Intent):0:0 -> onReceive
-studio.mandysa.music.service.MediaPlayService$init$1$1 -> z1.b:
+studio.mandysa.music.service.MediaPlayService$init$1$1 -> a2.b:
     studio.mandysa.music.service.MediaPlayService this$0 -> a
     void onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason) -> a
     1:1:studio.mandysa.music.service.PlayNotification studio.mandysa.music.service.MediaPlayService.access$getMMediaNotification$p(studio.mandysa.music.service.MediaPlayService):0:0 -> b
@@ -15783,9 +15801,9 @@ studio.mandysa.music.service.MediaPlayService$onCreate$1$1 -> studio.mandysa.mus
     1:1:void onSeekTo(long):0 -> onSeekTo
     2:2:void mandysax.media.DefaultPlayerManager.seekTo(int):0:0 -> onSeekTo
     2:2:void onSeekTo(long):0 -> onSeekTo
-studio.mandysa.music.service.PlayButtonReceiver -> z1.c:
+studio.mandysa.music.service.PlayButtonReceiver -> a2.c:
     android.app.Notification$Action buildMediaButtonAction(android.content.Context,int,int) -> a
-studio.mandysa.music.service.PlayNotification -> z1.d:
+studio.mandysa.music.service.PlayNotification -> a2.d:
     studio.mandysa.music.service.MediaPlayService mediaPlayService -> a
     android.app.Notification$Action mPlayAction -> b
     android.app.Notification$Action mPauseAction -> c
@@ -15910,7 +15928,29 @@ studio.mandysa.music.ui.decoration.DoubleItemDecoration -> studio.mandysa.music.
     1:1:void getItemOffsets(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State):0 -> getItemOffsets
     2:2:void getItemOffsets(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State):0:0 -> getItemOffsets
 studio.mandysa.music.ui.event.UserViewModel -> studio.mandysa.music.ui.event.UserViewModel:
-    void $r8$lambda$mv_XwZv2u7jh4Dc4t_z3iGd156A(studio.mandysa.music.ui.event.UserViewModel,java.lang.String) -> a
+    1:1:java.io.Serializable simon.tuke.Tuke.tukeGet(java.lang.String,java.io.Serializable,boolean):0:0 -> <init>
+    1:1:java.io.Serializable simon.tuke.Tuke.tukeGet(java.lang.String):0 -> <init>
+    1:1:void <init>():0 -> <init>
+    2:2:java.io.Serializable simon.tuke.TukeImpl.get(simon.tuke.Tuke$Config,java.lang.String,boolean):0:0 -> <init>
+    2:2:java.io.Serializable simon.tuke.Tuke.tukeGet(java.lang.String,java.io.Serializable,boolean):0 -> <init>
+    2:2:java.io.Serializable simon.tuke.Tuke.tukeGet(java.lang.String):0 -> <init>
+    2:2:void <init>():0 -> <init>
+    3:3:void simon.tuke.Tuke$1.onError(java.lang.String,java.lang.Exception):0:0 -> <init>
+    3:3:java.io.Serializable simon.tuke.TukeImpl.get(simon.tuke.Tuke$Config,java.lang.String,boolean):0 -> <init>
+    3:3:java.io.Serializable simon.tuke.Tuke.tukeGet(java.lang.String,java.io.Serializable,boolean):0 -> <init>
+    3:3:java.io.Serializable simon.tuke.Tuke.tukeGet(java.lang.String):0 -> <init>
+    3:3:void <init>():0 -> <init>
+    4:4:void <init>():0:0 -> <init>
+    1:1:void simon.tuke.Tuke.tukeWrite(java.lang.String,java.io.Serializable):0:0 -> _init_$lambda-0
+    1:1:void _init_$lambda-0(java.lang.String):0 -> _init_$lambda-0
+    2:2:void simon.tuke.TukeImpl.write(simon.tuke.Tuke$Config,java.lang.String,java.io.Serializable):0:0 -> _init_$lambda-0
+    2:2:void simon.tuke.Tuke.tukeWrite(java.lang.String,java.io.Serializable):0 -> _init_$lambda-0
+    2:2:void _init_$lambda-0(java.lang.String):0 -> _init_$lambda-0
+    3:3:void simon.tuke.Tuke$1.onError(java.lang.String,java.lang.Exception):0:0 -> _init_$lambda-0
+    3:3:void simon.tuke.TukeImpl.write(simon.tuke.Tuke$Config,java.lang.String,java.io.Serializable):0 -> _init_$lambda-0
+    3:3:void simon.tuke.Tuke.tukeWrite(java.lang.String,java.io.Serializable):0 -> _init_$lambda-0
+    3:3:void _init_$lambda-0(java.lang.String):0 -> _init_$lambda-0
+    void $r8$lambda$7JIcxYRZ5UZwxs4W13dhq0MWLpw(java.lang.String) -> a
 studio.mandysa.music.ui.home.HomeFragment -> studio.mandysa.music.ui.home.HomeFragment:
     1:1:kotlin.reflect.KProperty1 kotlin.jvm.internal.Reflection.property1(kotlin.jvm.internal.PropertyReference1):0:0 -> <clinit>
     1:1:void <clinit>():0 -> <clinit>
@@ -16309,7 +16349,7 @@ studio.mandysa.music.ui.start.StartFragment -> studio.mandysa.music.ui.start.Sta
     void $r8$lambda$O8pi6CK-Y7r9wET3qNE7ozjnbf0(studio.mandysa.music.ui.start.StartFragment,java.lang.String) -> a
     void $r8$lambda$UeEY5t3424ICb-76aRCMsvFHS3o(android.app.AlertDialog,android.content.DialogInterface) -> b
     void $r8$lambda$xeSgTEIqnC2iCTzaS7Io3JeWsyg(studio.mandysa.music.databinding.FragmentStartBinding,studio.mandysa.music.ui.start.StartFragment,android.view.View) -> c
-studio.mandysa.statelayout.R$styleable -> d2.a:
+studio.mandysa.statelayout.R$styleable -> f2.a:
     int[] StateLayout -> a
 studio.mandysa.statelayout.StateLayout -> studio.mandysa.statelayout.StateLayout:
     int retryId -> n
@@ -16416,7 +16456,7 @@ u0.ObservableFactory$$ExternalSyntheticLambda3 -> u0.h:
     void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.<init>(mandysax.anna2.callback.Callback,mandysax.anna2.factory.ObservableFactory,java.lang.String) -> <init>
     1:1:void mandysax.anna2.factory.ObservableFactory.run$lambda-4(mandysax.anna2.callback.Callback,mandysax.anna2.factory.ObservableFactory,java.lang.String):0:0 -> run
     1:1:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.run():0 -> run
-v1.BottomNavigationBar$models$1$1$$ExternalSyntheticLambda0 -> v1.a:
+w1.BottomNavigationBar$models$1$1$$ExternalSyntheticLambda0 -> w1.a:
     studio.mandysa.bottomnavigationbar.BottomNavigationBar studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.f$0 -> b
     studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.f$1 -> c
     int studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.$r8$classId -> a
@@ -16430,7 +16470,7 @@ v1.BottomNavigationBar$models$1$1$$ExternalSyntheticLambda0 -> v1.a:
     3:3:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1.invoke$lambda-0(studio.mandysa.bottomnavigationbar.BottomNavigationBar,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     3:3:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.onClick$bridge(android.view.View):0 -> onClick
     4:4:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.onClick$bridge(android.view.View):0:0 -> onClick
-v1.BottomNavigationBar$models$1$1$$ExternalSyntheticLambda1 -> v1.b:
+w1.BottomNavigationBar$models$1$1$$ExternalSyntheticLambda1 -> w1.b:
     studio.mandysa.bottomnavigationbar.BottomNavigationItem studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$1.f$1 -> b
     studio.mandysa.bottomnavigationbar.BottomNavigationBar studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$1.f$2 -> c
     android.widget.TextView studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$1.f$4 -> e
@@ -16447,18 +16487,18 @@ v1.BottomNavigationBar$models$1$1$$ExternalSyntheticLambda1 -> v1.b:
     3:3:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$1.onChanged(java.lang.Object):0 -> onChanged
     4:4:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1.invoke$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,studio.mandysa.bottomnavigationbar.BottomNavigationItem,studio.mandysa.bottomnavigationbar.BottomNavigationBar,android.widget.ImageView,android.widget.TextView,java.lang.Integer):0:0 -> onChanged
     4:4:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$1.onChanged(java.lang.Object):0 -> onChanged
-x1.MainActivity$$ExternalSyntheticLambda0 -> x1.a:
+y1.MainActivity$$ExternalSyntheticLambda0 -> y1.a:
     studio.mandysa.music.MainActivity studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.f$1 -> b
     studio.mandysa.music.databinding.ActivityMainBinding studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.f$0 -> a
     mandysax.fragment.FragmentView studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.f$2 -> c
     mandysax.fragment.FragmentView studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.f$3 -> d
     void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.<init>(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView,mandysax.fragment.FragmentView) -> <init>
-x1.MainActivity$$ExternalSyntheticLambda1 -> x1.b:
+y1.MainActivity$$ExternalSyntheticLambda1 -> y1.b:
     studio.mandysa.music.MainActivity studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$0.f$0 -> a
     void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$0.<init>(studio.mandysa.music.MainActivity) -> <init>
     1:1:boolean studio.mandysa.music.MainActivity.onCreate$lambda-0(studio.mandysa.music.MainActivity,android.view.View,android.view.MotionEvent):0:0 -> onTouch
     1:1:boolean studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$0.onTouch(android.view.View,android.view.MotionEvent):0 -> onTouch
-x1.MainActivity$$ExternalSyntheticLambda2 -> x1.c:
+y1.MainActivity$$ExternalSyntheticLambda2 -> y1.c:
     studio.mandysa.music.MainActivity studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$a0a8515c71e19a3828e046be2f30c03d845636790137bc75b5b5c67cef2c8de6$1.f$0 -> a
     androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$a0a8515c71e19a3828e046be2f30c03d845636790137bc75b5b5c67cef2c8de6$1.f$1 -> b
     mandysax.fragment.FragmentView studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$a0a8515c71e19a3828e046be2f30c03d845636790137bc75b5b5c67cef2c8de6$1.f$2 -> c
@@ -16466,7 +16506,7 @@ x1.MainActivity$$ExternalSyntheticLambda2 -> x1.c:
     void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$a0a8515c71e19a3828e046be2f30c03d845636790137bc75b5b5c67cef2c8de6$1.<init>(studio.mandysa.music.MainActivity,androidx.core.view.WindowInsetsCompat,mandysax.fragment.FragmentView,mandysax.fragment.FragmentView) -> <init>
     1:1:void studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-9$lambda-8(studio.mandysa.music.MainActivity,androidx.core.view.WindowInsetsCompat,mandysax.fragment.FragmentView,mandysax.fragment.FragmentView,mandysax.media.model.DefaultMusic):0:0 -> onChanged
     1:1:void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$a0a8515c71e19a3828e046be2f30c03d845636790137bc75b5b5c67cef2c8de6$1.onChanged(java.lang.Object):0 -> onChanged
-x1.MainActivity$$ExternalSyntheticLambda3 -> x1.d:
+y1.MainActivity$$ExternalSyntheticLambda3 -> y1.d:
     mandysax.fragment.FragmentView studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$d54b39b717b64d9cd99040771360254374532f22cf99cf403874781a04118b0b$0.f$3 -> e
     mandysax.fragment.FragmentView studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$d54b39b717b64d9cd99040771360254374532f22cf99cf403874781a04118b0b$0.f$4 -> f
     studio.mandysa.music.databinding.ActivityMainBinding studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$d54b39b717b64d9cd99040771360254374532f22cf99cf403874781a04118b0b$0.f$0 -> b
@@ -16483,7 +16523,7 @@ x1.MainActivity$$ExternalSyntheticLambda3 -> x1.d:
     4:4:void com.sothree.slidinguppanel.SlidingUpPanelLayout.addPanelSlideListener(com.sothree.slidinguppanel.SlidingUpPanelLayout$PanelSlideListener):0:0 -> run
     4:4:void studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-9$lambda-8$lambda-7$lambda-6$lambda-5$lambda-4(com.sothree.slidinguppanel.SlidingUpPanelLayout,studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView,mandysax.fragment.FragmentView,studio.mandysa.music.databinding.ActivityMainBinding):0 -> run
     4:4:void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$d54b39b717b64d9cd99040771360254374532f22cf99cf403874781a04118b0b$0.run$bridge():0 -> run
-x1.MyApplication$$ExternalSyntheticLambda0 -> x1.g:
+y1.MyApplication$$ExternalSyntheticLambda0 -> y1.g:
     studio.mandysa.music.MyApplication studio.mandysa.music.MyApplication$$InternalSyntheticLambda$0$3a3a5468a5d2f589bd747774e8047456c63856b3f748d8fe477fc0dd150a482a$0.f$0 -> b
     int studio.mandysa.music.MyApplication$$InternalSyntheticLambda$0$3a3a5468a5d2f589bd747774e8047456c63856b3f748d8fe477fc0dd150a482a$0.$r8$classId -> a
     void studio.mandysa.music.MyApplication$$InternalSyntheticLambda$0$3a3a5468a5d2f589bd747774e8047456c63856b3f748d8fe477fc0dd150a482a$0.$r8$init$bridge(studio.mandysa.music.MyApplication) -> <init>
@@ -16508,11 +16548,6 @@ x1.MyApplication$$ExternalSyntheticLambda0 -> x1.g:
     7:7:void studio.mandysa.music.MyApplication.startPlayerService():0:0 -> onChanged
     7:7:void studio.mandysa.music.MyApplication.onCreate$lambda-3$lambda-2(studio.mandysa.music.MyApplication,mandysax.media.model.DefaultMusic):0 -> onChanged
     7:7:void studio.mandysa.music.MyApplication$$InternalSyntheticLambda$0$3a3a5468a5d2f589bd747774e8047456c63856b3f748d8fe477fc0dd150a482a$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-y1.FragmentActivityViewModelDelegate$$ExternalSyntheticLambda0 -> y1.a:
-    studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate$$InternalSyntheticLambda$0$7b6da094447e91c6d417f20fea765d9a68c37aa6b1aaa5418bdcca5dc360c3e0$0.f$0 -> b
-    int studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate$$InternalSyntheticLambda$0$7b6da094447e91c6d417f20fea765d9a68c37aa6b1aaa5418bdcca5dc360c3e0$0.$r8$classId -> a
-    void studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate$$InternalSyntheticLambda$0$7b6da094447e91c6d417f20fea765d9a68c37aa6b1aaa5418bdcca5dc360c3e0$0.$r8$init$bridge(studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate) -> <init>
-    void studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate$$InternalSyntheticLambda$0$7b6da094447e91c6d417f20fea765d9a68c37aa6b1aaa5418bdcca5dc360c3e0$0.observer$bridge(mandysax.lifecycle.Lifecycle$Event) -> observer
 z0.FragmentStateManager$$ExternalSyntheticLambda0 -> z0.g:
     mandysax.fragment.FragmentStateManager mandysax.fragment.FragmentStateManager$$InternalSyntheticLambda$0$f7ffc1d7966eddab9cfea0f90cb9ca4d9b71d26ce6660a057ae8399da218ba8c$0.f$0 -> b
     mandysax.fragment.Fragment mandysax.fragment.FragmentStateManager$$InternalSyntheticLambda$0$f7ffc1d7966eddab9cfea0f90cb9ca4d9b71d26ce6660a057ae8399da218ba8c$0.f$1 -> c
@@ -16547,49 +16582,8 @@ z0.FragmentViewLifecycleOwner$$ExternalSyntheticLambda0 -> z0.l:
     7:7:void mandysax.fragment.FragmentViewLifecycleOwner.lambda$new$0(mandysax.lifecycle.Lifecycle$Event):0:0 -> observer
     7:7:void mandysax.fragment.FragmentViewLifecycleOwner$$InternalSyntheticLambda$0$1b6e685762f7b1726b95a7951f6e82a37b6906799d98140b109328e874f7a3a3$0.observer$bridge(mandysax.lifecycle.Lifecycle$Event):0 -> observer
     8:8:void mandysax.fragment.FragmentViewLifecycleOwner$$InternalSyntheticLambda$0$1b6e685762f7b1726b95a7951f6e82a37b6906799d98140b109328e874f7a3a3$0.observer$bridge(mandysax.lifecycle.Lifecycle$Event):0:0 -> observer
-z1.MediaPlayService$$ExternalSyntheticLambda0 -> z1.a:
-    studio.mandysa.music.service.MediaPlayService studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.f$0 -> b
-    int studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.$r8$classId -> a
-    void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.$r8$init$bridge(studio.mandysa.music.service.MediaPlayService) -> <init>
-    1:1:void studio.mandysa.music.service.MediaPlayService.init$lambda-3(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0:0 -> onChanged
-    1:1:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    2:2:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0:0 -> onChanged
-    3:3:void studio.mandysa.music.service.MediaPlayService.init$lambda-2(studio.mandysa.music.service.MediaPlayService,java.lang.Boolean):0:0 -> onChanged
-    3:3:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    4:4:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0:0 -> onChanged
-    5:5:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0:0 -> onChanged
-    5:5:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    6:6:java.lang.String mandysax.media.model.DefaultArtist.getName():0:0 -> onChanged
-    6:6:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0 -> onChanged
-    6:6:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    7:7:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0:0 -> onChanged
-    7:7:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    8:8:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.listener.ImageLoadingListener,com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener):0:0 -> onChanged
-    8:8:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.listener.ImageLoadingListener):0 -> onChanged
-    8:8:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0 -> onChanged
-    8:8:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    9:9:com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.ImageLoaderConfiguration.getMaxImageSize():0:0 -> onChanged
-    9:9:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.listener.ImageLoadingListener,com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener):0 -> onChanged
-    9:9:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.listener.ImageLoadingListener):0 -> onChanged
-    9:9:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0 -> onChanged
-    9:9:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    10:10:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.listener.ImageLoadingListener,com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener):0:0 -> onChanged
-    10:10:void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.listener.ImageLoadingListener):0 -> onChanged
-    10:10:void studio.mandysa.music.service.MediaPlayService.init$lambda-0(studio.mandysa.music.service.MediaPlayService,mandysax.media.model.DefaultMusic):0 -> onChanged
-    10:10:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    11:11:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0:0 -> onChanged
-    12:12:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0:0 -> onChanged
-    12:12:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    13:13:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.changeMusicLiveData():0:0 -> onChanged
-    13:13:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0 -> onChanged
-    13:13:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    14:14:java.lang.Object mandysax.lifecycle.livedata.LiveData.getValue():0:0 -> onChanged
-    14:14:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0 -> onChanged
-    14:14:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    15:15:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0:0 -> onChanged
-    15:15:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    16:16:java.lang.String mandysax.media.model.DefaultArtist.getName():0:0 -> onChanged
-    16:16:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0 -> onChanged
-    16:16:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
-    17:17:void studio.mandysa.music.service.MediaPlayService.init$lambda-5(studio.mandysa.music.service.MediaPlayService,java.lang.Integer):0:0 -> onChanged
-    17:17:void studio.mandysa.music.service.MediaPlayService$$InternalSyntheticLambda$0$583b50ca07ff9f4df4d8ea9746f1394ebbbe70dde34952b29175ec4006ff518f$0.onChanged$bridge(java.lang.Object):0 -> onChanged
+z1.FragmentActivityViewModelDelegate$$ExternalSyntheticLambda0 -> z1.a:
+    studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate$$InternalSyntheticLambda$0$7b6da094447e91c6d417f20fea765d9a68c37aa6b1aaa5418bdcca5dc360c3e0$0.f$0 -> b
+    int studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate$$InternalSyntheticLambda$0$7b6da094447e91c6d417f20fea765d9a68c37aa6b1aaa5418bdcca5dc360c3e0$0.$r8$classId -> a
+    void studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate$$InternalSyntheticLambda$0$7b6da094447e91c6d417f20fea765d9a68c37aa6b1aaa5418bdcca5dc360c3e0$0.$r8$init$bridge(studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate) -> <init>
+    void studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate$$InternalSyntheticLambda$0$7b6da094447e91c6d417f20fea765d9a68c37aa6b1aaa5418bdcca5dc360c3e0$0.observer$bridge(mandysax.lifecycle.Lifecycle$Event) -> observer

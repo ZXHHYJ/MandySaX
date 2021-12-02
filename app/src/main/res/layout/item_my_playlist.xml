@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--歌曲item-->
+<?xml version="1.0" encoding="utf-8"?><!--个人界面歌单item-->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
@@ -19,7 +19,7 @@
             android:layout_marginVertical="@dimen/item_margin">
 
             <ImageView
-                android:id="@+id/song_cover"
+                android:id="@+id/playlist_cover"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:ignore="ContentDescription" />
@@ -32,7 +32,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/song_name"
+                android:id="@+id/playlist_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lines="1"
@@ -41,7 +41,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/song_singer_name"
+                android:id="@+id/author_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/text_margin_small"
@@ -54,4 +54,3 @@
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
-

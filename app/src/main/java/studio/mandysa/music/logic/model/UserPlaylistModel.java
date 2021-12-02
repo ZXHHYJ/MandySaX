@@ -12,7 +12,7 @@ public class UserPlaylistModel {
     @Value("playlist")
     public List<UserPlaylist> list;
 
-    public static class UserPlaylist{
+    public static class UserPlaylist {
         @Value("id")
         public String id;
 

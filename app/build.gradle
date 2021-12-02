@@ -32,8 +32,8 @@ android {
 }
 
 dependencies {
-    // 映射存储库：https://github.com/Tencent/MMKV
-    implementation 'com.tencent:mmkv:1.2.11'
+    // 存储库：https://gitee.com/simon9102/tuke
+    implementation 'com.gitee.simon9102:tuke:1.0.0'
     // 图片加载库：https://github.com/nostra13/Android-Universal-Image-Loader
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     // 网络请求库：https://gitee.com/liuxiaoliu66/anna

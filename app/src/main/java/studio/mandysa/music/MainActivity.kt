@@ -34,7 +34,8 @@ class MainActivity : FragmentActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Sofia.with(this).invasionStatusBar().invasionNavigationBar().statusBarDarkFont().navigationBarDarkFont()
+        Sofia.with(this).invasionStatusBar().invasionNavigationBar().statusBarDarkFont()
+            .navigationBarDarkFont()
         setContentView(mBinding.root)
         //判断有没有登录，没有登录的话就打开登录界面
         if (mUserViewModel.getCookieLiveData().value == null)

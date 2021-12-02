@@ -26,7 +26,7 @@ class StartFragment : DialogFragment(), LifecycleObserver {
     override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
         mEvent.getCookieLiveData().lazy {
-         dismiss()
+            dismiss()
         }
     }
 
@@ -53,7 +53,6 @@ class StartFragment : DialogFragment(), LifecycleObserver {
                         it.etPassword.addTextChangedListener(this)
                     }
                 }
-                it.window!!.setBackgroundDrawableResource(android.R.color.white)
                 it.window!!.setLayout(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT

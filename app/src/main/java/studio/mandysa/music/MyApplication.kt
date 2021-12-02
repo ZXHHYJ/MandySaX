@@ -7,9 +7,9 @@ import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
-import com.tencent.mmkv.MMKV
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.DefaultPlayerManager.Companion.init
+import simon.tuke.Tuke
 import studio.mandysa.music.service.MediaPlayService
 import studio.mandysa.statelayout.StateLayout
 
@@ -17,7 +17,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        MMKV.initialize(this)
+        Tuke.init(this)
 
         StateLayout.let {
             it.loadingLayout = R.layout.layout_loading
