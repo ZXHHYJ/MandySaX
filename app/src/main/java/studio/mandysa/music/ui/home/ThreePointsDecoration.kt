@@ -15,7 +15,6 @@ class ThreePointsDecoration : RecyclerView.ItemDecoration() {
         val itemNum = 3
         val length = parent.resources.getDimensionPixelOffset(R.dimen.activity_horizontal_margin)
         view.layoutParams.width = (view.resources.displayMetrics.widthPixels - length) / itemNum
-        parent.getChildAdapterPosition(view)
         view.setPadding(length, 0, 0, 0)
     }
 }

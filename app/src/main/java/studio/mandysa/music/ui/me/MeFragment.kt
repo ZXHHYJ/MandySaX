@@ -37,88 +37,91 @@ class MeFragment : Fragment() {
 
     private val mImageLoader = ImageLoader.getInstance()
 
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mBinding.recycler.linear().setup {
+            addType<UserModel>(R.layout.item_user)
+            addType<UserPlaylistModel>(R.layout.item_me_playlist)
+            val snapHelper = PagerSnapHelper()
+            onBind {
+                when (itemViewType) {
+                    R.layout.item_user -> {
+                        val model = getModel<UserModel>()
+                        ItemUserBinding.bind(itemView).apply {
+                            mImageLoader.displayImage(model.avatarUrl, ivAvatar)
+                            tvNickname.text = model.nickname
+                        }
+                    }
+                    R.layout.item_me_playlist -> {
+                        ItemMePlaylistBinding.bind(itemView).playlistList.apply {
+                            snapHelper.attachToRecyclerView(this)
+                            staggered(3, orientation = HORIZONTAL).setup {
+                                addType<UserPlaylistModel.UserPlaylist>(R.layout.item_my_playlist)
+                                onBind {
+                                    val model = getModel<UserPlaylistModel.UserPlaylist>()
+                                    ItemMyPlaylistBinding.bind(itemView).apply {
+                                        mImageLoader.displayImage(
+                                            model.coverImgUrl,
+                                            playlistCover
+                                        )
+                                        playlistName.text = model.name
+                                    }
+                                    itemView.setOnClickListener {
+                                        Navigation.findViewNavController(it)
+                                            .navigate(
+                                                R.style.AppFragmentAnimStyle,
+                                                PlaylistFragment(model.id!!)
+                                            )
+                                    }
+                                }
+                            }
+                            recyclerAdapter.models = getModel<UserPlaylistModel>().list
+                        }
+                    }
+                }
+            }
+        }
+
+        mBinding.let {
+            it.statelayout.showLoading {
+                NeteaseCloudMusicApi::class.java.create()
+                    .getUserInfo(mEvent.getCookieLiveData().value, System.currentTimeMillis())
+                    .set(viewLifecycleOwner.lifecycle, object : Callback<UserModel> {
+                        override fun onFailure(code: Int) {
+                            it.statelayout.showErrorState()
+                        }
+
+                        override fun onResponse(t: UserModel?) {
+                            val list = ArrayList<Any>()
+                            list.add(t!!)
+                            NeteaseCloudMusicApi::class.java.create().getUserPlaylist(t.userId).set(
+                                viewLifecycleOwner.lifecycle,
+                                object : Callback<UserPlaylistModel> {
+                                    override fun onFailure(code: Int) {
+                                        it.statelayout.showErrorState()
+                                    }
+
+                                    override fun onResponse(t: UserPlaylistModel?) {
+                                        list.add(t!!)
+                                        it.recycler.recyclerAdapter.models = list
+                                    }
+
+                                })
+                            it.statelayout.showContentState()
+                        }
+
+                    })
+            }
+            it.statelayout.showLoadingState()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return mBinding.root
-    }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mBinding.apply {
-            recycler.linear().setup {
-                addType<UserModel>(R.layout.item_user)
-                addType<UserPlaylistModel>(R.layout.item_me_playlist)
-                val snapHelper = PagerSnapHelper()
-                onBind {
-                    when (itemViewType) {
-                        R.layout.item_user -> {
-                            val model = getModel<UserModel>()
-                            ItemUserBinding.bind(itemView).apply {
-                                mImageLoader.displayImage(model.avatarUrl, ivAvatar)
-                                tvNickname.text = model.nickname
-                            }
-                        }
-                        R.layout.item_me_playlist -> {
-                            ItemMePlaylistBinding.bind(itemView).playlistList.apply {
-                                snapHelper.attachToRecyclerView(this)
-                                staggered(3, orientation = HORIZONTAL).setup {
-                                    addType<UserPlaylistModel.UserPlaylist>(R.layout.item_my_playlist)
-                                    onBind {
-                                        val model = getModel<UserPlaylistModel.UserPlaylist>()
-                                        ItemMyPlaylistBinding.bind(itemView).apply {
-                                            mImageLoader.displayImage(
-                                                model.coverImgUrl,
-                                                playlistCover
-                                            )
-                                            playlistName.text = model.name
-                                        }
-                                        itemView.setOnClickListener {
-                                            Navigation.findViewNavController(it)
-                                                .navigate(
-                                                    R.style.AppFragmentAnimStyle,
-                                                    PlaylistFragment(model.id!!)
-                                                )
-                                        }
-                                    }
-                                }
-                                recyclerAdapter.addModels(getModel<UserPlaylistModel>().list)
-                            }
-                        }
-                    }
-                }
-            }
-            statelayout.showLoading {
-                NeteaseCloudMusicApi::class.java.create()
-                    .getUserInfo(mEvent.getCookieLiveData().value, System.currentTimeMillis())
-                    .set(viewLifecycleOwner.lifecycle, object : Callback<UserModel> {
-                        override fun onFailure(code: Int) {
-                            statelayout.showErrorState()
-                        }
-
-                        override fun onResponse(t: UserModel?) {
-                            recycler.recyclerAdapter.addHeader(t!!)
-                            NeteaseCloudMusicApi::class.java.create().getUserPlaylist(t.userId).set(
-                                viewLifecycleOwner.lifecycle,
-                                object : Callback<UserPlaylistModel> {
-                                    override fun onFailure(code: Int) {
-                                        statelayout.showErrorState()
-                                    }
-
-                                    override fun onResponse(t: UserPlaylistModel?) {
-                                        recycler.recyclerAdapter.addModels(listOf(t!!))
-                                    }
-
-                                })
-                            statelayout.showContentState()
-                        }
-
-                    })
-            }
-            statelayout.showLoadingState()
-        }
     }
 
     override fun onDestroyView() {

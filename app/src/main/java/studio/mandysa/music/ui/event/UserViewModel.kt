@@ -9,7 +9,6 @@ import studio.mandysa.music.logic.model.LoginModel
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.utils.create
 
-
 class UserViewModel : ViewModel() {
 
     companion object {
