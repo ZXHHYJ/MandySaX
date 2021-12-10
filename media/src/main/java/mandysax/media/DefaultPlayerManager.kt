@@ -129,8 +129,10 @@ class DefaultPlayerManager(
                 }, 0, 1000)
             }
         }
-        mPause.value = false
-        mMediaPlayer.start()
+        if (mPause.value != false)
+            mPause.value = false
+        if (!mMediaPlayer.isPlaying)
+            mMediaPlayer.start()
     }
 
     override fun pause() {
@@ -139,7 +141,8 @@ class DefaultPlayerManager(
         }
         mTimer?.cancel()
         mTimer = null
-        mPause.value = true
+        if (mPause.value != true)
+            mPause.value = true
         mMediaPlayer.pause()
     }
 

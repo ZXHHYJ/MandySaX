@@ -1,6 +1,6 @@
 package studio.mandysa.music.ui.play.playlist
 
-import mandysax.fragment.Fragment
+import mandysax.fragment.DialogFragment
 
-class PlaylistFragment : Fragment() {
+class PlaylistFragment : DialogFragment() {
 }

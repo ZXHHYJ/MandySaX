@@ -9,8 +9,8 @@
         <attr name="umanoFlingVelocity" format="integer" />
         <attr name="umanoDragView" format="reference" />
         <attr name="umanoScrollableView" format="reference" />
-        <attr name="umanoOverlay" format="boolean"/>
-        <attr name="umanoClipPanel" format="boolean"/>
+        <attr name="umanoOverlay" format="boolean" />
+        <attr name="umanoClipPanel" format="boolean" />
         <attr name="umanoAnchorPoint" format="float" />
         <attr name="umanoInitialState" format="enum">
             <enum name="expanded" value="0" />
@@ -19,6 +19,9 @@
             <enum name="hidden" value="3" />
         </attr>
         <attr name="umanoScrollInterpolator" format="reference" />
+        <attr name="umanoMaxSlidingOffset" format="float" />
+        <attr name="umanoAboveShadowStyle" format="reference" />
+        <attr name="umanoBelowShadowStyle" format="reference" />
     </declare-styleable>
 
 </resources>

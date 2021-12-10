@@ -82,7 +82,7 @@ class PlaylistFragment(private val id: String) : Fragment() {
                             itemView.setOnClickListener {
                                 getInstance().apply {
                                     loadAlbum(
-                                        getModels<DefaultMusic<DefaultArtist>>().createAlbum(),
+                                        models.createAlbum(),
                                         modelPosition
                                     )
                                     play()

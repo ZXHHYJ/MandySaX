@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.ScaleAnimation
 import android.widget.SeekBar
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.fragment.Fragment
@@ -13,7 +14,25 @@ import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayBinding
 import studio.mandysa.music.logic.utils.bindView
 
+
 class PlayFragment : Fragment() {
+
+    companion object {
+        /**
+         * 缩放的scale
+         */
+        private const val SMALL_SCALE = 0.9f
+
+        /**
+         * 初始scale
+         */
+        private const val ONE_SCALE = 1f
+
+        /**
+         * 动画持续时长
+         */
+        private const val DURATION = 100
+    }
 
     private val mBinding: FragmentPlayBinding by bindView()
 
@@ -22,29 +41,56 @@ class PlayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val instance = DefaultPlayerManager.getInstance()!!
-
-        /**
-         * 音乐进度监听
-         */
-        val musicProObs = Observer<Int> {
-            mBinding.playProgress.progress = it
-        }
-        instance.pauseLiveData().observe(viewLifecycleOwner) {
-            mBinding.playOrPause.setImageResource(if (it) R.drawable.ic_play else R.drawable.ic_pause)
-        }
-        instance.changeMusicLiveData().observe(viewLifecycleOwner) {
-            mBinding.playSongName.text = it.title
-            mBinding.playSingerName.text = it.artist[0].name
-            mImageLoader.displayImage(it.coverUrl, mBinding.playCover)
-        }
-        instance.playingMusicDurationLiveData()
-            .observe(viewLifecycleOwner) {
-                mBinding.playProgress.max = it
+        mBinding.let { it ->
+            /**
+             * 音乐进度监听
+             */
+            val musicProObs = Observer<Int> { progress ->
+                it.playbackSeekbar.progress = progress
             }
-        instance.playingMusicProgressLiveData()
-            .observe(viewLifecycleOwner, musicProObs)
-        mBinding.run {
-            playProgress.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            /*
+             * 播放暂停按钮icon更新
+             */
+            instance.pauseLiveData().observe(viewLifecycleOwner) { playing ->
+                val scaleAnim = if (playing) ScaleAnimation(
+                    ONE_SCALE,
+                    SMALL_SCALE,
+                    ONE_SCALE,
+                    SMALL_SCALE,
+                    it.musicCoverCardView.width / 2f,
+                    it.musicCoverCardView.width / 2f
+                ) else ScaleAnimation(
+                    SMALL_SCALE,
+                    ONE_SCALE,
+                    SMALL_SCALE,
+                    ONE_SCALE,
+                    it.musicCoverCardView.width / 2f,
+                    it.musicCoverCardView.width / 2f
+                )
+                scaleAnim.duration = DURATION.toLong()
+                scaleAnim.fillAfter = true
+                it.musicCoverCardView.startAnimation(scaleAnim)
+                it.playOrPause.setImageResource(if (playing) R.drawable.ic_play else R.drawable.ic_pause)
+            }
+            /**
+             * 更新当前播放歌曲的信息
+             */
+            instance.changeMusicLiveData().observe(viewLifecycleOwner) { model ->
+                it.songName.text = model.title
+                it.singerName.text = model.artist[0].name
+                mImageLoader.displayImage(model.coverUrl, it.musicCover)
+            }
+            /**
+             * 更新播放进度
+             */
+            instance.playingMusicDurationLiveData()
+                .observe(viewLifecycleOwner) { duration ->
+                    it.playbackSeekbar.max = duration
+                }
+            instance.playingMusicProgressLiveData()
+                .observe(viewLifecycleOwner, musicProObs)
+            it.playbackSeekbar.setOnSeekBarChangeListener(object :
+                SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 }
 
@@ -63,18 +109,49 @@ class PlayFragment : Fragment() {
                 }
 
             })
-            playSkipPrevious.setOnClickListener {
+            it.playSkipPrevious.setOnClickListener {
                 instance.skipToPrevious()
             }
-            playOrPause.setOnClickListener {
+            it.playOrPause.setOnClickListener {
                 instance.apply {
                     if (pauseLiveData().value == true)
                         play()
                     else pause()
                 }
             }
-            playSkipNext.setOnClickListener {
+            it.playSkipNext.setOnClickListener {
                 instance.skipToNext()
+            }
+            mBinding.volumeSeekbar.let {
+                val volumeChangeHelper = VolumeChangeHelper(context)
+                volumeChangeHelper.registerVolumeChangeListener(object :
+                    VolumeChangeHelper.VolumeChangeListener {
+                    override fun onVolumeDownToMin() {
+                        it.progress = 0
+                    }
+
+                    override fun onVolumeUp() {
+                        it.progress = volumeChangeHelper.getStreamVolume()
+                    }
+
+                })
+                it.max = volumeChangeHelper.getStreamMaxVolume()
+                it.progress = volumeChangeHelper.getStreamVolume()
+                it.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                    override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                        if (p1 != volumeChangeHelper.getStreamVolume())
+                            volumeChangeHelper.setStreamMusic(p1)
+                    }
+
+                    override fun onStartTrackingTouch(p0: SeekBar?) {
+
+                    }
+
+                    override fun onStopTrackingTouch(p0: SeekBar) {
+
+                    }
+
+                })
             }
         }
     }

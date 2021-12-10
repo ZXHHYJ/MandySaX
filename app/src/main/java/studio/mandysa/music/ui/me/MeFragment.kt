@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
@@ -15,7 +17,7 @@ import studio.mandysa.jiuwo.utils.staggered
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentMeBinding
 import studio.mandysa.music.databinding.ItemMePlaylistBinding
-import studio.mandysa.music.databinding.ItemToplistBinding
+import studio.mandysa.music.databinding.ItemMyPlaylistBinding
 import studio.mandysa.music.databinding.ItemUserBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.UserModel
@@ -25,7 +27,6 @@ import studio.mandysa.music.logic.utils.bindView
 import studio.mandysa.music.logic.utils.create
 import studio.mandysa.music.logic.utils.set
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
-import studio.mandysa.music.ui.decoration.DoubleItemDecoration
 import studio.mandysa.music.ui.event.UserViewModel
 
 class MeFragment : Fragment() {
@@ -50,6 +51,7 @@ class MeFragment : Fragment() {
             recycler.linear().setup {
                 addType<UserModel>(R.layout.item_user)
                 addType<UserPlaylistModel>(R.layout.item_me_playlist)
+                val snapHelper = PagerSnapHelper()
                 onBind {
                     when (itemViewType) {
                         R.layout.item_user -> {
@@ -61,17 +63,17 @@ class MeFragment : Fragment() {
                         }
                         R.layout.item_me_playlist -> {
                             ItemMePlaylistBinding.bind(itemView).playlistList.apply {
-                                addItemDecoration(DoubleItemDecoration())
-                                staggered(2).setup {
-                                    addType<UserPlaylistModel.UserPlaylist>(R.layout.item_toplist)
+                                snapHelper.attachToRecyclerView(this)
+                                staggered(3, orientation = HORIZONTAL).setup {
+                                    addType<UserPlaylistModel.UserPlaylist>(R.layout.item_my_playlist)
                                     onBind {
                                         val model = getModel<UserPlaylistModel.UserPlaylist>()
-                                        ItemToplistBinding.bind(itemView).apply {
+                                        ItemMyPlaylistBinding.bind(itemView).apply {
                                             mImageLoader.displayImage(
                                                 model.coverImgUrl,
-                                                toplistCover
+                                                playlistCover
                                             )
-                                            toplistName.text = model.name
+                                            playlistName.text = model.name
                                         }
                                         itemView.setOnClickListener {
                                             Navigation.findViewNavController(it)

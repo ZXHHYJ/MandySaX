@@ -5,6 +5,8 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
@@ -12,6 +14,7 @@ import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
 import mandysax.media.model.DefaultMusic
+import studio.mandysa.jiuwo.utils.addModels
 import studio.mandysa.jiuwo.utils.linear
 import studio.mandysa.jiuwo.utils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.setup
@@ -35,19 +38,6 @@ class SearchListFragment : Fragment() {
 
     private var mPage = 1
 
-    /*
-            searchRecycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-                    val layoutManager = (recyclerView.layoutManager as LinearLayoutManager?)!!
-                    val lastCompletelyVisibleItemPosition =
-                        layoutManager.findLastCompletelyVisibleItemPosition()
-                    if (lastCompletelyVisibleItemPosition == layoutManager.itemCount - 1) {
-                        nextPage()
-                    }
-                }
-            })*/
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,9 +48,16 @@ class SearchListFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel.searchContentLiveData.observe(viewLifecycleOwner) {
+        mViewModel.searchContentLiveData.observe(viewLifecycleOwner) { it ->
             if (!TextUtils.isEmpty(it)) {
-                mBinding.statelayout.showLoadingState()
+                mBinding.let {
+                    if (it.recycler.recyclerAdapter.mModel != null) {
+                        it.recycler.scrollToPosition(0)
+                        it.recycler.recyclerAdapter.clearModels()
+                        mPage = 1
+                    }
+                    it.statelayout.showLoadingState()
+                }
             }
         }
         mBinding.apply {
@@ -69,6 +66,17 @@ class SearchListFragment : Fragment() {
                     nextPage()
                 }
             }
+            recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    val layoutManager = (recyclerView.layoutManager as LinearLayoutManager?)!!
+                    val lastCompletelyVisibleItemPosition =
+                        layoutManager.findLastCompletelyVisibleItemPosition()
+                    if (lastCompletelyVisibleItemPosition == layoutManager.itemCount - 1) {
+                        nextPage()
+                    }
+                }
+            })
             recycler.linear().setup {
                 addType<MusicModel>(R.layout.item_song)
                 onBind {
@@ -81,7 +89,7 @@ class SearchListFragment : Fragment() {
                         songSingerName.markByColor(mViewModel.searchContentLiveData.value)
                         itemView.setOnClickListener {
                             DefaultPlayerManager.getInstance()!!.loadAlbum(
-                                getModels<DefaultMusic<DefaultArtist>>().createAlbum(),
+                                models.createAlbum(),
                                 modelPosition
                             )
                             DefaultPlayerManager.getInstance()!!.play()
@@ -125,7 +133,7 @@ class SearchListFragment : Fragment() {
                         .getMusicInfo(t!!)
                         .set(viewLifecycleOwner.lifecycle, object : Callback<List<MusicModel>> {
                             override fun onResponse(t: List<MusicModel>?) {
-                                mBinding.recycler.recyclerAdapter.models = t!!
+                                mBinding.recycler.addModels(t!!)
                                 mBinding.statelayout.showContentState()
                                 mPage++
                             }
@@ -134,12 +142,6 @@ class SearchListFragment : Fragment() {
                                 mBinding.statelayout.showErrorState()
                             }
                         })
-                    //mBinding.recycler.recyclerAdapter.models = t!!
-                    /* when (mBinding.searchStateLayout.status) {
-                         Status.CONTENT -> {
-                         }
-                         else -> mBinding.searchStateLayout.showContent()
-                     }*/
                 }
 
                 override fun onFailure(code: Int) {

@@ -35,12 +35,11 @@ interface NeteaseCloudMusicApi {
     val recommendedSong: Observable<List<NewSongModel>>
 
     @Get("personalized")
-            /*  @Path("result")*/
     fun getRecommendedPlaylist(@Query("cookie") cookie: String): Observable<PlaylistModel>
 
-    @Get("lyric")
-    @Path("lrc")
-    fun getLyric(@Query("id") id: String?): Observable<LyricModel>
+    /* @Get("lyric")
+     @Path("lrc")
+     fun getLyric(@Query("id") id: String?): Observable<LyricModel>*/
 
     @Get("playlist/detail")
     @Path("playlist")

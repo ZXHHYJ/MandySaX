@@ -16,6 +16,7 @@ class FragmentBindingDelegate<VB : ViewBinding>(
 
     private var mBinding: VB? = null
 
+    @Suppress("UNCHECKED_CAST")
     override fun getValue(thisRef: Fragment, property: KProperty<*>): VB {
         if (mBinding == null) {
             mBinding = clazz.getMethod("inflate", LayoutInflater::class.java)

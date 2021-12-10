@@ -67,10 +67,13 @@ class PlaylistViewModel : ViewModel() {
                         .getMusicInfo(list).also {
                             it.set(object : Callback<List<MusicModel>> {
                                 override fun onResponse(t: List<MusicModel>?) {
-                                    mDataLiveData.value = t!!
-                                    mPage++
                                     mObservable = null
                                     mMetadataLiveData.removeObserver(mThis)
+                                    if (t!!.isEmpty()) {
+                                        return
+                                    }
+                                    mDataLiveData.value = t
+                                    mPage++
                                 }
 
                                 override fun onFailure(code: Int) {

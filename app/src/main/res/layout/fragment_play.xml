@@ -12,18 +12,25 @@
         android:layout_weight="1.0">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="290dp"
-            android:layout_height="290dp"
-            android:layout_gravity="center"
+            android:id="@+id/music_cover_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="35dp"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardElevation="3dp">
 
-            <ImageView
-                android:id="@+id/play_cover"
+            <studio.mandysa.music.ui.view.SquareLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                tools:ignore="ContentDescription,ImageContrastCheck" />
+                android:layout_height="0dp">
+
+                <ImageView
+                    android:id="@+id/music_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:ignore="ContentDescription" />
+
+            </studio.mandysa.music.ui.view.SquareLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -31,12 +38,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/play_song_name"
+            android:id="@+id/song_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
@@ -46,7 +53,7 @@
             android:textSize="19sp" />
 
         <TextView
-            android:id="@+id/play_singer_name"
+            android:id="@+id/singer_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
@@ -56,7 +63,7 @@
             android:textSize="16sp" />
 
         <SeekBar
-            android:id="@+id/play_progress"
+            android:id="@+id/playback_seekbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
@@ -69,7 +76,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginVertical="40dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -101,6 +108,17 @@
                 android:tint="@color/fragment_play_widget_color"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/volume_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:duplicateParentState="true"
+            android:progressTint="@color/fragment_play_widget_color"
+            android:thumbTint="@color/fragment_play_widget_color" />
 
     </LinearLayout>
 

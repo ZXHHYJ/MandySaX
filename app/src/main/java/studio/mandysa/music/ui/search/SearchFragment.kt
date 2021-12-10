@@ -9,7 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import com.nostra13.universalimageloader.core.ImageLoader
-import com.sothree.slidinguppanel.SlidingUpPanelLayout
+import com.sothree.slidinguppanel.PanelSlideListener
+import com.sothree.slidinguppanel.PanelState
 import mandysax.anna2.callback.Callback
 import mandysax.core.app.OnBackPressedCallback
 import mandysax.fragment.Fragment
@@ -37,8 +38,8 @@ class SearchFragment : Fragment() {
 
     private val mOnBackListener = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            if (mBinding.searchSlidingView.panelState == SlidingUpPanelLayout.PanelState.EXPANDED) {
-                mBinding.searchSlidingView.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+            if (mBinding.searchSlidingView.panelState == PanelState.EXPANDED) {
+                mBinding.searchSlidingView.panelState = PanelState.COLLAPSED
             }
         }
     }
@@ -54,17 +55,17 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.searchSlidingView.addPanelSlideListener(object :
-            SlidingUpPanelLayout.PanelSlideListener {
-            override fun onPanelSlide(panel: View?, slideOffset: Float) {
+            PanelSlideListener {
+            override fun onPanelSlide(panel: View, slideOffset: Float) {
 
             }
 
             override fun onPanelStateChanged(
-                panel: View?,
-                previousState: SlidingUpPanelLayout.PanelState?,
-                newState: SlidingUpPanelLayout.PanelState?
+                panel: View,
+                previousState: PanelState,
+                newState: PanelState
             ) {
-                mOnBackListener.isEnabled = newState == SlidingUpPanelLayout.PanelState.EXPANDED
+                mOnBackListener.isEnabled = newState == PanelState.EXPANDED
             }
 
         })
@@ -78,7 +79,7 @@ class SearchFragment : Fragment() {
                 }
                 Lifecycle.Event.ON_START -> {
                     mOnBackListener.isEnabled =
-                        mBinding.searchSlidingView.panelState == SlidingUpPanelLayout.PanelState.EXPANDED
+                        mBinding.searchSlidingView.panelState == PanelState.EXPANDED
                 }
                 Lifecycle.Event.ON_STOP -> {
                     mOnBackListener.isEnabled = false
@@ -109,7 +110,7 @@ class SearchFragment : Fragment() {
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
                     hideInput()
                     mViewModel.searchContentLiveData.value = v.text.toString()
-                    searchSlidingView.panelState = SlidingUpPanelLayout.PanelState.EXPANDED
+                    searchSlidingView.panelState = PanelState.EXPANDED
                 }
                 false
             }
@@ -125,7 +126,7 @@ class SearchFragment : Fragment() {
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     searchSlidingView.panelState =
-                        if (TextUtils.isEmpty(s)) SlidingUpPanelLayout.PanelState.COLLAPSED else SlidingUpPanelLayout.PanelState.EXPANDED
+                        if (TextUtils.isEmpty(s)) PanelState.COLLAPSED else PanelState.EXPANDED
                 }
 
                 override fun afterTextChanged(s: Editable?) {
