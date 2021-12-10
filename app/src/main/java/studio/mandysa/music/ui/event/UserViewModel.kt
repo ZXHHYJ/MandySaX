@@ -23,24 +23,26 @@ class UserViewModel : ViewModel() {
 
     init {
         mCookieLiveData.observeForever {
-            if (it != null) {
-                Tuke.tukeWrite(COOKIE_KEY, it)
-            }
+            Tuke.tukeWrite(COOKIE_KEY, it)
         }
     }
 
-    fun login(mobilePhone: String, password: String) {
+    fun login(mobilePhone: String, password: String): LiveData<Int> {
+        val mCodeLiveData = MutableLiveData<Int>()
         NeteaseCloudMusicApi::class.java.create().login(mobilePhone, password).set(object :
             Callback<LoginModel> {
             override fun onFailure(code: Int) {
-                mCookieLiveData.value = null
+                mCodeLiveData.value = code
             }
 
             override fun onResponse(t: LoginModel?) {
-                mCookieLiveData.value = t!!.cookie
+                mCodeLiveData.value = t!!.code
+                if (t.cookie.isNotEmpty())
+                    mCookieLiveData.value = t.cookie
             }
 
         })
+        return mCodeLiveData
     }
 
 }

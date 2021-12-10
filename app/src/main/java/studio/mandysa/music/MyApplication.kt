@@ -36,7 +36,7 @@ class MyApplication : Application() {
         //这样自定义设置后就可以管理二级缓存和三级缓存了
         val configuration = ImageLoaderConfiguration.Builder(this)
             .diskCache(UnlimitedDiskCache(cacheDir))
-            .memoryCacheSizePercentage(5)//设置占用内存的百分比
+            .memoryCacheSizePercentage(1)//设置占用内存的百分比
             .diskCacheFileCount(100)
             .diskCacheSize(5 * 1024 * 1024)
             .defaultDisplayImageOptions(options)
