@@ -38,12 +38,27 @@
         <item name="android:background">@drawable/btn_selector</item>
     </style>
 
+    <style name="TransparentDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
     <!--无边框dialog-->
     <style name="AppDialog">
         <!--是否浮现在activity之上-->
         <item name="android:windowIsFloating">true</item>
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="DialogAnim" parent="android:Animation">
+        <!--进入时的动画-->
+        <item name="android:windowEnterAnimation">@anim/window_enter_anim</item>
+        <!--退出时的动画-->
+        <item name="android:windowExitAnimation">@anim/window_exit_anim</item>
     </style>
 
     <style name="AppFragmentAnimStyle">

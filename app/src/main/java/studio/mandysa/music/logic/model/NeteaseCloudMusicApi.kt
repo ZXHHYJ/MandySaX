@@ -1,6 +1,7 @@
 package studio.mandysa.music.logic.model
 
 import mandysax.anna2.annotation.*
+import mandysax.anna2.model.ResponseBody
 import mandysax.anna2.observable.Observable
 
 /**
@@ -64,4 +65,7 @@ interface NeteaseCloudMusicApi {
     @Get("toplist")
     @Path("list")
     fun getToplist(): Observable<List<ToplistModel>>
+
+    @Get("like")
+    fun likeMusic(cookie: String, id: String, like: Boolean): Observable<ResponseBody>
 }

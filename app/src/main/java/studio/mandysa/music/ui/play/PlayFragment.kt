@@ -13,6 +13,7 @@ import mandysax.media.DefaultPlayerManager
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayBinding
 import studio.mandysa.music.logic.utils.bindView
+import studio.mandysa.music.ui.play.playlist.PlayQueueFragment
 
 
 class PlayFragment : Fragment() {
@@ -41,6 +42,12 @@ class PlayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val instance = DefaultPlayerManager.getInstance()!!
+        mBinding.playingList.setOnClickListener {
+            PlayQueueFragment().show(activity!!.fragmentPlusManager)
+        }
+        mBinding.like.setOnClickListener {
+
+        }
         mBinding.let { it ->
             /**
              * 音乐进度监听

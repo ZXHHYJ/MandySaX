@@ -20,8 +20,6 @@
     <string name="you_are_offline">你已离线</string>
     <string name="check_the_network">请检查网络后点击重试</string>
 
-    <string name="user_manager">多账号管理</string>
-
     <string name="phone">手机号</string>
     <string name="password">密码</string>
 

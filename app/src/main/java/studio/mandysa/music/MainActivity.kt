@@ -74,14 +74,14 @@ class MainActivity : FragmentActivity() {
             bottomNavigationBar.setActiveColorResource(R.color.main)
             bottomNavigationBar.models = listOf(
                 BottomNavigationItem(
-                    R.drawable.ic_round_widgets_24,
+                    R.drawable.ic_round_contactless_24,
                     getString(R.string.home)
                 ),
                 BottomNavigationItem(
-                    R.drawable.ic_search,
+                    R.drawable.ic_round_search_24,
                     getString(R.string.search)
                 ), BottomNavigationItem(
-                    R.drawable.ic_person_crop_circle_fill28,
+                    R.drawable.ic_round_account_circle_24,
                     getString(R.string.me)
                 )
             )
@@ -105,7 +105,8 @@ class MainActivity : FragmentActivity() {
                     }
                 }
                 val startBarSize = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
-                val navigationBarSize = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
+                val navigationBarSize =
+                    insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
                 mainFragmentPage.setPadding(
                     0,
                     startBarSize,

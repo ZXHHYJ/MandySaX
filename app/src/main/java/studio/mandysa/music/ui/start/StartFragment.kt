@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.nostra13.universalimageloader.core.ImageLoader
@@ -31,8 +32,7 @@ class StartFragment : DialogFragment(), LifecycleObserver {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
-        return AlertDialog.Builder(requireActivity(), R.style.AppDialog)
+        return AlertDialog.Builder(requireActivity(), R.style.TransparentDialog)
             .setCancelable(false)
             .create().also { it ->
                 val binding = FragmentStartBinding.inflate(
@@ -53,10 +53,12 @@ class StartFragment : DialogFragment(), LifecycleObserver {
                         it.etPassword.addTextChangedListener(this)
                     }
                 }
+                it.window!!.setWindowAnimations(R.style.DialogAnim)
                 it.window!!.setLayout(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT
                 )
+                it.window!!.setGravity(Gravity.BOTTOM)
                 it.setOnShowListener { _ ->
                     it.window!!.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
                 }

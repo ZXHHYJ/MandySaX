@@ -81,6 +81,6 @@ class PlayNotification(private val mediaPlayService: MediaPlayService) : Notific
             MediaStyle().setShowActionsInCompactView(0, 1, 2)
                 .setMediaSession(mediaPlayService.getSessionToken())
         setCategory(Notification.CATEGORY_SERVICE)
-        setSmallIcon(R.drawable.ic_music)
+        setSmallIcon(R.drawable.ic_round_search_24)
     }
 }
