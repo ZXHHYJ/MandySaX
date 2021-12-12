@@ -28,7 +28,7 @@ class UserViewModel : ViewModel() {
 
     fun login(mobilePhone: String, password: String): LiveData<Int> {
         val mCodeLiveData = MutableLiveData<Int>()
-        NeteaseCloudMusicApi::class.java.create().login(mobilePhone, password).set(object :
+        NeteaseCloudMusicApi::class.java.create().login(mobilePhone, password, System.currentTimeMillis()).set(object :
             Callback<LoginModel> {
             override fun onFailure(code: Int) {
                 mCodeLiveData.value = code

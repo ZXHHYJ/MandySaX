@@ -1,15 +1,7 @@
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
-}
 rootProject.name = "MandySa_Music"
-include ':app', 'mandysax'
+include ':app'
 include ':media'
-//include ':AndroidSlidingUpPanel'
+include ':mandysax'
 include ':statelayout'
 include ':bottomnavigationbar'
 /*include ':LyricView'*/

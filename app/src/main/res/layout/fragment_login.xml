@@ -11,24 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-        android:gravity="center"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/welcome"
             android:textColor="@android:color/black"
             android:textSize="23sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/welcome_login"
-            android:textColor="@color/tv_color_light"
-            android:textSize="17sp"
-            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/etPhone"

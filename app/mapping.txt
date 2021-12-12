@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 3.0.76
 # min_api: 26
-# pg_map_id: b291763
+# pg_map_id: 22ad98f
 # common_typos_disable
 a.R$color$$ExternalSyntheticOutline0 -> a.a:
     java.lang.StringBuilder androidx.cardview.R$color$$InternalSyntheticOutline$198$fb9b4c7b1bc803e64b9c103e350da7fa7a8b3d86cffd193e85f4d24d5cec28ac$0.m(java.lang.String) -> a
@@ -6965,7 +6965,7 @@ d2.BottomNavigationBar$models$1$1$$ExternalSyntheticLambda0 -> d2.a:
     studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.f$1 -> c
     int studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.$r8$classId -> a
     void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.$r8$init$bridge(studio.mandysa.bottomnavigationbar.BottomNavigationBar,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder) -> <init>
-    void studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$1$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$0.$r8$init$bridge(studio.mandysa.music.databinding.FragmentStartBinding,studio.mandysa.music.ui.start.StartFragment) -> <init>
+    void studio.mandysa.music.ui.login.StartFragment$$InternalSyntheticLambda$1$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$0.$r8$init$bridge(studio.mandysa.music.databinding.FragmentStartBinding,studio.mandysa.music.ui.login.StartFragment) -> <init>
     1:1:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1.invoke$lambda-0(studio.mandysa.bottomnavigationbar.BottomNavigationBar,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     1:1:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.onClick$bridge(android.view.View):0 -> onClick
     2:2:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.bottomnavigationbar.BottomNavigationBar.access$getMSelectedPosition$p(studio.mandysa.bottomnavigationbar.BottomNavigationBar):0:0 -> onClick
@@ -6974,7 +6974,7 @@ d2.BottomNavigationBar$models$1$1$$ExternalSyntheticLambda0 -> d2.a:
     3:3:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1.invoke$lambda-0(studio.mandysa.bottomnavigationbar.BottomNavigationBar,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     3:3:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.onClick$bridge(android.view.View):0 -> onClick
     4:4:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.onClick$bridge(android.view.View):0:0 -> onClick
-    5:5:void studio.mandysa.music.ui.start.StartFragment.onCreateDialog$lambda-5$lambda-3$lambda-1(studio.mandysa.music.databinding.FragmentStartBinding,studio.mandysa.music.ui.start.StartFragment,android.view.View):0:0 -> onClick
+    5:5:void studio.mandysa.music.ui.login.StartFragment.onCreateDialog$lambda-5$lambda-3$lambda-1(studio.mandysa.music.databinding.FragmentStartBinding,studio.mandysa.music.ui.login.StartFragment,android.view.View):0:0 -> onClick
     5:5:void studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$0.onClick$bridge(android.view.View):0 -> onClick
 d2.BottomNavigationBar$models$1$1$$ExternalSyntheticLambda1 -> d2.b:
     studio.mandysa.bottomnavigationbar.BottomNavigationItem studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1$1$$InternalSyntheticLambda$0$efb228782dfb35b6f896ff9b9a4127be8364a355db710cf3b441e8d0f4a03da0$1.f$1 -> b
@@ -7368,7 +7368,7 @@ k1.DefaultPlayerManager$$ExternalSyntheticLambda3 -> k1.d:
     void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$1$1$1$$InternalSyntheticLambda$3$0bd85e781c023c5f13dc4550904e18526ffe6840ff052c62b352aca656d23d60$1.$r8$init$bridge(studio.mandysa.music.ui.all.playlist.PlaylistFragment) -> <init>
     void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.$r8$init$bridge(mandysax.media.DefaultPlayerManager) -> <init>
     void studio.mandysa.music.ui.login.LoginFragment$$InternalSyntheticLambda$2$ff74fc31986190c9daa3e0e6af9c788ce65744b36dc33bc4eda0a401f8054b2e$0.$r8$init$bridge(studio.mandysa.music.ui.login.LoginFragment) -> <init>
-    void studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$2$ec8788419a53bf5f94bcd8102f674ca81b75c93aee8fbbb72d822500bebb036d$0.$r8$init$bridge(studio.mandysa.music.ui.start.StartFragment) -> <init>
+    void studio.mandysa.music.ui.login.StartFragment$$InternalSyntheticLambda$2$ec8788419a53bf5f94bcd8102f674ca81b75c93aee8fbbb72d822500bebb036d$0.$r8$init$bridge(studio.mandysa.music.ui.login.StartFragment) -> <init>
     void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$2.$r8$init$bridge(studio.mandysa.music.MainActivity) -> <init>
     void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$1.$r8$init$bridge(studio.mandysa.music.databinding.ActivityMainBinding) -> <init>
     void studio.mandysa.music.ui.play.playlist.PlayQueueFragment$$InternalSyntheticLambda$3$2589ef0d1a059c626f46eb6a3b081e94eae39370cafa362022feb20426d2ccb1$0.$r8$init$bridge(studio.mandysa.music.databinding.FragmentPlayQueueBinding) -> <init>
@@ -7462,10 +7462,10 @@ k1.DefaultPlayerManager$$ExternalSyntheticLambda3 -> k1.d:
     35:35:void mandysax.media.DefaultPlayerManager._init_$lambda-4(mandysax.media.DefaultPlayerManager,int):0 -> a
     35:35:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
     36:36:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0:0 -> a
-    37:37:void studio.mandysa.music.ui.start.StartFragment.onCreate$lambda-0(studio.mandysa.music.ui.start.StartFragment,java.lang.String):0:0 -> a
+    37:37:void studio.mandysa.music.ui.login.StartFragment.onCreate$lambda-0(studio.mandysa.music.ui.login.StartFragment,java.lang.String):0:0 -> a
     37:37:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
     38:38:void mandysax.fragment.DialogFragment.dismiss():0:0 -> a
-    38:38:void studio.mandysa.music.ui.start.StartFragment.onCreate$lambda-0(studio.mandysa.music.ui.start.StartFragment,java.lang.String):0 -> a
+    38:38:void studio.mandysa.music.ui.login.StartFragment.onCreate$lambda-0(studio.mandysa.music.ui.login.StartFragment,java.lang.String):0 -> a
     38:38:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
 kotlin.Lazy -> j0.a:
 kotlin.Pair -> j0.b:
@@ -8343,50 +8343,57 @@ mandysax.anna2.factory.DefaultCallAdapterFactory -> a1.c:
     10:10:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
     11:11:java.lang.String mandysax.anna2.factory.DefaultCallAdapterFactory.getUrl(java.lang.String,java.util.Map):0:0 -> d
     11:11:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    12:12:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
-    13:13:okhttp3.Headers okhttp3.Headers$Companion.of(java.util.Map):0:0 -> d
+    12:12:okhttp3.Request$Builder okhttp3.Request$Builder.url(java.lang.String):0:0 -> d
+    12:12:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
+    13:13:okhttp3.HttpUrl okhttp3.HttpUrl$Companion.get(java.lang.String):0:0 -> d
+    13:13:okhttp3.Request$Builder okhttp3.Request$Builder.url(java.lang.String):0 -> d
     13:13:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    14:14:okhttp3.Headers$Builder okhttp3.Headers.newBuilder():0:0 -> d
-    14:14:okhttp3.Request$Builder okhttp3.Request$Builder.headers(okhttp3.Headers):0 -> d
+    14:14:okhttp3.Request$Builder okhttp3.Request$Builder.url(java.lang.String):0:0 -> d
     14:14:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    15:15:java.util.List okhttp3.Headers$Builder.getNamesAndValues$okhttp():0:0 -> d
-    15:15:okhttp3.Headers$Builder okhttp3.Headers.newBuilder():0 -> d
-    15:15:okhttp3.Request$Builder okhttp3.Request$Builder.headers(okhttp3.Headers):0 -> d
-    15:15:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    16:16:boolean kotlin.collections.CollectionsKt__MutableCollectionsKt.addAll(java.util.Collection,java.lang.Object[]):0:0 -> d
-    16:16:okhttp3.Headers$Builder okhttp3.Headers.newBuilder():0 -> d
-    16:16:okhttp3.Request$Builder okhttp3.Request$Builder.headers(okhttp3.Headers):0 -> d
+    15:15:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
+    16:16:okhttp3.Headers okhttp3.Headers$Companion.of(java.util.Map):0:0 -> d
     16:16:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    17:17:okhttp3.Request$Builder okhttp3.Request$Builder.headers(okhttp3.Headers):0:0 -> d
+    17:17:okhttp3.Headers$Builder okhttp3.Headers.newBuilder():0:0 -> d
+    17:17:okhttp3.Request$Builder okhttp3.Request$Builder.headers(okhttp3.Headers):0 -> d
     17:17:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    18:18:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
-    19:19:okhttp3.Request$Builder okhttp3.Request$Builder.put(okhttp3.RequestBody):0:0 -> d
+    18:18:java.util.List okhttp3.Headers$Builder.getNamesAndValues$okhttp():0:0 -> d
+    18:18:okhttp3.Headers$Builder okhttp3.Headers.newBuilder():0 -> d
+    18:18:okhttp3.Request$Builder okhttp3.Request$Builder.headers(okhttp3.Headers):0 -> d
+    18:18:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
+    19:19:boolean kotlin.collections.CollectionsKt__MutableCollectionsKt.addAll(java.util.Collection,java.lang.Object[]):0:0 -> d
+    19:19:okhttp3.Headers$Builder okhttp3.Headers.newBuilder():0 -> d
+    19:19:okhttp3.Request$Builder okhttp3.Request$Builder.headers(okhttp3.Headers):0 -> d
     19:19:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    20:20:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
-    21:21:okhttp3.Request$Builder okhttp3.Request$Builder.put(okhttp3.RequestBody):0:0 -> d
-    21:21:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    22:22:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
-    23:23:okhttp3.Request$Builder okhttp3.Request$Builder.delete(okhttp3.RequestBody):0:0 -> d
-    23:23:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    24:24:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
-    25:25:okhttp3.Request$Builder okhttp3.Request$Builder.delete(okhttp3.RequestBody):0:0 -> d
-    25:25:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    26:26:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
-    27:27:okhttp3.Request$Builder okhttp3.Request$Builder.post(okhttp3.RequestBody):0:0 -> d
-    27:27:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    28:28:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
-    29:29:okhttp3.Request$Builder okhttp3.Request$Builder.post(okhttp3.RequestBody):0:0 -> d
-    29:29:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    30:30:okhttp3.Request$Builder okhttp3.Request$Builder.get():0:0 -> d
+    20:20:okhttp3.Request$Builder okhttp3.Request$Builder.headers(okhttp3.Headers):0:0 -> d
+    20:20:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
+    21:21:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
+    22:22:okhttp3.Request$Builder okhttp3.Request$Builder.put(okhttp3.RequestBody):0:0 -> d
+    22:22:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
+    23:23:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
+    24:24:okhttp3.Request$Builder okhttp3.Request$Builder.put(okhttp3.RequestBody):0:0 -> d
+    24:24:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
+    25:25:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
+    26:26:okhttp3.Request$Builder okhttp3.Request$Builder.delete(okhttp3.RequestBody):0:0 -> d
+    26:26:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
+    27:27:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
+    28:28:okhttp3.Request$Builder okhttp3.Request$Builder.delete(okhttp3.RequestBody):0:0 -> d
+    28:28:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
+    29:29:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
+    30:30:okhttp3.Request$Builder okhttp3.Request$Builder.post(okhttp3.RequestBody):0:0 -> d
     30:30:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
     31:31:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
-    32:32:okhttp3.Call okhttp3.OkHttpClient.newCall(okhttp3.Request):0:0 -> d
+    32:32:okhttp3.Request$Builder okhttp3.Request$Builder.post(okhttp3.RequestBody):0:0 -> d
     32:32:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    33:33:mandysax.anna2.factory.ConverterFactory mandysax.anna2.Anna2.getConverterFactory$anna_release():0:0 -> d
+    33:33:okhttp3.Request$Builder okhttp3.Request$Builder.get():0:0 -> d
     33:33:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    34:34:java.lang.Class mandysax.anna2.factory.DefaultCallAdapterFactory.getGenericType(java.lang.reflect.Method):0:0 -> d
-    34:34:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
-    35:35:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
+    34:34:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
+    35:35:okhttp3.Call okhttp3.OkHttpClient.newCall(okhttp3.Request):0:0 -> d
+    35:35:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
+    36:36:mandysax.anna2.factory.ConverterFactory mandysax.anna2.Anna2.getConverterFactory$anna_release():0:0 -> d
+    36:36:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
+    37:37:java.lang.Class mandysax.anna2.factory.DefaultCallAdapterFactory.getGenericType(java.lang.reflect.Method):0:0 -> d
+    37:37:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0 -> d
+    38:38:mandysax.anna2.observable.Observable create(mandysax.anna2.Anna2,java.lang.reflect.Method,java.lang.Object[]):0:0 -> d
     1:1:void okhttp3.FormBody$Builder.<init>(java.nio.charset.Charset):0:0 -> e
     1:1:void okhttp3.FormBody$Builder.<init>(java.nio.charset.Charset,int,kotlin.jvm.internal.DefaultConstructorMarker):0 -> e
     1:1:okhttp3.FormBody formBodyBuild():0 -> e
@@ -10374,10 +10381,7 @@ okhttp3.Request$Builder -> o1.c0$a:
     1:1:boolean okhttp3.internal.http.HttpMethod.requiresRequestBody(java.lang.String):0:0 -> c
     1:1:okhttp3.Request$Builder method(java.lang.String,okhttp3.RequestBody):0 -> c
     2:2:okhttp3.Request$Builder method(java.lang.String,okhttp3.RequestBody):0:0 -> c
-    1:1:okhttp3.HttpUrl okhttp3.HttpUrl$Companion.get(java.lang.String):0:0 -> d
-    1:1:okhttp3.Request$Builder url(java.lang.String):0 -> d
-    2:2:okhttp3.Request$Builder url(java.lang.String):0:0 -> d
-    okhttp3.Request$Builder url(okhttp3.HttpUrl) -> e
+    okhttp3.Request$Builder url(okhttp3.HttpUrl) -> d
 okhttp3.RequestBody -> o1.d0:
     long contentLength() -> a
     okhttp3.MediaType contentType() -> b
@@ -16466,10 +16470,10 @@ q2.SearchFragment$$ExternalSyntheticLambda0 -> q2.a:
     5:5:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0:0 -> onEditorAction
     5:5:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
 r2.StartFragment$$ExternalSyntheticLambda0 -> r2.a:
-    android.app.AlertDialog studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$1$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.f$0 -> a
-    void studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$1$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.<init>(android.app.AlertDialog) -> <init>
-    1:1:void studio.mandysa.music.ui.start.StartFragment.onCreateDialog$lambda-5$lambda-4(android.app.AlertDialog,android.content.DialogInterface):0:0 -> onShow
-    1:1:void studio.mandysa.music.ui.start.StartFragment$$InternalSyntheticLambda$1$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.onShow(android.content.DialogInterface):0 -> onShow
+    android.app.AlertDialog studio.mandysa.music.ui.login.StartFragment$$InternalSyntheticLambda$1$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.f$0 -> a
+    void studio.mandysa.music.ui.login.StartFragment$$InternalSyntheticLambda$1$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.<init>(android.app.AlertDialog) -> <init>
+    1:1:void studio.mandysa.music.ui.login.StartFragment.onCreateDialog$lambda-5$lambda-4(android.app.AlertDialog,android.content.DialogInterface):0:0 -> onShow
+    1:1:void studio.mandysa.music.ui.login.StartFragment$$InternalSyntheticLambda$1$26a77841b737aa47bd9ef0e97d593fb67ea38b4ab77d93af6c24aaad2e25654d$1.onShow(android.content.DialogInterface):0 -> onShow
 simon.tuke.GlobalMemoryCache -> c2.a:
     android.util.LruCache cache -> a
     void add(java.lang.String,java.io.Serializable,int) -> a
@@ -18040,23 +18044,23 @@ studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1
     5:5:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     5:5:java.lang.Object invoke(java.lang.Object):0 -> c
     6:6:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.music.ui.start.StartFragment -> r2.c:
+studio.mandysa.music.ui.login.StartFragment -> r2.c:
     studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate mEvent$delegate -> k
     com.nostra13.universalimageloader.core.ImageLoader mImageLoader -> j
     kotlin.reflect.KProperty[] $$delegatedProperties -> l
     1:1:kotlin.reflect.KProperty1 kotlin.jvm.internal.Reflection.property1(kotlin.jvm.internal.PropertyReference1):0:0 -> <clinit>
     1:1:void <clinit>():0 -> <clinit>
     2:2:void <clinit>():0:0 -> <clinit>
-    1:1:studio.mandysa.music.ui.event.UserViewModel studio.mandysa.music.ui.start.StartFragment.getMEvent():0:0 -> c
+    1:1:studio.mandysa.music.ui.event.UserViewModel studio.mandysa.music.ui.login.StartFragment.getMEvent():0:0 -> c
     1:1:void onCreate(android.os.Bundle):0 -> c
     2:2:mandysax.lifecycle.livedata.LiveData studio.mandysa.music.ui.event.UserViewModel.getCookieLiveData():0:0 -> c
     2:2:void onCreate(android.os.Bundle):0 -> c
     3:3:void onCreate(android.os.Bundle):0:0 -> c
     void onDestroyView() -> e
-    1:1:studio.mandysa.music.ui.start.StartFragment$createTextChangedListener$1 studio.mandysa.music.ui.start.StartFragment.createTextChangedListener(studio.mandysa.music.databinding.FragmentStartBinding):0:0 -> o
+    1:1:studio.mandysa.music.ui.login.StartFragment$createTextChangedListener$1 studio.mandysa.music.ui.login.StartFragment.createTextChangedListener(studio.mandysa.music.databinding.FragmentStartBinding):0:0 -> o
     1:1:android.app.Dialog onCreateDialog(android.os.Bundle):0 -> o
     2:2:android.app.Dialog onCreateDialog(android.os.Bundle):0:0 -> o
-studio.mandysa.music.ui.start.StartFragment$createTextChangedListener$1 -> r2.b:
+studio.mandysa.music.ui.login.StartFragment$createTextChangedListener$1 -> r2.b:
     studio.mandysa.music.databinding.FragmentStartBinding $binding -> a
 studio.mandysa.statelayout.R$styleable -> s2.a:
     int[] StateLayout -> a

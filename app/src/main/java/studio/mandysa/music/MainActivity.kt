@@ -23,7 +23,7 @@ import studio.mandysa.music.ui.event.UserViewModel
 import studio.mandysa.music.ui.home.HomeFragment
 import studio.mandysa.music.ui.me.MeFragment
 import studio.mandysa.music.ui.search.SearchFragment
-import studio.mandysa.music.ui.start.StartFragment
+import studio.mandysa.music.ui.login.LoginFragment
 
 
 class MainActivity : FragmentActivity() {
@@ -52,7 +52,7 @@ class MainActivity : FragmentActivity() {
         setContentView(mBinding.root)
         //判断有没有登录，没有登录的话就打开登录界面
         if (mUserViewModel.getCookieLiveData().value == null)
-            StartFragment().show(fragmentPlusManager)
+            LoginFragment().show(fragmentPlusManager)
         val controllerFragment = findViewById<FragmentView>(R.id.controller_fragment)
         val playFragment = findViewById<FragmentView>(R.id.play_fragment)
         //解决playFragment点击无事件view会关闭播放界面的问题

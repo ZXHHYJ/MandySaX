@@ -49,7 +49,8 @@ interface NeteaseCloudMusicApi {
     @Post("login/cellphone")
     fun login(
         @FormData("phone") phone: String?,
-        @FormData("password") password: String?
+        @FormData("password") password: String?,
+        @Query("timestamp") timestamp: Long
     ): Observable<LoginModel>
 
     @Get("user/playlist")
@@ -59,7 +60,7 @@ interface NeteaseCloudMusicApi {
     @Path("profile")
     fun getUserInfo(
         @FormData("cookie") cookie: String?,
-        @FormData("timestamp") timestamp: Long
+        @Query("timestamp") timestamp: Long
     ): Observable<UserModel>
 
     @Get("toplist")
