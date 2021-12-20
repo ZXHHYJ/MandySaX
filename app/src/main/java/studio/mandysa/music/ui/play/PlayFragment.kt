@@ -1,6 +1,7 @@
 package studio.mandysa.music.ui.play
 
 import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,31 +16,15 @@ import com.nostra13.universalimageloader.core.assist.FailReason
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
-import mandysax.media.DefaultPlayerManager
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayBinding
+import studio.mandysa.music.logic.utils.BitmapUtil
 import studio.mandysa.music.logic.utils.bindView
+import studio.mandysa.music.logic.utils.getInstance
 import studio.mandysa.music.ui.play.playlist.PlayQueueFragment
 
 
 class PlayFragment : Fragment(), ImageLoadingListener {
-
-    companion object {
-        /**
-         * 缩放的scale
-         */
-        private const val SMALL_SCALE = 0.9f
-
-        /**
-         * 初始scale
-         */
-        private const val ONE_SCALE = 1f
-
-        /**
-         * 动画持续时长
-         */
-        private const val DURATION = 100
-    }
 
     private val mBinding: FragmentPlayBinding by bindView()
 
@@ -47,7 +32,7 @@ class PlayFragment : Fragment(), ImageLoadingListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val instance = DefaultPlayerManager.getInstance()!!
+        val instance = getInstance()
         mBinding.playingList.setOnClickListener {
             PlayQueueFragment().show(activity!!.fragmentPlusManager)
         }
@@ -73,26 +58,26 @@ class PlayFragment : Fragment(), ImageLoadingListener {
             /*
              * 播放暂停按钮icon更新
              */
-            instance.pauseLiveData().observe(viewLifecycleOwner) { playing ->
-                val scaleAnim = if (playing) ScaleAnimation(
-                    ONE_SCALE,
-                    SMALL_SCALE,
-                    ONE_SCALE,
-                    SMALL_SCALE,
-                    it.musicCoverCardView.width / 2f,
-                    it.musicCoverCardView.width / 2f
-                ) else ScaleAnimation(
-                    SMALL_SCALE,
-                    ONE_SCALE,
-                    SMALL_SCALE,
-                    ONE_SCALE,
+            instance.pauseLiveData().observe(viewLifecycleOwner) { pause ->
+                if (pause) {
+                    it.playBackground.pause()
+                } else {
+                    it.playBackground.resume()
+                }
+                val smallScale = if (pause) 0.9F else 1F
+                val oneScale = if (!pause) 0.9F else 1F
+                val scaleAnim = ScaleAnimation(
+                    oneScale,
+                    smallScale,
+                    oneScale,
+                    smallScale,
                     it.musicCoverCardView.width / 2f,
                     it.musicCoverCardView.width / 2f
                 )
-                scaleAnim.duration = DURATION.toLong()
+                scaleAnim.duration = 100
                 scaleAnim.fillAfter = true
                 it.musicCoverCardView.startAnimation(scaleAnim)
-                it.playOrPause.setImageResource(if (playing) R.drawable.ic_play else R.drawable.ic_pause)
+                it.playOrPause.setImageResource(if (pause) R.drawable.ic_play else R.drawable.ic_pause)
             }
             /**
              * 更新当前播放歌曲的信息
@@ -178,6 +163,17 @@ class PlayFragment : Fragment(), ImageLoadingListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (getInstance().pauseLiveData().value == false)
+            mBinding.playBackground.resume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mBinding.playBackground.pause()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         mImageLoader.clearMemoryCache()
@@ -198,15 +194,33 @@ class PlayFragment : Fragment(), ImageLoadingListener {
     }
 
     override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
+        var bitmap1 = loadedImage!!
+        val w: Int = bitmap1.width
+        val h: Int = bitmap1.height
+        bitmap1 = scaleBitmap(bitmap1, 150, bitmap1.height * 150 / bitmap1.width)
+        bitmap1 = BitmapUtil.doBlur(context, bitmap1, 25f, 1f)
+        bitmap1 = scaleBitmap(bitmap1, w, h)
+        bitmap1 = BitmapUtil.doBlur(context, bitmap1, 24f, 1f)
+        bitmap1 = BitmapUtil.handleImageEffect(bitmap1, 1.8f)
         val randomTransitionGenerator = RandomTransitionGenerator()
         randomTransitionGenerator.setTransitionDuration(3000)
         mBinding.playBackground.let {
-            it.setImageBitmap(loadedImage)
+            it.setImageBitmap(bitmap1)
             it.setTransitionGenerator(randomTransitionGenerator)
         }
     }
 
     override fun onLoadingCancelled(imageUri: String?, view: View?) {
+    }
+
+    private fun scaleBitmap(origin: Bitmap, newWidth: Int, newHeight: Int): Bitmap {
+        val height = origin.height
+        val width = origin.width
+        val scaleWidth = newWidth.toFloat() / width
+        val scaleHeight = newHeight.toFloat() / height
+        val matrix = Matrix()
+        matrix.postScale(scaleWidth, scaleHeight) // 使用后乘
+        return Bitmap.createBitmap(origin, 0, 0, width, height, matrix, false)
     }
 
 }
