@@ -194,18 +194,16 @@ class PlayFragment : Fragment(), ImageLoadingListener {
     }
 
     override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
-        var bitmap1 = loadedImage!!
-        val w: Int = bitmap1.width
-        val h: Int = bitmap1.height
-        bitmap1 = scaleBitmap(bitmap1, 150, bitmap1.height * 150 / bitmap1.width)
-        bitmap1 = BitmapUtil.doBlur(context, bitmap1, 25f, 1f)
-        bitmap1 = scaleBitmap(bitmap1, w, h)
-        bitmap1 = BitmapUtil.doBlur(context, bitmap1, 24f, 1f)
-        bitmap1 = BitmapUtil.handleImageEffect(bitmap1, 1.8f)
+        var blurBitmap = loadedImage!!
+        blurBitmap = scaleBitmap(blurBitmap, 150, blurBitmap.height * 150 / blurBitmap.width)
+        blurBitmap = BitmapUtil.doBlur(context, blurBitmap, 25f)
+        blurBitmap = scaleBitmap(blurBitmap, blurBitmap.width, blurBitmap.height)
+        blurBitmap = BitmapUtil.doBlur(context, blurBitmap, 24f)
+        blurBitmap = BitmapUtil.handleImageEffect(blurBitmap, 1.8f)
         val randomTransitionGenerator = RandomTransitionGenerator()
         randomTransitionGenerator.setTransitionDuration(3000)
         mBinding.playBackground.let {
-            it.setImageBitmap(bitmap1)
+            it.setImageBitmap(blurBitmap)
             it.setTransitionGenerator(randomTransitionGenerator)
         }
     }
