@@ -2,7 +2,6 @@ package studio.mandysa.music
 
 import android.app.Application
 import android.content.Intent
-import android.graphics.Bitmap
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
@@ -30,7 +29,6 @@ class MyApplication : Application() {
             .showImageOnLoading(R.color.empty_iv_bg_color)
             .cacheInMemory(true)
             .cacheOnDisk(true)
-            .bitmapConfig(Bitmap.Config.RGB_565)
             .build()
 
         //这样自定义设置后就可以管理二级缓存和三级缓存了

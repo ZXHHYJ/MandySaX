@@ -19,7 +19,6 @@ import mandysax.lifecycle.livedata.Observer
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayBinding
 import studio.mandysa.music.logic.utils.BitmapUtil
-import studio.mandysa.music.logic.utils.FastBlurUtil
 import studio.mandysa.music.logic.utils.bindView
 import studio.mandysa.music.logic.utils.getInstance
 import studio.mandysa.music.ui.play.playlist.PlayQueueFragment
@@ -197,9 +196,9 @@ class PlayFragment : Fragment(), ImageLoadingListener {
     override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
         var blurBitmap = loadedImage!!
         blurBitmap = scaleBitmap(blurBitmap, 150, blurBitmap.height * 150 / blurBitmap.width)
-        blurBitmap = FastBlurUtil.doBlur(blurBitmap, 25, false)
+        blurBitmap = BitmapUtil.doBlur(context, blurBitmap, 25f)
         blurBitmap = scaleBitmap(blurBitmap, blurBitmap.width, blurBitmap.height)
-        blurBitmap = FastBlurUtil.doBlur(blurBitmap, 24, false)
+        blurBitmap = BitmapUtil.doBlur(context, blurBitmap, 24f)
         blurBitmap = BitmapUtil.handleImageEffect(blurBitmap, 1.8f)
         val randomTransitionGenerator = RandomTransitionGenerator()
         randomTransitionGenerator.setTransitionDuration(3000)
