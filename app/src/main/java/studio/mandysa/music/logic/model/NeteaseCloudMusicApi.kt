@@ -46,6 +46,13 @@ interface NeteaseCloudMusicApi {
     @Path("playlist")
     fun getSongListInfo(@Query("id") id: String): Observable<PlaylistInfoModel>
 
+    @Get("playlist/detail")
+    @Path("playlist")
+    fun getSongListInfo(
+        @Query("cookie") cookie: String,
+        @Query("id") id: String
+    ): Observable<PlaylistInfoModel>
+
     @Post("login/cellphone")
     fun login(
         @FormData("phone") phone: String?,
@@ -68,5 +75,14 @@ interface NeteaseCloudMusicApi {
     fun getToplist(): Observable<List<ToplistModel>>
 
     @Get("like")
-    fun likeMusic(cookie: String, id: String, like: Boolean): Observable<ResponseBody>
+    fun likeMusic(
+        @Query("cookie") cookie: String,
+        @Query("id") id: String,
+        @Query("like") like: Boolean
+    ): Observable<ResponseBody>
+
+    @Get("subscribe")
+    fun subscribe(@Query("t") t: Int, @Query("id") playlistId: String): Observable<ResponseBody>
+
+
 }

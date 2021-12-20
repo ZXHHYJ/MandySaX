@@ -180,7 +180,7 @@ class DefaultPlayerManager(
         }
 
         @JvmStatic
-        fun init(context: Context?) {
+        fun init(context: Context) {
             instance = DefaultPlayerManager(context)
         }
 

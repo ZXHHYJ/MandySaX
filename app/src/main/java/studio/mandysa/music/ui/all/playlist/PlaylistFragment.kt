@@ -18,7 +18,7 @@ import studio.mandysa.jiuwo.utils.linear
 import studio.mandysa.jiuwo.utils.setup
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlaylistBinding
-import studio.mandysa.music.databinding.ItemPlaylistInfoHeadBinding
+import studio.mandysa.music.databinding.ItemPlaylistHeadBinding
 import studio.mandysa.music.databinding.ItemSongBinding
 import studio.mandysa.music.logic.model.MusicModel
 import studio.mandysa.music.logic.model.PlaylistInfoModel
@@ -61,16 +61,16 @@ class PlaylistFragment(private val id: String) : Fragment() {
             }
         }
         mBinding.recycler.linear().setup {
-            addType<PlaylistInfoModel>(R.layout.item_playlist_info_head)
+            addType<PlaylistInfoModel>(R.layout.item_playlist_head)
             addType<MusicModel>(R.layout.item_song)
             onBind {
                 when (itemViewType) {
-                    R.layout.item_playlist_info_head -> {
+                    R.layout.item_playlist_head -> {
                         val model = getModel<PlaylistInfoModel>()
-                        ItemPlaylistInfoHeadBinding.bind(itemView).apply {
+                        ItemPlaylistHeadBinding.bind(itemView).apply {
                             mImageLoader.displayImage(model.coverImgUrl, cover)
-                            title.text = model.name
-                            todo.text = model.description
+                            playlistTitle.text = model.name
+                            playlistInfo.text = model.description
                         }
                     }
                     R.layout.item_song -> {

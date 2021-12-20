@@ -1,5 +1,6 @@
 package studio.mandysa.music.ui.me
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,7 @@ import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentMeBinding
 import studio.mandysa.music.databinding.ItemMePlaylistBinding
 import studio.mandysa.music.databinding.ItemMyPlaylistBinding
-import studio.mandysa.music.databinding.ItemUserBinding
+import studio.mandysa.music.databinding.ItemUserHeadBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.UserModel
 import studio.mandysa.music.logic.model.UserPlaylistModel
@@ -28,6 +29,7 @@ import studio.mandysa.music.logic.utils.create
 import studio.mandysa.music.logic.utils.set
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.event.UserViewModel
+import studio.mandysa.music.ui.me.mylike.MyLikeFragment
 
 class MeFragment : Fragment() {
 
@@ -37,17 +39,18 @@ class MeFragment : Fragment() {
 
     private val mImageLoader = ImageLoader.getInstance()
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.recycler.linear().setup {
-            addType<UserModel>(R.layout.item_user)
+            addType<UserModel>(R.layout.item_user_head)
             addType<UserPlaylistModel>(R.layout.item_me_playlist)
             val snapHelper = PagerSnapHelper()
             onBind {
                 when (itemViewType) {
-                    R.layout.item_user -> {
+                    R.layout.item_user_head -> {
                         val model = getModel<UserModel>()
-                        ItemUserBinding.bind(itemView).apply {
+                        ItemUserHeadBinding.bind(itemView).apply {
                             mImageLoader.displayImage(model.avatarUrl, ivAvatar)
                             tvNickname.text = model.nickname
                         }
@@ -65,12 +68,15 @@ class MeFragment : Fragment() {
                                             playlistCover
                                         )
                                         playlistName.text = model.name
+                                        authorName.text = "by ${model.nickname}"
                                     }
                                     itemView.setOnClickListener {
                                         Navigation.findViewNavController(it)
                                             .navigate(
                                                 R.style.AppFragmentAnimStyle,
-                                                PlaylistFragment(model.id!!)
+                                                if (modelPosition == 0) MyLikeFragment(model.id!!) else PlaylistFragment(
+                                                    model.id!!
+                                                )
                                             )
                                     }
                                 }

@@ -17,13 +17,14 @@ import mandysax.media.DefaultPlayerManager
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.bottomnavigationbar.BottomNavigationItem
 import studio.mandysa.music.databinding.ActivityMainBinding
+import studio.mandysa.music.databinding.FragmentPlayBinding
 import studio.mandysa.music.logic.utils.inflate
 import studio.mandysa.music.logic.utils.viewModels
 import studio.mandysa.music.ui.event.UserViewModel
 import studio.mandysa.music.ui.home.HomeFragment
+import studio.mandysa.music.ui.login.LoginFragment
 import studio.mandysa.music.ui.me.MeFragment
 import studio.mandysa.music.ui.search.SearchFragment
-import studio.mandysa.music.ui.login.LoginFragment
 
 
 class MainActivity : FragmentActivity() {
@@ -119,8 +120,10 @@ class MainActivity : FragmentActivity() {
                     0,
                     navigationBarSize
                 )
+                mainSlidingView.isTouchEnabled = false
                 DefaultPlayerManager.getInstance()!!.changeMusicLiveData().lazy(this@MainActivity) {
                     mBinding.apply {
+                        mainSlidingView.isTouchEnabled = true
                         bottomNavigationBar.post {
                             mainSlidingView.apply {
                                 panelHeight =

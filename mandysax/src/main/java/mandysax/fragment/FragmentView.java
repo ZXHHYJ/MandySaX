@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.widget.FrameLayout;
 
 import mandysax.core.R;
@@ -28,6 +30,7 @@ public class FragmentView extends FrameLayout {
         mName = typedArray.getString(R.styleable.Fragment_android_name);
         mTag = typedArray.getString(R.styleable.Fragment_android_tag);
         typedArray.recycle();
+        setHierarchyChangeListener();
     }
 
     public FragmentView(Context context) {
@@ -37,6 +40,30 @@ public class FragmentView extends FrameLayout {
         }
         mName = null;
         mTag = null;
+        setHierarchyChangeListener();
+    }
+
+    private void setHierarchyChangeListener(){
+        setOnHierarchyChangeListener(new OnHierarchyChangeListener() {
+            @Override
+            public void onChildViewAdded(View parent, View child) {
+                requestApplyInsets();
+            }
+
+            @Override
+            public void onChildViewRemoved(View parent, View child) {
+
+            }
+        });
+    }
+
+    @Override
+    public WindowInsets onApplyWindowInsets(WindowInsets insets) {
+        int childCount = getChildCount();
+        for (int index = 0; index < childCount; index++) {
+            getChildAt(index).dispatchApplyWindowInsets(insets);
+        }
+        return insets;
     }
 
     @Override

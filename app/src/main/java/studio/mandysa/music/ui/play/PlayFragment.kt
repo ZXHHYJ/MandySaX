@@ -1,12 +1,18 @@
 package studio.mandysa.music.ui.play
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.ScaleAnimation
 import android.widget.SeekBar
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.flaviofaria.kenburnsview.RandomTransitionGenerator
 import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.assist.FailReason
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
@@ -16,7 +22,7 @@ import studio.mandysa.music.logic.utils.bindView
 import studio.mandysa.music.ui.play.playlist.PlayQueueFragment
 
 
-class PlayFragment : Fragment() {
+class PlayFragment : Fragment(), ImageLoadingListener {
 
     companion object {
         /**
@@ -47,6 +53,15 @@ class PlayFragment : Fragment() {
         }
         mBinding.like.setOnClickListener {
 
+        }
+        ViewCompat.setOnApplyWindowInsetsListener(
+            view
+        ) { _, insets ->
+            val startBarSize = insets!!.getInsets(WindowInsetsCompat.Type.statusBars()).top
+            val navigationBarSize =
+                insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
+            mBinding.playLayout.setPadding(0, startBarSize, 0, navigationBarSize)
+            insets
         }
         mBinding.let { it ->
             /**
@@ -85,7 +100,7 @@ class PlayFragment : Fragment() {
             instance.changeMusicLiveData().observe(viewLifecycleOwner) { model ->
                 it.songName.text = model.title
                 it.singerName.text = model.artist[0].name
-                mImageLoader.displayImage(model.coverUrl, it.musicCover)
+                mImageLoader.displayImage(model.coverUrl, it.musicCover, this)
             }
             /**
              * 更新播放进度
@@ -174,6 +189,24 @@ class PlayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return mBinding.root
+    }
+
+    override fun onLoadingStarted(imageUri: String?, view: View?) {
+    }
+
+    override fun onLoadingFailed(imageUri: String?, view: View?, failReason: FailReason?) {
+    }
+
+    override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
+        val randomTransitionGenerator = RandomTransitionGenerator()
+        randomTransitionGenerator.setTransitionDuration(3000)
+        mBinding.playBackground.let {
+            it.setImageBitmap(loadedImage)
+            it.setTransitionGenerator(randomTransitionGenerator)
+        }
+    }
+
+    override fun onLoadingCancelled(imageUri: String?, view: View?) {
     }
 
 }

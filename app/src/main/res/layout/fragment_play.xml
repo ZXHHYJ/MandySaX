@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <FrameLayout
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/play_background"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0">
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/play_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/music_cover_card_view"
@@ -33,14 +38,6 @@
             </studio.mandysa.music.ui.view.SquareLayout>
 
         </androidx.cardview.widget.CardView>
-
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0"
-        android:orientation="vertical">
 
         <TextView
             android:id="@+id/song_name"
@@ -156,4 +153,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

@@ -1,4 +1,6 @@
 package studio.mandysa.music.ui.me.myplaylist
 
-class MyPlaylistFragment {
+import mandysax.fragment.Fragment
+
+class MyPlaylistFragment : Fragment() {
 }

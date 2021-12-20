@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        app:cardCornerRadius="70dp">
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="50dp">
 
         <ImageView
             android:id="@+id/iv_avatar"
@@ -24,7 +24,6 @@
         android:id="@+id/tv_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold" />

@@ -17,8 +17,8 @@ import mandysax.navigation.Navigation
 import studio.mandysa.jiuwo.utils.*
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentHomeBinding
+import studio.mandysa.music.databinding.ItemHomeHeadBinding
 import studio.mandysa.music.databinding.ItemPlaylistBinding
-import studio.mandysa.music.databinding.ItemPlaylistHeadBinding
 import studio.mandysa.music.databinding.ItemSongBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.NewSongModel
@@ -47,13 +47,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mBinding.apply {
             recycler.linear().setup {
-                addType<PlaylistModel>(R.layout.item_playlist_head)
+                addType<PlaylistModel>(R.layout.item_home_head)
                 addType<NewSongModel>(R.layout.item_song)
                 val snapHelper = LinearSnapHelper()
                 onBind {
                     when (itemViewType) {
-                        R.layout.item_playlist_head -> {
-                            ItemPlaylistHeadBinding.bind(itemView).playlistList.apply {
+                        R.layout.item_home_head -> {
+                            ItemHomeHeadBinding.bind(itemView).playlistList.apply {
                                 snapHelper.attachToRecyclerView(this)
                                 addItemDecoration(ThreePointsDecoration())
                                 linear(orientation = RecyclerView.HORIZONTAL).setup {
