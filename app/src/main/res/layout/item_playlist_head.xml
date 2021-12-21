@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
-                android:textColor="@color/fragment_play_widget_color"
+                android:textColor="@color/tv_color_title"
                 android:textSize="18sp" />
 
         </LinearLayout>

@@ -14,6 +14,7 @@
         android:id="@+id/play_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
@@ -46,7 +47,7 @@
             android:layout_marginHorizontal="35dp"
             android:maxLines="1"
             android:text="@string/test"
-            android:textColor="@color/fragment_play_widget_color"
+            android:textColor="@android:color/white"
             android:textSize="19sp" />
 
         <TextView
@@ -57,6 +58,7 @@
             android:layout_marginTop="7dp"
             android:maxLines="1"
             android:text="@string/test"
+            android:textColor="@color/translucent_white"
             android:textSize="16sp" />
 
         <SeekBar
@@ -67,8 +69,9 @@
             android:layout_marginTop="10dp"
             android:background="@null"
             android:duplicateParentState="true"
-            android:progressTint="@color/fragment_play_widget_color"
-            android:thumbTint="@color/fragment_play_widget_color" />
+            android:progressBackgroundTint="@color/translucent_white"
+            android:progressTint="@android:color/white"
+            android:thumbTint="@android:color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,7 +87,7 @@
                 android:layout_marginEnd="30dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_skip_previous"
-                android:tint="@color/fragment_play_widget_color"
+                android:tint="@android:color/white"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -92,7 +95,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:tint="@color/fragment_play_widget_color"
+                android:tint="@android:color/white"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -102,7 +105,7 @@
                 android:layout_marginStart="30dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_skip_next"
-                android:tint="@color/fragment_play_widget_color"
+                android:tint="@android:color/white"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
 
@@ -114,8 +117,9 @@
             android:layout_marginTop="10dp"
             android:background="@null"
             android:duplicateParentState="true"
-            android:progressTint="@color/fragment_play_widget_color"
-            android:thumbTint="@color/fragment_play_widget_color" />
+            android:progressBackgroundTint="@color/translucent_white"
+            android:progressTint="@android:color/white"
+            android:thumbTint="@android:color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,7 +136,7 @@
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
                 android:src="@drawable/ic_round_favorite_24"
-                android:tint="@color/tv_color_light"
+                android:tint="@android:color/white"
                 tools:ignore="ContentDescription" />
 
             <View
@@ -147,7 +151,7 @@
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
                 android:src="@drawable/ic_round_format_list_bulleted_24"
-                android:tint="@color/tv_color_light"
+                android:tint="@android:color/white"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
 

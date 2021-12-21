@@ -1,7 +1,6 @@
 package studio.mandysa.music.ui.play
 
 import android.graphics.Bitmap
-import android.graphics.Matrix
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -91,11 +90,20 @@ class PlayFragment : Fragment(), ImageLoadingListener {
              * 更新播放进度
              */
             instance.playingMusicDurationLiveData()
-                .observe(viewLifecycleOwner) { duration ->
+                .observe(requireActivity()) { duration ->
                     it.playbackSeekbar.max = duration
                 }
             instance.playingMusicProgressLiveData()
-                .observe(viewLifecycleOwner, musicProObs)
+                .observe(requireActivity(), musicProObs)
+            /**
+             * 背景模糊动画速度
+             */
+            it.playBackground.setTransitionGenerator(RandomTransitionGenerator().also {
+                it.setTransitionDuration(3000)
+            })
+            /**
+             * 播放进度条
+             */
             it.playbackSeekbar.setOnSeekBarChangeListener(object :
                 SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
@@ -111,24 +119,36 @@ class PlayFragment : Fragment(), ImageLoadingListener {
                         it.seekTo(p0.progress)
                         it.play()
                         it.playingMusicProgressLiveData()
-                            .observe(viewLifecycleOwner, musicProObs)
+                            .observe(requireActivity(), musicProObs)
                     }
                 }
 
             })
+            /**
+             * 上一曲
+             */
             it.playSkipPrevious.setOnClickListener {
                 instance.skipToPrevious()
             }
+            /**
+             * 播放暂停
+             */
             it.playOrPause.setOnClickListener {
-                instance.apply {
-                    if (pauseLiveData().value == true)
-                        play()
-                    else pause()
+                instance.let {
+                    if (it.pauseLiveData().value == true)
+                        it.play()
+                    else it.pause()
                 }
             }
+            /**
+             * 下一曲
+             */
             it.playSkipNext.setOnClickListener {
                 instance.skipToNext()
             }
+            /**
+             * 音量条
+             */
             mBinding.volumeSeekbar.let {
                 val volumeChangeHelper = VolumeChangeHelper(context)
                 volumeChangeHelper.registerVolumeChangeListener(object :
@@ -194,31 +214,12 @@ class PlayFragment : Fragment(), ImageLoadingListener {
     }
 
     override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
-        var blurBitmap = loadedImage!!
-        blurBitmap = scaleBitmap(blurBitmap, 150, blurBitmap.height * 150 / blurBitmap.width)
-        blurBitmap = BitmapUtil.doBlur(context, blurBitmap, 25f)
-        blurBitmap = scaleBitmap(blurBitmap, blurBitmap.width, blurBitmap.height)
-        blurBitmap = BitmapUtil.doBlur(context, blurBitmap, 24f)
-        blurBitmap = BitmapUtil.handleImageEffect(blurBitmap, 1.8f)
-        val randomTransitionGenerator = RandomTransitionGenerator()
-        randomTransitionGenerator.setTransitionDuration(3000)
-        mBinding.playBackground.let {
-            it.setImageBitmap(blurBitmap)
-            it.setTransitionGenerator(randomTransitionGenerator)
-        }
+        val blurBitmap = BitmapUtil.handleImageBlur(context, loadedImage!!)
+        mBinding.playBackground.setImageBitmap(blurBitmap)
     }
 
     override fun onLoadingCancelled(imageUri: String?, view: View?) {
     }
 
-    private fun scaleBitmap(origin: Bitmap, newWidth: Int, newHeight: Int): Bitmap {
-        val height = origin.height
-        val width = origin.width
-        val scaleWidth = newWidth.toFloat() / width
-        val scaleHeight = newHeight.toFloat() / height
-        val matrix = Matrix()
-        matrix.postScale(scaleWidth, scaleHeight) // 使用后乘
-        return Bitmap.createBitmap(origin, 0, 0, width, height, matrix, false)
-    }
 
 }
