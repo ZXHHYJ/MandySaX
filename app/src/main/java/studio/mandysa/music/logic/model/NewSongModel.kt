@@ -11,32 +11,32 @@ import studio.mandysa.music.logic.network.Url
  */
 class NewSongModel : DefaultMusic<DefaultArtist>() {
     @Value("id")
-    private var id: String? = null
+    private val id = ""
 
     @Value("name")
-    private var name: String? = null
+    private val name = ""
 
     @Value("picUrl")
-    private var picUrl: String? = null
+    private val picUrl = ""
 
     @Value("name")
     @Path("song/artists")
-    private var artistsName: String? = null
+    private val artistsName = ""
 
     override fun getArtist(): List<DefaultArtist> {
-        return listOf(DefaultArtist(artistsName!!))
+        return listOf(DefaultArtist(artistsName))
     }
 
     override fun getId(): String {
-        return id!!
+        return id
     }
 
     override fun getCoverUrl(): String {
-        return picUrl!!
+        return picUrl
     }
 
     override fun getTitle(): String {
-        return name!!
+        return name
     }
 
     override fun getUrl(): String {

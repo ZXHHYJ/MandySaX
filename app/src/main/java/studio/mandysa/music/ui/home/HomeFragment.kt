@@ -23,6 +23,7 @@ import studio.mandysa.music.databinding.ItemSongBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.NewSongModel
 import studio.mandysa.music.logic.model.PlaylistModel
+import studio.mandysa.music.logic.model.RecommendedSong
 import studio.mandysa.music.logic.utils.*
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.event.UserViewModel
@@ -135,7 +136,17 @@ class HomeFragment : Fragment() {
                                 }
 
                             })
-                        recommendedSong.set(
+                        getRecommendedSong(it).set(viewLifecycleOwner.lifecycle,object :Callback<List<RecommendedSong>>{
+                            override fun onFailure(code: Int) {
+
+                            }
+
+                            override fun onResponse(t: List<RecommendedSong>?) {
+                                println(t)
+                            }
+
+                        })
+                        getRecommendedNewSong().set(
                             viewLifecycleOwner.lifecycle,
                             object : Callback<List<NewSongModel>> {
                                 override fun onResponse(t: List<NewSongModel>?) {
