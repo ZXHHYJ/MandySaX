@@ -11,7 +11,7 @@ import android.media.session.PlaybackState
 import studio.mandysa.music.MainActivity
 import studio.mandysa.music.R
 
-class PlayNotification(private val mediaPlayService: MediaPlayService) : Notification.Builder(
+class MediaNotification(private val mediaPlayService: MediaPlayService) : Notification.Builder(
     mediaPlayService, mediaPlayService.getString(R.string.CHANNEL_ID)
 ) {
 
@@ -50,7 +50,7 @@ class PlayNotification(private val mediaPlayService: MediaPlayService) : Notific
     )
     private var mIsPlaying = false
 
-    fun setAction(isPlaying: Boolean): PlayNotification {
+    fun setAction(isPlaying: Boolean): MediaNotification {
         mIsPlaying = isPlaying
         setActions(mPrevAction, if (!isPlaying) mPlayAction else mPauseAction, mNextAction)
         return this
@@ -81,6 +81,6 @@ class PlayNotification(private val mediaPlayService: MediaPlayService) : Notific
             MediaStyle().setShowActionsInCompactView(0, 1, 2)
                 .setMediaSession(mediaPlayService.getSessionToken())
         setCategory(Notification.CATEGORY_SERVICE)
-        setSmallIcon(R.drawable.ic_round_search_24)
+        setSmallIcon(R.drawable.ic_round_music_note_24)
     }
 }

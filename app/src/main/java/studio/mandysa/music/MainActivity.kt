@@ -1,5 +1,6 @@
 package studio.mandysa.music
 
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
@@ -17,7 +18,6 @@ import mandysax.media.DefaultPlayerManager
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.bottomnavigationbar.BottomNavigationItem
 import studio.mandysa.music.databinding.ActivityMainBinding
-import studio.mandysa.music.databinding.FragmentPlayBinding
 import studio.mandysa.music.logic.utils.inflate
 import studio.mandysa.music.logic.utils.viewModels
 import studio.mandysa.music.ui.event.UserViewModel
@@ -146,9 +146,15 @@ class MainActivity : FragmentActivity() {
                                                     y + bottomNavLayout.height * slideOffset * 8
                                                 bottomNavLayout.y = by
                                             }
+
                                             val alpha = slideOffset * 12
-                                            controllerFragment.alpha = 1 - alpha
-                                            playFragment.alpha = alpha
+                                            ObjectAnimator.ofFloat(playFragment, "alpha", alpha)
+                                                .setDuration(0).start()
+                                            ObjectAnimator.ofFloat(
+                                                controllerFragment,
+                                                "alpha",
+                                                1 - alpha
+                                            ).setDuration(0).start()
                                         }
 
                                         override fun onPanelStateChanged(

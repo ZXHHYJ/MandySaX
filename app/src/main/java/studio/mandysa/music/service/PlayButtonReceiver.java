@@ -9,7 +9,10 @@ import android.media.session.PlaybackState;
 
 import androidx.annotation.DrawableRes;
 
-public class PlayButtonReceiver {
+/**
+ * @author ZXHHYJ
+ */
+public final class PlayButtonReceiver {
 
     public final static String PLAY_BACK_STATE = "pbs";
 

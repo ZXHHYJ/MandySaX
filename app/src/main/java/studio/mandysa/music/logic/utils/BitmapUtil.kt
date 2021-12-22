@@ -20,8 +20,9 @@ object BitmapUtil {
             image,
             context.getColor(R.color.translucent_black)
         ) else image
+        val w = 150
         blurBitmap =
-            scaleBitmap(blurBitmap, 150, blurBitmap.height * 150 / blurBitmap.width)
+            scaleBitmap(blurBitmap, w, blurBitmap.height * w / blurBitmap.width)
         blurBitmap = doBlur(context, blurBitmap, 25f)
         blurBitmap = scaleBitmap(blurBitmap, blurBitmap.width, blurBitmap.height)
         blurBitmap = doBlur(context, blurBitmap, 24f)
@@ -35,11 +36,9 @@ object BitmapUtil {
         imageMatrix.setScale(0.98F, 1F, 0.98F, 1F)
         val paint = Paint()
         paint.colorFilter = ColorMatrixColorFilter(imageMatrix)
-        val bitmap = Bitmap.createBitmap(bm.width, bm.height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
+        val canvas = Canvas(bm)
         canvas.drawBitmap(bm, 0f, 0f, paint)
-        bm.recycle()
-        return bitmap
+        return bm
     }
 
     private fun doBlur(context: Context, image: Bitmap, radius: Float): Bitmap {

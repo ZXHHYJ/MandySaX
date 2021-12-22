@@ -44,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
+                android:text="@string/test"
                 android:textColor="@color/tv_color_title"
                 android:textSize="18sp" />
 
@@ -55,7 +56,9 @@
         android:id="@+id/playlist_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/default_margin" />
+        android:layout_marginVertical="@dimen/default_margin"
+        android:text="@string/test"
+        android:textColor="@color/tv_color_light" />
 
     <View
         android:layout_width="match_parent"

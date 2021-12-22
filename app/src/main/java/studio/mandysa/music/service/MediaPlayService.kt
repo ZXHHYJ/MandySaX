@@ -119,7 +119,7 @@ class MediaPlayService : Service() {
         }
     }
 
-    private var mMediaNotification: PlayNotification? = null
+    private var mMediaNotification: MediaNotification? = null
 
     private var mReceiver: OnPlayStateReceiver? = null
 
@@ -144,7 +144,7 @@ class MediaPlayService : Service() {
             })
         }
         registerBroadcast()
-        mMediaNotification = PlayNotification(this).also {
+        mMediaNotification = MediaNotification(this).also {
             it.build()
         }
         init()

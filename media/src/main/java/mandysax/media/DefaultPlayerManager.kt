@@ -102,7 +102,7 @@ class DefaultPlayerManager(
 
     private fun updateIndex(index: Int) {
         if (!(index >= 0 && mPlayList.value != null && index <= mPlayList.value!!.size - 1)) {
-            //避免数组越界
+            pause()
             return
         }
         mIndex.value = index
@@ -136,9 +136,6 @@ class DefaultPlayerManager(
     }
 
     override fun pause() {
-        if (!mMediaPlayer.isPlaying) {
-            return
-        }
         mTimer?.cancel()
         mTimer = null
         if (mPause.value != true)
@@ -159,7 +156,9 @@ class DefaultPlayerManager(
             skipToNext()
             false
         }
-        mMediaPlayer.setOnCompletionListener { skipToNext() }
+        mMediaPlayer.setOnCompletionListener {
+            skipToNext()
+        }
         try {
             mMediaPlayer.setDataSource(mContext!!, Uri.parse(musicModel.url))
             mMediaPlayer.prepareAsync()
