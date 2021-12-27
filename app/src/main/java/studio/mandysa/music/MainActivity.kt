@@ -146,7 +146,7 @@ class MainActivity : FragmentActivity() {
                                                 bottomNavLayout.y = by
                                             }
                                             val alpha = slideOffset * 12
-                                            playFragmentBackground.alpha = 1 - alpha
+                                            playFragment.alpha = alpha
                                             controllerFragment.alpha = 1 - alpha
                                         }
 

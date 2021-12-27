@@ -117,19 +117,4 @@ class PlayFragment : Fragment() {
         return mBinding.root
     }
 
-    /* override fun onLoadingStarted(imageUri: String?, view: View?) {
-     }
-
-     override fun onLoadingFailed(imageUri: String?, view: View?, failReason: FailReason?) {
-     }
-
-     override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
-         val blurBitmap = BitmapUtil.handleImageBlur(context, loadedImage!!)
-         mBinding.playBackground.setImageBitmap(blurBitmap)
-     }
-
-     override fun onLoadingCancelled(imageUri: String?, view: View?) {
-     }
- */
-
 }

@@ -34,10 +34,12 @@ public class FragmentPage extends mandysax.fragment.FragmentView {
 
     public FragmentPage(Context context) {
         super(context);
+        setOnHierarchyChangeListener(null);
     }
 
     public FragmentPage(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setOnHierarchyChangeListener(null);
     }
 
     public void setPosition(int position) {

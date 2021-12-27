@@ -27,13 +27,8 @@
                 android:name="studio.mandysa.music.ui.play.PlayFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:alpha="0"
                 tools:ignore="Instantiatable" />
-
-            <FrameLayout
-                android:id="@+id/play_fragment_background"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white" />
 
             <fragment
                 android:id="@+id/controller_fragment"

@@ -43,7 +43,10 @@ public class LiveData<T> {
                 }
             }
         }
-        mHandler.post(() -> setValue(value));
+        mHandler.post(() -> {
+            mValue = value;
+            start();
+        });
     }
 
     void setValue(T value) {
