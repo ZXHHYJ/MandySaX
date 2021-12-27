@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
@@ -27,8 +26,6 @@ class PlayQueueFragment : Fragment() {
 
     private val mBinding: FragmentPlayQueueBinding by bindView()
 
-    private val mImageLoader = ImageLoader.getInstance()
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.recycler.linear().setup {
@@ -40,7 +37,7 @@ class PlayQueueFragment : Fragment() {
                 ItemSongBinding.bind(itemView).apply {
                     songName.text = model.title
                     songSingerName.text = model.artist[0].name
-                    mImageLoader.displayImage(model.coverUrl, songCover)
+                    songCover.setImageURI(model.coverUrl)
                     itemView.setOnClickListener {
                         getInstance().apply {
                             loadAlbum(
@@ -78,11 +75,6 @@ class PlayQueueFragment : Fragment() {
         getInstance().changePlayListLiveData().lazy(this) {
             mBinding.recycler.recyclerAdapter.models = it
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mImageLoader.clearMemoryCache()
     }
 
     override fun onCreateView(

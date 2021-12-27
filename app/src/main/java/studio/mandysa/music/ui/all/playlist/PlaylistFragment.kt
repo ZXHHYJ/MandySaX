@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
@@ -29,8 +28,6 @@ class PlaylistFragment(private val id: String) : Fragment() {
     private val mBinding: FragmentPlaylistBinding by bindView()
 
     private val mViewModel: PlaylistViewModel by viewModels()
-
-    private val mImageLoader = ImageLoader.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,7 +65,7 @@ class PlaylistFragment(private val id: String) : Fragment() {
                     R.layout.item_playlist_head -> {
                         val model = getModel<PlaylistInfoModel>()
                         ItemPlaylistHeadBinding.bind(itemView).apply {
-                            mImageLoader.displayImage(model.coverImgUrl, cover)
+                            cover.setImageURI(model.coverImgUrl)
                             playlistTitle.text = model.name
                             playlistInfo.text = model.description
                         }
@@ -78,7 +75,7 @@ class PlaylistFragment(private val id: String) : Fragment() {
                         ItemSongBinding.bind(itemView).apply {
                             songName.text = model.title
                             songSingerName.text = model.artist[0].name
-                            mImageLoader.displayImage(model.coverUrl, songCover)
+                            songCover.setImageURI(model.coverUrl)
                             itemView.setOnClickListener {
                                 getInstance().apply {
                                     loadAlbum(
@@ -126,11 +123,6 @@ class PlaylistFragment(private val id: String) : Fragment() {
                 }
             }
         })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mImageLoader.clearMemoryCache()
     }
 
 }

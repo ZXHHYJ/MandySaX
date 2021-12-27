@@ -39,7 +39,7 @@
     </style>
 
     <style name="ImageViewStyle">
-
+        <item name="placeholderImage">@color/empty_iv_bg_color</item>
     </style>
 
     <style name="TransparentDialog" parent="@android:style/Theme.Dialog">

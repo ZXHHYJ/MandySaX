@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.ViewGroup
 import android.view.WindowManager
-import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.fragment.DialogFragment
 import mandysax.lifecycle.LifecycleObserver
 import studio.mandysa.music.R
@@ -15,10 +14,7 @@ import studio.mandysa.music.databinding.FragmentLoginBinding
 import studio.mandysa.music.logic.utils.activityViewModels
 import studio.mandysa.music.ui.event.UserViewModel
 
-
 class LoginFragment : DialogFragment(), LifecycleObserver {
-
-    private val mImageLoader = ImageLoader.getInstance()
 
     private val mEvent: UserViewModel by activityViewModels()
 
@@ -89,8 +85,4 @@ class LoginFragment : DialogFragment(), LifecycleObserver {
 
     }
 
-    override fun onDestroyView() {
-        mImageLoader.clearMemoryCache()
-        super.onDestroyView()
-    }
 }

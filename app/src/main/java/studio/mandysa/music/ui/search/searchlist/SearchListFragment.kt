@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
@@ -31,8 +30,6 @@ import studio.mandysa.music.ui.search.SearchViewModel
 class SearchListFragment : Fragment() {
 
     private val mBinding: FragmentSearchListBinding by bindView()
-
-    private val mImageLoader = ImageLoader.getInstance()
 
     private val mViewModel: SearchViewModel by activityViewModels()
 
@@ -82,7 +79,7 @@ class SearchListFragment : Fragment() {
                 onBind {
                     ItemSongBinding.bind(itemView).run {
                         val model = getModel<MusicModel>()
-                        mImageLoader.displayImage(model.coverUrl, songCover)
+                        songCover.setImageURI(model.coverUrl)
                         songName.text = model.title
                         songSingerName.text = model.artist[0].name
                         songName.markByColor(mViewModel.searchContentLiveData.value)
@@ -150,8 +147,4 @@ class SearchListFragment : Fragment() {
             })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mImageLoader.clearMemoryCache()
-    }
 }

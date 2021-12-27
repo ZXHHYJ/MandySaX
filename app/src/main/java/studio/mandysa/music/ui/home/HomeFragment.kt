@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
@@ -33,8 +32,6 @@ class HomeFragment : Fragment() {
 
     private val mBinding: FragmentHomeBinding by bindView()
 
-    private val mImageLoader = ImageLoader.getInstance()
-
     private val mEvent: UserViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -49,69 +46,10 @@ class HomeFragment : Fragment() {
         mBinding.apply {
             recycler.linear().setup {
                 addType<PlaylistModel>(R.layout.item_recommended_playlist)
-                addType<NewSongModel>(R.layout.item_song)
-                addType<RecommendedSongs>(R.layout.item_recommended_song)
+                addType<RecommendedSongs.RecommendedSong>(R.layout.item_song)
                 val snapHelper = LinearSnapHelper()
-                val pagerSnapHelper = PagerSnapHelper()
                 onBind {
                     when (itemViewType) {
-                        R.layout.item_recommended_song -> {
-                            ItemRecommendedSongBinding.bind(itemView).apply {
-                                pagerSnapHelper.attachToRecyclerView(recycler)
-                                recycler.staggered(3, orientation = RecyclerView.HORIZONTAL).setup {
-                                    addType<RecommendedSongs.RecommendedSong>(R.layout.item_song)
-                                    onBind {
-                                        val model = getModel<RecommendedSongs.RecommendedSong>()
-                                        ItemSongBinding.bind(itemView).apply {
-                                            songName.text = model.title
-                                            songSingerName.text = model.artist[0].name
-                                            mImageLoader.displayImage(model.coverUrl, songCover)
-                                            itemView.setOnClickListener {
-                                                getInstance()!!.apply {
-                                                    loadAlbum(
-                                                        models.createAlbum(),
-                                                        modelPosition
-                                                    )
-                                                    play()
-                                                }
-                                            }
-                                            val lifecycleObserver =
-                                                Observer<DefaultMusic<DefaultArtist>> { p1 ->
-                                                    if (p1.id == model.id) {
-                                                        songName.setTextColor(
-                                                            context.getColor(R.color.blue)
-                                                        )
-                                                        songSingerName.setTextColor(
-                                                            context.getColor(
-                                                                R.color.blue
-                                                            )
-                                                        )
-                                                    } else {
-                                                        songName.setTextColor(
-                                                            context.getColor(android.R.color.black)
-                                                        )
-                                                        songSingerName.setTextColor(
-                                                            context.getColor(
-                                                                R.color.tv_color_light
-                                                            )
-                                                        )
-                                                    }
-                                                }
-                                            onAttached {
-                                                getInstance()!!.changeMusicLiveData()
-                                                    .observe(viewLifecycleOwner, lifecycleObserver)
-                                            }
-                                            onDetached {
-                                                getInstance()!!.changeMusicLiveData()
-                                                    .removeObserver(lifecycleObserver)
-                                            }
-                                        }
-                                    }
-                                }
-                                recycler.recyclerAdapter.models =
-                                    getModel<RecommendedSongs>().list!!
-                            }
-                        }
                         R.layout.item_recommended_playlist -> {
                             ItemRecommendedPlaylistBinding.bind(itemView).playlistList.apply {
                                 snapHelper.attachToRecyclerView(this)
@@ -122,7 +60,7 @@ class HomeFragment : Fragment() {
                                         val model = getModel<PlaylistModel.Playlist>()
                                         ItemPlaylistBinding.bind(itemView).apply {
                                             playlistTitle.text = model.name
-                                            mImageLoader.displayImage(model.picUrl, playlistCover)
+                                            playlistCover.setImageURI(model.picUrl)
                                             playlistCover.setOnClickListener {
                                                 Navigation.findViewNavController(it)
                                                     .navigate(
@@ -137,16 +75,15 @@ class HomeFragment : Fragment() {
                             }
                         }
                         R.layout.item_song -> {
-                            val model = getModel<NewSongModel>()
+                            val model = getModel<RecommendedSongs.RecommendedSong>()
                             ItemSongBinding.bind(itemView).apply {
                                 songName.text = model.title
                                 songSingerName.text = model.artist[0].name
                                 songCover.setImageURI(model.coverUrl)
-                                //mImageLoader.displayImage(model.coverUrl, songCover)
                                 itemView.setOnClickListener {
                                     getInstance()!!.apply {
                                         loadAlbum(
-                                            footers.createAlbum(),
+                                            models.createAlbum(),
                                             modelPosition
                                         )
                                         play()
@@ -199,7 +136,7 @@ class HomeFragment : Fragment() {
                             object : Callback<RecommendedSongs> {
 
                                 override fun onResponse(t: RecommendedSongs?) {
-                                    mBinding.recycler.recyclerAdapter.models = listOf(t)
+                                    mBinding.recycler.recyclerAdapter.models = t!!.list
                                 }
 
                                 override fun onFailure(code: Int) {
@@ -207,7 +144,7 @@ class HomeFragment : Fragment() {
                                 }
 
                             })
-                        getRecommendedNewSong().set(
+                        /*getRecommendedNewSong().set(
                             viewLifecycleOwner.lifecycle,
                             object : Callback<List<NewSongModel>> {
                                 override fun onResponse(t: List<NewSongModel>?) {
@@ -219,17 +156,12 @@ class HomeFragment : Fragment() {
                                     statelayout.showErrorState()
                                 }
 
-                            })
+                            })*/
                     }
                 }
             }
             statelayout.showLoadingState()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mImageLoader.clearMemoryCache()
     }
 
 }

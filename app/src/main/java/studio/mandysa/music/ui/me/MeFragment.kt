@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
-import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
 import mandysax.navigation.Navigation
@@ -37,8 +36,6 @@ class MeFragment : Fragment() {
 
     private val mEvent: UserViewModel by activityViewModels()
 
-    private val mImageLoader = ImageLoader.getInstance()
-
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,7 +48,8 @@ class MeFragment : Fragment() {
                     R.layout.item_user_head -> {
                         val model = getModel<UserModel>()
                         ItemUserHeadBinding.bind(itemView).apply {
-                            mImageLoader.displayImage(model.avatarUrl, ivAvatar)
+                            ivAvatar.setImageURI(model.avatarUrl)
+                            ivAvatar
                             tvNickname.text = model.nickname
                         }
                     }
@@ -63,10 +61,7 @@ class MeFragment : Fragment() {
                                 onBind {
                                     val model = getModel<UserPlaylistModel.UserPlaylist>()
                                     ItemMyPlaylistBinding.bind(itemView).apply {
-                                        mImageLoader.displayImage(
-                                            model.coverImgUrl,
-                                            playlistCover
-                                        )
+                                        playlistCover.setImageURI(model.coverImgUrl)
                                         playlistName.text = model.name
                                         authorName.text = "by ${model.nickname}"
                                     }
@@ -130,8 +125,4 @@ class MeFragment : Fragment() {
         return mBinding.root
     }
 
-    override fun onDestroyView() {
-        mImageLoader.clearMemoryCache()
-        super.onDestroyView()
-    }
 }

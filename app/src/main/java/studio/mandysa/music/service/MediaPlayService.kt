@@ -11,12 +11,12 @@ import android.media.MediaMetadata
 import android.media.session.MediaSession
 import android.media.session.PlaybackState
 import android.os.IBinder
-import android.view.View
-import com.nostra13.universalimageloader.core.ImageLoader
-import com.nostra13.universalimageloader.core.assist.FailReason
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener
+import com.facebook.common.references.CloseableReference
+import com.facebook.datasource.DataSource
+import com.facebook.imagepipeline.datasource.BaseBitmapDataSubscriber
+import com.facebook.imagepipeline.image.CloseableImage
 import mandysax.media.DefaultPlayerManager
-
+import studio.mandysa.music.logic.utils.getFrescoCacheBitmap
 
 class MediaPlayService : Service() {
 
@@ -29,8 +29,6 @@ class MediaPlayService : Service() {
     init {
         instance = this
     }
-
-    private val mImageLoader = ImageLoader.getInstance()
 
     private val mInstance = DefaultPlayerManager.getInstance() as DefaultPlayerManager
 
@@ -52,37 +50,26 @@ class MediaPlayService : Service() {
         mInstance.changeMusicLiveData().observeForever {
             mMediaNotification!!.setContentTitle(it.title)
             mMediaNotification!!.setContentText(it.artist[0].name)
-
-            mImageLoader.loadImage(it.coverUrl, object : ImageLoadingListener {
-                override fun onLoadingStarted(imageUri: String?, view: View?) {
-                }
-
-                override fun onLoadingFailed(
-                    imageUri: String?,
-                    view: View?,
-                    failReason: FailReason?
-                ) {
-                }
-
-                override fun onLoadingComplete(
-                    imageUri: String?,
-                    view: View?,
-                    loadedImage: Bitmap?
-                ) {
-                    mMediaNotification!!.apply {
-                        setLargeIcon(
-                            Icon.createWithBitmap(
-                                loadedImage
+            getFrescoCacheBitmap(
+                applicationContext,
+                it.coverUrl,
+                object : BaseBitmapDataSubscriber() {
+                    override fun onNewResultImpl(bitmap: Bitmap?) {
+                        mMediaNotification!!.apply {
+                            setLargeIcon(
+                                Icon.createWithBitmap(
+                                    bitmap!!.copy(Bitmap.Config.RGB_565,false)
+                                )
                             )
-                        )
-                        build()
+                            build()
+                        }
                     }
-                }
 
-                override fun onLoadingCancelled(imageUri: String?, view: View?) {
-                }
+                    override fun onFailureImpl(dataSource: DataSource<CloseableReference<CloseableImage>>) {
 
-            })
+                    }
+                })
+
         }
         mInstance.pauseLiveData().observeForever {
             upPlaybackState()
@@ -152,7 +139,6 @@ class MediaPlayService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mImageLoader.clearMemoryCache()
         unregisterReceiver(mReceiver)
         session!!.isActive = false
         session = null

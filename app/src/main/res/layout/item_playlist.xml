@@ -15,12 +15,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/playlist_cover"
+                style="@style/ImageViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:foreground="?android:attr/selectableItemBackground"
-                tools:ignore="ContentDescription" />
+                android:foreground="?android:attr/selectableItemBackground" />
 
         </androidx.cardview.widget.CardView>
 

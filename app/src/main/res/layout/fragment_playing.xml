@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="@android:color/transparent"
+    android:gravity="center"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -20,12 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp">
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/music_cover"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                tools:ignore="ContentDescription" />
+                style="@style/ImageViewStyle"/>
 
         </studio.mandysa.music.ui.view.SquareLayout>
 

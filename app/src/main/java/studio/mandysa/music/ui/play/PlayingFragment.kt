@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.ScaleAnimation
 import android.widget.SeekBar
-import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
 import studio.mandysa.music.R
@@ -14,10 +13,9 @@ import studio.mandysa.music.databinding.FragmentPlayingBinding
 import studio.mandysa.music.logic.utils.bindView
 import studio.mandysa.music.logic.utils.getInstance
 
+
 class PlayingFragment : Fragment() {
     private val mBinding: FragmentPlayingBinding by bindView()
-
-    private val mImageLoader = ImageLoader.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,10 +49,11 @@ class PlayingFragment : Fragment() {
             /**
              * 更新当前播放歌曲的信息
              */
+
             instance.changeMusicLiveData().observe(viewLifecycleOwner) { model ->
                 it.songName.text = model.title
                 it.singerName.text = model.artist[0].name
-                mImageLoader.displayImage(model.coverUrl, it.musicCover)
+                it.musicCover.setImageURI(model.coverUrl)
             }
             /**
              * 更新播放进度
@@ -145,11 +144,6 @@ class PlayingFragment : Fragment() {
                 })
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mImageLoader.clearMemoryCache()
     }
 
     override fun onCreateView(

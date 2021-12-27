@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.facebook.common.references.CloseableReference
+import com.facebook.datasource.DataSource
+import com.facebook.imagepipeline.datasource.BaseBitmapDataSubscriber
+import com.facebook.imagepipeline.image.CloseableImage
 import com.flaviofaria.kenburnsview.RandomTransitionGenerator
-import com.nostra13.universalimageloader.core.ImageLoader
-import com.nostra13.universalimageloader.core.assist.FailReason
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener
 import mandysax.fragment.Fragment
 import mandysax.fragmentpage.widget.FragmentPage
 import studio.mandysa.bottomnavigationbar.BottomNavigationItem
@@ -18,14 +19,13 @@ import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayBinding
 import studio.mandysa.music.logic.utils.BitmapUtil
 import studio.mandysa.music.logic.utils.bindView
+import studio.mandysa.music.logic.utils.getFrescoCacheBitmap
 import studio.mandysa.music.logic.utils.getInstance
 
 
-class PlayFragment : Fragment(), ImageLoadingListener {
+class PlayFragment : Fragment() {
 
     private val mBinding: FragmentPlayBinding by bindView()
-
-    private val mImageLoader = ImageLoader.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -75,12 +75,19 @@ class PlayFragment : Fragment(), ImageLoadingListener {
                 }
             }
             /**
-             * 更新当前播放歌曲的信息
+             * 更新背景图片
              */
             instance.changeMusicLiveData().observe(viewLifecycleOwner) { model ->
-                mImageLoader.displayImage(
-                    model.coverUrl, it.playBackground, this
-                )
+                getFrescoCacheBitmap(context, model.coverUrl, object : BaseBitmapDataSubscriber() {
+                    override fun onNewResultImpl(bitmap: Bitmap?) {
+                        val blurBitmap = BitmapUtil.handleImageBlur(context, bitmap!!)
+                        mBinding.playBackground.setImageBitmap(blurBitmap)
+                    }
+
+                    override fun onFailureImpl(dataSource: DataSource<CloseableReference<CloseableImage>>) {
+
+                    }
+                })
             }
             /**
              * 背景模糊动画速度
@@ -102,11 +109,6 @@ class PlayFragment : Fragment(), ImageLoadingListener {
         mBinding.playBackground.pause()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mImageLoader.clearMemoryCache()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -115,19 +117,19 @@ class PlayFragment : Fragment(), ImageLoadingListener {
         return mBinding.root
     }
 
-    override fun onLoadingStarted(imageUri: String?, view: View?) {
-    }
+    /* override fun onLoadingStarted(imageUri: String?, view: View?) {
+     }
 
-    override fun onLoadingFailed(imageUri: String?, view: View?, failReason: FailReason?) {
-    }
+     override fun onLoadingFailed(imageUri: String?, view: View?, failReason: FailReason?) {
+     }
 
-    override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
-        val blurBitmap = BitmapUtil.handleImageBlur(context, loadedImage!!)
-        mBinding.playBackground.setImageBitmap(blurBitmap)
-    }
+     override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
+         val blurBitmap = BitmapUtil.handleImageBlur(context, loadedImage!!)
+         mBinding.playBackground.setImageBitmap(blurBitmap)
+     }
 
-    override fun onLoadingCancelled(imageUri: String?, view: View?) {
-    }
-
+     override fun onLoadingCancelled(imageUri: String?, view: View?) {
+     }
+ */
 
 }

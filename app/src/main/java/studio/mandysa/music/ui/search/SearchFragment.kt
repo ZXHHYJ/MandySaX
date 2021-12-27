@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import com.nostra13.universalimageloader.core.ImageLoader
 import com.sothree.slidinguppanel.PanelSlideListener
 import com.sothree.slidinguppanel.PanelState
 import mandysax.anna2.callback.Callback
@@ -31,8 +30,6 @@ import studio.mandysa.music.ui.decoration.DoubleItemDecoration
 class SearchFragment : Fragment() {
 
     private val mBinding: FragmentSearchBinding by bindView()
-
-    private val mImageLoader = ImageLoader.getInstance()
 
     private val mViewModel: SearchViewModel by activityViewModels()
 
@@ -140,7 +137,7 @@ class SearchFragment : Fragment() {
                 onBind {
                     val model = getModel<ToplistModel>()
                     ItemToplistBinding.bind(itemView).apply {
-                        mImageLoader.displayImage(model.coverImgUrl, toplistCover)
+                        toplistCover.setImageURI(model.coverImgUrl)
                         toplistName.text = model.name
                         itemView.setOnClickListener {
                             Navigation.findViewNavController(it)
@@ -161,11 +158,6 @@ class SearchFragment : Fragment() {
             mBinding.searchEditFrame.clearFocus()
             mBinding.searchEditFrame.hideInput()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mImageLoader.clearMemoryCache()
     }
 
 }

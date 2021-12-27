@@ -2,12 +2,7 @@ package studio.mandysa.music
 
 import android.app.Application
 import android.content.Intent
-import android.graphics.Bitmap
 import com.facebook.drawee.backends.pipeline.Fresco
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache
-import com.nostra13.universalimageloader.core.DisplayImageOptions
-import com.nostra13.universalimageloader.core.ImageLoader
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.DefaultPlayerManager.Companion.init
 import simon.tuke.Tuke
@@ -29,23 +24,6 @@ class MyApplication : Application() {
             it.setRetryId(R.id.cl_error_check)
         }
 
-        val options = DisplayImageOptions.Builder()
-            .showImageOnLoading(R.color.empty_iv_bg_color)
-            .bitmapConfig(Bitmap.Config.ARGB_8888)
-            .cacheInMemory(true)
-            .cacheOnDisk(true)
-            .build()
-
-        //这样自定义设置后就可以管理二级缓存和三级缓存了
-        val configuration = ImageLoaderConfiguration.Builder(this)
-            .diskCache(UnlimitedDiskCache(cacheDir))
-            .memoryCacheSizePercentage(10)//设置占用内存的百分比
-            .diskCacheFileCount(100)
-            .diskCacheSize(1 * 1024 * 1024)
-            .defaultDisplayImageOptions(options)
-            .build()
-
-        ImageLoader.getInstance().init(configuration)//初始化完成
         init(this) //初始化播放管理器
         DefaultPlayerManager.getInstance()!!.apply {
             pauseLiveData()
