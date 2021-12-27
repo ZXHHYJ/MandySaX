@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.MandySaMusic" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@android:color/white</item>
-        <item name="android:colorAccent">@color/blue</item>
+        <item name="android:colorAccent">@color/main</item>
         <item name="android:colorPrimary">@android:color/black</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
     </style>

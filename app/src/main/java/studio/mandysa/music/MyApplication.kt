@@ -2,6 +2,8 @@ package studio.mandysa.music
 
 import android.app.Application
 import android.content.Intent
+import android.graphics.Bitmap
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
@@ -18,6 +20,8 @@ class MyApplication : Application() {
 
         Tuke.init(this)
 
+        Fresco.initialize(this);
+
         StateLayout.let {
             it.loadingLayout = R.layout.layout_loading
             it.emptyLayout = R.layout.layout_empty
@@ -27,6 +31,7 @@ class MyApplication : Application() {
 
         val options = DisplayImageOptions.Builder()
             .showImageOnLoading(R.color.empty_iv_bg_color)
+            .bitmapConfig(Bitmap.Config.ARGB_8888)
             .cacheInMemory(true)
             .cacheOnDisk(true)
             .build()
@@ -34,7 +39,7 @@ class MyApplication : Application() {
         //这样自定义设置后就可以管理二级缓存和三级缓存了
         val configuration = ImageLoaderConfiguration.Builder(this)
             .diskCache(UnlimitedDiskCache(cacheDir))
-            .memoryCacheSizePercentage(5)//设置占用内存的百分比
+            .memoryCacheSizePercentage(10)//设置占用内存的百分比
             .diskCacheFileCount(100)
             .diskCacheSize(1 * 1024 * 1024)
             .defaultDisplayImageOptions(options)

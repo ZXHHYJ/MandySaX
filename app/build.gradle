@@ -36,12 +36,10 @@ dependencies {
     implementation 'com.gitee.simon9102:tuke:1.0.0'
     // 图片加载库：https://github.com/nostra13/Android-Universal-Image-Loader
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.facebook.fresco:fresco:2.6.0'
     // 网络请求库：https://gitee.com/liuxiaoliu66/anna
     //noinspection GradleDependency
     implementation 'com.gitee.liuxiaoliu66:anna:2.1.2'
-    // bottomNavigationBar：https://gitee.com/liuxiaoliu66/bottom-navigation-bar
-    //implementation 'com.gitee.liuxiaoliu66:bottom-navigation-bar:1.1.2'
-    implementation 'com.gitee.liuxiaoliu66:jiuwo:1.0.0'
     implementation 'com.gitee.liuxiaoliu66:sofia:1.0.2'
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
 
@@ -56,4 +54,5 @@ dependencies {
     implementation project(':mandysax')
     implementation project(':media')
     implementation project(':statelayout')
+    implementation project(':jiuwo')
 }

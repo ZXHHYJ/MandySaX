@@ -27,7 +27,9 @@ public final class LifecycleRegistry extends Lifecycle {
     public void markState(Lifecycle.Event state) {
         event = state;
         for (int i = mObservers.size() - 1; i >= 0; i--) {
-            mObservers.get(i).observer(state);
+            if (i < mObservers.size() && i != 0) {
+                mObservers.get(i).observer(state);
+            }
         }
         if (state == Event.ON_DESTROY) {
             mObservers.clear();

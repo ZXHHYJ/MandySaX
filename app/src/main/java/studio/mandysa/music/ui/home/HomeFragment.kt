@@ -5,29 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.nostra13.universalimageloader.core.ImageLoader
 import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
 import mandysax.lifecycle.livedata.Observer
-import mandysax.media.DefaultPlayerManager
+import mandysax.media.DefaultPlayerManager.Companion.getInstance
 import mandysax.media.model.DefaultArtist
 import mandysax.media.model.DefaultMusic
 import mandysax.navigation.Navigation
-import studio.mandysa.jiuwo.utils.*
+import studio.mandysa.jiuwo.utils.linear
+import studio.mandysa.jiuwo.utils.recyclerAdapter
+import studio.mandysa.jiuwo.utils.setup
+import studio.mandysa.jiuwo.utils.staggered
 import studio.mandysa.music.R
-import studio.mandysa.music.databinding.FragmentHomeBinding
-import studio.mandysa.music.databinding.ItemHomeHeadBinding
-import studio.mandysa.music.databinding.ItemPlaylistBinding
-import studio.mandysa.music.databinding.ItemSongBinding
+import studio.mandysa.music.databinding.*
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.NewSongModel
 import studio.mandysa.music.logic.model.PlaylistModel
-import studio.mandysa.music.logic.model.RecommendedSong
+import studio.mandysa.music.logic.model.RecommendedSongs
 import studio.mandysa.music.logic.utils.*
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.event.UserViewModel
-
 
 class HomeFragment : Fragment() {
 
@@ -48,13 +48,72 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mBinding.apply {
             recycler.linear().setup {
-                addType<PlaylistModel>(R.layout.item_home_head)
+                addType<PlaylistModel>(R.layout.item_recommended_playlist)
                 addType<NewSongModel>(R.layout.item_song)
+                addType<RecommendedSongs>(R.layout.item_recommended_song)
                 val snapHelper = LinearSnapHelper()
+                val pagerSnapHelper = PagerSnapHelper()
                 onBind {
                     when (itemViewType) {
-                        R.layout.item_home_head -> {
-                            ItemHomeHeadBinding.bind(itemView).playlistList.apply {
+                        R.layout.item_recommended_song -> {
+                            ItemRecommendedSongBinding.bind(itemView).apply {
+                                pagerSnapHelper.attachToRecyclerView(recycler)
+                                recycler.staggered(3, orientation = RecyclerView.HORIZONTAL).setup {
+                                    addType<RecommendedSongs.RecommendedSong>(R.layout.item_song)
+                                    onBind {
+                                        val model = getModel<RecommendedSongs.RecommendedSong>()
+                                        ItemSongBinding.bind(itemView).apply {
+                                            songName.text = model.title
+                                            songSingerName.text = model.artist[0].name
+                                            mImageLoader.displayImage(model.coverUrl, songCover)
+                                            itemView.setOnClickListener {
+                                                getInstance()!!.apply {
+                                                    loadAlbum(
+                                                        models.createAlbum(),
+                                                        modelPosition
+                                                    )
+                                                    play()
+                                                }
+                                            }
+                                            val lifecycleObserver =
+                                                Observer<DefaultMusic<DefaultArtist>> { p1 ->
+                                                    if (p1.id == model.id) {
+                                                        songName.setTextColor(
+                                                            context.getColor(R.color.blue)
+                                                        )
+                                                        songSingerName.setTextColor(
+                                                            context.getColor(
+                                                                R.color.blue
+                                                            )
+                                                        )
+                                                    } else {
+                                                        songName.setTextColor(
+                                                            context.getColor(android.R.color.black)
+                                                        )
+                                                        songSingerName.setTextColor(
+                                                            context.getColor(
+                                                                R.color.tv_color_light
+                                                            )
+                                                        )
+                                                    }
+                                                }
+                                            onAttached {
+                                                getInstance()!!.changeMusicLiveData()
+                                                    .observe(viewLifecycleOwner, lifecycleObserver)
+                                            }
+                                            onDetached {
+                                                getInstance()!!.changeMusicLiveData()
+                                                    .removeObserver(lifecycleObserver)
+                                            }
+                                        }
+                                    }
+                                }
+                                recycler.recyclerAdapter.models =
+                                    getModel<RecommendedSongs>().list!!
+                            }
+                        }
+                        R.layout.item_recommended_playlist -> {
+                            ItemRecommendedPlaylistBinding.bind(itemView).playlistList.apply {
                                 snapHelper.attachToRecyclerView(this)
                                 addItemDecoration(ThreePointsDecoration())
                                 linear(orientation = RecyclerView.HORIZONTAL).setup {
@@ -79,15 +138,15 @@ class HomeFragment : Fragment() {
                         }
                         R.layout.item_song -> {
                             val model = getModel<NewSongModel>()
-                            val modelPosition = this.modelPosition
                             ItemSongBinding.bind(itemView).apply {
                                 songName.text = model.title
                                 songSingerName.text = model.artist[0].name
-                                mImageLoader.displayImage(model.coverUrl, songCover)
+                                songCover.setImageURI(model.coverUrl)
+                                //mImageLoader.displayImage(model.coverUrl, songCover)
                                 itemView.setOnClickListener {
-                                    getInstance().apply {
+                                    getInstance()!!.apply {
                                         loadAlbum(
-                                            models.createAlbum(),
+                                            footers.createAlbum(),
                                             modelPosition
                                         )
                                         play()
@@ -108,11 +167,11 @@ class HomeFragment : Fragment() {
                                         }
                                     }
                                 onAttached {
-                                    DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
+                                    getInstance()!!.changeMusicLiveData()
                                         .observe(viewLifecycleOwner, lifecycleObserver)
                                 }
                                 onDetached {
-                                    DefaultPlayerManager.getInstance()!!.changeMusicLiveData()
+                                    getInstance()!!.changeMusicLiveData()
                                         .removeObserver(lifecycleObserver)
                                 }
                             }
@@ -128,7 +187,7 @@ class HomeFragment : Fragment() {
                             object : Callback<PlaylistModel> {
                                 override fun onResponse(t: PlaylistModel?) {
                                     statelayout.showContentState()
-                                    mBinding.recycler.addHeader(t!!)
+                                    mBinding.recycler.recyclerAdapter.headers = listOf(t)
                                 }
 
                                 override fun onFailure(code: Int) {
@@ -136,22 +195,24 @@ class HomeFragment : Fragment() {
                                 }
 
                             })
-                        getRecommendedSong(it).set(viewLifecycleOwner.lifecycle,object :Callback<List<RecommendedSong>>{
-                            override fun onFailure(code: Int) {
+                        getRecommendedSong(it).set(viewLifecycleOwner.lifecycle,
+                            object : Callback<RecommendedSongs> {
 
-                            }
+                                override fun onResponse(t: RecommendedSongs?) {
+                                    mBinding.recycler.recyclerAdapter.models = listOf(t)
+                                }
 
-                            override fun onResponse(t: List<RecommendedSong>?) {
-                                println(t)
-                            }
+                                override fun onFailure(code: Int) {
+                                    statelayout.showErrorState()
+                                }
 
-                        })
+                            })
                         getRecommendedNewSong().set(
                             viewLifecycleOwner.lifecycle,
                             object : Callback<List<NewSongModel>> {
                                 override fun onResponse(t: List<NewSongModel>?) {
                                     statelayout.showContentState()
-                                    mBinding.recycler.addModels(t!!)
+                                    mBinding.recycler.recyclerAdapter.footers = t
                                 }
 
                                 override fun onFailure(code: Int) {

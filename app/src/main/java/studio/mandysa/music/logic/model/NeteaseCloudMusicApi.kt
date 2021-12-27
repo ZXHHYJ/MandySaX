@@ -31,9 +31,8 @@ interface NeteaseCloudMusicApi {
     @Get("personalized/newsong")
     fun getRecommendedNewSong(): Observable<List<NewSongModel>>
 
-    @Path("data/dailySongs")
     @Get("recommend/songs")
-    fun getRecommendedSong(@Query("cookie") cookie: String): Observable<List<RecommendedSong>>
+    fun getRecommendedSong(@Query("cookie") cookie: String): Observable<RecommendedSongs>
 
     @Get("personalized")
     fun getRecommendedPlaylist(@Query("cookie") cookie: String): Observable<PlaylistModel>

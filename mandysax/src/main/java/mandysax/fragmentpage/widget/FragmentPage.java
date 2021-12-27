@@ -17,6 +17,12 @@ import mandysax.lifecycle.LifecycleObserver;
 public class FragmentPage extends mandysax.fragment.FragmentView {
 
     public interface Adapter {
+        /**
+         * 创建Fragment时回调
+         *
+         * @param position Fragment的页数
+         * @return 创建的Fragment
+         */
         Fragment onCreateFragment(int position);
     }
 
@@ -38,15 +44,18 @@ public class FragmentPage extends mandysax.fragment.FragmentView {
         if (mAdapter == null) {
             throw new NullPointerException("FragmentPage.Adapter is null");
         }
-        if (position == getFragment().position) return;
+        if (position == getFragment().position) {
+            return;
+        }
         getFragment().position = position;
         if (getFragment().tags == null) {
-            getFragment().tags = new HashMap<>();
+            getFragment().tags = new HashMap<>(position * position);
         }
         String tag = getFragment().tags.get(position);
         FragmentManager fragmentPlusManager = getActivity().getFragmentPlusManager();
-        Fragment fragment;
+        FragmentTransaction fragmentTransaction = fragmentPlusManager.beginTransaction();
         if (fragmentPlusManager.findFragmentByTag(tag) == null) {
+            Fragment fragment;
             fragment = mAdapter.onCreateFragment(position);
             fragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
                 @Override
@@ -57,24 +66,23 @@ public class FragmentPage extends mandysax.fragment.FragmentView {
                     }
                 }
             });
-            FragmentTransaction fragmentTransaction = fragmentPlusManager.beginTransaction();
-            if (getFragment().lifoTag != null)
-                fragmentTransaction.hide(fragmentPlusManager.findFragmentByTag(getFragment().lifoTag));
-            fragmentTransaction.add(getId(), fragment);
-            fragmentTransaction.commit();
-        } else {
-            Fragment fragment1 = fragmentPlusManager.findFragmentByTag(tag);
-            FragmentTransaction fragmentTransaction = fragmentPlusManager.beginTransaction();
             if (getFragment().lifoTag != null) {
                 fragmentTransaction.hide(fragmentPlusManager.findFragmentByTag(getFragment().lifoTag));
             }
-            if (!fragment1.isAdded())
-                fragmentTransaction.add(getId(), fragment1);
-            else
-                fragmentTransaction.show(fragment1);
-            getFragment().lifoTag = fragment1.getTag();
-            fragmentTransaction.commit();
+            fragmentTransaction.add(getId(), fragment);
+        } else {
+            Fragment fragment = fragmentPlusManager.findFragmentByTag(tag);
+            if (getFragment().lifoTag != null) {
+                fragmentTransaction.hide(fragmentPlusManager.findFragmentByTag(getFragment().lifoTag));
+            }
+            if (!fragment.isAdded()) {
+                fragmentTransaction.add(getId(), fragment);
+            } else {
+                fragmentTransaction.show(fragment);
+            }
+            getFragment().lifoTag = fragment.getTag();
         }
+        fragmentTransaction.commitNow();
     }
 
     @Override

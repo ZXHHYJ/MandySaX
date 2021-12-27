@@ -113,9 +113,13 @@ public class LiveData<T> {
      */
     public void observeForever(Observer<? super T> observer) {
         Observer<? super T> existing = ifAbsent(observer);
-        if (existing != null) return;
+        if (existing != null) {
+            return;
+        }
         mObservers.add(new AlwaysActiveObserver(observer));
-        if (mValue != null) observer.onChanged(mValue);
+        if (mValue != null) {
+            observer.onChanged(mValue);
+        }
     }
 
     /**
@@ -128,9 +132,13 @@ public class LiveData<T> {
             return;
         }
         Observer<? super T> existing = ifAbsent(observer);
-        if (existing != null) return;
+        if (existing != null) {
+            return;
+        }
         mObservers.add(new LifecycleBoundObserver(owner, observer));
-        if (mValue != null) observer.onChanged(mValue);
+        if (mValue != null) {
+            observer.onChanged(mValue);
+        }
     }
 
     @Nullable
@@ -163,9 +171,9 @@ public class LiveData<T> {
     protected void start() {
         for (int i = mObservers.size() - 1; i >= 0; i--) {
             ObserverWrapper wrapper = mObservers.get(i);
-            if (wrapper.isActive())
+            if (wrapper.isActive()) {
                 wrapper.mObserver.onChanged(mValue);
-            else if (wrapper instanceof LiveData.LifecycleBoundObserver) {
+            } else if (wrapper instanceof LiveData.LifecycleBoundObserver) {
                 LiveData<T>.LifecycleBoundObserver lifecycleBoundObserver = ((LiveData<T>.LifecycleBoundObserver) wrapper);
                 lifecycleBoundObserver.mOwner.getLifecycle().addObserver(new LifecycleObserver() {
                     @Override

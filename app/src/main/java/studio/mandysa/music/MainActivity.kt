@@ -1,6 +1,5 @@
 package studio.mandysa.music
 
-import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
@@ -141,20 +140,14 @@ class MainActivity : FragmentActivity() {
                                         PanelSlideListener {
                                         val y = mBinding.bottomNavLayout.y
                                         override fun onPanelSlide(panel: View, slideOffset: Float) {
-                                            y.apply {
-                                                val by: Float =
-                                                    y + bottomNavLayout.height * slideOffset * 8
+                                            val by: Float =
+                                                y + bottomNavLayout.height * slideOffset * 8
+                                            if (y < y + bottomNavLayout.height) {
                                                 bottomNavLayout.y = by
                                             }
-
                                             val alpha = slideOffset * 12
-                                            ObjectAnimator.ofFloat(playFragment, "alpha", alpha)
-                                                .setDuration(0).start()
-                                            ObjectAnimator.ofFloat(
-                                                controllerFragment,
-                                                "alpha",
-                                                1 - alpha
-                                            ).setDuration(0).start()
+                                            playFragmentBackground.alpha = 1 - alpha
+                                            controllerFragment.alpha = 1 - alpha
                                         }
 
                                         override fun onPanelStateChanged(

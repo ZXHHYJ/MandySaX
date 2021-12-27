@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!--歌曲item-->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     style="@style/ViewCardViewStyle"
@@ -18,10 +19,11 @@
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
             android:layout_marginVertical="@dimen/item_margin">
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/song_cover"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:placeholderImage="@color/empty_iv_bg_color"
                 tools:ignore="ContentDescription" />
 
         </androidx.cardview.widget.CardView>

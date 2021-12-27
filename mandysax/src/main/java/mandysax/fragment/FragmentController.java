@@ -228,8 +228,8 @@ public final class FragmentController extends FragmentStateManager {
                         if (op.isAddToBackStack) {
                             dispatchRemove(op.fragment, op.popExitAnim);
                             if (op.removed != null) {
-                                for (Fragment fragment : op.removed) {
-                                    dispatchShow(fragment, op.popEnterAnim);
+                                for (int i = op.removed.size() - 1; i >= 0; i--) {
+                                    dispatchShow(op.removed.get(i), op.popEnterAnim);
                                 }
                             }
                         }
