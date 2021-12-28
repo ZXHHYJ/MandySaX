@@ -1,11 +1,11 @@
 package studio.mandysa.music.ui.home
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
@@ -17,11 +17,12 @@ import mandysax.navigation.Navigation
 import studio.mandysa.jiuwo.utils.linear
 import studio.mandysa.jiuwo.utils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.setup
-import studio.mandysa.jiuwo.utils.staggered
 import studio.mandysa.music.R
-import studio.mandysa.music.databinding.*
+import studio.mandysa.music.databinding.FragmentHomeBinding
+import studio.mandysa.music.databinding.ItemPlaylistBinding
+import studio.mandysa.music.databinding.ItemRecommendedPlaylistBinding
+import studio.mandysa.music.databinding.ItemSongBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
-import studio.mandysa.music.logic.model.NewSongModel
 import studio.mandysa.music.logic.model.PlaylistModel
 import studio.mandysa.music.logic.model.RecommendedSongs
 import studio.mandysa.music.logic.utils.*
@@ -53,7 +54,20 @@ class HomeFragment : Fragment() {
                         R.layout.item_recommended_playlist -> {
                             ItemRecommendedPlaylistBinding.bind(itemView).playlistList.apply {
                                 snapHelper.attachToRecyclerView(this)
-                                addItemDecoration(ThreePointsDecoration())
+                                addItemDecoration(object : RecyclerView.ItemDecoration() {
+                                    override fun getItemOffsets(
+                                        outRect: Rect,
+                                        view: View,
+                                        parent: RecyclerView,
+                                        state: RecyclerView.State
+                                    ) {
+                                        val length =
+                                            parent.resources.getDimensionPixelOffset(R.dimen.activity_horizontal_margin)
+                                        view.layoutParams.width =
+                                            parent.resources.getDimensionPixelOffset(R.dimen.album_width) + length / 2
+                                        view.setPadding(length, 0, 0, 0)
+                                    }
+                                }, 0)
                                 linear(orientation = RecyclerView.HORIZONTAL).setup {
                                     addType<PlaylistModel.Playlist>(R.layout.item_playlist)
                                     onBind {
@@ -78,7 +92,7 @@ class HomeFragment : Fragment() {
                             val model = getModel<RecommendedSongs.RecommendedSong>()
                             ItemSongBinding.bind(itemView).apply {
                                 songName.text = model.title
-                                songSingerName.text = model.artist[0].name
+                                songSingerName.text = model.artist.allArtist()
                                 songCover.setImageURI(model.coverUrl)
                                 itemView.setOnClickListener {
                                     getInstance()!!.apply {
@@ -144,19 +158,6 @@ class HomeFragment : Fragment() {
                                 }
 
                             })
-                        /*getRecommendedNewSong().set(
-                            viewLifecycleOwner.lifecycle,
-                            object : Callback<List<NewSongModel>> {
-                                override fun onResponse(t: List<NewSongModel>?) {
-                                    statelayout.showContentState()
-                                    mBinding.recycler.recyclerAdapter.footers = t
-                                }
-
-                                override fun onFailure(code: Int) {
-                                    statelayout.showErrorState()
-                                }
-
-                            })*/
                     }
                 }
             }

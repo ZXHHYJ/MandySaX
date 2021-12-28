@@ -70,8 +70,7 @@ interface NeteaseCloudMusicApi {
     ): Observable<UserModel>
 
     @Get("toplist")
-    @Path("list")
-    fun getToplist(): Observable<List<ToplistModel>>
+    fun getToplist(): Observable<ToplistsModel>
 
     @Get("like")
     fun likeMusic(

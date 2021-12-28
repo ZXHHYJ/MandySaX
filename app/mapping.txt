@@ -1,74 +1,27 @@
 # compiler: R8
 # compiler_version: 3.0.76
 # min_api: 26
-# pg_map_id: 49d9477
+# pg_map_id: 5d21638
 # common_typos_disable
 a.R$color$$ExternalSyntheticOutline0 -> a.a:
     java.lang.String androidx.cardview.R$color$$InternalSyntheticOutline$265$da4b6d3d845c25ad0d08739612e6c8ca6683394a6df8381cbc2650aa19f8d471$0.m(java.lang.String,int) -> a
-a4.PlayFragment$$ExternalSyntheticLambda0 -> a4.b:
-    studio.mandysa.music.ui.play.PlayFragment studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.f$0 -> a
-    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.<init>(studio.mandysa.music.ui.play.PlayFragment) -> <init>
-    1:1:androidx.core.view.WindowInsetsCompat studio.mandysa.music.ui.play.PlayFragment.onViewCreated$lambda-0(studio.mandysa.music.ui.play.PlayFragment,android.view.View,androidx.core.view.WindowInsetsCompat):0:0 -> a
-    1:1:androidx.core.view.WindowInsetsCompat studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.onApplyWindowInsets(android.view.View,androidx.core.view.WindowInsetsCompat):0 -> a
-a4.PlayFragment$$ExternalSyntheticLambda1 -> a4.c:
-    studio.mandysa.music.ui.play.PlayFragment studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.f$0 -> b
-    int studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.$r8$classId -> a
-    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.$r8$init$bridge(studio.mandysa.music.ui.play.PlayFragment) -> <init>
-    1:1:void studio.mandysa.music.ui.play.PlayFragment.onViewCreated$lambda-5$lambda-1(studio.mandysa.music.ui.play.PlayFragment,java.lang.Integer):0:0 -> a
-    1:1:void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.onChanged$bridge(java.lang.Object):0 -> a
-    2:2:void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.onChanged$bridge(java.lang.Object):0:0 -> a
-    3:3:void studio.mandysa.music.ui.play.PlayFragment.onViewCreated$lambda-5$lambda-3(studio.mandysa.music.ui.play.PlayFragment,mandysax.media.model.DefaultMusic):0:0 -> a
-    3:3:void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.onChanged$bridge(java.lang.Object):0 -> a
-a4.PlayingFragment$$ExternalSyntheticLambda0 -> a4.i:
-    mandysax.media.DefaultPlayerManager studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.f$0 -> b
-    int studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.$r8$classId -> a
-    void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.$r8$init$bridge(mandysax.media.DefaultPlayerManager) -> <init>
-    1:1:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-6(mandysax.media.DefaultPlayerManager,android.view.View):0:0 -> onClick
-    1:1:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
-    2:2:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.pauseLiveData():0:0 -> onClick
-    2:2:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-6(mandysax.media.DefaultPlayerManager,android.view.View):0 -> onClick
-    2:2:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
-    3:3:java.lang.Object mandysax.lifecycle.livedata.LiveData.getValue():0:0 -> onClick
-    3:3:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-6(mandysax.media.DefaultPlayerManager,android.view.View):0 -> onClick
-    3:3:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
-    4:4:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-6(mandysax.media.DefaultPlayerManager,android.view.View):0:0 -> onClick
-    4:4:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
-    5:5:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0:0 -> onClick
-    6:6:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-4(mandysax.media.DefaultPlayerManager,android.view.View):0:0 -> onClick
-    6:6:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
-    7:7:void mandysax.media.DefaultPlayerManager.skipToPrevious():0:0 -> onClick
-    7:7:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-4(mandysax.media.DefaultPlayerManager,android.view.View):0 -> onClick
-    7:7:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
-    8:8:java.lang.Object mandysax.lifecycle.livedata.LiveData.getValue():0:0 -> onClick
-    8:8:void mandysax.media.DefaultPlayerManager.skipToPrevious():0 -> onClick
-    8:8:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-4(mandysax.media.DefaultPlayerManager,android.view.View):0 -> onClick
-    8:8:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
-    9:9:void mandysax.media.DefaultPlayerManager.skipToPrevious():0:0 -> onClick
-    9:9:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-4(mandysax.media.DefaultPlayerManager,android.view.View):0 -> onClick
-    9:9:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
-    10:10:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0:0 -> onClick
-    11:11:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-7(mandysax.media.DefaultPlayerManager,android.view.View):0:0 -> onClick
-    11:11:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
-a4.PlayingFragment$$ExternalSyntheticLambda1 -> a4.j:
-    studio.mandysa.music.databinding.FragmentPlayingBinding studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.f$0 -> b
-    int studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.$r8$classId -> a
-    void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.$r8$init$bridge(studio.mandysa.music.databinding.FragmentPlayingBinding) -> <init>
-    1:1:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-2(studio.mandysa.music.databinding.FragmentPlayingBinding,mandysax.media.model.DefaultMusic):0:0 -> a
-    1:1:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
-    2:2:java.lang.String mandysax.media.model.DefaultArtist.getName():0:0 -> a
-    2:2:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-2(studio.mandysa.music.databinding.FragmentPlayingBinding,mandysax.media.model.DefaultMusic):0 -> a
-    2:2:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
-    3:3:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-2(studio.mandysa.music.databinding.FragmentPlayingBinding,mandysax.media.model.DefaultMusic):0:0 -> a
-    3:3:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
-    4:4:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0:0 -> a
-    5:5:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-1(studio.mandysa.music.databinding.FragmentPlayingBinding,java.lang.Boolean):0:0 -> a
-    5:5:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
-    6:6:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0:0 -> a
-    7:7:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-0(studio.mandysa.music.databinding.FragmentPlayingBinding,java.lang.Integer):0:0 -> a
-    7:7:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
-    8:8:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0:0 -> a
-    9:9:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-3(studio.mandysa.music.databinding.FragmentPlayingBinding,java.lang.Integer):0:0 -> a
-    9:9:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
+a4.SearchFragment$$ExternalSyntheticLambda0 -> a4.a:
+    studio.mandysa.music.databinding.FragmentSearchBinding studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.f$1 -> b
+    studio.mandysa.music.ui.search.SearchFragment studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.f$0 -> a
+    void studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.<init>(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding) -> <init>
+    1:1:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0:0 -> onEditorAction
+    1:1:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
+    2:2:void studio.mandysa.music.ui.search.SearchFragment.hideInput():0:0 -> onEditorAction
+    2:2:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
+    2:2:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
+    3:3:studio.mandysa.music.ui.search.SearchViewModel studio.mandysa.music.ui.search.SearchFragment.getMViewModel():0:0 -> onEditorAction
+    3:3:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
+    3:3:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
+    4:4:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.ui.search.SearchViewModel.getSearchContentLiveData():0:0 -> onEditorAction
+    4:4:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
+    4:4:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
+    5:5:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0:0 -> onEditorAction
+    5:5:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
 androidx.cardview.R$color -> a.b:
     int com.facebook.imagepipeline.memory.MemoryChunkUtil.adjustByteCount(int,int,int) -> a
     1:1:byte[] com.facebook.imageformat.ImageFormatCheckerUtils.asciiBytes(java.lang.String):0:0 -> b
@@ -1862,16 +1815,20 @@ androidx.recyclerview.widget.FastScroller -> androidx.recyclerview.widget.l:
     7:7:void <init>(androidx.recyclerview.widget.RecyclerView,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,int,int,int):0 -> <init>
     8:8:void attachToRecyclerView(androidx.recyclerview.widget.RecyclerView):0:0 -> <init>
     8:8:void <init>(androidx.recyclerview.widget.RecyclerView,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,int,int,int):0 -> <init>
-    9:9:void setupCallbacks():0:0 -> <init>
+    9:9:void androidx.recyclerview.widget.RecyclerView.addItemDecoration(androidx.recyclerview.widget.RecyclerView$ItemDecoration):0:0 -> <init>
+    9:9:void setupCallbacks():0 -> <init>
     9:9:void attachToRecyclerView(androidx.recyclerview.widget.RecyclerView):0 -> <init>
     9:9:void <init>(androidx.recyclerview.widget.RecyclerView,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,int,int,int):0 -> <init>
-    10:10:void androidx.recyclerview.widget.RecyclerView.addOnItemTouchListener(androidx.recyclerview.widget.RecyclerView$OnItemTouchListener):0:0 -> <init>
-    10:10:void setupCallbacks():0 -> <init>
+    10:10:void setupCallbacks():0:0 -> <init>
     10:10:void attachToRecyclerView(androidx.recyclerview.widget.RecyclerView):0 -> <init>
     10:10:void <init>(androidx.recyclerview.widget.RecyclerView,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,int,int,int):0 -> <init>
-    11:11:void setupCallbacks():0:0 -> <init>
+    11:11:void androidx.recyclerview.widget.RecyclerView.addOnItemTouchListener(androidx.recyclerview.widget.RecyclerView$OnItemTouchListener):0:0 -> <init>
+    11:11:void setupCallbacks():0 -> <init>
     11:11:void attachToRecyclerView(androidx.recyclerview.widget.RecyclerView):0 -> <init>
     11:11:void <init>(androidx.recyclerview.widget.RecyclerView,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,int,int,int):0 -> <init>
+    12:12:void setupCallbacks():0:0 -> <init>
+    12:12:void attachToRecyclerView(androidx.recyclerview.widget.RecyclerView):0 -> <init>
+    12:12:void <init>(androidx.recyclerview.widget.RecyclerView,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,android.graphics.drawable.StateListDrawable,android.graphics.drawable.Drawable,int,int,int):0 -> <init>
     void onRequestDisallowInterceptTouchEvent(boolean) -> a
     boolean onInterceptTouchEvent(androidx.recyclerview.widget.RecyclerView,android.view.MotionEvent) -> b
     1:1:int[] getHorizontalRange():0:0 -> c
@@ -2914,8 +2871,7 @@ androidx.recyclerview.widget.RecyclerView -> androidx.recyclerview.widget.Recycl
     4:4:void addAnimatingView(androidx.recyclerview.widget.RecyclerView$ViewHolder):0 -> e
     1:1:void androidx.core.view.ViewCompat.setImportantForAccessibility(android.view.View,int):0:0 -> e0
     1:1:boolean setChildImportantForAccessibilityInternal(androidx.recyclerview.widget.RecyclerView$ViewHolder,int):0 -> e0
-    1:1:void addItemDecoration(androidx.recyclerview.widget.RecyclerView$ItemDecoration,int):0:0 -> f
-    1:1:void addItemDecoration(androidx.recyclerview.widget.RecyclerView$ItemDecoration):0 -> f
+    void addItemDecoration(androidx.recyclerview.widget.RecyclerView$ItemDecoration,int) -> f
     void smoothScrollBy(int,int,android.view.animation.Interpolator,int,boolean) -> f0
     1:1:boolean isPreferredNextFocus(android.view.View,android.view.View,int):0:0 -> focusSearch
     1:1:android.view.View focusSearch(android.view.View,int):0 -> focusSearch
@@ -3211,30 +3167,35 @@ androidx.recyclerview.widget.RecyclerView -> androidx.recyclerview.widget.Recycl
     3:3:void dispatchLayoutStep1():0 -> q
     4:4:void saveFocusInfo():0:0 -> q
     4:4:void dispatchLayoutStep1():0 -> q
-    5:5:int getDeepestFocusedViewWithId(android.view.View):0:0 -> q
+    5:5:int androidx.recyclerview.widget.RecyclerView$ViewHolder.getAbsoluteAdapterPosition():0:0 -> q
     5:5:void saveFocusInfo():0 -> q
     5:5:void dispatchLayoutStep1():0 -> q
     6:6:void saveFocusInfo():0:0 -> q
     6:6:void dispatchLayoutStep1():0 -> q
-    7:7:void dispatchLayoutStep1():0:0 -> q
-    8:8:long getChangedHolderKey(androidx.recyclerview.widget.RecyclerView$ViewHolder):0:0 -> q
+    7:7:int getDeepestFocusedViewWithId(android.view.View):0:0 -> q
+    7:7:void saveFocusInfo():0 -> q
+    7:7:void dispatchLayoutStep1():0 -> q
+    8:8:void saveFocusInfo():0:0 -> q
     8:8:void dispatchLayoutStep1():0 -> q
     9:9:void dispatchLayoutStep1():0:0 -> q
-    10:10:void saveOldPositions():0:0 -> q
+    10:10:long getChangedHolderKey(androidx.recyclerview.widget.RecyclerView$ViewHolder):0:0 -> q
     10:10:void dispatchLayoutStep1():0 -> q
-    11:11:void androidx.recyclerview.widget.RecyclerView$ViewHolder.saveOldPosition():0:0 -> q
-    11:11:void saveOldPositions():0 -> q
-    11:11:void dispatchLayoutStep1():0 -> q
-    12:12:void dispatchLayoutStep1():0:0 -> q
-    13:13:boolean androidx.recyclerview.widget.ViewInfoStore.isInPreLayout(androidx.recyclerview.widget.RecyclerView$ViewHolder):0:0 -> q
+    11:11:void dispatchLayoutStep1():0:0 -> q
+    12:12:void saveOldPositions():0:0 -> q
+    12:12:void dispatchLayoutStep1():0 -> q
+    13:13:void androidx.recyclerview.widget.RecyclerView$ViewHolder.saveOldPosition():0:0 -> q
+    13:13:void saveOldPositions():0 -> q
     13:13:void dispatchLayoutStep1():0 -> q
     14:14:void dispatchLayoutStep1():0:0 -> q
-    15:15:void androidx.recyclerview.widget.ViewInfoStore.addToAppearedInPreLayoutHolders(androidx.recyclerview.widget.RecyclerView$ViewHolder,androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo):0:0 -> q
+    15:15:boolean androidx.recyclerview.widget.ViewInfoStore.isInPreLayout(androidx.recyclerview.widget.RecyclerView$ViewHolder):0:0 -> q
     15:15:void dispatchLayoutStep1():0 -> q
     16:16:void dispatchLayoutStep1():0:0 -> q
-    17:17:void onExitLayoutOrScroll():0:0 -> q
+    17:17:void androidx.recyclerview.widget.ViewInfoStore.addToAppearedInPreLayoutHolders(androidx.recyclerview.widget.RecyclerView$ViewHolder,androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo):0:0 -> q
     17:17:void dispatchLayoutStep1():0 -> q
     18:18:void dispatchLayoutStep1():0:0 -> q
+    19:19:void onExitLayoutOrScroll():0:0 -> q
+    19:19:void dispatchLayoutStep1():0 -> q
+    20:20:void dispatchLayoutStep1():0:0 -> q
     1:1:boolean androidx.recyclerview.widget.RecyclerView$Adapter.canRestoreState():0:0 -> r
     1:1:void dispatchLayoutStep2():0 -> r
     2:2:void dispatchLayoutStep2():0:0 -> r
@@ -3528,7 +3489,8 @@ androidx.recyclerview.widget.RecyclerView$ItemAnimator -> androidx.recyclerview.
     boolean animateChange(androidx.recyclerview.widget.RecyclerView$ViewHolder,androidx.recyclerview.widget.RecyclerView$ViewHolder,androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo,androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo) -> a
     1:1:int androidx.recyclerview.widget.RecyclerView$ViewHolder.getOldPosition():0:0 -> b
     1:1:int buildAdapterChangeFlagsForAnimations(androidx.recyclerview.widget.RecyclerView$ViewHolder):0 -> b
-    2:2:int buildAdapterChangeFlagsForAnimations(androidx.recyclerview.widget.RecyclerView$ViewHolder):0:0 -> b
+    2:2:int androidx.recyclerview.widget.RecyclerView$ViewHolder.getAbsoluteAdapterPosition():0:0 -> b
+    2:2:int buildAdapterChangeFlagsForAnimations(androidx.recyclerview.widget.RecyclerView$ViewHolder):0 -> b
     1:1:void androidx.recyclerview.widget.RecyclerView$ItemAnimatorRestoreListener.onAnimationFinished(androidx.recyclerview.widget.RecyclerView$ViewHolder):0:0 -> c
     1:1:void dispatchAnimationFinished(androidx.recyclerview.widget.RecyclerView$ViewHolder):0 -> c
     2:2:boolean androidx.recyclerview.widget.RecyclerView$ViewHolder.shouldBeKeptAsChild():0:0 -> c
@@ -4313,33 +4275,32 @@ androidx.recyclerview.widget.RecyclerView$ViewHolder -> androidx.recyclerview.wi
     void addFlags(int) -> b
     void clearOldPosition() -> c
     void clearReturnedFromScrapFlag() -> d
-    int getAbsoluteAdapterPosition() -> e
-    int getLayoutPosition() -> f
-    java.util.List getUnmodifiedPayloads() -> g
-    boolean hasAnyOfTheFlags(int) -> h
-    boolean isAttachedToTransitionOverlay() -> i
-    boolean isBound() -> j
-    boolean isInvalid() -> k
-    1:1:boolean androidx.core.view.ViewCompat.hasTransientState(android.view.View):0:0 -> l
-    1:1:boolean isRecyclable():0 -> l
-    boolean isRemoved() -> m
-    boolean isScrap() -> n
-    boolean isTmpDetached() -> o
-    boolean isUpdated() -> p
-    void offsetPosition(int,boolean) -> q
-    1:1:void clearPayload():0:0 -> r
-    1:1:void resetInternal():0 -> r
-    2:2:void resetInternal():0:0 -> r
-    void setFlags(int,int) -> s
-    void setIsRecyclable(boolean) -> t
+    int getLayoutPosition() -> e
+    java.util.List getUnmodifiedPayloads() -> f
+    boolean hasAnyOfTheFlags(int) -> g
+    boolean isAttachedToTransitionOverlay() -> h
+    boolean isBound() -> i
+    boolean isInvalid() -> j
+    1:1:boolean androidx.core.view.ViewCompat.hasTransientState(android.view.View):0:0 -> k
+    1:1:boolean isRecyclable():0 -> k
+    boolean isRemoved() -> l
+    boolean isScrap() -> m
+    boolean isTmpDetached() -> n
+    boolean isUpdated() -> o
+    void offsetPosition(int,boolean) -> p
+    1:1:void clearPayload():0:0 -> q
+    1:1:void resetInternal():0 -> q
+    2:2:void resetInternal():0:0 -> q
+    void setFlags(int,int) -> r
+    void setIsRecyclable(boolean) -> s
+    boolean shouldIgnore() -> t
     1:1:boolean needsUpdate():0:0 -> toString
     1:1:java.lang.String toString():0 -> toString
     2:2:java.lang.String toString():0:0 -> toString
     3:3:boolean isAdapterPositionUnknown():0:0 -> toString
     3:3:java.lang.String toString():0 -> toString
     4:4:java.lang.String toString():0:0 -> toString
-    boolean shouldIgnore() -> u
-    boolean wasReturnedFromScrap() -> v
+    boolean wasReturnedFromScrap() -> u
 androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate -> androidx.recyclerview.widget.x:
     androidx.recyclerview.widget.RecyclerView mRecyclerView -> d
     androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate$ItemDelegate mItemDelegate -> e
@@ -5009,23 +4970,6 @@ androidx.versionedparcelable.VersionedParcelParcel -> n.b:
     void writeParcelable(android.os.Parcelable) -> u
     void writeString(java.lang.String) -> v
 androidx.versionedparcelable.VersionedParcelable -> n.c:
-b4.SearchFragment$$ExternalSyntheticLambda0 -> b4.a:
-    studio.mandysa.music.databinding.FragmentSearchBinding studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.f$1 -> b
-    studio.mandysa.music.ui.search.SearchFragment studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.f$0 -> a
-    void studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.<init>(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding) -> <init>
-    1:1:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0:0 -> onEditorAction
-    1:1:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
-    2:2:void studio.mandysa.music.ui.search.SearchFragment.hideInput():0:0 -> onEditorAction
-    2:2:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
-    2:2:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
-    3:3:studio.mandysa.music.ui.search.SearchViewModel studio.mandysa.music.ui.search.SearchFragment.getMViewModel():0:0 -> onEditorAction
-    3:3:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
-    3:3:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
-    4:4:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.ui.search.SearchViewModel.getSearchContentLiveData():0:0 -> onEditorAction
-    4:4:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
-    4:4:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
-    5:5:boolean studio.mandysa.music.ui.search.SearchFragment.onViewCreated$lambda-3$lambda-2(studio.mandysa.music.ui.search.SearchFragment,studio.mandysa.music.databinding.FragmentSearchBinding,android.widget.TextView,int,android.view.KeyEvent):0:0 -> onEditorAction
-    5:5:boolean studio.mandysa.music.ui.search.SearchFragment$$InternalSyntheticLambda$2$aad44e42800e387f3b4c3aa96cb80b493938588b760010cbe78a6aa45924d7e2$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent):0 -> onEditorAction
 bolts.AndroidExecutors -> o.a:
     java.util.concurrent.Executor uiThread -> a
     bolts.AndroidExecutors INSTANCE -> b
@@ -15944,40 +15888,35 @@ m2.ObservableFactory$$ExternalSyntheticLambda0 -> m2.e:
     int mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.$r8$classId -> a
     void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$2.$r8$init$bridge(java.lang.reflect.Method,mandysax.anna2.callback.Callback) -> <init>
     void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.$r8$init$bridge(mandysax.anna2.callback.Callback,okhttp3.Response) -> <init>
-    void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$8cff33d547e81503078ae34b963dfabcd370cee37d2cd55e12e7fc53ab747d6e$0.$r8$init$bridge(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity) -> <init>
     void mandysax.lifecycle.livedata.LiveData$$InternalSyntheticLambda$1$5124f4c7322aa237ea49b6bf2fd22091545fdaa67eadadc901df2f7ed3ef331c$0.$r8$init$bridge(mandysax.lifecycle.livedata.LiveData,java.lang.Object) -> <init>
-    1:1:void mandysax.lifecycle.livedata.LiveData.lambda$postValue$0(java.lang.Object):0:0 -> run
+    1:1:void mandysax.anna2.factory.ObservableFactory.run$lambda-2(java.lang.reflect.Method,mandysax.anna2.callback.Callback):0:0 -> run
     1:1:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0 -> run
     2:2:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0:0 -> run
-    3:3:void mandysax.anna2.factory.ObservableFactory.run$lambda-2(java.lang.reflect.Method,mandysax.anna2.callback.Callback):0:0 -> run
+    3:3:void mandysax.anna2.factory.ObservableFactory.run$lambda-0(mandysax.anna2.callback.Callback,okhttp3.Response):0:0 -> run
     3:3:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0 -> run
-    4:4:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0:0 -> run
+    4:4:int okhttp3.Response.code():0:0 -> run
+    4:4:void mandysax.anna2.factory.ObservableFactory.run$lambda-0(mandysax.anna2.callback.Callback,okhttp3.Response):0 -> run
+    4:4:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0 -> run
     5:5:void mandysax.anna2.factory.ObservableFactory.run$lambda-0(mandysax.anna2.callback.Callback,okhttp3.Response):0:0 -> run
     5:5:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0 -> run
-    6:6:int okhttp3.Response.code():0:0 -> run
-    6:6:void mandysax.anna2.factory.ObservableFactory.run$lambda-0(mandysax.anna2.callback.Callback,okhttp3.Response):0 -> run
-    6:6:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0 -> run
-    7:7:void mandysax.anna2.factory.ObservableFactory.run$lambda-0(mandysax.anna2.callback.Callback,okhttp3.Response):0:0 -> run
+    6:6:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0:0 -> run
+    7:7:void mandysax.lifecycle.livedata.LiveData.lambda$postValue$0(java.lang.Object):0:0 -> run
     7:7:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0 -> run
-    8:8:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0:0 -> run
-    9:9:void studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-10$lambda-4(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity):0:0 -> run
-    9:9:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$0.run$bridge():0 -> run
 m2.ObservableFactory$$ExternalSyntheticLambda1 -> m2.f:
-    org.json.JSONArray mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.f$0 -> b
-    java.lang.reflect.Method mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.f$2 -> d
-    mandysax.anna2.callback.Callback mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.f$3 -> e
-    mandysax.anna2.factory.ObservableFactory mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.f$1 -> c
-    int mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.$r8$classId -> a
-    void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$3$7d79a627209493bec99186ad1e05765de05dc358dc7220d8b64cc97ef0ac77e9$0.$r8$init$bridge(com.sothree.slidinguppanel.SlidingUpPanelLayout,studio.mandysa.music.MainActivity,studio.mandysa.music.databinding.ActivityMainBinding,mandysax.fragment.FragmentView) -> <init>
-    void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.$r8$init$bridge(org.json.JSONArray,mandysax.anna2.factory.ObservableFactory,java.lang.reflect.Method,mandysax.anna2.callback.Callback) -> <init>
-    1:1:void mandysax.anna2.factory.ObservableFactory.run$lambda-4(org.json.JSONArray,mandysax.anna2.factory.ObservableFactory,java.lang.reflect.Method,mandysax.anna2.callback.Callback):0:0 -> run
-    1:1:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.run$bridge():0 -> run
-    2:2:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.run$bridge():0:0 -> run
-    3:3:void studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-10$lambda-9$lambda-8$lambda-7$lambda-6$lambda-5(com.sothree.slidinguppanel.SlidingUpPanelLayout,studio.mandysa.music.MainActivity,studio.mandysa.music.databinding.ActivityMainBinding,mandysax.fragment.FragmentView):0:0 -> run
-    3:3:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.run$bridge():0 -> run
+    mandysax.anna2.callback.Callback mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.f$0 -> b
+    mandysax.anna2.factory.ObservableFactory mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.f$1 -> c
+    int mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.$r8$classId -> a
+    java.lang.String mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.f$2 -> d
+    void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.$r8$init$bridge(mandysax.anna2.callback.Callback,mandysax.anna2.factory.ObservableFactory,java.lang.String) -> <init>
+    void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$3$53419624b74787f757ba92b4029a9621a261a606389e2ac5f32d61e136762b7c$0.$r8$init$bridge(studio.mandysa.music.MainActivity,com.sothree.slidinguppanel.SlidingUpPanelLayout,studio.mandysa.music.databinding.ActivityMainBinding) -> <init>
+    1:1:void mandysax.anna2.factory.ObservableFactory.run$lambda-5(mandysax.anna2.callback.Callback,mandysax.anna2.factory.ObservableFactory,java.lang.String):0:0 -> run
+    1:1:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.run$bridge():0 -> run
+    2:2:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.run$bridge():0:0 -> run
+    3:3:void studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-9$lambda-8$lambda-7$lambda-6$lambda-5$lambda-4(studio.mandysa.music.MainActivity,com.sothree.slidinguppanel.SlidingUpPanelLayout,studio.mandysa.music.databinding.ActivityMainBinding):0:0 -> run
+    3:3:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.run$bridge():0 -> run
     4:4:void com.sothree.slidinguppanel.SlidingUpPanelLayout.addPanelSlideListener(com.sothree.slidinguppanel.PanelSlideListener):0:0 -> run
-    4:4:void studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-10$lambda-9$lambda-8$lambda-7$lambda-6$lambda-5(com.sothree.slidinguppanel.SlidingUpPanelLayout,studio.mandysa.music.MainActivity,studio.mandysa.music.databinding.ActivityMainBinding,mandysax.fragment.FragmentView):0 -> run
-    4:4:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.run$bridge():0 -> run
+    4:4:void studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-9$lambda-8$lambda-7$lambda-6$lambda-5$lambda-4(studio.mandysa.music.MainActivity,com.sothree.slidinguppanel.SlidingUpPanelLayout,studio.mandysa.music.databinding.ActivityMainBinding):0 -> run
+    4:4:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.run$bridge():0 -> run
 m2.ObservableFactory$$ExternalSyntheticLambda2 -> m2.g:
     mandysax.anna2.callback.Callback mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$1.f$0 -> b
     int mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$1.$r8$classId -> a
@@ -15988,12 +15927,13 @@ m2.ObservableFactory$$ExternalSyntheticLambda2 -> m2.g:
     3:3:void mandysax.anna2.factory.ObservableFactory$set$1.onFailure$lambda-0(mandysax.anna2.callback.Callback):0:0 -> run
     3:3:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$1.run$bridge():0 -> run
 m2.ObservableFactory$$ExternalSyntheticLambda3 -> m2.h:
-    java.lang.String mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.f$2 -> c
-    mandysax.anna2.factory.ObservableFactory mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.f$1 -> b
-    mandysax.anna2.callback.Callback mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.f$0 -> a
-    void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.<init>(mandysax.anna2.callback.Callback,mandysax.anna2.factory.ObservableFactory,java.lang.String) -> <init>
-    1:1:void mandysax.anna2.factory.ObservableFactory.run$lambda-5(mandysax.anna2.callback.Callback,mandysax.anna2.factory.ObservableFactory,java.lang.String):0:0 -> run
-    1:1:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$4.run():0 -> run
+    java.lang.reflect.Method mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.f$2 -> c
+    mandysax.anna2.callback.Callback mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.f$3 -> d
+    mandysax.anna2.factory.ObservableFactory mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.f$1 -> b
+    org.json.JSONArray mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.f$0 -> a
+    void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.<init>(org.json.JSONArray,mandysax.anna2.factory.ObservableFactory,java.lang.reflect.Method,mandysax.anna2.callback.Callback) -> <init>
+    1:1:void mandysax.anna2.factory.ObservableFactory.run$lambda-4(org.json.JSONArray,mandysax.anna2.factory.ObservableFactory,java.lang.reflect.Method,mandysax.anna2.callback.Callback):0:0 -> run
+    1:1:void mandysax.anna2.factory.ObservableFactory$$InternalSyntheticLambda$1$8975d1b54dadbc844cdb30667e83eeb2a32fc28c02b74ddb17ebbb306e3b9608$3.run():0 -> run
 mandysax.anna2.Anna2 -> j2.b:
     mandysax.anna2.factory.ConverterFactory converterFactory -> b
     java.lang.String baseUrl -> a
@@ -16858,17 +16798,11 @@ mandysax.lifecycle.livedata.LiveData -> u2.a:
     1:1:boolean mandysax.lifecycle.livedata.LiveData.isMainThread():0:0 -> g
     1:1:void setValue(java.lang.Object):0 -> g
     2:2:void setValue(java.lang.Object):0:0 -> g
-    3:3:void mandysax.lifecycle.livedata.LiveData.start():0:0 -> g
-    3:3:void setValue(java.lang.Object):0 -> g
-    4:4:mandysax.lifecycle.LifecycleOwner mandysax.lifecycle.livedata.LiveData$LifecycleBoundObserver.access$100(mandysax.lifecycle.livedata.LiveData$LifecycleBoundObserver):0:0 -> g
-    4:4:void mandysax.lifecycle.livedata.LiveData.start():0 -> g
-    4:4:void setValue(java.lang.Object):0 -> g
-    5:5:void mandysax.lifecycle.livedata.LiveData.start():0:0 -> g
-    5:5:void setValue(java.lang.Object):0 -> g
-    6:6:void mandysax.lifecycle.LifecycleRegistry.addObserver(mandysax.lifecycle.LifecycleObserver):0:0 -> g
-    6:6:void mandysax.lifecycle.livedata.LiveData.start():0 -> g
-    6:6:void setValue(java.lang.Object):0 -> g
-    7:7:void setValue(java.lang.Object):0:0 -> g
+    1:1:mandysax.lifecycle.LifecycleOwner mandysax.lifecycle.livedata.LiveData$LifecycleBoundObserver.access$100(mandysax.lifecycle.livedata.LiveData$LifecycleBoundObserver):0:0 -> h
+    1:1:void start():0 -> h
+    2:2:void start():0:0 -> h
+    3:3:void mandysax.lifecycle.LifecycleRegistry.addObserver(mandysax.lifecycle.LifecycleObserver):0:0 -> h
+    3:3:void start():0 -> h
 mandysax.lifecycle.livedata.LiveData$1 -> u2.a$a:
     mandysax.lifecycle.livedata.LiveData this$0 -> b
     mandysax.lifecycle.livedata.Observer val$observer -> a
@@ -16882,7 +16816,7 @@ mandysax.lifecycle.livedata.LiveData$2 -> u2.a$b:
     mandysax.lifecycle.livedata.LiveData this$0 -> b
     mandysax.lifecycle.livedata.Observer val$observer -> a
     void onChanged(java.lang.Object) -> a
-mandysax.lifecycle.livedata.LiveData$3 -> u2.b:
+mandysax.lifecycle.livedata.LiveData$3 -> u2.a$c:
     mandysax.lifecycle.livedata.LiveData$LifecycleBoundObserver val$lifecycleBoundObserver -> b
     mandysax.lifecycle.livedata.LiveData this$0 -> c
     mandysax.lifecycle.livedata.LiveData$ObserverWrapper val$wrapper -> a
@@ -16894,9 +16828,9 @@ mandysax.lifecycle.livedata.LiveData$3 -> u2.b:
     4:4:void observer(mandysax.lifecycle.Lifecycle$Event):0:0 -> observer
     5:5:void mandysax.lifecycle.LifecycleRegistry.removeObserver(mandysax.lifecycle.LifecycleObserver):0:0 -> observer
     5:5:void observer(mandysax.lifecycle.Lifecycle$Event):0 -> observer
-mandysax.lifecycle.livedata.LiveData$AlwaysActiveObserver -> u2.a$c:
+mandysax.lifecycle.livedata.LiveData$AlwaysActiveObserver -> u2.a$d:
     boolean isActive() -> a
-mandysax.lifecycle.livedata.LiveData$LifecycleBoundObserver -> u2.a$d:
+mandysax.lifecycle.livedata.LiveData$LifecycleBoundObserver -> u2.a$e:
     mandysax.lifecycle.LifecycleOwner mOwner -> b
     boolean mActive -> c
     mandysax.lifecycle.livedata.LiveData this$0 -> d
@@ -16909,15 +16843,15 @@ mandysax.lifecycle.livedata.LiveData$LifecycleBoundObserver -> u2.a$d:
     3:3:java.util.ArrayList mandysax.lifecycle.livedata.LiveData.access$200(mandysax.lifecycle.livedata.LiveData):0:0 -> observer
     3:3:void observer(mandysax.lifecycle.Lifecycle$Event):0 -> observer
     4:4:void observer(mandysax.lifecycle.Lifecycle$Event):0:0 -> observer
-mandysax.lifecycle.livedata.LiveData$ObserverWrapper -> u2.a$e:
+mandysax.lifecycle.livedata.LiveData$ObserverWrapper -> u2.a$f:
     mandysax.lifecycle.livedata.Observer mObserver -> a
     boolean isActive() -> a
-mandysax.lifecycle.livedata.MutableLiveData -> u2.c:
+mandysax.lifecycle.livedata.MutableLiveData -> u2.b:
     void lazy(mandysax.lifecycle.livedata.Observer) -> c
     void observe(mandysax.lifecycle.LifecycleOwner,mandysax.lifecycle.livedata.Observer) -> d
     void observeForever(mandysax.lifecycle.livedata.Observer) -> e
     void setValue(java.lang.Object) -> g
-mandysax.lifecycle.livedata.Observer -> u2.d:
+mandysax.lifecycle.livedata.Observer -> u2.c:
     void onChanged(java.lang.Object) -> a
 mandysax.media.DefaultPlayerManager -> v2.e:
     android.content.Context mContext -> a
@@ -18193,28 +18127,26 @@ okhttp3.internal.Internal -> a3.a:
     java.lang.String okhttp3.internal.concurrent.TaskLoggerKt.formatDuration(long) -> g
     1:1:boolean okio.Okio__JvmOkioKt.isAndroidGetsocknameError(java.lang.AssertionError):0:0 -> h
     1:1:boolean okio.Okio.isAndroidGetsocknameError(java.lang.AssertionError):0 -> h
-    1:1:androidx.recyclerview.widget.RecyclerView studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.linear(androidx.recyclerview.widget.RecyclerView,int):0:0 -> i
-    1:1:androidx.recyclerview.widget.RecyclerView studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.linear$default(androidx.recyclerview.widget.RecyclerView,int,int,java.lang.Object):0 -> i
-    1:1:int[] okio.SegmentedByteString.getDirectory$okio():0:0 -> j
-    1:1:int okio.internal.SegmentedByteStringKt.segment(okio.SegmentedByteString,int):0 -> j
-    2:2:byte[][] okio.SegmentedByteString.getSegments$okio():0:0 -> j
-    2:2:int okio.internal.SegmentedByteStringKt.segment(okio.SegmentedByteString,int):0 -> j
-    3:3:int okio.internal.SegmentedByteStringKt.segment(okio.SegmentedByteString,int):0:0 -> j
-    4:4:int okio.internal.SegmentedByteStringKt.binarySearch(int[],int,int,int):0:0 -> j
-    4:4:int okio.internal.SegmentedByteStringKt.segment(okio.SegmentedByteString,int):0 -> j
-    studio.mandysa.jiuwo.adapter.RecyclerAdapter studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.setup(androidx.recyclerview.widget.RecyclerView,kotlin.jvm.functions.Function2) -> k
-    1:1:okio.Sink okio.Okio__JvmOkioKt.sink(java.net.Socket):0:0 -> l
-    1:1:okio.Sink okio.Okio.sink(java.net.Socket):0 -> l
-    2:2:okio.Sink okio.AsyncTimeout.sink(okio.Sink):0:0 -> l
-    2:2:okio.Sink okio.Okio__JvmOkioKt.sink(java.net.Socket):0 -> l
-    2:2:okio.Sink okio.Okio.sink(java.net.Socket):0 -> l
-    1:1:okio.Source okio.Okio__JvmOkioKt.source(java.net.Socket):0:0 -> m
-    1:1:okio.Source okio.Okio.source(java.net.Socket):0 -> m
-    2:2:okio.Source okio.AsyncTimeout.source(okio.Source):0:0 -> m
-    2:2:okio.Source okio.Okio__JvmOkioKt.source(java.net.Socket):0 -> m
-    2:2:okio.Source okio.Okio.source(java.net.Socket):0 -> m
-    1:1:androidx.recyclerview.widget.RecyclerView studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.staggered(androidx.recyclerview.widget.RecyclerView,int,int):0:0 -> n
-    1:1:androidx.recyclerview.widget.RecyclerView studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.staggered$default(androidx.recyclerview.widget.RecyclerView,int,int,int,java.lang.Object):0 -> n
+    androidx.recyclerview.widget.RecyclerView studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.linear(androidx.recyclerview.widget.RecyclerView,int) -> i
+    androidx.recyclerview.widget.RecyclerView studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.linear$default(androidx.recyclerview.widget.RecyclerView,int,int,java.lang.Object) -> j
+    1:1:int[] okio.SegmentedByteString.getDirectory$okio():0:0 -> k
+    1:1:int okio.internal.SegmentedByteStringKt.segment(okio.SegmentedByteString,int):0 -> k
+    2:2:byte[][] okio.SegmentedByteString.getSegments$okio():0:0 -> k
+    2:2:int okio.internal.SegmentedByteStringKt.segment(okio.SegmentedByteString,int):0 -> k
+    3:3:int okio.internal.SegmentedByteStringKt.segment(okio.SegmentedByteString,int):0:0 -> k
+    4:4:int okio.internal.SegmentedByteStringKt.binarySearch(int[],int,int,int):0:0 -> k
+    4:4:int okio.internal.SegmentedByteStringKt.segment(okio.SegmentedByteString,int):0 -> k
+    studio.mandysa.jiuwo.adapter.RecyclerAdapter studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.setup(androidx.recyclerview.widget.RecyclerView,kotlin.jvm.functions.Function2) -> l
+    1:1:okio.Sink okio.Okio__JvmOkioKt.sink(java.net.Socket):0:0 -> m
+    1:1:okio.Sink okio.Okio.sink(java.net.Socket):0 -> m
+    2:2:okio.Sink okio.AsyncTimeout.sink(okio.Sink):0:0 -> m
+    2:2:okio.Sink okio.Okio__JvmOkioKt.sink(java.net.Socket):0 -> m
+    2:2:okio.Sink okio.Okio.sink(java.net.Socket):0 -> m
+    1:1:okio.Source okio.Okio__JvmOkioKt.source(java.net.Socket):0:0 -> n
+    1:1:okio.Source okio.Okio.source(java.net.Socket):0 -> n
+    2:2:okio.Source okio.AsyncTimeout.source(okio.Source):0:0 -> n
+    2:2:okio.Source okio.Okio__JvmOkioKt.source(java.net.Socket):0 -> n
+    2:2:okio.Source okio.Okio.source(java.net.Socket):0 -> n
 okhttp3.internal.Util -> a3.d:
     okio.Options UNICODE_BOMS -> d
     java.lang.String okHttpName -> g
@@ -24141,41 +24073,32 @@ p1.ViewDragHelper$$ExternalSyntheticLambda1 -> p1.d:
 q3.MainActivity$$ExternalSyntheticLambda0 -> q3.a:
     studio.mandysa.music.MainActivity studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$0.f$0 -> a
     void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$0.<init>(studio.mandysa.music.MainActivity) -> <init>
-    1:1:boolean studio.mandysa.music.MainActivity.onCreate$lambda-1(studio.mandysa.music.MainActivity,android.view.View,android.view.MotionEvent):0:0 -> onTouch
+    1:1:boolean studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-1(studio.mandysa.music.MainActivity,android.view.View,android.view.MotionEvent):0:0 -> onTouch
     1:1:boolean studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$0.onTouch(android.view.View,android.view.MotionEvent):0 -> onTouch
 q3.MainActivity$$ExternalSyntheticLambda1 -> q3.b:
     studio.mandysa.music.MainActivity studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.f$1 -> b
     studio.mandysa.music.databinding.ActivityMainBinding studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.f$0 -> a
-    mandysax.fragment.FragmentView studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.f$2 -> c
-    void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.<init>(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView) -> <init>
-    1:1:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-10(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView,android.view.View,androidx.core.view.WindowInsetsCompat):0:0 -> a
+    void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.<init>(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity) -> <init>
+    1:1:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-9(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity,android.view.View,androidx.core.view.WindowInsetsCompat):0:0 -> a
     1:1:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.onApplyWindowInsets(android.view.View,androidx.core.view.WindowInsetsCompat):0 -> a
-    2:2:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager.access$getInstance$cp():0:0 -> a
-    2:2:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager$Companion.getInstance():0 -> a
-    2:2:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-10(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView,android.view.View,androidx.core.view.WindowInsetsCompat):0 -> a
+    2:2:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.changeMusicLiveData():0:0 -> a
+    2:2:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-9(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity,android.view.View,androidx.core.view.WindowInsetsCompat):0 -> a
     2:2:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.onApplyWindowInsets(android.view.View,androidx.core.view.WindowInsetsCompat):0 -> a
-    3:3:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-10(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView,android.view.View,androidx.core.view.WindowInsetsCompat):0:0 -> a
+    3:3:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-9(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity,android.view.View,androidx.core.view.WindowInsetsCompat):0:0 -> a
     3:3:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.onApplyWindowInsets(android.view.View,androidx.core.view.WindowInsetsCompat):0 -> a
-    4:4:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.changeMusicLiveData():0:0 -> a
-    4:4:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-10(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView,android.view.View,androidx.core.view.WindowInsetsCompat):0 -> a
-    4:4:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.onApplyWindowInsets(android.view.View,androidx.core.view.WindowInsetsCompat):0 -> a
-    5:5:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-10(studio.mandysa.music.databinding.ActivityMainBinding,studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView,android.view.View,androidx.core.view.WindowInsetsCompat):0:0 -> a
-    5:5:androidx.core.view.WindowInsetsCompat studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$3.onApplyWindowInsets(android.view.View,androidx.core.view.WindowInsetsCompat):0 -> a
 q3.MainActivity$$ExternalSyntheticLambda2 -> q3.c:
-    int studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$0cd3aa2be5345c2e610e0e023c4a201356cd20ac4dff142a705878cebcc7da2e$0.f$1 -> b
-    studio.mandysa.music.databinding.ActivityMainBinding studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$0cd3aa2be5345c2e610e0e023c4a201356cd20ac4dff142a705878cebcc7da2e$0.f$0 -> a
-    studio.mandysa.music.MainActivity studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$0cd3aa2be5345c2e610e0e023c4a201356cd20ac4dff142a705878cebcc7da2e$0.f$2 -> c
-    mandysax.fragment.FragmentView studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$0cd3aa2be5345c2e610e0e023c4a201356cd20ac4dff142a705878cebcc7da2e$0.f$3 -> d
-    void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$0cd3aa2be5345c2e610e0e023c4a201356cd20ac4dff142a705878cebcc7da2e$0.<init>(studio.mandysa.music.databinding.ActivityMainBinding,int,studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView) -> <init>
-    1:1:void studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-10$lambda-9$lambda-8$lambda-7(studio.mandysa.music.databinding.ActivityMainBinding,int,studio.mandysa.music.MainActivity,mandysax.fragment.FragmentView):0:0 -> run
-    1:1:void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$0cd3aa2be5345c2e610e0e023c4a201356cd20ac4dff142a705878cebcc7da2e$0.run():0 -> run
+    int studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$ddec796fae7fe4f67230e97f327e1d480101051dffeb7c0c6f34a72a4b85a45c$0.f$1 -> b
+    studio.mandysa.music.databinding.ActivityMainBinding studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$ddec796fae7fe4f67230e97f327e1d480101051dffeb7c0c6f34a72a4b85a45c$0.f$0 -> a
+    studio.mandysa.music.MainActivity studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$ddec796fae7fe4f67230e97f327e1d480101051dffeb7c0c6f34a72a4b85a45c$0.f$2 -> c
+    void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$ddec796fae7fe4f67230e97f327e1d480101051dffeb7c0c6f34a72a4b85a45c$0.<init>(studio.mandysa.music.databinding.ActivityMainBinding,int,studio.mandysa.music.MainActivity) -> <init>
+    1:1:void studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-9$lambda-8$lambda-7$lambda-6(studio.mandysa.music.databinding.ActivityMainBinding,int,studio.mandysa.music.MainActivity):0:0 -> run
+    1:1:void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$2$ddec796fae7fe4f67230e97f327e1d480101051dffeb7c0c6f34a72a4b85a45c$0.run():0 -> run
 q3.MainActivity$$ExternalSyntheticLambda3 -> q3.d:
-    studio.mandysa.music.MainActivity studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$8cff33d547e81503078ae34b963dfabcd370cee37d2cd55e12e7fc53ab747d6e$1.f$0 -> a
-    int studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$8cff33d547e81503078ae34b963dfabcd370cee37d2cd55e12e7fc53ab747d6e$1.f$1 -> b
-    mandysax.fragment.FragmentView studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$8cff33d547e81503078ae34b963dfabcd370cee37d2cd55e12e7fc53ab747d6e$1.f$2 -> c
-    void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$8cff33d547e81503078ae34b963dfabcd370cee37d2cd55e12e7fc53ab747d6e$1.<init>(studio.mandysa.music.MainActivity,int,mandysax.fragment.FragmentView) -> <init>
-    1:1:void studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-10$lambda-9(studio.mandysa.music.MainActivity,int,mandysax.fragment.FragmentView,mandysax.media.model.DefaultMusic):0:0 -> a
-    1:1:void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$8cff33d547e81503078ae34b963dfabcd370cee37d2cd55e12e7fc53ab747d6e$1.onChanged(java.lang.Object):0 -> a
+    studio.mandysa.music.MainActivity studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$9bd4107df04e9d5cb96d509042ae5ef07d719d9f1061d0d019b9323688283800$0.f$0 -> a
+    int studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$9bd4107df04e9d5cb96d509042ae5ef07d719d9f1061d0d019b9323688283800$0.f$1 -> b
+    void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$9bd4107df04e9d5cb96d509042ae5ef07d719d9f1061d0d019b9323688283800$0.<init>(studio.mandysa.music.MainActivity,int) -> <init>
+    1:1:void studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-9$lambda-8(studio.mandysa.music.MainActivity,int,mandysax.media.model.DefaultMusic):0:0 -> a
+    1:1:void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$1$9bd4107df04e9d5cb96d509042ae5ef07d719d9f1061d0d019b9323688283800$0.onChanged(java.lang.Object):0 -> a
 q3.MyApplication$$ExternalSyntheticLambda0 -> q3.g:
     studio.mandysa.music.MyApplication studio.mandysa.music.MyApplication$$InternalSyntheticLambda$0$3a3a5468a5d2f589bd747774e8047456c63856b3f748d8fe477fc0dd150a482a$0.f$0 -> b
     int studio.mandysa.music.MyApplication$$InternalSyntheticLambda$0$3a3a5468a5d2f589bd747774e8047456c63856b3f748d8fe477fc0dd150a482a$0.$r8$classId -> a
@@ -24323,6 +24246,10 @@ studio.mandysa.bottomnavigationbar.BottomNavigationBar -> studio.mandysa.bottomn
     mandysax.lifecycle.livedata.MutableLiveData mSelectedPosition -> F0
     int mInActiveColor -> E0
     java.util.List models -> G0
+    1:1:androidx.recyclerview.widget.RecyclerView studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.staggered(androidx.recyclerview.widget.RecyclerView,int,int):0:0 -> setModels
+    1:1:androidx.recyclerview.widget.RecyclerView studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.staggered$default(androidx.recyclerview.widget.RecyclerView,int,int,int,java.lang.Object):0 -> setModels
+    1:1:void setModels(java.util.List):0 -> setModels
+    2:2:void setModels(java.util.List):0:0 -> setModels
 studio.mandysa.bottomnavigationbar.BottomNavigationBar$models$1 -> studio.mandysa.bottomnavigationbar.BottomNavigationBar$a:
     studio.mandysa.bottomnavigationbar.BottomNavigationBar this$0 -> a
     1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
@@ -24406,14 +24333,23 @@ studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder -> p3.a$a:
     kotlin.jvm.functions.Function1 onDetached -> v
     studio.mandysa.jiuwo.adapter.RecyclerAdapter this$0 -> w
     kotlin.jvm.functions.Function1 onAttached -> u
-    1:1:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getHeaders():0:0 -> w
-    1:1:int getModelPosition():0 -> w
-    2:2:int getModelPosition():0:0 -> w
-    3:3:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getModels():0:0 -> w
-    3:3:int getModelPosition():0 -> w
-    4:4:int getModelPosition():0:0 -> w
-    void onAttached(kotlin.jvm.functions.Function1) -> x
-    void onDetached(kotlin.jvm.functions.Function1) -> y
+    void onDetached(kotlin.jvm.functions.Function1) -> A
+    1:1:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getHeaders():0:0 -> v
+    1:1:int getHeaderSize():0 -> v
+    2:2:int getHeaderSize():0:0 -> v
+    int getModelPosition() -> w
+    1:1:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getModels():0:0 -> x
+    1:1:int getModelSize():0 -> x
+    2:2:int getModelSize():0:0 -> x
+    1:1:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getHeaders():0:0 -> y
+    1:1:java.util.List getModels():0 -> y
+    2:2:java.util.List getModels():0:0 -> y
+    3:3:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getModels():0:0 -> y
+    3:3:java.util.List getModels():0 -> y
+    4:4:java.util.List getModels():0:0 -> y
+    5:5:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getFooters():0:0 -> y
+    5:5:java.util.List getModels():0 -> y
+    void onAttached(kotlin.jvm.functions.Function1) -> z
 studio.mandysa.music.MainActivity -> studio.mandysa.music.MainActivity:
     kotlin.Lazy mBinding$delegate -> e
     kotlin.Lazy mEvent$delegate -> f
@@ -24464,7 +24400,7 @@ studio.mandysa.music.MainActivity -> studio.mandysa.music.MainActivity:
     25:25:void onCreate(android.os.Bundle):0:0 -> onCreate
     26:26:void androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(android.view.View,androidx.core.view.OnApplyWindowInsetsListener):0:0 -> onCreate
     26:26:void onCreate(android.os.Bundle):0 -> onCreate
-studio.mandysa.music.MainActivity$onCreate$3$1 -> studio.mandysa.music.MainActivity$a:
+studio.mandysa.music.MainActivity$onCreate$2$2 -> studio.mandysa.music.MainActivity$a:
     1:1:mandysax.navigation.fragment.NavHostFragment mandysax.navigation.fragment.NavHostFragment.create(mandysax.fragment.Fragment):0:0 -> a
     1:1:mandysax.fragment.Fragment onCreateFragment(int):0 -> a
     2:2:mandysax.navigation.NavController mandysax.navigation.fragment.NavHostFragment.getNavController():0:0 -> a
@@ -24485,13 +24421,9 @@ studio.mandysa.music.MainActivity$onCreate$3$1 -> studio.mandysa.music.MainActiv
     6:6:void mandysax.navigation.NavController.navigate(mandysax.fragment.Fragment):0 -> a
     6:6:mandysax.navigation.fragment.NavHostFragment mandysax.navigation.fragment.NavHostFragment.create(mandysax.fragment.Fragment):0 -> a
     6:6:mandysax.fragment.Fragment onCreateFragment(int):0 -> a
-studio.mandysa.music.MainActivity$onCreate$3$4$2$1$1$1$1$1 -> q3.e:
-    float y -> a
+studio.mandysa.music.MainActivity$onCreate$2$5$1$1$1$1$1$1 -> q3.e:
     studio.mandysa.music.databinding.ActivityMainBinding $this_apply -> b
-    mandysax.fragment.FragmentView $controllerFragment -> c
-    1:1:studio.mandysa.music.databinding.ActivityMainBinding studio.mandysa.music.MainActivity.access$getMBinding(studio.mandysa.music.MainActivity):0:0 -> <init>
-    1:1:void <init>(studio.mandysa.music.MainActivity,studio.mandysa.music.databinding.ActivityMainBinding,mandysax.fragment.FragmentView):0 -> <init>
-    2:2:void <init>(studio.mandysa.music.MainActivity,studio.mandysa.music.databinding.ActivityMainBinding,mandysax.fragment.FragmentView):0:0 -> <init>
+    int $y -> a
     void onPanelSlide(android.view.View,float) -> a
     void onPanelStateChanged(android.view.View,com.sothree.slidinguppanel.PanelState,com.sothree.slidinguppanel.PanelState) -> b
 studio.mandysa.music.MainActivity$special$$inlined$inflate$1 -> studio.mandysa.music.MainActivity$b:
@@ -24613,9 +24545,12 @@ studio.mandysa.music.logic.network.ServiceCreator -> studio.mandysa.music.logic.
     1:1:java.lang.Object mandysax.anna2.Anna2.create(java.lang.Class):0:0 -> create
     1:1:java.lang.Object create(java.lang.Class):0 -> create
 studio.mandysa.music.logic.utils.ArrayListUtilsKt -> studio.mandysa.music.logic.utils.ArrayListUtilsKt:
+    1:1:java.lang.String mandysax.media.model.DefaultArtist.getName():0:0 -> allArtist
+    1:1:java.lang.String allArtist(java.util.List):0 -> allArtist
+    2:2:java.lang.String allArtist(java.util.List):0:0 -> allArtist
     1:1:void mandysax.media.model.DefaultAlbum.add(mandysax.media.model.DefaultMusic[]):0:0 -> createAlbum
     1:1:mandysax.media.model.DefaultAlbum createAlbum(java.util.List):0 -> createAlbum
-studio.mandysa.music.logic.utils.BitmapUtil -> studio.mandysa.music.logic.utils.BitmapUtil:
+studio.mandysa.music.logic.utils.BitmapUtilKt -> studio.mandysa.music.logic.utils.BitmapUtilKt:
     1:1:int kotlin.math.MathKt__MathJVMKt.roundToInt(float):0:0 -> scaleBitmapDown
     1:1:android.graphics.Bitmap scaleBitmapDown(android.graphics.Bitmap):0 -> scaleBitmapDown
     2:2:android.graphics.Bitmap scaleBitmapDown(android.graphics.Bitmap):0:0 -> scaleBitmapDown
@@ -25039,20 +24974,7 @@ studio.mandysa.music.ui.controller.ControllerFragment -> studio.mandysa.music.ui
     5:5:void onViewCreated(android.view.View,android.os.Bundle):0 -> h
     6:6:void onViewCreated(android.view.View,android.os.Bundle):0:0 -> h
     studio.mandysa.music.databinding.FragmentControllerBinding getMBinding() -> p
-studio.mandysa.music.ui.decoration.DoubleItemDecoration -> v3.a:
-    int $r8$classId -> a
-    1:1:void studio.mandysa.music.ui.decoration.DoubleItemDecoration.<init>():0:0 -> <init>
-    1:1:void $r8$init$bridge():0 -> <init>
-    1:1:void studio.mandysa.music.ui.decoration.DoubleItemDecoration.getItemOffsets(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State):0:0 -> d
-    1:1:void getItemOffsets$bridge(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State):0 -> d
-    2:2:int androidx.recyclerview.widget.RecyclerView.getChildAdapterPosition(android.view.View):0:0 -> d
-    2:2:void studio.mandysa.music.ui.decoration.DoubleItemDecoration.getItemOffsets(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State):0 -> d
-    2:2:void getItemOffsets$bridge(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State):0 -> d
-    3:3:void studio.mandysa.music.ui.decoration.DoubleItemDecoration.getItemOffsets(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State):0:0 -> d
-    3:3:void getItemOffsets$bridge(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State):0 -> d
-    4:4:void studio.mandysa.music.ui.home.ThreePointsDecoration.getItemOffsets(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State):0:0 -> d
-    4:4:void getItemOffsets$bridge(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State):0 -> d
-studio.mandysa.music.ui.event.UserViewModel -> w3.b:
+studio.mandysa.music.ui.event.UserViewModel -> v3.b:
     mandysax.lifecycle.livedata.MutableLiveData mCookieLiveData -> a
     1:1:java.io.Serializable simon.tuke.Tuke.tukeGet(java.lang.String,java.io.Serializable,boolean):0:0 -> <init>
     1:1:java.io.Serializable simon.tuke.Tuke.tukeGet(java.lang.String):0 -> <init>
@@ -25071,7 +24993,7 @@ studio.mandysa.music.ui.event.UserViewModel$login$1 -> studio.mandysa.music.ui.e
     1:1:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.ui.event.UserViewModel.access$getMCookieLiveData$p(studio.mandysa.music.ui.event.UserViewModel):0:0 -> onResponse
     1:1:void onResponse(studio.mandysa.music.logic.model.LoginModel):0 -> onResponse
     2:2:void onResponse(studio.mandysa.music.logic.model.LoginModel):0:0 -> onResponse
-studio.mandysa.music.ui.home.HomeFragment -> studio.mandysa.music.ui.home.f:
+studio.mandysa.music.ui.home.HomeFragment -> studio.mandysa.music.ui.home.g:
     studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate mEvent$delegate -> j
     studio.mandysa.music.logic.utils.FragmentBindingDelegate mBinding$delegate -> i
     kotlin.reflect.KProperty[] $$delegatedProperties -> k
@@ -25084,7 +25006,7 @@ studio.mandysa.music.ui.home.HomeFragment -> studio.mandysa.music.ui.home.f:
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> d
     void onViewCreated(android.view.View,android.os.Bundle) -> h
     studio.mandysa.music.databinding.FragmentHomeBinding getMBinding() -> p
-studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1 -> studio.mandysa.music.ui.home.f$a:
+studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1 -> studio.mandysa.music.ui.home.g$a:
     studio.mandysa.music.ui.home.HomeFragment this$0 -> a
     1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
     1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
@@ -25099,7 +25021,7 @@ studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1 -> studio.mandysa.mu
     5:5:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
     5:5:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
     6:6:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> a
-studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1 -> studio.mandysa.music.ui.home.e:
+studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1 -> studio.mandysa.music.ui.home.f:
     studio.mandysa.jiuwo.adapter.RecyclerAdapter $this_setup -> a
     studio.mandysa.music.ui.home.HomeFragment this$0 -> c
     androidx.recyclerview.widget.LinearSnapHelper $snapHelper -> b
@@ -25115,31 +25037,23 @@ studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1 -> studio.mandysa.
     4:4:java.lang.Object invoke(java.lang.Object):0 -> c
     5:5:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     5:5:java.lang.Object invoke(java.lang.Object):0 -> c
-    6:6:java.lang.String mandysax.media.model.DefaultArtist.getName():0:0 -> c
+    6:6:java.lang.Object studio.mandysa.jiuwo.adapter.RecyclerAdapter.getMModel():0:0 -> c
     6:6:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
     6:6:java.lang.Object invoke(java.lang.Object):0 -> c
     7:7:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     7:7:java.lang.Object invoke(java.lang.Object):0 -> c
-    8:8:androidx.recyclerview.widget.RecyclerView studio.mandysa.jiuwo.utils.RecyclerViewUtilsKt.linear(androidx.recyclerview.widget.RecyclerView,int):0:0 -> c
+    8:8:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setModels(java.util.List):0:0 -> c
     8:8:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
     8:8:java.lang.Object invoke(java.lang.Object):0 -> c
-    9:9:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    9:9:void androidx.recyclerview.widget.RecyclerView$Adapter.notifyDataSetChanged():0:0 -> c
+    9:9:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setModels(java.util.List):0 -> c
+    9:9:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
     9:9:java.lang.Object invoke(java.lang.Object):0 -> c
-    10:10:java.lang.Object studio.mandysa.jiuwo.adapter.RecyclerAdapter.getMModel():0:0 -> c
-    10:10:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
-    10:10:java.lang.Object invoke(java.lang.Object):0 -> c
-    11:11:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
-    11:11:java.lang.Object invoke(java.lang.Object):0 -> c
-    12:12:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setModels(java.util.List):0:0 -> c
-    12:12:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
-    12:12:java.lang.Object invoke(java.lang.Object):0 -> c
-    13:13:void androidx.recyclerview.widget.RecyclerView$Adapter.notifyDataSetChanged():0:0 -> c
-    13:13:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setModels(java.util.List):0 -> c
-    13:13:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
-    13:13:java.lang.Object invoke(java.lang.Object):0 -> c
-    14:14:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1 -> studio.mandysa.music.ui.home.b:
-    studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1 INSTANCE -> a
+    10:10:java.lang.Object invoke(java.lang.Object):0:0 -> c
+studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1 -> studio.mandysa.music.ui.home.a:
+    void getItemOffsets(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State) -> d
+studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2 -> studio.mandysa.music.ui.home.c:
+    studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2 INSTANCE -> a
     1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
     1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
     2:2:java.util.HashMap studio.mandysa.jiuwo.adapter.RecyclerAdapter.getMType():0:0 -> a
@@ -25148,7 +25062,7 @@ studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1 -> studio.mand
     3:3:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
     3:3:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
     4:4:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> a
-studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1 -> studio.mandysa.music.ui.home.a:
+studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2$1 -> studio.mandysa.music.ui.home.b:
     studio.mandysa.jiuwo.adapter.RecyclerAdapter $this_setup -> a
     1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     1:1:java.lang.Object invoke(java.lang.Object):0 -> c
@@ -25158,7 +25072,7 @@ studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1 -> studio.ma
     3:3:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     3:3:java.lang.Object invoke(java.lang.Object):0 -> c
     4:4:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$2$2 -> studio.mandysa.music.ui.home.c:
+studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$2$2 -> studio.mandysa.music.ui.home.d:
     studio.mandysa.music.ui.home.HomeFragment this$0 -> a
     mandysax.lifecycle.livedata.Observer $lifecycleObserver -> b
     1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
@@ -25180,7 +25094,7 @@ studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$2$2 -> studio.mand
     7:7:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     7:7:java.lang.Object invoke(java.lang.Object):0 -> c
     8:8:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$2$3 -> studio.mandysa.music.ui.home.d:
+studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$2$3 -> studio.mandysa.music.ui.home.e:
     mandysax.lifecycle.livedata.Observer $lifecycleObserver -> a
     1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     1:1:java.lang.Object invoke(java.lang.Object):0 -> c
@@ -25196,7 +25110,7 @@ studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$2$3 -> studio.mand
     5:5:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     5:5:java.lang.Object invoke(java.lang.Object):0 -> c
     6:6:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$2 -> studio.mandysa.music.ui.home.f$b:
+studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$2 -> studio.mandysa.music.ui.home.g$b:
     studio.mandysa.music.ui.home.HomeFragment this$0 -> a
     studio.mandysa.music.databinding.FragmentHomeBinding $this_apply -> b
     1:1:void invoke(android.view.View):0:0 -> c
@@ -25224,7 +25138,7 @@ studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$2$1$1$2 -> studio.mand
     1:1:studio.mandysa.music.databinding.FragmentHomeBinding studio.mandysa.music.ui.home.HomeFragment.access$getMBinding(studio.mandysa.music.ui.home.HomeFragment):0:0 -> onResponse
     1:1:void onResponse(studio.mandysa.music.logic.model.RecommendedSongs):0 -> onResponse
     2:2:void onResponse(studio.mandysa.music.logic.model.RecommendedSongs):0:0 -> onResponse
-studio.mandysa.music.ui.login.LoggingFragment -> y3.a:
+studio.mandysa.music.ui.login.LoggingFragment -> x3.a:
     kotlin.reflect.KProperty[] $$delegatedProperties -> m
     java.lang.String password -> k
     java.lang.String mobilePhone -> j
@@ -25239,7 +25153,7 @@ studio.mandysa.music.ui.login.LoggingFragment -> y3.a:
     3:3:void onCreate(android.os.Bundle):0 -> c
     4:4:void onCreate(android.os.Bundle):0:0 -> c
     android.app.Dialog onCreateDialog(android.os.Bundle) -> q
-studio.mandysa.music.ui.login.LoginFragment -> y3.d:
+studio.mandysa.music.ui.login.LoginFragment -> x3.d:
     studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate mEvent$delegate -> j
     kotlin.reflect.KProperty[] $$delegatedProperties -> k
     1:1:kotlin.reflect.KProperty1 kotlin.jvm.internal.Reflection.property1(kotlin.jvm.internal.PropertyReference1):0:0 -> <clinit>
@@ -25253,7 +25167,7 @@ studio.mandysa.music.ui.login.LoginFragment -> y3.d:
     1:1:studio.mandysa.music.ui.login.LoginFragment$createTextChangedListener$1 studio.mandysa.music.ui.login.LoginFragment.createTextChangedListener(studio.mandysa.music.databinding.FragmentLoginBinding):0:0 -> q
     1:1:android.app.Dialog onCreateDialog(android.os.Bundle):0 -> q
     2:2:android.app.Dialog onCreateDialog(android.os.Bundle):0:0 -> q
-studio.mandysa.music.ui.login.LoginFragment$createTextChangedListener$1 -> y3.c:
+studio.mandysa.music.ui.login.LoginFragment$createTextChangedListener$1 -> x3.c:
     studio.mandysa.music.databinding.FragmentLoginBinding $binding -> a
 studio.mandysa.music.ui.me.MeFragment -> studio.mandysa.music.ui.me.d:
     studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate mEvent$delegate -> j
@@ -25364,7 +25278,7 @@ studio.mandysa.music.ui.me.MeFragment$onViewCreated$2$1$1 -> studio.mandysa.musi
     4:4:void mandysax.lifecycle.LifecycleRegistry.addObserver(mandysax.lifecycle.LifecycleObserver):0:0 -> onResponse
     4:4:void onResponse(studio.mandysa.music.logic.model.UserModel):0 -> onResponse
     5:5:void onResponse(studio.mandysa.music.logic.model.UserModel):0:0 -> onResponse
-studio.mandysa.music.ui.me.mylike.MyLikeFragment -> z3.a:
+studio.mandysa.music.ui.me.mylike.MyLikeFragment -> y3.a:
     studio.mandysa.music.logic.utils.FragmentBindingDelegate mBinding$delegate -> i
     kotlin.reflect.KProperty[] $$delegatedProperties -> j
     1:1:kotlin.reflect.KProperty1 kotlin.jvm.internal.Reflection.property1(kotlin.jvm.internal.PropertyReference1):0:0 -> <clinit>
@@ -25374,19 +25288,19 @@ studio.mandysa.music.ui.me.mylike.MyLikeFragment -> z3.a:
     1:1:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle):0 -> d
     2:2:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle):0:0 -> d
     void onViewCreated(android.view.View,android.os.Bundle) -> h
-studio.mandysa.music.ui.me.mylike.MyLikeViewModel -> z3.c:
+studio.mandysa.music.ui.me.mylike.MyLikeViewModel -> y3.c:
 studio.mandysa.music.ui.me.mylike.MyLikeViewModel$initData$1 -> studio.mandysa.music.ui.me.mylike.MyLikeViewModel$initData$1:
     1:1:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.ui.me.mylike.MyLikeViewModel.access$getMMetadataLiveData$p(studio.mandysa.music.ui.me.mylike.MyLikeViewModel):0:0 -> onFailure
     1:1:void onFailure(int):0 -> onFailure
     1:1:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.ui.me.mylike.MyLikeViewModel.access$getMPlaylistInfoModelLiveData$p(studio.mandysa.music.ui.me.mylike.MyLikeViewModel):0:0 -> onResponse
     1:1:void onResponse(studio.mandysa.music.logic.model.PlaylistInfoModel):0 -> onResponse
-studio.mandysa.music.ui.me.mylike.MyLikeViewModel$loadMyLikeList$1 -> z3.b:
+studio.mandysa.music.ui.me.mylike.MyLikeViewModel$loadMyLikeList$1 -> y3.b:
 studio.mandysa.music.ui.me.mylike.MyLikeViewModel$loadMyLikeList$1$onChanged$1$1 -> studio.mandysa.music.ui.me.mylike.MyLikeViewModel$loadMyLikeList$1$onChanged$1$1:
     1:1:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.ui.me.mylike.MyLikeViewModel.access$getMDataLiveData$p(studio.mandysa.music.ui.me.mylike.MyLikeViewModel):0:0 -> onFailure
     1:1:void onFailure(int):0 -> onFailure
     1:1:void studio.mandysa.music.ui.me.mylike.MyLikeViewModel.access$setMObservable$p(studio.mandysa.music.ui.me.mylike.MyLikeViewModel,mandysax.anna2.observable.Observable):0:0 -> onResponse
     1:1:void onResponse(java.util.List):0 -> onResponse
-studio.mandysa.music.ui.play.LyricFragment -> a4.a:
+studio.mandysa.music.ui.play.LyricFragment -> z3.a:
     studio.mandysa.music.logic.utils.FragmentBindingDelegate mBinding$delegate -> i
     kotlin.reflect.KProperty[] $$delegatedProperties -> j
     1:1:kotlin.reflect.KProperty1 kotlin.jvm.internal.Reflection.property1(kotlin.jvm.internal.PropertyReference1):0:0 -> <clinit>
@@ -25443,13 +25357,13 @@ studio.mandysa.music.ui.play.PlayFragment -> studio.mandysa.music.ui.play.PlayFr
     studio.mandysa.music.databinding.FragmentPlayBinding getMBinding() -> p
 studio.mandysa.music.ui.play.PlayFragment$onViewCreated$2$1 -> studio.mandysa.music.ui.play.PlayFragment$a:
     mandysax.fragment.Fragment onCreateFragment(int) -> a
-studio.mandysa.music.ui.play.PlayFragment$onViewCreated$2$4$1 -> a4.d:
+studio.mandysa.music.ui.play.PlayFragment$onViewCreated$2$4$1 -> z3.d:
     studio.mandysa.music.ui.play.PlayFragment this$0 -> a
     void onFailureImpl(com.facebook.datasource.DataSource) -> e
     1:1:studio.mandysa.music.databinding.FragmentPlayBinding studio.mandysa.music.ui.play.PlayFragment.access$getMBinding(studio.mandysa.music.ui.play.PlayFragment):0:0 -> g
     1:1:void onNewResultImpl(android.graphics.Bitmap):0 -> g
     2:2:void onNewResultImpl(android.graphics.Bitmap):0:0 -> g
-studio.mandysa.music.ui.play.PlayQueueFragment -> a4.h:
+studio.mandysa.music.ui.play.PlayQueueFragment -> z3.h:
     studio.mandysa.music.logic.utils.FragmentBindingDelegate mBinding$delegate -> i
     kotlin.reflect.KProperty[] $$delegatedProperties -> j
     1:1:kotlin.reflect.KProperty1 kotlin.jvm.internal.Reflection.property1(kotlin.jvm.internal.PropertyReference1):0:0 -> <clinit>
@@ -25460,7 +25374,7 @@ studio.mandysa.music.ui.play.PlayQueueFragment -> a4.h:
     1:1:void onViewCreated(android.view.View,android.os.Bundle):0 -> h
     2:2:void onViewCreated(android.view.View,android.os.Bundle):0:0 -> h
     studio.mandysa.music.databinding.FragmentPlayQueueBinding getMBinding() -> p
-studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1 -> a4.h$a:
+studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1 -> z3.h$a:
     studio.mandysa.music.ui.play.PlayQueueFragment this$0 -> a
     1:1:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1.invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
     1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
@@ -25480,7 +25394,7 @@ studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1 -> a4.h$a:
     7:7:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1.invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
     7:7:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
     8:8:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> a
-studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1 -> a4.g:
+studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1 -> z3.g:
     studio.mandysa.jiuwo.adapter.RecyclerAdapter $this_setup -> a
     studio.mandysa.music.ui.play.PlayQueueFragment this$0 -> b
     1:1:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1.invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
@@ -25496,7 +25410,7 @@ studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1 -> a4.g:
     5:5:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1.invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     5:5:java.lang.Object invoke(java.lang.Object):0 -> c
     6:6:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$1$2 -> a4.e:
+studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$1$2 -> z3.e:
     studio.mandysa.music.ui.play.PlayQueueFragment this$0 -> a
     mandysax.lifecycle.livedata.Observer $lifecycleObserver -> b
     1:1:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$1$2.invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
@@ -25518,7 +25432,7 @@ studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$1$2 -> a4.e:
     7:7:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$1$2.invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     7:7:java.lang.Object invoke(java.lang.Object):0 -> c
     8:8:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$1$3 -> a4.f:
+studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$1$3 -> z3.f:
     mandysax.lifecycle.livedata.Observer $lifecycleObserver -> a
     1:1:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$1$3.invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     1:1:java.lang.Object invoke(java.lang.Object):0 -> c
@@ -25534,7 +25448,7 @@ studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$1$3 -> a4.f:
     5:5:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$1$3.invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     5:5:java.lang.Object invoke(java.lang.Object):0 -> c
     6:6:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.music.ui.play.PlayingFragment -> a4.k:
+studio.mandysa.music.ui.play.PlayingFragment -> z3.k:
     studio.mandysa.music.logic.utils.FragmentBindingDelegate mBinding$delegate -> i
     kotlin.reflect.KProperty[] $$delegatedProperties -> j
     1:1:kotlin.reflect.KProperty1 kotlin.jvm.internal.Reflection.property1(kotlin.jvm.internal.PropertyReference1):0:0 -> <clinit>
@@ -25563,7 +25477,7 @@ studio.mandysa.music.ui.play.PlayingFragment -> a4.k:
     12:12:void onViewCreated(android.view.View,android.os.Bundle):0 -> h
     13:13:void onViewCreated(android.view.View,android.os.Bundle):0:0 -> h
     studio.mandysa.music.databinding.FragmentPlayingBinding getMBinding() -> p
-studio.mandysa.music.ui.play.PlayingFragment$onViewCreated$1$4 -> a4.k$a:
+studio.mandysa.music.ui.play.PlayingFragment$onViewCreated$1$4 -> z3.k$a:
     mandysax.media.DefaultPlayerManager $instance -> a
     studio.mandysa.music.ui.play.PlayingFragment this$0 -> c
     mandysax.lifecycle.livedata.Observer $musicProObs -> b
@@ -25576,22 +25490,22 @@ studio.mandysa.music.ui.play.PlayingFragment$onViewCreated$1$4 -> a4.k$a:
     3:3:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.playingMusicProgressLiveData():0:0 -> onStopTrackingTouch
     3:3:void onStopTrackingTouch(android.widget.SeekBar):0 -> onStopTrackingTouch
     4:4:void onStopTrackingTouch(android.widget.SeekBar):0:0 -> onStopTrackingTouch
-studio.mandysa.music.ui.play.PlayingFragment$onViewCreated$1$8$1 -> a4.k$b:
+studio.mandysa.music.ui.play.PlayingFragment$onViewCreated$1$8$1 -> z3.k$b:
     studio.mandysa.music.ui.play.VolumeChangeHelper $volumeChangeHelper -> b
     android.widget.SeekBar $it -> a
     void onVolumeUp() -> a
     void onVolumeDownToMin() -> b
-studio.mandysa.music.ui.play.PlayingFragment$onViewCreated$1$8$2 -> a4.k$c:
+studio.mandysa.music.ui.play.PlayingFragment$onViewCreated$1$8$2 -> z3.k$c:
     studio.mandysa.music.ui.play.VolumeChangeHelper $volumeChangeHelper -> a
     1:1:void studio.mandysa.music.ui.play.VolumeChangeHelper.setStreamMusic(int):0:0 -> onProgressChanged
     1:1:void onProgressChanged(android.widget.SeekBar,int,boolean):0 -> onProgressChanged
-studio.mandysa.music.ui.play.VolumeChangeHelper -> a4.l:
+studio.mandysa.music.ui.play.VolumeChangeHelper -> z3.l:
     android.content.Context context -> a
     android.media.AudioManager audioManager -> d
     studio.mandysa.music.ui.play.VolumeChangeHelper$VolumeChangeListener mVolumeChangeListener -> c
     studio.mandysa.music.ui.play.VolumeChangeHelper$VolumeBroadCastReceiver mVolumeBroadCastReceiver -> b
     int getStreamVolume() -> a
-studio.mandysa.music.ui.play.VolumeChangeHelper$VolumeBroadCastReceiver -> a4.l$a:
+studio.mandysa.music.ui.play.VolumeChangeHelper$VolumeBroadCastReceiver -> z3.l$a:
     studio.mandysa.music.ui.play.VolumeChangeHelper this$0 -> a
     1:1:android.media.AudioManager studio.mandysa.music.ui.play.VolumeChangeHelper.access$getAudioManager$p(studio.mandysa.music.ui.play.VolumeChangeHelper):0:0 -> onReceive
     1:1:void onReceive(android.content.Context,android.content.Intent):0 -> onReceive
@@ -25602,7 +25516,7 @@ studio.mandysa.music.ui.play.VolumeChangeHelper$VolumeBroadCastReceiver -> a4.l$
     5:5:studio.mandysa.music.ui.play.VolumeChangeHelper$VolumeChangeListener studio.mandysa.music.ui.play.VolumeChangeHelper.access$getMVolumeChangeListener$p(studio.mandysa.music.ui.play.VolumeChangeHelper):0:0 -> onReceive
     5:5:void onReceive(android.content.Context,android.content.Intent):0 -> onReceive
     6:6:void onReceive(android.content.Context,android.content.Intent):0:0 -> onReceive
-studio.mandysa.music.ui.play.VolumeChangeHelper$VolumeChangeListener -> a4.l$b:
+studio.mandysa.music.ui.play.VolumeChangeHelper$VolumeChangeListener -> z3.l$b:
     void onVolumeUp() -> a
     void onVolumeDownToMin() -> b
 studio.mandysa.music.ui.search.SearchFragment -> studio.mandysa.music.ui.search.a:
@@ -25652,6 +25566,7 @@ studio.mandysa.music.ui.search.SearchFragment$onViewCreated$1 -> studio.mandysa.
     3:3:void mandysax.core.app.OnBackPressedCallback.setEnabled(boolean):0:0 -> b
     3:3:void onPanelStateChanged(android.view.View,com.sothree.slidinguppanel.PanelState,com.sothree.slidinguppanel.PanelState):0 -> b
 studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$1$1 -> studio.mandysa.music.ui.search.a$d:
+    studio.mandysa.music.databinding.FragmentSearchBinding $this_apply$1 -> c
     studio.mandysa.music.ui.search.SearchFragment this$0 -> a
     studio.mandysa.statelayout.StateLayout $this_apply -> b
     1:1:void invoke(android.view.View):0:0 -> c
@@ -25664,21 +25579,87 @@ studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$1$1 -> studio.mand
     3:3:java.lang.Object invoke(java.lang.Object):0 -> c
     4:4:void invoke(android.view.View):0:0 -> c
     4:4:java.lang.Object invoke(java.lang.Object):0 -> c
-    5:5:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$1$1$1 -> studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$1$1$1:
+    5:5:mandysax.fragment.FragmentViewLifecycleOwner mandysax.fragment.Fragment.getViewLifecycleOwner():0:0 -> c
+    5:5:void invoke(android.view.View):0 -> c
+    5:5:java.lang.Object invoke(java.lang.Object):0 -> c
+    6:6:mandysax.lifecycle.Lifecycle mandysax.fragment.FragmentViewLifecycleOwner.getLifecycle():0:0 -> c
+    6:6:void invoke(android.view.View):0 -> c
+    6:6:java.lang.Object invoke(java.lang.Object):0 -> c
+    7:7:void invoke(android.view.View):0:0 -> c
+    7:7:java.lang.Object invoke(java.lang.Object):0 -> c
+    8:8:java.lang.Object invoke(java.lang.Object):0:0 -> c
+studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$1$1$1$1 -> studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$1$1$1$1:
+    1:1:studio.mandysa.music.databinding.FragmentSearchBinding studio.mandysa.music.ui.search.SearchFragment.access$getMBinding(studio.mandysa.music.ui.search.SearchFragment):0:0 -> onResponse
+    1:1:void onResponse(studio.mandysa.music.logic.model.ToplistsModel):0 -> onResponse
+    2:2:void onResponse(studio.mandysa.music.logic.model.ToplistsModel):0:0 -> onResponse
+    3:3:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setModels(java.util.List):0:0 -> onResponse
+    3:3:void onResponse(studio.mandysa.music.logic.model.ToplistsModel):0 -> onResponse
+    4:4:void androidx.recyclerview.widget.RecyclerView$Adapter.notifyDataSetChanged():0:0 -> onResponse
+    4:4:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setModels(java.util.List):0 -> onResponse
+    4:4:void onResponse(studio.mandysa.music.logic.model.ToplistsModel):0 -> onResponse
+    5:5:void onResponse(studio.mandysa.music.logic.model.ToplistsModel):0:0 -> onResponse
+studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$1$1$1$2 -> studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$1$1$1$2:
     1:1:studio.mandysa.music.databinding.FragmentSearchBinding studio.mandysa.music.ui.search.SearchFragment.access$getMBinding(studio.mandysa.music.ui.search.SearchFragment):0:0 -> onResponse
     1:1:void onResponse(java.util.List):0 -> onResponse
     2:2:void onResponse(java.util.List):0:0 -> onResponse
-    3:3:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setModels(java.util.List):0:0 -> onResponse
+    3:3:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setFooters(java.util.List):0:0 -> onResponse
     3:3:void onResponse(java.util.List):0 -> onResponse
     4:4:void androidx.recyclerview.widget.RecyclerView$Adapter.notifyDataSetChanged():0:0 -> onResponse
-    4:4:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setModels(java.util.List):0 -> onResponse
+    4:4:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setFooters(java.util.List):0 -> onResponse
     4:4:void onResponse(java.util.List):0 -> onResponse
-    5:5:void onResponse(java.util.List):0:0 -> onResponse
 studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$3 -> studio.mandysa.music.ui.search.a$e:
     studio.mandysa.music.databinding.FragmentSearchBinding $this_apply -> a
 studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4 -> studio.mandysa.music.ui.search.a$f:
-    studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4 INSTANCE -> a
+    studio.mandysa.music.ui.search.SearchFragment this$0 -> a
+    1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
+    1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
+    2:2:java.util.HashMap studio.mandysa.jiuwo.adapter.RecyclerAdapter.getMType():0:0 -> a
+    2:2:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0 -> a
+    2:2:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
+    3:3:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
+    3:3:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
+    4:4:java.util.HashMap studio.mandysa.jiuwo.adapter.RecyclerAdapter.getMType():0:0 -> a
+    4:4:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0 -> a
+    4:4:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
+    5:5:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
+    5:5:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
+    6:6:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> a
+studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1 -> studio.mandysa.music.ui.search.g:
+    studio.mandysa.jiuwo.adapter.RecyclerAdapter $this_setup -> a
+    studio.mandysa.music.ui.search.SearchFragment this$0 -> c
+    androidx.recyclerview.widget.LinearSnapHelper $snapHelper -> b
+    1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    1:1:java.lang.Object invoke(java.lang.Object):0 -> c
+    2:2:int androidx.recyclerview.widget.RecyclerView$ViewHolder.getItemViewType():0:0 -> c
+    2:2:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
+    2:2:java.lang.Object invoke(java.lang.Object):0 -> c
+    3:3:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    3:3:java.lang.Object invoke(java.lang.Object):0 -> c
+    4:4:void androidx.recyclerview.widget.RecyclerView.addItemDecoration(androidx.recyclerview.widget.RecyclerView$ItemDecoration):0:0 -> c
+    4:4:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
+    4:4:java.lang.Object invoke(java.lang.Object):0 -> c
+    5:5:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    5:5:java.lang.Object invoke(java.lang.Object):0 -> c
+    6:6:java.lang.Object studio.mandysa.jiuwo.adapter.RecyclerAdapter.getMModel():0:0 -> c
+    6:6:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
+    6:6:java.lang.Object invoke(java.lang.Object):0 -> c
+    7:7:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    7:7:java.lang.Object invoke(java.lang.Object):0 -> c
+    8:8:java.lang.Object studio.mandysa.jiuwo.adapter.RecyclerAdapter.getMModel():0:0 -> c
+    8:8:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
+    8:8:java.lang.Object invoke(java.lang.Object):0 -> c
+    9:9:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    9:9:java.lang.Object invoke(java.lang.Object):0 -> c
+    10:10:java.lang.String mandysax.media.model.DefaultArtist.getName():0:0 -> c
+    10:10:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
+    10:10:java.lang.Object invoke(java.lang.Object):0 -> c
+    11:11:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    11:11:java.lang.Object invoke(java.lang.Object):0 -> c
+    12:12:java.lang.Object invoke(java.lang.Object):0:0 -> c
+studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1$1$1 -> studio.mandysa.music.ui.search.b:
+    void getItemOffsets(android.graphics.Rect,android.view.View,androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State) -> d
+studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1$1$2 -> studio.mandysa.music.ui.search.d:
+    studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1$1$2 INSTANCE -> a
     1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
     1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
     2:2:java.util.HashMap studio.mandysa.jiuwo.adapter.RecyclerAdapter.getMType():0:0 -> a
@@ -25687,7 +25668,7 @@ studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4 -> studio.mandys
     3:3:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter,androidx.recyclerview.widget.RecyclerView):0:0 -> a
     3:3:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> a
     4:4:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> a
-studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1 -> studio.mandysa.music.ui.search.b:
+studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1$1$2$1 -> studio.mandysa.music.ui.search.c:
     studio.mandysa.jiuwo.adapter.RecyclerAdapter $this_setup -> a
     1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     1:1:java.lang.Object invoke(java.lang.Object):0 -> c
@@ -25697,7 +25678,45 @@ studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1 -> studio.mand
     3:3:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     3:3:java.lang.Object invoke(java.lang.Object):0 -> c
     4:4:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.music.ui.search.SearchViewModel -> b4.b:
+studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1$2$2 -> studio.mandysa.music.ui.search.e:
+    studio.mandysa.music.ui.search.SearchFragment this$0 -> a
+    mandysax.lifecycle.livedata.Observer $lifecycleObserver -> b
+    1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    1:1:java.lang.Object invoke(java.lang.Object):0 -> c
+    2:2:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager.access$getInstance$cp():0:0 -> c
+    2:2:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager$Companion.getInstance():0 -> c
+    2:2:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
+    2:2:java.lang.Object invoke(java.lang.Object):0 -> c
+    3:3:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    3:3:java.lang.Object invoke(java.lang.Object):0 -> c
+    4:4:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.changeMusicLiveData():0:0 -> c
+    4:4:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
+    4:4:java.lang.Object invoke(java.lang.Object):0 -> c
+    5:5:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    5:5:java.lang.Object invoke(java.lang.Object):0 -> c
+    6:6:mandysax.fragment.FragmentViewLifecycleOwner mandysax.fragment.Fragment.getViewLifecycleOwner():0:0 -> c
+    6:6:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
+    6:6:java.lang.Object invoke(java.lang.Object):0 -> c
+    7:7:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    7:7:java.lang.Object invoke(java.lang.Object):0 -> c
+    8:8:java.lang.Object invoke(java.lang.Object):0:0 -> c
+studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1$2$3 -> studio.mandysa.music.ui.search.f:
+    mandysax.lifecycle.livedata.Observer $lifecycleObserver -> a
+    1:1:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    1:1:java.lang.Object invoke(java.lang.Object):0 -> c
+    2:2:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager.access$getInstance$cp():0:0 -> c
+    2:2:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager$Companion.getInstance():0 -> c
+    2:2:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
+    2:2:java.lang.Object invoke(java.lang.Object):0 -> c
+    3:3:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    3:3:java.lang.Object invoke(java.lang.Object):0 -> c
+    4:4:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.changeMusicLiveData():0:0 -> c
+    4:4:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0 -> c
+    4:4:java.lang.Object invoke(java.lang.Object):0 -> c
+    5:5:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
+    5:5:java.lang.Object invoke(java.lang.Object):0 -> c
+    6:6:java.lang.Object invoke(java.lang.Object):0:0 -> c
+studio.mandysa.music.ui.search.SearchViewModel -> a4.b:
     mandysax.lifecycle.livedata.MutableLiveData searchContentLiveData -> a
 studio.mandysa.music.ui.search.searchlist.SearchListFragment -> studio.mandysa.music.ui.search.searchlist.SearchListFragment:
     studio.mandysa.music.logic.utils.FragmentActivityViewModelDelegate mViewModel$delegate -> j
@@ -25855,7 +25874,7 @@ studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1
     5:5:void invoke(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder):0:0 -> c
     5:5:java.lang.Object invoke(java.lang.Object):0 -> c
     6:6:java.lang.Object invoke(java.lang.Object):0:0 -> c
-studio.mandysa.statelayout.R$styleable -> c4.a:
+studio.mandysa.statelayout.R$styleable -> b4.a:
     int[] StateLayout -> a
 studio.mandysa.statelayout.StateLayout -> studio.mandysa.statelayout.StateLayout:
     int retryId -> n
@@ -25954,59 +25973,47 @@ t3.PlaylistFragment$onViewCreated$1$1$1$$ExternalSyntheticLambda0 -> t3.a:
     14:14:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$2.invoke$lambda-1(studio.mandysa.music.ui.home.HomeFragment,studio.mandysa.music.databinding.FragmentHomeBinding,java.lang.String):0 -> a
     14:14:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$1$1$1$$InternalSyntheticLambda$3$0bd85e781c023c5f13dc4550904e18526ffe6840ff052c62b352aca656d23d60$0.onChanged$bridge(java.lang.Object):0 -> a
 t3.PlaylistFragment$onViewCreated$2$1$$ExternalSyntheticLambda0 -> t3.c:
-    studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.f$1 -> c
-    studio.mandysa.jiuwo.adapter.RecyclerAdapter studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.f$0 -> b
+    studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.f$0 -> b
     int studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.$r8$classId -> a
-    void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.$r8$init$bridge(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder) -> <init>
-    1:1:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1.invoke$lambda-3$lambda-1(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
+    void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.$r8$init$bridge(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder) -> <init>
+    1:1:void studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     1:1:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    2:2:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getModels():0:0 -> onClick
-    2:2:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1.invoke$lambda-3$lambda-1(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
+    2:2:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager.access$getInstance$cp():0:0 -> onClick
+    2:2:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager$Companion.getInstance():0 -> onClick
+    2:2:void studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
     2:2:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    3:3:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1.invoke$lambda-3$lambda-1(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
+    3:3:void studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     3:3:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
     4:4:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0:0 -> onClick
-    5:5:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
+    5:5:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1.invoke$lambda-3$lambda-1(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     5:5:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    6:6:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager.access$getInstance$cp():0:0 -> onClick
-    6:6:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager$Companion.getInstance():0 -> onClick
-    6:6:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
-    6:6:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    7:7:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
+    6:6:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0:0 -> onClick
+    7:7:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     7:7:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    8:8:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getModels():0:0 -> onClick
-    8:8:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
+    8:8:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager.access$getInstance$cp():0:0 -> onClick
+    8:8:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager$Companion.getInstance():0 -> onClick
+    8:8:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
     8:8:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    9:9:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
+    9:9:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     9:9:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
     10:10:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0:0 -> onClick
-    11:11:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
+    11:11:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     11:11:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    12:12:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getModels():0:0 -> onClick
-    12:12:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
-    12:12:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    13:13:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1.invoke$lambda-4$lambda-2(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
+    12:12:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0:0 -> onClick
+    13:13:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     13:13:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    14:14:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0:0 -> onClick
-    15:15:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
+    14:14:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager.access$getInstance$cp():0:0 -> onClick
+    14:14:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager$Companion.getInstance():0 -> onClick
+    14:14:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
+    14:14:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
+    15:15:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     15:15:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
     16:16:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager.access$getInstance$cp():0:0 -> onClick
     16:16:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager$Companion.getInstance():0 -> onClick
-    16:16:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
+    16:16:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
     16:16:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    17:17:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
+    17:17:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
     17:17:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    18:18:java.util.List studio.mandysa.jiuwo.adapter.RecyclerAdapter.getModels():0:0 -> onClick
-    18:18:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
-    18:18:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    19:19:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
-    19:19:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    20:20:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager.access$getInstance$cp():0:0 -> onClick
-    20:20:mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager$Companion.getInstance():0 -> onClick
-    20:20:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0 -> onClick
-    20:20:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
-    21:21:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-0(studio.mandysa.jiuwo.adapter.RecyclerAdapter,studio.mandysa.jiuwo.adapter.RecyclerAdapter$BindingViewHolder,android.view.View):0:0 -> onClick
-    21:21:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$0.onClick$bridge(android.view.View):0 -> onClick
 t3.PlaylistFragment$onViewCreated$2$1$$ExternalSyntheticLambda1 -> t3.d:
     studio.mandysa.music.ui.all.playlist.PlaylistFragment studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.f$2 -> d
     studio.mandysa.music.databinding.ItemSongBinding studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.f$1 -> c
@@ -26014,41 +26021,45 @@ t3.PlaylistFragment$onViewCreated$2$1$$ExternalSyntheticLambda1 -> t3.d:
     int studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.$r8$classId -> a
     void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1$$InternalSyntheticLambda$3$a0f2aaa35846d373710abac6d39432eab644ac1d929a433f1a261864db30fc38$1.$r8$init$bridge(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment) -> <init>
     void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.$r8$init$bridge(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.all.playlist.PlaylistFragment) -> <init>
+    void studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1$$InternalSyntheticLambda$3$8a177386f48c7ecbaf2339d8e679bfc5cb449ca50fa2813bba9914fc69dd3e06$1.$r8$init$bridge(studio.mandysa.music.logic.model.NewSongModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.SearchFragment) -> <init>
     void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$$InternalSyntheticLambda$2$eb2479807a5853ee539f2cb1dbd66c32b00209648890b0bc586ba01e5352e285$1.$r8$init$bridge(studio.mandysa.music.logic.model.RecommendedSongs$RecommendedSong,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.home.HomeFragment) -> <init>
     void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1$$InternalSyntheticLambda$4$425a1df0c0326ef9104103ffd91cba1d6fb3082ecd316ba8ec292d8c8065a1a0$1.$r8$init$bridge(mandysax.media.model.DefaultMusic,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.play.PlayQueueFragment) -> <init>
-    1:1:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1.invoke$lambda-3$lambda-2(mandysax.media.model.DefaultMusic,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.play.PlayQueueFragment,mandysax.media.model.DefaultMusic):0:0 -> a
+    1:1:void studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1.invoke$lambda-4$lambda-3(studio.mandysa.music.logic.model.NewSongModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.SearchFragment,mandysax.media.model.DefaultMusic):0:0 -> a
     1:1:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
     2:2:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0:0 -> a
-    3:3:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1.invoke$lambda-4$lambda-3(studio.mandysa.music.logic.model.RecommendedSongs$RecommendedSong,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.home.HomeFragment,mandysax.media.model.DefaultMusic):0:0 -> a
+    3:3:void studio.mandysa.music.ui.play.PlayQueueFragment$onViewCreated$1$1.invoke$lambda-3$lambda-2(mandysax.media.model.DefaultMusic,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.play.PlayQueueFragment,mandysax.media.model.DefaultMusic):0:0 -> a
     3:3:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
     4:4:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0:0 -> a
-    5:5:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1.invoke$lambda-4$lambda-3(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.all.playlist.PlaylistFragment,mandysax.media.model.DefaultMusic):0:0 -> a
+    5:5:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1.invoke$lambda-4$lambda-3(studio.mandysa.music.logic.model.RecommendedSongs$RecommendedSong,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.home.HomeFragment,mandysax.media.model.DefaultMusic):0:0 -> a
     5:5:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
     6:6:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0:0 -> a
-    7:7:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0:0 -> a
+    7:7:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1.invoke$lambda-4$lambda-3(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.all.playlist.PlaylistFragment,mandysax.media.model.DefaultMusic):0:0 -> a
     7:7:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
-    8:8:studio.mandysa.music.ui.search.SearchViewModel studio.mandysa.music.ui.search.searchlist.SearchListFragment.access$getMViewModel(studio.mandysa.music.ui.search.searchlist.SearchListFragment):0:0 -> a
-    8:8:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0 -> a
-    8:8:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
-    9:9:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.ui.search.SearchViewModel.getSearchContentLiveData():0:0 -> a
-    9:9:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0 -> a
+    8:8:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0:0 -> a
+    9:9:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0:0 -> a
     9:9:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
-    10:10:java.lang.Object mandysax.lifecycle.livedata.LiveData.getValue():0:0 -> a
+    10:10:studio.mandysa.music.ui.search.SearchViewModel studio.mandysa.music.ui.search.searchlist.SearchListFragment.access$getMViewModel(studio.mandysa.music.ui.search.searchlist.SearchListFragment):0:0 -> a
     10:10:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0 -> a
     10:10:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
-    11:11:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0:0 -> a
+    11:11:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.ui.search.SearchViewModel.getSearchContentLiveData():0:0 -> a
+    11:11:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0 -> a
     11:11:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
-    12:12:studio.mandysa.music.ui.search.SearchViewModel studio.mandysa.music.ui.search.searchlist.SearchListFragment.access$getMViewModel(studio.mandysa.music.ui.search.searchlist.SearchListFragment):0:0 -> a
+    12:12:java.lang.Object mandysax.lifecycle.livedata.LiveData.getValue():0:0 -> a
     12:12:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0 -> a
     12:12:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
-    13:13:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.ui.search.SearchViewModel.getSearchContentLiveData():0:0 -> a
-    13:13:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0 -> a
+    13:13:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0:0 -> a
     13:13:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
-    14:14:java.lang.Object mandysax.lifecycle.livedata.LiveData.getValue():0:0 -> a
+    14:14:studio.mandysa.music.ui.search.SearchViewModel studio.mandysa.music.ui.search.searchlist.SearchListFragment.access$getMViewModel(studio.mandysa.music.ui.search.searchlist.SearchListFragment):0:0 -> a
     14:14:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0 -> a
     14:14:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
-    15:15:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0:0 -> a
+    15:15:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.ui.search.SearchViewModel.getSearchContentLiveData():0:0 -> a
+    15:15:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0 -> a
     15:15:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
+    16:16:java.lang.Object mandysax.lifecycle.livedata.LiveData.getValue():0:0 -> a
+    16:16:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0 -> a
+    16:16:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
+    17:17:void studio.mandysa.music.ui.search.searchlist.SearchListFragment$onViewCreated$2$3$1.invoke$lambda-2$lambda-1(studio.mandysa.music.logic.model.MusicModel,studio.mandysa.music.databinding.ItemSongBinding,studio.mandysa.music.ui.search.searchlist.SearchListFragment,mandysax.media.model.DefaultMusic):0:0 -> a
+    17:17:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$2$1$$InternalSyntheticLambda$3$3ab924e262a7640b888bb36eb59bd5d962a21b463670424c3b0257da996f0e2a$1.onChanged$bridge(java.lang.Object):0 -> a
 u3.ControllerFragment$$ExternalSyntheticLambda0 -> u3.a:
     studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$2$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2 studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$2$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$2.INSTANCE -> b
     studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$2$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$3 studio.mandysa.music.ui.controller.ControllerFragment$$InternalSyntheticLambda$2$badcaf56e900d386308cb8df04034a5343bc70c7e862d4ba0cdb34d893f19109$3.INSTANCE -> c
@@ -26095,7 +26106,6 @@ v2.DefaultPlayerManager$$ExternalSyntheticLambda2 -> v2.c:
 v2.DefaultPlayerManager$$ExternalSyntheticLambda3 -> v2.d:
     mandysax.media.DefaultPlayerManager mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.f$0 -> b
     int mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.$r8$classId -> a
-    void studio.mandysa.music.ui.play.PlayQueueFragment$$InternalSyntheticLambda$3$b1a024a0fa8e3a79e0fbb18977d2f41126bd86f348ae81cd58632d3c41abf714$0.$r8$init$bridge(studio.mandysa.music.ui.play.PlayQueueFragment) -> <init>
     void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$2.$r8$init$bridge(studio.mandysa.music.MainActivity) -> <init>
     void studio.mandysa.music.MainActivity$$InternalSyntheticLambda$0$ea076996014231cb2c24ec70a7e300d755387e518f7fc8f1d3b524f6cf42f815$1.$r8$init$bridge(studio.mandysa.music.databinding.ActivityMainBinding) -> <init>
     void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$2.$r8$init$bridge(studio.mandysa.music.databinding.FragmentPlayBinding) -> <init>
@@ -26104,6 +26114,7 @@ v2.DefaultPlayerManager$$ExternalSyntheticLambda3 -> v2.d:
     void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.$r8$init$bridge(mandysax.media.DefaultPlayerManager) -> <init>
     void studio.mandysa.music.ui.login.LoggingFragment$$InternalSyntheticLambda$2$7309ce4ba52359db9568441b4ee057c6e8d3e4ef41d0c02ca4141b35d4e74c5b$0.$r8$init$bridge(studio.mandysa.music.ui.login.LoggingFragment) -> <init>
     void studio.mandysa.music.ui.login.LoginFragment$$InternalSyntheticLambda$2$ff74fc31986190c9daa3e0e6af9c788ce65744b36dc33bc4eda0a401f8054b2e$0.$r8$init$bridge(studio.mandysa.music.ui.login.LoginFragment) -> <init>
+    void studio.mandysa.music.ui.play.PlayQueueFragment$$InternalSyntheticLambda$3$b1a024a0fa8e3a79e0fbb18977d2f41126bd86f348ae81cd58632d3c41abf714$0.$r8$init$bridge(studio.mandysa.music.ui.play.PlayQueueFragment) -> <init>
     1:1:void studio.mandysa.music.ui.play.PlayQueueFragment.onViewCreated$lambda-0(studio.mandysa.music.ui.play.PlayQueueFragment,java.util.List):0:0 -> a
     1:1:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
     2:2:void studio.mandysa.jiuwo.adapter.RecyclerAdapter.setModels(java.util.List):0:0 -> a
@@ -26169,15 +26180,15 @@ v2.DefaultPlayerManager$$ExternalSyntheticLambda3 -> v2.d:
     23:23:void studio.mandysa.music.ui.all.playlist.PlaylistFragment$onViewCreated$1$1$1.invoke$lambda-1(studio.mandysa.music.ui.all.playlist.PlaylistFragment,studio.mandysa.music.logic.model.PlaylistInfoModel):0 -> a
     23:23:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
     24:24:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0:0 -> a
-    25:25:void studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-3(studio.mandysa.music.MainActivity,java.lang.Integer):0:0 -> a
+    25:25:void studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-3(studio.mandysa.music.MainActivity,java.lang.Integer):0:0 -> a
     25:25:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
     26:26:mandysax.lifecycle.livedata.MutableLiveData studio.mandysa.music.MainViewModel.getHomePosLiveData():0:0 -> a
-    26:26:void studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-3(studio.mandysa.music.MainActivity,java.lang.Integer):0 -> a
+    26:26:void studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-3(studio.mandysa.music.MainActivity,java.lang.Integer):0 -> a
     26:26:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
-    27:27:void studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-3(studio.mandysa.music.MainActivity,java.lang.Integer):0:0 -> a
+    27:27:void studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-3(studio.mandysa.music.MainActivity,java.lang.Integer):0:0 -> a
     27:27:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
     28:28:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0:0 -> a
-    29:29:void studio.mandysa.music.MainActivity.onCreate$lambda-11$lambda-2(studio.mandysa.music.databinding.ActivityMainBinding,java.lang.Integer):0:0 -> a
+    29:29:void studio.mandysa.music.MainActivity.onCreate$lambda-10$lambda-2(studio.mandysa.music.databinding.ActivityMainBinding,java.lang.Integer):0:0 -> a
     29:29:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
     30:30:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0:0 -> a
     31:31:void mandysax.media.DefaultPlayerManager._init_$lambda-4(mandysax.media.DefaultPlayerManager,int):0:0 -> a
@@ -26245,7 +26256,7 @@ v2.DefaultPlayerManager$$ExternalSyntheticLambda3 -> v2.d:
     50:50:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
     51:51:void studio.mandysa.music.ui.search.searchlist.SearchListFragment.onViewCreated$lambda-1(studio.mandysa.music.ui.search.searchlist.SearchListFragment,java.lang.String):0:0 -> a
     51:51:void mandysax.media.DefaultPlayerManager$$InternalSyntheticLambda$1$cd0620fdaa2989da9a0060f68f696e35bf44c98902d0f74cc8cb22371678086f$0.onChanged$bridge(java.lang.Object):0 -> a
-w3.UserViewModel$$ExternalSyntheticLambda0 -> w3.a:
+v3.UserViewModel$$ExternalSyntheticLambda0 -> v3.a:
     studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0 studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0.INSTANCE -> a
     void studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0.<clinit>() -> <clinit>
     void studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0.<init>() -> <init>
@@ -26265,22 +26276,86 @@ w3.UserViewModel$$ExternalSyntheticLambda0 -> w3.a:
     4:4:void simon.tuke.Tuke.tukeWrite(java.lang.String,java.io.Serializable):0 -> a
     4:4:void studio.mandysa.music.ui.event.UserViewModel._init_$lambda-0(java.lang.String):0 -> a
     4:4:void studio.mandysa.music.ui.event.UserViewModel$$InternalSyntheticLambda$0$0a34adb895162973596c8ab00c62f9250cd85678a9abea6de8bf874dd2834fc9$0.onChanged(java.lang.Object):0 -> a
-x3.HomeFragment$onViewCreated$1$1$1$1$1$1$$ExternalSyntheticLambda0 -> x3.a:
-    studio.mandysa.music.logic.model.PlaylistModel$Playlist studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1$$InternalSyntheticLambda$3$d304c32c7241bad621af5be626d6c1c1e482914238f9df059f413bb87c29f66c$0.f$0 -> b
-    int studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1$$InternalSyntheticLambda$3$d304c32c7241bad621af5be626d6c1c1e482914238f9df059f413bb87c29f66c$0.$r8$classId -> a
-    void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1$$InternalSyntheticLambda$3$d304c32c7241bad621af5be626d6c1c1e482914238f9df059f413bb87c29f66c$0.$r8$init$bridge(studio.mandysa.music.logic.model.PlaylistModel$Playlist) -> <init>
-    void studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1$$InternalSyntheticLambda$3$8a177386f48c7ecbaf2339d8e679bfc5cb449ca50fa2813bba9914fc69dd3e06$0.$r8$init$bridge(studio.mandysa.music.logic.model.ToplistModel) -> <init>
+w3.HomeFragment$onViewCreated$1$1$1$1$2$1$$ExternalSyntheticLambda0 -> w3.a:
+    studio.mandysa.music.logic.model.PlaylistModel$Playlist studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2$1$$InternalSyntheticLambda$3$38b11a1a6ba958a8bd78cc57e4ee7ecbb0b6fbaaaf018f8b00abe22d5d486b37$0.f$0 -> b
+    int studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2$1$$InternalSyntheticLambda$3$38b11a1a6ba958a8bd78cc57e4ee7ecbb0b6fbaaaf018f8b00abe22d5d486b37$0.$r8$classId -> a
+    void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2$1$$InternalSyntheticLambda$3$38b11a1a6ba958a8bd78cc57e4ee7ecbb0b6fbaaaf018f8b00abe22d5d486b37$0.$r8$init$bridge(studio.mandysa.music.logic.model.PlaylistModel$Playlist) -> <init>
+    void studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1$1$2$1$$InternalSyntheticLambda$4$b975fd24ec967a13661e7126bd575a3de2349341c637fa9724bf5b102a2c7423$0.$r8$init$bridge(studio.mandysa.music.logic.model.ToplistsModel$ToplistModel) -> <init>
     void studio.mandysa.statelayout.StateLayout$$InternalSyntheticLambda$0$96fd38700baa0a315f5b67c5690c563724ea2426b89a9088a0171eb527f2353b$0.$r8$init$bridge(studio.mandysa.statelayout.StateLayout) -> <init>
-    1:1:void studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1.invoke$lambda-1$lambda-0(studio.mandysa.music.logic.model.ToplistModel,android.view.View):0:0 -> onClick
-    1:1:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1$$InternalSyntheticLambda$3$d304c32c7241bad621af5be626d6c1c1e482914238f9df059f413bb87c29f66c$0.onClick$bridge(android.view.View):0 -> onClick
-    2:2:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1$$InternalSyntheticLambda$3$d304c32c7241bad621af5be626d6c1c1e482914238f9df059f413bb87c29f66c$0.onClick$bridge(android.view.View):0:0 -> onClick
-    3:3:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1.invoke$lambda-1$lambda-0(studio.mandysa.music.logic.model.PlaylistModel$Playlist,android.view.View):0:0 -> onClick
-    3:3:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1$$InternalSyntheticLambda$3$d304c32c7241bad621af5be626d6c1c1e482914238f9df059f413bb87c29f66c$0.onClick$bridge(android.view.View):0 -> onClick
-    4:4:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1$$InternalSyntheticLambda$3$d304c32c7241bad621af5be626d6c1c1e482914238f9df059f413bb87c29f66c$0.onClick$bridge(android.view.View):0:0 -> onClick
+    1:1:void studio.mandysa.music.ui.search.SearchFragment$onViewCreated$3$4$1$1$2$1.invoke$lambda-1$lambda-0(studio.mandysa.music.logic.model.ToplistsModel$ToplistModel,android.view.View):0:0 -> onClick
+    1:1:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2$1$$InternalSyntheticLambda$3$38b11a1a6ba958a8bd78cc57e4ee7ecbb0b6fbaaaf018f8b00abe22d5d486b37$0.onClick$bridge(android.view.View):0 -> onClick
+    2:2:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2$1$$InternalSyntheticLambda$3$38b11a1a6ba958a8bd78cc57e4ee7ecbb0b6fbaaaf018f8b00abe22d5d486b37$0.onClick$bridge(android.view.View):0:0 -> onClick
+    3:3:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2$1.invoke$lambda-1$lambda-0(studio.mandysa.music.logic.model.PlaylistModel$Playlist,android.view.View):0:0 -> onClick
+    3:3:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2$1$$InternalSyntheticLambda$3$38b11a1a6ba958a8bd78cc57e4ee7ecbb0b6fbaaaf018f8b00abe22d5d486b37$0.onClick$bridge(android.view.View):0 -> onClick
+    4:4:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2$1$$InternalSyntheticLambda$3$38b11a1a6ba958a8bd78cc57e4ee7ecbb0b6fbaaaf018f8b00abe22d5d486b37$0.onClick$bridge(android.view.View):0:0 -> onClick
     5:5:void studio.mandysa.statelayout.StateLayout.setRetryEvent$lambda-8(studio.mandysa.statelayout.StateLayout,android.view.View):0:0 -> onClick
-    5:5:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$1$1$$InternalSyntheticLambda$3$d304c32c7241bad621af5be626d6c1c1e482914238f9df059f413bb87c29f66c$0.onClick$bridge(android.view.View):0 -> onClick
-y3.LoginFragment$$ExternalSyntheticLambda0 -> y3.b:
+    5:5:void studio.mandysa.music.ui.home.HomeFragment$onViewCreated$1$1$1$1$2$1$$InternalSyntheticLambda$3$38b11a1a6ba958a8bd78cc57e4ee7ecbb0b6fbaaaf018f8b00abe22d5d486b37$0.onClick$bridge(android.view.View):0 -> onClick
+x3.LoginFragment$$ExternalSyntheticLambda0 -> x3.b:
     android.app.AlertDialog studio.mandysa.music.ui.login.LoginFragment$$InternalSyntheticLambda$1$45d428c549d36db5487b8c66a8b4883795f1f835ece7c6688d972fc142b40136$1.f$0 -> a
     void studio.mandysa.music.ui.login.LoginFragment$$InternalSyntheticLambda$1$45d428c549d36db5487b8c66a8b4883795f1f835ece7c6688d972fc142b40136$1.<init>(android.app.AlertDialog) -> <init>
     1:1:void studio.mandysa.music.ui.login.LoginFragment.onCreateDialog$lambda-5$lambda-4(android.app.AlertDialog,android.content.DialogInterface):0:0 -> onShow
     1:1:void studio.mandysa.music.ui.login.LoginFragment$$InternalSyntheticLambda$1$45d428c549d36db5487b8c66a8b4883795f1f835ece7c6688d972fc142b40136$1.onShow(android.content.DialogInterface):0 -> onShow
+z3.PlayFragment$$ExternalSyntheticLambda0 -> z3.b:
+    studio.mandysa.music.ui.play.PlayFragment studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.f$0 -> a
+    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.<init>(studio.mandysa.music.ui.play.PlayFragment) -> <init>
+    1:1:androidx.core.view.WindowInsetsCompat studio.mandysa.music.ui.play.PlayFragment.onViewCreated$lambda-0(studio.mandysa.music.ui.play.PlayFragment,android.view.View,androidx.core.view.WindowInsetsCompat):0:0 -> a
+    1:1:androidx.core.view.WindowInsetsCompat studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$0.onApplyWindowInsets(android.view.View,androidx.core.view.WindowInsetsCompat):0 -> a
+z3.PlayFragment$$ExternalSyntheticLambda1 -> z3.c:
+    studio.mandysa.music.ui.play.PlayFragment studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.f$0 -> b
+    int studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.$r8$classId -> a
+    void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.$r8$init$bridge(studio.mandysa.music.ui.play.PlayFragment) -> <init>
+    1:1:void studio.mandysa.music.ui.play.PlayFragment.onViewCreated$lambda-5$lambda-1(studio.mandysa.music.ui.play.PlayFragment,java.lang.Integer):0:0 -> a
+    1:1:void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.onChanged$bridge(java.lang.Object):0 -> a
+    2:2:void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.onChanged$bridge(java.lang.Object):0:0 -> a
+    3:3:void studio.mandysa.music.ui.play.PlayFragment.onViewCreated$lambda-5$lambda-3(studio.mandysa.music.ui.play.PlayFragment,mandysax.media.model.DefaultMusic):0:0 -> a
+    3:3:void studio.mandysa.music.ui.play.PlayFragment$$InternalSyntheticLambda$2$09dcb1840fef65bfe425e04377b4b0103490b26098a0d241fa997e01b876a7e2$1.onChanged$bridge(java.lang.Object):0 -> a
+z3.PlayingFragment$$ExternalSyntheticLambda0 -> z3.i:
+    mandysax.media.DefaultPlayerManager studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.f$0 -> b
+    int studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.$r8$classId -> a
+    void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.$r8$init$bridge(mandysax.media.DefaultPlayerManager) -> <init>
+    1:1:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-6(mandysax.media.DefaultPlayerManager,android.view.View):0:0 -> onClick
+    1:1:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
+    2:2:mandysax.lifecycle.livedata.LiveData mandysax.media.DefaultPlayerManager.pauseLiveData():0:0 -> onClick
+    2:2:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-6(mandysax.media.DefaultPlayerManager,android.view.View):0 -> onClick
+    2:2:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
+    3:3:java.lang.Object mandysax.lifecycle.livedata.LiveData.getValue():0:0 -> onClick
+    3:3:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-6(mandysax.media.DefaultPlayerManager,android.view.View):0 -> onClick
+    3:3:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
+    4:4:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-6(mandysax.media.DefaultPlayerManager,android.view.View):0:0 -> onClick
+    4:4:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
+    5:5:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0:0 -> onClick
+    6:6:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-4(mandysax.media.DefaultPlayerManager,android.view.View):0:0 -> onClick
+    6:6:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
+    7:7:void mandysax.media.DefaultPlayerManager.skipToPrevious():0:0 -> onClick
+    7:7:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-4(mandysax.media.DefaultPlayerManager,android.view.View):0 -> onClick
+    7:7:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
+    8:8:java.lang.Object mandysax.lifecycle.livedata.LiveData.getValue():0:0 -> onClick
+    8:8:void mandysax.media.DefaultPlayerManager.skipToPrevious():0 -> onClick
+    8:8:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-4(mandysax.media.DefaultPlayerManager,android.view.View):0 -> onClick
+    8:8:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
+    9:9:void mandysax.media.DefaultPlayerManager.skipToPrevious():0:0 -> onClick
+    9:9:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-4(mandysax.media.DefaultPlayerManager,android.view.View):0 -> onClick
+    9:9:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
+    10:10:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0:0 -> onClick
+    11:11:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-7(mandysax.media.DefaultPlayerManager,android.view.View):0:0 -> onClick
+    11:11:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$4.onClick$bridge(android.view.View):0 -> onClick
+z3.PlayingFragment$$ExternalSyntheticLambda1 -> z3.j:
+    studio.mandysa.music.databinding.FragmentPlayingBinding studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.f$0 -> b
+    int studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.$r8$classId -> a
+    void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.$r8$init$bridge(studio.mandysa.music.databinding.FragmentPlayingBinding) -> <init>
+    1:1:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-2(studio.mandysa.music.databinding.FragmentPlayingBinding,mandysax.media.model.DefaultMusic):0:0 -> a
+    1:1:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
+    2:2:java.lang.String mandysax.media.model.DefaultArtist.getName():0:0 -> a
+    2:2:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-2(studio.mandysa.music.databinding.FragmentPlayingBinding,mandysax.media.model.DefaultMusic):0 -> a
+    2:2:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
+    3:3:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-2(studio.mandysa.music.databinding.FragmentPlayingBinding,mandysax.media.model.DefaultMusic):0:0 -> a
+    3:3:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
+    4:4:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0:0 -> a
+    5:5:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-1(studio.mandysa.music.databinding.FragmentPlayingBinding,java.lang.Boolean):0:0 -> a
+    5:5:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
+    6:6:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0:0 -> a
+    7:7:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-0(studio.mandysa.music.databinding.FragmentPlayingBinding,java.lang.Integer):0:0 -> a
+    7:7:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a
+    8:8:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0:0 -> a
+    9:9:void studio.mandysa.music.ui.play.PlayingFragment.onViewCreated$lambda-9$lambda-3(studio.mandysa.music.databinding.FragmentPlayingBinding,java.lang.Integer):0:0 -> a
+    9:9:void studio.mandysa.music.ui.play.PlayingFragment$$InternalSyntheticLambda$3$e362bda65cf14da76cc20d56449fcec9e5f467061d34c0d597ce9cdfc43164e0$0.onChanged$bridge(java.lang.Object):0 -> a

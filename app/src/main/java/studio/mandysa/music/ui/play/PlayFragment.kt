@@ -17,10 +17,10 @@ import mandysax.fragmentpage.widget.FragmentPage
 import studio.mandysa.bottomnavigationbar.BottomNavigationItem
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayBinding
-import studio.mandysa.music.logic.utils.BitmapUtil
 import studio.mandysa.music.logic.utils.bindView
 import studio.mandysa.music.logic.utils.getFrescoCacheBitmap
 import studio.mandysa.music.logic.utils.getInstance
+import studio.mandysa.music.logic.utils.handleImageBlur
 
 
 class PlayFragment : Fragment() {
@@ -80,7 +80,7 @@ class PlayFragment : Fragment() {
             instance.changeMusicLiveData().observe(viewLifecycleOwner) { model ->
                 getFrescoCacheBitmap(context, model.coverUrl, object : BaseBitmapDataSubscriber() {
                     override fun onNewResultImpl(bitmap: Bitmap?) {
-                        val blurBitmap = BitmapUtil.handleImageBlur(context, bitmap!!)
+                        val blurBitmap = handleImageBlur(context, bitmap!!)
                         mBinding.playBackground.setImageBitmap(blurBitmap)
                     }
 

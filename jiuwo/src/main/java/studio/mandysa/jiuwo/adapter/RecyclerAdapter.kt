@@ -165,10 +165,24 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
             onRecycled = block
         }
 
+        val headerSize get() = headers?.size ?: 0
+
+        val modelSize get() = this@RecyclerAdapter.models?.size ?: 0
+
+        val footerSize get() = footers?.size ?: 0
+
+        val models: List<Any?>?
+            get() = if (layoutPosition < headerSize) {
+                headers
+            } else
+                if (layoutPosition >= headerSize && layoutPosition < modelSize + headerSize) {
+                    this@RecyclerAdapter.models
+                } else {
+                    footers
+                }
+
         val modelPosition
             get():Int {
-                val headerSize = headers?.size ?: 0
-                val modelSize = models?.size ?: 0
                 return if (layoutPosition < headerSize) {
                     layoutPosition
                 } else

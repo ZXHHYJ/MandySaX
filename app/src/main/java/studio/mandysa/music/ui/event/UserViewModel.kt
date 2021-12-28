@@ -30,18 +30,18 @@ class UserViewModel : ViewModel() {
         val mCodeLiveData = MutableLiveData<Int>()
         NeteaseCloudMusicApi::class.java.create()
             .login(mobilePhone, password, System.currentTimeMillis()).set(object :
-            Callback<LoginModel> {
-            override fun onFailure(code: Int) {
-                mCodeLiveData.value = code
-            }
+                Callback<LoginModel> {
+                override fun onFailure(code: Int) {
+                    mCodeLiveData.value = code
+                }
 
-            override fun onResponse(t: LoginModel?) {
-                mCodeLiveData.value = t!!.code
-                if (t.cookie.isNotEmpty())
-                    mCookieLiveData.value = t.cookie
-            }
+                override fun onResponse(t: LoginModel?) {
+                    mCodeLiveData.value = t!!.code
+                    if (t.cookie.isNotEmpty())
+                        mCookieLiveData.value = t.cookie
+                }
 
-        })
+            })
         return mCodeLiveData
     }
 

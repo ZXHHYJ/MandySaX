@@ -29,6 +29,9 @@ class RecommendedSongs {
         @Path("al")
         private val picUrl = ""
 
+        /*@Value("reason")
+        val reason = ""*/
+
         override fun getTitle(): String {
             return name
         }

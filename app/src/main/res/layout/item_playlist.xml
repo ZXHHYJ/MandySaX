@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:ignore="UselessParent">
+    android:orientation="vertical">
 
     <studio.mandysa.music.ui.view.SquareLayout
         android:layout_width="wrap_content"
@@ -23,7 +22,6 @@
                 android:foreground="?android:attr/selectableItemBackground" />
 
         </androidx.cardview.widget.CardView>
-
     </studio.mandysa.music.ui.view.SquareLayout>
 
     <TextView

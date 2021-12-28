@@ -11,12 +11,11 @@ import com.sothree.slidinguppanel.PanelState
 import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
 import mandysax.fragment.FragmentActivity
-import mandysax.fragment.FragmentView
 import mandysax.fragmentpage.widget.FragmentPage
-import mandysax.media.DefaultPlayerManager
 import mandysax.navigation.fragment.NavHostFragment
 import studio.mandysa.bottomnavigationbar.BottomNavigationItem
 import studio.mandysa.music.databinding.ActivityMainBinding
+import studio.mandysa.music.logic.utils.getInstance
 import studio.mandysa.music.logic.utils.inflate
 import studio.mandysa.music.logic.utils.viewModels
 import studio.mandysa.music.ui.event.UserViewModel
@@ -53,11 +52,9 @@ class MainActivity : FragmentActivity() {
         //判断有没有登录，没有登录的话就打开登录界面
         if (mUserViewModel.getCookieLiveData().value == null)
             LoginFragment().show(fragmentPlusManager)
-        val controllerFragment = findViewById<FragmentView>(R.id.controller_fragment)
-        val playFragment = findViewById<FragmentView>(R.id.play_fragment)
-        //解决playFragment点击无事件view会关闭播放界面的问题
-        playFragment.setOnTouchListener { _, _ -> mBinding.mainSlidingView.panelState == PanelState.EXPANDED }
         mBinding.apply {
+            //解决playFragment点击无事件view会关闭播放界面的问题
+            playFragment.setOnTouchListener { _, _ -> mBinding.mainSlidingView.panelState == PanelState.EXPANDED }
             //不把shadowHeight设置为0的话后续修改shadowHeight都将失效！！
             mainSlidingView.shadowHeight = 0
             mainFragmentPage.setAdapter(object : FragmentPage.Adapter {
@@ -99,10 +96,8 @@ class MainActivity : FragmentActivity() {
             ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
                 //避免底部导航遮挡内容
                 if (mainSlidingView.panelHeight == 0) {
-                    bottomNavigationBar.post {
-                        mainSlidingView.panelHeight =
-                            resources.getDimensionPixelOffset(R.dimen.nav_height)
-                    }
+                    mainSlidingView.panelHeight =
+                        resources.getDimensionPixelOffset(R.dimen.nav_height)
                 }
                 val startBarSize = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
                 val navigationBarSize =
@@ -120,7 +115,7 @@ class MainActivity : FragmentActivity() {
                     navigationBarSize
                 )
                 mainSlidingView.isTouchEnabled = false
-                DefaultPlayerManager.getInstance()!!.changeMusicLiveData().lazy(this@MainActivity) {
+                getInstance().changeMusicLiveData().lazy(this@MainActivity) {
                     mBinding.apply {
                         mainSlidingView.isTouchEnabled = true
                         bottomNavigationBar.post {
@@ -136,9 +131,10 @@ class MainActivity : FragmentActivity() {
                                 shadowHeight =
                                     resources.getDimensionPixelSize(R.dimen.umano_shadow_height)
                                 postDelayed({
+                                    val y =
+                                        mBinding.root.bottom - mBinding.bottomNavLayout.height
                                     addPanelSlideListener(object :
                                         PanelSlideListener {
-                                        val y = mBinding.bottomNavLayout.y
                                         override fun onPanelSlide(panel: View, slideOffset: Float) {
                                             val by: Float =
                                                 y + bottomNavLayout.height * slideOffset * 8

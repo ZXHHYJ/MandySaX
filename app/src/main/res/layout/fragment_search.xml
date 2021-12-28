@@ -41,16 +41,14 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="?android:attr/dividerVertical" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:overScrollMode="never"
-                    android:paddingTop="@dimen/double_item_margin" />
+                    android:overScrollMode="never" />
 
             </LinearLayout>
         </studio.mandysa.statelayout.StateLayout>

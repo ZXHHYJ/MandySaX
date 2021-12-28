@@ -58,7 +58,7 @@ class MediaPlayService : Service() {
                         mMediaNotification!!.apply {
                             setLargeIcon(
                                 Icon.createWithBitmap(
-                                    bitmap!!.copy(Bitmap.Config.RGB_565,false)
+                                    bitmap!!.copy(Bitmap.Config.RGB_565, false)
                                 )
                             )
                             build()
