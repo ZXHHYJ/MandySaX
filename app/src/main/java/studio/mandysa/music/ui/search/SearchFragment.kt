@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.sothree.slidinguppanel.PanelSlideListener
 import com.sothree.slidinguppanel.PanelState
 import mandysax.anna2.callback.Callback
-import mandysax.core.app.OnBackPressedCallback
 import mandysax.fragment.Fragment
-import mandysax.lifecycle.Lifecycle
 import mandysax.lifecycle.livedata.Observer
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
@@ -43,14 +41,6 @@ class SearchFragment : Fragment() {
 
     private val mViewModel: SearchViewModel by activityViewModels()
 
-    private val mOnBackListener = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            if (mBinding.searchSlidingView.panelState == PanelState.EXPANDED) {
-                mBinding.searchSlidingView.panelState = PanelState.COLLAPSED
-            }
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -72,28 +62,11 @@ class SearchFragment : Fragment() {
                 previousState: PanelState,
                 newState: PanelState
             ) {
-                mOnBackListener.isEnabled = newState == PanelState.EXPANDED
+                //mOnBackListener.isEnabled = newState == PanelState.EXPANDED
             }
 
         })
-        viewLifecycleOwner.lifecycle.addObserver { state ->
-            when (state) {
-                Lifecycle.Event.ON_DESTROY -> {
-                    mOnBackListener.remove()
-                }
-                Lifecycle.Event.ON_CREATE -> {
-                    requireActivity().onBackPressedDispatcher.addCallback(mOnBackListener)
-                }
-                Lifecycle.Event.ON_START -> {
-                    mOnBackListener.isEnabled =
-                        mBinding.searchSlidingView.panelState == PanelState.EXPANDED
-                }
-                Lifecycle.Event.ON_STOP -> {
-                    mOnBackListener.isEnabled = false
-                }
-                else -> {}
-            }
-        }
+
         mBinding.apply {
             statelayout.apply {
                 showLoading {

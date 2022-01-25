@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:overScrollMode="never"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
         tools:ignore="RtlSymmetry" />
 
     <View

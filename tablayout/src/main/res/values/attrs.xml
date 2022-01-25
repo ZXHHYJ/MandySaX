@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TabLayout">
+        <attr name="tabModel" format="enum">
+            <enum name="fixed" value="0" />
+            <enum name="scrollable" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

@@ -16,21 +16,24 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
-            notifyDataSetChanged()
+            if (field != null)
+                notifyItemRangeChanged(0, field!!.size)
         }
 
     var models: List<Any?>? = null
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
-            notifyDataSetChanged()
+            if (field != null)
+                notifyItemRangeChanged(headers?.size ?: 0, headers?.size ?: 0 + field!!.size)
         }
 
     var footers: List<Any?>? = null
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
-            notifyDataSetChanged()
+            if (field != null)
+                notifyItemRangeChanged(headers?.size ?: 0 + (models?.size ?: 0), itemCount)
         }
 
     var mModel: Any? = null
@@ -43,10 +46,10 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
         onCreate = block
     }
 
-    val mType = HashMap<Class<*>, Int>()
+    val type = HashMap<Class<*>, Int>()
 
     inline fun <reified M> addType(@LayoutRes id: Int) {
-        mType[M::class.java] = id
+        type[M::class.java] = id
     }
 
     inline fun <reified M> getModel(): M = mModel as M
@@ -87,32 +90,37 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return mType[getModel(position)::class.java]!!
+        return type[getModel(position)::class.java]!!
     }
 
     fun addHeader(model: Any) {
-        if (headers == null)
-            headers = listOf(model) else {
-            (headers as MutableList).add(model)
-            notifyItemInserted(1)
+        if (headers != null) {
+            val list = ArrayList(headers)
+            list.add(model)
+            headers = list
+            return
         }
+        headers = listOf(model)
     }
 
     fun addModels(models: List<Any>) {
-        if (this.models == null) this.models = models else {
-            (this.models as MutableList).addAll(
-                models
-            )
-            notifyItemInserted(models.size)
+        if (this.models != null) {
+            val list = ArrayList(this.models)
+            list.addAll(models)
+            this.models = list
+            return
         }
+        this.models = listOf(models)
     }
 
     fun addFooter(model: Any) {
-        if (footers == null)
-            footers = listOf(model) else {
-            (footers as MutableList).add(model)
-            notifyItemInserted(1)
+        if (footers != null) {
+            val list = ArrayList(footers)
+            list.add(model)
+            footers = list
+            return
         }
+        footers = listOf(model)
     }
 
     @SuppressLint("NotifyDataSetChanged")

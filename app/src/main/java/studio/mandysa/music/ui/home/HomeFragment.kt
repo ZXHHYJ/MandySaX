@@ -1,168 +1,68 @@
 package studio.mandysa.music.ui.home
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
-import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
-import mandysax.lifecycle.livedata.Observer
-import mandysax.media.DefaultPlayerManager.Companion.getInstance
-import mandysax.media.model.DefaultArtist
-import mandysax.media.model.DefaultMusic
+import mandysax.fragmentpage.widget.FragmentPage
 import mandysax.navigation.Navigation
-import studio.mandysa.jiuwo.utils.linear
-import studio.mandysa.jiuwo.utils.recyclerAdapter
-import studio.mandysa.jiuwo.utils.setup
+import mandysax.tablayout.NavigationItem
+import mandysax.tablayout.setActiveColor
+import mandysax.tablayout.setInActiveColor
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentHomeBinding
-import studio.mandysa.music.databinding.ItemPlaylistBinding
-import studio.mandysa.music.databinding.ItemRecommendedPlaylistBinding
-import studio.mandysa.music.databinding.ItemSongBinding
-import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
-import studio.mandysa.music.logic.model.PlaylistModel
-import studio.mandysa.music.logic.model.RecommendedSongs
-import studio.mandysa.music.logic.utils.*
-import studio.mandysa.music.ui.all.playlist.PlaylistFragment
-import studio.mandysa.music.ui.event.UserViewModel
+import studio.mandysa.music.logic.utils.bindView
+import studio.mandysa.music.ui.search.SearchFragment
 
 class HomeFragment : Fragment() {
 
-    private val mBinding: FragmentHomeBinding by bindView()
-
-    private val mEvent: UserViewModel by activityViewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        return mBinding.root
-    }
+    val mBinding: FragmentHomeBinding by bindView()
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBinding.apply {
-            recycler.linear().setup {
-                addType<PlaylistModel>(R.layout.item_recommended_playlist)
-                addType<RecommendedSongs.RecommendedSong>(R.layout.item_song)
-                val snapHelper = LinearSnapHelper()
-                onBind {
-                    when (itemViewType) {
-                        R.layout.item_recommended_playlist -> {
-                            ItemRecommendedPlaylistBinding.bind(itemView).playlistList.apply {
-                                snapHelper.attachToRecyclerView(this)
-                                addItemDecoration(object : RecyclerView.ItemDecoration() {
-                                    override fun getItemOffsets(
-                                        outRect: Rect,
-                                        view: View,
-                                        parent: RecyclerView,
-                                        state: RecyclerView.State
-                                    ) {
-                                        val length =
-                                            parent.resources.getDimensionPixelOffset(R.dimen.activity_horizontal_margin)
-                                        view.layoutParams.width =
-                                            parent.resources.getDimensionPixelOffset(R.dimen.album_width) + length / 2
-                                        view.setPadding(length, 0, 0, 0)
-                                    }
-                                }, 0)
-                                linear(orientation = RecyclerView.HORIZONTAL).setup {
-                                    addType<PlaylistModel.Playlist>(R.layout.item_playlist)
-                                    onBind {
-                                        val model = getModel<PlaylistModel.Playlist>()
-                                        ItemPlaylistBinding.bind(itemView).apply {
-                                            playlistTitle.text = model.name
-                                            playlistCover.setImageURI(model.picUrl)
-                                            playlistCover.setOnClickListener {
-                                                Navigation.findViewNavController(it)
-                                                    .navigate(
-                                                        R.style.AppFragmentAnimStyle,
-                                                        PlaylistFragment(model.id!!)
-                                                    )
-                                            }
-                                        }
-                                    }
-                                }
-                                recyclerAdapter.models = getModel<PlaylistModel>().playlist!!
-                            }
-                        }
-                        R.layout.item_song -> {
-                            val model = getModel<RecommendedSongs.RecommendedSong>()
-                            ItemSongBinding.bind(itemView).apply {
-                                songName.text = model.title
-                                songSingerName.text = model.artist.allArtist()
-                                songCover.setImageURI(model.coverUrl)
-                                itemView.setOnClickListener {
-                                    getInstance()!!.apply {
-                                        loadAlbum(
-                                            models.createAlbum(),
-                                            modelPosition
-                                        )
-                                        play()
-                                    }
-                                }
-                                val lifecycleObserver =
-                                    Observer<DefaultMusic<DefaultArtist>> { p1 ->
-                                        if (p1.id == model.id) {
-                                            songName.setTextColor(
-                                                context.getColor(R.color.blue)
-                                            )
-                                            songSingerName.setTextColor(context.getColor(R.color.blue))
-                                        } else {
-                                            songName.setTextColor(
-                                                context.getColor(android.R.color.black)
-                                            )
-                                            songSingerName.setTextColor(context.getColor(R.color.tv_color_light))
-                                        }
-                                    }
-                                onAttached {
-                                    getInstance()!!.changeMusicLiveData()
-                                        .observe(viewLifecycleOwner, lifecycleObserver)
-                                }
-                                onDetached {
-                                    getInstance()!!.changeMusicLiveData()
-                                        .removeObserver(lifecycleObserver)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            statelayout.showLoading {
-                mEvent.getCookieLiveData().lazy {
-                    NeteaseCloudMusicApi::class.java.create().apply {
-                        getRecommendedPlaylist(it).set(
-                            viewLifecycleOwner.lifecycle,
-                            object : Callback<PlaylistModel> {
-                                override fun onResponse(t: PlaylistModel?) {
-                                    statelayout.showContentState()
-                                    mBinding.recycler.recyclerAdapter.headers = listOf(t)
-                                }
-
-                                override fun onFailure(code: Int) {
-                                    statelayout.showErrorState()
-                                }
-
-                            })
-                        getRecommendedSong(it).set(viewLifecycleOwner.lifecycle,
-                            object : Callback<RecommendedSongs> {
-
-                                override fun onResponse(t: RecommendedSongs?) {
-                                    mBinding.recycler.recyclerAdapter.models = t!!.list
-                                }
-
-                                override fun onFailure(code: Int) {
-                                    statelayout.showErrorState()
-                                }
-
-                            })
-                    }
-                }
-            }
-            statelayout.showLoadingState()
+        mBinding.editFrame.let {
+            it.isFocusableInTouchMode = false//不可编辑
+            it.keyListener = null//不可粘贴，长按不会弹出粘贴框
+            //it.setClickable(false);//不可点击，但是这个效果我这边没体现出来，不知道怎没用
+            it.isFocusable = false//不可编辑
         }
+        mBinding.editFrame.setOnClickListener {
+            Navigation.findViewNavController(it).navigate(SearchFragment())
+        }
+        mBinding.homeFragmentPage.setAdapter(object : FragmentPage.Adapter {
+            override fun onCreateFragment(position: Int): Fragment? =
+                when (position) {
+                    0 -> RecommendFragment()
+                    1 -> MusicHallFragment()
+                    2 -> RankingFragment()
+                    else -> null
+                }
+
+        })
+        mBinding.topNav.models = listOf(
+            NavigationItem(
+                "推荐"
+            ),
+            NavigationItem(
+                "音乐馆"
+            ),
+            NavigationItem(
+                "排行"
+            )
+        ).setInActiveColor(context.getColor(android.R.color.black))
+            .setActiveColor(context.getColor(R.color.main))
+        mBinding.topNav.getSelectedPosition().observeForever {
+            mBinding.homeFragmentPage.position = it
+        }
+        mBinding.topNav.setSelectedPosition(0)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return mBinding.root
+    }
 }

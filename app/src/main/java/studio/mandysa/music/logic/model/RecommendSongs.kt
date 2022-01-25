@@ -9,12 +9,12 @@ import studio.mandysa.music.logic.network.Url
 /**
  * @author ZXHHYJ
  */
-class RecommendedSongs {
+class RecommendSongs {
     @Path("data")
     @Value("dailySongs")
-    var list: List<RecommendedSong>? = null
+    var list: List<RecommendSong>? = null
 
-    class RecommendedSong : DefaultMusic<DefaultArtist>() {
+    class RecommendSong : DefaultMusic<DefaultArtist>() {
         @Value("name")
         private val name = ""
 

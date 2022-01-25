@@ -13,7 +13,9 @@ import mandysax.fragment.Fragment
 import mandysax.fragment.FragmentActivity
 import mandysax.fragmentpage.widget.FragmentPage
 import mandysax.navigation.fragment.NavHostFragment
-import studio.mandysa.bottomnavigationbar.BottomNavigationItem
+import mandysax.tablayout.BottomNavigationItem
+import mandysax.tablayout.setActiveColor
+import mandysax.tablayout.setInActiveColor
 import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.logic.utils.getInstance
 import studio.mandysa.music.logic.utils.inflate
@@ -22,7 +24,6 @@ import studio.mandysa.music.ui.event.UserViewModel
 import studio.mandysa.music.ui.home.HomeFragment
 import studio.mandysa.music.ui.login.LoginFragment
 import studio.mandysa.music.ui.me.MeFragment
-import studio.mandysa.music.ui.search.SearchFragment
 
 
 class MainActivity : FragmentActivity() {
@@ -62,30 +63,24 @@ class MainActivity : FragmentActivity() {
                     NavHostFragment.create(
                         when (position) {
                             0 -> HomeFragment()
-                            1 -> SearchFragment()
-                            2 -> MeFragment()
+                            1 -> MeFragment()
                             else -> null
                         }
                     )
             })
-            bottomNavigationBar.setActiveColorResource(R.color.main)
             bottomNavigationBar.models = listOf(
                 BottomNavigationItem(
                     R.drawable.ic_round_contactless_24,
                     getString(R.string.home)
                 ),
                 BottomNavigationItem(
-                    R.drawable.ic_round_search_24,
-                    getString(R.string.search)
-                ), BottomNavigationItem(
                     R.drawable.ic_round_account_circle_24,
                     getString(R.string.me)
                 )
             )
-            if (bottomNavigationBar.getSelectedPosition().value == -1)
-                bottomNavigationBar.setSelectedPosition(0)
-            if (bottomNavigationBar.getSelectedPosition().value != mEvent.homePosLiveData.value)
-                bottomNavigationBar.setSelectedPosition(mEvent.homePosLiveData.value)
+                .setActiveColor(getColor(R.color.main))
+                .setInActiveColor(getColor(R.color.default_unchecked_color))
+            bottomNavigationBar.setSelectedPosition(mEvent.homePosLiveData.value)
             mEvent.homePosLiveData.observe(this@MainActivity,
                 {
                     mainFragmentPage.position = it

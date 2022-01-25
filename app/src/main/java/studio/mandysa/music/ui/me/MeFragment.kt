@@ -42,7 +42,7 @@ class MeFragment : Fragment() {
         mBinding.recycler.linear().setup {
             addType<UserModel>(R.layout.item_user_head)
             addType<UserPlaylistModel>(R.layout.item_me_playlist)
-            val snapHelper = PagerSnapHelper()
+            val pagerSnapHelper = PagerSnapHelper()
             onBind {
                 when (itemViewType) {
                     R.layout.item_user_head -> {
@@ -55,7 +55,7 @@ class MeFragment : Fragment() {
                     }
                     R.layout.item_me_playlist -> {
                         ItemMePlaylistBinding.bind(itemView).playlistList.apply {
-                            snapHelper.attachToRecyclerView(this)
+                            pagerSnapHelper.attachToRecyclerView(this)
                             staggered(3, orientation = HORIZONTAL).setup {
                                 addType<UserPlaylistModel.UserPlaylist>(R.layout.item_my_playlist)
                                 onBind {

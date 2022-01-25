@@ -3,5 +3,6 @@ include ':app'
 include ':media'
 include ':mandysax'
 include ':statelayout'
-include ':bottomnavigationbar'
+/*include ':bottomnavigationbar'*/
 include ':jiuwo'
+include ':tablayout'

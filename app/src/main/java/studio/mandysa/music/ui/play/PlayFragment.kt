@@ -14,7 +14,9 @@ import com.facebook.imagepipeline.image.CloseableImage
 import com.flaviofaria.kenburnsview.RandomTransitionGenerator
 import mandysax.fragment.Fragment
 import mandysax.fragmentpage.widget.FragmentPage
-import studio.mandysa.bottomnavigationbar.BottomNavigationItem
+import mandysax.tablayout.BottomNavigationItem
+import mandysax.tablayout.setActiveColor
+import mandysax.tablayout.setInActiveColor
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayBinding
 import studio.mandysa.music.logic.utils.bindView
@@ -40,7 +42,7 @@ class PlayFragment : Fragment() {
             insets
         }
         mBinding.let { it ->
-            it.fragmentPage.setAdapter(object : FragmentPage.Adapter {
+            it.playFragmentPage.setAdapter(object : FragmentPage.Adapter {
                 override fun onCreateFragment(position: Int): Fragment? = when (position) {
                     0 -> PlayingFragment()
                     1 -> LyricFragment()
@@ -48,8 +50,6 @@ class PlayFragment : Fragment() {
                     else -> null
                 }
             })
-            it.bottomNavigationBar.setInActiveColorResource(R.color.translucent_white)
-            it.bottomNavigationBar.setActiveColorResource(android.R.color.white)
             it.bottomNavigationBar.models = listOf(
                 BottomNavigationItem(
                     R.drawable.ic_round_music_video_24,
@@ -63,8 +63,10 @@ class PlayFragment : Fragment() {
                     ""
                 )
             )
+                .setInActiveColor(context.getColor(R.color.translucent_white))
+                .setActiveColor(context.getColor(android.R.color.white))
             it.bottomNavigationBar.getSelectedPosition().observe(viewLifecycleOwner) {
-                mBinding.fragmentPage.position = it
+                mBinding.playFragmentPage.position = it
             }
             it.bottomNavigationBar.setSelectedPosition(0)
             instance.pauseLiveData().observe(viewLifecycleOwner) { pause ->

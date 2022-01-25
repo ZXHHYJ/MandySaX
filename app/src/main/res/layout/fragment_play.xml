@@ -16,12 +16,12 @@
         android:orientation="vertical">
 
         <mandysax.fragmentpage.widget.FragmentPage
-            android:id="@+id/fragment_page"
+            android:id="@+id/play_fragment_page"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.0" />
 
-        <studio.mandysa.bottomnavigationbar.BottomNavigationBar
+        <mandysax.tablayout.TabLayout
             android:id="@+id/bottomNavigationBar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/nav_height"

@@ -60,6 +60,7 @@ class FragmentStore {
             }
             store.parentStore.stores.add(store);
         }
+        mStore.put(newFragment.getTag(), store);
     }
 
     @Nullable

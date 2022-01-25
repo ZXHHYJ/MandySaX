@@ -20,7 +20,8 @@
 
     <!--双排item列表边距-->
     <dimen name="double_item_margin">@dimen/activity_horizontal_margin</dimen>
-    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <!--默认边距-->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 

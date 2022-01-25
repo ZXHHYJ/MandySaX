@@ -32,7 +32,7 @@ interface NeteaseCloudMusicApi {
     fun getRecommendedNewSong(): Observable<List<NewSongModel>>
 
     @Get("recommend/songs")
-    fun getRecommendedSong(@Query("cookie") cookie: String): Observable<RecommendedSongs>
+    fun getRecommendedSong(@Query("cookie") cookie: String): Observable<RecommendSongs>
 
     @Get("personalized")
     fun getRecommendedPlaylist(@Query("cookie") cookie: String): Observable<PlaylistModel>
@@ -82,5 +82,7 @@ interface NeteaseCloudMusicApi {
     @Get("subscribe")
     fun subscribe(@Query("t") t: Int, @Query("id") playlistId: String): Observable<ResponseBody>
 
+    @Get("banner?type=1")
+    fun getBannerList(): Observable<BannerModels>
 
 }

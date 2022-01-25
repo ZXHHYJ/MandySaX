@@ -58,6 +58,11 @@ class FragmentStateManager extends FragmentStore {
             fragment.dumpOnAttach(mActivity);
             fragment.dumpOnCreate(fragment.getArguments());
         }
+        if (parentFragment == null) {
+            add(fragment);
+        } else {
+            add(parentFragment, fragment);
+        }
         if (!fragment.isInLayout() && id != 0) {
             fragment.dispatchOnViewCreated(fragment.onCreateView(
                     mActivity.getLayoutInflater().cloneInContext(mActivity.getApplicationContext()),
@@ -66,11 +71,7 @@ class FragmentStateManager extends FragmentStore {
             ));
         }
         mActivityCreated.lazy(p1 -> fragment.onActivityCreated(mSavedInstanceState));
-        if (parentFragment == null) {
-            add(fragment);
-        } else {
-            add(parentFragment, fragment);
-        }
+        fragment.dispatchAdd();
     }
 
     /**
@@ -283,7 +284,7 @@ class FragmentStateManager extends FragmentStore {
     @Override
     public void addFragment(Fragment fragment) {
         super.addFragment(fragment);
-        fragment.dispatchAdd();
+        //fragment.dispatchAdd();
     }
 
     @Override

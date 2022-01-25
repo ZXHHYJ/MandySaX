@@ -17,7 +17,7 @@ import studio.mandysa.music.databinding.FragmentPlayQueueBinding
 import studio.mandysa.music.databinding.ItemSongBinding
 import studio.mandysa.music.logic.model.MusicModel
 import studio.mandysa.music.logic.model.NewSongModel
-import studio.mandysa.music.logic.model.RecommendedSongs
+import studio.mandysa.music.logic.model.RecommendSongs
 import studio.mandysa.music.logic.utils.bindView
 import studio.mandysa.music.logic.utils.createAlbum
 import studio.mandysa.music.logic.utils.getInstance
@@ -31,7 +31,7 @@ class PlayQueueFragment : Fragment() {
         mBinding.recycler.linear().setup {
             addType<NewSongModel>(R.layout.item_song)
             addType<MusicModel>(R.layout.item_song)
-            addType<RecommendedSongs.RecommendedSong>(R.layout.item_song)
+            addType<RecommendSongs.RecommendSong>(R.layout.item_song)
             onBind {
                 val model = getModel<DefaultMusic<DefaultArtist>>()
                 ItemSongBinding.bind(itemView).apply {
