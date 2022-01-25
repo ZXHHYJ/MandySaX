@@ -94,9 +94,13 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
     }
 
     fun addHeader(model: Any) {
+        addHeader(model, headers?.size ?: 0)
+    }
+
+    fun addHeader(model: Any, position: Int) {
         if (headers != null) {
             val list = ArrayList(headers)
-            list.add(model)
+            list.add(position, model)
             headers = list
             return
         }
@@ -104,19 +108,27 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
     }
 
     fun addModels(models: List<Any>) {
+        addModels(models, this.models?.size ?: 0)
+    }
+
+    fun addModels(models: List<Any>, position: Int) {
         if (this.models != null) {
             val list = ArrayList(this.models)
-            list.addAll(models)
+            list.addAll(position, models)
             this.models = list
             return
         }
-        this.models = listOf(models)
+        this.models = models
     }
 
     fun addFooter(model: Any) {
+        addFooter(model, footers?.size ?: 0)
+    }
+
+    fun addFooter(model: Any, position: Int) {
         if (footers != null) {
             val list = ArrayList(footers)
-            list.add(model)
+            list.add(position, model)
             footers = list
             return
         }

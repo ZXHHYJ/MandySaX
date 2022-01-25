@@ -15,7 +15,7 @@ import mandysax.media.DefaultPlayerManager
 import mandysax.media.model.DefaultArtist
 import mandysax.media.model.DefaultMusic
 import mandysax.navigation.Navigation
-import studio.mandysa.jiuwo.utils.addHeader
+import studio.mandysa.jiuwo.utils.addModels
 import studio.mandysa.jiuwo.utils.linear
 import studio.mandysa.jiuwo.utils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.setup
@@ -55,6 +55,7 @@ class RecommendFragment : Fragment() {
                                         val model = getModel<BannerModels.BannerModel>()
                                         ItemBannerBinding.bind(itemView).let {
                                             it.planIv.setImageURI(model.pic)
+                                            it.planIv.setOnClickListener { }
                                         }
                                     }
                                 }
@@ -147,12 +148,12 @@ class RecommendFragment : Fragment() {
                             viewLifecycleOwner.lifecycle,
                             object : Callback<BannerModels> {
                                 override fun onFailure(code: Int) {
-
+                                    stateLayout.showErrorState()
                                 }
 
                                 override fun onResponse(t: BannerModels?) {
                                     if (t != null) {
-                                        mBinding.recycler.addHeader(t)
+                                        mBinding.recycler.recyclerAdapter.addHeader(t, 0)
                                     }
                                 }
                             })
@@ -162,7 +163,7 @@ class RecommendFragment : Fragment() {
                                 override fun onResponse(t: PlaylistModel?) {
                                     stateLayout.showContentState()
                                     if (t != null) {
-                                        mBinding.recycler.addHeader(t)
+                                        mBinding.recycler.recyclerAdapter.addHeader(t, 1)
                                     }
                                 }
 
@@ -175,7 +176,7 @@ class RecommendFragment : Fragment() {
                             object : Callback<RecommendSongs> {
 
                                 override fun onResponse(t: RecommendSongs?) {
-                                    mBinding.recycler.recyclerAdapter.models = t!!.list
+                                    mBinding.recycler.addModels(t!!.list!!)
                                 }
 
                                 override fun onFailure(code: Int) {

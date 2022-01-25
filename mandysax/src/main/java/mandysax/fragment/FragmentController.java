@@ -176,10 +176,25 @@ public final class FragmentController extends FragmentStateManager {
     }
 
     enum STACK {
+        /**
+         * 显示
+         */
         SHOW,
+        /**
+         * 隐藏
+         */
         HIDE,
+        /**
+         * 移除
+         */
         REMOVE,
+        /**
+         * 切换
+         */
         REPLACE,
+        /**
+         * 添加
+         */
         ADD
     }
 
@@ -187,7 +202,6 @@ public final class FragmentController extends FragmentStateManager {
      * 监听FragmentManager返回栈变更
      */
     public interface OnBackStackChangedListener {
-
         void onBackStackChanged();
     }
 
