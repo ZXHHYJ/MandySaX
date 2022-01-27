@@ -1,63 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/search_edit_frame"
-        style="@style/AppEditTextStyle"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_edittext"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-        android:layout_marginVertical="@dimen/text_margin_small"
-        android:autofillHints="no"
-        android:drawableStart="@drawable/ic_round_search_24"
-        android:hint="@string/search_hint"
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:singleLine="true"
-        android:textSize="16sp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <com.sothree.slidinguppanel.SlidingUpPanelLayout
-        android:id="@+id/search_sliding_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="top"
-        app:umanoPanelHeight="0dp"
-        app:umanoShadowHeight="0dp">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_round_arrow_back_ios_24"
+            tools:ignore="ContentDescription" />
 
-        <studio.mandysa.statelayout.StateLayout
-            android:id="@+id/statelayout"
+        <EditText
+            android:id="@+id/edit_frame"
+            style="@style/AppEditTextStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:autofillHints="no"
+            android:drawableStart="@drawable/ic_round_search_24"
+            android:hint="@string/search_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textSize="15sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+    </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="?android:attr/dividerVertical" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:overScrollMode="never" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="?android:attr/dividerVertical" />
 
-            </LinearLayout>
-        </studio.mandysa.statelayout.StateLayout>
-
-        <fragment
-            android:id="@+id/search_list_fragment"
-            android:name="studio.mandysa.music.ui.search.searchlist.SearchListFragment"
+    <studio.mandysa.statelayout.StateLayout
+        android:id="@+id/state_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:ignore="Instantiatable" />
-    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+            android:overScrollMode="never" />
+    </studio.mandysa.statelayout.StateLayout>
+
 </LinearLayout>

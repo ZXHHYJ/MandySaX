@@ -8,20 +8,29 @@
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/activity_horizontal_margin">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/logo"
-        tools:ignore="ContentDescription" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/welcome"
-        android:textColor="@android:color/black"
-        android:textSize="23sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/text_margin_small"
+        android:gravity="center_vertical"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_round_arrow_back_ios_24"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            style="@style/AppSmallTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/etPhone"

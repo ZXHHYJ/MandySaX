@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<studio.mandysa.statelayout.StateLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/statelayout"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never" />
-</studio.mandysa.statelayout.StateLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/text_margin_small"
+        android:gravity="center_vertical"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_round_arrow_back_ios_24"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            style="@style/AppSmallTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/playlist" />
+
+    </LinearLayout>
+
+    <studio.mandysa.statelayout.StateLayout
+        android:id="@+id/state_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+    </studio.mandysa.statelayout.StateLayout>
+</LinearLayout>

@@ -12,6 +12,7 @@ import mandysax.tablayout.setActiveColor
 import mandysax.tablayout.setInActiveColor
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentHomeBinding
+import studio.mandysa.music.databinding.LayoutToolbarBinding
 import studio.mandysa.music.logic.utils.bindView
 import studio.mandysa.music.ui.search.SearchFragment
 
@@ -21,41 +22,43 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBinding.editFrame.let {
-            it.isFocusableInTouchMode = false//不可编辑
-            it.keyListener = null//不可粘贴，长按不会弹出粘贴框
-            //it.setClickable(false);//不可点击，但是这个效果我这边没体现出来，不知道怎没用
-            it.isFocusable = false//不可编辑
-        }
-        mBinding.editFrame.setOnClickListener {
-            Navigation.findViewNavController(it).navigate(SearchFragment())
-        }
-        mBinding.homeFragmentPage.setAdapter(object : FragmentPage.Adapter {
-            override fun onCreateFragment(position: Int): Fragment? =
-                when (position) {
-                    0 -> RecommendFragment()
-                    1 -> MusicHallFragment()
-                    2 -> RankingFragment()
-                    else -> null
-                }
+        LayoutToolbarBinding.bind(mBinding.root).apply {
+            editFrame.let {
+                it.isFocusableInTouchMode = false//不可编辑
+                it.keyListener = null//不可粘贴，长按不会弹出粘贴框
+                //it.setClickable(false);//不可点击，但是这个效果我这边没体现出来，不知道怎没用
+                it.isFocusable = false//不可编辑
+            }
+            editFrame.setOnClickListener {
+                Navigation.findViewNavController(it).navigate(SearchFragment())
+            }
+            mBinding.homeFragmentPage.setAdapter(object : FragmentPage.Adapter {
+                override fun onCreateFragment(position: Int): Fragment? =
+                    when (position) {
+                        0 -> RecommendFragment()
+                        1 -> MusicHallFragment()
+                        2 -> RankingFragment()
+                        else -> null
+                    }
 
-        })
-        mBinding.topNav.models = listOf(
-            NavigationItem(
-                "推荐"
-            ),
-            NavigationItem(
-                "音乐馆"
-            ),
-            NavigationItem(
-                "排行"
-            )
-        ).setInActiveColor(context.getColor(android.R.color.black))
-            .setActiveColor(context.getColor(R.color.main))
-        mBinding.topNav.getSelectedPosition().observeForever {
-            mBinding.homeFragmentPage.position = it
+            })
+            topNav.models = listOf(
+                NavigationItem(
+                    "推荐"
+                ),
+                NavigationItem(
+                    "音乐馆"
+                ),
+                NavigationItem(
+                    "排行"
+                )
+            ).setInActiveColor(context.getColor(android.R.color.black))
+                .setActiveColor(context.getColor(R.color.main))
+            topNav.getSelectedPosition().observeForever {
+                mBinding.homeFragmentPage.position = it
+            }
+            topNav.setSelectedPosition(0)
         }
-        mBinding.topNav.setSelectedPosition(0)
     }
 
     override fun onCreateView(

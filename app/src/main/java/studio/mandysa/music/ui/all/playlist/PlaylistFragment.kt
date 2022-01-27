@@ -40,7 +40,7 @@ class PlaylistFragment(private val id: String) : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.let { it ->
-            it.statelayout.apply {
+            it.stateLayout.apply {
                 showLoading {
                     mViewModel.initData(this@PlaylistFragment.id).observe(viewLifecycleOwner) {
                         if (it == null) {

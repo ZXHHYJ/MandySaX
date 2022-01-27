@@ -1,6 +1,8 @@
 package studio.mandysa.music.ui.home
 
+import android.content.Intent
 import android.graphics.Rect
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +40,7 @@ class RecommendFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mBinding.apply {
             recycler.linear().setup {
-                addType<PlaylistModel>(R.layout.item_recommend_playlist)
+                addType<PlaylistModel>(R.layout.item_recommend_playlist_rv)
                 addType<RecommendSongs.RecommendSong>(R.layout.item_song)
                 addType<BannerModels>(R.layout.item_banner_rv)
                 val linearSnapHelper = LinearSnapHelper()
@@ -46,24 +48,31 @@ class RecommendFragment : Fragment() {
                 onBind {
                     when (itemViewType) {
                         R.layout.item_banner_rv -> {
-                            val model = getModel<BannerModels>()
                             ItemBannerRvBinding.bind(itemView).recycler.apply {
                                 pagerSnapHelper.attachToRecyclerView(this)
                                 linear(orientation = RecyclerView.HORIZONTAL).setup {
                                     addType<BannerModels.BannerModel>(R.layout.item_banner)
                                     onBind {
                                         val model = getModel<BannerModels.BannerModel>()
-                                        ItemBannerBinding.bind(itemView).let {
+                                        ItemBannerBinding.bind(itemView).let { it ->
                                             it.planIv.setImageURI(model.pic)
-                                            it.planIv.setOnClickListener { }
+                                            it.planIv.setOnClickListener {
+                                                when (model.targetType) {
+                                                    3000 -> {
+                                                        val uri: Uri = Uri.parse(model.url)
+                                                        val intent = Intent(Intent.ACTION_VIEW, uri)
+                                                        startActivity(intent)
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
-                                recyclerAdapter.models = model.list
+                                recyclerAdapter.models = getModel<BannerModels>().list
                             }
                         }
-                        R.layout.item_recommend_playlist -> {
-                            ItemRecommendPlaylistBinding.bind(itemView).playlistList.apply {
+                        R.layout.item_recommend_playlist_rv -> {
+                            ItemRecommendPlaylistRvBinding.bind(itemView).playlistList.apply {
                                 linearSnapHelper.attachToRecyclerView(this)
                                 addItemDecoration(object : RecyclerView.ItemDecoration() {
                                     override fun getItemOffsets(
