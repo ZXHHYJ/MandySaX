@@ -51,6 +51,7 @@ class MainActivity : FragmentActivity() {
         }
         setContentView(mBinding.root)
         //判断有没有登录，没有登录的话就打开登录界面
+        println(mUserViewModel.getCookieLiveData().value)
         if (mUserViewModel.getCookieLiveData().value == null)
             LoginFragment().show(fragmentPlusManager)
         mBinding.apply {
@@ -81,10 +82,11 @@ class MainActivity : FragmentActivity() {
                 .setActiveColor(getColor(R.color.main))
                 .setInActiveColor(getColor(R.color.default_unchecked_color))
             bottomNavigationBar.setSelectedPosition(mEvent.homePosLiveData.value)
-            mEvent.homePosLiveData.observe(this@MainActivity,
-                {
-                    mainFragmentPage.position = it
-                })
+            mEvent.homePosLiveData.observe(
+                this@MainActivity
+            ) {
+                mainFragmentPage.position = it
+            }
             bottomNavigationBar.getSelectedPosition().observe(this@MainActivity) {
                 mEvent.homePosLiveData.value = it
             }
