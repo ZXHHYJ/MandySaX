@@ -10,7 +10,6 @@ fun EditText.showInput() {
     imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
 }
 
-
 fun EditText.hideInput() {
     val imm = imm()
     imm.hideSoftInputFromWindow(windowToken, 0)

@@ -21,7 +21,10 @@ import studio.mandysa.music.databinding.ItemPlaylistHeadBinding
 import studio.mandysa.music.databinding.ItemSongBinding
 import studio.mandysa.music.logic.model.MusicModel
 import studio.mandysa.music.logic.model.PlaylistInfoModel
-import studio.mandysa.music.logic.utils.*
+import studio.mandysa.music.logic.utils.bindView
+import studio.mandysa.music.logic.utils.createAlbum
+import studio.mandysa.music.logic.utils.getInstance
+import studio.mandysa.music.logic.utils.viewModels
 
 class PlaylistFragment(private val id: String) : Fragment() {
 
@@ -39,23 +42,24 @@ class PlaylistFragment(private val id: String) : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBinding.let { it ->
-            it.stateLayout.apply {
-                showLoading {
-                    mViewModel.initData(this@PlaylistFragment.id).observe(viewLifecycleOwner) {
-                        if (it == null) {
-                            showErrorState()
-                            return@observe
-                        }
-                        mBinding.recycler.addModels(it)
-                        showContentState()
+        mBinding.backIv.setOnClickListener {
+            activity?.onBackPressed()
+        }
+        mBinding.stateLayout.apply {
+            showLoading {
+                mViewModel.initData(this@PlaylistFragment.id).observe(viewLifecycleOwner) {
+                    if (it == null) {
+                        showErrorState()
+                        return@observe
                     }
-                    mViewModel.getPlaylistInfoModelLiveData().observe(viewLifecycleOwner) {
-                        mBinding.recycler.addHeader(it)
-                    }
+                    mBinding.recycler.addModels(it)
+                    showContentState()
                 }
-                showLoadingState()
+                mViewModel.getPlaylistInfoModelLiveData().observe(viewLifecycleOwner) {
+                    mBinding.recycler.addHeader(it)
+                }
             }
+            showLoadingState()
         }
         mBinding.recycler.linear().setup {
             addType<PlaylistInfoModel>(R.layout.item_playlist_head)

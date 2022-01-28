@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,6 +16,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/back_iv"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_round_arrow_back_ios_24"
@@ -36,22 +38,23 @@
 
     </LinearLayout>
 
+    <mandysax.tablayout.TabLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:overScrollMode="never"
+        app:tabModel="scrollable" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/default_margin"
         android:background="?android:attr/dividerVertical" />
 
-    <studio.mandysa.statelayout.StateLayout
-        android:id="@+id/state_layout"
+    <mandysax.fragmentpage.widget.FragmentPage
+        android:id="@+id/search_fragment_page"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never" />
-    </studio.mandysa.statelayout.StateLayout>
-
+        android:layout_height="match_parent" />
 </LinearLayout>
