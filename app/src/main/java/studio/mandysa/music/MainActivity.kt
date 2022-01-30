@@ -43,7 +43,10 @@ class MainActivity : FragmentActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Sofia.with(this).let {
+        val sofia = Sofia.with(this@MainActivity)
+        sofia.let {
+            it.statusBarBackground(android.R.color.transparent)
+                .navigationBarBackground(android.R.color.transparent)
             it.invasionStatusBar().invasionNavigationBar()
             if (isNightMode())
                 it.statusBarLightFont().navigationBarLightFont()
@@ -51,7 +54,7 @@ class MainActivity : FragmentActivity() {
         }
         setContentView(mBinding.root)
         //判断有没有登录，没有登录的话就打开登录界面
-        println(mUserViewModel.getCookieLiveData().value)
+        //println(mUserViewModel.getCookieLiveData().value)
         if (mUserViewModel.getCookieLiveData().value == null)
             LoginFragment().show(fragmentPlusManager)
         mBinding.apply {
@@ -148,6 +151,24 @@ class MainActivity : FragmentActivity() {
                                             previousState: PanelState,
                                             newState: PanelState
                                         ) {
+                                            when (newState) {
+                                                PanelState.EXPANDED -> {
+                                                    sofia
+                                                        .statusBarLightFont()
+                                                        .navigationBarLightFont()
+                                                }
+                                                PanelState.DRAGGING -> {}
+                                                else -> {
+                                                    sofia.let {
+                                                        if (isNightMode())
+                                                            it.statusBarLightFont()
+                                                                .navigationBarLightFont()
+                                                        else it.statusBarDarkFont()
+                                                            .navigationBarDarkFont()
+                                                    }
+                                                }
+                                            }
+
                                         }
                                     })
                                 }, 220)
@@ -161,9 +182,12 @@ class MainActivity : FragmentActivity() {
     }
 
     override fun onBackPressed() {
-        if (mBinding.mainSlidingView.panelState == PanelState.EXPANDED) {
-            mBinding.mainSlidingView.panelState = PanelState.COLLAPSED
-        } else super.onBackPressed()
+        when (mBinding.mainSlidingView.panelState) {
+            PanelState.EXPANDED, PanelState.DRAGGING -> {
+                mBinding.mainSlidingView.panelState = PanelState.COLLAPSED
+            }
+            else -> super.onBackPressed()
+        }
     }
 
 }

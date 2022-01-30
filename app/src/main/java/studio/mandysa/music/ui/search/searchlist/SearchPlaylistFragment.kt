@@ -9,14 +9,10 @@ import studio.mandysa.music.databinding.FragmentSearchListBinding
 import studio.mandysa.music.logic.utils.bindView
 import studio.mandysa.music.ui.search.SearchViewModel
 
-class SearchSingerFragment(private val mViewModel: SearchViewModel) : Fragment() {
+class SearchPlaylistFragment(private val mViewModel: SearchViewModel) : Fragment() {
     private val mBinding: FragmentSearchListBinding by bindView()
 
     private var mPage = 1
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

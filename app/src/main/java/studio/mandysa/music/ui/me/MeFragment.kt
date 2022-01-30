@@ -29,6 +29,7 @@ import studio.mandysa.music.logic.utils.set
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.event.UserViewModel
 import studio.mandysa.music.ui.me.mylike.MyLikeFragment
+import studio.mandysa.music.ui.me.user.UserFragment
 import studio.mandysa.music.ui.search.SearchFragment
 
 class MeFragment : Fragment() {
@@ -68,8 +69,10 @@ class MeFragment : Fragment() {
                         val model = getModel<UserModel>()
                         ItemUserHeadBinding.bind(itemView).apply {
                             ivAvatar.setImageURI(model.avatarUrl)
-                            ivAvatar
                             tvNickname.text = model.nickname
+                            itemView.setOnClickListener {
+                                Navigation.findViewNavController(it).navigate(UserFragment())
+                            }
                         }
                     }
                     R.layout.item_me_playlist_rv -> {
