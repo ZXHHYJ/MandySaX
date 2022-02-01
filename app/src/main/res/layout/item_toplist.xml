@@ -1,40 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><!--排行榜item-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ViewCardViewStyle"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <studio.mandysa.music.ui.view.SquareLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
 
         <androidx.cardview.widget.CardView
-            style="@style/ViewCardViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            style="@style/ImageCardViewStyle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:layout_marginVertical="@dimen/item_margin">
 
             <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/toplist_cover"
-                style="@style/ImageViewStyle"
+                android:id="@+id/cover"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:placeholderImage="@color/empty_iv_bg_color" />
 
         </androidx.cardview.widget.CardView>
 
-    </studio.mandysa.music.ui.view.SquareLayout>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/toplist_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:singleLine="true"
-        android:text="@string/test"
-        android:textColor="@android:color/black"
-        android:textSize="13sp" />
-
-</LinearLayout>
-
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
 

@@ -53,7 +53,7 @@ class MeFragment : Fragment() {
             }
             topNav.models = listOf(
                 NavigationItem(
-                    "我的"
+                    context.getString(R.string.me)
                 )
             ).setInActiveColor(context.getColor(android.R.color.black))
                 .setActiveColor(context.getColor(R.color.main))
@@ -71,7 +71,8 @@ class MeFragment : Fragment() {
                             ivAvatar.setImageURI(model.avatarUrl)
                             tvNickname.text = model.nickname
                             itemView.setOnClickListener {
-                                Navigation.findViewNavController(it).navigate(UserFragment())
+                                Navigation.findViewNavController(it)
+                                    .navigate(R.style.AppFragmentAnimStyle, UserFragment())
                             }
                         }
                     }

@@ -70,13 +70,7 @@ class FragmentStore {
     }
 
     final void remove(@NonNull Fragment fragment) {
-        Store store = mStore.get(fragment.getTag());
-        if (store != null) {
-            mStore.remove(fragment.getTag());
-            removeFragment(fragment);
-            return;
-        }
-        store = findStore(fragment.getTag());
+        Store store = findStore(fragment.getTag());
         if (store != null) {
             if (store.stores != null) {
                 for (Store store1 : store.stores) {
@@ -89,6 +83,7 @@ class FragmentStore {
                 store.parentStore.stores = null;
             }
             store.fragment = null;
+            mStore.remove(fragment.getTag());
         }
     }
 

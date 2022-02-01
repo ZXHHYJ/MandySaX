@@ -53,8 +53,8 @@
         android:layout_marginTop="@dimen/default_margin"
         android:background="?android:attr/dividerVertical" />
 
-    <mandysax.fragmentpage.widget.FragmentPage
-        android:id="@+id/search_fragment_page"
+    <mandysax.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

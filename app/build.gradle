@@ -39,13 +39,13 @@ dependencies {
     // 网络请求库：https://gitee.com/liuxiaoliu66/anna
     //noinspection GradleDependency
     implementation 'com.gitee.liuxiaoliu66:anna:2.1.2'
-    implementation 'com.gitee.liuxiaoliu66:sofia:1.0.2'
+    implementation 'com.gitee.liuxiaoliu66:sofia:1.1.1'
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
 
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
-    implementation 'com.github.hannesa2:AndroidSlidingUpPanel:4.3.1'
+    implementation 'com.github.hannesa2:AndroidSlidingUpPanel:4.4.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 

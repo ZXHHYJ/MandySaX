@@ -23,16 +23,13 @@ import studio.mandysa.jiuwo.utils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.setup
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.*
-import studio.mandysa.music.logic.model.BannerModels
-import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
-import studio.mandysa.music.logic.model.PlaylistModel
-import studio.mandysa.music.logic.model.RecommendSongs
+import studio.mandysa.music.logic.model.*
 import studio.mandysa.music.logic.utils.*
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
 import studio.mandysa.music.ui.event.UserViewModel
 
 class RecommendFragment : Fragment() {
-    val mBinding: FragmentRecommendBinding by bindView()
+    private val mBinding: FragmentRecommendBinding by bindView()
 
     private val mEvent: UserViewModel by activityViewModels()
 
@@ -40,7 +37,7 @@ class RecommendFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mBinding.apply {
             recycler.linear().setup {
-                addType<PlaylistModel>(R.layout.item_recommend_playlist_rv)
+                addType<RecommendPlaylist>(R.layout.item_recommend_playlist_rv)
                 addType<RecommendSongs.RecommendSong>(R.layout.item_song)
                 addType<BannerModels>(R.layout.item_banner_rv)
                 val linearSnapHelper = LinearSnapHelper()
@@ -62,6 +59,13 @@ class RecommendFragment : Fragment() {
                                                         val uri: Uri = Uri.parse(model.url)
                                                         val intent = Intent(Intent.ACTION_VIEW, uri)
                                                         startActivity(intent)
+                                                    }
+                                                    else -> {
+                                                        Navigation.findViewNavController(it)
+                                                            .navigate(
+                                                                R.style.AppFragmentAnimStyle,
+                                                                PlaylistFragment(model.targetId.toString())
+                                                            )
                                                     }
                                                 }
                                             }
@@ -89,9 +93,9 @@ class RecommendFragment : Fragment() {
                                     }
                                 }, 0)
                                 linear(orientation = RecyclerView.HORIZONTAL).setup {
-                                    addType<PlaylistModel.Playlist>(R.layout.item_playlist)
+                                    addType<PlaylistModel>(R.layout.item_playlist)
                                     onBind {
-                                        val model = getModel<PlaylistModel.Playlist>()
+                                        val model = getModel<PlaylistModel>()
                                         ItemPlaylistBinding.bind(itemView).apply {
                                             playlistTitle.text = model.name
                                             playlistCover.setImageURI(model.picUrl)
@@ -99,13 +103,13 @@ class RecommendFragment : Fragment() {
                                                 Navigation.findViewNavController(it)
                                                     .navigate(
                                                         R.style.AppFragmentAnimStyle,
-                                                        PlaylistFragment(model.id!!)
+                                                        PlaylistFragment(model.id)
                                                     )
                                             }
                                         }
                                     }
                                 }
-                                recyclerAdapter.models = getModel<PlaylistModel>().playlist!!
+                                recyclerAdapter.models = getModel<RecommendPlaylist>().playlist!!
                             }
                         }
                         R.layout.item_song -> {
@@ -166,10 +170,10 @@ class RecommendFragment : Fragment() {
                                     }
                                 }
                             })
-                        getRecommendedPlaylist(it).set(
+                        getRecommendPlaylist(it).set(
                             viewLifecycleOwner.lifecycle,
-                            object : Callback<PlaylistModel> {
-                                override fun onResponse(t: PlaylistModel?) {
+                            object : Callback<RecommendPlaylist> {
+                                override fun onResponse(t: RecommendPlaylist?) {
                                     stateLayout.showContentState()
                                     if (t != null) {
                                         mBinding.recycler.recyclerAdapter.addHeader(t, 1)
@@ -180,6 +184,16 @@ class RecommendFragment : Fragment() {
                                     stateLayout.showErrorState()
                                 }
 
+                            })
+                        getPersonalFm(it).set(viewLifecycleOwner.lifecycle,
+                            object : Callback<List<PersonalFmModel>> {
+                                override fun onFailure(code: Int) {
+
+                                }
+
+                                override fun onResponse(t: List<PersonalFmModel>?) {
+                                    println(t?.size)
+                                }
                             })
                         getRecommendedSong(it).set(viewLifecycleOwner.lifecycle,
                             object : Callback<RecommendSongs> {

@@ -1,5 +1,7 @@
 package mandysax.fragment;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.Contract;
@@ -289,7 +291,7 @@ public final class FragmentController extends FragmentStateManager {
         //记录有没有添加到返回栈
         private boolean mAddBackStack = false;
         //是否已经提交
-        private boolean mCommitted;
+        private boolean mCommitted = false;
         //这个变量用来标记上次执行添加返回栈后的下标
         private int mIndex = 0;
 
@@ -482,8 +484,12 @@ public final class FragmentController extends FragmentStateManager {
         @SuppressWarnings("unchecked")
         @Override
         public <T extends Fragment> T findFragmentById(int id) {
-            FragmentView fcv = mActivity.findViewById(id);
-            return fcv != null ? (T) fcv.getFragment() : null;
+            View view = mActivity.findViewById(id);
+            if (view instanceof FragmentView) {
+                FragmentView fcv = (FragmentView) view;
+                return (T) fcv.getFragment();
+            }
+            return null;
         }
 
     }

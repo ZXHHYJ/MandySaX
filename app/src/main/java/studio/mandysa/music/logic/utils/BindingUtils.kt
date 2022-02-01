@@ -3,9 +3,20 @@ package studio.mandysa.music.logic.utils
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import mandysax.fragment.Fragment
+import mandysax.fragment.FragmentActivity
 import mandysax.lifecycle.Lifecycle
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
+
+inline fun <reified VB : ViewBinding> FragmentActivity.inflate() = lazy {
+    inflateBinding<VB>(layoutInflater)
+}
+
+@Suppress("UNCHECKED_CAST")
+inline fun <reified VB : ViewBinding> inflateBinding(layoutInflater: LayoutInflater) =
+    VB::class.java.getMethod("inflate", LayoutInflater::class.java)
+        .invoke(null, layoutInflater) as VB
+
 
 inline fun <reified VB : ViewBinding> bindView() =
     FragmentBindingDelegate(VB::class.java)

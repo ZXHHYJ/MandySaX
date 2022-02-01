@@ -19,7 +19,12 @@ interface FragmentImpl {
 
     FragmentActivity requireActivity();
 
-    FragmentManager getFragmentPlusManager();
+    FragmentManager getFragmentManager();
+
+    FragmentManager getChildFragmentManager();
+
+    @Deprecated
+    FragmentManager getParentFragmentManager();
 
     void startActivity(Intent intent);
 

@@ -131,7 +131,7 @@ public class DialogFragment extends Fragment implements DialogInterface.OnDismis
         if (mDismissListener != null && dialog != null) {
             mDismissListener.onDismiss(dialog);
         }
-        getFragmentPlusManager().beginTransaction().remove(this).commit();
+        getChildFragmentManager().beginTransaction().remove(this).commit();
     }
 
     public void setOnCancelListener(DialogInterface.OnCancelListener listener) {

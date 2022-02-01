@@ -43,7 +43,7 @@ public class FragmentView extends FrameLayout {
         setHierarchyChangeListener();
     }
 
-    private void setHierarchyChangeListener(){
+    private void setHierarchyChangeListener() {
         setOnHierarchyChangeListener(new OnHierarchyChangeListener() {
             @Override
             public void onChildViewAdded(View parent, View child) {
@@ -109,9 +109,6 @@ public class FragmentView extends FrameLayout {
         if (mActivity != null) {
             return mActivity;
         }
-        if (getContext() instanceof FragmentActivity) {
-            return mActivity = (FragmentActivity) getContext();
-        }
         ViewGroup viewGroup = (ViewGroup) getParent();
         while (viewGroup != null) {
             for (int i = 0; i < viewGroup.getChildCount(); i++) {
@@ -119,7 +116,9 @@ public class FragmentView extends FrameLayout {
                     return (FragmentActivity) viewGroup.getChildAt(i).getContext();
                 }
             }
-            viewGroup = (ViewGroup) viewGroup.getParent();
+            if (viewGroup.getParent() != null && viewGroup.getParent() instanceof ViewGroup)
+                viewGroup = (ViewGroup) viewGroup.getParent();
+            else return null;
         }
         return null;
     }

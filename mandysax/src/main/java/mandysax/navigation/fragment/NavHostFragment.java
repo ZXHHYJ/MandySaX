@@ -23,6 +23,7 @@ public class NavHostFragment extends Fragment {
         return mRoot;
     }
 
+    @NonNull
     public NavController getNavController() {
         return new NavController(this);
     }

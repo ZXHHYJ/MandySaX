@@ -17,8 +17,8 @@ class BannerModels {
         @Value("targetType")
         val targetType = 0
 
-        @Value("typeTitle")
-        val typeTitle = ""
+        /*@Value("typeTitle")
+        val typeTitle = ""*/
 
         @Value("url")
         val url = ""

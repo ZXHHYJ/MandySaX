@@ -69,7 +69,7 @@ public final class NavController {
     }
 
     private FragmentTransaction beginTransaction() {
-        return mNavFragment.getFragmentPlusManager().beginTransaction();
+        return mNavFragment.getChildFragmentManager().beginTransaction();
     }
 
     private <T extends Fragment> void navigate(T fragment, int fragmentEnterAnim, int fragmentExitAnim, int fragmentPopEnterAnim, int fragmentPopExitAnim) {

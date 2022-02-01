@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import mandysax.fragment.Fragment
-import mandysax.fragmentpage.widget.FragmentPage
+import mandysax.fragment.FragmentTransaction
 import mandysax.tablayout.NavigationItem
 import mandysax.tablayout.setActiveColor
 import mandysax.tablayout.setInActiveColor
+import mandysax.viewpager.widget.FragmentStateAdapter
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentSearchBinding
 import studio.mandysa.music.logic.utils.bindView
@@ -33,22 +34,31 @@ class SearchFragment : Fragment() {
             hideInput()
         }
         mBinding.editFrame.showInput()
-        mBinding.editFrame.setOnEditorActionListener { v, i, _ ->
+        mBinding.editFrame.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_SEARCH) {
                 hideInput()
                 mViewModel.searchContentLiveData.value = mBinding.editFrame.text.toString()
             }
             false
         }
-        mBinding.searchFragmentPage.setAdapter(object : FragmentPage.Adapter {
-            override fun onCreateFragment(position: Int): Fragment? = when (position) {
-                0 -> SearchMusicFragment(mViewModel)
-                1 -> SearchSingerFragment(mViewModel)
-                2 -> SearchPlaylistFragment(mViewModel)
-                else -> null
+        mBinding.viewPager.adapter = object : FragmentStateAdapter() {
+            private val list = listOf(
+                SearchMusicFragment(mViewModel),
+                SearchSingerFragment(mViewModel),
+                SearchPlaylistFragment(mViewModel)
+            )
+
+            override fun createFragment(position: Int): Fragment {
+                return list[position]
             }
 
-        })
+            override fun getItemCount(): Int {
+                return list.size
+            }
+
+            override fun beginTransaction(): FragmentTransaction =
+                childFragmentManager.beginTransaction()
+        }
         mBinding.topNav.models = listOf(
             NavigationItem(
                 "歌曲"
@@ -62,7 +72,11 @@ class SearchFragment : Fragment() {
         ).setInActiveColor(context.getColor(android.R.color.black))
             .setActiveColor(context.getColor(R.color.main))
         mBinding.topNav.getSelectedPosition().observeForever {
-            mBinding.searchFragmentPage.position = it
+            mBinding.viewPager.setCurrentItem(it)
+        }
+        mBinding.viewPager.setUserInputEnabled(false)
+        mBinding.viewPager.registerOnPageChangeCallback {
+            mBinding.topNav.setSelectedPosition(it)
         }
         mBinding.topNav.setSelectedPosition(0)
     }

@@ -40,8 +40,12 @@ interface NeteaseCloudMusicApi {
     fun getRecommendedSong(@Query("cookie") cookie: String): Observable<RecommendSongs>
 
     //获取推荐歌单
+    @Get("recommend/resource")
+    fun getRecommendPlaylist(@Query("cookie") cookie: String): Observable<RecommendPlaylist>
+
+    //歌单广场
     @Get("personalized")
-    fun getRecommendedPlaylist(@Query("cookie") cookie: String): Observable<PlaylistModel>
+    fun getPlaylistSquare(): Observable<PlaylistSquareModel>
 
     //获取歌词
     @Get("lyric")
@@ -73,7 +77,8 @@ interface NeteaseCloudMusicApi {
 
     //获取排行榜
     @Get("toplist")
-    fun getToplist(): Observable<ToplistsModel>
+    @Path("list")
+    fun getToplist(): Observable<List<ToplistModel>>
 
     @Get("like")
     fun likeMusic(
@@ -88,5 +93,9 @@ interface NeteaseCloudMusicApi {
     //主页轮播图
     @Get("banner?type=1")
     fun getBannerList(): Observable<BannerModels>
+
+    @Get("personal_fm")
+    @Path("data")
+    fun getPersonalFm(@Query("cookie") cookie: String): Observable<List<PersonalFmModel>>
 
 }

@@ -54,9 +54,9 @@ class FragmentStateManager extends FragmentStore {
         if (fragment.isAdded()) {
             throw new RuntimeException("Fragment has been added");
         } else {
-            fragment.set(tag, id);
-            fragment.dumpOnAttach(mActivity);
-            fragment.dumpOnCreate(fragment.getArguments());
+            fragment.initialize(tag, id);
+            fragment.dispatchOnAttach(mActivity);
+            fragment.dispatchOnCreate(fragment.getArguments());
         }
         if (parentFragment == null) {
             add(fragment);
@@ -66,7 +66,7 @@ class FragmentStateManager extends FragmentStore {
         if (!fragment.isInLayout() && id != 0) {
             fragment.dispatchOnViewCreated(fragment.onCreateView(
                     mActivity.getLayoutInflater().cloneInContext(mActivity.getApplicationContext()),
-                    fragment.getViewGroup(),
+                    fragment.getParent(),
                     fragment.getArguments()
             ));
         }
@@ -209,15 +209,15 @@ class FragmentStateManager extends FragmentStore {
     void dispatchOnAttach(FragmentActivity activity) {
         mActivity = activity;
         for (Fragment fragment : values()) {
-            fragment.dumpOnAttach(activity);
+            fragment.dispatchOnAttach(activity);
         }
     }
 
     void dispatchResumeFragment() {
         for (Fragment fragment : values()) {
             if (fragment.isAdded() && fragment.isInLayout()) {
-                if (fragment.getRoot() != null && fragment.getViewGroup() != null) {
-                    fragment.getViewGroup().addView(fragment.getRoot());
+                if (fragment.getRoot() != null && fragment.getParent() != null) {
+                    fragment.getParent().addView(fragment.getRoot());
                 }
                 if (fragment.isVisible()) {
                     dispatchShow(fragment, 0);

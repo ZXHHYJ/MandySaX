@@ -43,25 +43,22 @@ class MainActivity : FragmentActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val sofia = Sofia.with(this@MainActivity)
-        sofia.let {
-            it.statusBarBackground(android.R.color.transparent)
-                .navigationBarBackground(android.R.color.transparent)
+        setContentView(mBinding.root)
+        Sofia.with(this@MainActivity).let {
             it.invasionStatusBar().invasionNavigationBar()
             if (isNightMode())
                 it.statusBarLightFont().navigationBarLightFont()
             else it.statusBarDarkFont().navigationBarDarkFont()
         }
-        setContentView(mBinding.root)
+
         //判断有没有登录，没有登录的话就打开登录界面
-        //println(mUserViewModel.getCookieLiveData().value)
         if (mUserViewModel.getCookieLiveData().value == null)
             LoginFragment().show(fragmentPlusManager)
         mBinding.apply {
-            //解决playFragment点击无事件view会关闭播放界面的问题
-            playFragment.setOnTouchListener { _, _ -> mBinding.mainSlidingView.panelState == PanelState.EXPANDED }
             //不把shadowHeight设置为0的话后续修改shadowHeight都将失效！！
             mainSlidingView.shadowHeight = 0
+            //解决playFragment点击无事件view会关闭播放界面的问题
+            playFragment.setOnTouchListener { _, _ -> mBinding.mainSlidingView.panelState == PanelState.EXPANDED }
             mainFragmentPage.setAdapter(object : FragmentPage.Adapter {
                 override fun onCreateFragment(position: Int): Fragment =
                     NavHostFragment.create(
@@ -153,13 +150,14 @@ class MainActivity : FragmentActivity() {
                                         ) {
                                             when (newState) {
                                                 PanelState.EXPANDED -> {
-                                                    sofia
+                                                    Sofia.with(this@MainActivity)
                                                         .statusBarLightFont()
-                                                        .navigationBarLightFont()
                                                 }
-                                                PanelState.DRAGGING -> {}
+                                                PanelState.DRAGGING -> {
+
+                                                }
                                                 else -> {
-                                                    sofia.let {
+                                                    Sofia.with(this@MainActivity).let {
                                                         if (isNightMode())
                                                             it.statusBarLightFont()
                                                                 .navigationBarLightFont()

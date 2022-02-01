@@ -18,7 +18,7 @@ import studio.mandysa.music.ui.search.SearchFragment
 
 class HomeFragment : Fragment() {
 
-    val mBinding: FragmentHomeBinding by bindView()
+    private val mBinding: FragmentHomeBinding by bindView()
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,13 +44,13 @@ class HomeFragment : Fragment() {
             })
             topNav.models = listOf(
                 NavigationItem(
-                    "推荐"
+                    context.getString(R.string.recommend)
                 ),
                 NavigationItem(
-                    "音乐馆"
+                    context.getString(R.string.music_hall)
                 ),
                 NavigationItem(
-                    "排行"
+                    context.getString(R.string.ranking)
                 )
             ).setInActiveColor(context.getColor(android.R.color.black))
                 .setActiveColor(context.getColor(R.color.main))

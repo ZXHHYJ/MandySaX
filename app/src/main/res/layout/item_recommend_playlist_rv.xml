@@ -12,14 +12,13 @@
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/default_margin"
         android:layout_marginBottom="@dimen/text_margin_small"
-        android:text="@string/recommended_playlist" />
+        android:text="@string/recommend_playlist" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/playlist_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:overScrollMode="never"
         android:paddingEnd="@dimen/activity_horizontal_margin"
         tools:ignore="RtlSymmetry" />
 
@@ -36,6 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/text_margin_small"
-        android:text="@string/recommended_song" />
+        android:text="@string/recommend_song" />
 
 </LinearLayout>

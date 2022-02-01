@@ -3,6 +3,7 @@ package mandysax.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,9 @@ import mandysax.lifecycle.LifecycleRegistry;
  * @author liuxiaoliu66
  */
 public class Fragment extends FragmentLifecycle implements FragmentImpl, LifecycleOwner {
+
+    public static final String TAG = "fragment";
+
     private final LifecycleRegistry mLifecycle = new LifecycleRegistry();
     private final FragmentViewLifecycleOwner mViewLifecycleOwner = new FragmentViewLifecycleOwner();
     private boolean mDetached;
@@ -31,18 +35,33 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     private FragmentActivity mActivity;
 
     /**
+     * @return activity的子fragmentPlusManager
+     */
+    @Override
+    @NonNull
+    public final FragmentManager getFragmentManager() {
+        return requireActivity().getFragmentPlusManager();
+    }
+
+    /**
      * @return 当前fragment的子fragmentPlusManager
      */
     @Override
-    public @NonNull
-    FragmentManager getFragmentPlusManager() {
+    @NonNull
+    public final FragmentManager getChildFragmentManager() {
         return requireActivity().getFragmentController().getFragmentManager(this);
+    }
+
+    @Override
+    public final FragmentManager getParentFragmentManager() {
+        return null;
     }
 
     /**
      * @return 返回不影响activity生命周期的LayoutInflater
      */
-    public @NonNull
+    @NonNull
+    public
     final LayoutInflater getLayoutInflater() {
         return requireActivity().getLayoutInflater().cloneInContext(mActivity.getApplicationContext());
     }
@@ -56,8 +75,8 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
      * @return 此lifecycle与activity的lifecycle同步
      */
     @Override
-    public @NonNull
-    Lifecycle getLifecycle() {
+    @NonNull
+    public Lifecycle getLifecycle() {
         return mLifecycle;
     }
 
@@ -66,8 +85,8 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
      * 此lifecycle才是fragment的生命周期
      * viewModels也由它管理
      */
-    public @NonNull
-    FragmentViewLifecycleOwner getViewLifecycleOwner() {
+    @NonNull
+    public FragmentViewLifecycleOwner getViewLifecycleOwner() {
         return mViewLifecycleOwner;
     }
 
@@ -150,19 +169,19 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
         return !isVisible();
     }
 
-    void set(String tag, int id) {
+    void initialize(String tag, int id) {
         mTag = tag;
         mLayoutId = id;
     }
 
-    void dumpOnAttach(Context context) {
+    void dispatchOnAttach(Context context) {
         mActivity = (FragmentActivity) context;
         mDetached = false;
         mRemoving = false;
         onAttach(context);
     }
 
-    void dumpOnCreate(Bundle bundle) {
+    void dispatchOnCreate(Bundle bundle) {
         mLifecycle.markState(Lifecycle.Event.ON_CREATE);
         onCreate(bundle);
     }
@@ -183,10 +202,10 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
         return mView;
     }
 
-    ViewGroup getViewGroup() {
+    ViewGroup getParent() {
         ViewGroup viewGroup = requireActivity().findViewById(mLayoutId);
         if (viewGroup == null) {
-            throw new IllegalStateException("Can't find parent layout or " + getClass().getCanonicalName());
+            Log.w(TAG, this + " parent is null");
         }
         return viewGroup;
     }
@@ -196,7 +215,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
             return;
         }
         mView = view;
-        getViewGroup().addView(view);
+        getParent().addView(view);
         onViewCreated(view, mArguments);
     }
 
