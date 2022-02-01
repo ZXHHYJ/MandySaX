@@ -185,16 +185,16 @@ class RecommendFragment : Fragment() {
                                 }
 
                             })
-                        getPersonalFm(it).set(viewLifecycleOwner.lifecycle,
+                        /*getPersonalFm(it).set(viewLifecycleOwner.lifecycle,
                             object : Callback<List<PersonalFmModel>> {
                                 override fun onFailure(code: Int) {
 
                                 }
 
                                 override fun onResponse(t: List<PersonalFmModel>?) {
-                                    println(t?.size)
+                                  
                                 }
-                            })
+                            })*/
                         getRecommendedSong(it).set(viewLifecycleOwner.lifecycle,
                             object : Callback<RecommendSongs> {
 

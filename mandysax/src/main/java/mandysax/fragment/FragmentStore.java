@@ -78,7 +78,8 @@ class FragmentStore {
                 }
             }
             if (store.parentStore != null) {
-                store.parentStore.stores.remove(store);
+                if (store.parentStore.stores != null)
+                    store.parentStore.stores.remove(store);
                 removeFragment(fragment);
                 store.parentStore.stores = null;
             }

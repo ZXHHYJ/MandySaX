@@ -19,13 +19,9 @@ public class FragmentView extends FrameLayout {
     private final String mName;
     private final String mTag;
     private Fragment mFragment;
-    private FragmentActivity mActivity;
 
     public FragmentView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        if (context instanceof FragmentActivity) {
-            mActivity = (FragmentActivity) context;
-        }
         @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Fragment);
         mName = typedArray.getString(R.styleable.Fragment_android_name);
         mTag = typedArray.getString(R.styleable.Fragment_android_tag);
@@ -35,9 +31,6 @@ public class FragmentView extends FrameLayout {
 
     public FragmentView(Context context) {
         super(context);
-        if (context instanceof FragmentActivity) {
-            mActivity = (FragmentActivity) context;
-        }
         mName = null;
         mTag = null;
         setHierarchyChangeListener();
@@ -78,7 +71,6 @@ public class FragmentView extends FrameLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         mFragment = null;
-        mActivity = null;
     }
 
     public String getName() {
@@ -106,19 +98,14 @@ public class FragmentView extends FrameLayout {
     }
 
     public FragmentActivity getActivity() {
-        if (mActivity != null) {
-            return mActivity;
-        }
         ViewGroup viewGroup = (ViewGroup) getParent();
         while (viewGroup != null) {
-            for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                if (viewGroup.getChildAt(i).getContext() instanceof FragmentActivity) {
-                    return (FragmentActivity) viewGroup.getChildAt(i).getContext();
-                }
+            if (viewGroup.getId() == android.R.id.content) {
+                return (FragmentActivity) viewGroup.getContext();
             }
-            if (viewGroup.getParent() != null && viewGroup.getParent() instanceof ViewGroup)
+            if (viewGroup.getParent() != null) {
                 viewGroup = (ViewGroup) viewGroup.getParent();
-            else return null;
+            }
         }
         return null;
     }
