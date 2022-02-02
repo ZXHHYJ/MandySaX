@@ -1,4 +1,4 @@
-package studio.mandysa.music.ui.home
+package studio.mandysa.music.ui.browse
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,30 +12,21 @@ import mandysax.tablayout.setActiveColor
 import mandysax.tablayout.setInActiveColor
 import mandysax.viewpager.adapter.FragmentStateAdapter
 import studio.mandysa.music.R
-import studio.mandysa.music.databinding.FragmentHomeBinding
+import studio.mandysa.music.databinding.FragmentBrowseBinding
 import studio.mandysa.music.databinding.LayoutToolbarBinding
 import studio.mandysa.music.logic.utils.bindView
 import studio.mandysa.music.ui.search.SearchFragment
 
-class HomeFragment : Fragment() {
-
-    private val mBinding: FragmentHomeBinding by bindView()
+class BrowseFragment : Fragment() {
+    private val mBinding by bindView<FragmentBrowseBinding>()
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        LayoutToolbarBinding.bind(mBinding.root).apply {
-            editFrame.let {
-                it.isFocusableInTouchMode = false
-                it.keyListener = null
-                it.isFocusable = false
-            }
-            editFrame.setOnClickListener {
-                Navigation.findViewNavController(it).navigate(SearchFragment())
-            }
-            mBinding.viewPager.adapter = object : FragmentStateAdapter() {
-                private val list = listOf(
-                    RecommendFragment(), MusicHallFragment(), RankingFragment()
-                )
+        mBinding.viewPager.let {
+            it.setUserInputEnabled(false)
+            it.adapter = object : FragmentStateAdapter() {
+
+                private val list = listOf(MeFragment(), DatabaseFragment())
 
                 override fun createFragment(position: Int): Fragment {
                     return list[position]
@@ -49,25 +40,26 @@ class HomeFragment : Fragment() {
                     childFragmentManager.beginTransaction()
 
             }
+        }
+        LayoutToolbarBinding.bind(mBinding.root).apply {
+            editFrame.let {
+                it.isFocusableInTouchMode = false
+                it.keyListener = null
+                it.isFocusable = false
+            }
+            editFrame.setOnClickListener {
+                Navigation.findViewNavController(it).navigate(SearchFragment())
+            }
             topNav.models = listOf(
                 NavigationItem(
-                    context.getString(R.string.recommend)
+                    context.getString(R.string.me)
                 ),
-                NavigationItem(
-                    context.getString(R.string.music_hall)
-                ),
-                NavigationItem(
-                    context.getString(R.string.ranking)
-                )
+                NavigationItem("资料库")
             ).setInActiveColor(context.getColor(android.R.color.black))
                 .setActiveColor(context.getColor(R.color.main))
             topNav.getSelectedPosition().observeForever {
                 mBinding.viewPager.setCurrentItem(it)
             }
-            mBinding.viewPager.setUserInputEnabled(false)
-            /*mBinding.viewPager.registerOnPageChangeCallback {
-                topNav.setSelectedPosition(it)
-            }*/
             topNav.setSelectedPosition(0)
         }
     }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.facebook.common.references.CloseableReference
@@ -13,10 +14,11 @@ import com.facebook.imagepipeline.datasource.BaseBitmapDataSubscriber
 import com.facebook.imagepipeline.image.CloseableImage
 import com.flaviofaria.kenburnsview.RandomTransitionGenerator
 import mandysax.fragment.Fragment
-import mandysax.fragmentpage.widget.FragmentPage
+import mandysax.fragment.FragmentTransaction
 import mandysax.tablayout.BottomNavigationItem
 import mandysax.tablayout.setActiveColor
 import mandysax.tablayout.setInActiveColor
+import mandysax.viewpager.adapter.FragmentStateAdapter
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayBinding
 import studio.mandysa.music.logic.utils.bindView
@@ -29,6 +31,12 @@ class PlayFragment : Fragment() {
 
     private val mBinding: FragmentPlayBinding by bindView()
 
+    private fun View.setMargins(left: Int, top: Int, right: Int, bottom: Int) {
+        val lp = layoutParams as RelativeLayout.LayoutParams
+        lp.setMargins(left, top, right, bottom)
+        layoutParams = lp
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val instance = getInstance()
@@ -38,18 +46,29 @@ class PlayFragment : Fragment() {
             val startBarSize = insets!!.getInsets(WindowInsetsCompat.Type.statusBars()).top
             val navigationBarSize =
                 insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
-            mBinding.playLayout.setPadding(0, startBarSize, 0, navigationBarSize)
+            mBinding.viewPager.setMargins(0, startBarSize, 0, 0)
+            mBinding.bottomNavigationBar.setMargins(0, 0, 0, navigationBarSize)
             insets
         }
         mBinding.let { it ->
-            it.playFragmentPage.setAdapter(object : FragmentPage.Adapter {
-                override fun onCreateFragment(position: Int): Fragment? = when (position) {
-                    0 -> PlayingFragment()
-                    1 -> LyricFragment()
-                    2 -> PlayQueueFragment()
-                    else -> null
+            it.viewPager.adapter = object : FragmentStateAdapter() {
+
+                private val list = listOf(
+                    PlayingFragment(), LyricFragment(), PlayQueueFragment()
+                )
+
+                override fun createFragment(position: Int): Fragment {
+                    return list[position]
                 }
-            })
+
+                override fun getItemCount(): Int {
+                    return list.size
+                }
+
+                override fun beginTransaction(): FragmentTransaction =
+                    childFragmentManager.beginTransaction()
+
+            }
             it.bottomNavigationBar.models = listOf(
                 BottomNavigationItem(
                     R.drawable.ic_round_music_video_24,
@@ -65,11 +84,12 @@ class PlayFragment : Fragment() {
             )
                 .setInActiveColor(context.getColor(R.color.translucent_white))
                 .setActiveColor(context.getColor(android.R.color.white))
-            it.bottomNavigationBar.getSelectedPosition().observe(viewLifecycleOwner) {
-                mBinding.playFragmentPage.position = it
+            it.bottomNavigationBar.getSelectedPosition().observeForever {
+                mBinding.viewPager.setCurrentItem(it)
             }
+            it.viewPager.setUserInputEnabled(false)
             it.bottomNavigationBar.setSelectedPosition(0)
-            instance.pauseLiveData().observe(viewLifecycleOwner) { pause ->
+            instance.pauseLiveData().observeForever { pause ->
                 if (pause) {
                     it.playBackground.pause()
                 } else {

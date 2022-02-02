@@ -10,7 +10,7 @@ import mandysax.fragment.FragmentTransaction
 import mandysax.tablayout.NavigationItem
 import mandysax.tablayout.setActiveColor
 import mandysax.tablayout.setInActiveColor
-import mandysax.viewpager.widget.FragmentStateAdapter
+import mandysax.viewpager.adapter.FragmentStateAdapter
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentSearchBinding
 import studio.mandysa.music.logic.utils.bindView

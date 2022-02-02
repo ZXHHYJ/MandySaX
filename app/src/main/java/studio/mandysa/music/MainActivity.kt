@@ -11,19 +11,20 @@ import com.sothree.slidinguppanel.PanelState
 import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
 import mandysax.fragment.FragmentActivity
-import mandysax.fragmentpage.widget.FragmentPage
+import mandysax.fragment.FragmentTransaction
 import mandysax.navigation.fragment.NavHostFragment
 import mandysax.tablayout.BottomNavigationItem
 import mandysax.tablayout.setActiveColor
 import mandysax.tablayout.setInActiveColor
+import mandysax.viewpager.adapter.FragmentStateAdapter
 import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.logic.utils.getInstance
 import studio.mandysa.music.logic.utils.inflate
 import studio.mandysa.music.logic.utils.viewModels
+import studio.mandysa.music.ui.browse.BrowseFragment
 import studio.mandysa.music.ui.event.UserViewModel
 import studio.mandysa.music.ui.home.HomeFragment
 import studio.mandysa.music.ui.login.LoginFragment
-import studio.mandysa.music.ui.me.MeFragment
 
 
 class MainActivity : FragmentActivity() {
@@ -58,17 +59,28 @@ class MainActivity : FragmentActivity() {
             //不把shadowHeight设置为0的话后续修改shadowHeight都将失效！！
             mainSlidingView.shadowHeight = 0
             //解决playFragment点击无事件view会关闭播放界面的问题
-            playFragment.setOnTouchListener { _, _ -> mBinding.mainSlidingView.panelState == PanelState.EXPANDED }
-            mainFragmentPage.setAdapter(object : FragmentPage.Adapter {
-                override fun onCreateFragment(position: Int): Fragment =
-                    NavHostFragment.create(
-                        when (position) {
-                            0 -> HomeFragment()
-                            1 -> MeFragment()
-                            else -> null
-                        }
-                    )
-            })
+            controllerFragment.setOnClickListener {
+                mBinding.mainSlidingView.panelState = PanelState.EXPANDED
+            }
+            viewPager.setUserInputEnabled(false)
+            viewPager.adapter = object : FragmentStateAdapter() {
+                private val list = listOf(
+                    HomeFragment(), BrowseFragment()
+                )
+
+                override fun createFragment(position: Int): Fragment {
+                    return NavHostFragment.create(list[position])
+                }
+
+                override fun getItemCount(): Int {
+                    return list.size
+                }
+
+                override fun beginTransaction(): FragmentTransaction {
+                    return fragmentPlusManager.beginTransaction()
+                }
+
+            }
             bottomNavigationBar.models = listOf(
                 BottomNavigationItem(
                     R.drawable.ic_round_contactless_24,
@@ -85,7 +97,7 @@ class MainActivity : FragmentActivity() {
             mEvent.homePosLiveData.observe(
                 this@MainActivity
             ) {
-                mainFragmentPage.position = it
+                viewPager.setCurrentItem(it)
             }
             bottomNavigationBar.getSelectedPosition().observe(this@MainActivity) {
                 mEvent.homePosLiveData.value = it
@@ -99,7 +111,7 @@ class MainActivity : FragmentActivity() {
                 val startBarSize = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
                 val navigationBarSize =
                     insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
-                mainFragmentPage.setPadding(
+                viewPager.setPadding(
                     0,
                     startBarSize,
                     0,
@@ -119,9 +131,9 @@ class MainActivity : FragmentActivity() {
                             mainSlidingView.apply {
                                 panelHeight =
                                     (context.resources.getDimensionPixelOffset(R.dimen.nav_height) * 2) + navigationBarSize
-                                mBinding.mainFragmentPage.setPadding(
+                                mBinding.viewPager.setPadding(
                                     0,
-                                    mBinding.mainFragmentPage.paddingTop,
+                                    mBinding.viewPager.paddingTop,
                                     0,
                                     0
                                 )

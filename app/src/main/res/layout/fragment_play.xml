@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black">
@@ -9,25 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <LinearLayout
-        android:id="@+id/play_layout"
+    <mandysax.tablayout.TabLayout
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:overScrollMode="never" />
+
+    <mandysax.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_above="@id/bottomNavigationBar" />
 
-        <mandysax.fragmentpage.widget.FragmentPage
-            android:id="@+id/play_fragment_page"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.0" />
-
-        <mandysax.tablayout.TabLayout
-            android:id="@+id/bottomNavigationBar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/nav_height"
-            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-            android:overScrollMode="never" />
-
-    </LinearLayout>
-
-</FrameLayout>
+</RelativeLayout>

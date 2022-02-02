@@ -1,24 +1,22 @@
-package studio.mandysa.music.ui.me
+package studio.mandysa.music.ui.browse
 
-import android.annotation.SuppressLint
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
 import mandysax.navigation.Navigation
-import mandysax.tablayout.NavigationItem
-import mandysax.tablayout.setActiveColor
-import mandysax.tablayout.setInActiveColor
-import studio.mandysa.jiuwo.utils.linear
-import studio.mandysa.jiuwo.utils.recyclerAdapter
-import studio.mandysa.jiuwo.utils.setup
-import studio.mandysa.jiuwo.utils.staggered
+import studio.mandysa.jiuwo.utils.*
 import studio.mandysa.music.R
-import studio.mandysa.music.databinding.*
+import studio.mandysa.music.databinding.FragmentMeBinding
+import studio.mandysa.music.databinding.ItemMePlaylistRvBinding
+import studio.mandysa.music.databinding.ItemPlaylistBinding
+import studio.mandysa.music.databinding.ItemUserBinding
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.UserModel
 import studio.mandysa.music.logic.model.UserPlaylistModel
@@ -27,10 +25,9 @@ import studio.mandysa.music.logic.utils.bindView
 import studio.mandysa.music.logic.utils.create
 import studio.mandysa.music.logic.utils.set
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
+import studio.mandysa.music.ui.browse.mylike.MyLikeFragment
+import studio.mandysa.music.ui.browse.user.UserFragment
 import studio.mandysa.music.ui.event.UserViewModel
-import studio.mandysa.music.ui.me.mylike.MyLikeFragment
-import studio.mandysa.music.ui.me.user.UserFragment
-import studio.mandysa.music.ui.search.SearchFragment
 
 class MeFragment : Fragment() {
 
@@ -38,38 +35,20 @@ class MeFragment : Fragment() {
 
     private val mEvent: UserViewModel by activityViewModels()
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        LayoutToolbarBinding.bind(mBinding.root).apply {
-            editFrame.let {
-                it.isFocusableInTouchMode = false//不可编辑
-                it.keyListener = null//不可粘贴，长按不会弹出粘贴框
-                //it.setClickable(false);//不可点击，但是这个效果我这边没体现出来，不知道怎没用
-                it.isFocusable = false//不可编辑
-            }
-            editFrame.setOnClickListener {
-                Navigation.findViewNavController(it).navigate(SearchFragment())
-            }
-            topNav.models = listOf(
-                NavigationItem(
-                    context.getString(R.string.me)
-                )
-            ).setInActiveColor(context.getColor(android.R.color.black))
-                .setActiveColor(context.getColor(R.color.main))
-            topNav.setSelectedPosition(0)
-        }
         mBinding.recycler.linear().setup {
-            addType<UserModel>(R.layout.item_user_head)
+            addType<UserModel>(R.layout.item_user)
             addType<UserPlaylistModel>(R.layout.item_me_playlist_rv)
-            val pagerSnapHelper = PagerSnapHelper()
+            val linearSnapHelper = LinearSnapHelper()
             onBind {
                 when (itemViewType) {
-                    R.layout.item_user_head -> {
+                    R.layout.item_user -> {
                         val model = getModel<UserModel>()
-                        ItemUserHeadBinding.bind(itemView).apply {
+                        ItemUserBinding.bind(itemView).apply {
                             ivAvatar.setImageURI(model.avatarUrl)
                             tvNickname.text = model.nickname
+                            tvSignature.text = model.signature
                             itemView.setOnClickListener {
                                 Navigation.findViewNavController(it)
                                     .navigate(R.style.AppFragmentAnimStyle, UserFragment())
@@ -77,25 +56,39 @@ class MeFragment : Fragment() {
                         }
                     }
                     R.layout.item_me_playlist_rv -> {
-                        ItemMePlaylistRvBinding.bind(itemView).playlistList.apply {
-                            pagerSnapHelper.attachToRecyclerView(this)
-                            staggered(3, orientation = HORIZONTAL).setup {
-                                addType<UserPlaylistModel.UserPlaylist>(R.layout.item_my_playlist)
+                        ItemMePlaylistRvBinding.bind(itemView).recycler.apply {
+                            linearSnapHelper.attachToRecyclerView(this)
+                            addItemDecoration(object : RecyclerView.ItemDecoration() {
+                                override fun getItemOffsets(
+                                    outRect: Rect,
+                                    view: View,
+                                    parent: RecyclerView,
+                                    state: RecyclerView.State
+                                ) {
+                                    val length =
+                                        parent.resources.getDimensionPixelOffset(R.dimen.activity_horizontal_margin)
+                                    view.layoutParams.width =
+                                        parent.resources.getDimensionPixelOffset(R.dimen.album_width) + length / 2
+                                    view.setPadding(length, 0, 0, 0)
+                                }
+                            }, 0)
+                            linear(orientation = HORIZONTAL).setup {
+                                addType<UserPlaylistModel.UserPlaylist>(R.layout.item_playlist)
                                 onBind {
                                     val model = getModel<UserPlaylistModel.UserPlaylist>()
-                                    ItemMyPlaylistBinding.bind(itemView).apply {
+                                    ItemPlaylistBinding.bind(itemView).apply {
                                         playlistCover.setImageURI(model.coverImgUrl)
-                                        playlistName.text = model.name
-                                        authorName.text = "by ${model.nickname}"
-                                    }
-                                    itemView.setOnClickListener {
-                                        Navigation.findViewNavController(it)
-                                            .navigate(
-                                                R.style.AppFragmentAnimStyle,
-                                                if (modelPosition == 0) MyLikeFragment(model.id!!) else PlaylistFragment(
-                                                    model.id!!
+                                        playlistTitle.text = model.name
+                                        /*authorName.text = "by ${model.nickname}"*/
+                                        itemView.setOnClickListener {
+                                            Navigation.findViewNavController(it)
+                                                .navigate(
+                                                    R.style.AppFragmentAnimStyle,
+                                                    if (modelPosition == 0) MyLikeFragment(model.id!!) else PlaylistFragment(
+                                                        model.id!!
+                                                    )
                                                 )
-                                            )
+                                        }
                                     }
                                 }
                             }
@@ -116,8 +109,7 @@ class MeFragment : Fragment() {
                         }
 
                         override fun onResponse(t: UserModel?) {
-                            val list = ArrayList<Any>()
-                            list.add(t!!)
+                            it.recycler.addHeader(t!!)
                             NeteaseCloudMusicApi::class.java.create().getUserPlaylist(t.userId).set(
                                 viewLifecycleOwner.lifecycle,
                                 object : Callback<UserPlaylistModel> {
@@ -126,8 +118,7 @@ class MeFragment : Fragment() {
                                     }
 
                                     override fun onResponse(t: UserPlaylistModel?) {
-                                        list.add(t!!)
-                                        it.recycler.recyclerAdapter.models = list
+                                        it.recycler.addModels(listOf(t!!))
                                     }
 
                                 })

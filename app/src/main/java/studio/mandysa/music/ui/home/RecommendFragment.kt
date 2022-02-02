@@ -76,7 +76,7 @@ class RecommendFragment : Fragment() {
                             }
                         }
                         R.layout.item_recommend_playlist_rv -> {
-                            ItemRecommendPlaylistRvBinding.bind(itemView).playlistList.apply {
+                            ItemRecommendPlaylistRvBinding.bind(itemView).recycler.apply {
                                 linearSnapHelper.attachToRecyclerView(this)
                                 addItemDecoration(object : RecyclerView.ItemDecoration() {
                                     override fun getItemOffsets(

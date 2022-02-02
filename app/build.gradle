@@ -29,9 +29,16 @@ android {
     buildFeatures {
         viewBinding true
     }
+    repositories {
+        flatDir {
+            dir 'libs'
+        }
+    }
 }
 
 dependencies {
+    implementation(name:'renderscript-toolkit-release', ext:'aar')
+
     // 存储库：https://gitee.com/simon9102/tuke
     implementation 'com.gitee.simon9102:tuke:1.0.0'
     // 图片加载库：https://www.fresco-cn.org/
@@ -43,7 +50,6 @@ dependencies {
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
 
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     implementation 'com.github.hannesa2:AndroidSlidingUpPanel:4.4.0'
 

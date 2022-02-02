@@ -13,8 +13,8 @@
         app:umanoPanelHeight="0dp"
         app:umanoShadowHeight="@dimen/umano_shadow_height">
 
-        <mandysax.fragmentpage.widget.FragmentPage
-            android:id="@+id/main_fragment_page"
+        <mandysax.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

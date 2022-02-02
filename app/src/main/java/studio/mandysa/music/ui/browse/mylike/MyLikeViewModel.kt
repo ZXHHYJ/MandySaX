@@ -1,4 +1,4 @@
-package studio.mandysa.music.ui.me.mylike
+package studio.mandysa.music.ui.browse.mylike
 
 import mandysax.anna2.callback.Callback
 import mandysax.anna2.observable.Observable

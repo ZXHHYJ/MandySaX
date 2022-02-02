@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+
 import mandysax.core.view.LayoutInflaterFactory;
 
 /**
@@ -16,6 +18,7 @@ public final class FragmentLayoutInflaterFactory implements LayoutInflaterFactor
     public FragmentLayoutInflaterFactory() {
     }
 
+    @Nullable
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
         if (FRAGMENT.equalsIgnoreCase(name)) {

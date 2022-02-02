@@ -8,12 +8,6 @@
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
     </style>
 
-    <style name="BgCardViewStyle">
-        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
-        <item name="cardElevation">0dp</item>
-        <item name="cardBackgroundColor">@color/widget_bg_color_light</item>
-    </style>
-
     <style name="ImageCardViewStyle">
         <item name="cardBackgroundColor">@null</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
@@ -52,12 +46,6 @@
     </style>
 
     <!--无边框dialog-->
-    <style name="AppDialog">
-        <!--是否浮现在activity之上-->
-        <item name="android:windowIsFloating">true</item>
-        <!--是否模糊-->
-        <item name="android:backgroundDimEnabled">true</item>
-    </style>
 
     <style name="DialogAnim" parent="android:Animation">
         <!--进入时的动画-->

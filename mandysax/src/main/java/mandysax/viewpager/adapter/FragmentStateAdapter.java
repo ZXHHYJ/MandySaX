@@ -1,6 +1,6 @@
-package mandysax.viewpager.widget;
+package mandysax.viewpager.adapter;
 
-import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -9,20 +9,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import mandysax.fragment.Fragment;
 import mandysax.fragment.FragmentTransaction;
-import mandysax.lifecycle.Lifecycle;
-import mandysax.lifecycle.LifecycleRegistry;
+import mandysax.viewpager.widget.ViewPager;
 
 public abstract class FragmentStateAdapter extends RecyclerView.Adapter<FragmentStateAdapter.FragmentViewHolder> {
+
+    @RecyclerView.Orientation
+    private int mOrientation;
 
     @NonNull
     @Override
     public FragmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Fragment fragment = createFragment(viewType);
-        return new FragmentViewHolder(parent.getContext(), fragment);
+        FrameLayout itemView = new FrameLayout(parent.getContext());
+        itemView.setLayoutParams(new FrameLayout.LayoutParams(-1, mOrientation == RecyclerView.HORIZONTAL ? -1 : -2));
+        itemView.setId(fragment.hashCode());
+        itemView.setSaveEnabled(false);
+        return new FragmentViewHolder(itemView, fragment);
     }
 
     @Override
-    public int getItemViewType(int position) {
+    public final int getItemViewType(int position) {
         return position;
     }
 
@@ -35,17 +41,13 @@ public abstract class FragmentStateAdapter extends RecyclerView.Adapter<Fragment
         super.onViewAttachedToWindow(holder);
         if (!holder.mFragment.isAdded())
             beginTransaction().add(holder.itemView.getId(), holder.mFragment).commitNow();
-        else fragmentByRegistry(holder.mFragment).markState(Lifecycle.Event.ON_START);
-    }
-
-    private LifecycleRegistry fragmentByRegistry(@NonNull Fragment fragment) {
-        return ((LifecycleRegistry) fragment.getViewLifecycleOwner().getLifecycle());
+        else beginTransaction().show(holder.mFragment).commitNow();
     }
 
     @Override
     public void onViewDetachedFromWindow(@NonNull FragmentViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
-        fragmentByRegistry(holder.mFragment).markState(Lifecycle.Event.ON_STOP);
+        beginTransaction().hide(holder.mFragment).commitNow();
     }
 
     @NonNull
@@ -62,13 +64,10 @@ public abstract class FragmentStateAdapter extends RecyclerView.Adapter<Fragment
 
     public static class FragmentViewHolder extends RecyclerView.ViewHolder {
 
-        public final Fragment mFragment;
+        final Fragment mFragment;
 
-        public FragmentViewHolder(Context context, @NonNull Fragment fragment) {
-            super(new FrameLayout(context));
-            itemView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
-            itemView.setId(fragment.hashCode());
-            itemView.setSaveEnabled(false);
+        public FragmentViewHolder(View itemView, @NonNull Fragment fragment) {
+            super(itemView);
             mFragment = fragment;
         }
 
@@ -78,6 +77,10 @@ public abstract class FragmentStateAdapter extends RecyclerView.Adapter<Fragment
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         recyclerView.setItemViewCacheSize(getItemCount());
+        if (recyclerView instanceof ViewPager) {
+            ViewPager viewPager = (ViewPager) recyclerView;
+            mOrientation = viewPager.getOrientation();
+        }
     }
 
 }

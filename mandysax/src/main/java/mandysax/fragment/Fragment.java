@@ -28,7 +28,6 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     private int mLayoutId = 0;
     private boolean mAdded;
     private boolean mRemoving;
-    private boolean mResumed;
     private String mTag;
     private View mView;
     private Bundle mArguments;
@@ -156,7 +155,13 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
 
     @Override
     public boolean isResumed() {
-        return mResumed;
+        switch (mLifecycle.event) {
+            case ON_START:
+            case ON_RESUME:
+            case ON_RESTART:
+                return true;
+        }
+        return false;
     }
 
     @Override
@@ -220,7 +225,6 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     void dispatchOnStart() {
-        mResumed = true;
         mLifecycle.markState(Lifecycle.Event.ON_START);
         onStart();
     }
@@ -241,7 +245,6 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     void dispatchOnStop() {
-        mResumed = false;
         mLifecycle.markState(Lifecycle.Event.ON_STOP);
         onStop();
     }

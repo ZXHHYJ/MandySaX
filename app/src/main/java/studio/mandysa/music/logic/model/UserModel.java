@@ -17,4 +17,15 @@ public class UserModel {
 
     @Value("signature")
     public String signature;
+
+    @Value("vipType")
+    public int vipType;
+
+    @Value("birthday")
+    public int birthday;
+
+    @Value("createTime")
+    public String createTime;
+
+    //province":450000,"city":451200
 }

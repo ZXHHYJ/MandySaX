@@ -78,10 +78,11 @@ class FragmentStore {
                 }
             }
             if (store.parentStore != null) {
-                if (store.parentStore.stores != null)
+                if (store.parentStore.stores != null) {
                     store.parentStore.stores.remove(store);
+                    store.parentStore.stores = null;
+                }
                 removeFragment(fragment);
-                store.parentStore.stores = null;
             }
             store.fragment = null;
             mStore.remove(fragment.getTag());
@@ -109,7 +110,7 @@ class FragmentStore {
     }
 
     static class Store {
-        Store parentStore;
+        Store parentStore = null;
         Fragment fragment = null;
         CopyOnWriteArrayList<Store> stores = null;
     }
