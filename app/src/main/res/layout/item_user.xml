@@ -34,6 +34,7 @@
             android:id="@+id/tv_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/text_margin_small"
             android:text="@string/test"
             android:textColor="@android:color/black"
             android:textSize="17sp"
@@ -43,11 +44,11 @@
             android:id="@+id/tv_signature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin_small"
+            android:layout_marginVertical="@dimen/text_margin_small"
             android:singleLine="true"
             android:text="@string/test"
-            android:textColor="@color/blue"
-            android:textSize="12sp" />
+            android:textColor="@color/tv_color_light"
+            android:textSize="13sp" />
 
     </LinearLayout>
 

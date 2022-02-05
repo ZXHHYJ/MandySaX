@@ -215,6 +215,10 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
         return viewGroup;
     }
 
+    int getLayoutId(){
+        return mLayoutId;
+    }
+
     void dispatchOnViewCreated(View view) {
         if (view == null) {
             return;

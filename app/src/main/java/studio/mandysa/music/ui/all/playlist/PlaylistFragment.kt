@@ -21,16 +21,16 @@ import studio.mandysa.music.databinding.ItemPlaylistHeadBinding
 import studio.mandysa.music.databinding.ItemSongBinding
 import studio.mandysa.music.logic.model.MusicModel
 import studio.mandysa.music.logic.model.PlaylistInfoModel
-import studio.mandysa.music.logic.utils.bindView
-import studio.mandysa.music.logic.utils.createAlbum
-import studio.mandysa.music.logic.utils.getInstance
-import studio.mandysa.music.logic.utils.viewModels
+import studio.mandysa.music.logic.utils.*
+import studio.mandysa.music.ui.event.UserViewModel
 
 class PlaylistFragment(private val id: String) : Fragment() {
 
     private val mBinding: FragmentPlaylistBinding by bindView()
 
     private val mViewModel: PlaylistViewModel by viewModels()
+
+    private val mUserViewModel by activityViewModels<UserViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,16 +47,19 @@ class PlaylistFragment(private val id: String) : Fragment() {
         }
         mBinding.stateLayout.apply {
             showLoading {
-                mViewModel.initData(this@PlaylistFragment.id).observe(viewLifecycleOwner) {
-                    if (it == null) {
-                        showErrorState()
-                        return@observe
+                mUserViewModel.getCookieLiveData().lazy(viewLifecycleOwner) { it ->
+                    mViewModel.initData(it, this@PlaylistFragment.id)
+                        .observe(viewLifecycleOwner) { it1 ->
+                            if (it1 == null) {
+                                showErrorState()
+                                return@observe
+                            }
+                            mBinding.recycler.addModels(it1)
+                        }
+                    mViewModel.getPlaylistInfoModelLiveData().observe(viewLifecycleOwner) {
+                        mBinding.recycler.addHeader(it)
+                        showContentState()
                     }
-                    mBinding.recycler.addModels(it)
-                    showContentState()
-                }
-                mViewModel.getPlaylistInfoModelLiveData().observe(viewLifecycleOwner) {
-                    mBinding.recycler.addHeader(it)
                 }
             }
             showLoadingState()
@@ -93,9 +96,9 @@ class PlaylistFragment(private val id: String) : Fragment() {
                                 Observer<DefaultMusic<DefaultArtist>> { p1 ->
                                     if (p1.id == model.id) {
                                         songName.setTextColor(
-                                            context.getColor(R.color.blue)
+                                            context.getColor(R.color.secondary_color)
                                         )
-                                        songSingerName.setTextColor(context.getColor(R.color.blue))
+                                        songSingerName.setTextColor(context.getColor(R.color.secondary_color))
                                     } else {
                                         songName.setTextColor(
                                             context.getColor(android.R.color.black)

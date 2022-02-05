@@ -67,9 +67,9 @@ class SearchMusicFragment(private val mViewModel: SearchViewModel) : BaseFragmen
                             Observer<DefaultMusic<DefaultArtist>> { p1 ->
                                 if (p1.id == model.id) {
                                     songName.setTextColor(
-                                        context.getColor(R.color.blue)
+                                        context.getColor(R.color.secondary_color)
                                     )
-                                    songSingerName.setTextColor(context.getColor(R.color.blue))
+                                    songSingerName.setTextColor(context.getColor(R.color.secondary_color))
                                 } else {
                                     songName.setTextColor(
                                         context.getColor(android.R.color.black)

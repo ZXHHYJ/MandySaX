@@ -18,8 +18,8 @@ public interface FragmentManager {
 
     void addOnBackStackChangedListener(FragmentController.OnBackStackChangedListener listener);
 
-    <T extends Fragment> T findFragmentByTag(String tag);
+    Fragment findFragmentByTag(String tag);
 
-    <T extends Fragment> T findFragmentById(int id);
+    Fragment findFragmentById(int id);
 }
 

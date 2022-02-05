@@ -1,5 +1,6 @@
 package studio.mandysa.music.logic.model
 
+import mandysax.anna2.annotation.Path
 import mandysax.anna2.annotation.Value
 
 class BannerModels {
@@ -11,14 +12,18 @@ class BannerModels {
         @Value("pic")
         val pic = ""
 
-        @Value("targetId")
-        val targetId = 0
+        @Path("song/al")
+        @Value("id")
+        val albumId = 0
+
+        @Value("encodeId")
+        val encodeId = ""
 
         @Value("targetType")
         val targetType = 0
 
-        /*@Value("typeTitle")
-        val typeTitle = ""*/
+        @Value("typeTitle")
+        val typeTitle = ""
 
         @Value("url")
         val url = ""

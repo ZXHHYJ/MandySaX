@@ -1,13 +1,9 @@
 package studio.mandysa.music.logic.utils;
 
-import android.view.View;
-
-import androidx.core.widget.NestedScrollView;
-
 import com.sothree.slidinguppanel.ScrollableViewHelper;
 
 public class NestedScrollableViewHelper extends ScrollableViewHelper {
-    /*public int getScrollableViewScrollPosition(View scrollableView, boolean isSlidingUp) {
+   /* public int getScrollableViewScrollPosition(View scrollableView, boolean isSlidingUp) {
         if (scrollableView instanceof NestedScrollView) {
             if(isSlidingUp){
                 return scrollableView.getScrollY();

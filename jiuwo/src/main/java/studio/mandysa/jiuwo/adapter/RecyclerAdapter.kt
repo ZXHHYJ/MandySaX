@@ -1,6 +1,5 @@
 package studio.mandysa.jiuwo.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -13,24 +12,40 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
     private var onCreate: (ViewCreate.() -> Unit)? = null
 
     var headers: List<Any?>? = null
-        @SuppressLint("NotifyDataSetChanged")
         set(value) {
+            if (value == null) {
+                field = value
+                field?.let { notifyItemInserted(it.size) }
+                return
+            }
             field = value
             if (field != null)
                 notifyItemRangeChanged(0, field!!.size)
         }
 
     var models: List<Any?>? = null
-        @SuppressLint("NotifyDataSetChanged")
         set(value) {
+            if (value == null) {
+                field = value
+                field?.let { notifyItemInserted(headers?.size ?: 0 + it.size) }
+                return
+            }
             field = value
             if (field != null)
                 notifyItemRangeChanged(headers?.size ?: 0, headers?.size ?: 0 + field!!.size)
         }
 
     var footers: List<Any?>? = null
-        @SuppressLint("NotifyDataSetChanged")
         set(value) {
+            if (value == null) {
+                field = value
+                field?.let {
+                    notifyItemInserted(
+                        headers?.size ?: 0 + (models?.size ?: 0) + it.size
+                    )
+                }
+                return
+            }
             field = value
             if (field != null)
                 notifyItemRangeChanged(headers?.size ?: 0 + (models?.size ?: 0), itemCount)
@@ -53,8 +68,6 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
     }
 
     inline fun <reified M> getModel(): M = mModel as M
-
-    inline fun <reified M> getModelOrNull(): M? = mModel as? M
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
         val viewCreate = ViewCreate(viewType)
@@ -99,7 +112,9 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
 
     fun addHeader(model: Any, position: Int) {
         if (headers != null) {
-            val list = ArrayList(headers)
+            var list = headers?.toMutableList()
+            if (list == null)
+                list = ArrayList()
             list.add(position, model)
             headers = list
             return
@@ -113,7 +128,9 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
 
     fun addModels(models: List<Any>, position: Int) {
         if (this.models != null) {
-            val list = ArrayList(this.models)
+            var list = this.models?.toMutableList()
+            if (list == null)
+                list = ArrayList()
             list.addAll(position, models)
             this.models = list
             return
@@ -127,7 +144,9 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
 
     fun addFooter(model: Any, position: Int) {
         if (footers != null) {
-            val list = ArrayList(footers)
+            var list = footers?.toMutableList()
+            if (list == null)
+                list = ArrayList()
             list.add(position, model)
             footers = list
             return
@@ -135,7 +154,6 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
         footers = listOf(model)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun clearModels() {
         val size = itemCount
         headers = ArrayList()
@@ -147,21 +165,17 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.BindingViewHolder>(
     private fun getModel(position: Int): Any {
         val headerSize = headers?.size ?: 0
         val modelSize = models?.size ?: 0
-        return if (position < headerSize) {
-            headers ?: listIsEmpty("header")
-            headers!![position]!!
-        } else
-            if (position >= headerSize && position < modelSize + headerSize) {
-                models ?: listIsEmpty("model")
-                models!![position - headerSize]!!
-            } else {
-                footers ?: listIsEmpty("footer")
-                footers!![position - headerSize - modelSize]!!
+        return when {
+            position < headerSize -> {
+                headers?.get(position)
             }
-    }
-
-    private fun listIsEmpty(listName: String) {
-        throw NullPointerException("$listName Is Null!")
+            position >= headerSize && position < modelSize + headerSize -> {
+                models?.get(position - headerSize)
+            }
+            else -> {
+                footers?.get(position - headerSize - modelSize)
+            }
+        } ?: throw NullPointerException("list has empty model.")
     }
 
     inner class BindingViewHolder(viewCreate: ViewCreate) :

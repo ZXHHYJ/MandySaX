@@ -24,10 +24,12 @@ class PlaylistViewModel : ViewModel() {
 
     private var mPage = 0
 
-    fun initData(id: String): LiveData<List<MusicModel>?> {
+    private val mLoadNumber = 15
+
+    fun initData(cookie: String, id: String): LiveData<List<MusicModel>?> {
         nextPage()
         NeteaseCloudMusicApi::class.java.create()
-            .getSongListInfo(id)
+            .getSongListInfo(cookie, id)
             .set(object : Callback<PlaylistInfoModel> {
                 override fun onResponse(t: PlaylistInfoModel?) {
                     mPlaylistInfoModelLiveData.value = t!!
@@ -54,13 +56,13 @@ class PlaylistViewModel : ViewModel() {
                         return
                     }
                     val list = ArrayList<PlaylistInfoModel.SongList>()
-                    val difference = 30 * mPage
+                    val difference = mLoadNumber * mPage
                     if (difference > mMetadataLiveData.value!!.size)
                         return
-                    for (i in difference until if (mMetadataLiveData.value!!.size - difference < 30)
+                    for (i in difference until if (mMetadataLiveData.value!!.size - difference < mLoadNumber)
                         difference + abs(mMetadataLiveData.value!!.size - difference)
                     else
-                        30 * (mPage + 1)) {
+                        mLoadNumber * (mPage + 1)) {
                         list.add(mMetadataLiveData.value!![i])
                     }
                     mObservable = NeteaseCloudMusicApi::class.java.create()

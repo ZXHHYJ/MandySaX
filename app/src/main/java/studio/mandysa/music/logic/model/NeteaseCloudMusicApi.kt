@@ -55,7 +55,10 @@ interface NeteaseCloudMusicApi {
     //获取歌单详情
     @Get("playlist/detail")
     @Path("playlist")
-    fun getSongListInfo(@Query("id") id: String): Observable<PlaylistInfoModel>
+    fun getSongListInfo(
+        @Query("cookie") cookie: String?,
+        @Query("id") id: String
+    ): Observable<PlaylistInfoModel>
 
     //登录
     @Post("login/cellphone")
@@ -68,6 +71,7 @@ interface NeteaseCloudMusicApi {
     @Get("user/playlist")
     fun getUserPlaylist(@Query("uid") uid: String?): Observable<UserPlaylistModel>
 
+    //获取账号信息
     @Post("user/account")
     @Path("profile")
     fun getUserInfo(
@@ -75,7 +79,13 @@ interface NeteaseCloudMusicApi {
         @Query("timestamp") timestamp: Long
     ): Observable<UserModel>
 
-    //获取排行榜
+    //获取用户详情
+    @Post("user/detail")
+    fun getUserDetail(
+        @Query("uid") uid: String?
+    ): Observable<UserDetailModel>
+
+    //获取所有榜单
     @Get("toplist")
     @Path("list")
     fun getToplist(): Observable<List<ToplistModel>>

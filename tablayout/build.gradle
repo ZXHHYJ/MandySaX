@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    implementation project(':mandysax')
+    compileOnly  project(':mandysax')
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation project(':jiuwo')
+    compileOnly  project(':jiuwo')
 }

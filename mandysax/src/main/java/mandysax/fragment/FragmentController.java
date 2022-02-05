@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import org.jetbrains.annotations.Contract;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import mandysax.core.app.ComponentActivity;
@@ -475,22 +476,25 @@ public final class FragmentController extends FragmentStateManager {
             mFragmentBackStack.addOnBackStackChangedListener(listener);
         }
 
-        @SuppressWarnings("unchecked")
         @Override
-        public <T extends Fragment> T findFragmentByTag(String tag) {
-            return (T) tagGetFragment(tag);
+        public Fragment findFragmentByTag(String tag) {
+            return tagGetFragment(tag);
         }
 
-        @SuppressWarnings("unchecked")
         @Override
-        public <T extends Fragment> T findFragmentById(int id) {
+        public Fragment findFragmentById(int id) {
             View view = mActivity.findViewById(id);
             if (view instanceof FragmentView) {
                 FragmentView fcv = (FragmentView) view;
-                return (T) fcv.getFragment();
+                return fcv.getFragment();
+            }
+            List<Fragment> fragments = values();
+            for (int i = fragments.size() - 1; i >= 0; i--) {
+                Fragment fragment = fragments.get(i);
+                if (fragment.getLayoutId() == id)
+                    return fragment;
             }
             return null;
         }
-
     }
 }

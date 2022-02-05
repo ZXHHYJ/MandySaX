@@ -27,22 +27,21 @@ class UserViewModel : ViewModel() {
     }
 
     fun login(mobilePhone: String, password: String): LiveData<Int> {
-        val mCodeLiveData = MutableLiveData<Int>()
-        NeteaseCloudMusicApi::class.java.create()
-            .login(mobilePhone, password, System.currentTimeMillis()).set(object :
-                Callback<LoginModel> {
-                override fun onFailure(code: Int) {
-                    mCodeLiveData.value = code
-                }
+        return MutableLiveData<Int>().also {
+            NeteaseCloudMusicApi::class.java.create()
+                .login(mobilePhone, password, System.currentTimeMillis()).set(object :
+                    Callback<LoginModel> {
+                    override fun onFailure(code: Int) {
+                        it.value = code
+                    }
 
-                override fun onResponse(t: LoginModel?) {
-                    mCodeLiveData.value = t!!.code
-                    if (t.cookie.isNotEmpty())
-                        mCookieLiveData.value = t.cookie
-                }
-
-            })
-        return mCodeLiveData
+                    override fun onResponse(t: LoginModel?) {
+                        it.value = t!!.code
+                        if (t.cookie.isNotEmpty())
+                            mCookieLiveData.value = t.cookie
+                    }
+                })
+        }
     }
 
 }

@@ -20,5 +20,5 @@ android {
 }
 
 dependencies {
-    implementation project(':mandysax')
+    compileOnly project(':mandysax')
 }

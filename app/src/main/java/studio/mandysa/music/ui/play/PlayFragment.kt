@@ -14,7 +14,7 @@ import com.facebook.imagepipeline.datasource.BaseBitmapDataSubscriber
 import com.facebook.imagepipeline.image.CloseableImage
 import com.flaviofaria.kenburnsview.RandomTransitionGenerator
 import mandysax.fragment.Fragment
-import mandysax.fragment.FragmentTransaction
+import mandysax.fragment.FragmentManager
 import mandysax.tablayout.BottomNavigationItem
 import mandysax.tablayout.setActiveColor
 import mandysax.tablayout.setInActiveColor
@@ -65,8 +65,9 @@ class PlayFragment : Fragment() {
                     return list.size
                 }
 
-                override fun beginTransaction(): FragmentTransaction =
-                    childFragmentManager.beginTransaction()
+                override fun getFragmentManager(): FragmentManager {
+                    return childFragmentManager
+                }
 
             }
             it.bottomNavigationBar.models = listOf(

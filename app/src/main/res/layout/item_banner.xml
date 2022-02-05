@@ -12,4 +12,15 @@
         android:layout_height="match_parent"
         android:foreground="?android:attr/selectableItemBackground" />
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:background="@drawable/banner_tv_bg_gradient"
+        android:gravity="center|bottom"
+        android:paddingBottom="@dimen/text_margin_small"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
 </androidx.cardview.widget.CardView>

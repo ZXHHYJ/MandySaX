@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import mandysax.fragment.Fragment
-import mandysax.fragment.FragmentTransaction
+import mandysax.fragment.FragmentManager
 import mandysax.navigation.Navigation
 import mandysax.tablayout.NavigationItem
 import mandysax.tablayout.setActiveColor
@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
             editFrame.setOnClickListener {
                 Navigation.findViewNavController(it).navigate(SearchFragment())
             }
-            mBinding.viewPager.adapter = object : FragmentStateAdapter() {
+            mBinding.homeViewPager.adapter = object : FragmentStateAdapter() {
                 private val list = listOf(
                     RecommendFragment(), MusicHallFragment(), RankingFragment()
                 )
@@ -45,8 +45,9 @@ class HomeFragment : Fragment() {
                     return list.size
                 }
 
-                override fun beginTransaction(): FragmentTransaction =
-                    childFragmentManager.beginTransaction()
+                override fun getFragmentManager(): FragmentManager {
+                    return childFragmentManager
+                }
 
             }
             topNav.models = listOf(
@@ -60,11 +61,11 @@ class HomeFragment : Fragment() {
                     context.getString(R.string.ranking)
                 )
             ).setInActiveColor(context.getColor(android.R.color.black))
-                .setActiveColor(context.getColor(R.color.main))
+                .setActiveColor(context.getColor(R.color.theme_color))
             topNav.getSelectedPosition().observeForever {
-                mBinding.viewPager.setCurrentItem(it)
+                mBinding.homeViewPager.setCurrentItem(it)
             }
-            mBinding.viewPager.setUserInputEnabled(false)
+            mBinding.homeViewPager.setUserInputEnabled(false)
             /*mBinding.viewPager.registerOnPageChangeCallback {
                 topNav.setSelectedPosition(it)
             }*/

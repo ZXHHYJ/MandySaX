@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import mandysax.fragment.Fragment
-import mandysax.fragment.FragmentTransaction
+import mandysax.fragment.FragmentManager
 import mandysax.tablayout.NavigationItem
 import mandysax.tablayout.setActiveColor
 import mandysax.tablayout.setInActiveColor
@@ -56,8 +56,9 @@ class SearchFragment : Fragment() {
                 return list.size
             }
 
-            override fun beginTransaction(): FragmentTransaction =
-                childFragmentManager.beginTransaction()
+            override fun getFragmentManager(): FragmentManager {
+                return childFragmentManager
+            }
         }
         mBinding.topNav.models = listOf(
             NavigationItem(
@@ -70,7 +71,7 @@ class SearchFragment : Fragment() {
                 "歌单"
             )
         ).setInActiveColor(context.getColor(android.R.color.black))
-            .setActiveColor(context.getColor(R.color.main))
+            .setActiveColor(context.getColor(R.color.theme_color))
         mBinding.topNav.getSelectedPosition().observeForever {
             mBinding.viewPager.setCurrentItem(it)
         }

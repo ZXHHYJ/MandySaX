@@ -8,17 +8,17 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/music_cover_card_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="35dp"
-        app:cardCornerRadius="@dimen/card_corner_radius"
-        app:cardElevation="5dp">
+    <studio.mandysa.music.ui.view.SquareLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
 
-        <studio.mandysa.music.ui.view.SquareLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/music_cover_card_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="match_parent"
+            android:layout_margin="35dp"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="5dp">
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/music_cover"
@@ -26,27 +26,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </studio.mandysa.music.ui.view.SquareLayout>
+        </androidx.cardview.widget.CardView>
 
-    </androidx.cardview.widget.CardView>
+    </studio.mandysa.music.ui.view.SquareLayout>
 
     <TextView
         android:id="@+id/song_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
-        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
         android:text="@string/test"
         android:textColor="@android:color/white"
         android:textSize="19sp" />
 
     <TextView
         android:id="@+id/singer_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="7dp"
-        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
         android:text="@string/test"
         android:textColor="@color/translucent_white"
         android:textSize="16sp" />
@@ -55,8 +59,8 @@
         android:id="@+id/playback_seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/default_margin"
         android:background="@null"
         android:duplicateParentState="true"
         android:progressBackgroundTint="@color/translucent_white"
@@ -103,8 +107,8 @@
         android:id="@+id/volume_seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/default_margin"
         android:background="@null"
         android:duplicateParentState="true"
         android:progressBackgroundTint="@color/translucent_white"

@@ -1,6 +1,5 @@
 package studio.mandysa.music.ui.home
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +21,7 @@ import studio.mandysa.music.databinding.FragmentMusichallBinding
 import studio.mandysa.music.databinding.ItemPlaylistBinding
 import studio.mandysa.music.databinding.ItemPlaylistSquareRvBinding
 import studio.mandysa.music.databinding.ItemSongBinding
+import studio.mandysa.music.logic.decoration.AlbumItemDecoration
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.model.NewSongModel
 import studio.mandysa.music.logic.model.PlaylistModel
@@ -76,20 +76,7 @@ class MusicHallFragment : Fragment() {
                         R.layout.item_playlist_square_rv -> {
                             ItemPlaylistSquareRvBinding.bind(itemView).apply {
                                 snapHelper.attachToRecyclerView(recycler)
-                                recycler.addItemDecoration(object : RecyclerView.ItemDecoration() {
-                                    override fun getItemOffsets(
-                                        outRect: Rect,
-                                        view: View,
-                                        parent: RecyclerView,
-                                        state: RecyclerView.State
-                                    ) {
-                                        val length =
-                                            parent.resources.getDimensionPixelOffset(R.dimen.activity_horizontal_margin)
-                                        view.layoutParams.width =
-                                            parent.resources.getDimensionPixelOffset(R.dimen.album_width) + length / 2
-                                        view.setPadding(length, 0, 0, 0)
-                                    }
-                                })
+                                recycler.addItemDecoration(AlbumItemDecoration(), 0)
                                 recycler.linear(orientation = RecyclerView.HORIZONTAL).setup {
                                     addType<PlaylistModel>(R.layout.item_playlist)
                                     onBind {
@@ -130,9 +117,9 @@ class MusicHallFragment : Fragment() {
                                     Observer<DefaultMusic<DefaultArtist>> { p1 ->
                                         if (p1.id == model.id) {
                                             songName.setTextColor(
-                                                context.getColor(R.color.blue)
+                                                context.getColor(R.color.secondary_color)
                                             )
-                                            songSingerName.setTextColor(context.getColor(R.color.blue))
+                                            songSingerName.setTextColor(context.getColor(R.color.secondary_color))
                                         } else {
                                             songName.setTextColor(
                                                 context.getColor(android.R.color.black)

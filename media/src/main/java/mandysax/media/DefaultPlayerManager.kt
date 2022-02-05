@@ -153,7 +153,7 @@ class DefaultPlayerManager(
             mDuration.value = mMediaPlayer.duration
         }
         mMediaPlayer.setOnErrorListener { _: MediaPlayer?, _: Int, _: Int ->
-            skipToNext()
+            pause()
             false
         }
         mMediaPlayer.setOnCompletionListener {

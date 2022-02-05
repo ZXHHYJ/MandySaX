@@ -16,7 +16,7 @@ fun TextView.markByColor(keyword: String?) {
     val m = Pattern.compile(keyword).matcher(s)
     while (m.find()) {
         s.setSpan(
-            ForegroundColorSpan(context.getColor(R.color.main)),
+            ForegroundColorSpan(context.getColor(R.color.theme_color)),
             m.start(),
             m.end(),
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE

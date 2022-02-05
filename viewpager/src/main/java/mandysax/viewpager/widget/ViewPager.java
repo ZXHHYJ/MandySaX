@@ -1,21 +1,30 @@
 package mandysax.viewpager.widget;
 
 import android.content.Context;
+import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import org.jetbrains.annotations.Contract;
+
+import mandysax.viewpager.adapter.FragmentStateAdapter;
 
 public class ViewPager extends RecyclerView {
 
     private OnPageChangeCallback mPageChangeCallback;
 
     private Boolean mUserInputEnabled = true;
+
+    private int mPosition = 0;
 
     @Orientation
     private int mOrientation = RecyclerView.HORIZONTAL;
@@ -53,82 +62,77 @@ public class ViewPager extends RecyclerView {
         super(context, attrs);
     }
 
-  /*  private View getViewByPosition(View view, float x, float y) {
-        if (view == null) {
-            return null;
-        }
-        int[] location = new int[2];
-        view.getLocationInWindow(location);
-
-        int left = location[0];
-        int top = location[1];
-        int right = left + view.getWidth();
-        int bottom = top + view.getHeight();
-
-        boolean b = left < x && top < y && right > x && bottom > y;
-        //当前ViewGroup就是顶层View
-        //没找到匹配的
-        if (view instanceof ViewGroup) { //当前是ViewGroup容器
-            int childCount = ((ViewGroup) view).getChildCount();
-            //深度优先， 从最后一个子节点开始遍历，如果找到则返回。 先递归判断子View
-            if (childCount > 0) {
-                for (int i = childCount - 1; i >= 0; i--) {
-                    View topView = getViewByPosition(((ViewGroup) view).getChildAt(i), x, y);
-                    if (topView != null) {
-                        return topView;
-                    }
-                }
-            }
-            //子View都没找到匹配的， 再判断自己
-        }  //当前是View
-        if (b) {
-            return view;   //当前ViewGroup就是顶层View
-        } else {
-            return null; //没找到匹配的
-        }
-    }
-
-    @Nullable
-    private RecyclerView findViewRecyclerView(View view) {
-        if (!(view instanceof ViewGroup)) {
-            return findViewRecyclerView(((View) view.getParent()));
-        }
-        ViewGroup parent = (ViewGroup) view;
-        while (parent != null) {
-            if (parent instanceof RecyclerView) {
-                return (RecyclerView) parent;
-            }
-            if (parent.getParent() != null && parent.getParent() instanceof ViewGroup)
-                parent = (ViewGroup) parent.getParent();
-        }
-        return null;
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
     @Override
-    public boolean onTouchEvent(@NonNull MotionEvent e) {
-        View touchView = getViewByPosition(this, e.getX(), e.getY());
-        if (touchView != null) {
-            RecyclerView recyclerView = findViewRecyclerView(touchView);
-            if (recyclerView != null && layoutManager != null) {
-                LayoutManager layoutManager = recyclerView.getLayoutManager();
-                if (layoutManager instanceof LinearLayoutManager) {
-                    LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
-                    return linearLayoutManager.getOrientation() != LinearLayoutManager.HORIZONTAL;
-                } else if (layoutManager instanceof StaggeredGridLayoutManager) {
-                    StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) layoutManager;
-                    return staggeredGridLayoutManager.getOrientation() != GridLayoutManager.HORIZONTAL;
-                }
-            }
+    public Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState ss = new SavedState(superState);
+        ss.position = mPosition;
+        ss.fragmentStateAdapter = (FragmentStateAdapter) getAdapter();
+        return ss;
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        SavedState ss = (SavedState) state;
+        super.onRestoreInstanceState(ss.getSuperState());
+        setAdapter(ss.fragmentStateAdapter);
+        setCurrentItem(ss.position);
+    }
+
+    static class SavedState extends BaseSavedState {
+        int position;
+        FragmentStateAdapter fragmentStateAdapter;
+
+        /**
+         * Constructor called from {@link CompoundButton#onSaveInstanceState()}
+         */
+        SavedState(Parcelable superState) {
+            super(superState);
         }
-        return super.onTouchEvent(e);
-    }*/
+
+        /**
+         * Constructor called from {@link #CREATOR}
+         */
+        private SavedState(Parcel in) {
+            super(in);
+            position = (int) in.readValue(getClass().getClassLoader());
+            fragmentStateAdapter = (FragmentStateAdapter) in.readValue(getClass().getClassLoader());
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeValue(position);
+            out.writeValue(fragmentStateAdapter);
+        }
+
+        @SuppressWarnings("hiding")
+        public static final Creator<SavedState> CREATOR =
+                new Creator<SavedState>() {
+                    @NonNull
+                    @Contract("_ -> new")
+                    @Override
+                    public SavedState createFromParcel(Parcel in) {
+                        return new SavedState(in);
+                    }
+
+                    @NonNull
+                    @Contract(value = "_ -> new", pure = true)
+                    @Override
+                    public SavedState[] newArray(int size) {
+                        return new SavedState[size];
+                    }
+                };
+    }
 
     @Override
     public void setAdapter(@Nullable Adapter adapter) {
         setLayoutManager(createLayoutManager());
-        if (mOrientation == HORIZONTAL)
-            new PagerSnapHelper().attachToRecyclerView(this);
+        if (mOrientation == HORIZONTAL) {
+            SnapHelper snapHelper = new PagerSnapHelper();
+            setOnFlingListener(null);
+            snapHelper.attachToRecyclerView(this);
+        }
         addOnScrollListener(new OnScrollListener() {
 
             @Override
@@ -137,12 +141,10 @@ public class ViewPager extends RecyclerView {
                 LayoutManager layoutManager = recyclerView.getLayoutManager();
                 if (layoutManager instanceof StaggeredGridLayoutManager && newState == RecyclerView.SCROLL_STATE_IDLE) {
                     StaggeredGridLayoutManager manager = (StaggeredGridLayoutManager) layoutManager;
-                    if (mPageChangeCallback != null)
-                        mPageChangeCallback.onPageSelected(manager.findLastVisibleItemPositions(null)[0]);
+                    changePosition(manager.findLastVisibleItemPositions(null)[0]);
                 } else if (layoutManager instanceof LinearLayoutManager) {
                     LinearLayoutManager manager = (LinearLayoutManager) layoutManager;
-                    if (mPageChangeCallback != null)
-                        mPageChangeCallback.onPageSelected(manager.findFirstVisibleItemPosition());
+                    changePosition(manager.findFirstVisibleItemPosition());
                 }
 
             }
@@ -161,6 +163,7 @@ public class ViewPager extends RecyclerView {
     }
 
     public void setCurrentItem(int position) {
+        mPosition = position;
         if (mUserInputEnabled) {
             smoothScrollToPosition(position);
         } else {
@@ -175,6 +178,9 @@ public class ViewPager extends RecyclerView {
         }
     }
 
+    public int getCurrentItem() {
+        return mPosition;
+    }
 
     public void setUserInputEnabled(Boolean enabled) {
         mUserInputEnabled = enabled;
@@ -184,12 +190,14 @@ public class ViewPager extends RecyclerView {
         mPageChangeCallback = callback;
     }
 
+    private void changePosition(int position) {
+        mPosition = position;
+        if (mPageChangeCallback != null)
+            mPageChangeCallback.onPageSelected(position);
+    }
+
     public interface OnPageChangeCallback {
         void onPageSelected(int position);
     }
 
-    @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-        super.onRestoreInstanceState(state);
-    }
 }

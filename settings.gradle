@@ -6,3 +6,4 @@ include ':statelayout'
 /*include ':bottomnavigationbar'*/
 include ':jiuwo'
 include ':tablayout'
+include ':viewpager'

@@ -1,7 +1,6 @@
 package studio.mandysa.music.ui.home
 
 import android.content.Intent
-import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,6 +22,7 @@ import studio.mandysa.jiuwo.utils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.setup
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.*
+import studio.mandysa.music.logic.decoration.AlbumItemDecoration
 import studio.mandysa.music.logic.model.*
 import studio.mandysa.music.logic.utils.*
 import studio.mandysa.music.ui.all.playlist.PlaylistFragment
@@ -52,6 +52,7 @@ class RecommendFragment : Fragment() {
                                     onBind {
                                         val model = getModel<BannerModels.BannerModel>()
                                         ItemBannerBinding.bind(itemView).let { it ->
+                                            it.title.text = model.typeTitle
                                             it.planIv.setImageURI(model.pic)
                                             it.planIv.setOnClickListener {
                                                 when (model.targetType) {
@@ -60,12 +61,18 @@ class RecommendFragment : Fragment() {
                                                         val intent = Intent(Intent.ACTION_VIEW, uri)
                                                         startActivity(intent)
                                                     }
-                                                    else -> {
+                                                    1000 -> {
                                                         Navigation.findViewNavController(it)
                                                             .navigate(
                                                                 R.style.AppFragmentAnimStyle,
-                                                                PlaylistFragment(model.targetId.toString())
+                                                                PlaylistFragment(model.encodeId)
                                                             )
+                                                    }
+                                                    1 -> {
+
+                                                    }
+                                                    else -> {
+
                                                     }
                                                 }
                                             }
@@ -78,20 +85,7 @@ class RecommendFragment : Fragment() {
                         R.layout.item_recommend_playlist_rv -> {
                             ItemRecommendPlaylistRvBinding.bind(itemView).recycler.apply {
                                 linearSnapHelper.attachToRecyclerView(this)
-                                addItemDecoration(object : RecyclerView.ItemDecoration() {
-                                    override fun getItemOffsets(
-                                        outRect: Rect,
-                                        view: View,
-                                        parent: RecyclerView,
-                                        state: RecyclerView.State
-                                    ) {
-                                        val length =
-                                            parent.resources.getDimensionPixelOffset(R.dimen.activity_horizontal_margin)
-                                        view.layoutParams.width =
-                                            parent.resources.getDimensionPixelOffset(R.dimen.album_width) + length / 2
-                                        view.setPadding(length, 0, 0, 0)
-                                    }
-                                }, 0)
+                                addItemDecoration(AlbumItemDecoration(), 0)
                                 linear(orientation = RecyclerView.HORIZONTAL).setup {
                                     addType<PlaylistModel>(R.layout.item_playlist)
                                     onBind {
@@ -131,9 +125,9 @@ class RecommendFragment : Fragment() {
                                     Observer<DefaultMusic<DefaultArtist>> { p1 ->
                                         if (p1.id == model.id) {
                                             songName.setTextColor(
-                                                context.getColor(R.color.blue)
+                                                context.getColor(R.color.secondary_color)
                                             )
-                                            songSingerName.setTextColor(context.getColor(R.color.blue))
+                                            songSingerName.setTextColor(context.getColor(R.color.secondary_color))
                                         } else {
                                             songName.setTextColor(
                                                 context.getColor(android.R.color.black)

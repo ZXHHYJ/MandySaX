@@ -1,8 +1,11 @@
 package studio.mandysa.music.logic.utils
 
+import android.content.Context
+import android.view.Gravity
 import android.widget.Toast
-import mandysax.fragment.Fragment
 
-fun Fragment.toast(msg: String) {
-    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+fun Context.toast(msg: String) {
+    val toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT)
+    toast.setGravity(Gravity.CENTER, 0, 0)
+    toast.show()
 }

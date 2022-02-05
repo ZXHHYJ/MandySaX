@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<studio.mandysa.statelayout.StateLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/state_layout"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
+    <include layout="@layout/layout_toolbar" />
+
+    <studio.mandysa.statelayout.StateLayout
+        android:id="@+id/state_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
-</studio.mandysa.statelayout.StateLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </studio.mandysa.statelayout.StateLayout>
+</LinearLayout>

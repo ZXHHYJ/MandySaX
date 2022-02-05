@@ -1,6 +1,5 @@
 package studio.mandysa.music
 
-import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
@@ -11,7 +10,7 @@ import com.sothree.slidinguppanel.PanelState
 import com.yanzhenjie.sofia.Sofia
 import mandysax.fragment.Fragment
 import mandysax.fragment.FragmentActivity
-import mandysax.fragment.FragmentTransaction
+import mandysax.fragment.FragmentManager
 import mandysax.navigation.fragment.NavHostFragment
 import mandysax.tablayout.BottomNavigationItem
 import mandysax.tablayout.setActiveColor
@@ -21,17 +20,15 @@ import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.logic.utils.getInstance
 import studio.mandysa.music.logic.utils.inflate
 import studio.mandysa.music.logic.utils.viewModels
-import studio.mandysa.music.ui.browse.BrowseFragment
 import studio.mandysa.music.ui.event.UserViewModel
 import studio.mandysa.music.ui.home.HomeFragment
 import studio.mandysa.music.ui.login.LoginFragment
+import studio.mandysa.music.ui.me.MeFragment
 
 
 class MainActivity : FragmentActivity() {
 
     private val mBinding: ActivityMainBinding by inflate()
-
-    private val mEvent: MainViewModel by viewModels()
 
     private val mUserViewModel: UserViewModel by viewModels()
 
@@ -41,7 +38,6 @@ class MainActivity : FragmentActivity() {
             else -> false
         }
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
@@ -62,10 +58,10 @@ class MainActivity : FragmentActivity() {
             controllerFragment.setOnClickListener {
                 mBinding.mainSlidingView.panelState = PanelState.EXPANDED
             }
-            viewPager.setUserInputEnabled(false)
-            viewPager.adapter = object : FragmentStateAdapter() {
+            mainViewPager.setUserInputEnabled(false)
+            mainViewPager.adapter = object : FragmentStateAdapter() {
                 private val list = listOf(
-                    HomeFragment(), BrowseFragment()
+                    HomeFragment(), MeFragment()
                 )
 
                 override fun createFragment(position: Int): Fragment {
@@ -76,8 +72,8 @@ class MainActivity : FragmentActivity() {
                     return list.size
                 }
 
-                override fun beginTransaction(): FragmentTransaction {
-                    return fragmentPlusManager.beginTransaction()
+                override fun getFragmentManager(): FragmentManager {
+                    return fragmentPlusManager
                 }
 
             }
@@ -91,17 +87,13 @@ class MainActivity : FragmentActivity() {
                     getString(R.string.me)
                 )
             )
-                .setActiveColor(getColor(R.color.main))
+                .setActiveColor(getColor(R.color.theme_color))
                 .setInActiveColor(getColor(R.color.default_unchecked_color))
-            bottomNavigationBar.setSelectedPosition(mEvent.homePosLiveData.value)
-            mEvent.homePosLiveData.observe(
-                this@MainActivity
-            ) {
-                viewPager.setCurrentItem(it)
-            }
+            bottomNavigationBar.setSelectedPosition(mainViewPager.currentItem)
             bottomNavigationBar.getSelectedPosition().observe(this@MainActivity) {
-                mEvent.homePosLiveData.value = it
+                mainViewPager.currentItem = it
             }
+            mainSlidingView.isTouchEnabled = false
             ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
                 //避免底部导航遮挡内容
                 if (mainSlidingView.panelHeight == 0) {
@@ -111,11 +103,12 @@ class MainActivity : FragmentActivity() {
                 val startBarSize = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
                 val navigationBarSize =
                     insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
-                viewPager.setPadding(
+                val defaultPlayManager = getInstance()
+                mainViewPager.setPadding(
                     0,
                     startBarSize,
                     0,
-                    navigationBarSize
+                    if (defaultPlayManager.changeMusicLiveData().value == null) navigationBarSize else 0
                 )
                 bottomNavLayout.setPadding(
                     0,
@@ -123,17 +116,18 @@ class MainActivity : FragmentActivity() {
                     0,
                     navigationBarSize
                 )
-                mainSlidingView.isTouchEnabled = false
-                getInstance().changeMusicLiveData().lazy(this@MainActivity) {
+                defaultPlayManager.changeMusicLiveData().lazy(this@MainActivity) {
                     mBinding.apply {
+                        if (mainSlidingView.isTouchEnabled)
+                            return@lazy
                         mainSlidingView.isTouchEnabled = true
                         bottomNavigationBar.post {
                             mainSlidingView.apply {
                                 panelHeight =
                                     (context.resources.getDimensionPixelOffset(R.dimen.nav_height) * 2) + navigationBarSize
-                                mBinding.viewPager.setPadding(
+                                mBinding.mainViewPager.setPadding(
                                     0,
-                                    mBinding.viewPager.paddingTop,
+                                    mBinding.mainViewPager.paddingTop,
                                     0,
                                     0
                                 )
@@ -147,9 +141,7 @@ class MainActivity : FragmentActivity() {
                                         override fun onPanelSlide(panel: View, slideOffset: Float) {
                                             val by: Float =
                                                 y + bottomNavLayout.height * slideOffset * 8
-                                            if (y < y + bottomNavLayout.height) {
-                                                bottomNavLayout.y = by
-                                            }
+                                            bottomNavLayout.y = by
                                             val alpha = slideOffset * 12
                                             playFragment.alpha = alpha
                                             controllerFragment.alpha = 1 - alpha
@@ -178,7 +170,6 @@ class MainActivity : FragmentActivity() {
                                                     }
                                                 }
                                             }
-
                                         }
                                     })
                                 }, 220)

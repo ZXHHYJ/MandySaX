@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/media" />
             <option value="$PROJECT_DIR$/statelayout" />
             <option value="$PROJECT_DIR$/tablayout" />
+            <option value="$PROJECT_DIR$/viewpager" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

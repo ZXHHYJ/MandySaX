@@ -1,18 +1,23 @@
-package studio.mandysa.music.ui.browse.mylike
+package studio.mandysa.music.ui.me.user
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import mandysax.fragment.Fragment
-import studio.mandysa.music.databinding.FragmentMyLikeBinding
+import studio.mandysa.music.databinding.FragmentUserBinding
+import studio.mandysa.music.logic.utils.activityViewModels
 import studio.mandysa.music.logic.utils.bindView
+import studio.mandysa.music.ui.event.UserViewModel
 
-class MyLikeFragment(private val playlistId: String) : Fragment() {
-    private val mBinding: FragmentMyLikeBinding by bindView()
+class UserFragment : Fragment() {
+    private val mBinding: FragmentUserBinding by bindView()
+
+    private val mEvent: UserViewModel by activityViewModels()
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
     override fun onCreateView(

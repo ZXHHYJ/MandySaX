@@ -1,44 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="200dp"
-    android:background="@android:color/white"
+    android:background="@android:color/background_light"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/activity_horizontal_margin">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginBottom="@dimen/text_margin_small"
-        android:gravity="center_vertical"
-        tools:ignore="UseCompoundDrawables">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-            android:src="@drawable/ic_round_arrow_back_ios_24"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            style="@style/AppSmallTitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/welcome"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        android:gravity="center"
+        android:text="@string/welcome"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/etPhone"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_edittext"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/item_margin_small"
         android:autofillHints="phone"
-        android:background="@drawable/login_et_bg"
+        android:background="@drawable/all_view_card_bg"
         android:hint="@string/phone"
         android:inputType="phone"
         android:padding="10dp"
@@ -47,10 +32,10 @@
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_edittext"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/item_margin_small"
         android:autofillHints="password"
-        android:background="@drawable/login_et_bg"
+        android:background="@drawable/all_view_card_bg"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="10dp"
@@ -58,10 +43,11 @@
 
     <Button
         android:id="@+id/btn_login"
-        style="@style/AppButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/widget_height"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/item_margin_small"
+        android:background="@drawable/all_view_card_bg"
+        android:foreground="@null"
         android:text="@string/login" />
 
 </LinearLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--空图片背景-->
-    <color name="empty_iv_bg_color">#FFEFEFEF</color>
+    <color name="empty_iv_bg_color">#12000000</color>
 
     <!--播放列表标题-->
     <color name="tv_color_title">#323232</color>
@@ -9,8 +9,10 @@
     <!--浅色字体颜色-->
     <color name="tv_color_light">#7A7A7A</color>
 
-    <color name="main">#48c0a3</color>
-    <color name="blue">#FF2A81D2</color>
+    <!--主题色-->
+    <color name="theme_color">#48c0a3</color>
+    <!--辅助色-->
+    <color name="secondary_color">#FF2A81D2</color>
 
     <color name="widget_bg_color_light">#EEEEF0</color>
 

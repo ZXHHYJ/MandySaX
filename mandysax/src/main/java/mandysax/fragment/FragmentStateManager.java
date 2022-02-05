@@ -50,7 +50,15 @@ class FragmentStateManager extends FragmentStore {
      * @param tag            标记
      */
     void dispatchAdd(Fragment parentFragment, @NonNull Fragment fragment, int id, String tag) {
-        tag = tag == null ? fragment.toString() : tag;
+        if (tag == null) {
+            tag = fragment.getClass().getName();
+        }
+        boolean repeat = tagGetFragment(tag) != null;
+        StringBuilder tagBuilder = new StringBuilder(tag);
+        while (repeat) {
+            repeat = tagGetFragment(tagBuilder.append("+").toString()) != null;
+        }
+        tag = tagBuilder.toString();
         if (fragment.isAdded()) {
             throw new RuntimeException("Fragment has been added");
         } else {
