@@ -14,7 +14,6 @@ import com.facebook.imagepipeline.datasource.BaseBitmapDataSubscriber
 import com.facebook.imagepipeline.image.CloseableImage
 import com.flaviofaria.kenburnsview.RandomTransitionGenerator
 import mandysax.fragment.Fragment
-import mandysax.fragment.FragmentManager
 import mandysax.tablayout.BottomNavigationItem
 import mandysax.tablayout.setActiveColor
 import mandysax.tablayout.setInActiveColor
@@ -65,10 +64,6 @@ class PlayFragment : Fragment() {
                     return list.size
                 }
 
-                override fun getFragmentManager(): FragmentManager {
-                    return childFragmentManager
-                }
-
             }
             it.bottomNavigationBar.models = listOf(
                 BottomNavigationItem(
@@ -86,7 +81,7 @@ class PlayFragment : Fragment() {
                 .setInActiveColor(context.getColor(R.color.translucent_white))
                 .setActiveColor(context.getColor(android.R.color.white))
             it.bottomNavigationBar.getSelectedPosition().observeForever {
-                mBinding.viewPager.setCurrentItem(it)
+                mBinding.viewPager.currentItem = it
             }
             it.viewPager.setUserInputEnabled(false)
             it.bottomNavigationBar.setSelectedPosition(0)

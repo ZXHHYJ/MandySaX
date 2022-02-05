@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import org.jetbrains.annotations.Contract;
 
-import mandysax.viewpager.adapter.FragmentStateAdapter;
-
 public class ViewPager extends RecyclerView {
 
     private OnPageChangeCallback mPageChangeCallback;
@@ -67,7 +65,6 @@ public class ViewPager extends RecyclerView {
         Parcelable superState = super.onSaveInstanceState();
         SavedState ss = new SavedState(superState);
         ss.position = mPosition;
-        ss.fragmentStateAdapter = (FragmentStateAdapter) getAdapter();
         return ss;
     }
 
@@ -75,13 +72,11 @@ public class ViewPager extends RecyclerView {
     public void onRestoreInstanceState(Parcelable state) {
         SavedState ss = (SavedState) state;
         super.onRestoreInstanceState(ss.getSuperState());
-        setAdapter(ss.fragmentStateAdapter);
         setCurrentItem(ss.position);
     }
 
     static class SavedState extends BaseSavedState {
         int position;
-        FragmentStateAdapter fragmentStateAdapter;
 
         /**
          * Constructor called from {@link CompoundButton#onSaveInstanceState()}
@@ -96,14 +91,12 @@ public class ViewPager extends RecyclerView {
         private SavedState(Parcel in) {
             super(in);
             position = (int) in.readValue(getClass().getClassLoader());
-            fragmentStateAdapter = (FragmentStateAdapter) in.readValue(getClass().getClassLoader());
         }
 
         @Override
         public void writeToParcel(Parcel out, int flags) {
             super.writeToParcel(out, flags);
             out.writeValue(position);
-            out.writeValue(fragmentStateAdapter);
         }
 
         @SuppressWarnings("hiding")

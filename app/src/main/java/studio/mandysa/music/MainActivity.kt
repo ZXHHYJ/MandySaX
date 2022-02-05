@@ -8,27 +8,23 @@ import androidx.core.view.WindowInsetsCompat
 import com.sothree.slidinguppanel.PanelSlideListener
 import com.sothree.slidinguppanel.PanelState
 import com.yanzhenjie.sofia.Sofia
-import mandysax.fragment.Fragment
 import mandysax.fragment.FragmentActivity
-import mandysax.fragment.FragmentManager
-import mandysax.navigation.fragment.NavHostFragment
 import mandysax.tablayout.BottomNavigationItem
 import mandysax.tablayout.setActiveColor
 import mandysax.tablayout.setInActiveColor
-import mandysax.viewpager.adapter.FragmentStateAdapter
 import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.logic.utils.getInstance
 import studio.mandysa.music.logic.utils.inflate
 import studio.mandysa.music.logic.utils.viewModels
 import studio.mandysa.music.ui.event.UserViewModel
-import studio.mandysa.music.ui.home.HomeFragment
 import studio.mandysa.music.ui.login.LoginFragment
-import studio.mandysa.music.ui.me.MeFragment
 
 
 class MainActivity : FragmentActivity() {
 
     private val mBinding: ActivityMainBinding by inflate()
+
+    private val mViewModel: MainViewModel by viewModels()
 
     private val mUserViewModel: UserViewModel by viewModels()
 
@@ -59,24 +55,7 @@ class MainActivity : FragmentActivity() {
                 mBinding.mainSlidingView.panelState = PanelState.EXPANDED
             }
             mainViewPager.setUserInputEnabled(false)
-            mainViewPager.adapter = object : FragmentStateAdapter() {
-                private val list = listOf(
-                    HomeFragment(), MeFragment()
-                )
-
-                override fun createFragment(position: Int): Fragment {
-                    return NavHostFragment.create(list[position])
-                }
-
-                override fun getItemCount(): Int {
-                    return list.size
-                }
-
-                override fun getFragmentManager(): FragmentManager {
-                    return fragmentPlusManager
-                }
-
-            }
+            mainViewPager.adapter = mViewModel.adapter
             bottomNavigationBar.models = listOf(
                 BottomNavigationItem(
                     R.drawable.ic_round_contactless_24,

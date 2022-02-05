@@ -16503,27 +16503,27 @@ mandysax.fragment.Fragment -> s2.b:
     boolean isVisible() -> o
     mandysax.fragment.FragmentActivity requireActivity() -> p
 mandysax.fragment.FragmentActivity -> s2.c:
-    mandysax.fragment.FragmentHost mHost -> d
-    1:1:mandysax.fragment.FragmentHost mandysax.fragment.FragmentActivity.getFragmentHost():0:0 -> e
+    mandysax.fragment.FragmentManagerViewModel mHost -> d
+    1:1:mandysax.fragment.FragmentManagerViewModel mandysax.fragment.FragmentActivity.getFragmentHost():0:0 -> e
     1:1:mandysax.fragment.FragmentController getFragmentController():0 -> e
     2:2:mandysax.lifecycle.ViewModelProviders$ViewModelLifecycle mandysax.lifecycle.ViewModelProviders.of(mandysax.lifecycle.ViewModelStoreOwner):0:0 -> e
-    2:2:mandysax.fragment.FragmentHost mandysax.fragment.FragmentActivity.getFragmentHost():0 -> e
+    2:2:mandysax.fragment.FragmentManagerViewModel mandysax.fragment.FragmentActivity.getFragmentHost():0 -> e
     2:2:mandysax.fragment.FragmentController getFragmentController():0 -> e
-    3:3:mandysax.fragment.FragmentHost mandysax.fragment.FragmentActivity.getFragmentHost():0:0 -> e
+    3:3:mandysax.fragment.FragmentManagerViewModel mandysax.fragment.FragmentActivity.getFragmentHost():0:0 -> e
     3:3:mandysax.fragment.FragmentController getFragmentController():0 -> e
     4:4:mandysax.lifecycle.ViewModel mandysax.lifecycle.ViewModelStoreImpl.get(java.lang.Class):0:0 -> e
     4:4:mandysax.lifecycle.ViewModel mandysax.lifecycle.ViewModelProviders$ViewModelLifecycle.get(java.lang.Class):0 -> e
-    4:4:mandysax.fragment.FragmentHost mandysax.fragment.FragmentActivity.getFragmentHost():0 -> e
+    4:4:mandysax.fragment.FragmentManagerViewModel mandysax.fragment.FragmentActivity.getFragmentHost():0 -> e
     4:4:mandysax.fragment.FragmentController getFragmentController():0 -> e
     5:5:mandysax.lifecycle.ViewModel mandysax.lifecycle.ViewModelProviders$Factory.create(java.lang.Class):0:0 -> e
     5:5:mandysax.lifecycle.ViewModel mandysax.lifecycle.ViewModelProviders$ViewModelLifecycle.get(java.lang.Class):0 -> e
-    5:5:mandysax.fragment.FragmentHost mandysax.fragment.FragmentActivity.getFragmentHost():0 -> e
+    5:5:mandysax.fragment.FragmentManagerViewModel mandysax.fragment.FragmentActivity.getFragmentHost():0 -> e
     5:5:mandysax.fragment.FragmentController getFragmentController():0 -> e
     6:6:void mandysax.lifecycle.ViewModelStoreImpl.put(java.lang.Class,mandysax.lifecycle.ViewModel):0:0 -> e
     6:6:mandysax.lifecycle.ViewModel mandysax.lifecycle.ViewModelProviders$ViewModelLifecycle.get(java.lang.Class):0 -> e
-    6:6:mandysax.fragment.FragmentHost mandysax.fragment.FragmentActivity.getFragmentHost():0 -> e
+    6:6:mandysax.fragment.FragmentManagerViewModel mandysax.fragment.FragmentActivity.getFragmentHost():0 -> e
     6:6:mandysax.fragment.FragmentController getFragmentController():0 -> e
-    7:7:mandysax.fragment.FragmentHost mandysax.fragment.FragmentActivity.getFragmentHost():0:0 -> e
+    7:7:mandysax.fragment.FragmentManagerViewModel mandysax.fragment.FragmentActivity.getFragmentHost():0:0 -> e
     7:7:mandysax.fragment.FragmentController getFragmentController():0 -> e
     8:8:mandysax.fragment.FragmentController getFragmentController():0:0 -> e
     1:1:mandysax.fragment.FragmentManager mandysax.fragment.FragmentController.getFragmentManager(mandysax.fragment.Fragment):0:0 -> f
@@ -16716,7 +16716,7 @@ mandysax.fragment.FragmentController$FragmentTransactionImpl -> s2.d$d:
     int commitInternal(boolean) -> d
     int commitNow() -> e
     mandysax.fragment.FragmentTransaction show(mandysax.fragment.Fragment) -> f
-mandysax.fragment.FragmentHost -> s2.e:
+mandysax.fragment.FragmentManagerViewModel -> s2.e:
     mandysax.fragment.FragmentController mController -> a
     1:1:java.util.concurrent.CopyOnWriteArrayList mandysax.fragment.FragmentStore.values():0:0 -> a
     1:1:void mandysax.fragment.FragmentStore.clear():0 -> a

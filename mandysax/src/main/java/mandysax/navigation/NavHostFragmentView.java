@@ -21,8 +21,14 @@ public final class NavHostFragmentView extends FrameLayout {
         mFragment = navHostFragment;
     }
 
+    @NonNull
     public NavHostFragment getNavHostFragment() {
         return mFragment;
     }
 
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+    }
 }

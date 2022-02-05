@@ -50,8 +50,10 @@ class FragmentStateManager extends FragmentStore {
      * @param tag            标记
      */
     void dispatchAdd(Fragment parentFragment, @NonNull Fragment fragment, int id, String tag) {
+        if (fragment.isAdded())
+            throw new RuntimeException(fragment + " has been added");
         if (tag == null) {
-            tag = fragment.getClass().getName();
+            tag = fragment.getClass().getSimpleName();
         }
         boolean repeat = tagGetFragment(tag) != null;
         StringBuilder tagBuilder = new StringBuilder(tag);
@@ -59,13 +61,9 @@ class FragmentStateManager extends FragmentStore {
             repeat = tagGetFragment(tagBuilder.append("+").toString()) != null;
         }
         tag = tagBuilder.toString();
-        if (fragment.isAdded()) {
-            throw new RuntimeException("Fragment has been added");
-        } else {
-            fragment.initialize(tag, id);
-            fragment.dispatchOnAttach(mActivity);
-            fragment.dispatchOnCreate(fragment.getArguments());
-        }
+        fragment.initialize(tag, id);
+        fragment.dispatchOnAttach(mActivity);
+        fragment.dispatchOnCreate(fragment.getArguments());
         if (parentFragment == null) {
             add(fragment);
         } else {
@@ -74,7 +72,7 @@ class FragmentStateManager extends FragmentStore {
         if (!fragment.isInLayout() && id != 0) {
             fragment.dispatchOnViewCreated(fragment.onCreateView(
                     mActivity.getLayoutInflater().cloneInContext(mActivity.getApplicationContext()),
-                    fragment.getParent(),
+                    fragment.getViewContainer(),
                     fragment.getArguments()
             ));
         }
@@ -109,7 +107,7 @@ class FragmentStateManager extends FragmentStore {
      * @param anim     动画id
      */
     void dispatchRemove(@NonNull Fragment fragment, int anim) {
-        if (fragment.getRoot() != null && anim != 0) {
+        if (!fragment.isInLayout() && anim != 0) {
             Animation exitAnim = AnimationUtils.loadAnimation(fragment.getContext(), anim);
             exitAnim.setAnimationListener(new Animation.AnimationListener() {
 
@@ -146,7 +144,7 @@ class FragmentStateManager extends FragmentStore {
         if (fragment.isDetached()) {
             throw new IllegalStateException("fragment not added");
         }
-        if (fragment.getRoot() == null) {
+        if (!fragment.isInLayout()) {
             return;
         }
         if (anim == 0) {
@@ -224,8 +222,8 @@ class FragmentStateManager extends FragmentStore {
     void dispatchResumeFragment() {
         for (Fragment fragment : values()) {
             if (fragment.isAdded() && fragment.isInLayout()) {
-                if (fragment.getRoot() != null && fragment.getParent() != null) {
-                    fragment.getParent().addView(fragment.getRoot());
+                if (fragment.getRoot() != null && fragment.getViewContainer() != null) {
+                    fragment.getViewContainer().addView(fragment.getRoot());
                 }
                 if (fragment.isVisible()) {
                     dispatchShow(fragment, 0);

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import mandysax.fragment.Fragment
-import mandysax.fragment.FragmentManager
 import mandysax.navigation.Navigation
 import mandysax.tablayout.NavigationItem
 import mandysax.tablayout.setActiveColor
@@ -45,10 +44,6 @@ class HomeFragment : Fragment() {
                     return list.size
                 }
 
-                override fun getFragmentManager(): FragmentManager {
-                    return childFragmentManager
-                }
-
             }
             topNav.models = listOf(
                 NavigationItem(
@@ -63,12 +58,9 @@ class HomeFragment : Fragment() {
             ).setInActiveColor(context.getColor(android.R.color.black))
                 .setActiveColor(context.getColor(R.color.theme_color))
             topNav.getSelectedPosition().observeForever {
-                mBinding.homeViewPager.setCurrentItem(it)
+                mBinding.homeViewPager.currentItem = it
             }
             mBinding.homeViewPager.setUserInputEnabled(false)
-            /*mBinding.viewPager.registerOnPageChangeCallback {
-                topNav.setSelectedPosition(it)
-            }*/
             topNav.setSelectedPosition(0)
         }
     }

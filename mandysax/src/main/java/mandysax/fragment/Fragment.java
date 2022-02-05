@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.jetbrains.annotations.Contract;
+
 import mandysax.lifecycle.Lifecycle;
 import mandysax.lifecycle.LifecycleOwner;
 import mandysax.lifecycle.LifecycleRegistry;
@@ -51,6 +53,8 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
         return requireActivity().getFragmentController().getFragmentManager(this);
     }
 
+    @Nullable
+    @Contract(pure = true)
     @Override
     public final FragmentManager getParentFragmentManager() {
         return null;
@@ -207,7 +211,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
         return mView;
     }
 
-    ViewGroup getParent() {
+    ViewGroup getViewContainer() {
         ViewGroup viewGroup = requireActivity().findViewById(mLayoutId);
         if (viewGroup == null) {
             Log.w(TAG, this + " parent is null");
@@ -224,7 +228,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
             return;
         }
         mView = view;
-        getParent().addView(view);
+        getViewContainer().addView(view);
         onViewCreated(view, mArguments);
     }
 

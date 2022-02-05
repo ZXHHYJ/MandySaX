@@ -13,6 +13,8 @@ public final class LifecycleRegistry extends Lifecycle {
 
     @Override
     public void addObserver(@NonNull LifecycleObserver observer) {
+        if (mObservers.contains(observer))
+            return;
         mObservers.add(observer);
         if (event != null) {
             observer.observer(event);
@@ -25,6 +27,8 @@ public final class LifecycleRegistry extends Lifecycle {
     }
 
     public void markState(Lifecycle.Event state) {
+        if (event == state)
+            return;
         event = state;
         for (int i = mObservers.size() - 1; i >= 0; i--) {
             mObservers.get(i).observer(state);

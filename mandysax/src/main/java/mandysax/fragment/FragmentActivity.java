@@ -20,7 +20,7 @@ public class FragmentActivity extends ComponentActivity {
 
     //记一个不可以忘记的朋友<晓柳>
 
-    private FragmentHost mHost;
+    private FragmentManagerViewModel mHost;
 
     @NonNull
     @Contract(" -> new")
@@ -32,8 +32,8 @@ public class FragmentActivity extends ComponentActivity {
         return getFragmentController();
     }
 
-    private FragmentHost getFragmentHost() {
-        return mHost == null ? mHost = ViewModelProviders.of(this).get(FragmentHost.class) : mHost;
+    private FragmentManagerViewModel getFragmentHost() {
+        return mHost == null ? mHost = ViewModelProviders.of(this).get(FragmentManagerViewModel.class) : mHost;
     }
 
     FragmentController getFragmentController() {

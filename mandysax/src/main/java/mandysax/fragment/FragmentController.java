@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import org.jetbrains.annotations.Contract;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import mandysax.core.app.ComponentActivity;
@@ -299,10 +298,6 @@ public final class FragmentController extends FragmentStateManager {
         //父Fragment
         private final Fragment mParentFragment;
 
-        public FragmentTransactionImpl() {
-            mParentFragment = null;
-        }
-
         public FragmentTransactionImpl(Fragment parentFragment) {
             mParentFragment = parentFragment;
         }
@@ -448,7 +443,7 @@ public final class FragmentController extends FragmentStateManager {
         @NonNull
         @Override
         public final FragmentTransaction beginTransaction() {
-            return mParentFragment == null ? new FragmentTransactionImpl() : new FragmentTransactionImpl(mParentFragment);
+            return new FragmentTransactionImpl(mParentFragment);
         }
 
         @Override
@@ -488,9 +483,7 @@ public final class FragmentController extends FragmentStateManager {
                 FragmentView fcv = (FragmentView) view;
                 return fcv.getFragment();
             }
-            List<Fragment> fragments = values();
-            for (int i = fragments.size() - 1; i >= 0; i--) {
-                Fragment fragment = fragments.get(i);
+            for (Fragment fragment : values()) {
                 if (fragment.getLayoutId() == id)
                     return fragment;
             }
