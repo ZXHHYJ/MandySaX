@@ -3,13 +3,14 @@ package mandysax.fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 class FragmentStore {
 
     private final HashMap<String, Store> mStore = new HashMap<>();
-    private final CopyOnWriteArrayList<Fragment> mFragments = new CopyOnWriteArrayList<>();
+    private final ArrayList<Fragment> mFragments = new ArrayList<>();
 
     private Store findStore(Store store, String tag) {
         if (store == null) {
@@ -32,7 +33,7 @@ class FragmentStore {
     }
 
     @Nullable
-    private Store findStore(String tag) {
+    Store findStore(String tag) {
         for (Store value : mStore.values()) {
             Store store = findStore(value, tag);
             if (store != null) {
@@ -42,29 +43,29 @@ class FragmentStore {
         return null;
     }
 
-    final void add(@NonNull Fragment newFragment) {
-        addFragment(newFragment);
+    final void add(@NonNull Fragment fragment) {
         Store store = new Store();
-        store.fragment = newFragment;
-        mStore.put(newFragment.getTag(), store);
+        store.fragment = fragment;
+        mStore.put(fragment.getTag(), store);
+        addFragment(fragment);
     }
 
-    final void add(@NonNull Fragment oldFragment, Fragment newFragment) {
-        addFragment(newFragment);
+    final void add(@NonNull Fragment parentFragment, Fragment fragment) {
         Store store = new Store();
-        store.fragment = newFragment;
-        store.parentStore = findStore(oldFragment.getTag());
+        store.fragment = fragment;
+        store.parentStore = findStore(parentFragment.getTag());
         if (store.parentStore != null) {
             if (store.parentStore.stores == null) {
                 store.parentStore.stores = new CopyOnWriteArrayList<>();
             }
             store.parentStore.stores.add(store);
         }
-        mStore.put(newFragment.getTag(), store);
+        mStore.put(fragment.getTag(), store);
+        addFragment(fragment);
     }
 
     @Nullable
-    final Fragment tagGetFragment(String tag) {
+    final Fragment findFragmentByTag(String tag) {
         Store store = findStore(tag);
         return store == null ? null : store.fragment;
     }
@@ -89,19 +90,19 @@ class FragmentStore {
         }
     }
 
-    void addFragment(Fragment fragment) {
+    protected void addFragment(Fragment fragment) {
         mFragments.add(fragment);
     }
 
-    void removeFragment(Fragment fragment) {
+    protected void removeFragment(Fragment fragment) {
         mFragments.remove(fragment);
     }
 
-    final CopyOnWriteArrayList<Fragment> values() {
+    final ArrayList<Fragment> values() {
         return mFragments;
     }
 
-    final void clear() {
+    protected final void clear() {
         for (int i = values().size() - 1; i >= 0; i--) {
             removeFragment(values().get(i));
         }

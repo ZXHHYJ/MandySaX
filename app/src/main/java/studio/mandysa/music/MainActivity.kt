@@ -52,11 +52,12 @@ class MainActivity : FragmentActivity() {
             mainSlidingView.shadowHeight = 0
             //解决playFragment点击无事件view会关闭播放界面的问题
             controllerFragment.setOnClickListener {
-                mBinding.mainSlidingView.panelState = PanelState.EXPANDED
+                if (getInstance().changeMusicLiveData().value != null)
+                    mBinding.mainSlidingView.panelState = PanelState.EXPANDED
             }
             mainViewPager.setUserInputEnabled(false)
             mainViewPager.adapter = mViewModel.adapter
-            bottomNavigationBar.models = listOf(
+            mainBottomNavigationBar.models = listOf(
                 BottomNavigationItem(
                     R.drawable.ic_round_contactless_24,
                     getString(R.string.home)
@@ -68,26 +69,19 @@ class MainActivity : FragmentActivity() {
             )
                 .setActiveColor(getColor(R.color.theme_color))
                 .setInActiveColor(getColor(R.color.default_unchecked_color))
-            bottomNavigationBar.setSelectedPosition(mainViewPager.currentItem)
-            bottomNavigationBar.getSelectedPosition().observe(this@MainActivity) {
+            mainBottomNavigationBar.setSelectedPosition(mainViewPager.currentItem)
+            mainBottomNavigationBar.getSelectedPosition().observe(this@MainActivity) {
                 mainViewPager.currentItem = it
             }
-            mainSlidingView.isTouchEnabled = false
             ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
-                //避免底部导航遮挡内容
-                if (mainSlidingView.panelHeight == 0) {
-                    mainSlidingView.panelHeight =
-                        resources.getDimensionPixelOffset(R.dimen.nav_height)
-                }
                 val startBarSize = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
                 val navigationBarSize =
                     insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
-                val defaultPlayManager = getInstance()
                 mainViewPager.setPadding(
                     0,
                     startBarSize,
                     0,
-                    if (defaultPlayManager.changeMusicLiveData().value == null) navigationBarSize else 0
+                    if (getInstance().changeMusicLiveData().value == null) navigationBarSize else 0
                 )
                 bottomNavLayout.setPadding(
                     0,
@@ -95,68 +89,66 @@ class MainActivity : FragmentActivity() {
                     0,
                     navigationBarSize
                 )
-                defaultPlayManager.changeMusicLiveData().lazy(this@MainActivity) {
-                    mBinding.apply {
-                        if (mainSlidingView.isTouchEnabled)
-                            return@lazy
-                        mainSlidingView.isTouchEnabled = true
-                        bottomNavigationBar.post {
-                            mainSlidingView.apply {
+                insets
+            }
+            getInstance().changeMusicLiveData().observe(this@MainActivity) {
+                mBinding.apply {
+                    mainBottomNavigationBar.post {
+                        mainSlidingView.apply {
+                            if (panelHeight == 0)
                                 panelHeight =
-                                    (context.resources.getDimensionPixelOffset(R.dimen.nav_height) * 2) + navigationBarSize
-                                mBinding.mainViewPager.setPadding(
-                                    0,
-                                    mBinding.mainViewPager.paddingTop,
-                                    0,
-                                    0
-                                )
-                                shadowHeight =
-                                    resources.getDimensionPixelSize(R.dimen.umano_shadow_height)
-                                postDelayed({
-                                    val y =
-                                        mBinding.root.bottom - mBinding.bottomNavLayout.height
-                                    addPanelSlideListener(object :
-                                        PanelSlideListener {
-                                        override fun onPanelSlide(panel: View, slideOffset: Float) {
-                                            val by: Float =
-                                                y + bottomNavLayout.height * slideOffset * 8
-                                            bottomNavLayout.y = by
-                                            val alpha = slideOffset * 12
-                                            playFragment.alpha = alpha
-                                            controllerFragment.alpha = 1 - alpha
-                                        }
+                                    context.resources.getDimensionPixelOffset(R.dimen.nav_height) + mBinding.bottomNavLayout.height
+                            mBinding.mainViewPager.setPadding(
+                                0,
+                                mBinding.mainViewPager.paddingTop,
+                                0,
+                                0
+                            )
+                            shadowHeight =
+                                resources.getDimensionPixelSize(R.dimen.umano_shadow_height)
+                            postDelayed({
+                                val y =
+                                    mBinding.root.bottom - mBinding.bottomNavLayout.height
+                                addPanelSlideListener(object :
+                                    PanelSlideListener {
+                                    override fun onPanelSlide(panel: View, slideOffset: Float) {
+                                        val by: Float =
+                                            y + bottomNavLayout.height * slideOffset * 8
+                                        bottomNavLayout.y = by
+                                        val alpha = slideOffset * 12
+                                        playFragment.alpha = alpha
+                                        controllerFragment.alpha = 1 - alpha
+                                    }
 
-                                        override fun onPanelStateChanged(
-                                            panel: View,
-                                            previousState: PanelState,
-                                            newState: PanelState
-                                        ) {
-                                            when (newState) {
-                                                PanelState.EXPANDED -> {
-                                                    Sofia.with(this@MainActivity)
-                                                        .statusBarLightFont()
-                                                }
-                                                PanelState.DRAGGING -> {
+                                    override fun onPanelStateChanged(
+                                        panel: View,
+                                        previousState: PanelState,
+                                        newState: PanelState
+                                    ) {
+                                        when (newState) {
+                                            PanelState.EXPANDED -> {
+                                                Sofia.with(this@MainActivity)
+                                                    .statusBarLightFont()
+                                            }
+                                            PanelState.DRAGGING -> {
 
-                                                }
-                                                else -> {
-                                                    Sofia.with(this@MainActivity).let {
-                                                        if (isNightMode())
-                                                            it.statusBarLightFont()
-                                                                .navigationBarLightFont()
-                                                        else it.statusBarDarkFont()
-                                                            .navigationBarDarkFont()
-                                                    }
+                                            }
+                                            else -> {
+                                                Sofia.with(this@MainActivity).let {
+                                                    if (isNightMode())
+                                                        it.statusBarLightFont()
+                                                            .navigationBarLightFont()
+                                                    else it.statusBarDarkFont()
+                                                        .navigationBarDarkFont()
                                                 }
                                             }
                                         }
-                                    })
-                                }, 220)
-                            }
+                                    }
+                                })
+                            }, 220)
                         }
                     }
                 }
-                insets
             }
         }
     }

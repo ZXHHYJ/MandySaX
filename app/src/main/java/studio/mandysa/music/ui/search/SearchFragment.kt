@@ -40,7 +40,7 @@ class SearchFragment : Fragment() {
             }
             false
         }
-        mBinding.viewPager.adapter = object : FragmentStateAdapter() {
+        mBinding.searchViewPager.adapter = object : FragmentStateAdapter() {
             private val list = listOf(
                 SearchMusicFragment(mViewModel),
                 SearchSingerFragment(mViewModel),
@@ -56,7 +56,7 @@ class SearchFragment : Fragment() {
             }
 
         }
-        mBinding.topNav.models = listOf(
+        mBinding.searchTabLayout.models = listOf(
             NavigationItem(
                 "歌曲"
             ),
@@ -68,14 +68,11 @@ class SearchFragment : Fragment() {
             )
         ).setInActiveColor(context.getColor(android.R.color.black))
             .setActiveColor(context.getColor(R.color.theme_color))
-        mBinding.topNav.getSelectedPosition().observeForever {
-            mBinding.viewPager.currentItem = it
+        mBinding.searchTabLayout.getSelectedPosition().observeForever {
+            mBinding.searchViewPager.currentItem = it
         }
-        mBinding.viewPager.setUserInputEnabled(false)
-        mBinding.viewPager.registerOnPageChangeCallback {
-            mBinding.topNav.setSelectedPosition(it)
-        }
-        mBinding.topNav.setSelectedPosition(0)
+        mBinding.searchViewPager.setUserInputEnabled(false)
+        mBinding.searchTabLayout.setSelectedPosition(0)
     }
 
     private fun hideInput() {

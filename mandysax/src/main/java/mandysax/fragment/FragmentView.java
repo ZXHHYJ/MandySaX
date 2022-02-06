@@ -21,27 +21,30 @@ import mandysax.lifecycle.ViewModelProviders;
  */
 public final class FragmentView extends FrameLayout implements LifecycleObserver {
 
-    private String mTag = null;
+    private final String mName;
+    private final String mTag;
     private Fragment mFragment;
+    private FragmentActivity mFragmentActivity;
 
     @SuppressLint("CustomViewStyleable")
     public FragmentView(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Fragment);
-        String name = typedArray.getString(R.styleable.Fragment_android_name);
-        try {
-            mFragment = (Fragment) Class.forName(name).newInstance();
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-            throw new RuntimeException("Failed to instantiate fragment");
-        }
-        mTag = typedArray.getString(R.styleable.Fragment_android_tag);
+        mName = typedArray.getString(R.styleable.Fragment_android_name);
+        String tag = typedArray.getString(R.styleable.Fragment_android_tag);
+        if (tag == null)
+            tag = mName + getId();
+        mTag = tag;
         typedArray.recycle();
         setHierarchyChangeListener();
     }
 
-    public FragmentView(Context context, Fragment fragment) {
+    public FragmentView(Context context, @NonNull Fragment fragment) {
         super(context);
+        mName = null;
+        mTag = fragment.toString();
         mFragment = fragment;
+        fragment.getViewLifecycleOwner().getLifecycle().addObserver(this);
         setHierarchyChangeListener();
     }
 
@@ -62,60 +65,50 @@ public final class FragmentView extends FrameLayout implements LifecycleObserver
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        FragmentActivity fragmentActivity = requestActivity();
+        mFragment = getFragment();
+
         FragmentManagerViewModel viewModel =
-                ViewModelProviders.of(fragmentActivity).get(FragmentManagerViewModel.class);
+                ViewModelProviders.of(requestActivity()).get(FragmentManagerViewModel.class);
+
         if (mFragment.isAdded()) {
-            if (mFragment.getRoot().getParent() != null)
-                return;
-            if (mFragment.getRoot() != null) {
-                this.addView(mFragment.getRoot());
+            if (mFragment.getRoot() != null && mFragment.getRoot().getParent() == null) {
+                addView(mFragment.getRoot());
             }
-        } else {
-            if (mTag == null) {
-                mTag = mFragment.getClass().getName();
-            }
-            boolean repeat = viewModel.mController.tagGetFragment(mTag) != null;
-            StringBuilder tagBuilder = new StringBuilder(mTag);
-            while (repeat) {
-                repeat = viewModel.mController.tagGetFragment((tagBuilder.append("+").toString())) != null;
-            }
-            mTag = tagBuilder.toString();
-            mFragment.initialize(mTag, getId());
-            mFragment.dispatchOnAttach(fragmentActivity);
-            mFragment.dispatchOnCreate(mFragment.getArguments());
-            Fragment parentFragment = getParentFragment();
-            if (parentFragment == null) {
-                viewModel.mController.add(mFragment);
-            } else {
-                viewModel.mController.add(parentFragment, mFragment);
-            }
-            if (!mFragment.isInLayout()) {
-                mFragment.dispatchOnViewCreated(mFragment.onCreateView(
-                        fragmentActivity.getLayoutInflater().cloneInContext(fragmentActivity.getApplicationContext()),
-                        mFragment.getViewContainer(),
-                        mFragment.getArguments()
-                ));
-            }
-            mFragment.onActivityCreated(viewModel.mController.mSavedInstanceState);
-            mFragment.dispatchAdd();
+            return;
         }
-        mFragment.getViewLifecycleOwner().getLifecycle().addObserver(this);
+        Fragment parentFragment = getParentFragment();
+        viewModel.mController.dispatchAdd(parentFragment, mFragment, getId(), getTag());
+        mFragment.initialize(getTag(), getId());
+    }
+
+    @Nullable
+    public String getTag() {
+        return mTag;
     }
 
     public Fragment getFragment() {
+        if (mFragment == null) {
+            mFragment = requestActivity().getFragmentPlusManager().findFragmentByTag(getTag());
+        }
+        if (mFragment == null && mName != null) {
+            try {
+                mFragment = (Fragment) Class.forName(mName).newInstance();
+                mFragment.getViewLifecycleOwner().getLifecycle().addObserver(this);
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+                throw new RuntimeException("Failed to instantiate fragment");
+            }
+        }
         return mFragment;
     }
 
     @Nullable
     private Fragment getParentFragment() {
-        FragmentActivity fragmentActivity = requestActivity();
         ViewGroup viewGroup = (ViewGroup) getParent();
         while (viewGroup != null) {
             if (viewGroup.getId() == android.R.id.content) {
                 return null;
             }
-            Fragment fragment = fragmentActivity.getFragmentPlusManager().findFragmentById(viewGroup.getId());
+            Fragment fragment = requestActivity().getFragmentPlusManager().findFragmentById(viewGroup.getId());
             if (fragment != null)
                 return fragment;
             if (viewGroup.getParent() != null) {
@@ -125,32 +118,28 @@ public final class FragmentView extends FrameLayout implements LifecycleObserver
         return null;
     }
 
-    @Nullable
-    private FragmentActivity getActivity() {
+    @NonNull
+    private FragmentActivity requestActivity() {
+        if (mFragmentActivity != null)
+            return mFragmentActivity;
         ViewGroup viewGroup = (ViewGroup) getParent();
         while (viewGroup != null) {
             if (viewGroup.getId() == android.R.id.content) {
-                return (FragmentActivity) viewGroup.getContext();
+                mFragmentActivity = (FragmentActivity) viewGroup.getContext();
+                mFragmentActivity.getLifecycle().addObserver(this);
+                return mFragmentActivity;
             }
             if (viewGroup.getParent() != null) {
                 viewGroup = (ViewGroup) viewGroup.getParent();
             }
         }
-        return null;
-    }
-
-    @NonNull
-    private FragmentActivity requestActivity() {
-        FragmentActivity fragmentActivity = getActivity();
-        if (fragmentActivity == null) {
-            throw new NullPointerException("FragmentActivity not found");
-        }
-        return fragmentActivity;
+        throw new NullPointerException("FragmentActivity not found");
     }
 
     @Override
     public void observer(Lifecycle.Event state) {
         if (state == Lifecycle.Event.ON_DESTROY) {
+            mFragmentActivity = null;
             mFragment = null;
         }
     }

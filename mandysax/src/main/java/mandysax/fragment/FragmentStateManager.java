@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -14,11 +15,9 @@ import java.util.ArrayList;
 
 import mandysax.lifecycle.Lifecycle;
 import mandysax.lifecycle.LifecycleObserver;
-import mandysax.lifecycle.livedata.MutableLiveData;
 
 class FragmentStateManager extends FragmentStore {
 
-    private final MutableLiveData<Boolean> mActivityCreated = new MutableLiveData<>();
     final Handler mHandler = new Handler(Looper.getMainLooper());
     FragmentActivity mActivity;
     Bundle mSavedInstanceState;
@@ -55,10 +54,10 @@ class FragmentStateManager extends FragmentStore {
         if (tag == null) {
             tag = fragment.getClass().getSimpleName();
         }
-        boolean repeat = tagGetFragment(tag) != null;
+        boolean repeat = findFragmentByTag(tag) != null;
         StringBuilder tagBuilder = new StringBuilder(tag);
         while (repeat) {
-            repeat = tagGetFragment(tagBuilder.append("+").toString()) != null;
+            repeat = findFragmentByTag(tagBuilder.append("+").toString()) != null;
         }
         tag = tagBuilder.toString();
         fragment.initialize(tag, id);
@@ -76,7 +75,18 @@ class FragmentStateManager extends FragmentStore {
                     fragment.getArguments()
             ));
         }
-        mActivityCreated.lazy(p1 -> fragment.onActivityCreated(mSavedInstanceState));
+        mActivity.getLifecycle().addObserver(new LifecycleObserver() {
+            @Override
+            public void observer(Lifecycle.Event state) {
+                switch (state) {
+                    case ON_RESTART:
+                    case ON_START:
+                    case ON_RESUME:
+                        fragment.onActivityCreated(mSavedInstanceState);
+                        mActivity.getLifecycle().removeObserver(this);
+                }
+            }
+        });
         fragment.dispatchAdd();
     }
 
@@ -107,7 +117,7 @@ class FragmentStateManager extends FragmentStore {
      * @param anim     动画id
      */
     void dispatchRemove(@NonNull Fragment fragment, int anim) {
-        if (!fragment.isInLayout() && anim != 0) {
+        if (fragment.isInLayout() && anim != 0) {
             Animation exitAnim = AnimationUtils.loadAnimation(fragment.getContext(), anim);
             exitAnim.setAnimationListener(new Animation.AnimationListener() {
 
@@ -220,27 +230,30 @@ class FragmentStateManager extends FragmentStore {
     }
 
     void dispatchResumeFragment() {
-        for (Fragment fragment : values()) {
-            if (fragment.isAdded() && fragment.isInLayout()) {
+        for (Fragment fragment : values())
+            if (fragment.isInLayout()) {
+                Fragment parentFragment = fragment.getParentFragment();
+                if (parentFragment != null)
+                    if (fragment.getRoot() != null && parentFragment.getRoot() != null) {
+                        ViewGroup parent = parentFragment.findViewById(fragment.getLayoutId());
+                        if (parent != null) {
+                            parent.addView(fragment.getRoot());
+                            continue;
+                        }
+                    }
+
                 if (fragment.getRoot() != null && fragment.getViewContainer() != null) {
                     fragment.getViewContainer().addView(fragment.getRoot());
                 }
-                if (fragment.isVisible()) {
-                    dispatchShow(fragment, 0);
-                }
             }
-            mActivityCreated.lazy(p1 -> fragment.onActivityCreated(mSavedInstanceState));
-        }
     }
 
     void dispatchOnStart() {
         for (Fragment fragment : values()) {
             if (fragment.isVisible()) {
                 fragment.dispatchOnStart();
+                fragment.onActivityCreated(mSavedInstanceState);
             }
-        }
-        if (mActivityCreated.getValue() == null) {
-            mActivityCreated.setValue(true);
         }
     }
 
@@ -277,15 +290,13 @@ class FragmentStateManager extends FragmentStore {
     }
 
     void dispatchOnDestroy() {
-        for (int i = values().size() - 1; i >= 0; i--) {
-            Fragment fragment = values().get(i);
+        for (Fragment fragment : values()) {
             fragment.dispatchOnDestroyView();
             fragment.dispatchOnDestroy();
             fragment.dispatchOnDetach();
         }
-        mActivity = null;
         mSavedInstanceState = null;
-        mActivityCreated.setValue(null);
+        mActivity = null;
     }
 
     @Override

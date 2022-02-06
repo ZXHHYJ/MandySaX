@@ -45,12 +45,12 @@ class PlayFragment : Fragment() {
             val startBarSize = insets!!.getInsets(WindowInsetsCompat.Type.statusBars()).top
             val navigationBarSize =
                 insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
-            mBinding.viewPager.setMargins(0, startBarSize, 0, 0)
-            mBinding.bottomNavigationBar.setMargins(0, 0, 0, navigationBarSize)
+            mBinding.playViewPager.setMargins(0, startBarSize, 0, 0)
+            mBinding.playBottomNavigationBar.setMargins(0, 0, 0, navigationBarSize)
             insets
         }
         mBinding.let { it ->
-            it.viewPager.adapter = object : FragmentStateAdapter() {
+            it.playViewPager.adapter = object : FragmentStateAdapter() {
 
                 private val list = listOf(
                     PlayingFragment(), LyricFragment(), PlayQueueFragment()
@@ -65,7 +65,7 @@ class PlayFragment : Fragment() {
                 }
 
             }
-            it.bottomNavigationBar.models = listOf(
+            it.playBottomNavigationBar.models = listOf(
                 BottomNavigationItem(
                     R.drawable.ic_round_music_video_24,
                     ""
@@ -80,11 +80,11 @@ class PlayFragment : Fragment() {
             )
                 .setInActiveColor(context.getColor(R.color.translucent_white))
                 .setActiveColor(context.getColor(android.R.color.white))
-            it.bottomNavigationBar.getSelectedPosition().observeForever {
-                mBinding.viewPager.currentItem = it
+            it.playBottomNavigationBar.getSelectedPosition().observeForever {
+                mBinding.playViewPager.currentItem = it
             }
-            it.viewPager.setUserInputEnabled(false)
-            it.bottomNavigationBar.setSelectedPosition(0)
+            it.playViewPager.setUserInputEnabled(false)
+            it.playBottomNavigationBar.setSelectedPosition(0)
             instance.pauseLiveData().observeForever { pause ->
                 if (pause) {
                     it.playBackground.pause()

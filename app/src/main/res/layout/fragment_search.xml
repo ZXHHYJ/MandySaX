@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <mandysax.tablayout.TabLayout
-        android:id="@+id/top_nav"
+        android:id="@+id/search_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
@@ -54,7 +54,7 @@
         android:background="?android:attr/dividerVertical" />
 
     <mandysax.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+        android:id="@+id/search_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

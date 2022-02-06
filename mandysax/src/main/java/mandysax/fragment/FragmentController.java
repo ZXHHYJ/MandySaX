@@ -19,6 +19,49 @@ public final class FragmentController extends FragmentStateManager {
 
     private final BackStack mFragmentBackStack = new BackStack();
 
+    /**
+     * 为指定的Fragment生成FragmentManager
+     *
+     * @param fragment 当前Fragment
+     * @return FragmentManager
+     */
+    @NonNull
+    @Contract(value = "_ -> new", pure = true)
+    public final FragmentManager getFragmentManager(Fragment fragment) {
+        return new FragmentManagerImpl(fragment);
+    }
+
+
+    enum STACK {
+        /**
+         * 显示
+         */
+        SHOW,
+        /**
+         * 隐藏
+         */
+        HIDE,
+        /**
+         * 移除
+         */
+        REMOVE,
+        /**
+         * 切换
+         */
+        REPLACE,
+        /**
+         * 添加
+         */
+        ADD
+    }
+
+    /**
+     * 监听FragmentManager返回栈变更
+     */
+    public interface OnBackStackChangedListener {
+        void onBackStackChanged();
+    }
+
     public class BackStack {
 
         /**
@@ -164,49 +207,6 @@ public final class FragmentController extends FragmentStateManager {
 
     }
 
-
-    /**
-     * 为指定的Fragment生成FragmentManager
-     *
-     * @param fragment 当前Fragment
-     * @return FragmentManager
-     */
-    @NonNull
-    @Contract(value = "_ -> new", pure = true)
-    public final FragmentManager getFragmentManager(Fragment fragment) {
-        return new FragmentManagerImpl(fragment);
-    }
-
-    enum STACK {
-        /**
-         * 显示
-         */
-        SHOW,
-        /**
-         * 隐藏
-         */
-        HIDE,
-        /**
-         * 移除
-         */
-        REMOVE,
-        /**
-         * 切换
-         */
-        REPLACE,
-        /**
-         * 添加
-         */
-        ADD
-    }
-
-    /**
-     * 监听FragmentManager返回栈变更
-     */
-    public interface OnBackStackChangedListener {
-        void onBackStackChanged();
-    }
-
     public class BackStackRecord {
 
         private final ArrayList<Op> mActive;
@@ -282,7 +282,8 @@ public final class FragmentController extends FragmentStateManager {
     private class FragmentTransactionImpl implements FragmentTransaction {
 
         private final ArrayList<Op> mOpl = new ArrayList<>();
-
+        //父Fragment
+        private final Fragment mParentFragment;
         private int
                 mEnterAnim,
                 mExitAnim,
@@ -294,9 +295,6 @@ public final class FragmentController extends FragmentStateManager {
         private boolean mCommitted = false;
         //这个变量用来标记上次执行添加返回栈后的下标
         private int mIndex = 0;
-
-        //父Fragment
-        private final Fragment mParentFragment;
 
         public FragmentTransactionImpl(Fragment parentFragment) {
             mParentFragment = parentFragment;
@@ -473,7 +471,7 @@ public final class FragmentController extends FragmentStateManager {
 
         @Override
         public Fragment findFragmentByTag(String tag) {
-            return tagGetFragment(tag);
+            return FragmentController.this.findFragmentByTag(tag);
         }
 
         @Override

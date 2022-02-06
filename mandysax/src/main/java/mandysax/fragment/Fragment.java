@@ -3,15 +3,12 @@ package mandysax.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import org.jetbrains.annotations.Contract;
 
 import mandysax.lifecycle.Lifecycle;
 import mandysax.lifecycle.LifecycleOwner;
@@ -22,10 +19,8 @@ import mandysax.lifecycle.LifecycleRegistry;
  */
 public class Fragment extends FragmentLifecycle implements FragmentImpl, LifecycleOwner {
 
-    public static final String TAG = "fragment";
-
-    private Lifecycle mLifecycle;
     private final FragmentViewLifecycleOwner mViewLifecycleOwner = new FragmentViewLifecycleOwner();
+    private Lifecycle mLifecycle;
     private boolean mDetached;
     private int mLayoutId = 0;
     private boolean mAdded;
@@ -53,10 +48,23 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
         return requireActivity().getFragmentController().getFragmentManager(this);
     }
 
-    @Nullable
-    @Contract(pure = true)
+    @NonNull
     @Override
     public final FragmentManager getParentFragmentManager() {
+        Fragment parentFragment = getParentFragment();
+        if (parentFragment != null) {
+            parentFragment.getChildFragmentManager();
+        }
+        return getFragmentManager();
+    }
+
+    Fragment getParentFragment() {
+        FragmentStore.Store store = requireActivity().getFragmentController().findStore(mTag);
+        if (store != null) {
+            if (store.parentStore != null) {
+                return store.parentStore.fragment;
+            }
+        }
         return null;
     }
 
@@ -212,11 +220,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     ViewGroup getViewContainer() {
-        ViewGroup viewGroup = requireActivity().findViewById(mLayoutId);
-        if (viewGroup == null) {
-            Log.w(TAG, this + " parent is null");
-        }
-        return viewGroup;
+        return requireActivity().findViewById(mLayoutId);
     }
 
     int getLayoutId() {

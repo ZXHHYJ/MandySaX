@@ -2,10 +2,14 @@ package mandysax.tablayout
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.os.Parcel
+import android.os.Parcelable
+import android.os.Parcelable.Creator
 import android.util.AttributeSet
 import androidx.recyclerview.widget.RecyclerView
 import mandysax.lifecycle.livedata.LiveData
 import mandysax.lifecycle.livedata.MutableLiveData
+import org.jetbrains.annotations.Contract
 import studio.mandysa.jiuwo.utils.linear
 import studio.mandysa.jiuwo.utils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.setup
@@ -58,4 +62,47 @@ open class TabLayout : RecyclerView {
             }
             recyclerAdapter.models = field
         }
+
+    override fun onSaveInstanceState(): Parcelable? {
+        val superState = super.onSaveInstanceState()
+        val ss = SavedState(superState)
+        ss.position = mSelectedPosition.value
+        return ss
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable) {
+        val ss = state as SavedState
+        super.onRestoreInstanceState(ss.superState)
+        mSelectedPosition.value = ss.position
+    }
+
+    internal class SavedState : BaseSavedState {
+        var position = 0
+
+        constructor(superState: Parcelable?) : super(superState)
+
+        private constructor(`in`: Parcel) : super(`in`) {
+            position = `in`.readValue(javaClass.classLoader) as Int
+        }
+
+        override fun writeToParcel(out: Parcel, flags: Int) {
+            super.writeToParcel(out, flags)
+            out.writeValue(position)
+        }
+
+        companion object {
+            @JvmField
+            val CREATOR: Creator<SavedState> = object : Creator<SavedState> {
+                @Contract("_ -> new")
+                override fun createFromParcel(`in`: Parcel): SavedState {
+                    return SavedState(`in`)
+                }
+
+                @Contract(value = "_ -> new", pure = true)
+                override fun newArray(size: Int): Array<SavedState?> {
+                    return arrayOfNulls(size)
+                }
+            }
+        }
+    }
 }

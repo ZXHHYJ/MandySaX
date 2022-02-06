@@ -2,8 +2,6 @@ package mandysax.fragment;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
@@ -21,6 +19,8 @@ public class FragmentActivity extends ComponentActivity {
     //记一个不可以忘记的朋友<晓柳>
 
     private FragmentManagerViewModel mHost;
+
+    private boolean mResumed = false;
 
     @NonNull
     @Contract(" -> new")
@@ -66,24 +66,6 @@ public class FragmentActivity extends ComponentActivity {
     }
 
     @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-        getFragmentStateManager().dispatchResumeFragment();
-    }
-
-    @Override
-    public void setContentView(int layoutResId) {
-        super.setContentView(layoutResId);
-        getFragmentStateManager().dispatchResumeFragment();
-    }
-
-    @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params) {
-        super.setContentView(view, params);
-        getFragmentStateManager().dispatchResumeFragment();
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         getFragmentStateManager().dispatchOnResume();
@@ -93,6 +75,10 @@ public class FragmentActivity extends ComponentActivity {
     protected void onStart() {
         super.onStart();
         getFragmentStateManager().dispatchOnStart();
+        if (!mResumed) {
+            getFragmentStateManager().dispatchResumeFragment();
+            mResumed = true;
+        }
     }
 
     @Override
