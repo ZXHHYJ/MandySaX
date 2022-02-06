@@ -32,7 +32,7 @@ public final class FragmentView extends FrameLayout implements LifecycleObserver
         try {
             mFragment = (Fragment) Class.forName(name).newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-            throw new RuntimeException("Error when constructing fragment");
+            throw new RuntimeException("Failed to instantiate fragment");
         }
         mTag = typedArray.getString(R.styleable.Fragment_android_tag);
         typedArray.recycle();

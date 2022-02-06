@@ -29,14 +29,14 @@ public final class FragmentController extends FragmentStateManager {
         /**
          * 存储返回栈
          */
-        private ArrayList<FragmentController.BackStackRecord> mBackStack;
+        private ArrayList<BackStackRecord> mBackStack;
 
         /**
          * 存储可用的下标
          */
         private ArrayList<Integer> mBackStackIndices;
 
-        public int allocBackStackIndex(final FragmentController.BackStackRecord bsr) {
+        public int allocBackStackIndex(final BackStackRecord bsr) {
             if (mBackStack == null) {
                 mBackStack = new ArrayList<>();
             }
@@ -64,12 +64,12 @@ public final class FragmentController extends FragmentStateManager {
                 if (index != null) {
                     mBackStack.set(index, bsr);//利用这个空位，避免list经常扩容
                     mBackStackIndices.remove(index);//移出可用的下标
-                    dumpBsc();
+                    dispatchBackStackChanged();
                     return index;
                 }
             }
             mBackStack.add(bsr);
-            dumpBsc();
+            dispatchBackStackChanged();
             return mBackStack.size() - 1;
         }
 
@@ -110,7 +110,7 @@ public final class FragmentController extends FragmentStateManager {
                 freeBackStackIndex(index);
                 if (bsr != null) {
                     bsr.rollback();
-                    dumpBsc();
+                    dispatchBackStackChanged();
                     return true;
                 }
             }
@@ -153,7 +153,7 @@ public final class FragmentController extends FragmentStateManager {
             mBackListeners.remove(listener);
         }
 
-        private void dumpBsc() {
+        private void dispatchBackStackChanged() {
             if (mBackListeners == null) {
                 return;
             }

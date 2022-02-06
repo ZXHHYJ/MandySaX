@@ -277,7 +277,8 @@ class FragmentStateManager extends FragmentStore {
     }
 
     void dispatchOnDestroy() {
-        for (Fragment fragment : values()) {
+        for (int i = values().size() - 1; i >= 0; i--) {
+            Fragment fragment = values().get(i);
             fragment.dispatchOnDestroyView();
             fragment.dispatchOnDestroy();
             fragment.dispatchOnDetach();
@@ -290,7 +291,7 @@ class FragmentStateManager extends FragmentStore {
     @Override
     public void addFragment(Fragment fragment) {
         super.addFragment(fragment);
-        //fragment.dispatchAdd();
+        fragment.dispatchAdd();
     }
 
     @Override

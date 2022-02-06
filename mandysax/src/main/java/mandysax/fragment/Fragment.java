@@ -24,7 +24,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
 
     public static final String TAG = "fragment";
 
-    private final LifecycleRegistry mLifecycle = new LifecycleRegistry();
+    private Lifecycle mLifecycle;
     private final FragmentViewLifecycleOwner mViewLifecycleOwner = new FragmentViewLifecycleOwner();
     private boolean mDetached;
     private int mLayoutId = 0;
@@ -36,7 +36,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     private FragmentActivity mActivity;
 
     /**
-     * @return activity的子fragmentPlusManager
+     * @return activity的fragmentPlusManager
      */
     @Override
     @NonNull
@@ -45,7 +45,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     /**
-     * @return 当前fragment的子fragmentPlusManager
+     * @return fragment的fragmentPlusManager
      */
     @Override
     @NonNull
@@ -61,7 +61,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     /**
-     * @return 返回不影响activity生命周期的LayoutInflater
+     * @return 返回LayoutInflater(不会使Activity内存泄漏)
      */
     @NonNull
     public
@@ -75,7 +75,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     /**
-     * @return 此lifecycle与activity的lifecycle同步
+     * @return activity的Lifecycle
      */
     @Override
     @NonNull
@@ -185,13 +185,13 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
 
     void dispatchOnAttach(Context context) {
         mActivity = (FragmentActivity) context;
+        mLifecycle = mActivity.getLifecycle();
         mDetached = false;
         mRemoving = false;
         onAttach(context);
     }
 
     void dispatchOnCreate(Bundle bundle) {
-        mLifecycle.markState(Lifecycle.Event.ON_CREATE);
         onCreate(bundle);
     }
 
@@ -219,7 +219,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
         return viewGroup;
     }
 
-    int getLayoutId(){
+    int getLayoutId() {
         return mLayoutId;
     }
 
@@ -233,27 +233,22 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     void dispatchOnStart() {
-        mLifecycle.markState(Lifecycle.Event.ON_START);
         onStart();
     }
 
     void dispatchOnRestart() {
-        mLifecycle.markState(Lifecycle.Event.ON_RESTART);
         onRestart();
     }
 
     void dispatchOnResume() {
-        mLifecycle.markState(Lifecycle.Event.ON_RESUME);
         onResume();
     }
 
     void dispatchOnPause() {
-        mLifecycle.markState(Lifecycle.Event.ON_PAUSE);
         onPause();
     }
 
     void dispatchOnStop() {
-        mLifecycle.markState(Lifecycle.Event.ON_STOP);
         onStop();
     }
 
@@ -266,12 +261,12 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     void dispatchOnDestroy() {
-        mLifecycle.markState(Lifecycle.Event.ON_DESTROY);
         onDestroy();
     }
 
     void dispatchOnDetach() {
         mActivity = null;
+        mLifecycle = null;
         mDetached = true;
         onDetach();
     }
