@@ -3,9 +3,9 @@
     android:shape="rectangle">
 
     <!-- 圆角的半径 -->
-    <corners android:radius="10dp" />
+    <corners android:radius="250dp" />
 
     <!-- 填充颜色 -->
-    <solid android:color="#3a8fea" />
+    <solid android:color="@color/translucent_white" />
 
 </shape>

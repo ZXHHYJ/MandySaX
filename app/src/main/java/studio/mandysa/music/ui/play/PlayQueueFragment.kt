@@ -14,7 +14,8 @@ import studio.mandysa.jiuwo.utils.recyclerAdapter
 import studio.mandysa.jiuwo.utils.setup
 import studio.mandysa.music.R
 import studio.mandysa.music.databinding.FragmentPlayQueueBinding
-import studio.mandysa.music.databinding.ItemSongBinding
+import studio.mandysa.music.databinding.ItemSongMiniBinding
+import studio.mandysa.music.databinding.LayoutPlayToolbarBinding
 import studio.mandysa.music.logic.model.MusicModel
 import studio.mandysa.music.logic.model.NewSongModel
 import studio.mandysa.music.logic.model.RecommendSongs
@@ -28,16 +29,21 @@ class PlayQueueFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val toolbar = LayoutPlayToolbarBinding.bind(mBinding.root)
+        getInstance().changeMusicLiveData().observe(viewLifecycleOwner) { model ->
+            toolbar.songName.text = model.title
+            toolbar.songSingerName.text = model.artist[0].name
+            toolbar.songCover.setImageURI(model.coverUrl)
+        }
         mBinding.recycler.linear().setup {
-            addType<NewSongModel>(R.layout.item_song)
-            addType<MusicModel>(R.layout.item_song)
-            addType<RecommendSongs.RecommendSong>(R.layout.item_song)
+            addType<NewSongModel>(R.layout.item_song_mini)
+            addType<MusicModel>(R.layout.item_song_mini)
+            addType<RecommendSongs.RecommendSong>(R.layout.item_song_mini)
             onBind {
                 val model = getModel<DefaultMusic<DefaultArtist>>()
-                ItemSongBinding.bind(itemView).apply {
+                ItemSongMiniBinding.bind(itemView).apply {
                     songName.text = model.title
                     songSingerName.text = model.artist[0].name
-                    songCover.setImageURI(model.coverUrl)
                     itemView.setOnClickListener {
                         getInstance().apply {
                             loadAlbum(

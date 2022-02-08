@@ -105,6 +105,7 @@ class DefaultPlayerManager(
             pause()
             return
         }
+        mMediaPlayer.reset()
         mIndex.value = index
     }
 
@@ -145,21 +146,20 @@ class DefaultPlayerManager(
 
     private fun playMusic(musicModel: DefaultMusic<DefaultArtist>) {
         mLoaded = false
-        mChangeMusic.value = musicModel
-        mMediaPlayer.reset()
         mMediaPlayer.setOnPreparedListener {
             mLoaded = true
             play()
             mDuration.value = mMediaPlayer.duration
         }
         mMediaPlayer.setOnErrorListener { _: MediaPlayer?, _: Int, _: Int ->
-            pause()
-            false
+            skipToNext()
+            true
         }
         mMediaPlayer.setOnCompletionListener {
             skipToNext()
         }
         try {
+            mChangeMusic.value = musicModel
             mMediaPlayer.setDataSource(mContext!!, Uri.parse(musicModel.url))
             mMediaPlayer.prepareAsync()
         } catch (e: IOException) {

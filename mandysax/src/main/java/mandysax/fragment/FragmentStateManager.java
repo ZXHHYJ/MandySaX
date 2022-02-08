@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ class FragmentStateManager extends FragmentStore {
      * @param id             view id
      * @param tag            标记
      */
-    void dispatchAdd(Fragment parentFragment, @NonNull Fragment fragment, int id, String tag) {
+    void dispatchAdd(Fragment parentFragment, @NonNull Fragment fragment, @IdRes int id, String tag) {
         if (fragment.isAdded())
             throw new RuntimeException(fragment + " has been added");
         if (tag == null) {
@@ -60,7 +61,8 @@ class FragmentStateManager extends FragmentStore {
             repeat = findFragmentByTag(tagBuilder.append("+").toString()) != null;
         }
         tag = tagBuilder.toString();
-        fragment.initialize(tag, id);
+        fragment.setTag(tag);
+        fragment.setLayoutId(id);
         fragment.dispatchOnAttach(mActivity);
         fragment.dispatchOnCreate(fragment.getArguments());
         if (parentFragment == null) {
@@ -77,7 +79,7 @@ class FragmentStateManager extends FragmentStore {
         }
         mActivity.getLifecycle().addObserver(new LifecycleObserver() {
             @Override
-            public void observer(Lifecycle.Event state) {
+            public void observer(@NonNull Lifecycle.Event state) {
                 switch (state) {
                     case ON_RESTART:
                     case ON_START:
@@ -201,7 +203,7 @@ class FragmentStateManager extends FragmentStore {
                 if (!op.isAddToBackStack) {
                     fragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
                         @Override
-                        public void observer(Lifecycle.Event state) {
+                        public void observer(@NonNull Lifecycle.Event state) {
                             if (state != Lifecycle.Event.ON_STOP) {
                                 return;
                             }
@@ -242,7 +244,7 @@ class FragmentStateManager extends FragmentStore {
                         }
                     }
 
-                if (fragment.getRoot() != null && fragment.getViewContainer() != null) {
+                if (fragment.getRoot() != null && fragment.getLayoutId() != 0) {
                     fragment.getViewContainer().addView(fragment.getRoot());
                 }
             }

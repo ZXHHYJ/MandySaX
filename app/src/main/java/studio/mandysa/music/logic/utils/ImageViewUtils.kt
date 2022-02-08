@@ -15,7 +15,7 @@ fun getFrescoCacheBitmap(
 ) {
     val imageRequest = ImageRequestBuilder
         .newBuilderWithSource(Uri.parse(uri))
-        .setProgressiveRenderingEnabled(true)
+        .setProgressiveRenderingEnabled(false)
         .build()
     val imagePipeline = Fresco.getImagePipeline()
     val dataSource = imagePipeline.fetchDecodedImage(imageRequest, context)

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -22,6 +23,7 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     private final FragmentViewLifecycleOwner mViewLifecycleOwner = new FragmentViewLifecycleOwner();
     private Lifecycle mLifecycle;
     private boolean mDetached;
+    @IdRes
     private int mLayoutId = 0;
     private boolean mAdded;
     private boolean mRemoving;
@@ -186,9 +188,12 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
         return !isVisible();
     }
 
-    void initialize(String tag, int id) {
-        mTag = tag;
+    void setLayoutId(@IdRes int id){
         mLayoutId = id;
+    }
+
+    void setTag(String tag){
+        mTag = tag;
     }
 
     void dispatchOnAttach(Context context) {
@@ -220,7 +225,11 @@ public class Fragment extends FragmentLifecycle implements FragmentImpl, Lifecyc
     }
 
     ViewGroup getViewContainer() {
-        return requireActivity().findViewById(mLayoutId);
+        ViewGroup viewContainer = requireActivity().findViewById(mLayoutId);
+        if (viewContainer == null) {
+            throw new IllegalStateException("Can't find parent layout or " + this);
+        }
+        return viewContainer;
     }
 
     int getLayoutId() {

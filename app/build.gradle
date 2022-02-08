@@ -51,7 +51,7 @@ dependencies {
 
     implementation 'androidx.cardview:cardview:1.0.0'
 
-    implementation 'com.github.hannesa2:AndroidSlidingUpPanel:4.4.0'
+    implementation 'com.github.hannesa2:AndroidSlidingUpPanel:4.4.1'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 

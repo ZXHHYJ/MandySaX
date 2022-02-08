@@ -1,53 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="200dp"
-    android:background="@android:color/background_light"
-    android:orientation="vertical"
-    android:paddingHorizontal="@dimen/activity_horizontal_margin">
+    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+    android:layout_marginVertical="@dimen/activity_vertical_margin"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="0dp">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
         android:layout_marginVertical="@dimen/activity_vertical_margin"
-        android:gravity="center"
-        android:text="@string/welcome"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etPhone"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="@dimen/item_margin_small"
-        android:autofillHints="phone"
-        android:background="@drawable/all_view_card_bg"
-        android:hint="@string/phone"
-        android:inputType="phone"
-        android:padding="10dp"
-        android:textCursorDrawable="@drawable/all_et_cursor_color" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:text="@string/welcome"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="@dimen/item_margin_small"
-        android:autofillHints="password"
-        android:background="@drawable/all_view_card_bg"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textCursorDrawable="@drawable/all_et_cursor_color" />
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/item_margin_small"
+            android:autofillHints="phone"
+            android:background="@drawable/all_view_card_bg"
+            android:hint="@string/phone"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:textCursorDrawable="@drawable/all_et_cursor_color" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/item_margin_small"
-        android:background="@drawable/all_view_card_bg"
-        android:foreground="@null"
-        android:text="@string/login" />
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/item_margin_small"
+            android:autofillHints="password"
+            android:background="@drawable/all_view_card_bg"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textCursorDrawable="@drawable/all_et_cursor_color" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_margin_small"
+            android:background="@drawable/all_view_card_bg"
+            android:foreground="@null"
+            android:text="@string/login"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

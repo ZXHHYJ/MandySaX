@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import mandysax.anna2.callback.Callback
 import mandysax.fragment.Fragment
 import studio.mandysa.music.databinding.FragmentLyricBinding
+import studio.mandysa.music.databinding.LayoutPlayToolbarBinding
 import studio.mandysa.music.logic.model.LyricModel
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.utils.bindView
@@ -20,10 +21,11 @@ class LyricFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val toolbar = LayoutPlayToolbarBinding.bind(mBinding.root)
         getInstance().changeMusicLiveData().observe(viewLifecycleOwner) { model ->
-            mBinding.songName.text = model.title
-            mBinding.songSingerName.text = model.artist[0].name
-            mBinding.songCover.setImageURI(model.coverUrl)
+            toolbar.songName.text = model.title
+            toolbar.songSingerName.text = model.artist[0].name
+            toolbar.songCover.setImageURI(model.coverUrl)
             NeteaseCloudMusicApi::class.java.create().getLyric(model.id)
                 .set(viewLifecycleOwner.lifecycle, object :
                     Callback<LyricModel> {

@@ -62,7 +62,7 @@
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/default_margin"
         android:background="@null"
-        android:duplicateParentState="true"
+        android:duplicateParentState="false"
         android:progressBackgroundTint="@color/translucent_white"
         android:progressTint="@android:color/white"
         android:thumbTint="@android:color/white" />
@@ -110,7 +110,7 @@
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/default_margin"
         android:background="@null"
-        android:duplicateParentState="true"
+        android:duplicateParentState="false"
         android:progressBackgroundTint="@color/translucent_white"
         android:progressTint="@android:color/white"
         android:thumbTint="@android:color/white" />

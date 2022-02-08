@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity
 import android.view.ViewGroup
 import android.view.WindowManager
 import mandysax.fragment.DialogFragment
@@ -47,11 +48,11 @@ class LoginFragment : DialogFragment(), LifecycleObserver {
                         it.etPassword.addTextChangedListener(this)
                     }
                 }
-                it.window!!.setWindowAnimations(R.style.DialogAnim);
                 it.window!!.setLayout(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
+                    ViewGroup.LayoutParams.WRAP_CONTENT
                 )
+                it.window!!.setGravity(Gravity.BOTTOM)
                 it.setOnShowListener { _ ->
                     it.window!!.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
                 }

@@ -180,7 +180,7 @@ public class LiveData<T> {
                 LiveData<T>.LifecycleBoundObserver lifecycleBoundObserver = ((LiveData<T>.LifecycleBoundObserver) wrapper);
                 lifecycleBoundObserver.mOwner.getLifecycle().addObserver(new LifecycleObserver() {
                     @Override
-                    public void observer(Lifecycle.Event state) {
+                    public void observer(@NonNull Lifecycle.Event state) {
                         switch (state) {
                             case ON_CREATE:
                             case ON_START:

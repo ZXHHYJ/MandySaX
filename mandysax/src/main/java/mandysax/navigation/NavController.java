@@ -24,7 +24,7 @@ import mandysax.navigation.fragment.NavHostFragment;
  */
 public final class NavController {
 
-    private final NavHostFragment mNavFragment;
+    private final NavHostFragment mNavHost;
 
     private final NavControllerViewModel mViewModel;
 
@@ -32,7 +32,7 @@ public final class NavController {
      * @param navHostFragment 带导航的NavHostFragment
      */
     public NavController(@NonNull NavHostFragment navHostFragment) {
-        mNavFragment = navHostFragment;
+        mNavHost = navHostFragment;
         mViewModel = ViewModelProviders.of(navHostFragment.getViewLifecycleOwner()).get(NavControllerViewModel.class);
     }
 
@@ -41,41 +41,22 @@ public final class NavController {
      */
     @MainThread
     public <T extends Fragment> void navigate(T fragment) {
-        mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
-            @Override
-            public void observer(Lifecycle.Event state) {
-                if (state == Lifecycle.Event.ON_START) {
-                    navigate(fragment, 0, 0, 0, 0);
-                    mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
-                }
-            }
-        });
+        new NavFragmentOnStartCallback(mNavHost, fragment);
     }
 
     @MainThread
-    public <T extends Fragment> void navigate(int animStyle, T fragment) {
-        mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
-            @Override
-            public void observer(Lifecycle.Event state) {
-                if (state == Lifecycle.Event.ON_START) {
-                    int[] attr = new int[]{R.attr.fragmentEnterAnim, R.attr.fragmentExitAnim, R.attr.fragmentPopEnterAnim, R.attr.fragmentPopExitAnim};
-                    TypedArray array = mNavFragment.requireActivity().getTheme().obtainStyledAttributes(animStyle, attr);
-                    navigate(fragment, array.getResourceId(0, 0), array.getResourceId(1, 0), array.getResourceId(2, 0), array.getResourceId(3, 0));
-                    array.recycle();
-                    mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
-                }
-            }
-        });
+    public <T extends Fragment> void navigate(int animResId, T fragment) {
+        new NavFragmentOnStartCallback(mNavHost, fragment, animResId);
     }
 
     private FragmentTransaction beginTransaction() {
-        return mNavFragment.getChildFragmentManager().beginTransaction();
+        return mNavHost.getChildFragmentManager().beginTransaction();
     }
 
     private <T extends Fragment> void navigate(T fragment, int fragmentEnterAnim, int fragmentExitAnim, int fragmentPopEnterAnim, int fragmentPopExitAnim) {
         FragmentTransaction fragmentTransaction = beginTransaction();
         fragmentTransaction.setCustomAnimations(fragmentEnterAnim, fragmentExitAnim, 0, 0);
-        int navId = mNavFragment.getRoot().getId();
+        int navId = mNavHost.getRoot().getId();
         Fragment nowFragment = mViewModel.getNowFragment();
         if (nowFragment != null) {
             fragmentTransaction.hide(nowFragment);
@@ -88,20 +69,20 @@ public final class NavController {
             private boolean mAddBackCallback = false;
 
             @Override
-            public void observer(Lifecycle.Event state) {
+            public void observer(@NonNull Lifecycle.Event state) {
                 if (state == Lifecycle.Event.ON_CREATE) {
-                    mNavFragment.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
+                    mNavHost.getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleObserver() {
 
                         {
                             fragment.getViewLifecycleOwner().getLifecycle().addObserver(state1 -> {
                                 if (state1 == ON_DESTROY) {
-                                    mNavFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
+                                    mNavHost.getViewLifecycleOwner().getLifecycle().removeObserver(this);
                                 }
                             });
                         }
 
                         @Override
-                        public void observer(Lifecycle.Event state) {
+                        public void observer(@NonNull Lifecycle.Event state) {
                             switch (state) {
                                 case ON_START:
                                     ((LifecycleRegistry) fragment.getViewLifecycleOwner().getLifecycle()).markState(Lifecycle.Event.ON_START);
@@ -118,12 +99,14 @@ public final class NavController {
                 }
                 if (state == Lifecycle.Event.ON_START && !mAddBackCallback) {
                     mAddBackCallback = true;
-                    fragment.requireActivity().getOnBackPressedDispatcher().addCallback(mNavFragment.getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+                    fragment.requireActivity().getOnBackPressedDispatcher().addCallback(mNavHost.getViewLifecycleOwner(), new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
                             if (mViewModel.getLastFragment() == null) {
+                                //已经到达顶层
+                                //销毁监听
                                 remove();
-                                mNavFragment.requireActivity().onBackPressed();
+                                navigateUp();
                                 return;
                             }
                             FragmentTransaction fragmentTransaction = beginTransaction();
@@ -132,6 +115,7 @@ public final class NavController {
                             fragmentTransaction.show(mViewModel.getLastFragment());
                             fragmentTransaction.commit();
                             mViewModel.removeLast();
+                            //销毁当前监听
                             remove();
                         }
                     });
@@ -144,10 +128,47 @@ public final class NavController {
     }
 
     /**
-     * 返回上一个fragment，没有则退出activity
+     * run Activity.onBackPressed()
      */
     public void navigateUp() {
-        mNavFragment.requireActivity().onBackPressed();
+        mNavHost.requireActivity().onBackPressed();
+    }
+
+    private class NavFragmentOnStartCallback implements LifecycleObserver {
+
+        private final NavHostFragment mNavHostFragment;
+
+        private final Fragment mNavFragment;
+
+        private final int mAnimResId;
+
+        NavFragmentOnStartCallback(NavHostFragment navHostFragment, Fragment navFragment) {
+            mNavHostFragment = navHostFragment;
+            mNavFragment = navFragment;
+            mAnimResId = 0;
+            mNavHostFragment.getViewLifecycleOwner().getLifecycle().addObserver(this);
+        }
+
+        NavFragmentOnStartCallback(NavHostFragment navHostFragment, Fragment navFragment, int animResId) {
+            mNavHostFragment = navHostFragment;
+            mNavFragment = navFragment;
+            mAnimResId = animResId;
+            mNavHostFragment.getViewLifecycleOwner().getLifecycle().addObserver(this);
+        }
+
+        @Override
+        public void observer(@NonNull Lifecycle.Event state) {
+            if (state == Lifecycle.Event.ON_START) {
+                if (mAnimResId != 0) {
+                    int[] attr = new int[]{R.attr.fragmentEnterAnim, R.attr.fragmentExitAnim, R.attr.fragmentPopEnterAnim, R.attr.fragmentPopExitAnim};
+                    TypedArray array = mNavHost.requireActivity().getTheme().obtainStyledAttributes(mAnimResId, attr);
+                    navigate(mNavFragment, array.getResourceId(0, 0), array.getResourceId(1, 0), array.getResourceId(2, 0), array.getResourceId(3, 0));
+                    array.recycle();
+                } else
+                    navigate(mNavFragment, 0, 0, 0, 0);
+                mNavHostFragment.getViewLifecycleOwner().getLifecycle().removeObserver(this);
+            }
+        }
     }
 
 }

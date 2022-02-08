@@ -67,18 +67,19 @@ public final class FragmentView extends FrameLayout implements LifecycleObserver
         super.onAttachedToWindow();
         mFragment = getFragment();
 
-        FragmentManagerViewModel viewModel =
-                ViewModelProviders.of(requestActivity()).get(FragmentManagerViewModel.class);
-
         if (mFragment.isAdded()) {
             if (mFragment.getRoot() != null && mFragment.getRoot().getParent() == null) {
                 addView(mFragment.getRoot());
             }
             return;
         }
+
         Fragment parentFragment = getParentFragment();
-        viewModel.mController.dispatchAdd(parentFragment, mFragment, getId(), getTag());
-        mFragment.initialize(getTag(), getId());
+        ViewModelProviders.of(requestActivity()).get(FragmentManagerViewModel.class)
+                .mController
+                .dispatchAdd(parentFragment, mFragment, getId(), getTag());
+        mFragment.setTag(getTag());
+        mFragment.setLayoutId(0);
     }
 
     @Nullable
@@ -137,7 +138,7 @@ public final class FragmentView extends FrameLayout implements LifecycleObserver
     }
 
     @Override
-    public void observer(Lifecycle.Event state) {
+    public void observer(@NonNull Lifecycle.Event state) {
         if (state == Lifecycle.Event.ON_DESTROY) {
             mFragmentActivity = null;
             mFragment = null;

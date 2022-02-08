@@ -31,7 +31,6 @@ public class DialogFragment extends Fragment implements DialogInterface.OnDismis
     @Override
     protected void onDestroyView() {
         super.onDestroyView();
-        requireActivity().getLifecycle().removeObserver(this);
         dismissDialog();
     }
 
@@ -127,16 +126,15 @@ public class DialogFragment extends Fragment implements DialogInterface.OnDismis
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialog) {
+    public void onDismiss(DialogInterface dialog) {
         if (mDismissListener != null && dialog != null) {
             mDismissListener.onDismiss(dialog);
         }
-        getChildFragmentManager().beginTransaction().remove(this).commit();
+        getChildFragmentManager().beginTransaction().remove(this).commitNow();
     }
 
     public void setOnCancelListener(DialogInterface.OnCancelListener listener) {
         mCancelListener = listener;
-
     }
 
     public void setOnDismissListener(DialogInterface.OnDismissListener listener) {
@@ -149,7 +147,7 @@ public class DialogFragment extends Fragment implements DialogInterface.OnDismis
     }
 
     @Override
-    public void observer(Lifecycle.Event state) {
+    public void observer(@NonNull Lifecycle.Event state) {
         if (Lifecycle.Event.ON_DESTROY == state) {
             if (mDialog != null) {
                 mDialog.setOnDismissListener(null);

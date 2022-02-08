@@ -16,8 +16,6 @@ import studio.mandysa.music.databinding.ActivityMainBinding
 import studio.mandysa.music.logic.utils.getInstance
 import studio.mandysa.music.logic.utils.inflate
 import studio.mandysa.music.logic.utils.viewModels
-import studio.mandysa.music.ui.event.UserViewModel
-import studio.mandysa.music.ui.login.LoginFragment
 
 
 class MainActivity : FragmentActivity() {
@@ -26,7 +24,7 @@ class MainActivity : FragmentActivity() {
 
     private val mViewModel: MainViewModel by viewModels()
 
-    private val mUserViewModel: UserViewModel by viewModels()
+    //private val mUserViewModel: UserViewModel by viewModels()
 
     private fun isNightMode() =
         when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
@@ -43,10 +41,6 @@ class MainActivity : FragmentActivity() {
                 it.statusBarLightFont().navigationBarLightFont()
             else it.statusBarDarkFont().navigationBarDarkFont()
         }
-
-        //判断有没有登录，没有登录的话就打开登录界面
-        if (mUserViewModel.getCookieLiveData().value == null)
-            LoginFragment().show(fragmentPlusManager)
         mBinding.apply {
             //不把shadowHeight设置为0的话后续修改shadowHeight都将失效！！
             mainSlidingView.shadowHeight = 0
@@ -68,7 +62,7 @@ class MainActivity : FragmentActivity() {
                 )
             )
                 .setActiveColor(getColor(R.color.theme_color))
-                .setInActiveColor(getColor(R.color.default_unchecked_color))
+                .setInActiveColor(getColor(mandysax.tablayout.R.color.default_unchecked_color))
             mainBottomNavigationBar.setSelectedPosition(mainViewPager.currentItem)
             mainBottomNavigationBar.getSelectedPosition().observe(this@MainActivity) {
                 mainViewPager.currentItem = it
@@ -77,27 +71,31 @@ class MainActivity : FragmentActivity() {
                 val startBarSize = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
                 val navigationBarSize =
                     insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
-                mainViewPager.setPadding(
-                    0,
-                    startBarSize,
-                    0,
-                    if (getInstance().changeMusicLiveData().value == null) navigationBarSize else 0
-                )
+                val music = getInstance().changeMusicLiveData().value != null
                 bottomNavLayout.setPadding(
                     0,
                     0,
                     0,
                     navigationBarSize
                 )
+                mainViewPager.setPadding(
+                    0,
+                    startBarSize,
+                    0,
+                    if (music) 0 else resources.getDimensionPixelOffset(R.dimen.nav_height) + navigationBarSize
+                )
+                if (music) {
+                    mainSlidingView.panelHeight =
+                        resources.getDimensionPixelOffset(R.dimen.nav_height) * 2 + navigationBarSize
+                }
                 insets
             }
             getInstance().changeMusicLiveData().observe(this@MainActivity) {
                 mBinding.apply {
                     mainBottomNavigationBar.post {
                         mainSlidingView.apply {
-                            if (panelHeight == 0)
-                                panelHeight =
-                                    context.resources.getDimensionPixelOffset(R.dimen.nav_height) + mBinding.bottomNavLayout.height
+                            panelHeight =
+                                resources.getDimensionPixelOffset(R.dimen.nav_height) * 2 + bottomNavLayout.paddingBottom
                             mBinding.mainViewPager.setPadding(
                                 0,
                                 mBinding.mainViewPager.paddingTop,

@@ -9,7 +9,7 @@
     </style>
 
     <style name="ImageCardViewStyle">
-        <item name="cardBackgroundColor">@null</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardElevation">0dp</item>
     </style>
@@ -38,18 +38,8 @@
     </style>
 
     <style name="TransparentDialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowBackground">@android:color/black</item>
-        <!--是否浮现在activity之上-->
-        <item name="android:windowIsFloating">true</item>
-    </style>
-
-    <!--无边框dialog-->
-
-    <style name="DialogAnim" parent="android:Animation">
-        <!--进入时的动画-->
-        <item name="android:windowEnterAnimation">@anim/dialog_enter_anim</item>
-        <!--退出时的动画-->
-        <item name="android:windowExitAnimation">@anim/dialog_exit_anim</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
     <style name="AppFragmentAnimStyle">
