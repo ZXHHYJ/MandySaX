@@ -21,7 +21,6 @@ class MyApplication : Application() {
             it.errorLayout = R.layout.layout_error
             it.setRetryId(R.id.cl_error_check)
         }
-
         init(this) //初始化播放管理器
         DefaultPlayerManager.getInstance()!!.apply {
             pauseLiveData()
