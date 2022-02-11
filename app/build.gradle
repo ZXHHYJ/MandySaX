@@ -39,8 +39,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.?ar'], dir: 'libs')
 
-    // 存储库：https://gitee.com/simon9102/tuke
-    implementation 'com.gitee.simon9102:tuke:1.0.0'
+    implementation 'com.tencent:mmkv:1.2.12'
     // 图片加载库：https://www.fresco-cn.org/
     implementation 'com.facebook.fresco:fresco:2.6.0'
     // 网络请求库：https://gitee.com/liuxiaoliu66/anna

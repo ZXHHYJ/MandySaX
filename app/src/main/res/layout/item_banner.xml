@@ -7,7 +7,6 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/plan_iv"
-        style="@style/ImageViewStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:foreground="?android:attr/selectableItemBackground" />

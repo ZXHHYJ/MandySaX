@@ -1,10 +1,10 @@
 package studio.mandysa.music.ui.event
 
+import com.tencent.mmkv.MMKV
 import mandysax.anna2.callback.Callback
 import mandysax.lifecycle.ViewModel
 import mandysax.lifecycle.livedata.LiveData
 import mandysax.lifecycle.livedata.MutableLiveData
-import simon.tuke.Tuke
 import studio.mandysa.music.logic.model.LoginModel
 import studio.mandysa.music.logic.model.NeteaseCloudMusicApi
 import studio.mandysa.music.logic.utils.create
@@ -16,13 +16,14 @@ class UserViewModel : ViewModel() {
         val COOKIE_KEY = "cookie_key"
     }
 
-    private val mCookieLiveData = MutableLiveData<String>(Tuke.tukeGet(COOKIE_KEY))
+    private val mCookieLiveData =
+        MutableLiveData<String>(MMKV.defaultMMKV().decodeString(COOKIE_KEY))
 
     fun getCookieLiveData(): LiveData<String> = mCookieLiveData
 
     init {
         mCookieLiveData.observeForever {
-            Tuke.tukeWrite(COOKIE_KEY, it)
+            MMKV.defaultMMKV().encode(COOKIE_KEY, it)
         }
     }
 

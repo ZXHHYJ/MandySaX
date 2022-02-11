@@ -6,19 +6,12 @@
     android:background="@android:color/white"
     android:gravity="center_vertical">
 
-    <androidx.cardview.widget.CardView
-        style="@style/ImageCardViewStyle"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/controller_cover"
+        style="@style/BorderBackgroundStyle"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="@dimen/activity_horizontal_margin">
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/controller_cover"
-            style="@style/ImageViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </androidx.cardview.widget.CardView>
+        android:layout_marginStart="@dimen/activity_horizontal_margin" />
 
     <TextView
         android:id="@+id/controller_title"

@@ -3,9 +3,9 @@ package studio.mandysa.music
 import android.app.Application
 import android.content.Intent
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.tencent.mmkv.MMKV
 import mandysax.media.DefaultPlayerManager
 import mandysax.media.DefaultPlayerManager.Companion.init
-import simon.tuke.Tuke
 import studio.mandysa.music.service.MediaPlayService
 import studio.mandysa.statelayout.StateLayout
 
@@ -13,9 +13,9 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Tuke.init(this)
+        MMKV.initialize(this)
 
-        Fresco.initialize(this);
+        Fresco.initialize(this)
 
         StateLayout.let {
             it.loadingLayout = R.layout.layout_loading

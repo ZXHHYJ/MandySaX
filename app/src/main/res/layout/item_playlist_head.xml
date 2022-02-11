@@ -8,19 +8,12 @@
     android:orientation="horizontal"
     android:padding="@dimen/activity_vertical_margin">
 
-    <androidx.cardview.widget.CardView
-        style="@style/ImageCardViewStyle"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/cover"
+        style="@style/BorderBackgroundStyle"
         android:layout_width="110dp"
-        android:layout_height="110dp">
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/cover"
-            style="@style/ImageViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foreground="?android:attr/selectableItemBackground" />
-
-    </androidx.cardview.widget.CardView>
+        android:layout_height="110dp"
+        android:foreground="?android:attr/selectableItemBackground" />
 
     <LinearLayout
         android:layout_width="match_parent"

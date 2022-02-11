@@ -33,8 +33,11 @@
         <item name="android:background">@drawable/btn_selector</item>
     </style>
 
-    <style name="ImageViewStyle">
+    <style name="BorderBackgroundStyle">
         <item name="placeholderImage">@color/empty_iv_bg_color</item>
+        <item name="roundingBorderColor">#EDEDED</item>
+        <item name="roundedCornerRadius">@dimen/card_corner_radius</item>
+        <item name="roundingBorderWidth">1dp</item>
     </style>
 
     <style name="TransparentDialog" parent="@android:style/Theme.Dialog">

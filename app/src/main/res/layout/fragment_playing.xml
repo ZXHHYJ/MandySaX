@@ -22,7 +22,6 @@
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/music_cover"
-                style="@style/ImageViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

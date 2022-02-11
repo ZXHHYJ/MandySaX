@@ -10,18 +10,12 @@
     android:paddingHorizontal="@dimen/activity_horizontal_margin"
     android:paddingVertical="@dimen/activity_vertical_margin">
 
-    <androidx.cardview.widget.CardView
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_avatar"
+        style="@style/BorderBackgroundStyle"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="0dp">
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/iv_avatar"
-            style="@style/ImageViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.cardview.widget.CardView>
+        app:roundAsCircle="true" />
 
     <LinearLayout
         android:layout_width="0dp"
