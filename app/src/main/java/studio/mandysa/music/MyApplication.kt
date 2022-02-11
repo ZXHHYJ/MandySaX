@@ -12,9 +12,7 @@ import studio.mandysa.statelayout.StateLayout
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
         MMKV.initialize(this)
-
         Fresco.initialize(this)
 
         StateLayout.let {
